@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="ko">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>말랑방위대 기획 노트</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jua&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#F2F6F1; --surface:#FFFFFF; --ink:#1E2923; --muted:#56675D; --line:#D5DFD7;
+  --berry:#D33A60; --sprout:#258852; --butter:#E9A800;
+  --berry-soft:#FBE4EA; --sprout-soft:#DCF1E3; --butter-soft:#FFF2C8;
+  --code-bg:#E9F0EA; --ok:#258852; --mid:#B07A00; --bad:#C2384F;
+  --frame:#2B2337;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --paper:#111613; --surface:#19201C; --ink:#E5EDE8; --muted:#9BAEA3; --line:#2A3530;
+    --berry:#FF7096; --sprout:#55C98A; --butter:#FFC845;
+    --berry-soft:#3A1F28; --sprout-soft:#1B3126; --butter-soft:#3A311B;
+    --code-bg:#0D120F; --ok:#55C98A; --mid:#FFC845; --bad:#FF7A90;
+    --frame:#0B0910;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#111613; --surface:#19201C; --ink:#E5EDE8; --muted:#9BAEA3; --line:#2A3530;
+  --berry:#FF7096; --sprout:#55C98A; --butter:#FFC845;
+  --berry-soft:#3A1F28; --sprout-soft:#1B3126; --butter-soft:#3A311B;
+  --code-bg:#0D120F; --ok:#55C98A; --mid:#FFC845; --bad:#FF7A90;
+  --frame:#0B0910;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;font-size:16px;line-height:1.75;word-break:keep-all;overflow-wrap:break-word}
+.wrap{max-width:1100px;margin:0 auto;padding-inline:20px;padding-block:44px 96px}
+.prose{max-width:740px}
+h1,h2,h3,.disp{font-family:"Jua","IBM Plex Sans KR",sans-serif;font-weight:400;text-wrap:balance;line-height:1.25;margin:0}
+h1{font-size:clamp(40px,7vw,64px);letter-spacing:-.5px}
+h2{font-size:clamp(26px,3.6vw,34px);margin-bottom:14px}
+h3{font-size:21px}
+p{margin:0 0 14px}
+a{color:var(--berry);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:3px solid var(--butter);outline-offset:2px;border-radius:4px}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.lede{font-size:19px;color:var(--muted);max-width:640px;margin-top:10px}
+section{margin-top:72px}
+.sec-head{display:flex;flex-direction:column;gap:6px;margin-bottom:22px}
+.mono{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+small,.note{font-size:13.5px;color:var(--muted)}
+
+/* hero figure */
+.stage-scroll{overflow-x:auto;margin-top:28px;border-radius:22px}
+.stage{min-width:660px;background:var(--frame);border-radius:22px;padding:10px;box-shadow:0 18px 40px -24px rgba(30,20,40,.55)}
+.stage svg{display:block;width:100%;height:auto;border-radius:14px}
+.caption{font-size:13.5px;color:var(--muted);margin-top:10px;max-width:740px}
+
+/* verdict */
+.verdict{margin-top:40px;display:grid;grid-template-columns:1.25fr 1fr;gap:28px;align-items:start}
+.verdict-main{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:26px 28px}
+.verdict-main h2{font-size:28px;margin-bottom:10px}
+.stack{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 6px}
+.chip{font-family:"IBM Plex Mono",monospace;font-size:13px;padding:4px 10px;border-radius:999px;background:var(--sprout-soft);color:var(--ink);border:1px solid var(--line)}
+.chip.hot{background:var(--butter-soft)}
+.why{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:14px}
+.why li{padding-left:18px;position:relative}
+.why li::before{content:"";position:absolute;left:0;top:.72em;width:8px;height:8px;border-radius:50%;background:var(--berry)}
+.why b{display:block}
+
+/* references */
+.refs{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:18px}
+.ref{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px 20px;display:flex;flex-direction:column;gap:10px}
+.ref-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.ref h3{font-size:20px}
+.ref .meta{font-size:12.5px;color:var(--muted);font-family:"IBM Plex Mono",monospace}
+.swatch{display:flex;border-radius:7px;overflow:hidden;flex:none;height:22px;border:1px solid var(--line)}
+.swatch i{display:block;width:16px}
+.ref p{margin:0;font-size:14.5px;line-height:1.65}
+.take{background:var(--sprout-soft);border-radius:10px;padding:8px 12px;font-size:14px}
+.take b{font-weight:600}
+.links{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13.5px;margin-top:auto}
+.callout{border:1.5px dashed var(--line);border-radius:14px;padding:14px 18px;font-size:14.5px;color:var(--muted);margin-bottom:22px;max-width:740px}
+
+/* tables */
+.tscroll{overflow-x:auto;border:1px solid var(--line);border-radius:16px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:760px;font-size:14.5px}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;font-size:12.5px;color:var(--muted);letter-spacing:.04em;background:var(--code-bg)}
+tr:last-child td{border-bottom:0}
+td:first-child{font-weight:600;white-space:nowrap}
+.pill{display:inline-block;font-size:12px;font-weight:600;padding:1px 8px;border-radius:999px;margin-right:4px;white-space:nowrap}
+.pill.ok{background:var(--sprout-soft);color:var(--ok)}
+.pill.mid{background:var(--butter-soft);color:var(--mid)}
+.pill.bad{background:var(--berry-soft);color:var(--bad)}
+tr.pick td{background:color-mix(in srgb,var(--butter-soft) 55%,transparent)}
+
+/* characters */
+.cast{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px}
+.card .pic{height:118px;border-radius:12px;display:grid;place-items:center;background:radial-gradient(circle at 50% 78%,color-mix(in srgb,var(--cls) 22%,transparent) 0 34%,transparent 35%)}
+.card .pic svg{width:112px;height:112px;overflow:visible}
+.card .name{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.card .name h3{font-size:22px}
+.cls{font-size:12px;font-weight:600;color:#fff;background:var(--cls);padding:2px 9px;border-radius:999px;white-space:nowrap}
+.stats{display:flex;gap:6px;flex-wrap:wrap}
+.stats span{font-family:"IBM Plex Mono",monospace;font-size:12px;border:1px solid var(--line);border-radius:6px;padding:1px 7px;color:var(--muted)}
+.skill{border-top:1px dashed var(--line);padding-top:8px;font-size:14px;line-height:1.6}
+.skill b{font-family:"Jua",sans-serif;font-weight:400;font-size:17px;color:var(--berry)}
+.skill .sp{display:block;font-size:12px;color:var(--muted);margin-top:4px}
+.card.enemy{background:color-mix(in srgb,var(--surface) 88%,#7a5cff 12%)}
+
+.rules{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px 28px;margin-top:26px;max-width:980px}
+.rules div{border-left:3px solid var(--butter);padding:2px 0 2px 14px}
+.rules b{display:block;font-weight:600}
+.rules p{font-size:14.5px;margin:2px 0 0;color:var(--muted)}
+
+/* mechanics map */
+.mech td:nth-child(2){color:var(--muted)}
+
+/* arch */
+.arch{display:grid;grid-template-columns:1fr auto 1.3fr auto 1fr;gap:12px;align-items:center;max-width:1000px}
+.box{background:var(--surface);border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;font-size:14px;line-height:1.6}
+.box h3{font-size:18px;margin-bottom:4px}
+.box.core{border-color:var(--berry);box-shadow:0 0 0 4px var(--berry-soft)}
+.box ul{margin:6px 0 0;padding-left:18px}
+.arrow{font-family:"Jua",sans-serif;font-size:26px;color:var(--muted);text-align:center}
+.col{display:flex;flex-direction:column;gap:12px}
+pre{background:var(--code-bg);border:1px solid var(--line);border-radius:14px;padding:16px 18px;overflow-x:auto;font-family:"IBM Plex Mono",monospace;font-size:13px;line-height:1.65;margin:0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}
+.two h3{font-size:18px;margin-bottom:8px}
+
+/* roadmap */
+.road{display:flex;flex-direction:column;gap:0;max-width:860px;margin-top:8px}
+.ms{display:grid;grid-template-columns:76px 1fr;gap:18px;padding:16px 0;border-bottom:1px solid var(--line)}
+.ms:last-child{border-bottom:0}
+.ms .tag{font-family:"Jua",sans-serif;font-size:26px;color:var(--berry);line-height:1}
+.ms h3{font-size:19px;margin-bottom:4px}
+.ms p{margin:0;font-size:14.5px;color:var(--muted)}
+.ms .see{display:inline-block;margin-top:8px;font-size:13.5px;background:var(--butter-soft);border-radius:8px;padding:3px 10px;color:var(--ink)}
+
+.decide{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.q{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.q h3{font-size:18px;margin-bottom:6px}
+.q p{margin:0;font-size:14.5px;color:var(--muted)}
+.q .rec{color:var(--ink);font-weight:600}
+.sources{font-size:13.5px;color:var(--muted);columns:2 320px;column-gap:32px;padding-left:18px}
+.sources li{margin-bottom:6px;break-inside:avoid}
+
+/* animation */
+.bob{transform-box:fill-box;transform-origin:50% 100%;animation:bob 1.35s ease-in-out infinite}
+.hop{transform-box:fill-box;transform-origin:50% 100%;animation:hop .9s ease-in-out infinite}
+.flap{animation:flap 1.1s ease-in-out infinite}
+.pulse{transform-box:fill-box;transform-origin:50% 50%;animation:pulse 1.6s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:scale(1,1)}50%{transform:scale(1.06,.92)}}
+@keyframes hop{0%,100%{transform:translateY(0) scale(1.08,.9)}45%{transform:translateY(-14%) scale(.95,1.06)}}
+@keyframes flap{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes pulse{0%,100%{opacity:.95;transform:scale(1)}50%{opacity:.45;transform:scale(1.12)}}
+@media (prefers-reduced-motion: reduce){.bob,.hop,.flap,.pulse{animation:none}}
+
+@media (max-width:860px){
+  .verdict,.two{grid-template-columns:1fr}
+  .arch{grid-template-columns:1fr}
+  .arch .arrow{transform:rotate(90deg)}
+}
+@media (max-width:520px){
+  .ms{grid-template-columns:1fr;gap:6px}
+  .verdict-main{padding:20px}
+}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs id="critters"></defs></svg>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">기획 노트 · 2026.10 · 레퍼런스 조사 + 구현 계획</div>
+    <h1>말랑방위대 <span style="font-size:.42em;color:var(--muted)">(가제)</span></h1>
+    <p class="lede">명일방주식 배치 디펜스를 웹에서. 애니 캐릭터 대신 말랑한 동물들이 간식 창고를 노리는 말썽젤리를 온몸으로 막는 게임.</p>
+  </header>
+
+  <div class="stage-scroll">
+    <div class="stage">
+      <svg id="scene" viewBox="0 0 1100 620" role="img" aria-label="전투 화면 목업: 기울어진 3D 타일 디오라마 위에 동물 캐릭터들이 배치되어 젤리 적을 막고 있음"></svg>
+    </div>
+  </div>
+  <p class="caption">목업: 제안하는 전투 화면. 땅(타일맵)은 3D로 만들고 캐릭터는 2D 그림을 세워 두는 명일방주 구조입니다. 고지대(보라 블록)에는 원거리, 길(모래색)에는 근접을 놓습니다. 펭귄의 노란 칸은 공격 범위, 곰은 젤리 둘을 막는 중입니다. 캐릭터는 전부 코드로 그렸고 CSS만으로 움직입니다. 실제 게임 캐릭터도 처음엔 같은 방식으로 만들 수 있습니다.</p>
+
+  <div class="verdict">
+    <div class="verdict-main">
+      <div class="eyebrow">결론부터</div>
+      <h2>웹으로 가도 그래픽은 충분합니다</h2>
+      <p>그래픽을 좌우하는 건 엔진이 아니라 <b>아트 방향, 조명, 이펙트</b>입니다. 레퍼런스 대부분이 기술적으로는 단순합니다. 킹덤러쉬는 원래 플래시 웹게임으로 출발했고, Thronefall은 단순한 로우폴리 도형을 조명으로 예쁘게 만든 게임입니다.</p>
+      <div class="stack">
+        <span class="chip hot">TypeScript</span><span class="chip hot">Three.js (2.5D)</span><span class="chip">Vite</span><span class="chip">DOM UI</span><span class="chip">Tiled 맵</span><span class="chip">Vitest</span><span class="chip">GitHub Pages</span>
+      </div>
+      <p class="note" style="margin:6px 0 0">2D만으로 충분하다면 대안은 Phaser 4입니다. 앱스토어나 스팀 출시가 1순위라면 Godot 4.6이 맞습니다. 비교는 아래 표에 있습니다.</p>
+    </div>
+    <ul class="why">
+      <li><b>명일방주의 입체감을 그대로 살림</b>고지대 블록이 실제로 솟아 있고 카메라도 기울어져 있습니다. 반면 캐릭터는 2D라서 귀여운 그림을 만드는 비용은 낮습니다.</li>
+      <li><b>가볍고 어디서나 열림</b>라이브러리가 수백 KB 수준입니다. Godot 웹 빌드(약 5~9MB)보다 훨씬 빨리 뜨고 모바일 브라우저에서도 돌아갑니다.</li>
+      <li><b>전투 로직을 화면과 분리</b>순수 TS로 시뮬레이션을 짜면 핀볼 때처럼 헤드리스 테스트가 가능합니다. 나중에 엔진을 바꿔도 로직은 그대로 씁니다.</li>
+    </ul>
+  </div>
+
+  <section id="refs">
+    <div class="sec-head">
+      <div class="eyebrow">01 · 레퍼런스</div>
+      <h2>디펜스 게임 9종에서 가져올 것</h2>
+    </div>
+    <div class="callout">스크린샷과 트레일러를 직접 열어 보고 정리했습니다. 이 페이지는 보안 정책상 외부 이미지를 표시할 수 없어서 링크로 연결했습니다. 스크린샷 모아보기는 별도 HTML 파일로 함께 전달합니다. 오른쪽 위 색 띠는 스크린샷에서 관찰한 대표색(근사치)입니다.</div>
+    <div class="refs" id="refgrid"></div>
+  </section>
+
+  <section id="mechanics">
+    <div class="sec-head">
+      <div class="eyebrow">02 · 시스템</div>
+      <h2>명일방주 전투를 분해하고 우리 식으로 줄이기</h2>
+      <p class="prose" style="color:var(--muted);margin:0">핵심 규칙은 그대로 두고, 이름과 숫자는 우리 세계관으로 바꿉니다. UI나 용어를 그대로 가져오면 표절 시비가 생길 수 있어서 구조만 참고합니다.</p>
+    </div>
+    <div class="tscroll">
+      <table class="mech">
+        <thead><tr><th>시스템</th><th>명일방주</th><th>말랑방위대</th></tr></thead>
+        <tbody>
+          <tr><td>배치 비용</td><td>DP. 시간이 지나면 차오르고, 선봉 오퍼레이터가 추가로 생산함</td><td><b>도토리</b>. 초당 1개씩 쌓이고 다람쥐 '토리'의 스킬로 한 번에 채움</td></tr>
+          <tr><td>타일</td><td>지상(근접)과 고지대(원거리)로 나뉘고 배치 불가 칸이 있음</td><td>동일. 길은 모래색, 고지대는 보라 블록, 배치 불가 칸은 화단(덤불)으로 표현</td></tr>
+          <tr><td>저지(블록)</td><td>근접은 1~3명을 막고, 초과한 적은 지나감</td><td>동일. '막는다'가 핵심 재미라서 블록 수를 캐릭터마다 다르게 둠</td></tr>
+          <tr><td>방향</td><td>배치 직후 드래그로 바라볼 방향을 정하고, 방향에 따라 사거리 격자가 회전함</td><td>동일. 4방향, 사거리는 격자 오프셋 데이터로 정의</td></tr>
+          <tr><td>스킬</td><td>SP 충전 방식 3가지(자동 회복, 공격 시, 피격 시). 발동은 자동 또는 수동</td><td>동일한 구조. 캐릭터당 스킬 1개로 시작하고 나중에 2~3개로 확장</td></tr>
+          <tr><td>후퇴·재배치</td><td>후퇴하면 비용 50% 환급. 재배치 대기시간이 있고, 다시 배치할수록 비용이 1.5배, 2배로 오름</td><td>환급과 대기시간만 유지하고 비용 증가는 나중에 결정 (초반 난이도 완화)</td></tr>
+          <tr><td>배치 제한·목숨</td><td>동시 배치 인원 제한이 있고, 적이 목표에 들어오면 목숨이 1 깎임</td><td>동일. 목숨 대신 <b>푸딩 3개</b>를 지킴</td></tr>
+          <tr><td>적 경로</td><td>스테이지마다 정해진 경로가 있고 막히면 그 자리에서 멈춤 (우회하지 않음)</td><td>경유지 + A* 경로를 미리 계산. 비행 적은 직선으로 이동하고 막을 수 없음</td></tr>
+          <tr><td>속도</td><td>1배속 / 2배속, 일시정지</td><td>동일. 일시정지 중에도 배치할 수 있게 해서 초보자를 배려</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="cast">
+    <div class="sec-head">
+      <div class="eyebrow">03 · 캐릭터</div>
+      <h2>초기 캐스트 8 + 적 2</h2>
+      <p class="prose" style="color:var(--muted);margin:0">직군마다 동물 한 마리씩 배정하고, 직군은 소품 실루엣으로 구분합니다. 이 그림들은 코드로 생성했습니다. 몸통, 귀, 소품을 부품처럼 조합하는 생성기라서 캐릭터가 늘어도 그림체가 흔들리지 않습니다.</p>
+    </div>
+    <div class="cast" id="castgrid"></div>
+
+    <div class="rules">
+      <div><b>실루엣 먼저</b><p>실제 게임 화면에서 캐릭터 크기는 60~80px입니다. 세부 묘사보다 모자, 귀, 소품 윤곽으로 구분합니다. 킹덤러쉬와 운빨존많겜이 쓰는 방식입니다.</p></div>
+      <div><b>검정 대신 진한 자주색 외곽선</b><p>외곽선은 굵게 하되 순검정은 피합니다. 인상이 훨씬 부드러워집니다.</p></div>
+      <div><b>귀여움 공식</b><p>머리와 몸이 하나로 붙은 덩어리 체형, 큰 눈과 하이라이트, 볼터치, 2톤 셀 채색.</p></div>
+      <div><b>뼈대 없이 움직이기</b><p>스쿼시&스트레치, 통통 점프, 맞으면 하얗게 번쩍. 처음엔 Spine 없이 코드만으로 충분합니다.</p></div>
+      <div><b>땅은 차분하게, 캐릭터는 쨍하게</b><p>맵은 책상 위 디오라마처럼 채도를 낮추고, 캐릭터와 이펙트에 채도를 몰아줍니다 (Bad North, Thronefall 참고).</p></div>
+      <div><b>적도 귀엽되 심술궂게</b><p>찡그린 눈썹으로 적과 아군을 구분합니다. 적은 보라색이나 차가운 색, 아군은 따뜻한 색을 씁니다.</p></div>
+    </div>
+  </section>
+
+  <section id="engine">
+    <div class="sec-head">
+      <div class="eyebrow">04 · 엔진 선택</div>
+      <h2>웹 + 그래픽 기준 비교</h2>
+    </div>
+    <div class="tscroll">
+      <table>
+        <thead><tr><th>선택지</th><th>명일방주식 2.5D</th><th>웹 용량·로딩</th><th>모바일 브라우저</th><th>제작 도구</th><th>코드 중심 협업</th><th>한 줄 평</th></tr></thead>
+        <tbody>
+          <tr class="pick"><td>Three.js + TS</td><td><span class="pill ok">최적</span>진짜 3D 타일, 조명, 그림자. 캐릭터는 2D 빌보드</td><td><span class="pill ok">가벼움</span>수백 KB</td><td><span class="pill ok">좋음</span>로우폴리 기준</td><td><span class="pill mid">직접</span>에디터 없음. 맵은 Tiled나 JSON으로 제작</td><td><span class="pill ok">최적</span>테스트·자동화 쉬움</td><td><b>추천.</b> 화면 품질과 웹 사이의 균형점</td></tr>
+          <tr><td>Phaser 4</td><td><span class="pill mid">흉내</span>아이소메트릭 그림으로만 입체 표현</td><td><span class="pill ok">가벼움</span>약 0.5MB</td><td><span class="pill ok">좋음</span></td><td><span class="pill ok">풍부</span>씬, 트윈, 파티클 내장. Spine 공식 지원</td><td><span class="pill ok">좋음</span></td><td>완전 2D로 간다면 1순위. 2026년 4월 정식 출시</td></tr>
+          <tr><td>PixiJS 8</td><td><span class="pill mid">흉내</span>2D 렌더러</td><td><span class="pill ok">최경량</span>약 0.2MB</td><td><span class="pill ok">좋음</span></td><td><span class="pill bad">없음</span>게임 기능은 직접 구현</td><td><span class="pill ok">좋음</span></td><td>렌더러만 필요할 때</td></tr>
+          <tr><td>Godot 4.6 (웹 내보내기)</td><td><span class="pill ok">최적</span>2D·3D 모두 강함</td><td><span class="pill mid">무거움</span>brotli 약 5MB, gzip 약 9MB</td><td><span class="pill mid">보통</span></td><td><span class="pill ok">최고</span>에디터, 애니메이션, 셰이더</td><td><span class="pill mid">보통</span>에디터 GUI 의존. 웹은 C# 불가</td><td>스팀·앱 출시가 목표일 때. metro-shift 경험 활용 가능</td></tr>
+          <tr><td>Cocos Creator</td><td><span class="pill ok">좋음</span></td><td><span class="pill mid">중간</span>2~4MB</td><td><span class="pill ok">좋음</span></td><td><span class="pill ok">풍부</span></td><td><span class="pill mid">보통</span></td><td>미니게임 플랫폼(위챗, 틱톡)용</td></tr>
+          <tr><td>Unity WebGL</td><td><span class="pill ok">최적</span>명일방주 원작 엔진</td><td><span class="pill bad">무거움</span></td><td><span class="pill bad">약함</span></td><td><span class="pill ok">최고</span></td><td><span class="pill mid">보통</span></td><td>웹이 1순위라면 비추천</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="arch">
+    <div class="sec-head">
+      <div class="eyebrow">05 · 구현 구조</div>
+      <h2>전투 로직과 그리기를 분리</h2>
+    </div>
+    <div class="arch">
+      <div class="box"><h3>데이터 (JSON)</h3>캐릭터, 적, 스킬, 스테이지 정의. 사거리는 격자 오프셋으로, 웨이브는 타임라인으로 기록. 맵은 Tiled에서 그려서 내보냄.</div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="box core"><h3>전투 시뮬레이션 (순수 TS)</h3>
+        초당 30틱 고정, 시드 기반 난수 사용. 같은 입력이면 항상 같은 결과.
+        <ul><li>스폰 → 이동·블록 → 타겟팅 → 공격 → SP·스킬 → 피해 → 사망·누수 → 도토리</li><li>입력 명령: 배치(칸, 방향), 후퇴, 스킬, 배속</li></ul>
+      </div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="col">
+        <div class="box"><h3>렌더러 · Three.js</h3>둥근 박스 타일, 툰 조명, 부드러운 그림자, 2D 캐릭터 빌보드, 파티클</div>
+        <div class="box"><h3>UI · DOM</h3>배치 카드, 도토리 수, 스킬 버튼, 방향 선택. HTML/CSS라 글자가 선명함</div>
+      </div>
+    </div>
+    <div class="two">
+      <div>
+        <h3>폴더 구조 (안)</h3>
+<pre>src/
+  sim/      전투 규칙 (렌더러 모름)
+    grid.ts  path.ts  units.ts
+    combat.ts  skills.ts  waves.ts
+  render/   Three.js 디오라마·캐릭터·VFX
+  ui/       배치 바, HUD, 방향 선택
+  art/      말랑이 생성기 (SVG → 텍스처)
+  data/     characters / enemies / stages
+tests/      헤드리스 시뮬 테스트
+docs/       기획, 레퍼런스</pre>
+      </div>
+      <div>
+        <h3>스킬 데이터 예시</h3>
+<pre>{
+  "id": "penpen_snowball_barrage",
+  "name": "눈덩이 폭격",
+  "sp": { "charge": "auto", "cost": 30, "start": 10 },
+  "trigger": "manual",
+  "duration": 15,
+  "effects": [
+    { "type": "attackBecomesAoe", "radius": 1 },
+    { "type": "slow", "amount": 0.3, "time": 1.5 }
+  ]
+}</pre>
+      </div>
+    </div>
+    <p class="prose note" style="margin-top:16px">테스트 예시: "1스테이지에서 정해진 배치 스크립트로 진행하면 푸딩 3개를 지킨 채 클리어한다." 밸런스를 바꿀 때마다 자동으로 확인합니다.</p>
+  </section>
+
+  <section id="roadmap">
+    <div class="sec-head">
+      <div class="eyebrow">06 · 로드맵</div>
+      <h2>단계마다 눈에 보이는 결과물</h2>
+    </div>
+    <div class="road">
+      <div class="ms"><div class="tag">M0</div><div><h3>세팅</h3><p>새 폴더와 GitHub 레포(BangGyum) 생성. Vite, TS, Three.js, Vitest 설치. 푸시하면 GitHub Pages에 자동 배포.</p><span class="see">결과: 빈 3D 디오라마가 URL 하나로 열림</span></div></div>
+      <div class="ms"><div class="tag">M1</div><div><h3>그레이박스 전투</h3><p>타일맵, 카메라, 적 경로, 드래그 배치와 방향 지정, 블록, 기본 공격, 목숨.</p><span class="see">결과: 네모와 동그라미끼리 막고 싸우는 1스테이지</span></div></div>
+      <div class="ms"><div class="tag">M2</div><div><h3>명일방주 코어</h3><p>도토리 비용, 배치 제한, 후퇴와 재배치, SP와 스킬 4종, 2배속과 일시정지, 웨이브 스크립트.</p><span class="see">결과: 전략이 생기는 첫 '게임'</span></div></div>
+      <div class="ms"><div class="tag">M3</div><div><h3>귀여움 패스</h3><p>말랑이 8종 생성기와 스쿼시 애니메이션, 툰 셰이딩·그림자·외곽선, 타격감(히트스톱, 플래시, 파티클, 효과음).</p><span class="see">결과: 스크린샷을 찍고 싶어지는 화면</span></div></div>
+      <div class="ms"><div class="tag">M4</div><div><h3>콘텐츠</h3><p>스테이지 6~10개, 적 6~8종(비행, 원거리, 분열, 보스), 별 3개 조건, 진행 저장.</p><span class="see">결과: 친구에게 링크를 보낼 수 있는 버전</span></div></div>
+      <div class="ms"><div class="tag">M5</div><div><h3>확장</h3><p>모바일 터치 최적화, 일러스트와 Spine으로 교체 검토, 로그라이크 모드, PWA.</p><span class="see">결과: 출시 판단</span></div></div>
+    </div>
+  </section>
+
+  <section id="art-pipeline">
+    <div class="sec-head">
+      <div class="eyebrow">07 · 아트 파이프라인</div>
+      <h2>그래픽 수준을 단계적으로 올리기</h2>
+    </div>
+    <div class="tscroll">
+      <table>
+        <thead><tr><th>단계</th><th>방법</th><th>비용</th><th>메모</th></tr></thead>
+        <tbody>
+          <tr><td>1. 코드 말랑이</td><td>이 문서의 캐릭터처럼 부품 조합 생성기로 그림 → 텍스처로 변환. 애니메이션도 코드로</td><td><span class="pill ok">무료</span></td><td>Claude가 직접 만들고 고칠 수 있음. 프로토타입부터 초기 공개까지</td></tr>
+          <tr><td>2. 손그림 + Spine</td><td>직접 그리거나 외주 일러스트를 Spine으로 리깅. 명일방주 치비와 같은 방식</td><td><span class="pill mid">$69 / $369</span></td><td>Essential에는 메시·IK가 없음. Three.js와 Phaser 공식 런타임 있음. 무료 대안은 DragonBones</td></tr>
+          <tr><td>3. 로우폴리 3D</td><td>Blender나 CC0 에셋 팩(Quaternius, KayKit, Kenney)으로 3D 캐릭터 제작</td><td><span class="pill ok">무료~</span></td><td>Thronefall 느낌. 직접 모델링하려면 시간이 많이 듦</td></tr>
+          <tr><td>보조. AI 이미지</td><td>컨셉 탐색용으로만 쓰고 최종 리소스로는 쓰지 않음</td><td><span class="pill mid">상황별</span></td><td>캐릭터 일관성 유지가 어렵고, 상업 라이선스를 확인해야 함</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="decide">
+    <div class="sec-head">
+      <div class="eyebrow">08 · 정해야 할 것</div>
+      <h2>시작 전에 고를 것 4가지</h2>
+    </div>
+    <div class="decide">
+      <div class="q"><h3>프로젝트 / 레포 이름</h3><p>후보: 말랑방위대(mallang-guard), 간식방위대(snack-guard), 도토리 디펜스. 폴더명과 레포명을 같이 씁니다.</p></div>
+      <div class="q"><h3>레포 공개 범위</h3><p><span class="rec">추천: 비공개로 시작.</span> GitHub Pages 공개 배포는 나중에 켜도 됩니다. 무료 계정에서 비공개 레포로 Pages를 쓸 수 있는지는 플랜에 따라 확인이 필요합니다.</p></div>
+      <div class="q"><h3>화면 방향</h3><p><span class="rec">추천: 가로.</span> 명일방주처럼 PC 웹과 모바일 가로 화면 모두에 맞습니다. 세로는 운빨존많겜식이지만 넓은 맵 표현이 어렵습니다.</p></div>
+      <div class="q"><h3>엔진 확정</h3><p><span class="rec">추천: Three.js 2.5D.</span> 완전 2D 감성이 좋다면 Phaser 4, 앱 출시가 우선이라면 Godot로 갑니다.</p></div>
+    </div>
+  </section>
+
+  <section id="sources">
+    <div class="sec-head"><div class="eyebrow">출처</div></div>
+    <ul class="sources">
+      <li><a href="https://arknights.wiki.gg/wiki/Attribute/Block" target="_blank" rel="noopener">Arknights Terra Wiki: Block</a> · <a href="https://arknights.wiki.gg/wiki/Attribute/Cost" target="_blank" rel="noopener">Cost</a> · <a href="https://arknights.wiki.gg/wiki/Operation" target="_blank" rel="noopener">Operation</a></li>
+      <li><a href="https://www.bluestacks.com/blog/game-guides/arknights/ak-combat-guide-en.html" target="_blank" rel="noopener">BlueStacks: Arknights combat guide</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Arknights" target="_blank" rel="noopener">Wikipedia: Arknights</a> · <a href="https://www.riyinet.com/en/" target="_blank" rel="noopener">Riyinet (Spine 치비 제작)</a></li>
+      <li><a href="https://kingdomrushtd.fandom.com/wiki/Kingdom_Rush_5:_Alliance" target="_blank" rel="noopener">Kingdom Rush 5: Alliance wiki</a></li>
+      <li><a href="https://github.com/phaserjs/phaser/releases" target="_blank" rel="noopener">Phaser releases (v4.2.1, 2026-07)</a> · <a href="http://esotericsoftware.com/blog/spine-phaser-v4-runtime-released" target="_blank" rel="noopener">spine-phaser-v4</a></li>
+      <li><a href="https://godotengine.org/download/archive/4.6.2-stable/" target="_blank" rel="noopener">Godot 4.6.2</a> · <a href="https://docs.godotengine.org/en/stable/tutorials/export/exporting_for_web.html" target="_blank" rel="noopener">Godot web export docs</a> · <a href="https://forum.godotengine.org/t/upcoming-web-performance-boost/112866" target="_blank" rel="noopener">WASM SIMD</a></li>
+      <li><a href="https://app.cinevva.com/guides/web-game-engines-comparison" target="_blank" rel="noopener">Cinevva: Web game engines 2026</a> · <a href="https://generalistprogrammer.com/comparisons/phaser-vs-pixijs" target="_blank" rel="noopener">Phaser vs PixiJS</a></li>
+      <li><a href="https://retrostylegames.com/blog/unity-2d-animation-vs-spine/" target="_blank" rel="noopener">Spine 가격·기능</a> · <a href="https://charios.com/blog/spine-vs-dragonbones-vs-charios-2d-animation-tools-2026" target="_blank" rel="noopener">Spine vs DragonBones</a></li>
+      <li><a href="https://play.google.com/store/apps/details?id=com.percent.aos.luckydefense" target="_blank" rel="noopener">Lucky Defense (Google Play)</a> · <a href="https://www.pcgamesn.com/best-tower-defense-games" target="_blank" rel="noopener">PCGamesN best TD</a></li>
+      <li>Steam 스토어 API: 스크린샷과 트레일러 목록 (앱 960090, 2849080, 2239150, 688420, 3590, 218410, 1714040)</li>
+    </ul>
+  </section>
+</div>
+
+<script>
+(function(){
+const OUT='#3A2C3C';
+const S=(w)=>`stroke="${OUT}" stroke-width="${w}" stroke-linejoin="round" stroke-linecap="round"`;
+const BODY='M50 34C72 34 82 52 81 67C80 83 68 91 50 91C32 91 20 83 19 67C18 52 28 34 50 34Z';
+const eyes=(y=60,dx=10,r=1)=>[50-dx,50+dx].map(x=>`<ellipse cx="${x}" cy="${y}" rx="${4.3*r}" ry="${5.4*r}" fill="#2A1E2C"/><circle cx="${x+1.6*r}" cy="${y-2*r}" r="${1.8*r}" fill="#fff"/>`).join('');
+const blush=(y=68)=>`<ellipse cx="31" cy="${y}" rx="5.5" ry="3.2" fill="#FF8FA8" opacity=".75"/><ellipse cx="69" cy="${y}" rx="5.5" ry="3.2" fill="#FF8FA8" opacity=".75"/>`;
+const mouth=`<path d="M45.5 66.5q2.25 2.8 4.5 0q2.25 2.8 4.5 0" fill="none" ${S(2.2)}/>`;
+const feet=c=>`<ellipse cx="38" cy="90" rx="8" ry="4.5" fill="${c}" ${S(3)}/><ellipse cx="62" cy="90" rx="8" ry="4.5" fill="${c}" ${S(3)}/>`;
+const body=c=>`<path d="${BODY}" fill="${c}" ${S(3.2)}/>`;
+const belly=(c,cy=75,rx=17,ry=12.5)=>`<ellipse cx="50" cy="${cy}" rx="${rx}" ry="${ry}" fill="${c}"/>`;
+const roundEars=(b,i,r=9.5,y=40,x=31)=>`<circle cx="${x}" cy="${y}" r="${r}" fill="${b}" ${S(3)}/><circle cx="${100-x}" cy="${y}" r="${r}" fill="${b}" ${S(3)}/><circle cx="${x}" cy="${y}" r="${r*.5}" fill="${i}"/><circle cx="${100-x}" cy="${y}" r="${r*.5}" fill="${i}"/>`;
+function spiral(cx,cy,turns,maxR){let d='';const n=60;for(let k=0;k<=n;k++){const t=k/n;const a=t*turns*2*Math.PI;const r=2+t*maxR;d+=(k?'L':'M')+(cx+r*Math.cos(a)).toFixed(1)+' '+(cy+r*Math.sin(a)).toFixed(1)}return d}
+function star(cx,cy,R,r){let d='';for(let k=0;k<10;k++){const a=-Math.PI/2+k*Math.PI/5;const rr=k%2?r:R;d+=(k?'L':'M')+(cx+rr*Math.cos(a)).toFixed(1)+' '+(cy+rr*Math.sin(a)).toFixed(1)}return d+'Z'}
+
+const C={
+ tori:()=>`<path d="M66 86C92 86 99 58 90 44C83 33 68 36 70 48C72 57 82 62 76 74C73 80 70 82 66 86Z" fill="#DE7B42" ${S(3)}/><path d="M86 45C82 41 76 43 77 48" fill="none" stroke="#F6C08F" stroke-width="3" stroke-linecap="round"/>`+roundEars('#E9955A','#F7B98A',7,40,33)+feet('#C97A45')+body('#E9955A')+belly('#FCE3C8')+eyes()+blush()+mouth+`<ellipse cx="24" cy="77" rx="6.5" ry="7.5" fill="#C98B4A" ${S(2.6)}/><path d="M16.5 73Q24 65 31.5 73Z" fill="#7A5230" ${S(2.6)}/><path d="M24 67l1.5-3.5" ${S(2.6)}/>`,
+ cat:()=>`<path d="M27 52L29 27L46 39Z" fill="#B9C3D6" ${S(3)}/><path d="M73 52L71 27L54 39Z" fill="#B9C3D6" ${S(3)}/><path d="M31 46L32 33L40.5 39.5Z" fill="#FFB3C4"/><path d="M69 46L68 33L59.5 39.5Z" fill="#FFB3C4"/>`+feet('#9AA6BC')+body('#B9C3D6')+belly('#F4F6FA')+`<path d="M28 52l7 2M28 58l7 0M72 52l-7 2M72 58l-7 0" ${S(1.8)}/>`+eyes()+blush()+mouth+`<g transform="rotate(-32 80 76)"><rect x="77" y="46" width="6" height="28" rx="3" fill="#E9EEF2" ${S(2.6)}/><rect x="72.5" y="72" width="15" height="5" rx="2.5" fill="#F2C14E" ${S(2.6)}/><rect x="77.5" y="77" width="5" height="9" rx="2.5" fill="#8A5A3B" ${S(2.6)}/></g>`,
+ bear:()=>roundEars('#A9785A','#D9A88A')+feet('#8E6249')+body('#A9785A')+belly('#E9CBAF')+eyes(58)+blush(67)+`<ellipse cx="50" cy="67" rx="8.5" ry="6" fill="#F1DCC6" ${S(2.2)}/><ellipse cx="50" cy="64.6" rx="3" ry="2" fill="${OUT}"/><path d="M50 66.5v2.5" ${S(1.8)}/>`+`<circle cx="27" cy="76" r="15.5" fill="#C7D3DC" ${S(3)}/><circle cx="27" cy="76" r="10" fill="none" stroke="#9FB0BE" stroke-width="2"/><circle cx="27" cy="76" r="3.6" fill="#6E7F8E" ${S(2)}/>`,
+ penguin:()=>feet('#FFB03B')+`<ellipse cx="20" cy="70" rx="5" ry="11" transform="rotate(22 20 70)" fill="#33497A" ${S(3)}/>`+body('#3D5486')+`<ellipse cx="50" cy="63" rx="22" ry="17" fill="#fff"/>`+belly('#fff',77,18,12)+eyes(59)+blush(67)+`<path d="M45.5 64L54.5 64L50 69.5Z" fill="#FFB03B" ${S(2)}/><path d="M29 76Q50 85 71 76" fill="none" stroke="#E5466B" stroke-width="5.5" stroke-linecap="round"/><path d="M62 79l4 9" stroke="#E5466B" stroke-width="5" stroke-linecap="round"/><ellipse cx="80" cy="70" rx="5" ry="11" transform="rotate(-22 80 70)" fill="#33497A" ${S(3)}/><circle cx="82" cy="78" r="7.5" fill="#fff" ${S(2.6)}/><circle cx="80" cy="76" r="2" fill="#DDEBFF"/>`,
+ sheep:()=>{const W=[[34,42,10],[50,36,11],[66,42,10],[25,54,7],[75,54,7]];return feet('#B89A7E')+body('#F3E3CF')+`<ellipse cx="21" cy="60" rx="7" ry="3.6" fill="#D8BFA3" ${S(2.6)}/><ellipse cx="79" cy="60" rx="7" ry="3.6" fill="#D8BFA3" ${S(2.6)}/>`+W.map(w=>`<circle cx="${w[0]}" cy="${w[1]}" r="${w[2]}" fill="${OUT}" stroke="${OUT}" stroke-width="6"/>`).join('')+W.map(w=>`<circle cx="${w[0]}" cy="${w[1]}" r="${w[2]}" fill="#FFFDF7"/>`).join('')+eyes(62)+blush(70)+`<path d="M45.5 68.5q2.25 2.8 4.5 0q2.25 2.8 4.5 0" fill="none" ${S(2.2)}/>`+`<path d="M76 90L85 62" stroke="${OUT}" stroke-width="7.5" stroke-linecap="round"/><path d="M76 90L85 62" stroke="#A9744F" stroke-width="3.8" stroke-linecap="round"/><path d="${star(86,57,10,4.6)}" fill="#FFD45C" ${S(2.6)}/>`},
+ bunny:()=>`<g transform="rotate(-9 40 40)"><ellipse cx="40" cy="22" rx="7" ry="18" fill="#FFF7F8" ${S(3)}/><ellipse cx="40" cy="24" rx="3.2" ry="12" fill="#FFB3C4"/></g><g transform="rotate(9 60 40)"><ellipse cx="60" cy="22" rx="7" ry="18" fill="#FFF7F8" ${S(3)}/><ellipse cx="60" cy="24" rx="3.2" ry="12" fill="#FFB3C4"/></g>`+feet('#F4D7DC')+body('#FFF7F8')+eyes()+blush()+mouth+`<path d="M38 42Q38 31 50 31Q62 31 62 42Z" fill="#fff" ${S(2.6)}/><path d="M50 33.8v5.4M47.3 36.5h5.4" stroke="#E5466B" stroke-width="2.4" stroke-linecap="round"/><g transform="rotate(18 80 78)"><path d="M75 69L85 69L80 90Z" fill="#FF9A3C" ${S(2.6)}/><path d="M78 69l-3-6M80 69v-7M82 69l3-6" stroke="#3FA66B" stroke-width="2.6" stroke-linecap="round"/></g>`,
+ mole:()=>roundEars('#7E6A63','#C7A99A',6,46,29)+feet('#695750')+body('#7E6A63')+belly('#D9C6B8')+`<path d="M36 61q4-5 8 0M56 61q4-5 8 0" fill="none" ${S(2.6)}/>`+blush(67)+`<ellipse cx="50" cy="66.5" rx="4.2" ry="3.2" fill="#FF8FA8" ${S(2)}/>`+`<path d="M29 47Q29 26 50 26Q71 26 71 47Z" fill="#FFC94A" ${S(3)}/><rect x="25" y="44" width="50" height="6.5" rx="3.2" fill="#F2A916" ${S(2.6)}/><circle cx="50" cy="34" r="5" fill="#FFF7C2" ${S(2.2)}/>`+`<path d="M80 90L82 62" stroke="${OUT}" stroke-width="7" stroke-linecap="round"/><path d="M80 90L82 62" stroke="#A9744F" stroke-width="3.6" stroke-linecap="round"/><path d="M75 61Q82 45 89 61Q82 67 75 61Z" fill="#C9D2DA" ${S(2.6)}/>`,
+ snail:()=>`<path d="M41 40L36 25M59 40L64 25" ${S(3)}/><circle cx="36" cy="24" r="3.8" fill="#F3E3A0" ${S(2.4)}/><circle cx="64" cy="24" r="3.8" fill="#F3E3A0" ${S(2.4)}/>`+`<circle cx="74" cy="56" r="21" fill="#E98CB0" ${S(3)}/><path d="${spiral(74,56,2.3,15)}" fill="none" stroke="#B85C86" stroke-width="2.6" stroke-linecap="round"/>`+`<ellipse cx="50" cy="90" rx="33" ry="5.5" fill="#E2CC7E" ${S(3)}/>`+body('#F3E3A0')+eyes()+blush()+mouth,
+ jelly:()=>`<path d="M17 90C13 66 29 43 50 43C71 43 87 66 83 90Z" fill="#9B7BFF" ${S(3.2)}/><path d="M24 90C24 84 76 84 76 90" fill="#8463F0" opacity=".6"/><ellipse cx="36" cy="57" rx="7" ry="3.2" fill="#fff" opacity=".55" transform="rotate(-28 36 57)"/>`+eyes(69,9,.85)+`<path d="M34 60.5l9.5 3.5M66 60.5l-9.5 3.5" ${S(2.8)}/><path d="M45 79q5-3.8 10 0" fill="none" ${S(2.4)}/><path d="M50 43q2-8 8-9" fill="none" stroke="#3FA66B" stroke-width="3" stroke-linecap="round"/>`,
+ crow:()=>`<path d="M32 60C14 46 6 64 20 74C26 76 30 72 32 68Z" fill="#383B50" ${S(3)}/><path d="M68 60C86 46 94 64 80 74C74 76 70 72 68 68Z" fill="#383B50" ${S(3)}/><circle cx="50" cy="64" r="22" fill="#44485E" ${S(3.2)}/><ellipse cx="50" cy="73" rx="13" ry="9" fill="#6B7090"/><path d="M44 42q6-8 12 0" fill="none" stroke="#383B50" stroke-width="4" stroke-linecap="round"/><circle cx="42" cy="60" r="5.2" fill="#fff"/><circle cx="58" cy="60" r="5.2" fill="#fff"/><circle cx="43" cy="61" r="2.6" fill="#2A1E2C"/><circle cx="57" cy="61" r="2.6" fill="#2A1E2C"/><path d="M35 53l10 3M65 53l-10 3" ${S(2.8)}/><path d="M45 66L55 66L50 73Z" fill="#FFC94A" ${S(2.2)}/>`
+};
+const defs=document.getElementById('critters');
+defs.innerHTML=Object.entries(C).map(([k,f])=>`<symbol id="c-${k}" viewBox="0 0 100 100" overflow="visible">${f()}</symbol>`).join('');
+
+/* ---------- cast cards ---------- */
+const CLS={선봉:'#E07A2E',가드:'#D33A60',디펜더:'#3E6FD1',스나이퍼:'#23864F',캐스터:'#8A5BD6',메딕:'#1F9C8E',특수:'#5F6F80',서포터:'#B88500',적:'#6B4FD8'};
+const CAST=[
+ ['tori','토리','다람쥐','선봉',['비용 9','블록 1','지상'],'도토리 줍줍','즉시 도토리 +12. 초반에 먼저 깔아서 비용을 빨리 모읍니다.','SP 자동 회복 · 수동 발동'],
+ ['cat','냥기사','고양이','가드',['비용 14','블록 2','지상'],'냥냥 연타','8초 동안 공격속도 2배. 세 번째 공격마다 짧게 기절시킵니다.','SP 공격 시 회복 · 수동 발동'],
+ ['bear','뚜껑곰','곰','디펜더',['비용 18','블록 3','지상'],'냄비뚜껑 방어','10초 동안 방어력 +80%, 블록 +1. 주변 적을 도발합니다.','SP 피격 시 회복 · 수동 발동'],
+ ['penguin','펭펭','펭귄','스나이퍼',['비용 12','블록 0','고지대'],'눈덩이 폭격','15초 동안 공격이 범위 피해가 되고 맞은 적을 30% 둔화시킵니다.','SP 자동 회복 · 수동 발동'],
+ ['sheep','몽실','양','캐스터',['비용 17','블록 0','고지대'],'별가루 샤워','사거리 안의 모든 적에게 마법 피해를 3회 줍니다. 방어력 높은 적을 잡는 담당입니다.','SP 자동 회복 · 수동 발동'],
+ ['bunny','토실','토끼','메딕',['비용 15','블록 0','고지대'],'당근 수프','사거리 안 아군 전원의 HP를 30% 회복합니다.','SP 자동 회복 · 자동 발동'],
+ ['mole','굴굴','두더지','특수',['비용 8','블록 1','지상'],'땅굴 기습','특성: 재배치 대기시간이 아주 짧습니다. 스킬: 앞의 적 하나를 2칸 밀어냅니다.','SP 자동 회복 · 수동 발동'],
+ ['snail','끈끈','달팽이','서포터',['비용 13','블록 0','고지대'],'끈적끈적 길','12초 동안 범위 안 적의 이동속도를 60% 낮춥니다.','SP 자동 회복 · 수동 발동'],
+ ['jelly','말썽젤리','적 · 보병','적',['HP 낮음','속도 보통'],'통통 박치기','막히면 튀어 오르며 들이받습니다. 상위종은 쓰러질 때 작은 젤리 둘로 갈라집니다.','기본 적'],
+ ['crow','까악','적 · 비행','적',['블록 불가','직선 이동'],'푸딩 직행','막을 수 없어서 고지대의 원거리 캐릭터로만 잡을 수 있습니다.','배치 순서를 고민하게 만드는 적']
+];
+document.getElementById('castgrid').innerHTML=CAST.map((c,i)=>{const enemy=c[3]==='적';const anim=enemy?(c[0]==='crow'?'flap':'hop'):'bob';return `<article class="card${enemy?' enemy':''}" style="--cls:${CLS[c[3]]}">
+<div class="pic"><svg viewBox="0 6 100 92" aria-hidden="true"><g class="${anim}" style="animation-delay:${(i*0.17).toFixed(2)}s"><use href="#c-${c[0]}" width="100" height="100"/></g></svg></div>
+<div class="name"><h3>${c[1]}</h3><span class="cls">${enemy?c[2]:c[2]+' · '+c[3]}</span></div>
+<div class="stats">${c[4].map(s=>`<span>${s}</span>`).join('')}</div>
+<div class="skill"><b>${c[5]}</b><br>${c[6]}<span class="sp">${c[7]}</span></div></article>`}).join('');
+
+/* ---------- references ---------- */
+const REFS=[
+ ['명일방주','Hypergryph · 2019 · 모바일/PC',['#2E3338','#E6E9EC','#6E9C5E','#D9463E'],'기울어진 3D 카메라로 본 타일 맵 위에 2D 치비(Spine)가 서 있습니다. 흰 고지대와 초록 지상 타일이 대비되고, 유닛 발밑에 HP바, 적 출현 지점은 빨간 틀로 표시됩니다.','시스템 전부(블록, DP, 방향, 고지대, SP 스킬, 후퇴·재배치)와 3D 땅 + 2D 캐릭터 구조. 무채색 산업풍 톤은 가져오지 않습니다.',[['플레이 영상','https://www.youtube.com/watch?v=s6pbCJW_mi8'],['스테이지 공략 영상','https://www.youtube.com/watch?v=e93e0g12YQ0'],['스토어','https://play.google.com/store/apps/details?id=com.YoStarEN.Arknights']]],
+ ['킹덤러쉬 5: 얼라이언스','Ironhide · 2024 · PC/모바일',['#3F8F33','#F1D27C','#6B4A2B','#B85BE0'],'손그림 쿼터뷰에 굵은 외곽선. 밝은 모래색 길이 초록 숲과 강하게 대비돼서 경로가 한눈에 읽힙니다. HUD는 좌상단(목숨, 골드, 웨이브)과 좌하단(영웅, 스킬) 두 곳뿐입니다.','경로 가독성, 영웅이 직접 길을 막는 구도, 최소한의 HUD, 이펙트 타격감. 시리즈의 시작이 플래시 웹게임이었습니다.',[['Steam (스샷·트레일러)','https://store.steampowered.com/app/2849080/'],['런치 트레일러','https://www.youtube.com/watch?v=DZVbQWNW4LA'],['플레이 영상','https://www.youtube.com/watch?v=AqMd04ZiK7U']]],
+ ['블룬스 TD 6','Ninja Kiwi · 2018',['#5E8C3A','#4FC3E8','#F5A623','#8B5E3C'],'위에서 내려다본 만화체 3D. 오른쪽에 타워 상점, 오른쪽 아래에 능력 버튼이 있고 이펙트가 매우 화려합니다.','애니 그림체가 아닌 귀여운 원숭이로도 깊은 전략 게임이 된다는 증거. 능력 버튼 UX와 업그레이드 경로.',[['Steam','https://store.steampowered.com/app/960090/']]],
+ ['운빨존많겜','111% · 2024 · 모바일',['#8CC63F','#E8B865','#5A4A3A','#FF6A3D'],'세로 화면, 굵은 외곽선 치비, 한 화면에 수십 마리 군중. 한국 유저가 귀엽다고 느끼는 그림체입니다.','캐릭터 그림체 문법(큰 머리, 굵은 선, 단순한 색). 모바일 세로 UI 배치 참고.',[['Google Play','https://play.google.com/store/apps/details?id=com.percent.aos.luckydefense']]],
+ ['Thronefall','Grizzly Games · 2024',['#2F5B4F','#D59A55','#4FA3D1','#E9E2C9'],'플랫 셰이딩 로우폴리에 6~8색 정도의 제한된 팔레트. 조명과 그림자만으로 예쁜 화면을 만듭니다.','단순한 도형 + 좋은 빛 = 예쁜 화면. 3D 타일맵 표현의 기준으로 삼습니다.',[['Steam','https://store.steampowered.com/app/2239150/'],['게임플레이 트레일러','https://www.youtube.com/watch?v=RZCaf9odIaU']]],
+ ['Bad North','Plausible Concept · 2018',['#A9BDBE','#EEF0E8','#7DA35C','#B8373A'],'바다 위에 떠 있는 섬 디오라마. 파스텔 톤과 안개, 아주 작은 유닛도 깃발 색으로 구분됩니다.','맵을 책상 위 디오라마처럼 만드는 연출. 귀여운 톤과 잘 맞습니다.',[['Steam','https://store.steampowered.com/app/688420/']]],
+ ['식물 vs 좀비','PopCap · 2009',['#6DBE45','#F7D44C','#7A5C3E','#8FA7B8'],'월넛이 디펜더, 해바라기가 비용 생산(선봉) 역할을 합니다. 애니 아닌 귀여움과 웃긴 적이 매력입니다.','역할이 단순하고 명확한 캐릭터, 유머 있는 적 디자인.',[['Steam','https://store.steampowered.com/app/3590/']]],
+ ["Defender's Quest",'Level Up Labs · 2012',['#3C5A3A','#D6B46A','#5B4F7A','#C24A3A'],'명일방주보다 먼저 나온 캐릭터 배치형 인디 TD. 직군별 사거리와 배치 규칙이 있습니다.','작은 팀으로도 이 장르를 만들 수 있다는 증거. 직군 설계 참고.',[['Steam','https://store.steampowered.com/app/218410/']]],
+ ['Super Auto Pets','Team Wood · 2021',['#F4E3C1','#7FB7E6','#F28C8C','#7A6A5A'],'아주 단순한 동물 일러스트인데 유닛마다 능력이 하나씩 있습니다.','적은 제작비로 귀여움을 내는 방법. 캐릭터 하나에 능력 하나라는 규칙.',[['Steam','https://store.steampowered.com/app/1714040/']]]
+];
+document.getElementById('refgrid').innerHTML=REFS.map(r=>`<article class="ref">
+<div class="ref-top"><div><h3>${r[0]}</h3><div class="meta">${r[1]}</div></div><div class="swatch" title="관찰 팔레트(근사치)">${r[2].map(c=>`<i style="background:${c}"></i>`).join('')}</div></div>
+<p>${r[3]}</p><div class="take"><b>가져올 것</b> · ${r[4]}</div>
+<div class="links">${r[5].map(l=>`<a href="${l[1]}" target="_blank" rel="noopener">${l[0]} ↗</a>`).join('')}</div></article>`).join('');
+
+/* ---------- scene ---------- */
+const W=11,H=6;
+const MAP=["##HH###HH##","S....H....#","#HH#.H.#H.#","#HH#...#H.G","####HHH#..#","###########"];
+const HGT={'#':0.2,'H':0.55,'.':0,'S':0,'G':0};
+const COL={
+ '#':['#93D47E','#62AA5A','#74BC67'],
+ 'H':['#E7E1F7','#B7ACD9','#CBC1E9'],
+ '.':['#F3DCA6','#D7B675','#E4C78B'],
+ 'S':['#FFA7B4','#D77D8A','#E98E9B'],
+ 'G':['#A9D3FF','#7BA9DD','#8EBDEE']
+};
+const P={pitch:55*Math.PI/180,dist:13.4,tx:5.5,ty:3.05,F:1000,cx:550,cy:292};
+const cP=Math.cos(P.pitch),sP=Math.sin(P.pitch);
+const Cy=P.ty+P.dist*cP,Cz=P.dist*sP;
+function proj(x,y,z){const dx=x-P.tx,dy=y-Cy,dz=z-Cz;const yc=-sP*dy+cP*dz,zc=-cP*dy-sP*dz;return[P.cx+P.F*dx/zc,P.cy-P.F*yc/zc,P.F/zc]}
+const pts=a=>a.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
+const poly=(a,fill,ex='')=>`<polygon points="${pts(a)}" fill="${fill}" ${ex}/>`;
+const tile=(i,j)=>(i<0||j<0||i>=W||j>=H)?null:MAP[j][i];
+const hOf=(i,j)=>{const t=tile(i,j);return t?HGT[t]:0};
+let seed=7;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+const inRange=(i,j)=>i>=2&&i<=4&&j>=1&&j<=3;
+
+const ENT=[
+ {k:'tori',x:2.5,y:1.55,anim:'bob',hp:.8,sp:.9},
+ {k:'jelly',x:1.62,y:1.6,anim:'hop',enemy:1,hp:.55,s:.82},
+ {k:'jelly',x:4.5,y:1.55,anim:'hop',enemy:1,hp:1,s:.8},
+ {k:'penguin',x:5.5,y:2.5,z:.55,anim:'bob',hp:1,sp:1,sel:1},
+ {k:'bear',x:5.55,y:3.55,anim:'bob',hp:.62,sp:.55},
+ {k:'jelly',x:4.68,y:3.62,anim:'hop',enemy:1,hp:.35,s:.82,flip:1},
+ {k:'jelly',x:4.3,y:3.38,anim:'hop',enemy:1,hp:.75,s:.78},
+ {k:'bunny',x:5.5,y:4.5,z:.55,anim:'bob',hp:1,sp:.4},
+ {k:'sheep',x:8.5,y:3.5,z:.55,anim:'bob',hp:1,sp:.7,flip:1},
+ {k:'crow',x:7.6,y:1.4,z:1.25,anim:'flap',enemy:1,hp:.9,s:.8,fly:1}
+];
+let out='';
+out+=`<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#BFE6EE"/><stop offset="1" stop-color="#E9F6EA"/></linearGradient>
+<radialGradient id="portal"><stop offset="0" stop-color="#FF4D6D" stop-opacity=".9"/><stop offset="1" stop-color="#FF4D6D" stop-opacity="0"/></radialGradient>
+<filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="14"/></filter></defs>`;
+out+=`<rect width="1100" height="620" fill="url(#sky)"/>`;
+for(let k=0;k<5;k++){const x=80+k*240+rnd()*60,y=40+rnd()*40;out+=`<g opacity=".7" fill="#fff"><ellipse cx="${x}" cy="${y}" rx="46" ry="16"/><ellipse cx="${x+26}" cy="${y-8}" rx="28" ry="15"/></g>`}
+const b0=proj(0,H,0),b1=proj(W,H,0),b2=proj(W,H,-.75),b3=proj(0,H,-.75);
+out+=`<ellipse cx="550" cy="${(b2[1]+12).toFixed(0)}" rx="520" ry="34" fill="#2B2337" opacity=".22" filter="url(#soft)"/>`;
+out+=poly([b0,b1,b2,b3],'#A87F5D')+`<polyline points="${pts([b0,b1])}" stroke="#5DA858" stroke-width="5" fill="none"/>`;
+for(let s=0;s<26;s++){const t=rnd(),z=-.15-rnd()*.5;const p=proj(t*W,H,z);out+=`<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="${(2+rnd()*3).toFixed(1)}" fill="#8F6A4B"/>`}
+
+function drawEnt(e){
+ const z=e.z||0,[sx,sy,k]=proj(e.x,e.y,z),sc=.0092*k*(e.s||1);
+ const g=proj(e.x,e.y,e.fly?0:z);let s='';
+ s+=`<ellipse cx="${g[0].toFixed(1)}" cy="${(g[1]+1).toFixed(1)}" rx="${(.3*g[2]*(e.s||1)).toFixed(1)}" ry="${(.11*g[2]*(e.s||1)).toFixed(1)}" fill="#2B2337" opacity="${e.fly?.14:.24}"/>`;
+ if(e.sel){s+=`<ellipse class="pulse" cx="${sx.toFixed(1)}" cy="${(sy+1).toFixed(1)}" rx="${(.42*k).toFixed(1)}" ry="${(.16*k).toFixed(1)}" fill="none" stroke="#FFC22E" stroke-width="3.5"/>`}
+ s+=`<g transform="translate(${sx.toFixed(1)} ${sy.toFixed(1)}) scale(${(e.flip?-sc:sc).toFixed(4)} ${sc.toFixed(4)}) translate(-50 -93)"><g class="${e.anim}" style="animation-delay:${(rnd()*1.2).toFixed(2)}s"><use href="#c-${e.k}" width="100" height="100"/></g></g>`;
+ const bw=.5*k*(e.s||1),bx=sx-bw/2,by=sy+5;
+ s+=`<rect x="${bx.toFixed(1)}" y="${by.toFixed(1)}" width="${bw.toFixed(1)}" height="6" rx="3" fill="#2B2337" opacity=".75"/><rect x="${(bx+1).toFixed(1)}" y="${(by+1).toFixed(1)}" width="${((bw-2)*e.hp).toFixed(1)}" height="4" rx="2" fill="${e.enemy?'#FF5A6E':'#5BD17E'}"/>`;
+ if(e.sp!=null){s+=`<rect x="${(bx+1).toFixed(1)}" y="${(by+7).toFixed(1)}" width="${((bw-2)*e.sp).toFixed(1)}" height="3" rx="1.5" fill="${e.sp>=1?'#FFC22E':'#8FB8FF'}"/>`}
+ return s;
+}
+const half=W/2;
+for(let j=0;j<H;j++){
+ const order=[...Array(W).keys()].sort((a,b)=>Math.abs(b+.5-half)-Math.abs(a+.5-half));
+ for(const i of order){
+  const t=MAP[j][i],h=HGT[t],c=COL[t];
+  if(i+.5<half){const hn=hOf(i+1,j);if(hn<h)out+=poly([proj(i+1,j,h),proj(i+1,j+1,h),proj(i+1,j+1,hn),proj(i+1,j,hn)],c[2])}
+  else if(i+.5>half){const hn=hOf(i-1,j);if(hn<h)out+=poly([proj(i,j,h),proj(i,j+1,h),proj(i,j+1,hn),proj(i,j,hn)],c[2])}
+  const hf=j+1<H?hOf(i,j+1):0;if(hf<h)out+=poly([proj(i,j+1,h),proj(i+1,j+1,h),proj(i+1,j+1,hf),proj(i,j+1,hf)],c[1]);
+  out+=poly([proj(i,j,h),proj(i+1,j,h),proj(i+1,j+1,h),proj(i,j+1,h)],c[0],'stroke="#3A2C3C" stroke-opacity=".13" stroke-width="1.2"');
+  if(t==='H'){const a=proj(i+.12,j+.12,h),b=proj(i+.88,j+.12,h);out+=`<line x1="${a[0].toFixed(1)}" y1="${a[1].toFixed(1)}" x2="${b[0].toFixed(1)}" y2="${b[1].toFixed(1)}" stroke="#fff" stroke-opacity=".7" stroke-width="2" stroke-linecap="round"/>`}
+  if(inRange(i,j))out+=poly([proj(i+.04,j+.04,h),proj(i+.96,j+.04,h),proj(i+.96,j+.96,h),proj(i+.04,j+.96,h)],'#FFC22E','fill-opacity=".38" stroke="#F5A800" stroke-width="2" stroke-dasharray="6 4"');
+  if(t==='#'){const n=1+Math.floor(rnd()*2);for(let q=0;q<n;q++){const bx=i+.25+rnd()*.5,by=j+.3+rnd()*.45,p=proj(bx,by,h),r=(.14+rnd()*.06)*p[2];out+=`<ellipse cx="${p[0].toFixed(1)}" cy="${(p[1]-r*.35).toFixed(1)}" rx="${r.toFixed(1)}" ry="${(r*.8).toFixed(1)}" fill="#5FB45A" stroke="#3E7F43" stroke-width="2"/><ellipse cx="${(p[0]-r*.3).toFixed(1)}" cy="${(p[1]-r*.6).toFixed(1)}" rx="${(r*.35).toFixed(1)}" ry="${(r*.22).toFixed(1)}" fill="#8BD47F"/>`;if(rnd()<.35)out+=`<circle cx="${(p[0]+r*.5).toFixed(1)}" cy="${(p[1]-r*.9).toFixed(1)}" r="3.2" fill="#FF8FB1" stroke="#3A2C3C" stroke-width="1.2"/>`}}
+  if(t==='S'){const p=proj(i+.5,j+.5,0);out+=`<ellipse class="pulse" cx="${p[0].toFixed(1)}" cy="${(p[1]-10).toFixed(1)}" rx="${(.42*p[2]).toFixed(1)}" ry="${(.3*p[2]).toFixed(1)}" fill="url(#portal)"/><path d="M${(p[0]-20).toFixed(1)} ${(p[1]-8).toFixed(1)}q20-26 40 0" fill="none" stroke="#D33A60" stroke-width="4" stroke-linecap="round" stroke-dasharray="4 7"/>`}
+  if(t==='G'){const p=proj(i+.5,j+.55,0),k=p[2]*.009;out+=`<g transform="translate(${p[0].toFixed(1)} ${p[1].toFixed(1)}) scale(${k.toFixed(3)}) translate(-50 -92)"><ellipse cx="50" cy="90" rx="38" ry="7" fill="#fff" stroke="#3A2C3C" stroke-width="3"/><path d="M26 88L32 52Q50 44 68 52L74 88Z" fill="#FFD77A" stroke="#3A2C3C" stroke-width="3.2" stroke-linejoin="round"/><path d="M32 52Q50 44 68 52L66 62Q58 70 50 62Q42 70 34 62Z" fill="#9A5A2E" stroke="#3A2C3C" stroke-width="3" stroke-linejoin="round"/><circle cx="50" cy="44" r="6" fill="#E5466B" stroke="#3A2C3C" stroke-width="2.6"/><ellipse cx="40" cy="75" rx="3.5" ry="4.5" fill="#2A1E2C"/><ellipse cx="60" cy="75" rx="3.5" ry="4.5" fill="#2A1E2C"/><ellipse cx="34" cy="81" rx="4" ry="2.4" fill="#FF8FA8"/><ellipse cx="66" cy="81" rx="4" ry="2.4" fill="#FF8FA8"/></g>`}
+ }
+ ENT.filter(e=>Math.floor(e.y)===j).sort((a,b)=>a.x-b.x).forEach(e=>out+=drawEnt(e));
+}
+// effects
+const pp=proj(5.75,2.5,1.1),tg=proj(4.4,3.4,.55);
+out+=`<path d="M${pp[0].toFixed(1)} ${pp[1].toFixed(1)}Q${((pp[0]+tg[0])/2).toFixed(1)} ${(Math.min(pp[1],tg[1])-60).toFixed(1)} ${tg[0].toFixed(1)} ${tg[1].toFixed(1)}" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="2 9" stroke-linecap="round" opacity=".95"/><circle cx="${(tg[0]+6).toFixed(1)}" cy="${(tg[1]-6).toFixed(1)}" r="8" fill="#fff" stroke="#3A2C3C" stroke-width="2.4"/>`;
+const hit=proj(5.05,3.6,.55);
+out+=`<path d="${star(hit[0],hit[1],17,7)}" fill="#FFF3B0" stroke="#3A2C3C" stroke-width="2.4" stroke-linejoin="round"/><text x="${(hit[0]-8).toFixed(1)}" y="${(hit[1]-20).toFixed(1)}" font-family="Jua,sans-serif" font-size="22" fill="#fff" stroke="#3A2C3C" stroke-width="5" paint-order="stroke">퍽!</text>`;
+const hl=proj(5.7,3.55,1.15);
+[[0,0],[16,-14],[-14,-20]].forEach(([dx,dy],n)=>{out+=`<g transform="translate(${(hl[0]+dx).toFixed(1)} ${(hl[1]+dy).toFixed(1)})" opacity="${1-n*.2}"><path d="M-3-9h6v6h6v6h-6v6h-6v-6h-6v-6h6z" fill="#6BE08E" stroke="#2B7A4A" stroke-width="1.6" stroke-linejoin="round"/></g>`});
+const sb=proj(5.5,2.5,1.55);
+out+=`<g transform="translate(${sb[0].toFixed(1)} ${sb[1].toFixed(1)})"><g class="flap"><rect x="-46" y="-30" width="92" height="30" rx="15" fill="#FFC22E" stroke="#3A2C3C" stroke-width="3"/><path d="M-6 0l6 8l6-8z" fill="#FFC22E" stroke="#3A2C3C" stroke-width="3" stroke-linejoin="round"/><rect x="-8" y="-3" width="16" height="5" fill="#FFC22E"/><text x="0" y="-9" text-anchor="middle" font-family="Jua,sans-serif" font-size="17" fill="#3A2C3C">스킬 준비!</text></g></g>`;
+// HUD
+const pill=(x,y,w,txt,icon='')=>`<g transform="translate(${x} ${y})"><rect width="${w}" height="40" rx="20" fill="#241C30" fill-opacity=".78"/>${icon}<text x="${icon?44:w/2}" y="27" ${icon?'':'text-anchor="middle"'} font-family="Jua,sans-serif" font-size="21" fill="#fff">${txt}</text></g>`;
+const heart=`<path transform="translate(14 9) scale(.9)" d="M12 22s-10-6.4-10-13A5.6 5.6 0 0 1 12 6a5.6 5.6 0 0 1 10 3c0 6.6-10 13-10 13z" fill="#FF6F91" stroke="#fff" stroke-width="1.6"/>`;
+out+=pill(22,20,128,'푸딩 3',heart)+pill(160,20,132,'적 12/40')+pill(472,20,156,'WAVE 2 / 5');
+out+=pill(946,20,58,'×2')+`<g transform="translate(1016 20)"><rect width="62" height="40" rx="20" fill="#241C30" fill-opacity=".78"/><rect x="24" y="12" width="5" height="16" rx="2" fill="#fff"/><rect x="34" y="12" width="5" height="16" rx="2" fill="#fff"/></g>`;
+// deploy cards
+const acorn=(x,y,s=1)=>`<g transform="translate(${x} ${y}) scale(${s})"><ellipse cx="0" cy="3" rx="8" ry="9" fill="#C98B4A" stroke="#3A2C3C" stroke-width="2.4"/><path d="M-9-2Q0-12 9-2Z" fill="#7A5230" stroke="#3A2C3C" stroke-width="2.4" stroke-linejoin="round"/></g>`;
+const CARDS=[['cat',14,'가드','#D33A60','12s'],['mole',8,'특수','#5F6F80'],['snail',13,'서포터','#B88500']];
+out+=`<text x="${590-14}" y="604" text-anchor="end" font-family="Jua,sans-serif" font-size="17" fill="#fff" stroke="#241C30" stroke-width="4" paint-order="stroke">남은 배치 3</text>`;
+CARDS.forEach((c,n)=>{const x=596+n*104,y=506;out+=`<g transform="translate(${x} ${y})"><rect width="96" height="104" rx="14" fill="#FFF8EC" stroke="#3A2C3C" stroke-width="3"/><rect x="3" y="80" width="90" height="21" rx="0" fill="${c[3]}"/><rect x="3" y="80" width="90" height="21" rx="11" fill="${c[3]}"/><text x="48" y="96" text-anchor="middle" font-family="Jua,sans-serif" font-size="15" fill="#fff">${c[2]}</text><g transform="translate(14 4) scale(.72)"><g class="bob" style="animation-delay:${n*.3}s"><use href="#c-${c[0]}" width="100" height="100"/></g></g>${acorn(17,17,.8)}<text x="30" y="24" font-family="Jua,sans-serif" font-size="18" fill="#3A2C3C">${c[1]}</text>${c[4]?`<rect width="96" height="104" rx="14" fill="#1E1828" fill-opacity=".66"/><text x="48" y="60" text-anchor="middle" font-family="Jua,sans-serif" font-size="24" fill="#fff">${c[4]}</text><text x="48" y="78" text-anchor="middle" font-family="Jua,sans-serif" font-size="12" fill="#fff" fill-opacity=".85">재배치 대기</text>`:''}</g>`});
+out+=`<g transform="translate(920 506)"><rect width="160" height="104" rx="16" fill="#241C30" fill-opacity=".86"/>${acorn(34,40,1.5)}<text x="62" y="58" font-family="Jua,sans-serif" font-size="44" fill="#fff">23</text><text x="16" y="86" font-family="IBM Plex Mono,monospace" font-size="12" fill="#CFC6E8">도토리 +1/초</text><rect x="16" y="92" width="128" height="6" rx="3" fill="#fff" fill-opacity=".2"/><rect x="16" y="92" width="84" height="6" rx="3" fill="#FFC22E"/></g>`;
+document.getElementById('scene').innerHTML=out;
+})();
+</script>
+
+</html>
