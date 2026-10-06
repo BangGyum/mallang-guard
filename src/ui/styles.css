@@ -1,7 +1,7 @@
 :root {
   font-family: "Malgun Gothic", system-ui, sans-serif;
   color: #1e2923;
-  background: #f2f6f1;
+  background: #e9f6ea;
 }
 
 body {
@@ -9,5 +9,40 @@ body {
 }
 
 #app {
-  min-height: 100dvh;
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  overflow: hidden;
+  background: linear-gradient(#bfe6ee, #e9f6ea);
+}
+
+#board,
+#overlay,
+#hud,
+#screens {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#board {
+  display: block;
+  z-index: 0;
+  touch-action: none;
+}
+
+#overlay {
+  z-index: 1;
+  pointer-events: none;
+}
+
+#hud {
+  z-index: 2;
+  pointer-events: none;
+}
+
+#screens {
+  z-index: 3;
+  pointer-events: none;
 }

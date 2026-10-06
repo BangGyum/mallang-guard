@@ -48,7 +48,7 @@
 - 진행 상태 (2026-10-06): main push용 검사·빌드·Pages 업로드/배포 워크플로 구현. 로컬 검사 통과.
   저장소 쓰기 인증 및 관리자의 Pages Source 설정 후 공개 URL 확인이 필요하므로 완료 체크는 대기합니다.
 
-### [ ] T0.4 정적 보드 렌더
+### [x] T0.4 정적 보드 렌더
 - 읽을 문서: 03 (1절 타입, stage-1), 04 (1~3절, 11절)
 - 할 일
   - `src/data/types.ts`, `src/data/stages/stage-1.json`을 만듭니다. 검증기는 T1.1에서 만듭니다.
@@ -57,6 +57,10 @@
   - `index.html` 레이어 구조 (01 문서 6절)와 CSS 하늘 그라데이션.
   - `tests/view/camera.test.ts`.
 - 완료 조건: stage-1 지형이 목업과 비슷한 각도와 색으로 보입니다. 창 크기를 바꿔도 보드가 safeRect 안에 있습니다.
+- 검증 (2026-10-06): 맵 파싱·타일 InstancedMesh·받침·조명·그림자·리사이즈 구현, check/lint/test/build 통과.
+  실제 카메라 투영을 16:9, 4:3, 21:9, 844:390에서 검사했고 브라우저에서도 네 크기의 리사이즈를 확인했습니다.
+  화면 확인: [1920×1080](../verification/t0.4-desktop.png), [844×390](../verification/t0.4-mobile.png).
+  `t0.4-static-board` 로컬 브랜치 완료, 원격 PR은 쓰기 인증 대기 중입니다.
 
 ---
 
