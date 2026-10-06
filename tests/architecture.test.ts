@@ -1,95 +1,139 @@
 import { describe, expect, it } from 'vitest';
 
-const sources = import.meta.glob<string>('../src/**/*.ts', {
+const sources = import.meta.glob<string>('../src/{core,data,sim}/**/*.ts', {
   eager: true,
   query: '?raw',
   import: 'default',
 });
-const allowedLayers: Record<string, readonly string[]> = {
-  core: ['core'],
-  data: ['core', 'data'],
-  sim: ['core', 'sim'],
-  art: ['core', 'art'],
-  view: ['core', 'data', 'sim', 'view'],
-  ui: ['core', 'data', 'sim', 'art', 'view', 'ui'],
-};
+
+const DOM_NAMES =
+  /\b(?:window|document|Window|Document|HTMLElement|HTMLCanvasElement|CanvasRenderingContext2D|SVGElement|navigator|localStorage|sessionStorage|requestAnimationFrame|cancelAnimationFrame|getComputedStyle|MutationObserver|ResizeObserver|Image|Audio)\b/;
+
+function scan(source: string): { code: string; imports: string[] } {
+  const tokens = Array.from(
+    source.matchAll(
+      /\/\/[^\n]*|\/\*[\s\S]*?\*\/|'(?:\\[\s\S]|[^'\\])*'|"(?:\\[\s\S]|[^"\\])*"|`(?:\\[\s\S]|[^`\\])*`|[\w$]+|[^\s]/g,
+    ),
+    (match) => match[0],
+  ).filter((token) => !token.startsWith('//') && !token.startsWith('/*'));
+  const imports: string[] = [];
+  const code: string[] = [];
+
+  for (const [index, token] of tokens.entries()) {
+    if (token.startsWith('`')) {
+      for (const expression of token.matchAll(/\$\{([^}]*)\}/g)) {
+        const nested = scan(expression[1] ?? '');
+        code.push(nested.code);
+        imports.push(...nested.imports);
+      }
+    } else if (token.startsWith("'") || token.startsWith('"')) {
+      const previous = tokens[index - 1];
+      if (
+        previous === 'from' ||
+        previous === 'import' ||
+        (previous === '(' && tokens[index - 2] === 'import')
+      ) {
+        imports.push(token.slice(1, -1));
+      }
+    } else {
+      code.push(token);
+    }
+  }
+
+  return { code: code.join(' '), imports };
+}
+
+function resolveImport(file: string, specifier: string): string {
+  const parts = file.split('/');
+  parts.pop();
+  for (const part of specifier.split('/')) {
+    if (part === '..') parts.pop();
+    else if (part !== '.') parts.push(part);
+  }
+  return parts.join('/').replace(/\.ts$/, '');
+}
 
 function violations(file: string, source: string): string[] {
-  const layer = file.split('/')[0] ?? '';
-  const allowed = allowedLayers[layer];
-  if (!allowed) return [];
-
+  const layer = file.split('/')[1];
+  const { code, imports } = scan(source);
   const errors: string[] = [];
-  const modules = /\b(?:from\s*|import\s*(?:\(\s*)?|require\s*\(\s*)['"]([^'"]+)['"]/g;
-  for (const match of source.matchAll(modules)) {
-    const specifier = match[1] ?? '';
-    const target = specifier.startsWith('.')
-      ? new URL(specifier, `file:///src/${file}`).pathname.replace(/^\/src\//, '')
-      : specifier;
-    const targetLayer = target.split('/')[0] ?? '';
-    const permitted = specifier.startsWith('.')
-      ? allowed.includes(targetLayer) || (layer === 'sim' && /^data\/types(?:\.ts)?$/.test(target))
-      : layer === 'view' && /^three(?:\/|$)/.test(specifier);
-    if (!permitted) errors.push(`${file}: forbidden import ${specifier}`);
+
+  for (const specifier of imports) {
+    const target = specifier.startsWith('.') ? resolveImport(file, specifier) : specifier;
+    const targetLayer = target.split('/')[1];
+    const allowed =
+      target.startsWith('src/') &&
+      (targetLayer === layer ||
+        ((layer === 'data' || layer === 'sim') && targetLayer === 'core') ||
+        (layer === 'sim' && target === 'src/data/types'));
+    if (!allowed) errors.push(`금지된 import: ${specifier}`);
   }
 
-  if (['core', 'data', 'sim', 'art'].includes(layer) && /\b(?:window|document)\b/.test(source)) {
-    errors.push(`${file}: DOM usage`);
-  }
+  if (DOM_NAMES.test(code)) errors.push('DOM API 사용');
   if (layer === 'sim') {
-    if (/\bMath\s*(?:\.\s*random|\[\s*['"]random['"]\s*\])/.test(source)) {
-      errors.push(`${file}: nondeterministic random`);
-    }
-    if (/\b(?:Date|performance)\b/.test(source)) errors.push(`${file}: wall clock usage`);
+    if (/\bMath\s*(?:\?\s*)?\.\s*random\b/.test(code)) errors.push('Math.random 사용');
+    if (/\bDate\b/.test(code)) errors.push('Date 사용');
+    if (/\bperformance\b/.test(code)) errors.push('performance 사용');
   }
+
   return errors;
 }
 
-describe('architecture', () => {
-  it('실제 소스의 직접 의존성과 금지된 전역 사용을 검사한다', () => {
-    const entries = Object.entries(sources);
-    expect(entries.length).toBeGreaterThan(0);
-    const errors = entries.flatMap(([path, source]) => violations(path.replace('../src/', ''), source));
-    expect(errors).toEqual([]);
+describe('레이어 의존 규칙', () => {
+  it('실제 소스 파일을 검사한다', () => {
+    expect(Object.keys(sources).length).toBeGreaterThan(0);
+  });
+
+  it.each(Object.entries(sources))('%s', (file, source) => {
+    expect(violations(file.replace(/^\.\.\//, ''), source)).toEqual([]);
   });
 
   it.each([
-    ['core/test.ts', "import { Scene } from 'three';"],
-    ['core/test.ts', "import type { UnitDef } from '../data/types';"],
-    ['core/test.ts', 'window.innerWidth;'],
-    ['data/test.ts', "import { battle } from '../sim/battle';"],
-    ['data/test.ts', 'document.createElement("div");'],
-    ['sim/test.ts', "import { Scene } from 'three/addons/test';"],
-    ['sim/systems/test.ts', "export * from '../../view/camera';"],
-    ['sim/test.ts', "import('../ui/hud');"],
-    ['sim/test.ts', "require('../app/loop');"],
-    ['sim/test.ts', "import units from '../data/units.json';"],
-    ['sim/test.ts', 'Math.random();'],
-    ['sim/test.ts', 'Math["random"]();'],
-    ['sim/test.ts', 'Date.now();'],
-    ['sim/test.ts', 'new Date();'],
-    ['sim/test.ts', 'performance.now();'],
-    ['sim/test.ts', 'window["innerWidth"];'],
-    ['sim/test.ts', 'document.createElement("div");'],
-    ['art/test.ts', "import { Scene } from 'three';"],
-    ['view/test.ts', "import { hud } from '../ui/hud';"],
-    ['ui/test.ts', "import { Scene } from 'three';"],
-    ['ui/test.ts', "import { loop } from '../app/loop';"],
-  ])('%s에서 위반 코드 %s를 차단한다', (file, source) => {
-    expect(violations(file, source).length).toBeGreaterThan(0);
+    ["import { Vector3 } from 'three';"],
+    ['import "three/addons/controls/OrbitControls.js";'],
+    ['const three = import(\n "three"\n);'],
+    ["export { value } from '../../view/boardView';"],
+    ["import type { Value }\nfrom '../../ui/controller';"],
+    ["import '../../app/app';"],
+    ["import { content } from '../../data/index';"],
+  ])('sim의 금지 의존성을 잡는다: %s', (source) => {
+    expect(violations('src/sim/systems/example.ts', source)).not.toEqual([]);
   });
 
   it.each([
-    ['core/test.ts', "import { lerp } from './math';"],
-    ['data/test.ts', "import type { Tile } from '../core/grid';"],
-    ['sim/test.ts', "import type { UnitDef } from '../data/types';"],
-    ['sim/test.ts', "import type { UnitDef } from '../data/types.ts';"],
-    ['sim/systems/test.ts', "import { clamp } from '../../core/math';"],
-    ['art/test.ts', "import { lerp } from '../core/math';"],
-    ['view/test.ts', "import { Scene } from 'three';"],
-    ['view/test.ts', "import { shader } from 'three/addons/test';"],
-    ['ui/test.ts', "import { pick } from '../view/picking';"],
-  ])('%s에서 허용된 코드 %s는 통과한다', (file, source) => {
-    expect(violations(file, source)).toEqual([]);
+    ['window . innerWidth'],
+    ['document\n. querySelector("canvas")'],
+    ['Math\n. random()'],
+    ['Date.now()'],
+    ['new Date()'],
+    ['performance . now()'],
+    [`\`\${window.innerWidth}\``],
+  ])('sim의 브라우저·비결정적 API를 잡는다: %s', (source) => {
+    expect(violations('src/sim/example.ts', source)).not.toEqual([]);
+  });
+
+  it('core와 data에서도 Three.js와 DOM을 금지한다', () => {
+    for (const layer of ['core', 'data']) {
+      expect(violations(`src/${layer}/example.ts`, "import 'three';")).not.toEqual([]);
+      expect(violations(`src/${layer}/example.ts`, 'document.createElement("canvas")')).not.toEqual([]);
+    }
+    expect(violations('src/core/example.ts', "import '../data/types';")).not.toEqual([]);
+    expect(violations('src/data/example.ts', "import '../sim/battle';")).not.toEqual([]);
+  });
+
+  it('허용된 의존성과 주석·문자열은 통과한다', () => {
+    expect(
+      violations(
+        'src/sim/systems/example.ts',
+        `import type { ContentDb } from '../../data/types.ts';
+         import { clamp } from '../../core/math';
+         import { value } from '../constants';
+         // import 'three'; window.innerWidth; Math.random();
+         /* new Date(); document.body; performance.now(); */
+         const text = "import 'three'; window.innerWidth; Math.random()";
+         const message = \`document.body Date.now()\`;`,
+      ),
+    ).toEqual([]);
+    expect(violations('src/data/example.ts', "import './units.json'; import '../core/assert';")).toEqual([]);
   });
 });

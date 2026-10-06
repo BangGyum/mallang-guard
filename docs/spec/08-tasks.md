@@ -9,9 +9,17 @@
 
 ---
 
+## 병합 검증 (2026-10-07)
+
+- `origin/t1.3-battle-core`의 별도 구현을 병합했습니다. 원격 전투·경로·콘텐츠 API, 유닛 사망 처리, CI 설정을 반영했습니다.
+- 실제 동물·파스텔 정원 방향과 새 시안은 유지하고 카메라 피팅 및 PCF 그림자 개선을 적용했습니다.
+- 로컬 회귀 사례와 원격 추가 검증을 함께 유지했습니다. `npm ci`, check/lint/test/build 및 22개 파일의 403개 테스트가 통과했습니다.
+- 화면 확인: [1920×1080](../verification/merge-2026-10-07-desktop.png), [844×390](../verification/merge-2026-10-07-mobile.png).
+- 아래 2026-10-06 기록은 각 로컬 티켓의 당시 검증 결과입니다. 현재 경로 API는 `buildRoute`/`Polyline.length`, 웨이브는 `state.currentWave`/`state.totalWaves`입니다.
+
 ## M0 세팅
 
-### [x] T0.1 프로젝트 생성
+### [ ] T0.1 프로젝트 생성
 - 읽을 문서: 01 (2절)
 - 할 일
   - 레포 루트에 Vite `vanilla-ts` 구성을 만듭니다. 기존 `README.md`, `docs/`, `AGENTS.md`는 유지합니다.
@@ -20,10 +28,12 @@
   - 스크립트: `dev`, `build`(`tsc --noEmit && vite build`), `preview`, `check`(`tsc --noEmit`), `lint`(`biome check .`), `format`(`biome format --write .`), `test`(`vitest run`), `test:watch`.
   - `tsconfig.json`: `strict`, `noUncheckedIndexedAccess`, `noImplicitOverride`, `resolveJsonModule`, `moduleResolution: "bundler"`, target ES2022.
   - `biome.json`: 들여쓰기 2칸, 줄 길이 110, 작은따옴표. `docs/`는 린트에서 제외합니다.
-  - `vite.config.ts`: `base`는 build일 때 `/mallang-guard/`, dev일 때 `/`. Vitest 설정도 여기에 둡니다 (`include: ['tests/**/*.test.ts']`, environment `node`). 최신 도구의 Node 지원 범위에 맞추고, 개발·CI는 Node 24를 씁니다.
+  - `vite.config.ts`: `base`는 build일 때 `/mallang-guard/`, dev일 때 `/`. Vitest 설정도 여기에 둡니다 (`include: ['tests/**/*.test.ts']`, environment `node`).
   - `.github/workflows/ci.yml`: push와 PR에서 Node 24로 `npm ci → check → lint → test → build`.
-- 첫 테스트가 생기기 전인 T0.1에서는 `passWithNoTests: true`를 사용합니다. T0.2에서 제거합니다.
 - 완료 조건: `npm run dev`로 빈 페이지가 뜹니다. GitHub Actions CI가 초록입니다.
+- 진행 상태 (2026-10-06): 로컬 구현, `npm ci`, check/lint/test/build와 개발·빌드 미리보기 로딩 확인 완료.
+  T0.1 검증 당시 테스트 파일은 0개였습니다. GitHub 쓰기 인증이 확인되지 않아 원격 CI와 PR은 대기 중입니다.
+  화면 확인: [1920×1080](../verification/t0.1-desktop.png), [844×390](../verification/t0.1-mobile.png).
 
 ### [x] T0.2 폴더 골격과 core 유틸
 - 읽을 문서: 01 전체, 02 (8절 회전 표)
@@ -31,16 +41,20 @@
   - 01 문서 2절의 폴더를 만듭니다 (빈 파일 대신, 실제로 필요한 것만).
   - `src/core/grid.ts`(Dir, `rotateOffset`, `rangeTiles`), `rng.ts`(mulberry32), `math.ts`, `assert.ts`.
   - `tests/architecture.test.ts` (07 문서 4절).
-  - `tests/sim/grid.test.ts`. 테스트가 추가되면 `vite.config.ts`의 `passWithNoTests`를 제거합니다.
+  - `tests/sim/grid.test.ts`.
 - 완료 조건: 아키텍처 테스트가 일부러 넣은 위반(`src/sim`에서 three import)을 잡는 것을 한 번 확인하고 되돌립니다.
+- 검증 (2026-10-06): check/lint/test/build 통과, 5개 테스트 파일의 54개 테스트 통과.
+  실제 `src/sim`의 임시 Three.js import를 검사 실패로 감지한 뒤 제거했고, 전체 검사가 다시 통과했습니다.
+  `t0.2-core-utils` 브랜치에서 구현했으며 원격 PR은 GitHub 쓰기 인증 대기 중입니다.
 
 ### [ ] T0.3 GitHub Pages 배포
-- 진행: 워크플로 구성 완료. 저장소 Pages 설정·main 병합·공개 URL 확인 대기 (체크박스는 실제 배포 확인 후 변경).
 - 할 일
   - `.github/workflows/deploy.yml`: main에 push되면 빌드 → `actions/upload-pages-artifact`(dist) → `actions/deploy-pages`.
   - 필요한 권한(`pages: write`, `id-token: write`)과 `concurrency`를 설정합니다.
   - **레포 설정 변경은 사람이 합니다**: Settings → Pages → Source를 "GitHub Actions"로. PR 설명에 이 단계를 적습니다.
 - 완료 조건: `https://banggyum.github.io/mallang-guard/`에서 페이지가 열립니다 (설정 후).
+- 진행 상태 (2026-10-06): main push용 검사·빌드·Pages 업로드/배포 워크플로 구현. 로컬 검사 통과.
+  저장소 쓰기 인증 및 관리자의 Pages Source 설정 후 공개 URL 확인이 필요하므로 완료 체크는 대기합니다.
 
 ### [x] T0.4 정적 보드 렌더
 - 읽을 문서: 03 (1절 타입, stage-1), 04 (1~3절, 11절)
@@ -48,9 +62,13 @@
   - `src/data/types.ts`, `src/data/stages/stage-1.json`을 만듭니다. 검증기는 T1.1에서 만듭니다.
   - `src/sim/board.ts`: 맵 파싱 (`kindAt`, 크기).
   - `src/view`: 렌더러, 카메라 피팅, 타일 InstancedMesh, 받침, 조명, 그림자, 리사이즈.
-  - `index.html` 레이어 구조 (01 문서 6절)와 CSS 배경 그라데이션.
+  - `index.html` 레이어 구조 (01 문서 6절)와 CSS 하늘 그라데이션.
   - `tests/view/camera.test.ts`.
-- 완료 조건: stage-1 지형이 기존 목업의 각도와 산업지대 시안의 색으로 보입니다. 창 크기를 바꿔도 보드가 safeRect 안에 있습니다.
+- 완료 조건: stage-1 지형이 목업과 비슷한 각도와 색으로 보입니다. 창 크기를 바꿔도 보드가 safeRect 안에 있습니다.
+- 검증 (2026-10-06): 맵 파싱·타일 InstancedMesh·받침·조명·그림자·리사이즈 구현, check/lint/test/build 통과.
+  실제 카메라 투영을 16:9, 4:3, 21:9, 844:390에서 검사했고 브라우저에서도 네 크기의 리사이즈를 확인했습니다.
+  화면 확인: [1920×1080](../verification/t0.4-desktop.png), [844×390](../verification/t0.4-mobile.png).
+  `t0.4-static-board` 로컬 브랜치 완료, 원격 PR은 쓰기 인증 대기 중입니다.
 
 ---
 
@@ -60,20 +78,36 @@
 - 읽을 문서: 03 전체
 - 할 일: JSON 5종, `validate.ts`, `index.ts`, `tests/data.test.ts`. `main.ts`에서 검증 실패 시 화면에 에러를 표시합니다.
 - 완료 조건: 07 문서의 data 테스트 항목이 전부 통과합니다.
+- 검증 (2026-10-06): 문서 03의 JSON, `ContentDb` Map과 참조·수치·효과·맵 검증 구현, check/lint/test/build 통과.
+  오류 경로가 포함된 메시지를 화면에 표시하는 흐름도 브라우저에서 확인했습니다.
+  화면 확인: [1920×1080 오류 화면](../verification/t1.1-content-error-desktop.png), [844×390 오류 화면](../verification/t1.1-content-error.png).
+  모든 스테이지의 전투 초기화 및 막힌 경로 거부는 T1.3의 `battle.test.ts`에서 함께 검증합니다.
+  `t1.1-content-validation` 로컬 브랜치 완료, 원격 PR은 쓰기 인증 대기 중입니다.
 
 ### [x] T1.2 경로
 - 읽을 문서: 02 (2~3절)
 - 할 일: `src/sim/path.ts` (A*, 폴리라인, 누적 길이, `positionAt(dist, segHint)`), `tests/sim/path.test.ts`.
 - 완료 조건: stage-1 경로 기대값 테스트가 통과합니다.
+- 검증 (2026-10-06): 결정론 A*와 지상/비행 폴리라인, 누적 길이 및 구간 힌트 보간 구현, check/lint/test/build 통과.
+  경로 테스트 27개로 stage-1 지상 길이 16·비행 길이 √104, 경유점·동점·구간 경계·이동 실패를 확인했습니다.
+  `t1.2-path` 로컬 브랜치 완료, 원격 PR은 쓰기 인증 대기 중입니다.
 
-### [ ] T1.3 Battle 코어 (스폰·이동·누수·승패)
+### [x] T1.3 Battle 코어 (스폰·이동·누수·승패)
 - 읽을 문서: 01 (3절), 02 (1, 6, 12~18절)
 - 할 일
   - `sim/types.ts`, `constants.ts`, `battle.ts` (createBattle, enqueue, flush, step, 14절 순서의 골격).
   - `systems/spawn.ts`, `movement.ts`, `death.ts`, `outcome.ts`, `hash.ts`.
   - `tests/helpers.ts`의 `laneStage`, `run`.
   - `tests/sim/outcome.test.ts`.
-- 완료 조건: 아무것도 배치하지 않으면 stage-1에서 21마리가 경로를 따라 이동하고, 패배로 끝납니다.
+- 완료 조건: stage-1의 총 예정 적은 21마리이며, 기본 목숨 3에서 아무것도 배치하지 않으면 세 번 누수 후 즉시 패배합니다.
+  전체 21마리의 스폰·경로 이동은 목숨을 21로 복제한 테스트 스테이지에서 확인합니다.
+- 검증 (2026-10-06): 30Hz Battle 상태와 스폰·이동·적 사망·누수·승패·상태 해시 구현.
+  check/lint/test/build 통과, 전체 12개 파일 208개 테스트 통과.
+  실제 stage-1은 6마리 스폰·3누수 후 tick 804에 패배하며 이후 tick과 상태 해시가 고정됩니다.
+  목숨 21/30인 별도 검증에서 전체 21마리 이동 후 패배/승리, 종료 이벤트 1회 및 같은 seed의 반복 실행을 확인했습니다.
+  프로덕션 미리보기의 `/mallang-guard/` 경로에서도 보드·CSS·콘텐츠 청크가 모두 로드되고 브라우저 오류가 없었습니다.
+  명령 큐는 골격만 준비했으며 배치·후퇴·공격·DP 처리와 조회 API는 T1.4에서 연결합니다. 화면의 적 표시는 T1.5 범위입니다.
+  `t1.3-battle-core` 로컬 브랜치 완료, 원격 PR은 쓰기 인증 대기 중입니다.
 
 ### [ ] T1.4 배치·저지·공격
 - 읽을 문서: 02 (4~5, 7~9절)

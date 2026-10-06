@@ -18,32 +18,30 @@
 
 전투 규칙(`src/sim`)은 렌더러를 모르는 순수 TS로 작성합니다. 초당 30틱 고정에 시드 기반 난수를 쓰므로 같은 입력이면 항상 같은 결과가 나옵니다.
 
-## 개발 환경
+## 개발 실행
 
-개발·CI는 Node.js 24를 사용합니다 (`.nvmrc`).
-
-```bash
-npm ci
-npm run dev
-```
-
-개발 서버 주소는 터미널에 출력됩니다. 현재는 산업지대 팔레트의 stage-1 정적 보드가 표시됩니다. 전투·배치·캐릭터는 후속 티켓에서 추가합니다.
+Node.js 24와 npm을 사용합니다 (`.nvmrc`: `24`). 현재는 정적 보드·콘텐츠 검증·경로·전투 코어까지 구현한 단계입니다.
+개발 서버에서 파스텔 타일 지형을 확인할 수 있고, 적의 스폰·이동·누수·승패는 화면 없이 테스트로 검증합니다.
+배치·저지·공격은 다음 T1.4, 화면에 적을 표시하는 연결은 T1.5에서 진행합니다.
 
 ```bash
-npm run check
-npm run lint
-npm test
-npm run build
-npm run preview
+npm install
+npm run dev        # 개발 서버. 터미널에 표시된 주소로 접속
+npm run check      # TypeScript 타입 검사
+npm run lint       # Biome 검사
+npm test           # Vitest 실행
+npm run build      # 타입 검사 후 dist/에 프로덕션 빌드
+npm run preview    # dist/ 빌드 결과 확인
 ```
 
-빌드 미리보기는 `/mallang-guard/` 경로에서 확인합니다. `npm test`로 콘텐츠·지상/비행 경로·보드·카메라 피팅·좌표·사거리·난수·수학 유틸과 레이어 의존성 규칙을 검증합니다. 테스트 파일이 없으면 실패합니다.
+`npm test`로 core 유틸·콘텐츠 검증·경로·전투 코어·카메라 피팅과 레이어 의존 규칙을 검증합니다. 테스트 파일이 없으면 실패합니다.
+push와 pull request에서는 Node.js 24로 `npm ci → check → lint → test → build`를 순서대로 실행합니다.
 
 ## GitHub Pages 배포
 
-`main`에 push되면 타입·린트·테스트·빌드 검사 후 `dist/`를 Pages에 배포합니다. Actions의 **Deploy GitHub Pages → Run workflow**로 재시도할 수 있습니다.
-
-저장소 관리자가 **Settings → Pages → Build and deployment → Source → GitHub Actions**를 먼저 선택해야 합니다. 그다음 PR을 `main`에 병합합니다. 배포 완료 후 [공개 페이지](https://banggyum.github.io/mallang-guard/)를 확인합니다.
+저장소의 Settings → Pages → Build and deployment → Source를 **GitHub Actions**로 선택합니다.
+이 설정은 저장소 관리자가 적용합니다. 이후 `main`에 push하면 검사와 빌드를 통과한 `dist/`를 배포합니다.
+배포 주소는 <https://banggyum.github.io/mallang-guard/>이며, 실제 배포 확인은 저장소 쓰기 인증과 Pages 설정 후 진행합니다.
 
 ## 문서
 
@@ -54,12 +52,17 @@ npm run preview
 
 ## 비주얼 시안
 
-동물 귀를 남긴 인간형 전술 대원, 회색 산업지대, 각진 HUD를 적용한 첫 방향성 시안입니다. 전장에서는 SD 캐릭터, 배치 카드에서는 애니메이션풍 초상을 사용합니다.
+현재 방향은 실제 귀여운 동물, 산뜻한 파스텔 정원, 배치·저지 중심의 전투입니다. 그림은 방향성 참고용이며 실제 화면은 Three.js 타일과 코드로 생성한 캐릭터를 사용합니다.
+
+![산뜻한 동물 전투 시안](docs/concepts/battle-screen-v2-fresh.png)
+
+- [새 시안 생성 프롬프트](docs/concepts/battle-screen-v2-fresh.prompt.txt)
+- 아래 산업지대 이미지는 이전 시안으로 보존합니다.
 
 ![전술 디펜스 전투 화면 시안](docs/concepts/battle-screen-v1.png)
 
 - [생성 프롬프트](docs/concepts/battle-screen-v1.prompt.txt): 내장 ImageGen으로 생성했습니다.
-- T0.4부터 보드의 산업지대 색상·배경에 반영했습니다. 맵·전투 수치와 코드 기반 캐릭터 생성 방식은 유지합니다.
+- 이 이미지는 검토용 시안이며, 기존 구현 스펙의 확정 사항을 변경한 것은 아닙니다.
 
 ## 로드맵
 

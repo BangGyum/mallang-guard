@@ -143,7 +143,7 @@ export interface ContentDb {
 - 스테이지
   - 모든 줄의 길이가 같아야 합니다.
   - `from`, `to`, `via`가 맵 안에 있어야 하고, 지상 경로의 `from`은 `S`, `to`는 `G`여야 합니다.
-  - 지상 경로는 실제로 경로가 있어야 합니다. T1.2에서 모든 스테이지의 `buildRoute`로 확인하고, T1.3에서 `createBattle` 검증으로 연결합니다 (data는 sim을 import하지 않음).
+  - 지상 경로는 실제로 경로가 있어야 합니다. 모든 스테이지의 `createBattle` 성공으로 확인합니다 (T1.3). data는 sim을 import하지 않으며, 구조 검증 후 전투 생성 단계에서 경로를 계산합니다.
   - 적이 `flying`이면 그 스폰 그룹의 route는 `flying: true`여야 하고, 반대도 마찬가지입니다.
   - `count ≥ 1`이고, `count > 1`이면 `intervalSec > 0`입니다.
 

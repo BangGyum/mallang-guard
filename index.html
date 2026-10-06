@@ -3,21 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>말랑방위대</title>
+    <meta name="theme-color" content="#bfe6ee" />
     <link rel="icon" href="data:," />
+    <title>말랑방위대</title>
   </head>
   <body>
     <div id="app">
-      <canvas id="board" aria-label="작전 구역 타일 보드"></canvas>
+      <canvas id="board" aria-label="푸딩 창고 앞마당 전투 보드"></canvas>
       <canvas id="overlay" aria-hidden="true"></canvas>
-      <div id="hud">
-        <header class="stageHeading"><p>작전구역 01</p><h1>말랑방위대</h1></header>
-        <section class="boardLegend" aria-label="타일 범례">
-          <span><i class="legendSpawn"></i>적 진입</span>
-          <span><i class="legendGoal"></i>방어 지점</span>
-          <span><i class="legendHigh"></i>고지대</span>
-        </section>
-      </div>
+      <div id="hud"></div>
       <div id="screens"></div>
     </div>
     <script type="module" src="/src/main.ts"></script>

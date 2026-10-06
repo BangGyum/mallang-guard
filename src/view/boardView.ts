@@ -1,58 +1,76 @@
-import { DirectionalLight, HemisphereLight, PCFShadowMap, Scene, SRGBColorSpace, WebGLRenderer } from 'three';
+import {
+  Box3,
+  DirectionalLight,
+  HemisphereLight,
+  NoToneMapping,
+  PCFShadowMap,
+  Scene,
+  SRGBColorSpace,
+  Vector3,
+  WebGLRenderer,
+} from 'three';
 import type { Board } from '../sim/board';
-import { boardBox, fitCamera } from './camera';
+import { fitCamera } from './camera';
 import { createTiles } from './tiles';
 
-export function createBoardView(
-  board: Board,
-  host: HTMLElement,
-  canvas: HTMLCanvasElement,
-  overlay: HTMLCanvasElement,
-): { dispose: () => void } {
+export interface BoardView {
+  resize(): void;
+  render(): void;
+  dispose(): void;
+}
+
+export function createBoardView(canvas: HTMLCanvasElement, board: Board): BoardView {
   const renderer = new WebGLRenderer({ canvas, antialias: true, alpha: true });
   renderer.outputColorSpace = SRGBColorSpace;
+  renderer.toneMapping = NoToneMapping;
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = PCFShadowMap;
   const scene = new Scene();
   const tiles = createTiles(board);
-  scene.add(tiles.group, new HemisphereLight(0xe4eef6, 0x424955, 1.25));
-  const light = new DirectionalLight(0xfff3df, 2);
-  light.position.set(-4, 8, 5);
-  light.castShadow = true;
-  light.shadow.mapSize.set(2048, 2048);
-  const extent = Math.max(board.width, board.height);
-  Object.assign(light.shadow.camera, {
-    left: -extent,
-    right: extent,
-    top: extent,
-    bottom: -extent,
-    near: 0.1,
-    far: 40,
-  });
-  light.shadow.normalBias = 0.025;
-  scene.add(light, light.target);
-  const box = boardBox(board.width, board.height);
+  scene.add(tiles.group);
+  scene.add(new HemisphereLight(0xffffff, 0xb9a7d9, 1));
+  const sunlight = new DirectionalLight(0xfff4e0, 2);
+  sunlight.position.set(-4, 8, 5);
+  sunlight.castShadow = true;
+  sunlight.shadow.mapSize.set(2048, 2048);
+  sunlight.shadow.bias = -0.0001;
+  sunlight.shadow.normalBias = 0.02;
+  scene.add(sunlight, sunlight.target);
 
-  function resize(): void {
-    const { width, height } = host.getBoundingClientRect();
-    if (width <= 0 || height <= 0) return;
-    const dpr = Math.min(window.devicePixelRatio, 2);
-    renderer.setPixelRatio(dpr);
-    renderer.setSize(width, height, false);
-    overlay.width = Math.round(width * dpr);
-    overlay.height = Math.round(height * dpr);
-    renderer.render(scene, fitCamera(box, width / height));
-  }
-  const observer = new ResizeObserver(resize);
-  observer.observe(host);
-  resize();
+  const bounds = new Box3(
+    new Vector3(-board.width / 2, -0.9, -board.height / 2),
+    new Vector3(board.width / 2, 1.2, board.height / 2),
+  );
+  scene.updateMatrixWorld(true);
+  sunlight.shadow.updateMatrices(sunlight);
+  const shadowBounds = bounds.clone().applyMatrix4(sunlight.shadow.camera.matrixWorldInverse);
+  const shadowCamera = sunlight.shadow.camera;
+  shadowCamera.left = shadowBounds.min.x - 0.25;
+  shadowCamera.right = shadowBounds.max.x + 0.25;
+  shadowCamera.bottom = shadowBounds.min.y - 0.25;
+  shadowCamera.top = shadowBounds.max.y + 0.25;
+  shadowCamera.near = Math.max(0.1, -shadowBounds.max.z - 0.25);
+  shadowCamera.far = -shadowBounds.min.z + 0.25;
+  shadowCamera.updateProjectionMatrix();
 
+  let camera = fitCamera(bounds, 1);
   return {
-    dispose: () => {
-      observer.disconnect();
+    resize() {
+      const width = Math.max(1, canvas.clientWidth);
+      const height = Math.max(1, canvas.clientHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setSize(width, height, false);
+      camera = fitCamera(bounds, width / height);
+    },
+    render() {
+      renderer.render(scene, camera);
+    },
+    dispose() {
       tiles.dispose();
-      light.shadow.dispose();
+      sunlight.shadow.dispose();
+      scene.clear();
       renderer.dispose();
+      renderer.forceContextLoss();
     },
   };
 }

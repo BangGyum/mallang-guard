@@ -155,6 +155,9 @@ export interface Battle {
 }
 ```
 
+
+T1.3까지 `createBattle`, 상태·런타임 경로, `enqueue`, `flush`, `step`을 구현합니다. `flush`는 종료·없는 로스터·없는 배치 uid의 명령을 기존 거부 사유로 처리합니다. 실제 배치·후퇴 처리는 T1.4, 스킬 발동은 T2.2에서 연결합니다. 아직 연결되지 않은 명령은 개발 오류로 throw해 성공처럼 소비하지 않습니다. 조회 헬퍼는 T1.4에서 추가하며, 브라우저 전투 루프·뷰 연결은 T1.5 범위입니다.
+
 - 명령(Command)과 이벤트(SimEvent)의 정확한 형태는 [02-combat-rules.md](02-combat-rules.md) 17절에 있습니다.
 - 거부된 명령은 상태를 바꾸지 않고 `{ type: 'commandRejected', cmd, reason }` 이벤트를 냅니다. UI는 이 이벤트로 토스트를 띄웁니다.
 - `state`의 엔티티 배열은 항상 uid 오름차순입니다 (새 엔티티는 뒤에 추가되므로 자연히 정렬됨).
