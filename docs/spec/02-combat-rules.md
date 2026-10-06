@@ -48,6 +48,27 @@
 - 적의 위치는 `dist`(출발점부터 이동한 거리)로 정하고, `remaining = length - dist`입니다.
 - `dist → (x, y)` 변환은 적마다 현재 구간 인덱스를 캐시해서 빠르게 합니다.
 
+
+**경로 API (T1.2)**
+
+```ts
+findTilePath(board: Board, from: Tile, to: Tile): Tile[];
+buildRoute(board: Board, route: RouteDef): Polyline;
+createPolyline(points: readonly Readonly<Tile>[]): Polyline;
+
+interface Polyline {
+  readonly points: readonly Readonly<Tile>[];  // 타일 중심의 실수 좌표
+  readonly cumulativeLengths: readonly number[];
+  readonly length: number;
+  positionAt(distance: number, segHint?: number): { x: number; y: number; segIndex: number };
+}
+```
+
+- `segHint` 기본값은 0이며 결과의 `segIndex`를 적의 캐시에 저장합니다. 정확히 꺾이는 점에서는 다음 구간을 사용하고, 마지막 점에서는 마지막 구간을 사용합니다.
+- 경로 밖 거리는 `[0, length]`로 제한합니다. 밀치기로 거리가 줄면 캐시에서 앞 구간으로도 탐색합니다.
+- 연속 중복점만 제거합니다. 한 점이면 길이는 0이며 그 점을 반환합니다. 지상 경유점에서의 180° 회전은 압축하지 않아 되돌아가는 이동 거리를 보존합니다.
+- T1.2에서는 모든 콘텐츠 경로의 생성을 테스트합니다. T1.3의 `createBattle`이 이 API를 사용해 `StageRuntime.routes`를 구성합니다.
+
 ## 4. 도토리 (DP)
 
 - 시작값은 `stage.startDp`, 최대값은 `DP_MAX = 99`입니다.

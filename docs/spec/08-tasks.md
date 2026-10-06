@@ -61,7 +61,7 @@
 - 할 일: JSON 5종, `validate.ts`, `index.ts`, `tests/data.test.ts`. `main.ts`에서 검증 실패 시 화면에 에러를 표시합니다.
 - 완료 조건: 07 문서의 data 테스트 항목이 전부 통과합니다.
 
-### [ ] T1.2 경로
+### [x] T1.2 경로
 - 읽을 문서: 02 (2~3절)
 - 할 일: `src/sim/path.ts` (A*, 폴리라인, 누적 길이, `positionAt(dist, segHint)`), `tests/sim/path.test.ts`.
 - 완료 조건: stage-1 경로 기대값 테스트가 통과합니다.
