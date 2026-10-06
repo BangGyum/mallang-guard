@@ -12,6 +12,7 @@
 | 별 3개 평가 기준 | 미정 (M4) | 결과 화면 |
 | 슬로모션 배율 | 0.25배, 배치·조준·선택 중 | 설정에서 끌 수 있게 할지 |
 | 난수 API | `mulberry32(state)`는 다음 상태와 값을 반환하는 순수 함수 | 이후 sim에서 `BattleState.rngState`에 반환 상태 저장 |
+| 경로 위치 반환형 | `positionAt(distance, segHint)`는 `{ x, y, segIndex }`를 반환 | T1.3에서 `EnemyEntity.segIndex`에 반환된 구간 캐시 저장 |
 
 ## 질문
 
