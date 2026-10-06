@@ -1,6 +1,6 @@
 # 04. 렌더링 (src/view)
 
-목표 화면은 [`../plan.html`](../plan.html) 맨 위의 전투 목업입니다. 기울어진 카메라로 본 타일 디오라마 위에 2D 동물들이 서 있는 모습입니다.
+보드의 목표 화면은 [`../concepts/battle-screen-v1.png`](../concepts/battle-screen-v1.png)의 회색 산업지대 시안입니다 (사용자 요청 반영). 기존 목업의 맵·2.5D 구조와 전투 수치는 유지합니다. T0.4는 정적 타일·고지대·진입/방어 지점까지 만들며, 캐릭터·전투 HUD·장식은 후속 티켓에서 구현합니다.
 view는 sim 상태를 **읽기만** 하고, `onEvents(events)`로 받은 이벤트로 연출을 재생합니다.
 
 ## 1. 좌표 변환 (view/coords.ts)
@@ -15,18 +15,18 @@ view는 sim 상태를 **읽기만** 하고, `onEvents(events)`로 받은 이벤�
 | --- | --- | --- |
 | ground, path, spawn, goal | 0 | |
 | high | 0.5 | 고지대 블록 |
-| blocked | 0.15 | 덤불 화단 |
+| blocked | 0.15 | 이동 불가 구조물 |
 
 - 각 타일 박스는 윗면에서 아래로 −0.25까지 내려옵니다.
-- 보드 전체 아래에 흙 받침(−0.25 ~ −0.9)을 깔아 디오라마처럼 보이게 합니다.
+- 보드 전체 아래에 짙은 콘크리트 받침(−0.25 ~ −0.9)을 깔아 디오라마처럼 보이게 합니다.
 
 ## 2. 렌더러와 카메라
 
 - `WebGLRenderer({ canvas, antialias: true, alpha: true })`
 - `setPixelRatio(min(devicePixelRatio, 2))`. 품질 low면 1입니다.
-- `outputColorSpace = SRGBColorSpace`, 톤매핑 없음(파스텔 색 보존).
-- 그림자: `PCFSoftShadowMap`, 품질 low면 끕니다.
-- 배경은 투명하고, 하늘 그라데이션은 CSS(`#BFE6EE → #E9F6EA`)로 칠합니다.
+- `outputColorSpace = SRGBColorSpace`, 톤매핑 없음(지형 색 보존).
+- 그림자: `PCFShadowMap`, 품질 low면 끕니다. Three.js r186에서 제거된 `PCFSoftShadowMap` 대신 현재 지원되는 PCF를 사용합니다.
+- 배경은 투명하고, 배경 그라데이션은 CSS(`#26313E → #101923`)로 칠합니다.
 
 **카메라** (view/camera.ts)
 - `PerspectiveCamera`, fov 30°, yaw 0(보드 정면), 아래로 55° 숙여 봅니다.
@@ -34,35 +34,36 @@ view는 sim 상태를 **읽기만** 하고, `onEvents(events)`로 받은 이벤�
   - `boardBox`는 보드 AABB입니다: x ∈ [−W/2, W/2], z ∈ [−H/2, H/2], y ∈ [−0.9, 1.2] (캐릭터 키 포함).
   - `safeRect`는 NDC 기준 x ∈ [−0.94, 0.94], y ∈ [−0.62, 0.86]입니다. 하단 19%는 배치 바, 상단 7%는 HUD 자리입니다.
   - 거리 d를 [4, 80]에서 이분 탐색(24회)해 AABB 꼭짓점 8개가 모두 safeRect 안에 드는 최소 d를 찾습니다.
-  - 그다음 투영된 bbox의 중심이 safeRect 중심에 오도록 카메라를 right/up 방향으로 평행 이동합니다. 2회 반복합니다.
+  - 각 거리 후보에서 투영된 bbox 중심을 safeRect 중심에 맞추도록 right/up 방향으로 2회 평행 이동합니다. 이동한 카메라로 꼭짓점을 검사해 최종 피팅 이후의 잘림을 방지합니다.
 - 창 크기가 바뀌면 다시 맞춥니다. 전투 중 카메라 조작(줌·팬)은 v0.1에 없습니다.
 
 **조명** (값은 시작점이고, 목업과 비슷한 밝기로 조정합니다)
-- `HemisphereLight(0xffffff, 0xb9a7d9, 1.0)`
-- `DirectionalLight(0xfff4e0, 2.0)`를 보드 중심 기준 (−4, 8, 5) 방향에 둡니다. `castShadow`, shadow map 2048, 그림자 카메라 범위는 보드에 딱 맞게.
+- `HemisphereLight(0xe4eef6, 0x424955, 1.25)`
+- `DirectionalLight(0xfff3df, 2.0)`를 보드 중심 기준 (−4, 8, 5) 방향에 둡니다. `castShadow`, shadow map 2048, 그림자 카메라 범위는 보드에 딱 맞게.
 
 ## 3. 타일 (view/tiles.ts)
 
-- 지오메트리: `RoundedBoxGeometry(0.96, 두께, 0.96, 2, 0.06)` (`three/addons/geometries/RoundedBoxGeometry.js`). 윗면이 높이 표에 맞게 놓이도록 위치를 잡습니다.
+- 지오메트리: `RoundedBoxGeometry(0.96, 두께, 0.96, 2, 0.04)` (`three/addons/geometries/RoundedBoxGeometry.js`). 윗면이 높이 표에 맞게 놓이도록 위치를 잡습니다.
 - 타일 종류마다 `InstancedMesh` 하나씩 씁니다.
 - 재질: `MeshToonMaterial` + 3단 그라데이션 맵 (`DataTexture` [90, 170, 255], `NearestFilter`). `castShadow`, `receiveShadow` 모두 켭니다.
 
 | kind | 색 |
 | --- | --- |
-| ground / path | `#F3DCA6` (모래) |
-| high | `#E7E1F7` (연보라 돌) |
-| blocked | `#93D47E` (잔디) |
-| spawn | `#FFA7B4` |
-| goal | `#A9D3FF` |
-| 받침 | `#A87F5D` (흙) |
+| ground / path | `#687684` / `#596571` (회색 바닥) |
+| high | `#A0A9B0` (콘크리트 고지대) |
+| blocked | `#35414B` (이동 불가 구조물) |
+| spawn | `#D48557` (주황색 적 진입) |
+| goal | `#4DA5C0` (청색 방어 지점) |
+| 받침 | `#1E2833` (콘크리트) |
 
 **장식**
 - `blocked` 타일마다 덤불 1~2개: `IcosahedronGeometry(1, 1)`을 납작하게 스케일, 색 `#5FB45A`, InstancedMesh.
 - 위치는 `tileSeed = x * 73856093 ^ y * 19349663`로 만든 view 전용 난수로 정합니다 (매번 같은 배치).
 - 30% 확률로 분홍 꽃(작은 구, `#FF8FB1`)을 답니다.
-- 고지대 윗면 앞 가장자리에 흰 하이라이트 선(얇은 박스, 불투명도 0.6)을 그어 블록감을 살립니다.
+- 고지대 윗면 앞 가장자리에 노란 경계선(얇은 박스, `#EDC76E`)을 그어 높이를 구분합니다. T0.4에서 적용합니다. 덤불·꽃은 기존 목업의 장식 제안이며 산업지대 장식은 T3.4에서 별도로 맞춥니다.
 
 **스폰·골 표시**
+- T0.4: 주황/청색 타일에 밝은 사각 테두리를 표시합니다. 아래 애니메이션·스프라이트는 후속 아트 티켓 범위입니다.
 - 스폰: 빨간 링(`RingGeometry`, additive, 맥동 애니메이션)과 소용돌이 점선.
 - 골: 푸딩 스프라이트(art `pudding`)를 빌보드로 세웁니다. 누수 때 흔들리는 연출을 넣습니다.
 
