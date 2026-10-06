@@ -115,28 +115,35 @@ export interface ContentDb {
 }
 ```
 
+
+`RawContent`는 `units`, `enemies`, `skills`, `ranges`, `stages`의 배열을 가진 테스트·입력 구성용 타입입니다. `validateContent(raw: unknown): ContentDb`는 외부 JSON을 각 필드의 타입부터 검사해 새 객체로 구성합니다. 반환 Map은 타입 수준에서 읽기 전용이며, `unitOrder`는 원본 유닛 순서를 유지합니다.
+
 ## 2. 검증 규칙 (src/data/validate.ts)
 
-외부 라이브러리 없이 직접 씁니다. 실패하면 `content/units[3].range: unknown range "longg"` 처럼 **경로가 들어간 메시지**로 throw합니다. 가능하면 에러를 모아서 한 번에 보여 줍니다.
+외부 라이브러리 없이 직접 씁니다. 실패하면 `content/units[3].range: unknown range "longg"` 처럼 **경로가 들어간 메시지**로 throw합니다. T1.1에서는 첫 오류를 표시하고 시작을 중단합니다. `main.ts`는 데이터 모듈을 동적으로 불러와 모듈 초기화 중의 검증 오류도 화면에 표시합니다.
 
+- 원시 객체·배열·문자열·불리언·열거형·좌표 튜플의 형태부터 검사합니다. 숫자는 유한해야 합니다.
 - 모든 id는 종류별로 유일해야 합니다.
 - 참조가 모두 존재해야 합니다: unit.skill, unit.range, spawn.enemy, spawn.route, stage.roster의 유닛.
 - 숫자 범위
   - hp, atkIntervalSec, speed, spCost는 0보다 커야 합니다.
   - atk, def, cost, block, spStart는 0 이상이고, res는 0~100입니다.
   - `spStart ≤ spCost`
+  - 타일·사거리 좌표, wave, count, block, blockCost, lifeDamage, life, deployLimit는 정수입니다. wave/count/blockCost/lifeDamage/life/deployLimit는 1 이상입니다.
+  - redeploySec, durationSec, atSec, intervalSec, startDp는 0 이상이며, 지정된 dpPerSec는 양수입니다.
 - 유닛
   - `deployOn: "high"`면 `block === 0`입니다.
   - `damageType`은 `"true"`가 될 수 없습니다.
   - `traits`의 타입은 `statMul`, `splash`, `onHitSlow`만 허용합니다.
 - 스킬
-  - `pulseDamage`가 있으면 `durationSec ≥ (count − 1) × intervalSec`이어야 합니다.
+  - 효과 타입과 필수 필드도 검사합니다. 배율·효과 시간·pulse 간격은 양수, 느려짐·회복 비율은 0~1, radius/tiles/DP는 0 이상, 횟수는 정수입니다. `blockAdd`는 음수 정수도 허용합니다.
+  - pulseDamage가 있으면 `durationSec ≥ (count − 1) × intervalSec`이어야 합니다.
   - 즉시형(`durationSec === 0`) 스킬에는 `gainDp`, `healAllies`, `pushback`만 있어야 합니다.
   - 지속형 스킬에는 이 세 가지가 없어야 합니다.
 - 스테이지
   - 모든 줄의 길이가 같아야 합니다.
   - `from`, `to`, `via`가 맵 안에 있어야 하고, 지상 경로의 `from`은 `S`, `to`는 `G`여야 합니다.
-  - 지상 경로는 실제로 경로가 있어야 합니다 (검증 테스트에서 `createBattle`로 확인).
+  - 지상 경로는 실제로 경로가 있어야 합니다. T1.2에서 모든 스테이지의 `buildRoute`로 확인하고, T1.3에서 `createBattle` 검증으로 연결합니다 (data는 sim을 import하지 않음).
   - 적이 `flying`이면 그 스폰 그룹의 route는 `flying: true`여야 하고, 반대도 마찬가지입니다.
   - `count ≥ 1`이고, `count > 1`이면 `intervalSec > 0`입니다.
 

@@ -135,3 +135,11 @@ export interface ContentDb {
   stages: ReadonlyMap<string, StageDef>;
   unitOrder: readonly string[]; // units.json 순서 (UI 정렬 동점 처리용)
 }
+
+export interface RawContent {
+  units: UnitDef[];
+  enemies: EnemyDef[];
+  skills: SkillDef[];
+  ranges: RangeDef[];
+  stages: StageDef[];
+}
