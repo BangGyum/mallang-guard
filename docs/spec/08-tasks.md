@@ -35,6 +35,7 @@
 - 완료 조건: 아키텍처 테스트가 일부러 넣은 위반(`src/sim`에서 three import)을 잡는 것을 한 번 확인하고 되돌립니다.
 
 ### [ ] T0.3 GitHub Pages 배포
+- 진행: 워크플로 구성 완료. 저장소 Pages 설정·main 병합·공개 URL 확인 대기 (체크박스는 실제 배포 확인 후 변경).
 - 할 일
   - `.github/workflows/deploy.yml`: main에 push되면 빌드 → `actions/upload-pages-artifact`(dist) → `actions/deploy-pages`.
   - 필요한 권한(`pages: write`, `id-token: write`)과 `concurrency`를 설정합니다.

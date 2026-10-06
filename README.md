@@ -39,6 +39,12 @@ npm run preview
 
 빌드 미리보기는 `/mallang-guard/` 경로에서 확인합니다. `npm test`로 좌표·사거리·난수·수학 유틸과 레이어 의존성 규칙을 검증합니다. 테스트 파일이 없으면 실패합니다.
 
+## GitHub Pages 배포
+
+`main`에 push되면 타입·린트·테스트·빌드 검사 후 `dist/`를 Pages에 배포합니다. Actions의 **Deploy GitHub Pages → Run workflow**로 재시도할 수 있습니다.
+
+저장소 관리자가 **Settings → Pages → Build and deployment → Source → GitHub Actions**를 먼저 선택해야 합니다. 그다음 PR을 `main`에 병합합니다. 배포 완료 후 [공개 페이지](https://banggyum.github.io/mallang-guard/)를 확인합니다.
+
 ## 문서
 
 - [`docs/spec/`](docs/spec/README.md): **구현 스펙.** 아키텍처, 전투 규칙, 데이터, 렌더링, UI, 아트, 테스트, 작업 티켓
