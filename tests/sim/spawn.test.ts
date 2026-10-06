@@ -1,72 +1,87 @@
 import { describe, expect, it } from 'vitest';
-import { createBattle } from '../../src/sim/battle';
-import { laneStage, makeContent, run } from '../helpers';
+import { spawnEnemies } from '../../src/sim/systems/spawn';
+import type { SimEvent } from '../../src/sim/types';
+import { laneStage, run } from '../helpers';
+import { makeFixture, SPAWN } from './battleFixtures';
 
-describe('스폰과 이동', () => {
-  it('시작 틱과 반올림한 간격대로 같은 틱의 그룹 순서를 유지한다', () => {
+describe('enemy spawn', () => {
+  it('스폰 단계에서 모든 초기 필드를 설정한다', () => {
+    const { state, stage } = makeFixture();
+    const events: SimEvent[] = [];
+    spawnEnemies(stage, state, events);
+    expect(state.enemies).toEqual([
+      {
+        uid: 1,
+        enemyId: 'jelly',
+        routeId: 'ground',
+        dist: 0,
+        segIndex: 0,
+        x: 0.5,
+        y: 0.5,
+        px: 0.5,
+        py: 0.5,
+        hp: 600,
+        maxHp: 600,
+        atkCooldown: 0,
+        blockedBy: null,
+        slowAmount: 0,
+        slowUntilTick: 0,
+        stunUntilTick: 0,
+      },
+    ]);
+    expect(events).toEqual([{ type: 'enemySpawn', uid: 1, enemyId: 'jelly' }]);
+    expect(state.spawnCursor).toEqual([1]);
+    expect(state.nextUid).toBe(2);
+    expect(state.currentWave).toBe(1);
+  });
+  it('양수 초 값은 최소 1틱이고 그룹 간격을 개별적으로 반올림한다', () => {
+    const { battle } = makeFixture(
+      laneStage(['S......G'], [{ ...SPAWN, atSec: 0.001, count: 3, intervalSec: 0.05 }]),
+    );
+    const spawned: number[] = [];
+    for (let tick = 0; tick < 10; tick += 1) {
+      const events = battle.step();
+      if (events.some((event) => event.type === 'enemySpawn')) spawned.push(tick);
+    }
+    expect(spawned).toEqual([1, 3, 5]);
+    expect(battle.state.spawnCursor).toEqual([3]);
+  });
+  it('같은 틱의 스폰은 그룹 배열 순서로 uid를 받는다', () => {
     const stage = laneStage(
-      ['S.........G'],
+      ['S......G'],
       [
-        { wave: 1, atSec: 1, enemy: 'jelly', count: 2, intervalSec: 0.05, route: 'ground' },
-        { wave: 3, atSec: 1, enemy: 'hardJelly', count: 1, intervalSec: 0, route: 'ground' },
+        { ...SPAWN, wave: 3, count: 2, intervalSec: 1 / 30 },
+        { ...SPAWN, wave: 2, enemy: 'hardJelly', count: 2, intervalSec: 1 / 30 },
       ],
     );
-    const battle = createBattle(makeContent({ stages: [stage] }), stage.id);
-    expect(battle.stage.totalWaves).toBe(3);
-    expect(run(battle, 30)).toEqual([]);
-    expect(battle.state.wave).toBe(0);
-    expect(battle.step()).toEqual([
+    const { battle } = makeFixture(stage);
+    const events = run(battle, 2).filter((event) => event.type === 'enemySpawn');
+    expect(events).toEqual([
       { type: 'enemySpawn', uid: 1, enemyId: 'jelly' },
       { type: 'enemySpawn', uid: 2, enemyId: 'hardJelly' },
+      { type: 'enemySpawn', uid: 3, enemyId: 'jelly' },
+      { type: 'enemySpawn', uid: 4, enemyId: 'hardJelly' },
     ]);
-    expect(battle.state.wave).toBe(3);
-    expect(battle.step()).toEqual([]);
-    expect(battle.step()).toEqual([{ type: 'enemySpawn', uid: 3, enemyId: 'jelly' }]);
-    expect(battle.state.spawnCursor).toEqual([2, 1]);
+    expect(battle.state.enemies.map((enemy) => enemy.uid)).toEqual([1, 2, 3, 4]);
+    expect(battle.state.currentWave).toBe(3);
   });
-
-  it('생성된 적은 중심 좌표에서 이동하며 이전 위치를 저장한다', () => {
-    const stage = laneStage(
-      ['S.........G'],
-      [{ wave: 1, atSec: 0, enemy: 'jelly', count: 1, intervalSec: 0, route: 'ground' }],
-    );
-    const db = makeContent({ stages: [stage] });
-    const speed = db.enemies.get('jelly')?.speed;
-    if (!speed) throw new Error('jelly 없음');
-    const battle = createBattle(db, stage.id);
-    battle.step();
-    const enemy = battle.state.enemies[0];
-    if (!enemy) throw new Error('적 없음');
-    expect(enemy.px).toBe(0.5);
-    expect(enemy.py).toBe(0.5);
-    expect(enemy.x).toBeCloseTo(0.5 + speed / 30);
-    expect(enemy.y).toBe(0.5);
-    expect(enemy.hp).toBe(enemy.maxHp);
-    const x = enemy.x;
-    battle.step();
-    expect(enemy.px).toBe(x);
-    expect(enemy.x).toBeCloseTo(x + speed / 30);
+  it('공유 uid 카운터의 현재 값부터 시작한다', () => {
+    const { state, stage } = makeFixture();
+    state.nextUid = 10;
+    spawnEnemies(stage, state, []);
+    expect(state.enemies[0]?.uid).toBe(10);
+    expect(state.nextUid).toBe(11);
   });
-
-  it('저지와 기절 중에는 멈추고 둔화 비율은 이동량에 적용된다', () => {
-    const stage = laneStage(
-      ['S.........G'],
-      [{ wave: 1, atSec: 0, enemy: 'jelly', count: 1, intervalSec: 0, route: 'ground' }],
-    );
-    const battle = createBattle(makeContent({ stages: [stage] }), stage.id);
-    battle.step();
-    const enemy = battle.state.enemies[0];
-    if (!enemy) throw new Error('적 없음');
-    const initial = enemy.dist;
-    enemy.blockedBy = 2;
-    battle.step();
-    expect(enemy.dist).toBe(initial);
-    enemy.blockedBy = null;
-    enemy.stunUntilTick = battle.state.tick + 1;
-    battle.step();
-    expect(enemy.dist).toBe(initial);
-    enemy.slowAmount = 0.5;
-    battle.step();
-    expect(enemy.dist).toBeCloseTo(initial * 1.5);
+  it('비행 적을 비행 경로 시작점에 낸다', () => {
+    const stage = laneStage(['S#H', '###', '##G'], [{ ...SPAWN, enemy: 'crow', route: 'air' }], {
+      routes: { air: { from: [0, 0], to: [2, 2], flying: true } },
+    });
+    const { state, stage: runtime } = makeFixture(stage);
+    spawnEnemies(runtime, state, []);
+    expect(state.enemies[0]).toMatchObject({ enemyId: 'crow', routeId: 'air', x: 0.5, y: 0.5 });
+  });
+  it('예정된 스폰이 끝나면 중복 스폰하지 않는다', () => {
+    const { battle } = makeFixture();
+    expect(run(battle, 10).filter((event) => event.type === 'enemySpawn')).toHaveLength(1);
   });
 });

@@ -5,4 +5,5 @@ import stage1 from './stages/stage-1.json';
 import units from './units.json';
 import { validateContent } from './validate';
 
-export const content = validateContent({ units, enemies, skills, ranges, stages: [stage1] });
+export const rawContent = { units, enemies, skills, ranges, stages: [stage1] };
+export const content = validateContent(rawContent);

@@ -3,7 +3,7 @@ import {
   DirectionalLight,
   HemisphereLight,
   NoToneMapping,
-  PCFSoftShadowMap,
+  PCFShadowMap,
   Scene,
   SRGBColorSpace,
   Vector3,
@@ -24,7 +24,7 @@ export function createBoardView(canvas: HTMLCanvasElement, board: Board): BoardV
   renderer.outputColorSpace = SRGBColorSpace;
   renderer.toneMapping = NoToneMapping;
   renderer.shadowMap.enabled = true;
-  renderer.shadowMap.type = PCFSoftShadowMap;
+  renderer.shadowMap.type = PCFShadowMap;
   const scene = new Scene();
   const tiles = createTiles(board);
   scene.add(tiles.group);

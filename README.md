@@ -52,7 +52,12 @@ push와 pull request에서는 Node.js 24로 `npm ci → check → lint → test 
 
 ## 비주얼 시안
 
-동물 귀를 남긴 인간형 전술 대원, 회색 산업지대, 각진 HUD를 적용한 첫 방향성 시안입니다. 전장에서는 SD 캐릭터, 배치 카드에서는 애니메이션풍 초상을 사용합니다.
+현재 방향은 실제 귀여운 동물, 산뜻한 파스텔 정원, 배치·저지 중심의 전투입니다. 그림은 방향성 참고용이며 실제 화면은 Three.js 타일과 코드로 생성한 캐릭터를 사용합니다.
+
+![산뜻한 동물 전투 시안](docs/concepts/battle-screen-v2-fresh.png)
+
+- [새 시안 생성 프롬프트](docs/concepts/battle-screen-v2-fresh.prompt.txt)
+- 아래 산업지대 이미지는 이전 시안으로 보존합니다.
 
 ![전술 디펜스 전투 화면 시안](docs/concepts/battle-screen-v1.png)
 

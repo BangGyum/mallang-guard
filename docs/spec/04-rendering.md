@@ -1,6 +1,6 @@
 # 04. 렌더링 (src/view)
 
-목표 화면은 [`../plan.html`](../plan.html) 맨 위의 전투 목업입니다. 기울어진 카메라로 본 타일 디오라마 위에 2D 동물들이 서 있는 모습입니다.
+목표 화면은 [`../plan.html`](../plan.html) 맨 위의 전투 목업과 [`../concepts/battle-screen-v2-fresh.png`](../concepts/battle-screen-v2-fresh.png)의 산뜻한 동물·파스텔 정원 방향입니다. 기울어진 카메라로 본 타일 디오라마 위에 2D 동물들이 서 있는 모습입니다.
 view는 sim 상태를 **읽기만** 하고, `onEvents(events)`로 받은 이벤트로 연출을 재생합니다.
 
 ## 1. 좌표 변환 (view/coords.ts)
@@ -25,7 +25,7 @@ view는 sim 상태를 **읽기만** 하고, `onEvents(events)`로 받은 이벤�
 - `WebGLRenderer({ canvas, antialias: true, alpha: true })`
 - `setPixelRatio(min(devicePixelRatio, 2))`. 품질 low면 1입니다.
 - `outputColorSpace = SRGBColorSpace`, 톤매핑 없음(파스텔 색 보존).
-- 그림자: `PCFSoftShadowMap`, 품질 low면 끕니다.
+- 그림자: `PCFShadowMap`, 품질 low면 끕니다. Three.js r186에서 deprecated인 `PCFSoftShadowMap` 대신 현재 PCF를 사용합니다.
 - 배경은 투명하고, 하늘 그라데이션은 CSS(`#BFE6EE → #E9F6EA`)로 칠합니다.
 
 **카메라** (view/camera.ts)
@@ -34,7 +34,7 @@ view는 sim 상태를 **읽기만** 하고, `onEvents(events)`로 받은 이벤�
   - `boardBox`는 보드 AABB입니다: x ∈ [−W/2, W/2], z ∈ [−H/2, H/2], y ∈ [−0.9, 1.2] (캐릭터 키 포함).
   - `safeRect`는 NDC 기준 x ∈ [−0.94, 0.94], y ∈ [−0.62, 0.86]입니다. 하단 19%는 배치 바, 상단 7%는 HUD 자리입니다.
   - 거리 d를 [4, 80]에서 이분 탐색(24회)해 AABB 꼭짓점 8개가 모두 safeRect 안에 드는 최소 d를 찾습니다.
-  - 그다음 투영된 bbox의 중심이 safeRect 중심에 오도록 카메라를 right/up 방향으로 평행 이동합니다. 2회 반복합니다.
+  - 각 거리 후보에서 투영된 bbox의 중심이 safeRect 중심에 오도록 right/up 방향으로 2회 평행 이동합니다. 이동 후의 투영으로 꼭짓점을 검사해 최종 피팅에서 잘림을 방지합니다.
 - 창 크기가 바뀌면 다시 맞춥니다. 전투 중 카메라 조작(줌·팬)은 v0.1에 없습니다.
 
 **조명** (값은 시작점이고, 목업과 비슷한 밝기로 조정합니다)

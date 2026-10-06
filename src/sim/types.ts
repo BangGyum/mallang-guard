@@ -1,7 +1,9 @@
 import type { Dir, Tile } from '../core/grid';
-import type { DamageType, Effect, SpawnGroup, StageDef } from '../data/types';
+import type { DamageType, Effect, EnemyDef, StageDef } from '../data/types';
 import type { Board } from './board';
-import type { Path } from './path';
+import type { Polyline } from './path';
+
+export type { Dir, Tile } from '../core/grid';
 
 export type Command =
   | { type: 'deploy'; unitId: string; tile: Tile; dir: Dir }
@@ -106,19 +108,25 @@ export interface BattleState {
   totalEnemies: number;
   killed: number;
   leaked: number;
+  currentWave: number;
+  totalWaves: number;
   nextUid: number;
   rngState: number;
-  wave: number;
 }
 
-export interface SpawnRuntime extends SpawnGroup {
-  atTick: number;
-  intervalTicks: number;
+export interface SpawnRuntime {
+  readonly enemy: EnemyDef;
+  readonly routeId: string;
+  readonly route: Polyline;
+  readonly wave: number;
+  readonly count: number;
+  readonly atTick: number;
+  readonly intervalTicks: number;
 }
 
-export interface StageRuntime extends Omit<StageDef, 'map' | 'routes' | 'spawns'> {
-  board: Board;
-  routes: ReadonlyMap<string, Path>;
-  spawns: readonly SpawnRuntime[];
-  totalWaves: number;
+export interface StageRuntime {
+  readonly definition: StageDef;
+  readonly board: Board;
+  readonly routes: ReadonlyMap<string, Polyline>;
+  readonly spawns: readonly SpawnRuntime[];
 }

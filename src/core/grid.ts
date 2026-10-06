@@ -5,27 +5,18 @@ export interface Tile {
   y: number;
 }
 
-export function rotateOffset(offset: readonly [number, number], dir: Dir): Tile {
-  const [dx, dy] = offset;
-  let x = dx;
-  let y = dy;
-
+export function rotateOffset([dx, dy]: readonly [number, number], dir: Dir): [number, number] {
+  // 0에서 빼면 정수 좌표에 -0이 남지 않습니다.
   switch (dir) {
+    case 'right':
+      return [dx, dy];
     case 'down':
-      x = -dy;
-      y = dx;
-      break;
+      return [0 - dy, dx];
     case 'left':
-      x = -dx;
-      y = -dy;
-      break;
+      return [0 - dx, 0 - dy];
     case 'up':
-      x = dy;
-      y = -dx;
-      break;
+      return [dy, 0 - dx];
   }
-
-  return { x: x === 0 ? 0 : x, y: y === 0 ? 0 : y };
 }
 
 export function rangeTiles(
@@ -36,16 +27,11 @@ export function rangeTiles(
   height: number,
 ): Tile[] {
   const tiles: Tile[] = [];
-
   for (const offset of offsets) {
-    const rotated = rotateOffset(offset, dir);
-    const x = tile.x + rotated.x;
-    const y = tile.y + rotated.y;
-
-    if (x >= 0 && x < width && y >= 0 && y < height) {
-      tiles.push({ x, y });
-    }
+    const [dx, dy] = rotateOffset(offset, dir);
+    const x = tile.x + dx;
+    const y = tile.y + dy;
+    if (x >= 0 && x < width && y >= 0 && y < height) tiles.push({ x, y });
   }
-
   return tiles;
 }

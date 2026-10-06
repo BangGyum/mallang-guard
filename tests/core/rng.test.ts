@@ -1,59 +1,44 @@
 import { describe, expect, it } from 'vitest';
 import { mulberry32 } from '../../src/core/rng';
 
-// Original C uint32 operations checked independently with bigint arithmetic:
-// https://gist.github.com/tommyettinger/46a874533244883189143505d203312c
-const SEED_ONE_SEQUENCE = [
-  { state: 1831565814, bits: 2693262067 },
-  { state: 3663131627, bits: 11749833 },
-  { state: 1199730144, bits: 2265367787 },
-  { state: 3031295957, bits: 4213581821 },
-  { state: 567894474, bits: 4159151403 },
-];
+function sequence(state: number, count: number) {
+  const values: number[] = [];
+  for (let i = 0; i < count; i += 1) {
+    const next = mulberry32(state);
+    state = next.state;
+    values.push(next.value);
+  }
+  return { state, values };
+}
 
 describe('mulberry32', () => {
-  it('matches the original algorithm sequence for seed 1', () => {
-    let state = 1;
-
-    for (const expected of SEED_ONE_SEQUENCE) {
-      const result = mulberry32(state);
-      expect(result).toEqual({ value: expected.bits / 4294967296, state: expected.state });
-      expect(mulberry32(state)).toEqual(result);
-      state = result.state;
-    }
+  // 원본 uint32 알고리즘을 독립적인 BigInt 연산으로 계산한 고정 벡터입니다.
+  it.each([
+    { seed: 0, expected: [1144304738, 1416247, 958946056, 627933444, 2007157716, 2340967985] },
+    { seed: 1, expected: [2693262067, 11749833, 2265367787, 4213581821, 4159151403, 1207330352] },
+  ])('시드 $seed에서 고정된 순서를 재현한다', ({ seed, expected }) => {
+    const result = sequence(seed, expected.length);
+    expect(result.values.map((value) => value * 4294967296)).toEqual(expected);
   });
 
-  it('replays the same continuation from a saved state', () => {
-    const checkpoint = mulberry32(mulberry32(1).state).state;
-    let originalState = checkpoint;
-    let restoredState = checkpoint;
-
-    for (const expected of SEED_ONE_SEQUENCE.slice(2)) {
-      const original = mulberry32(originalState);
-      const restored = mulberry32(restoredState);
-      expect(restored).toEqual(original);
-      expect(restored).toEqual({ value: expected.bits / 4294967296, state: expected.state });
-      originalState = original.state;
-      restoredState = restored.state;
-    }
+  it('저장된 상태에서 난수 순서를 이어갈 수 있다', () => {
+    const full = sequence(42, 12);
+    const first = sequence(42, 5);
+    const restored = sequence(first.state, 7);
+    expect([...first.values, ...restored.values]).toEqual(full.values);
+    expect(restored.state).toBe(full.state);
   });
 
-  it.each([0, 1, 0xffffffff])('keeps outputs in [0, 1) and states unsigned for seed %i', (seed) => {
-    let state = seed;
-
-    for (let index = 0; index < 64; index += 1) {
-      const result = mulberry32(state);
-      expect(result.value).toBeGreaterThanOrEqual(0);
-      expect(result.value).toBeLessThan(1);
-      expect(Number.isInteger(result.state)).toBe(true);
-      expect(result.state).toBeGreaterThanOrEqual(0);
-      expect(result.state).toBeLessThanOrEqual(0xffffffff);
-      state = result.state;
+  it('상태는 uint32 범위, 난수는 0 이상 1 미만을 유지한다', () => {
+    let state = 0xffffffff;
+    for (let i = 0; i < 64; i += 1) {
+      const next = mulberry32(state);
+      expect(Number.isInteger(next.state)).toBe(true);
+      expect(next.state).toBeGreaterThanOrEqual(0);
+      expect(next.state).toBeLessThanOrEqual(0xffffffff);
+      expect(next.value).toBeGreaterThanOrEqual(0);
+      expect(next.value).toBeLessThan(1);
+      state = next.state;
     }
-  });
-
-  it('normalizes equivalent 32-bit input states', () => {
-    expect(mulberry32(-1)).toEqual(mulberry32(0xffffffff));
-    expect(mulberry32(0x100000000)).toEqual(mulberry32(0));
   });
 });

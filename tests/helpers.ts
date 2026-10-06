@@ -1,40 +1,39 @@
-import enemies from '../src/data/enemies.json';
-import ranges from '../src/data/ranges.json';
-import skills from '../src/data/skills.json';
-import stage1 from '../src/data/stages/stage-1.json';
+import { assert } from '../src/core/assert';
 import type { ContentDb, RawContent, SpawnGroup, StageDef } from '../src/data/types';
-import units from '../src/data/units.json';
 import { validateContent } from '../src/data/validate';
 import type { Battle } from '../src/sim/battle';
 import type { SimEvent } from '../src/sim/types';
+import { makeRawContent } from './dataFixtures';
 
-export function makeContent(patch?: Partial<RawContent>): ContentDb {
-  return validateContent({ units, enemies, skills, ranges, stages: [stage1], ...patch });
+export function makeContent(patch: Partial<RawContent> = {}): ContentDb {
+  return validateContent({ ...makeRawContent(), ...patch });
 }
 
-export function laneStage(map: string[], spawns: SpawnGroup[], opts?: Partial<StageDef>): StageDef {
-  function find(marker: string): [number, number] {
-    for (const [y, row] of map.entries()) {
-      const x = row.indexOf(marker);
-      if (x >= 0) return [x, y];
-    }
-    throw new Error(`테스트 맵에 ${marker}가 없습니다`);
+export function laneStage(map: string[], spawns: SpawnGroup[], options: Partial<StageDef> = {}): StageDef {
+  let from: [number, number] | undefined;
+  let to: [number, number] | undefined;
+  for (const [y, row] of map.entries()) {
+    const start = row.indexOf('S');
+    const goal = row.indexOf('G');
+    if (start >= 0) from = [start, y];
+    if (goal >= 0) to = [goal, y];
   }
+  assert(from && to, 'laneStage: S and G required');
   return {
     id: 'lane',
-    name: '테스트 길',
+    name: '테스트 경로',
     map,
     startDp: 10,
     life: 3,
     deployLimit: 7,
-    routes: { ground: { from: find('S'), to: find('G') } },
+    routes: { ground: { from, to }, air: { from, to, flying: true } },
     spawns,
-    ...opts,
+    ...options,
   };
 }
 
 export function run(battle: Battle, ticks: number): SimEvent[] {
   const events: SimEvent[] = [];
-  for (let tick = 0; tick < ticks; tick++) events.push(...battle.step());
+  for (let tick = 0; tick < ticks; tick += 1) events.push(...battle.step());
   return events;
 }

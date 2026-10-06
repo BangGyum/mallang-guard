@@ -108,8 +108,26 @@ mallang-guard/
 ```
 
 - 파일 이름은 camelCase, 타입은 PascalCase, 상수는 UPPER_SNAKE_CASE를 씁니다.
-- default export는 쓰지 않습니다.
+- 앱 코드와 테스트에서 default export는 쓰지 않습니다. `vite.config.ts`는 Vite가 요구하는 default export를 씁니다.
 - 한 파일이 300줄을 넘으면 쪼갭니다.
+
+### core 유틸 API
+
+`Dir`와 `Tile`은 `src/core/grid.ts`에서 한 번만 정의합니다. 사거리 오프셋은 콘텐츠의 `[dx, dy]` 튜플을 그대로 받습니다.
+
+```ts
+rotateOffset(offset: readonly [number, number], dir: Dir): [number, number];
+rangeTiles(tile: Tile, offsets: readonly (readonly [number, number])[], dir: Dir, width: number, height: number): Tile[];
+mulberry32(state: number): { state: number; value: number };
+clamp(value: number, min: number, max: number): number;
+lerp(from: number, to: number, alpha: number): number;
+dist(ax: number, ay: number, bx: number, by: number): number;
+assert(condition: unknown, message: string): asserts condition;
+```
+
+- `rangeTiles`는 오프셋 순서를 유지하고, 회전·이동 후 맵 밖 좌표를 제외합니다. 입력은 변경하지 않습니다.
+- `mulberry32`는 숨겨진 상태 없이 다음 uint32 상태와 `[0, 1)` 난수를 반환합니다. 호출한 쪽에서 반환된 `state`를 저장합니다.
+- `lerp`는 비율을 제한하지 않습니다. `dist`는 타일 단위 실수 위치 사이의 유클리드 거리입니다.
 
 ## 3. Battle API (sim의 공개 인터페이스)
 
@@ -137,12 +155,12 @@ export interface Battle {
 }
 ```
 
+
+T1.3까지 `createBattle`, 상태·런타임 경로, `enqueue`, `flush`, `step`을 구현합니다. `flush`는 종료·없는 로스터·없는 배치 uid의 명령을 기존 거부 사유로 처리합니다. 실제 배치·후퇴 처리는 T1.4, 스킬 발동은 T2.2에서 연결합니다. 아직 연결되지 않은 명령은 개발 오류로 throw해 성공처럼 소비하지 않습니다. 조회 헬퍼는 T1.4에서 추가하며, 브라우저 전투 루프·뷰 연결은 T1.5 범위입니다.
+
 - 명령(Command)과 이벤트(SimEvent)의 정확한 형태는 [02-combat-rules.md](02-combat-rules.md) 17절에 있습니다.
 - 거부된 명령은 상태를 바꾸지 않고 `{ type: 'commandRejected', cmd, reason }` 이벤트를 냅니다. UI는 이 이벤트로 토스트를 띄웁니다.
 - `state`의 엔티티 배열은 항상 uid 오름차순입니다 (새 엔티티는 뒤에 추가되므로 자연히 정렬됨).
-- 단계별 구현: T1.3은 `content`, `stage`, `state`, `enqueue`, `flush`, `step`과 스폰·이동·승패만 제공합니다.
-  T1.4에서 명령 처리와 조회 헬퍼를 연결하기 전에는 진행 중인 전투의 명령 처리 시 명시적인 미지원 오류가 납니다.
-  빈 큐의 `flush()`는 상태를 바꾸지 않고, 종료된 전투의 `flush()`는 큐를 `ended`로 거부합니다.
 
 ## 4. 게임 루프 (src/app/loop.ts)
 

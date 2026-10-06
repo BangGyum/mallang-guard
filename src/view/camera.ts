@@ -1,69 +1,69 @@
 import { Box3, PerspectiveCamera, Vector3 } from 'three';
+import { assert } from '../core/assert';
 
 export interface SafeRect {
-  readonly left: number;
-  readonly right: number;
-  readonly bottom: number;
-  readonly top: number;
+  readonly minX: number;
+  readonly maxX: number;
+  readonly minY: number;
+  readonly maxY: number;
 }
 
-export const BOARD_SAFE_RECT: SafeRect = { left: -0.94, right: 0.94, bottom: -0.62, top: 0.86 };
+export const SAFE_RECT: SafeRect = { minX: -0.94, maxX: 0.94, minY: -0.62, maxY: 0.86 };
 
-export function fitCamera(
-  boardBox: Box3,
-  aspect: number,
-  safeRect: SafeRect = BOARD_SAFE_RECT,
-): PerspectiveCamera {
-  const camera = new PerspectiveCamera(30, aspect, 0.1, 100);
-  const center = boardBox.getCenter(new Vector3());
+export function boardBox(width: number, height: number): Box3 {
+  return new Box3(new Vector3(-width / 2, -0.9, -height / 2), new Vector3(width / 2, 1.2, height / 2));
+}
+
+export function fitCamera(box: Box3, aspect: number, safeRect: SafeRect = SAFE_RECT): PerspectiveCamera {
+  assert(aspect > 0, 'camera.aspect: must be positive');
+  const camera = new PerspectiveCamera(30, aspect, 0.1, 200);
+  const center = box.getCenter(new Vector3());
   const pitch = (55 * Math.PI) / 180;
-  const backward = new Vector3(0, Math.sin(pitch), Math.cos(pitch));
+  const direction = new Vector3(0, Math.sin(pitch), Math.cos(pitch));
   const up = new Vector3(0, Math.cos(pitch), -Math.sin(pitch));
-  const corners: Vector3[] = [];
-  for (const x of [boardBox.min.x, boardBox.max.x]) {
-    for (const y of [boardBox.min.y, boardBox.max.y]) {
-      for (const z of [boardBox.min.z, boardBox.max.z]) corners.push(new Vector3(x, y, z));
-    }
-  }
+  const corners = [box.min.x, box.max.x].flatMap((x) =>
+    [box.min.y, box.max.y].flatMap((y) => [box.min.z, box.max.z].map((z) => new Vector3(x, y, z))),
+  );
+  const targetX = (safeRect.minX + safeRect.maxX) / 2;
+  const targetY = (safeRect.minY + safeRect.maxY) / 2;
+  const halfFov = Math.tan((camera.fov * Math.PI) / 360);
 
-  function place(distance: number): void {
-    camera.position.copy(center).addScaledVector(backward, distance);
+  function place(distance: number): boolean {
+    camera.position.copy(center).addScaledVector(direction, distance);
     camera.lookAt(center);
     camera.updateMatrixWorld();
-  }
-
-  function projectedBounds(): Box3 {
-    const bounds = new Box3();
-    const projected = new Vector3();
-    for (const corner of corners) bounds.expandByPoint(projected.copy(corner).project(camera));
-    return bounds;
-  }
-
-  let min = 4;
-  let max = 80;
-  for (let iteration = 0; iteration < 24; iteration++) {
-    const distance = (min + max) / 2;
-    place(distance);
-    const bounds = projectedBounds();
-    if (
-      bounds.min.x >= safeRect.left &&
-      bounds.max.x <= safeRect.right &&
-      bounds.min.y >= safeRect.bottom &&
-      bounds.max.y <= safeRect.top
-    ) {
-      max = distance;
-    } else {
-      min = distance;
+    // 평행 이동 뒤의 원근 투영까지 탐색에 포함해 화면 가장자리 잘림을 막는다.
+    for (let iteration = 0; iteration < 2; iteration += 1) {
+      const projected = corners.map((corner) => corner.clone().project(camera));
+      const minX = Math.min(...projected.map((point) => point.x));
+      const maxX = Math.max(...projected.map((point) => point.x));
+      const minY = Math.min(...projected.map((point) => point.y));
+      const maxY = Math.max(...projected.map((point) => point.y));
+      camera.position.x += ((minX + maxX) / 2 - targetX) * distance * halfFov * aspect;
+      camera.position.addScaledVector(up, ((minY + maxY) / 2 - targetY) * distance * halfFov);
+      camera.updateMatrixWorld();
     }
+    return corners.every((corner) => {
+      const point = corner.clone().project(camera);
+      return (
+        point.x >= safeRect.minX &&
+        point.x <= safeRect.maxX &&
+        point.y >= safeRect.minY &&
+        point.y <= safeRect.maxY &&
+        point.z >= -1 &&
+        point.z <= 1
+      );
+    });
   }
-  place(max);
 
-  const scale = max * Math.tan((15 * Math.PI) / 180);
-  for (let iteration = 0; iteration < 2; iteration++) {
-    const projectedCenter = projectedBounds().getCenter(new Vector3());
-    camera.position.x += (projectedCenter.x - (safeRect.left + safeRect.right) / 2) * scale * aspect;
-    camera.position.addScaledVector(up, (projectedCenter.y - (safeRect.bottom + safeRect.top) / 2) * scale);
-    camera.updateMatrixWorld();
+  let low = 4;
+  let high = 80;
+  assert(place(high), 'camera.boardBox: cannot fit within maximum distance');
+  for (let iteration = 0; iteration < 24; iteration += 1) {
+    const middle = (low + high) / 2;
+    if (place(middle)) high = middle;
+    else low = middle;
   }
+  place(high);
   return camera;
 }

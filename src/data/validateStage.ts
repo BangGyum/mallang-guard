@@ -1,58 +1,54 @@
+import { assert } from '../core/assert';
 import type { RouteDef, SpawnGroup, StageDef } from './types';
-import { array, boolean, fail, integer, numeric, pair, positive, record, text } from './validateValues';
+import { bool, integer, list, number, object, point, positive, text } from './validationHelpers';
+
+function parseSpawn(value: unknown, path: string): SpawnGroup {
+  const raw = object(value, path);
+  const count = integer(raw.count, `${path}.count`, 1);
+  const intervalSec = number(raw.intervalSec, `${path}.intervalSec`);
+  assert(count === 1 || intervalSec > 0, `${path}.intervalSec: must be positive for multiple spawns`);
+  return {
+    wave: integer(raw.wave, `${path}.wave`, 1),
+    atSec: number(raw.atSec, `${path}.atSec`),
+    enemy: text(raw.enemy, `${path}.enemy`),
+    count,
+    intervalSec,
+    route: text(raw.route, `${path}.route`),
+  };
+}
 
 function parseRoute(value: unknown, path: string, map: string[]): RouteDef {
-  const raw = record(value, path);
-  const route: RouteDef = {
-    from: pair(raw.from, `${path}.from`),
-    to: pair(raw.to, `${path}.to`),
-  };
-  if (raw.flying !== undefined) route.flying = boolean(raw.flying, `${path}.flying`);
-  if (raw.via !== undefined) {
-    route.via = array(raw.via, `${path}.via`).map((tile, index) => pair(tile, `${path}.via[${index}]`));
-  }
-  const points: [string, [number, number]][] = [
-    [`${path}.from`, route.from],
-    [`${path}.to`, route.to],
-    ...(route.via ?? []).map((tile, index): [string, [number, number]] => [`${path}.via[${index}]`, tile]),
-  ];
-  for (const [pointPath, [x, y]] of points) {
-    if (x < 0 || x >= (map[0]?.length ?? 0) || y < 0 || y >= map.length) {
-      fail(pointPath, 'coordinate outside map');
-    }
+  const raw = object(value, path);
+  const route: RouteDef = { from: point(raw.from, `${path}.from`), to: point(raw.to, `${path}.to`) };
+  if (raw.via !== undefined) route.via = list(raw.via, `${path}.via`, point);
+  if (raw.flying !== undefined) route.flying = bool(raw.flying, `${path}.flying`);
+  for (const [name, [x, y]] of [
+    ...Object.entries({ from: route.from, to: route.to }),
+    ...(route.via ?? []).map((tile, index) => [`via[${index}]`, tile] as const),
+  ] as const) {
+    assert(
+      x >= 0 && x < (map[0]?.length ?? 0) && y >= 0 && y < map.length,
+      `${path}.${name}: tile outside map`,
+    );
   }
   if (!route.flying) {
-    if (map[route.from[1]]?.[route.from[0]] !== 'S') fail(`${path}.from`, 'ground route must start at S');
-    if (map[route.to[1]]?.[route.to[0]] !== 'G') fail(`${path}.to`, 'ground route must end at G');
+    assert(map[route.from[1]]?.[route.from[0]] === 'S', `${path}.from: ground route must start at S`);
+    assert(map[route.to[1]]?.[route.to[0]] === 'G', `${path}.to: ground route must end at G`);
   }
   return route;
 }
 
-function parseSpawn(value: unknown, path: string): SpawnGroup {
-  const raw = record(value, path);
-  const spawn: SpawnGroup = {
-    wave: integer(raw.wave, `${path}.wave`, 1),
-    atSec: numeric(raw.atSec, `${path}.atSec`),
-    enemy: text(raw.enemy, `${path}.enemy`),
-    count: integer(raw.count, `${path}.count`, 1),
-    intervalSec: numeric(raw.intervalSec, `${path}.intervalSec`),
-    route: text(raw.route, `${path}.route`),
-  };
-  if (spawn.count > 1 && spawn.intervalSec === 0)
-    fail(`${path}.intervalSec`, 'must be positive for count > 1');
-  return spawn;
-}
-
 export function parseStage(value: unknown, path: string): StageDef {
-  const raw = record(value, path);
-  const map = array(raw.map, `${path}.map`).map((row, index) => text(row, `${path}.map[${index}]`));
-  if (map.length === 0) fail(`${path}.map`, 'expected nonempty map');
+  const raw = object(value, path);
+  const map = list(raw.map, `${path}.map`, text);
+  assert(map.length > 0, `${path}.map: empty map`);
+  const width = map[0]?.length ?? 0;
   for (const [index, row] of map.entries()) {
-    if (row.length !== map[0]?.length) fail(`${path}.map[${index}]`, 'map row length mismatch');
-    if (!/^[.,H#SG]+$/.test(row)) fail(`${path}.map[${index}]`, 'unknown map tile');
+    assert(row.length === width, `${path}.map[${index}]: inconsistent row width`);
+    assert(/^[.,H#SG]+$/.test(row), `${path}.map[${index}]: unknown tile character`);
   }
   const routes = Object.fromEntries(
-    Object.entries(record(raw.routes, `${path}.routes`)).map(([id, route]) => [
+    Object.entries(object(raw.routes, `${path}.routes`)).map(([id, route]) => [
       id,
       parseRoute(route, `${path}.routes.${id}`, map),
     ]),
@@ -61,19 +57,13 @@ export function parseStage(value: unknown, path: string): StageDef {
     id: text(raw.id, `${path}.id`),
     name: text(raw.name, `${path}.name`),
     map,
-    startDp: numeric(raw.startDp, `${path}.startDp`),
+    startDp: number(raw.startDp, `${path}.startDp`),
     life: integer(raw.life, `${path}.life`, 1),
     deployLimit: integer(raw.deployLimit, `${path}.deployLimit`, 1),
     routes,
-    spawns: array(raw.spawns, `${path}.spawns`).map((spawn, index) =>
-      parseSpawn(spawn, `${path}.spawns[${index}]`),
-    ),
+    spawns: list(raw.spawns, `${path}.spawns`, parseSpawn),
   };
   if (raw.dpPerSec !== undefined) stage.dpPerSec = positive(raw.dpPerSec, `${path}.dpPerSec`);
-  if (raw.roster !== undefined) {
-    stage.roster = array(raw.roster, `${path}.roster`).map((id, index) =>
-      text(id, `${path}.roster[${index}]`),
-    );
-  }
+  if (raw.roster !== undefined) stage.roster = list(raw.roster, `${path}.roster`, text);
   return stage;
 }

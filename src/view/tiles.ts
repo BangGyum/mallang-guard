@@ -61,7 +61,7 @@ export function createTiles(board: Board): { group: Group; dispose(): void } {
   };
   for (let y = 0; y < board.height; y++) {
     for (let x = 0; x < board.width; x++) {
-      const kind = board.kindAt({ x, y });
+      const kind = board.kindAt(x, y);
       if (kind !== undefined) cells[kind].push({ x, y });
     }
   }

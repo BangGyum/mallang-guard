@@ -9,6 +9,14 @@
 
 ---
 
+## 병합 검증 (2026-10-07)
+
+- `origin/t1.3-battle-core`의 별도 구현을 병합했습니다. 원격 전투·경로·콘텐츠 API, 유닛 사망 처리, CI 설정을 반영했습니다.
+- 실제 동물·파스텔 정원 방향과 새 시안은 유지하고 카메라 피팅 및 PCF 그림자 개선을 적용했습니다.
+- 로컬 회귀 사례와 원격 추가 검증을 함께 유지했습니다. `npm ci`, check/lint/test/build 및 22개 파일의 403개 테스트가 통과했습니다.
+- 화면 확인: [1920×1080](../verification/merge-2026-10-07-desktop.png), [844×390](../verification/merge-2026-10-07-mobile.png).
+- 아래 2026-10-06 기록은 각 로컬 티켓의 당시 검증 결과입니다. 현재 경로 API는 `buildRoute`/`Polyline.length`, 웨이브는 `state.currentWave`/`state.totalWaves`입니다.
+
 ## M0 세팅
 
 ### [ ] T0.1 프로젝트 생성
@@ -16,7 +24,7 @@
 - 할 일
   - 레포 루트에 Vite `vanilla-ts` 구성을 만듭니다. 기존 `README.md`, `docs/`, `AGENTS.md`는 유지합니다.
   - 의존성: `three`. 개발 의존성: `vite`, `typescript`, `@types/three`, `vitest`, `@biomejs/biome`. 모두 최신 안정 버전으로 하고 `package-lock.json`을 커밋합니다.
-  - `package.json`에 `"engines": { "node": ">=22" }`, `.nvmrc`에 `24`를 둡니다.
+  - `package.json`에 `"engines": { "node": "^22.12.0 || ^24.0.0 || >=26.0.0" }`, `.nvmrc`에 `24`를 둡니다.
   - 스크립트: `dev`, `build`(`tsc --noEmit && vite build`), `preview`, `check`(`tsc --noEmit`), `lint`(`biome check .`), `format`(`biome format --write .`), `test`(`vitest run`), `test:watch`.
   - `tsconfig.json`: `strict`, `noUncheckedIndexedAccess`, `noImplicitOverride`, `resolveJsonModule`, `moduleResolution: "bundler"`, target ES2022.
   - `biome.json`: 들여쓰기 2칸, 줄 길이 110, 작은따옴표. `docs/`는 린트에서 제외합니다.

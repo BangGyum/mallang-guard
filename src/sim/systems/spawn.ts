@@ -1,43 +1,33 @@
 import { assert } from '../../core/assert';
-import type { ContentDb } from '../../data/types';
 import type { BattleState, SimEvent, StageRuntime } from '../types';
 
-export function spawnEnemies(
-  content: ContentDb,
-  stage: StageRuntime,
-  state: BattleState,
-  events: SimEvent[],
-): void {
-  stage.spawns.forEach((group, groupIndex) => {
-    if (state.tick >= group.atTick) state.wave = Math.max(state.wave, group.wave);
-    let cursor = state.spawnCursor[groupIndex] ?? 0;
-    while (cursor < group.count && state.tick >= group.atTick + cursor * group.intervalTicks) {
-      const def = content.enemies.get(group.enemy);
-      const route = stage.routes.get(group.route);
-      assert(def && route, `스폰 ${groupIndex}의 적 또는 경로가 없습니다`);
-      const position = route.positionAt(0);
-      const uid = state.nextUid++;
-      state.enemies.push({
-        uid,
-        enemyId: def.id,
-        routeId: group.route,
-        dist: 0,
-        segIndex: position.segIndex,
-        x: position.x,
-        y: position.y,
-        px: position.x,
-        py: position.y,
-        hp: def.hp,
-        maxHp: def.hp,
-        atkCooldown: 0,
-        blockedBy: null,
-        slowAmount: 0,
-        slowUntilTick: 0,
-        stunUntilTick: 0,
-      });
-      events.push({ type: 'enemySpawn', uid, enemyId: def.id });
-      cursor++;
-    }
-    state.spawnCursor[groupIndex] = cursor;
-  });
+export function spawnEnemies(stage: StageRuntime, state: BattleState, events: SimEvent[]): void {
+  for (const [index, group] of stage.spawns.entries()) {
+    if (state.tick >= group.atTick) state.currentWave = Math.max(state.currentWave, group.wave);
+    const cursor = state.spawnCursor[index];
+    assert(cursor !== undefined, 'battle.spawnCursor: missing group');
+    if (cursor >= group.count || state.tick !== group.atTick + cursor * group.intervalTicks) continue;
+    const { x, y, segIndex } = group.route.positionAt(0);
+    const uid = state.nextUid++;
+    state.enemies.push({
+      uid,
+      enemyId: group.enemy.id,
+      routeId: group.routeId,
+      dist: 0,
+      segIndex,
+      x,
+      y,
+      px: x,
+      py: y,
+      hp: group.enemy.hp,
+      maxHp: group.enemy.hp,
+      atkCooldown: 0,
+      blockedBy: null,
+      slowAmount: 0,
+      slowUntilTick: 0,
+      stunUntilTick: 0,
+    });
+    state.spawnCursor[index] = cursor + 1;
+    events.push({ type: 'enemySpawn', uid, enemyId: group.enemy.id });
+  }
 }

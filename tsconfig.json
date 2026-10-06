@@ -5,13 +5,12 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "types": ["vite/client"],
-    "resolveJsonModule": true,
-    "verbatimModuleSyntax": true,
-    "isolatedModules": true,
     "noEmit": true,
     "strict": true,
     "noUncheckedIndexedAccess": true,
     "noImplicitOverride": true,
+    "resolveJsonModule": true,
+    "verbatimModuleSyntax": true,
     "skipLibCheck": true
   },
   "include": ["src", "tests", "vite.config.ts"]

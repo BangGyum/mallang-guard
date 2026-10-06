@@ -1,34 +1,44 @@
 import { describe, expect, it } from 'vitest';
-import { parseBoard } from '../../src/sim/board';
+import stage from '../../src/data/stages/stage-1.json';
+import { isWalkable, parseBoard } from '../../src/sim/board';
 
-describe('보드 파싱', () => {
-  it('스펙의 타일 문자와 맵 크기를 읽는다', () => {
-    const board = parseBoard(['.,H', '#SG']);
-    expect([board.width, board.height]).toEqual([3, 2]);
-    expect(board.kindAt({ x: 0, y: 0 })).toBe('ground');
-    expect(board.kindAt({ x: 1, y: 0 })).toBe('path');
-    expect(board.kindAt({ x: 2, y: 0 })).toBe('high');
-    expect(board.kindAt({ x: 0, y: 1 })).toBe('blocked');
-    expect(board.kindAt({ x: 1, y: 1 })).toBe('spawn');
-    expect(board.kindAt({ x: 2, y: 1 })).toBe('goal');
+describe('board', () => {
+  it('stage-1 크기와 지형을 파싱한다', () => {
+    const board = parseBoard(stage.map);
+    expect([board.width, board.height]).toEqual([11, 6]);
+    expect(board.kindAt(0, 1)).toBe('spawn');
+    expect(board.kindAt(10, 3)).toBe('goal');
+    expect(board.kindAt(2, 0)).toBe('high');
+    expect(board.kindAt(1, 1)).toBe('ground');
+    expect(board.kindAt(0, 0)).toBe('blocked');
   });
-
-  it('맵 밖과 정수가 아닌 타일을 거부한다', () => {
-    const board = parseBoard(['SG']);
-    for (const tile of [
-      { x: -1, y: 0 },
-      { x: 2, y: 0 },
-      { x: 0, y: 1 },
-      { x: 0.5, y: 0 },
-    ]) {
-      expect(board.kindAt(tile)).toBeUndefined();
-    }
+  it('path와 범위 밖 좌표를 구분한다', () => {
+    const board = parseBoard(['S,G']);
+    expect(board.kindAt(1, 0)).toBe('path');
+    for (const [x, y] of [
+      [-1, 0],
+      [3, 0],
+      [0, -1],
+      [0, 1],
+    ])
+      expect(board.kindAt(x ?? 0, y ?? 0)).toBeUndefined();
   });
-
-  it.each([[], [''], ['..', '.'], ['?']].map((map) => ({ map })))(
-    '잘못된 맵 $map에서 실패한다',
+  it('입력 배열의 이후 변경에 영향을 받지 않는다', () => {
+    const map = ['S.G'];
+    const board = parseBoard(map);
+    map[0] = '###';
+    expect(board.kindAt(1, 0)).toBe('ground');
+  });
+  it.each([[], [''], ['S.G', '##'], ['S?G']].map((map) => ({ map })))(
+    '잘못된 맵 $map을 거부한다',
     ({ map }) => {
-      expect(() => parseBoard(map)).toThrow();
+      expect(() => parseBoard(map)).toThrow('board.map');
     },
   );
+  it.each(['ground', 'path', 'spawn', 'goal'] as const)('%s는 이동 가능하다', (kind) => {
+    expect(isWalkable(kind)).toBe(true);
+  });
+  it.each(['high', 'blocked', undefined] as const)('%s는 이동할 수 없다', (kind) => {
+    expect(isWalkable(kind)).toBe(false);
+  });
 });
