@@ -1,0 +1,109 @@
+:root {
+  font-family: "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+  color: #e6eef5;
+  background: #101923;
+  font-synthesis: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+#app {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  overflow: hidden;
+  background: linear-gradient(155deg, #26313e 0%, #101923 85%);
+}
+#board,
+#overlay,
+#hud,
+#screens {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+#board {
+  z-index: 0;
+  display: block;
+  touch-action: none;
+}
+#overlay {
+  z-index: 1;
+  pointer-events: none;
+}
+#hud {
+  z-index: 2;
+  pointer-events: none;
+}
+#screens {
+  z-index: 3;
+  pointer-events: none;
+}
+.stageHeading {
+  position: absolute;
+  top: 3%;
+  left: 3%;
+  padding-left: 16px;
+  border-left: 3px solid #7acde4;
+}
+.stageHeading p {
+  margin: 0 0 5px;
+  color: #93a7b8;
+  font-size: clamp(10px, 1vw, 14px);
+  letter-spacing: 0.13em;
+}
+.stageHeading h1 {
+  margin: 0;
+  font-size: clamp(20px, 2.2vw, 36px);
+  letter-spacing: -0.04em;
+}
+.boardLegend {
+  position: absolute;
+  left: 3%;
+  right: 3%;
+  bottom: 5%;
+  display: flex;
+  gap: 28px;
+  padding: 16px 0;
+  border-top: 1px solid #435364;
+  font-size: clamp(11px, 1vw, 14px);
+  color: #aebfcb;
+}
+.boardLegend span {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.boardLegend i {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: 1px solid currentColor;
+}
+.legendSpawn {
+  color: #d48557;
+}
+.legendGoal {
+  color: #4da5c0;
+}
+.legendHigh {
+  color: #edc76e;
+}
+@media (max-height: 500px) {
+  .stageHeading {
+    padding-left: 10px;
+  }
+  .stageHeading p {
+    margin-bottom: 2px;
+  }
+  .boardLegend {
+    gap: 20px;
+    padding: 9px 0;
+    bottom: 3%;
+  }
+}

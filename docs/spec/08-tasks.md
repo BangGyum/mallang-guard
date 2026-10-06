@@ -42,15 +42,15 @@
   - **레포 설정 변경은 사람이 합니다**: Settings → Pages → Source를 "GitHub Actions"로. PR 설명에 이 단계를 적습니다.
 - 완료 조건: `https://banggyum.github.io/mallang-guard/`에서 페이지가 열립니다 (설정 후).
 
-### [ ] T0.4 정적 보드 렌더
+### [x] T0.4 정적 보드 렌더
 - 읽을 문서: 03 (1절 타입, stage-1), 04 (1~3절, 11절)
 - 할 일
   - `src/data/types.ts`, `src/data/stages/stage-1.json`을 만듭니다. 검증기는 T1.1에서 만듭니다.
   - `src/sim/board.ts`: 맵 파싱 (`kindAt`, 크기).
   - `src/view`: 렌더러, 카메라 피팅, 타일 InstancedMesh, 받침, 조명, 그림자, 리사이즈.
-  - `index.html` 레이어 구조 (01 문서 6절)와 CSS 하늘 그라데이션.
+  - `index.html` 레이어 구조 (01 문서 6절)와 CSS 배경 그라데이션.
   - `tests/view/camera.test.ts`.
-- 완료 조건: stage-1 지형이 목업과 비슷한 각도와 색으로 보입니다. 창 크기를 바꿔도 보드가 safeRect 안에 있습니다.
+- 완료 조건: stage-1 지형이 기존 목업의 각도와 산업지대 시안의 색으로 보입니다. 창 크기를 바꿔도 보드가 safeRect 안에 있습니다.
 
 ---
 
