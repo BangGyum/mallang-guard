@@ -45,6 +45,8 @@
   - 필요한 권한(`pages: write`, `id-token: write`)과 `concurrency`를 설정합니다.
   - **레포 설정 변경은 사람이 합니다**: Settings → Pages → Source를 "GitHub Actions"로. PR 설명에 이 단계를 적습니다.
 - 완료 조건: `https://banggyum.github.io/mallang-guard/`에서 페이지가 열립니다 (설정 후).
+- 진행 상태 (2026-10-06): main push용 검사·빌드·Pages 업로드/배포 워크플로 구현. 로컬 검사 통과.
+  저장소 쓰기 인증 및 관리자의 Pages Source 설정 후 공개 URL 확인이 필요하므로 완료 체크는 대기합니다.
 
 ### [ ] T0.4 정적 보드 렌더
 - 읽을 문서: 03 (1절 타입, stage-1), 04 (1~3절, 11절)

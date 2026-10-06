@@ -35,6 +35,12 @@ npm run preview    # dist/ 빌드 결과 확인
 `npm test`로 방향 회전·사거리·시드 난수·수학 유틸과 레이어 의존 규칙을 검증합니다. 테스트 파일이 없으면 실패합니다.
 push와 pull request에서는 Node.js 24로 `npm ci → check → lint → test → build`를 순서대로 실행합니다.
 
+## GitHub Pages 배포
+
+저장소의 Settings → Pages → Build and deployment → Source를 **GitHub Actions**로 선택합니다.
+이 설정은 저장소 관리자가 적용합니다. 이후 `main`에 push하면 검사와 빌드를 통과한 `dist/`를 배포합니다.
+배포 주소는 <https://banggyum.github.io/mallang-guard/>이며, 실제 배포 확인은 저장소 쓰기 인증과 Pages 설정 후 진행합니다.
+
 ## 문서
 
 - [`docs/spec/`](docs/spec/README.md): **구현 스펙.** 아키텍처, 전투 규칙, 데이터, 렌더링, UI, 아트, 테스트, 작업 티켓
