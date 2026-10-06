@@ -5,7 +5,5 @@ export default defineConfig(({ command, isPreview }) => ({
   test: {
     include: ['tests/**/*.test.ts'],
     environment: 'node',
-    // T0.2에서 첫 테스트를 추가하면 제거합니다.
-    passWithNoTests: true,
   },
 }));

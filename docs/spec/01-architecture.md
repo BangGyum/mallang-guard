@@ -111,6 +111,24 @@ mallang-guard/
 - 앱 코드와 테스트에서 default export는 쓰지 않습니다. `vite.config.ts`는 Vite가 요구하는 default export를 씁니다.
 - 한 파일이 300줄을 넘으면 쪼갭니다.
 
+### core 유틸 API
+
+`Dir`와 `Tile`은 `src/core/grid.ts`에서 한 번만 정의합니다. 사거리 오프셋은 콘텐츠의 `[dx, dy]` 튜플을 그대로 받습니다.
+
+```ts
+rotateOffset(offset: readonly [number, number], dir: Dir): [number, number];
+rangeTiles(tile: Tile, offsets: readonly (readonly [number, number])[], dir: Dir, width: number, height: number): Tile[];
+mulberry32(state: number): { state: number; value: number };
+clamp(value: number, min: number, max: number): number;
+lerp(from: number, to: number, alpha: number): number;
+dist(ax: number, ay: number, bx: number, by: number): number;
+assert(condition: unknown, message: string): asserts condition;
+```
+
+- `rangeTiles`는 오프셋 순서를 유지하고, 회전·이동 후 맵 밖 좌표를 제외합니다. 입력은 변경하지 않습니다.
+- `mulberry32`는 숨겨진 상태 없이 다음 uint32 상태와 `[0, 1)` 난수를 반환합니다. 호출한 쪽에서 반환된 `state`를 저장합니다.
+- `lerp`는 비율을 제한하지 않습니다. `dist`는 타일 단위 실수 위치 사이의 유클리드 거리입니다.
+
 ## 3. Battle API (sim의 공개 인터페이스)
 
 ```ts
