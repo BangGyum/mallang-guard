@@ -1,0 +1,13 @@
+:root {
+  font-family: "Malgun Gothic", system-ui, sans-serif;
+  color: #1e2923;
+  background: #f2f6f1;
+}
+
+body {
+  margin: 0;
+}
+
+#app {
+  min-height: 100dvh;
+}

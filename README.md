@@ -18,6 +18,23 @@
 
 전투 규칙(`src/sim`)은 렌더러를 모르는 순수 TS로 작성합니다. 초당 30틱 고정에 시드 기반 난수를 쓰므로 같은 입력이면 항상 같은 결과가 나옵니다.
 
+## 개발 실행
+
+Node.js 24와 npm을 사용합니다 (`.nvmrc`: `24`). 현재 T0.1은 개발 환경을 준비하는 단계이며, 개발 서버에서 빈 진입 화면을 확인할 수 있습니다.
+
+```bash
+npm install
+npm run dev        # 개발 서버. 터미널에 표시된 주소로 접속
+npm run check      # TypeScript 타입 검사
+npm run lint       # Biome 검사
+npm test           # Vitest 실행
+npm run build      # 타입 검사 후 dist/에 프로덕션 빌드
+npm run preview    # dist/ 빌드 결과 확인
+```
+
+테스트 코드는 T0.2부터 추가합니다. 현재 `npm test`는 테스트 파일이 없는 상태를 허용하며, 전투 기능을 검증한 것은 아닙니다.
+push와 pull request에서는 Node.js 24로 `npm ci → check → lint → test → build`를 순서대로 실행합니다.
+
 ## 문서
 
 - [`docs/spec/`](docs/spec/README.md): **구현 스펙.** 아키텍처, 전투 규칙, 데이터, 렌더링, UI, 아트, 테스트, 작업 티켓

@@ -23,6 +23,9 @@
   - `vite.config.ts`: `base`는 build일 때 `/mallang-guard/`, dev일 때 `/`. Vitest 설정도 여기에 둡니다 (`include: ['tests/**/*.test.ts']`, environment `node`).
   - `.github/workflows/ci.yml`: push와 PR에서 Node 24로 `npm ci → check → lint → test → build`.
 - 완료 조건: `npm run dev`로 빈 페이지가 뜹니다. GitHub Actions CI가 초록입니다.
+- 진행 상태 (2026-10-06): 로컬 구현, `npm ci`, check/lint/test/build와 개발·빌드 미리보기 로딩 확인 완료.
+  테스트 파일은 T0.2부터 추가하며 현재는 0개입니다. GitHub 쓰기 인증이 확인되지 않아 원격 CI와 PR은 대기 중입니다.
+  화면 확인: [1920×1080](../verification/t0.1-desktop.png), [844×390](../verification/t0.1-mobile.png).
 
 ### [ ] T0.2 폴더 골격과 core 유틸
 - 읽을 문서: 01 전체, 02 (8절 회전 표)
