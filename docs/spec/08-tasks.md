@@ -11,17 +11,18 @@
 
 ## M0 세팅
 
-### [ ] T0.1 프로젝트 생성
+### [x] T0.1 프로젝트 생성
 - 읽을 문서: 01 (2절)
 - 할 일
   - 레포 루트에 Vite `vanilla-ts` 구성을 만듭니다. 기존 `README.md`, `docs/`, `AGENTS.md`는 유지합니다.
   - 의존성: `three`. 개발 의존성: `vite`, `typescript`, `@types/three`, `vitest`, `@biomejs/biome`. 모두 최신 안정 버전으로 하고 `package-lock.json`을 커밋합니다.
-  - `package.json`에 `"engines": { "node": ">=22" }`, `.nvmrc`에 `24`를 둡니다.
+  - `package.json`에 `"engines": { "node": "^22.12.0 || ^24.0.0 || >=26.0.0" }`, `.nvmrc`에 `24`를 둡니다.
   - 스크립트: `dev`, `build`(`tsc --noEmit && vite build`), `preview`, `check`(`tsc --noEmit`), `lint`(`biome check .`), `format`(`biome format --write .`), `test`(`vitest run`), `test:watch`.
   - `tsconfig.json`: `strict`, `noUncheckedIndexedAccess`, `noImplicitOverride`, `resolveJsonModule`, `moduleResolution: "bundler"`, target ES2022.
   - `biome.json`: 들여쓰기 2칸, 줄 길이 110, 작은따옴표. `docs/`는 린트에서 제외합니다.
-  - `vite.config.ts`: `base`는 build일 때 `/mallang-guard/`, dev일 때 `/`. Vitest 설정도 여기에 둡니다 (`include: ['tests/**/*.test.ts']`, environment `node`).
+  - `vite.config.ts`: `base`는 build일 때 `/mallang-guard/`, dev일 때 `/`. Vitest 설정도 여기에 둡니다 (`include: ['tests/**/*.test.ts']`, environment `node`). 최신 도구의 Node 지원 범위에 맞추고, 개발·CI는 Node 24를 씁니다.
   - `.github/workflows/ci.yml`: push와 PR에서 Node 24로 `npm ci → check → lint → test → build`.
+- 첫 테스트가 생기기 전인 T0.1에서는 `passWithNoTests: true`를 사용합니다. T0.2에서 제거합니다.
 - 완료 조건: `npm run dev`로 빈 페이지가 뜹니다. GitHub Actions CI가 초록입니다.
 
 ### [ ] T0.2 폴더 골격과 core 유틸
@@ -30,7 +31,7 @@
   - 01 문서 2절의 폴더를 만듭니다 (빈 파일 대신, 실제로 필요한 것만).
   - `src/core/grid.ts`(Dir, `rotateOffset`, `rangeTiles`), `rng.ts`(mulberry32), `math.ts`, `assert.ts`.
   - `tests/architecture.test.ts` (07 문서 4절).
-  - `tests/sim/grid.test.ts`.
+  - `tests/sim/grid.test.ts`. 테스트가 추가되면 `vite.config.ts`의 `passWithNoTests`를 제거합니다.
 - 완료 조건: 아키텍처 테스트가 일부러 넣은 위반(`src/sim`에서 three import)을 잡는 것을 한 번 확인하고 되돌립니다.
 
 ### [ ] T0.3 GitHub Pages 배포

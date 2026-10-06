@@ -41,7 +41,7 @@ npm run build      # 프로덕션 빌드 (dist/)
 ## 코드 스타일
 
 - TypeScript strict. `any`는 쓰지 않습니다 (꼭 필요하면 `unknown` + 좁히기).
-- named export만 씁니다. default export는 쓰지 않습니다.
+- 앱 코드와 테스트는 named export만 씁니다. 도구에서 요구하는 `vite.config.ts`의 default export만 예외입니다.
 - 파일 이름은 camelCase, 타입은 PascalCase, 상수는 UPPER_SNAKE_CASE를 씁니다.
 - 한 파일이 300줄을 넘으면 쪼갭니다.
 - 주석은 "왜"가 필요한 곳에만 짧게 씁니다. 한국어도 괜찮습니다.

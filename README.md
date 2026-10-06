@@ -18,6 +18,27 @@
 
 전투 규칙(`src/sim`)은 렌더러를 모르는 순수 TS로 작성합니다. 초당 30틱 고정에 시드 기반 난수를 쓰므로 같은 입력이면 항상 같은 결과가 나옵니다.
 
+## 개발 환경
+
+개발·CI는 Node.js 24를 사용합니다 (`.nvmrc`).
+
+```bash
+npm ci
+npm run dev
+```
+
+개발 서버 주소는 터미널에 출력됩니다. T0.1에서는 빈 페이지가 정상이며, 보드와 전투는 이후 티켓에서 추가합니다.
+
+```bash
+npm run check
+npm run lint
+npm test
+npm run build
+npm run preview
+```
+
+빌드 미리보기는 `/mallang-guard/` 경로에서 확인합니다. 현재는 테스트 파일이 없어 `npm test`가 테스트 0개를 허용하며, T0.2에서 이 옵션을 제거합니다.
+
 ## 문서
 
 - [`docs/spec/`](docs/spec/README.md): **구현 스펙.** 아키텍처, 전투 규칙, 데이터, 렌더링, UI, 아트, 테스트, 작업 티켓

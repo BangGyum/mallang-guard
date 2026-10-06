@@ -108,7 +108,7 @@ mallang-guard/
 ```
 
 - 파일 이름은 camelCase, 타입은 PascalCase, 상수는 UPPER_SNAKE_CASE를 씁니다.
-- default export는 쓰지 않습니다.
+- 앱 코드와 테스트에서 default export는 쓰지 않습니다. `vite.config.ts`는 Vite가 요구하는 default export를 씁니다.
 - 한 파일이 300줄을 넘으면 쪼갭니다.
 
 ## 3. Battle API (sim의 공개 인터페이스)
