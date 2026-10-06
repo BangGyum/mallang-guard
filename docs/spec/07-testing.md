@@ -61,6 +61,7 @@ stage-1을 **푸딩 3개를 지키며 클리어**하는 배치 기록입니다. 
 **tests/architecture.test.ts**
 - `src/sim/**/*.ts`를 읽어서 다음이 없는지 확인합니다: `from 'three'`, `../view`, `../ui`, `../app`, `window.`, `document.`, `Math.random`, `Date.now`, `new Date`, `performance.`
 - `src/core/**`, `src/data/**`에도 `three`와 DOM 사용이 없는지 확인합니다.
+- Vite의 `?raw` glob으로 소스 원문을 읽고, 01 문서의 레이어 표에 맞춰 상대 경로 import, re-export, 동적 import, require를 텍스트 기반으로 검사합니다. 허용된 의존성도 통과하는지 확인합니다.
 
 **tests/data.test.ts**
 - 실제 콘텐츠가 검증을 통과합니다.
@@ -71,6 +72,10 @@ stage-1을 **푸딩 3개를 지키며 클리어**하는 배치 기록입니다. 
 - 방향 회전: 오프셋 (1, 0)은 right (1,0), down (0,1), left (−1,0), up (0,−1).
 - 오프셋 (1, −1)은 right (1,−1), down (1,1), left (−1,1), up (−1,−1).
 - 맵 밖 사거리 타일이 제거됩니다.
+
+**tests/core/rng.test.ts, math.test.ts, assert.test.ts**
+- 난수는 고정 시드 벡터, 상태 복원, uint32 상태와 `[0, 1)` 값 범위를 검증합니다.
+- 수학 유틸은 경계 제한·보간·실수 좌표 거리, assert는 실패 메시지와 타입 좁히기를 검증합니다.
 
 **tests/sim/path.test.ts**
 - stage-1 지상 경로의 꺾이는 점이 (0,1) (4,1) (4,3) (6,3) (6,1) (9,1) (9,3) (10,3)이고, 길이가 16입니다.
