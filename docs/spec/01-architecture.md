@@ -140,6 +140,9 @@ export interface Battle {
 - 명령(Command)과 이벤트(SimEvent)의 정확한 형태는 [02-combat-rules.md](02-combat-rules.md) 17절에 있습니다.
 - 거부된 명령은 상태를 바꾸지 않고 `{ type: 'commandRejected', cmd, reason }` 이벤트를 냅니다. UI는 이 이벤트로 토스트를 띄웁니다.
 - `state`의 엔티티 배열은 항상 uid 오름차순입니다 (새 엔티티는 뒤에 추가되므로 자연히 정렬됨).
+- 단계별 구현: T1.3은 `content`, `stage`, `state`, `enqueue`, `flush`, `step`과 스폰·이동·승패만 제공합니다.
+  T1.4에서 명령 처리와 조회 헬퍼를 연결하기 전에는 진행 중인 전투의 명령 처리 시 명시적인 미지원 오류가 납니다.
+  빈 큐의 `flush()`는 상태를 바꾸지 않고, 종료된 전투의 `flush()`는 큐를 `ended`로 거부합니다.
 
 ## 4. 게임 루프 (src/app/loop.ts)
 
