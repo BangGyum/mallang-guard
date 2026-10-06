@@ -44,7 +44,7 @@
 **비행 경로** (`flying: true`): `from`, `via…`, `to` 타일의 중심을 직선으로 잇습니다. 지형은 무시합니다.
 
 **공통**
-- 폴리라인마다 누적 길이 배열과 총 길이 `length`를 둡니다.
+- 폴리라인마다 중심점 `points`, 누적 길이 `cumulativeLengths`, 총 길이 `totalLength`를 둡니다.
 - 적의 위치는 `dist`(출발점부터 이동한 거리)로 정하고, `remaining = length - dist`입니다.
 - `dist → (x, y)` 변환은 적마다 현재 구간 인덱스를 캐시해서 빠르게 합니다.
 
