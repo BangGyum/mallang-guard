@@ -66,14 +66,14 @@
 - 할 일: `src/sim/path.ts` (A*, 폴리라인, 누적 길이, `positionAt(dist, segHint)`), `tests/sim/path.test.ts`.
 - 완료 조건: stage-1 경로 기대값 테스트가 통과합니다.
 
-### [ ] T1.3 Battle 코어 (스폰·이동·누수·승패)
+### [x] T1.3 Battle 코어 (스폰·이동·누수·승패)
 - 읽을 문서: 01 (3절), 02 (1, 6, 12~18절)
 - 할 일
   - `sim/types.ts`, `constants.ts`, `battle.ts` (createBattle, enqueue, flush, step, 14절 순서의 골격).
   - `systems/spawn.ts`, `movement.ts`, `death.ts`, `outcome.ts`, `hash.ts`.
   - `tests/helpers.ts`의 `laneStage`, `run`.
   - `tests/sim/outcome.test.ts`.
-- 완료 조건: 아무것도 배치하지 않으면 stage-1에서 21마리가 경로를 따라 이동하고, 패배로 끝납니다.
+- 완료 조건: 아무것도 배치하지 않은 실제 stage-1은 목숨 3개가 소진되는 즉시 패배로 끝납니다. 예정된 적은 21마리이며, 전원의 스폰·이동은 목숨을 늘린 별도 테스트로 확인합니다 (즉시 패배 규칙과의 충돌 해소).
 
 ### [ ] T1.4 배치·저지·공격
 - 읽을 문서: 02 (4~5, 7~9절)

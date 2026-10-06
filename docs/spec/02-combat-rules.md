@@ -5,7 +5,7 @@
 
 ## 1. 시간
 
-- 1틱 = 1/30초 (`TICK_RATE = 30`).
+- 1틱 = 1/30초 (`TICK_RATE = 30`). `state.tick`은 다음에 처리할 틱 번호이며, 첫 `step()`은 0틱을 처리합니다.
 - 모든 타이머는 **정수 틱**입니다. 데이터의 초 값은 콘텐츠 로드 시 `secToTicks(sec) = Math.round(sec * TICK_RATE)`로 바꿉니다. 단, 0보다 큰 값은 최소 1틱입니다.
 - 배속·일시정지·슬로모션은 sim과 무관합니다 (01 문서 4절).
 
@@ -128,7 +128,8 @@ interface RosterSlot {
 - `px, py`에 현재 위치를 저장합니다 (렌더 보간용).
 - 저지당했거나(`blockedBy !== null`) 기절 중이면 움직이지 않습니다.
 - 그 외에는 `dist += def.speed * (1 - slowAmount) / TICK_RATE`.
-- `dist >= length`이면 **누수**입니다: `life -= def.lifeDamage`, 적 제거, `leaked += 1`, `enemyLeak` 이벤트.
+- 이미 `hp <= 0`인 적은 이동·누수 처리 없이 사망 단계에서 정리합니다.
+- dist >= length이면 **누수**입니다: `life -= def.lifeDamage`, 적 제거, `leaked += 1`, `enemyLeak` 이벤트.
 
 ## 7. 저지 (블록)
 
@@ -278,8 +279,8 @@ auto 충전은 `1/30`을 계속 더하므로 부동소수 오차가 생깁니다
 
 - **패배**: `life <= 0`이 되는 즉시 (누수 처리 직후) `phase = 'lost'`.
 - **승리**: 모든 스폰이 끝났고, 살아 있는 적이 없고, `life > 0`이면 `phase = 'won'`.
-- 끝나면 `battleEnd` 이벤트를 한 번 내고, 이후 `step()`은 아무것도 하지 않습니다 (tick도 그대로).
-- **웨이브 표시**: 현재 웨이브 = 스폰 시작 틱이 지난 그룹 중 가장 큰 `wave` 값, 전체 웨이브 = 최대 `wave` 값.
+- 끝나면 `battleEnd` 이벤트를 한 번 냅니다. 종료를 발생시킨 `step()`은 해당 틱을 완료해 `tick += 1`하고, 이후 `step()`은 아무것도 하지 않습니다 (tick도 그대로). 치명적 누수 뒤 같은 틱의 다른 적 이동·사망·승리 단계는 건너뜁니다.
+- **웨이브 표시**: `state.currentWave`는 마지막으로 처리한 틱까지 스폰이 시작된 그룹의 최대 `wave`, `state.totalWaves`는 전체 그룹의 최대 `wave`입니다. 시작 전·스폰 없음은 0입니다.
 
 ## 14. 틱 순서 (step 한 번)
 
@@ -306,6 +307,7 @@ auto 충전은 `1/30`을 계속 더하므로 부동소수 오차가 생깁니다
 | 이름 | 값 | 설명 |
 | --- | --- | --- |
 | `TICK_RATE` | 30 | 초당 틱 |
+| DEFAULT_SEED | 1 | seed 미지정 시 결정론 초기값 |
 | `DP_MAX` | 99 | 도토리 최대 |
 | `DEFAULT_DP_PER_SEC` | 1 | 스테이지에 `dpPerSec`가 없을 때 |
 | `RETREAT_REFUND_RATIO` | 0.5 | 후퇴 환급 비율 (내림) |
@@ -318,17 +320,19 @@ auto 충전은 `1/30`을 계속 더하므로 부동소수 오차가 생깁니다
 
 ## 16. 결정론
 
-- sim 안에서 `Math.random`, `Date`, `performance`를 쓰지 않습니다. 난수가 필요해지면 `state.rngState`의 mulberry32를 씁니다 (v0.1 규칙에는 난수가 없음).
+- `options.seed`는 uint32로 정규화해 `state.rngState`에 저장하며, 0도 유효합니다. seed를 생략하면 `DEFAULT_SEED`를 사용합니다.
+- sim 안에서 Math.random, `Date`, `performance`를 쓰지 않습니다. 난수가 필요해지면 `state.rngState`의 mulberry32를 씁니다 (v0.1 규칙에는 난수가 없음).
 - 배열은 항상 uid 순서로 돌고, 정렬할 때는 반드시 uid로 마지막 동점을 깹니다.
 - 삼각함수 결과로 게임 판정을 하지 않습니다 (sqrt는 허용).
 - 같은 콘텐츠 + 같은 스테이지 + 같은 명령 기록(틱 포함)이면 항상 같은 `hashState(state)`가 나와야 합니다.
+- hashState는 동일한 생성 순서의 전체 상태 JSON에 32비트 FNV-1a를 적용한 8자리 16진수입니다. 상태 비교 테스트용이며 보안 용도가 아닙니다.
 
 ## 17. 명령과 이벤트 타입
 
 ```ts
 // Dir, Tile은 src/core/grid.ts에 정의
-export type Dir = 'right' | 'down' | 'left' | 'up';
-export interface Tile { x: number; y: number }
+import type { Dir, Tile } from '../core/grid';
+import type { DamageType } from '../data/types';
 
 export type Command =
   | { type: 'deploy'; unitId: string; tile: Tile; dir: Dir }
@@ -380,6 +384,7 @@ export interface BattleState {
   enemies: EnemyEntity[];   // uid 오름차순
   spawnCursor: number[];    // 그룹별로 이미 낸 마리 수
   totalEnemies: number; killed: number; leaked: number;
+  currentWave: number; totalWaves: number;
   nextUid: number;
   rngState: number;
 }
@@ -408,3 +413,25 @@ export interface EnemyEntity {
 ```
 
 구현하면서 필드를 더해도 됩니다. 단, 여기 있는 이름과 의미는 유지합니다.
+
+`ActiveEffect`는 현재 `Effect`의 별칭입니다. 스킬 지속 효과는 해당 유닛의 `skillTicksLeft` 동안 함께 유지하는 것으로 가정합니다 (실제 스킬 처리는 T2.2).
+
+```ts
+interface StageRuntime {
+  readonly definition: StageDef;
+  readonly board: Board;
+  readonly routes: ReadonlyMap<string, Polyline>;
+  readonly spawns: readonly SpawnRuntime[];
+}
+interface SpawnRuntime {
+  readonly enemy: EnemyDef;
+  readonly routeId: string;
+  readonly route: Polyline;
+  readonly wave: number;
+  readonly count: number;
+  readonly atTick: number;
+  readonly intervalTicks: number;
+}
+```
+
+`createBattle`에서 모든 경로를 한 번 계산하고 스폰 시각·간격을 정수 틱으로 바꿉니다. 원본 콘텐츠의 초 값은 변경하지 않습니다. 경로 생성에 실패하면 스테이지·경로명이 포함된 오류로 중단합니다.

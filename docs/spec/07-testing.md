@@ -19,6 +19,8 @@ export function run(battle: Battle, ticks: number): SimEvent[];
 export function runScenario(content: ContentDb, scenario: Scenario, opts?: { maxSec?: number }): ScenarioResult;
 ```
 
+`makeContent`, `laneStage`, `run`은 T1.3에서 구현합니다. 시나리오 실행기 `runScenario`는 T2.5 범위입니다.
+
 ## 2. 시나리오 형식 (tests/scenarios/*.json)
 
 ```json
@@ -78,7 +80,7 @@ stage-1을 **푸딩 3개를 지키며 클리어**하는 배치 기록입니다. 
 - 수학 유틸은 경계 제한·보간·실수 좌표 거리, assert는 실패 메시지와 타입 좁히기를 검증합니다.
 
 **tests/dataRoutes.test.ts**
-- 모든 실제 스테이지에서 모든 지상·비행 경로가 생성됩니다. 구조상 유효해도 끊긴 지상 경로는 생성 시 실패합니다.
+- 모든 실제 스테이지의 `createBattle`이 성공하고 모든 지상·비행 런타임 경로를 확인합니다. 구조상 유효해도 끊긴 지상 경로는 전투 생성 시 스테이지·경로명이 있는 오류로 실패합니다.
 
 **tests/sim/path.test.ts**
 - stage-1 지상 경로의 꺾이는 점이 (0,1) (4,1) (4,3) (6,3) (6,1) (9,1) (9,3) (10,3)이고, 길이가 16입니다.
@@ -136,6 +138,14 @@ stage-1을 **푸딩 3개를 지키며 클리어**하는 배치 기록입니다. 
 - 누수로 푸딩이 0이 되면 즉시 `lost`, 이후 step은 아무것도 하지 않습니다.
 - 모든 적을 처리하면 `won`, `battleEnd` 이벤트는 한 번만 나갑니다.
 - 웨이브 표시 값이 스폰 시각에 맞게 바뀝니다.
+- 실제 stage-1은 804틱 후 세 번째 누수로 패배하며, 이때 6마리가 스폰됐습니다. 목숨만 22로 늘린 테스트에서 21마리 전원의 이동·누수를 별도로 확인합니다. 빈 적 목록이어도 미래 스폰이 남아 있으면 승리하지 않습니다.
+
+
+**tests/sim/battle.test.ts, spawn.test.ts, movement.test.ts, death.test.ts, hash.test.ts**
+- 초기 상태·원본 콘텐츠 보존·seed·정수 틱 변환, 명령 큐 복사·처리 순서·flush 시간 고정과 종료 후 처리를 확인합니다.
+- 스폰 초기값·반올림 일정·동시 그룹 순서·공유 uid, 이전 위치·구간 캐시·지상/비행 이동·둔화·저지·기절 시 이동 조건을 확인합니다.
+- 적·유닛 사망 시 저지 해제·환급 없음·재배치 대기, 중복 정리 방지를 확인합니다.
+- 동일 시드 idle 전투는 매 틱 상태 해시와 이벤트가 같습니다. 현재 상태의 필드 변경이 해시에 반영됩니다.
 
 **tests/sim/determinism.test.ts**
 - 골든 시나리오를 두 번 돌리면 매 30틱마다의 `hashState`가 전부 같습니다.
