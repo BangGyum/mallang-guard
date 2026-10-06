@@ -5,6 +5,5 @@ export default defineConfig(({ command, isPreview }) => ({
   test: {
     include: ['tests/**/*.test.ts'],
     environment: 'node',
-    passWithNoTests: true,
   },
 }));

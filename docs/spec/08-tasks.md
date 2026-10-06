@@ -24,10 +24,10 @@
   - `.github/workflows/ci.yml`: push와 PR에서 Node 24로 `npm ci → check → lint → test → build`.
 - 완료 조건: `npm run dev`로 빈 페이지가 뜹니다. GitHub Actions CI가 초록입니다.
 - 진행 상태 (2026-10-06): 로컬 구현, `npm ci`, check/lint/test/build와 개발·빌드 미리보기 로딩 확인 완료.
-  테스트 파일은 T0.2부터 추가하며 현재는 0개입니다. GitHub 쓰기 인증이 확인되지 않아 원격 CI와 PR은 대기 중입니다.
+  T0.1 검증 당시 테스트 파일은 0개였습니다. GitHub 쓰기 인증이 확인되지 않아 원격 CI와 PR은 대기 중입니다.
   화면 확인: [1920×1080](../verification/t0.1-desktop.png), [844×390](../verification/t0.1-mobile.png).
 
-### [ ] T0.2 폴더 골격과 core 유틸
+### [x] T0.2 폴더 골격과 core 유틸
 - 읽을 문서: 01 전체, 02 (8절 회전 표)
 - 할 일
   - 01 문서 2절의 폴더를 만듭니다 (빈 파일 대신, 실제로 필요한 것만).
@@ -35,6 +35,9 @@
   - `tests/architecture.test.ts` (07 문서 4절).
   - `tests/sim/grid.test.ts`.
 - 완료 조건: 아키텍처 테스트가 일부러 넣은 위반(`src/sim`에서 three import)을 잡는 것을 한 번 확인하고 되돌립니다.
+- 검증 (2026-10-06): check/lint/test/build 통과, 5개 테스트 파일의 54개 테스트 통과.
+  실제 `src/sim`의 임시 Three.js import를 검사 실패로 감지한 뒤 제거했고, 전체 검사가 다시 통과했습니다.
+  `t0.2-core-utils` 브랜치에서 구현했으며 원격 PR은 GitHub 쓰기 인증 대기 중입니다.
 
 ### [ ] T0.3 GitHub Pages 배포
 - 할 일
