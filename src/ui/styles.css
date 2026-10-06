@@ -46,3 +46,15 @@ body {
   z-index: 3;
   pointer-events: none;
 }
+
+.load-error {
+  max-width: min(640px, calc(100% - 48px));
+  margin: 48px auto;
+  padding: 24px;
+  border: 1px solid #e3abb6;
+  border-radius: 16px;
+  background: #fff8f9;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  pointer-events: auto;
+}

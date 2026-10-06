@@ -66,10 +66,15 @@
 
 ## M1 그레이박스 전투
 
-### [ ] T1.1 콘텐츠 데이터와 검증기
+### [x] T1.1 콘텐츠 데이터와 검증기
 - 읽을 문서: 03 전체
 - 할 일: JSON 5종, `validate.ts`, `index.ts`, `tests/data.test.ts`. `main.ts`에서 검증 실패 시 화면에 에러를 표시합니다.
 - 완료 조건: 07 문서의 data 테스트 항목이 전부 통과합니다.
+- 검증 (2026-10-06): 문서 03의 JSON, `ContentDb` Map과 참조·수치·효과·맵 검증 구현, check/lint/test/build 통과.
+  오류 경로가 포함된 메시지를 화면에 표시하는 흐름도 브라우저에서 확인했습니다.
+  화면 확인: [1920×1080 오류 화면](../verification/t1.1-content-error-desktop.png), [844×390 오류 화면](../verification/t1.1-content-error.png).
+  모든 스테이지의 전투 초기화 및 막힌 경로 거부는 T1.3의 `battle.test.ts`에서 함께 검증합니다.
+  `t1.1-content-validation` 로컬 브랜치 완료, 원격 PR은 쓰기 인증 대기 중입니다.
 
 ### [ ] T1.2 경로
 - 읽을 문서: 02 (2~3절)
