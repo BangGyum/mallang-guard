@@ -206,12 +206,14 @@
 
 ## M3 귀여움 패스
 
-### [ ] T3.1 캐릭터 생성기와 텍스처
+### [x] T3.1 캐릭터 생성기와 텍스처
 - 읽을 문서: 06 (1~3절), 04 (4~5절)
 - 할 일
   - `src/art/critters.ts`(plan.html에서 이식 + hardJelly, pudding), `vfxArt.ts`, `palette.ts`.
   - `textures.ts` 굽기, 스프라이트 셰이더(uFlash, uTint), 임시 그림 교체, 카드·패널 초상화를 인라인 SVG로 교체.
 - 완료 조건: 화면이 plan.html 목업의 캐릭터와 같은 그림체로 보입니다.
+- 검증 (2026-10-07): 목업의 동물 8종·기존 적 2종 이식, 단단젤리·푸딩 및 이펙트 그림 10종을 추가했습니다. SVG 선로딩·세션별 GPU 자원·피격 셰이더·방향 반전과 타이틀/카드/팝업 초상화를 연결했습니다. check/lint/test/build(498개) 및 PC·모바일 22종 투명 이미지 로딩·배치 확인, 브라우저 오류·경고 0건.
+  화면: [PC](../verification/t3.1-desktop.png), [모바일](../verification/t3.1-mobile.png), [PC 타이틀](../verification/t3.1-desktop-title.png), [모바일 타이틀](../verification/t3.1-mobile-title.png).
 
 ### [ ] T3.2 애니메이션
 - 읽을 문서: 06 (4절)

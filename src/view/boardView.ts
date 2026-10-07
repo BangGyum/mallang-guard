@@ -10,12 +10,13 @@ import {
   Vector3,
   WebGLRenderer,
 } from 'three';
-import type { ContentDb, Role } from '../data/types';
+import type { ContentDb } from '../data/types';
 import type { Board } from '../sim/board';
 import type { BattleState, SimEvent } from '../sim/types';
 import { fitCamera } from './camera';
 import { createEntityViews } from './entityViews';
 import { createHighlights, type HighlightState } from './highlights';
+import { createTextures } from './textures';
 import { createTiles } from './tiles';
 
 export interface BoardView {
@@ -32,7 +33,7 @@ export function createBoardView(
   canvas: HTMLCanvasElement,
   board: Board,
   content: ContentDb,
-  roleColors: Readonly<Record<Role, string>>,
+  images: ReadonlyMap<string, HTMLCanvasElement>,
 ): BoardView {
   const renderer = new WebGLRenderer({ canvas, antialias: true, alpha: true });
   renderer.outputColorSpace = SRGBColorSpace;
@@ -41,8 +42,9 @@ export function createBoardView(
   renderer.shadowMap.type = PCFShadowMap;
   const scene = new Scene();
   const tiles = createTiles(board);
-  const entities = createEntityViews(content, board, roleColors);
-  const highlights = createHighlights(board, entities.textures);
+  const cache = createTextures(images);
+  const entities = createEntityViews(content, board, cache.textures);
+  const highlights = createHighlights(board, cache.textures, content);
   scene.add(tiles.group);
   scene.add(entities.group);
   scene.add(highlights.group);
@@ -106,6 +108,7 @@ export function createBoardView(
       tiles.dispose();
       entities.dispose();
       highlights.dispose();
+      cache.dispose();
       sunlight.shadow.dispose();
       scene.clear();
       renderer.dispose();

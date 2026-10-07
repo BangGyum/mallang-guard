@@ -1,4 +1,5 @@
 import { createApp } from './app/app';
+import { loadArtAssets } from './app/artAssets';
 import { assert } from './core/assert';
 import './ui/styles.css';
 
@@ -9,7 +10,8 @@ async function boot(): Promise<void> {
     const { content } = await import('./data');
     const app = document.querySelector<HTMLDivElement>('#app');
     assert(app, '보드 화면 요소가 없습니다');
-    const game = createApp(content, app);
+    const images = await loadArtAssets();
+    const game = createApp(content, app, images);
     dispose = () => game.dispose();
   } catch (error) {
     const message = document.createElement('div');

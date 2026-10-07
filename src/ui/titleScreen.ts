@@ -1,17 +1,7 @@
 import { ROLE_COLORS } from '../art/palette';
 import type { ContentDb } from '../data/types';
 import { button, element } from './dom';
-
-const FRIENDS: Record<string, string> = {
-  squirrel: '🐿️',
-  cat: '🐱',
-  bear: '🐻',
-  penguin: '🐧',
-  sheep: '🐑',
-  bunny: '🐰',
-  mole: '🐾',
-  snail: '🐌',
-};
+import { portrait } from './portrait';
 
 export function createTitleScreen(
   root: HTMLElement,
@@ -46,7 +36,7 @@ export function createTitleScreen(
   const start = button('시작', onStart, 'primary-button start-button');
   intro.append(stage, start, element('p', 'title-controls', '드래그로 배치 · 친구를 눌러 스킬 사용'));
   const garden = element('div', 'title-garden');
-  const pudding = element('div', 'title-pudding', '🍮');
+  const pudding = portrait('pudding', 'title-pudding');
   pudding.setAttribute('aria-hidden', 'true');
   garden.append(pudding, element('p', '', '작은 친구들, 든든한 방위대'));
   const friends = element('div', 'title-friends');
@@ -54,7 +44,7 @@ export function createTitleScreen(
     const friend = element('div', 'title-friend');
     friend.style.setProperty('--friend-color', ROLE_COLORS[unit.role]);
     friend.style.setProperty('--friend-delay', `${index * -0.18}s`);
-    const icon = element('span', '', FRIENDS[unit.art] ?? '🐾');
+    const icon = portrait(unit.art, '');
     icon.setAttribute('aria-hidden', 'true');
     friend.append(icon, element('small', '', unit.name));
     friends.append(friend);

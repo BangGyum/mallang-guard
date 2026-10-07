@@ -6,7 +6,11 @@ import { createTitleScreen } from '../ui/titleScreen';
 import { createBattleSession } from './battleSession';
 import { loadSave, storeSave } from './save';
 
-export function createApp(content: ContentDb, app: HTMLDivElement) {
+export function createApp(
+  content: ContentDb,
+  app: HTMLDivElement,
+  images: ReadonlyMap<string, HTMLCanvasElement>,
+) {
   const screenRoot = app.querySelector<HTMLDivElement>('#screens');
   const stageDef = content.stages.get('stage-1');
   assert(screenRoot && stageDef, '시작 화면을 불러올 수 없습니다');
@@ -79,15 +83,20 @@ export function createApp(content: ContentDb, app: HTMLDivElement) {
     session?.dispose();
     setBattleVisible(true);
     app.dataset.screen = 'battle';
-    session = createBattleSession(content, app, {
-      speed: save.settings.speed,
-      onMenu: showPause,
-      onEnd: showResult,
-      onSpeed(speed) {
-        save.settings.speed = speed;
-        storeSave(save);
+    session = createBattleSession(
+      content,
+      app,
+      {
+        speed: save.settings.speed,
+        onMenu: showPause,
+        onEnd: showResult,
+        onSpeed(speed) {
+          save.settings.speed = speed;
+          storeSave(save);
+        },
       },
-    });
+      images,
+    );
   }
   showTitle();
   return {

@@ -22,14 +22,21 @@ try {
   const memories = await page.evaluate(async () => {
     const { createBattleSession } = await import('/src/app/battleSession.ts');
     const { content } = await import('/src/data/index.ts');
+    const { loadArtAssets } = await import('/src/app/artAssets.ts');
+    const images = await loadArtAssets();
     const samples = [];
     for (let i = 0; i < 10; i++) {
-      const session = createBattleSession(content, document.querySelector('#app'), {
-        speed: 1,
-        onMenu() {},
-        onEnd() {},
-        onSpeed() {},
-      });
+      const session = createBattleSession(
+        content,
+        document.querySelector('#app'),
+        {
+          speed: 1,
+          onMenu() {},
+          onEnd() {},
+          onSpeed() {},
+        },
+        images,
+      );
       session.controls.paused = true;
       session.battle.enqueue({ type: 'deploy', unitId: 'squirrel', tile: { x: 2, y: 0 }, dir: 'down' });
       session.battle.flush();

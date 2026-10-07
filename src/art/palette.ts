@@ -19,3 +19,11 @@ export const ROLE_NAMES = {
   specialist: '특수',
   supporter: '서포터',
 };
+export const ART_COLORS = {
+  outline: '#3A2C3C',
+  eye: '#2A1E2C',
+  blush: '#FF8FA8',
+  accent: '#E5466B',
+  butter: '#FFC94A',
+  leaf: '#3FA66B',
+};
