@@ -195,10 +195,12 @@
 - 저장소 예외·잘못된 기록 테스트, 세로 화면 중 메뉴 재개/정지 배치, 실제 PC·모바일 stage-1 승리(푸딩 3·처치 21)와 새로고침 후 기록 복원을 확인했습니다. check/lint/test/build, 34개 파일 467개 테스트 통과. 브라우저 오류·경고 0건.
   화면: [PC 타이틀](../verification/t2.4-desktop-title.png), [모바일 타이틀](../verification/t2.4-mobile-title.png), [PC 메뉴](../verification/t2.4-desktop-pause.png), [모바일 메뉴](../verification/t2.4-mobile-pause.png), [PC 승리](../verification/t2.4-desktop-clear.png), [모바일 승리](../verification/t2.4-mobile-clear.png), [PC 패배](../verification/t2.4-desktop-lost.png), [모바일 패배](../verification/t2.4-mobile-lost.png).
 
-### [ ] T2.5 골든 시나리오와 밸런스 1차
+### [x] T2.5 골든 시나리오와 밸런스 1차
 - 읽을 문서: 07 (2~4절)
 - 할 일: `runScenario`, `stage-1-clear.json`, `stage-1-idle.json`, determinism 테스트. 시나리오가 통과하도록 배치나 수치를 다듬습니다.
 - 완료 조건: 골든 시나리오는 승리, idle 시나리오는 패배합니다. 결정론 테스트가 통과합니다.
+- 검증 (2026-10-07): 시나리오 JSON 전체 자동 실행, 명령 순서·재배치 uid·엄격한 실패 처리와 30틱 간격/종료 해시를 구현했습니다. 기본 배치는 2613틱(87.1초)에 21마리 처치·푸딩 3개·누수 0으로 승리하고, 무배치는 804틱(26.8초)에 3누수로 패배합니다. 수동 스킬을 추가한 실행과 일시정지 중 flush/일반 step도 동일한 해시·이벤트·최종 상태를 확인했습니다.
+- 1차 기준을 만족하여 콘텐츠 수치는 유지합니다. check/lint/test/build, 37개 파일 498개 테스트 통과(신규 31개). 화면 변경 없이 테스트·명세만 추가했습니다.
 
 ---
 

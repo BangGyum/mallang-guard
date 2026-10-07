@@ -15,11 +15,15 @@ export function laneStage(map: string[], spawns: SpawnGroup[], opts?: Partial<St
 /** n틱 진행하고 그동안의 이벤트를 모아 돌려준다 */
 export function run(battle: Battle, ticks: number): SimEvent[];
 
-/** 시나리오 JSON 실행. 거부된 명령이 있으면 throw (strict) */
-export function runScenario(content: ContentDb, scenario: Scenario, opts?: { maxSec?: number }): ScenarioResult;
+/** 시나리오 JSON 실행. 잘못된 명령·시간 초과·기대값 불일치는 throw (strict) */
+export function runScenario(content: ContentDb, scenario: Scenario, opts?: {
+  maxSec?: number;
+  seed?: number;
+  commandMode?: 'step' | 'flush';
+}): ScenarioResult;
 ```
 
-`makeContent`, `laneStage`, `run`은 T1.3에서 구현합니다. 시나리오 실행기 `runScenario`는 T2.5 범위입니다.
+`makeContent`, `laneStage`, `run`, `runScenario`는 `tests/helpers.ts`에 구현했습니다. `ScenarioResult`는 종료 상태 `state`, 발생 순서의 `events`, `{ tick, hash }` 배열 `hashes`를 반환합니다. 해시는 초기 상태·매 30틱·마지막 틱에 기록합니다. 기본 seed는 Battle의 기본값 1입니다.
 
 ## 2. 시나리오 형식 (tests/scenarios/*.json)
 
@@ -37,7 +41,11 @@ export function runScenario(content: ContentDb, scenario: Scenario, opts?: { max
 
 - `type`은 `deploy`, `retreat`, `skill` 세 가지입니다. `retreat`와 `skill`은 `unitId`로 지정하고, 실행기가 배치 중인 uid로 바꿔서 `Command`를 만듭니다.
 - 명령은 `secToTicks(atSec)` 틱에 enqueue합니다 (그 틱의 step 1단계에서 적용). 같은 틱의 명령은 파일 순서대로 적용합니다.
-- 전투가 끝나거나 `maxSec`(기본 300초)이 지나면 멈추고 `expect`와 비교합니다.
+- 원본을 변경하지 않고 변환된 틱 순으로 정렬합니다. 서로 다른 초가 같은 틱으로 반올림되어도 파일 순서를 유지합니다.
+- `retreat`·`skill`의 uid를 찾기 전에 앞선 명령을 `flush()`하여 같은 틱의 배치·후퇴를 반영합니다. 재배치 뒤에는 새 uid를 사용합니다. 이때 시간은 흐르지 않습니다.
+- `commandMode: 'flush'`는 남은 명령도 매 틱 진행 전에 `flush()`로 적용합니다. 기본값 `'step'`과 같은 틱에서 비교하여 정지 중 명령 처리의 결정론을 검증합니다.
+- 전투가 끝나거나 `maxSec`(기본 300초)의 틱 수만큼 진행하면 멈춥니다. 마지막 허용 틱에서 종료한 경우도 성공할 수 있습니다.
+- 거부된 명령, 배치되지 않은 유닛 참조, 시간 초과, 종료 뒤 미실행 명령, 승패·최소 푸딩 기대값 불일치는 오류입니다. 오류에는 스테이지·틱과 원인을 표시합니다. 잘못된 명령 시각과 제한 시간도 거부합니다.
 
 ## 3. 골든 시나리오 (tests/scenarios/stage-1-clear.json)
 
@@ -51,9 +59,11 @@ stage-1의 검증된 고지대 배치 기록입니다. 수동 스킬 없이도 �
 | 44s | 몽실 (2,2) up |
 | 58s | 냥기사 (6,4) up |
 
-- basicClear.test.ts가 21마리 처치·누수 0을 검증합니다. 별도 테스트는 준비된 수동 스킬을 사용하며 매 틱 해시·이벤트가 같은지 비교합니다.
-- 토끼의 자동 스킬은 정상 동작합니다. 범용 시나리오 JSON 실행기는 T2.5 범위입니다.
-- 아무것도 배치하지 않으면 반드시 패배해야 합니다.
+- `scenarios.test.ts`는 폴더의 모든 JSON을 실행하고, 기본 배치로 젤리 15·단단젤리 3·까마귀 3마리 처치·누수 0·푸딩 3개를 검증합니다. 기존 `basicClear.test.ts`의 매 틱 상태·이벤트 검사도 유지합니다.
+- 토끼의 자동 스킬만 사용한 기본 시나리오는 **2613틱(87.1초)에 승리**하며 종료 시 도토리 30개가 남습니다. 총 5명을 배치하며 배치 제한 7명 이내입니다.
+- `stage-1-idle.json`은 배치 없이 **804틱(26.8초)에 세 번째 누수로 패배**합니다. 이때까지 스폰된 적은 6마리입니다.
+- `determinism.test.ts`는 두 JSON과 수동 스킬(12초 토리·32초 펭펭)을 추가한 클리어 시나리오를 각각 반복 실행하고, 정지 중 flush 처리와도 비교합니다.
+- 1차 밸런스 판단: 기본 배치로 수동 스킬 없이 완주하며 무배치는 패배하므로 현 수치를 유지합니다. 다양한 배치의 난이도·캐릭터 간 균형은 이 두 시나리오만으로 확정하지 않습니다.
 
 ## 4. 필수 테스트 목록
 
@@ -144,11 +154,17 @@ stage-1의 검증된 고지대 배치 기록입니다. 수동 스킬 없이도 �
 - 동일 시드 idle 전투는 매 틱 상태 해시와 이벤트가 같습니다. 현재 상태의 필드 변경이 해시에 반영됩니다.
 
 **tests/sim/determinism.test.ts**
-- 골든 시나리오를 두 번 돌리면 매 30틱마다의 `hashState`가 전부 같습니다.
-- 같은 명령을 "일시정지 중 flush"와 "다음 step"으로 넣은 두 실행은, 같은 틱에 적용되므로 결과 해시가 같습니다.
+- 클리어·무배치·수동 스킬 클리어를 같은 시드로 두 번 돌리면 매 30틱과 마지막 틱의 `hashState`, 전체 이벤트·최종 상태가 같습니다.
+- 같은 명령을 "일시정지 중 flush"와 "다음 step"으로 넣은 두 실행은, 같은 틱에 적용되므로 해시·이벤트·최종 상태가 같습니다. seed 0도 보존합니다.
+- 수동 도토리 지급·눈덩이 스킬과 자동 지원 스킬이 실제 발동했는지 확인합니다.
 
 **tests/scenarios.test.ts**
 - `tests/scenarios/*.json`을 전부 돌려서 `expect`를 확인합니다.
+- 필수 두 JSON의 존재, 적 종류별 처치·누수·종료 이벤트, 해시 기록 간격과 종료 해시를 확인합니다.
+
+**tests/scenarioRunner.test.ts**
+- 같은 틱의 배치·스킬·후퇴, 재배치 uid, 소수 시각 반올림·파일 순서·원본 보존을 확인합니다.
+- 거부된 명령·미배치 유닛·시간 제한 경계·미실행 명령·기대값 불일치·잘못된 시각이 조용히 통과하지 않는지 확인합니다.
 
 **tests/view/camera.test.ts, picking.test.ts** (순수 함수만)
 - `fitCamera` 결과에서 보드 AABB 꼭짓점이 전부 safeRect 안에 있습니다. 16:9, 4:3, 21:9 세 비율로 확인합니다.
