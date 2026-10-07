@@ -5,6 +5,7 @@ import {
   Mesh,
   MeshBasicMaterial,
   PlaneGeometry,
+  RingGeometry,
   ShaderMaterial,
   type Texture,
 } from 'three';
@@ -43,16 +44,26 @@ export function createSprite(texture: Texture, height: number, flying: boolean) 
   shadow.rotation.x = -Math.PI / 2;
   shadow.scale.y = 0.65;
   const group = new Group();
-  group.add(sprite, shadow);
+  const ring = new Mesh(
+    new RingGeometry(0.31, 0.35, 32),
+    new MeshBasicMaterial({ color: '#ffe279', transparent: true, opacity: 0.6, depthWrite: false }),
+  );
+  ring.rotation.x = -Math.PI / 2;
+  ring.position.y = 0.025;
+  ring.visible = false;
+  group.add(sprite, shadow, ring);
   return {
     group,
     sprite,
     shadow,
+    ring,
     dispose() {
       geometry.dispose();
       material.dispose();
       shadowGeometry.dispose();
       shadowMaterial.dispose();
+      ring.geometry.dispose();
+      ring.material.dispose();
     },
   };
 }

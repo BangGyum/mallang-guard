@@ -71,7 +71,7 @@ export function createBattleSession(
     battle,
     controls,
     (events) => {
-      view.onEvents(events);
+      view.onEvents(events, battle.state);
       controller.onEvents(events);
       if (events.some((event) => event.type === 'battleEnd'))
         queueMicrotask(() => {

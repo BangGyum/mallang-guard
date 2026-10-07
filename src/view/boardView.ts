@@ -24,7 +24,7 @@ export interface BoardView {
   readonly memory: { geometries: number; textures: number };
   resize(): void;
   render(state: Readonly<BattleState>, alpha: number, dt: number): void;
-  onEvents(events: readonly SimEvent[]): void;
+  onEvents(events: readonly SimEvent[], state: Readonly<BattleState>): void;
   setHighlights(state: HighlightState): void;
   dispose(): void;
 }
@@ -98,8 +98,8 @@ export function createBoardView(
       highlights.update(highlightState, camera);
       renderer.render(scene, camera);
     },
-    onEvents(events) {
-      entities.onEvents(events);
+    onEvents(events, state) {
+      entities.onEvents(events, state);
     },
     setHighlights(state) {
       highlightState = state;
