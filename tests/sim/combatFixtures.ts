@@ -5,7 +5,7 @@ import { makeFixture, unitFixture } from './battleFixtures';
 export function combatFixture() {
   const fixture = makeFixture();
   spawnEnemies(fixture.stage, fixture.state, []);
-  fixture.state.units.push(unitFixture({ uid: fixture.state.nextUid++, dir: 'left' }));
+  fixture.state.units.push(unitFixture({ uid: fixture.state.nextUid++, dir: 'up' }));
   return fixture;
 }
 

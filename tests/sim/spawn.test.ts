@@ -22,8 +22,6 @@ describe('enemy spawn', () => {
         py: 0.5,
         hp: 600,
         maxHp: 600,
-        atkCooldown: 0,
-        blockedBy: null,
         slowAmount: 0,
         slowUntilTick: 0,
         stunUntilTick: 0,

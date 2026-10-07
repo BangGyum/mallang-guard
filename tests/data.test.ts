@@ -19,8 +19,8 @@ describe('content data', () => {
     const db = validateContent(raw);
     const unit = raw.units[0];
     if (!unit) throw new Error('fixture missing');
-    unit.hp = 1;
-    expect(db.units.get(unit.id)?.hp).toBe(1100);
+    unit.atk = 1;
+    expect(db.units.get(unit.id)?.atk).toBe(280);
   });
   it('생략 가능한 필드와 count 1의 interval 0을 허용한다', () => {
     const raw = makeRawContent();
@@ -58,11 +58,11 @@ describe('content data', () => {
       },
     ],
     [
-      '고지대 저지',
-      'content/units[3].block',
+      '지상 배치',
+      'content/units[3].deployOn',
       (raw: RawContent) => {
         const unit = raw.units[3];
-        if (unit) unit.block = 1;
+        if (unit) Object.assign(unit, { deployOn: 'ground' });
       },
     ],
     [
@@ -214,13 +214,13 @@ describe('content data', () => {
     patch(raw);
     expect(() => validateContent(raw)).toThrow(path);
   });
-  it.each(['hp', 'atkIntervalSec'] as const)('유닛 %s 0을 거부한다', (key) => {
+  it.each(['atkIntervalSec'] as const)('유닛 %s 0을 거부한다', (key) => {
     const raw = makeRawContent();
     const unit = raw.units[0];
     if (unit) unit[key] = 0;
     expect(() => validateContent(raw)).toThrow(`content/units[0].${key}`);
   });
-  it.each(['atk', 'def', 'cost', 'block'] as const)('유닛 %s 음수를 거부한다', (key) => {
+  it.each(['atk', 'cost'] as const)('유닛 %s 음수를 거부한다', (key) => {
     const raw = makeRawContent();
     const unit = raw.units[0];
     if (unit) unit[key] = -1;
@@ -228,9 +228,9 @@ describe('content data', () => {
   });
   it.each([-1, 101, NaN, Infinity])('마저 %f를 거부한다', (res) => {
     const raw = makeRawContent();
-    const unit = raw.units[0];
-    if (unit) unit.res = res;
-    expect(() => validateContent(raw)).toThrow('content/units[0].res');
+    const enemy = raw.enemies[0];
+    if (enemy) enemy.res = res;
+    expect(() => validateContent(raw)).toThrow('content/enemies[0].res');
   });
   it.each([
     { raw: null, path: 'content: expected object' },

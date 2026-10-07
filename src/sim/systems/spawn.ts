@@ -21,8 +21,6 @@ export function spawnEnemies(stage: StageRuntime, state: BattleState, events: Si
       py: y,
       hp: group.enemy.hp,
       maxHp: group.enemy.hp,
-      atkCooldown: 0,
-      blockedBy: null,
       slowAmount: 0,
       slowUntilTick: 0,
       stunUntilTick: 0,

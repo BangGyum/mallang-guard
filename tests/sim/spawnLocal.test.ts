@@ -48,7 +48,7 @@ describe('스폰과 이동', () => {
     expect(enemy.x).toBeCloseTo(x + speed / 30);
   });
 
-  it('저지와 기절 중에는 멈추고 둔화 비율은 이동량에 적용된다', () => {
+  it('기절 중에는 멈추고 둔화 비율은 이동량에 적용된다', () => {
     const stage = laneStage(
       ['S.........G'],
       [{ wave: 1, atSec: 0, enemy: 'jelly', count: 1, intervalSec: 0, route: 'ground' }],
@@ -58,14 +58,11 @@ describe('스폰과 이동', () => {
     const enemy = battle.state.enemies[0];
     if (!enemy) throw new Error('적 없음');
     const initial = enemy.dist;
-    enemy.blockedBy = 2;
-    battle.step();
-    expect(enemy.dist).toBe(initial);
-    enemy.blockedBy = null;
     enemy.stunUntilTick = battle.state.tick + 1;
     battle.step();
     expect(enemy.dist).toBe(initial);
     enemy.slowAmount = 0.5;
+    enemy.slowUntilTick = battle.state.tick + 2;
     battle.step();
     expect(enemy.dist).toBeCloseTo(initial * 1.5);
   });

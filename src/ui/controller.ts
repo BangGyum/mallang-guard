@@ -33,9 +33,14 @@ export function createController(
   directions.setAttribute('aria-label', '배치 방향 선택');
   const ghost = element('div', 'drag-label');
   ghost.hidden = true;
-  const panel = createUnitPanel(root, battle, () => {
-    if (state.mode === 'selected') battle.enqueue({ type: 'retreat', uid: state.uid });
-    transition({ mode: 'idle' });
+  const panel = createUnitPanel(root, battle, {
+    retreat() {
+      if (state.mode === 'selected') battle.enqueue({ type: 'retreat', uid: state.uid });
+      transition({ mode: 'idle' });
+    },
+    activateSkill() {
+      if (state.mode === 'selected') battle.enqueue({ type: 'activateSkill', uid: state.uid });
+    },
   });
   const arrows = new Map<Dir, HTMLButtonElement>();
   for (const [dir, symbol, name] of [

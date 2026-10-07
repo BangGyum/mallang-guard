@@ -208,7 +208,7 @@ button:disabled {
   position: absolute;
   left: 24px;
   top: 23%;
-  width: 185px;
+  width: 220px;
   padding: 16px;
   border-radius: 18px;
   background: #fffcf0ee;
@@ -224,6 +224,31 @@ button:disabled {
   width: 100%;
   background: #f7dddd;
   border-color: #e6b7b7;
+}
+.unit-panel .skill-button {
+  background: #e0eaf8;
+  border-color: #aebee2;
+  margin-bottom: 8px;
+}
+.unit-panel[data-skill-state="ready"] .skill-button {
+  background: #ffe795;
+  border-color: #d5b64a;
+}
+.skill-gauge {
+  width: 100%;
+  height: 7px;
+  accent-color: #759bdb;
+}
+.unit-panel[data-skill-state="active"] .skill-gauge {
+  accent-color: #eea54b;
+}
+.skill-name {
+  display: block;
+  margin-top: 12px;
+}
+.skill-status {
+  color: #536e58;
+  font-weight: 700;
 }
 .toast {
   position: absolute;

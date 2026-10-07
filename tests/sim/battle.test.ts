@@ -97,10 +97,10 @@ describe('battle core', () => {
   });
   it('flush로 유효한 배치를 적용해도 틱·스폰·도토리 회복 시간은 흐르지 않는다', () => {
     const { battle } = makeFixture();
-    battle.enqueue({ type: 'deploy', unitId: 'squirrel', tile: { x: 1, y: 0 }, dir: 'right' });
+    battle.enqueue({ type: 'deploy', unitId: 'squirrel', tile: { x: 1, y: 1 }, dir: 'right' });
     expect(battle.flush()).toMatchObject([{ type: 'unitDeploy', unitId: 'squirrel' }]);
     expect(battle.state).toMatchObject({ tick: 0, dp: 1, dpTicks: 0, enemies: [], nextUid: 2 });
-    expect(battle.unitAt({ x: 1, y: 0 })?.uid).toBe(1);
+    expect(battle.unitAt({ x: 1, y: 1 })?.uid).toBe(1);
   });
   it('끝난 전투의 step은 큐와 틱을 진행하지 않고 flush는 ended로 거부한다', () => {
     const { battle } = makeFixture(laneStage(['S.G'], []));

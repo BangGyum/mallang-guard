@@ -34,12 +34,12 @@ describe('enemy movement', () => {
     expect(enemy.dist).toBeCloseTo(0.015, 12);
     expect(enemy.x).toBe(0.515);
   });
-  it('저지 중에는 이전 위치만 갱신하고 움직이지 않는다', () => {
+  it('기절 중에도 이전 위치는 갱신한다', () => {
     const { content, state, stage } = makeFixture();
     spawnEnemies(stage, state, []);
     const enemy = state.enemies[0];
     if (!enemy) throw new Error('fixture missing');
-    enemy.blockedBy = 2;
+    enemy.stunUntilTick = 2;
     enemy.px = -1;
     enemy.py = -1;
     moveEnemies(content, stage, state, []);

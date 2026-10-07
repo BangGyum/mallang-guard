@@ -1,13 +1,15 @@
 import { type PerspectiveCamera, Vector3 } from 'three';
 import { assert } from '../core/assert';
 import { lerp } from '../core/math';
+import type { ContentDb } from '../data/types';
 import type { Board } from '../sim/board';
+import { TICK_RATE } from '../sim/constants';
 import type { BattleState } from '../sim/types';
 import { tileHeight } from './coords';
 
-export function createOverlay(canvas: HTMLCanvasElement, board: Board) {
+export function createOverlay(canvas: HTMLCanvasElement, board: Board, content: ContentDb) {
   const context = canvas.getContext('2d');
-  assert(context, '체력 표시 화면을 만들 수 없습니다');
+  assert(context, '게이지 표시 화면을 만들 수 없습니다');
   const ctx = context;
   const point = new Vector3();
   let width = 1;
@@ -44,11 +46,26 @@ export function createOverlay(canvas: HTMLCanvasElement, board: Board) {
           tileHeight(board.kindAt(unit.tile.x, unit.tile.y) ?? 'ground'),
           camera,
         );
-        bar(p.x, p.y, unit.hp, unit.maxHp, '#5BD17E');
+        const def = content.units.get(unit.unitId);
+        const skill = def && content.skills.get(def.skill);
+        assert(skill, '스킬 정보가 없습니다');
+        const active = unit.skillState === 'active';
+        const ready = unit.skillState === 'ready';
+        bar(
+          p.x,
+          p.y,
+          active ? Math.max(0, unit.skillEndTick - state.tick) / TICK_RATE : unit.sp,
+          active ? skill.durationSec : skill.spCost,
+          active ? '#eea54b' : ready ? '#f1c743' : '#759bdb',
+        );
         ctx.font = 'bold 12px sans-serif';
         ctx.textAlign = 'center';
         ctx.fillStyle = '#446052';
-        ctx.fillText({ right: '→', down: '↓', left: '←', up: '↑' }[unit.dir], p.x, p.y + 26);
+        ctx.fillText(
+          `${{ right: '→', down: '↓', left: '←', up: '↑' }[unit.dir]} ${active ? '스킬 중' : ready ? '준비!' : 'SP'}`,
+          p.x,
+          p.y + 26,
+        );
       }
       for (const enemy of state.enemies)
         if (enemy.hp < enemy.maxHp) {

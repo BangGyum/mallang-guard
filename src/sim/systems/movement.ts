@@ -15,7 +15,7 @@ export function moveEnemies(
     assert(enemy, 'battle.enemies: missing entity');
     enemy.px = enemy.x;
     enemy.py = enemy.y;
-    if (enemy.hp <= 0 || enemy.blockedBy !== null || state.tick < enemy.stunUntilTick) {
+    if (enemy.hp <= 0 || state.tick < enemy.stunUntilTick) {
       index += 1;
       continue;
     }

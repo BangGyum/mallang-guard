@@ -12,10 +12,10 @@ export const ROLE_COLORS = {
 export const ROLE_NAMES = {
   vanguard: '선봉',
   guard: '가드',
-  defender: '디펜더',
+  defender: '제어',
   sniper: '스나이퍼',
   caster: '캐스터',
-  medic: '메딕',
+  medic: '응원',
   specialist: '특수',
   supporter: '서포터',
 };

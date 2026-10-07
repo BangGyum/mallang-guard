@@ -5,12 +5,11 @@ import { makeRawContent } from './dataFixtures';
 
 const effects: Effect[] = [
   { type: 'statMul', stat: 'atk', value: 2 },
-  { type: 'blockAdd', value: 1 },
   { type: 'splash', radius: 1 },
   { type: 'onHitSlow', amount: 0.3, sec: 1 },
   { type: 'stunEveryNthHit', n: 3, sec: 0.5 },
   { type: 'gainDp', value: 12 },
-  { type: 'healAllies', ratioOfMaxHp: 0.3 },
+  { type: 'hasteAura', value: 0.7 },
   { type: 'pulseDamage', count: 3, intervalSec: 0.5, atkMul: 1.3, damageType: 'magic' },
   { type: 'slowAura', amount: 0.6 },
   { type: 'pushback', tiles: 2 },
@@ -22,7 +21,7 @@ describe('content effects', () => {
     const skill = raw.skills[0];
     if (!skill) throw new Error('fixture missing');
     skill.effects = [effect];
-    skill.durationSec = ['gainDp', 'healAllies', 'pushback'].includes(effect.type) ? 0 : 2;
+    skill.durationSec = ['gainDp', 'pushback'].includes(effect.type) ? 0 : 2;
     expect(validateContent(raw).skills.get(skill.id)?.effects).toEqual([effect]);
   });
   it.each(effects)('$type 효과와 맞지 않는 즉시/지속형을 거부한다', (effect) => {
@@ -30,7 +29,7 @@ describe('content effects', () => {
     const skill = raw.skills[0];
     if (!skill) throw new Error('fixture missing');
     skill.effects = [effect];
-    skill.durationSec = ['gainDp', 'healAllies', 'pushback'].includes(effect.type) ? 2 : 0;
+    skill.durationSec = ['gainDp', 'pushback'].includes(effect.type) ? 2 : 0;
     expect(() => validateContent(raw)).toThrow('content/skills[0].effects[0].type');
   });
   it('연속 피해 일정에 못 미치는 지속 시간을 거부한다', () => {
@@ -49,7 +48,7 @@ describe('content effects', () => {
     ['unknown effect', { type: 'unknown' }, '.type'],
     ['stat', { type: 'statMul', stat: 'hp', value: 2 }, '.stat'],
     ['count', { type: 'pulseDamage', count: 0 }, '.count'],
-    ['ratio', { type: 'healAllies', ratioOfMaxHp: 1.1 }, '.ratioOfMaxHp'],
+    ['ratio', { type: 'hasteAura', value: 1.1 }, '.value'],
     ['slow', { type: 'onHitSlow', amount: -0.1, sec: 1 }, '.amount'],
     ['hit n', { type: 'stunEveryNthHit', n: 1.5, sec: 1 }, '.n'],
   ] as const)('%s 필드 오류에 경로를 포함한다', (_name, effect, suffix) => {

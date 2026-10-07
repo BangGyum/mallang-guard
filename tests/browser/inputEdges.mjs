@@ -36,11 +36,11 @@ try {
       await cdp.send('Input.dispatchTouchEvent', { type: 'touchCancel', touchPoints: [] });
       await frame(page);
     }
-    await drag(page, cdp, 'squirrel', { x: 2, y: 1 });
+    await drag(page, cdp, 'squirrel', { x: 2, y: 0 });
     assert.equal(await page.locator('.aim-directions').isVisible(), true);
     await page.keyboard.press('ArrowLeft');
     await frame(page);
-    await page.screenshot({ path: `docs/verification/t1.6-${mobile ? 'mobile' : 'desktop'}-aim.png` });
+    await page.screenshot({ path: `docs/verification/defense-${mobile ? 'mobile' : 'desktop'}-aim.png` });
     await page.keyboard.press('Escape');
     await frame(page);
     assert.equal(await page.locator('.aim-directions').isVisible(), false);
@@ -49,7 +49,7 @@ try {
       await page.locator('[data-unit-id="squirrel"]').focus();
       await page.keyboard.press('Enter');
       await frame(page);
-      const center = await tilePoint(page, { x: 2, y: 1 });
+      const center = await tilePoint(page, { x: 2, y: 0 });
       await page.mouse.click(center.x, center.y);
       await frame(page);
       await page.keyboard.press('ArrowLeft');
@@ -63,7 +63,7 @@ try {
       const b = { x: second.x + 20, y: second.y + 20, id: 2 };
       await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [a] });
       await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [a, b] });
-      const center = await tilePoint(page, { x: 2, y: 1 });
+      const center = await tilePoint(page, { x: 2, y: 0 });
       await cdp.send('Input.dispatchTouchEvent', {
         type: 'touchMove',
         touchPoints: [{ ...center, id: 1 }, b],

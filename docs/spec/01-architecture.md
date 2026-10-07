@@ -71,7 +71,7 @@ mallang-guard/
 │  │  ├─ hash.ts               테스트용 상태 해시
 │  │  └─ systems/              틱 순서대로 한 파일씩
 │  │     ├─ commands.ts  dp.ts  roster.ts  spawn.ts  status.ts  movement.ts
-│  │     └─ block.ts  skills.ts  attack.ts  enemyAttack.ts  death.ts  outcome.ts
+│  │     └─ skills.ts  attack.ts  damage.ts  death.ts  outcome.ts
 │  ├─ view/
 │  │  ├─ boardView.ts          씬 소유. render(state, alpha, dt), onEvents(events)
 │  │  ├─ camera.ts             fitCamera() (순수 함수 부분 분리)
@@ -81,7 +81,7 @@ mallang-guard/
 │  │  ├─ entityViews.ts        uid ↔ 스프라이트, 애니메이션 상태
 │  │  ├─ vfx.ts                투사체·파티클 연출 (풀링)
 │  │  ├─ highlights.ts         배치 가능 칸, 사거리 표시
-│  │  ├─ overlay.ts            2D 캔버스: HP/SP 바, 피해 숫자, 말풍선
+│  │  ├─ overlay.ts            2D 캔버스: 적 HP/아군 SP 바, 피해 숫자, 말풍선
 │  │  ├─ picking.ts            화면 좌표 → 타일
 │  │  └─ textures.ts           SVG → CanvasTexture 굽기, 캐시
 │  ├─ ui/
@@ -156,7 +156,7 @@ export interface Battle {
 ```
 
 
-T1.4까지 배치·후퇴·도토리·재배치·저지·기본 공격·회복과 조회 헬퍼를 구현합니다. `flush`는 명령만 처리하고 시간을 진행하지 않습니다. 스킬 충전·발동·특성·버프는 T2.2에서 연결합니다. 이 단계의 배치 유닛은 초기 SP를 가지되 충전 상태에 머물며, 스킬 명령은 `autoSkill` 또는 `skillNotReady`로 거부합니다. T1.5에서 브라우저 전투 루프·뷰를, T1.6에서 입력·임시 HUD를 연결했습니다.
+고지대 디펜스 수정으로 모든 아군은 높은 칸에 배치하며 체력·반격·저지를 제거했습니다. 배치·후퇴·도토리·재배치·자동 공격과 스킬 8종·상태이상·특성을 구현했습니다. `flush`는 시간 진행 없이 명령과 스킬 즉시 효과를 적용합니다. T1.5·T1.6의 브라우저 루프·뷰·입력에 SP 표시와 스킬 버튼을 연결했습니다.
 
 `DeployCheck`는 `{ ok: true } | { ok: false, reason: RejectReason }`입니다. `RosterCardView`는 `unitId`, `state`(`ready`/`noDp`/`deployed`/`cooldown`), `cost`, `cooldownSec`(실수 초), `uid`를 반환합니다. 카드 상태는 기존 로스터 상태에서 도토리 부족만 파생하며, 배치 제한은 `stage.definition.deployLimit`과 현재 유닛 수로 표시합니다. 조회 함수와 명령 처리에서 같은 배치 판정을 재사용합니다.
 
