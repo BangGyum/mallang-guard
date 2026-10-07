@@ -215,10 +215,12 @@
 - 검증 (2026-10-07): 목업의 동물 8종·기존 적 2종 이식, 단단젤리·푸딩 및 이펙트 그림 10종을 추가했습니다. SVG 선로딩·세션별 GPU 자원·피격 셰이더·방향 반전과 타이틀/카드/팝업 초상화를 연결했습니다. check/lint/test/build(498개) 및 PC·모바일 22종 투명 이미지 로딩·배치 확인, 브라우저 오류·경고 0건.
   화면: [PC](../verification/t3.1-desktop.png), [모바일](../verification/t3.1-mobile.png), [PC 타이틀](../verification/t3.1-desktop-title.png), [모바일 타이틀](../verification/t3.1-mobile-title.png).
 
-### [ ] T3.2 애니메이션
+### [x] T3.2 애니메이션
 - 읽을 문서: 06 (4절)
 - 할 일: 애니메이션 상태 표 전부, 적의 기절·둔화 표시, reduced-motion 대응.
 - 완료 조건: 모든 상태가 화면에서 확인됩니다 (짧은 녹화 GIF 또는 스크린샷 여러 장).
+- 검증 (2026-10-07): 숨쉬기·배치 낙하/착지·공격 반동·지상 점프·비행·피격 플래시·스킬 링·사망/누수 축소를 연결했습니다. 기절 시 이동 동작이 멈추고 둔화·기절 색을 표시합니다. 모션 감소는 숨쉬기/낙하/반동을 생략하고 점프를 절반으로 줄입니다. 애니메이션 순수 함수 7개 검증과 PC·모바일의 정지 프레임 일치·상태별 스크린샷을 확인했습니다.
+  화면: [PC 착지](../verification/t3.2-desktop-deploy.png), [PC 사용 중](../verification/t3.2-desktop-active.png), [PC 퇴장](../verification/t3.2-desktop-exit.png), [모바일 사용 중](../verification/t3.2-mobile-active.png).
 
 ### [ ] T3.3 이펙트와 오버레이 완성
 - 읽을 문서: 04 (7, 9절)
