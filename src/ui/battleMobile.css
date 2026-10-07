@@ -36,6 +36,7 @@
     display: none;
   }
   .battle-stats {
+    gap: 8px;
     font-size: 12px;
   }
   .battle-top button {

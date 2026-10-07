@@ -3,9 +3,15 @@
 @import "./unitPopover.css";
 
 :root {
-  font-family: "Malgun Gothic", system-ui, sans-serif;
+  font-family: "IBM Plex Sans KR", "Malgun Gothic", system-ui, sans-serif;
   color: #1e2923;
   background: #e9f6ea;
+}
+.stage-title,
+.card-name,
+.dp-panel strong {
+  font-family: "Jua", "Malgun Gothic", sans-serif;
+  font-weight: 400;
 }
 
 body {

@@ -52,6 +52,8 @@ button:disabled {
   font-size: 11px;
 }
 .battle-stats {
+  display: flex;
+  gap: 16px;
   margin-left: auto;
   font-size: 16px;
   font-weight: 700;
@@ -126,6 +128,15 @@ button:disabled {
   min-height: 12px;
   font-size: 11px;
   color: #a34242;
+}
+.battle-life.is-critical,
+.deploy-remaining.is-full,
+.deploy-card[data-state="noDp"] .card-cost {
+  color: #b6464e;
+}
+.deploy-card[data-state="cooldown"] {
+  filter: saturate(0.35);
+  background: #dde3d9;
 }
 .is-unavailable {
   background: #eff0e9;
