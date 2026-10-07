@@ -9,6 +9,14 @@
 
 ---
 
+## 유닛 스킬 팝업 개선 (2026-10-07)
+
+- 선택한 유닛 옆에 작은 스킬 팝업을 띄우고 이름·역할색 배지·선택 칸 연결선으로 해당 유닛의 스킬임을 표시합니다.
+- 충전·준비·사용 중 상태, 수동 발동과 후퇴를 연결하고 닫기 버튼을 추가했습니다.
+- 수동·자동 발동 시 유닛 이름과 스킬 이름을 1.9초 동안 알립니다. 화면 가장자리·HUD·캐릭터와의 겹침을 줄이고 모션 감소 설정을 반영합니다.
+- 검증: check/lint/test/build, 33개 파일 456개 테스트 통과. `node tests/browser/skillPopover.mjs`로 PC 마우스·모바일 터치의 선택·닫기·충전·수동/자동 발동·후퇴, 알림 위치·겹침·소멸, 리사이즈·44px 터치 영역·모션 감소 설정을 확인했습니다. 브라우저 오류·경고 0건.
+- 화면: [PC 준비](../verification/skill-popover-desktop-ready.png), [PC 발동](../verification/skill-popover-desktop-cast.png), [PC 자동](../verification/skill-popover-desktop-auto.png), [PC 사용 중](../verification/skill-popover-desktop-active.png), [모바일 준비](../verification/skill-popover-mobile-ready.png), [모바일 발동](../verification/skill-popover-mobile-cast.png), [모바일 자동](../verification/skill-popover-mobile-auto.png), [모바일 사용 중](../verification/skill-popover-mobile-active.png).
+
 ## 고지대 디펜스 수정 검증 (2026-10-07)
 
 사용자가 아군 체력 없음·보라색 고지대 배치·자동 공격·개별 스킬을 확정했습니다. 아래 T1.4~T1.6의 체력·저지·반격 기록은 수정 전 검증 이력이며 현재 규칙은 02 문서입니다.
@@ -173,6 +181,7 @@
 - 할 일: 상단 바, 배치 바(카드 상태 4종, 도토리 게이지), 유닛 패널(스킬 버튼, 후퇴), 토스트, 배속, 일시정지(일시정지 중 배치 포함), 슬로모션.
 - 카드 초상화는 이 단계에서도 임시 그림을 써도 됩니다 (T3.1에서 교체).
 - 완료 조건: 마우스만으로 모든 조작이 됩니다. 키보드 단축키도 동작합니다.
+- 스킬 팝업 개선: 선택 유닛 옆 팝업·발동 알림·모바일 배치를 구현했습니다. 위 개선 기록을 참고합니다.
 
 ### [ ] T2.4 화면 흐름과 저장
 - 읽을 문서: 05 (1, 3, 7절)

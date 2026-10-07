@@ -1,5 +1,6 @@
 @import "./battle.css";
 @import "./battleMobile.css";
+@import "./unitPopover.css";
 
 :root {
   font-family: "Malgun Gothic", system-ui, sans-serif;

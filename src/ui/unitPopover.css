@@ -1,0 +1,231 @@
+.unit-panel {
+  position: absolute;
+  z-index: 2;
+  width: 252px;
+  max-width: calc(100% - 16px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  border: 1px solid color-mix(in srgb, var(--unit-color) 45%, #fffdf5);
+  border-radius: 18px;
+  background: #fffdf5;
+  box-shadow: 0 8px 24px #365f4930;
+}
+.unit-popup-card {
+  padding: 12px;
+}
+.unit-popup-header {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 8px;
+}
+.unit-popup-avatar {
+  flex: 0 0 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border: 2px solid white;
+  border-radius: 50%;
+  background: var(--unit-color);
+  color: white;
+  font-size: 21px;
+  font-weight: 800;
+  box-shadow: 0 0 0 1px #e3e8da;
+}
+.unit-popup-identity {
+  flex: 1;
+  min-width: 0;
+}
+.unit-popup-name {
+  font-size: 14px;
+  color: #395c46;
+}
+.unit-panel p {
+  margin: 0;
+}
+.unit-panel .unit-description {
+  margin-top: 3px;
+  font-size: 10px;
+  color: #758174;
+  word-break: keep-all;
+  text-wrap: balance;
+}
+.unit-popup-close {
+  flex: 0 0 44px;
+  margin: -6px -6px -6px 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-size: 23px;
+  color: #87927e;
+}
+.unit-panel .skill-name {
+  display: block;
+  color: #364b38;
+  font-size: 19px;
+}
+.unit-panel .skill-description {
+  margin: 5px 0 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #5b6859;
+  word-break: keep-all;
+}
+.unit-panel .skill-status {
+  font-size: 11px;
+  font-weight: 700;
+  color: #5b7663;
+}
+.skill-gauge {
+  display: block;
+  width: 100%;
+  height: 6px;
+  margin: 6px 0 12px;
+  accent-color: #759bdb;
+}
+.unit-panel[data-skill-state="ready"] .skill-gauge {
+  accent-color: #d2ad3e;
+}
+.unit-panel[data-skill-state="active"] .skill-gauge {
+  accent-color: #eea54b;
+}
+.unit-popup-actions {
+  display: flex;
+  gap: 6px;
+}
+.unit-popup-actions button {
+  padding: 6px 8px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.unit-panel .skill-button {
+  flex: 1;
+  background: #e7edf4;
+  border-color: #cad7e8;
+  font-weight: 700;
+}
+.unit-panel[data-skill-state="ready"] .skill-button {
+  background: #ffe795;
+  border-color: #d5b64a;
+  color: #6b5315;
+}
+.unit-retreat {
+  background: #f8f1e9;
+  color: #837165;
+  border-color: #e9ded0;
+}
+.unit-popup-link,
+.unit-popup-anchor {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+}
+.unit-popup-link {
+  height: 2px;
+  transform-origin: left center;
+  background: var(--unit-color);
+  opacity: 0.65;
+}
+.unit-popup-anchor {
+  width: 30px;
+  height: 13px;
+  border: 2px solid var(--unit-color);
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px #fffdf599;
+  transform: translate(-50%, -50%);
+}
+.skill-notice {
+  position: absolute;
+  z-index: 3;
+  width: max-content;
+  max-width: 210px;
+  padding: 8px 12px;
+  border: 1px solid color-mix(in srgb, var(--unit-color) 50%, white);
+  border-left: 4px solid var(--unit-color);
+  border-radius: 12px;
+  background: #fffbea;
+  box-shadow: 0 4px 14px #365f4924;
+  pointer-events: none;
+  animation: skill-notice 1.9s ease-out both;
+}
+.skill-notice span {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 10px;
+  color: #748067;
+}
+.skill-notice strong {
+  font-size: 14px;
+  color: #52643d;
+}
+.skill-announcer {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+@keyframes skill-notice {
+  0% {
+    opacity: 0;
+    transform: translateY(6px) scale(0.96);
+  }
+  12%,
+  78% {
+    opacity: 1;
+    transform: none;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+@media (max-height: 500px) {
+  .unit-panel {
+    width: 220px;
+    border-radius: 14px;
+  }
+  .unit-popup-card {
+    padding: 8px 10px;
+  }
+  .unit-popup-header {
+    gap: 6px;
+    margin-bottom: 4px;
+  }
+  .unit-popup-avatar {
+    flex-basis: 28px;
+    height: 28px;
+    font-size: 18px;
+  }
+  .unit-popup-name {
+    font-size: 12px;
+  }
+  .unit-panel .skill-name {
+    font-size: 16px;
+  }
+  .unit-panel .skill-description {
+    font-size: 10px;
+    line-height: 1.4;
+    margin: 4px 0 6px;
+  }
+  .unit-panel .skill-status {
+    font-size: 10px;
+  }
+  .skill-gauge {
+    margin: 4px 0 7px;
+  }
+  .unit-popup-actions button {
+    font-size: 11px;
+  }
+  .skill-notice {
+    padding: 6px 8px;
+  }
+  .skill-notice strong {
+    font-size: 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .skill-notice {
+    animation: none;
+  }
+}
