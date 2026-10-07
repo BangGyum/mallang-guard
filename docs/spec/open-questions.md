@@ -15,6 +15,7 @@
 | core 유틸 인터페이스 | 병합 후 `rotateOffset([dx, dy], dir)`는 `[dx, dy]` 튜플 반환, `dist(ax, ay, bx, by)`는 실수 좌표 거리입니다. `rangeTiles(tile, offsets, dir, width, height)`는 입력 순서 유지. `mulberry32(state)`는 `{ value, state }`를 반환하는 순수 단일 스텝 | 사거리 조회와 `BattleState.rngState` 저장·복원 |
 | Battle 런타임 필드 | 병합 후 원격 계약에 맞춰 `StageRuntime.definition`은 원본 스테이지, `board`는 파싱된 맵, `routes`는 `ReadonlyMap<string, Polyline>`, `spawns`는 적·경로 참조와 틱을 가진 목록입니다. 웨이브는 `state.currentWave`와 `state.totalWaves`, 활성 효과는 `Effect` 타입을 재사용합니다 | T1.4 조회 API와 T2.2 스킬 시스템 |
 | 비주얼 방향 | 2026-10-07 병합에서 산업지대 시안 대신 사용자가 정한 실제 동물·파스텔 정원 방향을 유지했습니다. 원격 카메라 피팅 개선과 현재 PCF 그림자는 반영합니다 | 04 렌더링·06 아트와 후속 보드 작업 |
+| T1.6 조준 입력 | 카드를 배치 칸에 놓은 뒤 방향 버튼·두 번째 조준 드래그·화살표 키+Enter로 확정합니다. 한 번의 연속 터치로 칸·방향을 모두 고르는 제스처는 추가하지 않습니다 | 05 문서 입력 흐름 |
 
 ## 질문
 

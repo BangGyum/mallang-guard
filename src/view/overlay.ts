@@ -45,6 +45,10 @@ export function createOverlay(canvas: HTMLCanvasElement, board: Board) {
           camera,
         );
         bar(p.x, p.y, unit.hp, unit.maxHp, '#5BD17E');
+        ctx.font = 'bold 12px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#446052';
+        ctx.fillText({ right: '→', down: '↓', left: '←', up: '↑' }[unit.dir], p.x, p.y + 26);
       }
       for (const enemy of state.enemies)
         if (enemy.hp < enemy.maxHp) {

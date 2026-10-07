@@ -156,7 +156,7 @@ export interface Battle {
 ```
 
 
-T1.4까지 배치·후퇴·도토리·재배치·저지·기본 공격·회복과 조회 헬퍼를 구현합니다. `flush`는 명령만 처리하고 시간을 진행하지 않습니다. 스킬 충전·발동·특성·버프는 T2.2에서 연결합니다. 이 단계의 배치 유닛은 초기 SP를 가지되 충전 상태에 머물며, 스킬 명령은 `autoSkill` 또는 `skillNotReady`로 거부합니다. 브라우저 전투 루프·뷰 연결은 T1.5 범위입니다.
+T1.4까지 배치·후퇴·도토리·재배치·저지·기본 공격·회복과 조회 헬퍼를 구현합니다. `flush`는 명령만 처리하고 시간을 진행하지 않습니다. 스킬 충전·발동·특성·버프는 T2.2에서 연결합니다. 이 단계의 배치 유닛은 초기 SP를 가지되 충전 상태에 머물며, 스킬 명령은 `autoSkill` 또는 `skillNotReady`로 거부합니다. T1.5에서 브라우저 전투 루프·뷰를, T1.6에서 입력·임시 HUD를 연결했습니다.
 
 `DeployCheck`는 `{ ok: true } | { ok: false, reason: RejectReason }`입니다. `RosterCardView`는 `unitId`, `state`(`ready`/`noDp`/`deployed`/`cooldown`), `cost`, `cooldownSec`(실수 초), `uid`를 반환합니다. 카드 상태는 기존 로스터 상태에서 도토리 부족만 파생하며, 배치 제한은 `stage.definition.deployLimit`과 현재 유닛 수로 표시합니다. 조회 함수와 명령 처리에서 같은 배치 판정을 재사용합니다.
 
@@ -233,6 +233,8 @@ function frame(now: number) {
 - 입력은 `#board` 캔버스의 pointer 이벤트로 받습니다 (`touch-action: none`). HUD 요소는 각자 이벤트를 받습니다.
 
 ## 7. 로딩 순서 (src/main.ts)
+
+M1에서는 동적 콘텐츠 로드·검증 후 `createBattleSession(content, app)`으로 바로 stage-1을 시작합니다. 세션이 Battle·뷰·오버레이·입력·임시 HUD를 소유하고, `dispose`로 루프·observer·리스너·텍스처·메시를 정리합니다. 임시 결과 화면의 다시 하기는 페이지를 새로 불러옵니다. 아래의 SVG 선로딩·타이틀 전환과 앱 내부 다시 시작은 T3.1·T2.4에서 연결합니다.
 
 1. `content = validateContent(raw)`. 실패하면 화면에 에러 메시지를 띄우고 중단합니다 (개발 중 데이터 실수를 바로 보이게).
 2. 폰트 로딩 대기 (`document.fonts.ready`, 최대 2초).

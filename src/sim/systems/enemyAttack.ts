@@ -7,12 +7,12 @@ import type { BattleState, SimEvent } from '../types';
 
 export function attackUnits(content: ContentDb, state: BattleState, events: SimEvent[]): void {
   for (const enemy of state.enemies) {
-    if (enemy.hp <= 0 || enemy.blockedBy === null || state.tick < enemy.stunUntilTick) continue;
+    if (enemy.hp <= 0 || state.tick < enemy.stunUntilTick) continue;
     const def = content.enemies.get(enemy.enemyId);
     assert(def, 'battle.enemies: missing definition');
     if (def.atk === 0) continue;
     if (enemy.atkCooldown > 0) enemy.atkCooldown -= 1;
-    if (enemy.atkCooldown > 0) continue;
+    if (enemy.atkCooldown > 0 || enemy.blockedBy === null) continue;
     const unit = state.units.find((entry) => entry.uid === enemy.blockedBy && entry.hp > 0);
     if (!unit) continue;
     const stats = unitStats(content, unit);

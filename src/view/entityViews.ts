@@ -58,6 +58,7 @@ export function createEntityViews(
   }
   return {
     group,
+    textures: cache.textures,
     onEvents(events: readonly SimEvent[]) {
       for (const event of events)
         if (event.type === 'damage') {

@@ -1,3 +1,6 @@
+@import "./battle.css";
+@import "./battleMobile.css";
+
 :root {
   font-family: "Malgun Gothic", system-ui, sans-serif;
   color: #1e2923;

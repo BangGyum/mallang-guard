@@ -15,6 +15,7 @@ import type { Board } from '../sim/board';
 import type { BattleState, SimEvent } from '../sim/types';
 import { fitCamera } from './camera';
 import { createEntityViews } from './entityViews';
+import { createHighlights, type HighlightState } from './highlights';
 import { createTiles } from './tiles';
 
 export interface BoardView {
@@ -22,6 +23,7 @@ export interface BoardView {
   resize(): void;
   render(state: Readonly<BattleState>, alpha: number, dt: number): void;
   onEvents(events: readonly SimEvent[]): void;
+  setHighlights(state: HighlightState): void;
   dispose(): void;
 }
 
@@ -39,8 +41,10 @@ export function createBoardView(
   const scene = new Scene();
   const tiles = createTiles(board);
   const entities = createEntityViews(content, board, roleColors);
+  const highlights = createHighlights(board, entities.textures);
   scene.add(tiles.group);
   scene.add(entities.group);
+  scene.add(highlights.group);
   scene.add(new HemisphereLight(0xffffff, 0xb9a7d9, 1));
   const sunlight = new DirectionalLight(0xfff4e0, 2);
   sunlight.position.set(-4, 8, 5);
@@ -67,6 +71,7 @@ export function createBoardView(
   shadowCamera.updateProjectionMatrix();
 
   let camera = fitCamera(bounds, 1);
+  let highlightState: HighlightState = {};
   return {
     get camera() {
       return camera;
@@ -76,18 +81,27 @@ export function createBoardView(
       const height = Math.max(1, canvas.clientHeight);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       renderer.setSize(width, height, false);
-      camera = fitCamera(bounds, width / height);
+      camera = fitCamera(
+        bounds,
+        width / height,
+        height <= 500 ? { minX: -0.94, maxX: 0.94, minY: -0.45, maxY: 0.68 } : undefined,
+      );
     },
     render(state, alpha, dt) {
       entities.update(state, camera, alpha, dt);
+      highlights.update(highlightState, camera);
       renderer.render(scene, camera);
     },
     onEvents(events) {
       entities.onEvents(events);
     },
+    setHighlights(state) {
+      highlightState = state;
+    },
     dispose() {
       tiles.dispose();
       entities.dispose();
+      highlights.dispose();
       sunlight.shadow.dispose();
       scene.clear();
       renderer.dispose();
