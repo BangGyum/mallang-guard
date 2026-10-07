@@ -1,440 +1,170 @@
 # 02. 전투 규칙
 
-모든 규칙은 `src/sim`에 구현합니다. 숫자는 콘텐츠면 `src/data/*.json`, 규칙 상수면 `src/sim/constants.ts`에만 둡니다.
-이 문서와 구현이 다르면 버그입니다. 규칙을 바꿔야 하면 같은 PR에서 이 문서도 고칩니다.
+모든 규칙은 `src/sim`에 구현합니다. 콘텐츠 수치는 `src/data/*.json`, 규칙 상수는 `src/sim/constants.ts`에 둡니다.
+2026-10-07 사용자 확정: **친구는 보라색 고지대에서 자동 공격합니다. 아군 체력·피격·사망·길 위 저지는 없으며, 각 친구에게 스킬이 하나씩 있습니다.**
 
 ## 1. 시간
 
-- 1틱 = 1/30초 (`TICK_RATE = 30`). `state.tick`은 다음에 처리할 틱 번호이며, 첫 `step()`은 0틱을 처리합니다.
-- 모든 타이머는 **정수 틱**입니다. 데이터의 초 값은 콘텐츠 로드 시 `secToTicks(sec) = Math.round(sec * TICK_RATE)`로 바꿉니다. 단, 0보다 큰 값은 최소 1틱입니다.
-- 배속·일시정지·슬로모션은 sim과 무관합니다 (01 문서 4절).
+- 1틱 = 1/30초. `state.tick`은 다음 처리할 틱이며 첫 `step()`은 0틱입니다.
+- `secToTicks(sec) = round(sec * 30)`. 양수는 최소 1틱입니다.
+- 배속·일시정지·슬로모션은 앱이 관리합니다. `flush()`는 명령만 처리하며 시간을 진행하지 않습니다.
 
 ## 2. 좌표와 맵
 
-- 타일 좌표 `(x, y)`: x는 열(오른쪽이 +), y는 행(화면 아래 = 카메라 쪽이 +). 맵 문자열 첫 줄이 y=0입니다.
-- 위치는 타일 단위 실수입니다. 타일 `(x, y)`의 중심은 `(x + 0.5, y + 0.5)`입니다.
-- 위치가 속한 타일은 `(Math.floor(px), Math.floor(py))`입니다.
+- `(x, y)`는 열·행이며 타일 중심은 `(x + 0.5, y + 0.5)`입니다.
+- 적이 속한 칸은 `(floor(x), floor(y))`입니다.
 
-| 문자 | kind | 지상 적 이동 | 배치 |
+| 문자 | kind | 지상 적 이동 | 친구 배치 |
 | --- | --- | --- | --- |
-| `.` | `ground` | O | 지상 유닛 (`deployOn: "ground"`) |
-| `,` | `path` | O | X |
-| `H` | `high` | X | 고지대 유닛 (`deployOn: "high"`) |
-| `#` | `blocked` | X | X |
-| `S` | `spawn` | O | X |
-| `G` | `goal` | O | X |
+| `.` | ground | O | X |
+| `,` | path | O | X |
+| `H` | high | X | 모든 친구 |
+| `#` | blocked | X | X |
+| `S` | spawn | O | X |
+| `G` | goal | O | X |
 
-- 모든 줄의 길이는 같아야 합니다 (검증기에서 확인).
-- 지상 이동은 상하좌우 4방향만 허용합니다.
+모든 행의 길이는 같아야 합니다. 지상 적은 상하좌우로 이동합니다. 배치로 경로가 바뀌거나 막히지 않습니다.
 
 ## 3. 경로
 
-스테이지의 `routes`는 `{ from, via?, to, flying? }` 형식입니다. 전투 시작 때 한 번 계산해 `StageRuntime.routes`에 저장합니다.
+`routes`의 `{ from, via?, to, flying? }`를 전투 시작 시 한 번 계산해 `StageRuntime.routes`에 저장합니다.
 
-**지상 경로** (`flying`이 없거나 false)
-1. `from → via[0] → … → to` 각 구간마다 A*로 타일 경로를 구합니다.
-   - 이동 가능 칸: `ground`, `path`, `spawn`, `goal`
-   - 4방향, 비용 1, 휴리스틱은 맨해튼 거리
-   - 이웃 탐색 순서는 항상 right(+x), down(+y), left(−x), up(−y)
-   - 동점이면 f가 작은 것, 그다음 h가 작은 것, 그다음 먼저 열린 노드
-2. 구간 경로를 이어 붙이고 이어지는 지점의 중복 타일을 제거합니다.
-3. 타일 중심점으로 바꾼 뒤, 일직선 위의 중간 점을 지워 꺾이는 점만 남깁니다. 이것이 폴리라인입니다.
-4. 경로를 못 찾으면 `createBattle`이 throw합니다. 데이터 검증 테스트가 이 경우를 잡습니다.
-
-**비행 경로** (`flying: true`): `from`, `via…`, `to` 타일의 중심을 직선으로 잇습니다. 지형은 무시합니다.
-
-**공통**
-- 폴리라인마다 누적 길이 배열과 총 길이 `length`를 둡니다.
-- 적의 위치는 `dist`(출발점부터 이동한 거리)로 정하고, `remaining = length - dist`입니다.
-- `dist → (x, y)` 변환은 적마다 현재 구간 인덱스를 캐시해서 빠르게 합니다.
-
-
-**경로 API (T1.2)**
-
-```ts
-findTilePath(board: Board, from: Tile, to: Tile): Tile[];
-buildRoute(board: Board, route: RouteDef): Polyline;
-createPolyline(points: readonly Readonly<Tile>[]): Polyline;
-
-interface Polyline {
-  readonly points: readonly Readonly<Tile>[];  // 타일 중심의 실수 좌표
-  readonly cumulativeLengths: readonly number[];
-  readonly length: number;
-  positionAt(distance: number, segHint?: number): { x: number; y: number; segIndex: number };
-}
-```
-
-- `segHint` 기본값은 0이며 결과의 `segIndex`를 적의 캐시에 저장합니다. 정확히 꺾이는 점에서는 다음 구간을 사용하고, 마지막 점에서는 마지막 구간을 사용합니다.
-- 경로 밖 거리는 `[0, length]`로 제한합니다. 밀치기로 거리가 줄면 캐시에서 앞 구간으로도 탐색합니다.
-- 연속 중복점만 제거합니다. 한 점이면 길이는 0이며 그 점을 반환합니다. 지상 경유점에서의 180° 회전은 압축하지 않아 되돌아가는 이동 거리를 보존합니다.
-- T1.2에서는 모든 콘텐츠 경로의 생성을 테스트합니다. T1.3의 `createBattle`이 이 API를 사용해 `StageRuntime.routes`를 구성합니다.
+- 지상: from → via → to의 각 구간을 A*로 계산합니다. 이동 칸은 ground/path/spawn/goal, 비용 1, 맨해튼 휴리스틱입니다.
+- 이웃 순서는 right/down/left/up. 동점은 f → h → 먼저 열린 노드 순으로 결정합니다.
+- 타일 중심을 연결하고 같은 방향의 중간점을 제거해 폴리라인으로 만듭니다. 연속 중복점만 없애고 180도 되돌아가는 경로는 보존합니다.
+- 비행: 지형을 무시하고 from/via/to의 중심을 직선으로 연결합니다.
+- 경로를 만들 수 없으면 `createBattle`이 경로명을 포함해 throw합니다.
+- 위치는 출발점부터의 `dist`, 우선순위는 `remaining = length - dist`로 정합니다.
+- `positionAt(distance, segHint = 0)`는 거리를 `[0, length]`로 제한하고 `{ x, y, segIndex }`를 반환합니다. 꺾이는 점은 다음 구간, 마지막 점은 마지막 구간입니다. 밀치기로 거리가 줄면 앞 구간도 탐색합니다.
+- 공개 함수: `findTilePath(board, from, to)`, `buildRoute(board, route)`, `createPolyline(points)`.
 
 ## 4. 도토리 (DP)
 
-- 시작값은 `stage.startDp`, 최대값은 `DP_MAX = 99`입니다.
-- 매 틱 `dpTicks += 1`. `dpTicks >= ticksPerDp`가 되면 `dp += 1; dpTicks = 0`입니다 (`ticksPerDp = round(TICK_RATE / stage.dpPerSec)`, 기본 30).
-- `dp === DP_MAX`이면 `dpTicks`는 0에 머뭅니다 (진행분을 저장하지 않음).
-- UI 게이지용 진행률은 `dpTicks / ticksPerDp`입니다.
-- 스킬 `gainDp`와 후퇴 환급도 최대값을 넘지 않습니다.
+- 시작값 `stage.startDp`, 최대 99.
+- 매 틱 `dpTicks += 1`. `round(30 / dpPerSec)`틱마다 +1, 진행분은 0으로 초기화합니다. 기본 초당 1개입니다.
+- 최대치에서는 진행분을 저장하지 않습니다. 후퇴·스킬 지급도 최대 99로 제한합니다.
+- UI는 `dpTicks / ticksPerDp`를 회복 진행률로 씁니다.
 
 ## 5. 로스터, 배치, 후퇴
 
-로스터는 스테이지에서 쓸 수 있는 유닛 목록입니다 (`stage.roster`, 없으면 전체). 슬롯마다 다음 상태를 가집니다.
+슬롯은 `{ unitId, state: ready | deployed | cooldown, cooldownTicks, uid }`입니다. stage.roster가 없으면 전체 친구를 사용합니다.
 
-```ts
-interface RosterSlot {
-  unitId: string;
-  state: 'ready' | 'deployed' | 'cooldown';
-  cooldownTicks: number;   // state === 'cooldown'일 때 남은 틱
-  uid: number | null;      // 배치 중인 엔티티
-}
-```
+배치 거부 순서: `ended` → `notReady` → `limit` → `noDp` → `badTile` → `occupied`.
 
-**배치 검증.** 위에서부터 차례로 검사하고, 처음 걸린 이유로 거부합니다.
-
-| 순서 | 거부 이유 `reason` | 조건 |
-| --- | --- | --- |
-| 1 | `ended` | 전투가 끝남 |
-| 2 | `notReady` | 슬롯 상태가 `ready`가 아님 |
-| 3 | `limit` | 배치 중인 유닛 수 ≥ `stage.deployLimit` |
-| 4 | `noDp` | `dp < cost` |
-| 5 | `badTile` | 맵 밖이거나 타일 종류가 `deployOn`과 맞지 않음 |
-| 6 | `occupied` | 그 칸에 이미 유닛이 있음 |
-
-적이 서 있는 지상 칸에도 배치할 수 있습니다.
-
-**배치 성공 시**
-- `dp -= cost`
-- 유닛 엔티티 생성: `hp = maxHp`, `sp = skill.spStart`, `atkCooldown = 0`, 방향 `dir`
-- 슬롯을 `deployed`로 바꾸고 `unitDeploy` 이벤트를 냅니다.
-- 재배치 비용 증가(명일방주의 1.5배·2배)는 v0.1에서 **적용하지 않습니다.**
-
-**후퇴** (`retreat`): 배치 중이면 언제든 가능합니다.
-- `dp += floor(cost * RETREAT_REFUND_RATIO)` (0.5)
-- 저지 중인 적을 모두 풀어 줍니다.
-- 슬롯을 `cooldown`으로 바꾸고 `cooldownTicks = secToTicks(redeploySec)`. 이벤트는 `unitRetreat`.
-- `unitRetreat.refund`와 `dpGain.amount`는 상한 99를 적용한 실제 환급량입니다. 실제 환급이 0이면 `dpGain`은 생략합니다. 상한에 도달하면 회복 진행분도 0으로 초기화합니다.
-
-**쓰러짐**: 후퇴와 같지만 환급이 없고 이벤트는 `unitDie`입니다.
-
-**재배치 대기**: 매 틱 `cooldownTicks -= 1`. 0이 되면 `ready`.
+- 정수 좌표의 빈 `high` 칸에만 배치할 수 있습니다. 캐릭터마다 지상/고지대를 나누지 않습니다.
+- 성공하면 비용 차감, uid 생성, 방향과 공격 쿨다운 0, `spStart`를 설정합니다. 슬롯은 deployed가 되고 `unitDeploy`를 냅니다.
+- 초기 SP가 가득 찼으면 즉시 ready로 전환해 같은 flush의 다음 스킬 명령도 처리합니다.
+- 아군 데이터와 엔티티에는 HP·방어력·마법저항·저지 필드가 없습니다.
+- 후퇴는 `floor(cost * 0.5)`를 실제 상한까지 환급하고 엔티티를 제거합니다. 발동 중인 스킬·오라도 함께 제거됩니다.
+- `unitRetreat.refund`, `dpGain.amount`는 실제 환급량입니다. 0이면 dpGain은 생략합니다.
+- 후퇴한 슬롯은 `secToTicks(redeploySec)` 동안 cooldown. 매 틱 감소하고 0이면 ready입니다. 재배치 비용 증가는 없습니다.
 
 ## 6. 적 스폰과 이동
 
-**스폰**: `stage.spawns`의 그룹마다 `atSec`부터 `intervalSec` 간격으로 `count`마리를 냅니다. i번째 적의 스폰 틱은 `secToTicks(atSec) + i * secToTicks(intervalSec)`입니다. 같은 틱이면 그룹 순서(배열 순서)대로 냅니다.
+- 그룹 i번째 스폰 시각은 `secToTicks(atSec) + i * secToTicks(intervalSec)`입니다. 같은 틱은 그룹 배열 순서입니다.
+- 생성 시 `dist = 0`, 위치는 경로 시작점, `hp = maxHp`입니다. 적에게 아군을 공격하는 스탯·쿨다운·저지 상태는 없습니다.
+- 매 틱 px/py에 이전 위치를 저장합니다. 기절 중인 적과 이미 죽은 적은 움직이지 않습니다.
+- 그 외에는 `dist += speed * (1 - slowAmount) / 30`.
+- 골에 도착하면 lifeDamage만큼 푸딩 감소, 적 제거, leaked 증가, enemyLeak 이벤트를 냅니다. 푸딩 0이면 즉시 패배합니다.
 
-새 적의 초기값은 `dist = 0`, 위치는 경로 시작점, `hp = maxHp`, `atkCooldown = 0`, `blockedBy = null`입니다.
+## 7. 디펜스 방식
 
-**이동** (매 틱)
-- `px, py`에 현재 위치를 저장합니다 (렌더 보간용).
-- 저지당했거나(`blockedBy !== null`) 기절 중이면 움직이지 않습니다.
-- 그 외에는 `dist += def.speed * (1 - slowAmount) / TICK_RATE`.
-- 이미 `hp <= 0`인 적은 이동·누수 처리 없이 사망 단계에서 정리합니다.
-- dist >= length이면 **누수**입니다: `life -= def.lifeDamage`, 적 제거, `leaked += 1`, `enemyLeak` 이벤트.
-
-## 7. 저지 (블록)
-
-- 저지 능력이 있는 것은 `deployOn: "ground"`이고 실제 저지 수가 1 이상인 유닛뿐입니다.
-- **실제 저지 수** = `def.block + 활성 blockAdd 합계`.
-- **비행 적은 절대 저지되지 않습니다.**
-
-**새로 저지하는 조건** (매 틱 이동이 끝난 뒤 검사)
-1. 적이 아직 저지되지 않았음
-2. 적 위치와 유닛 타일 중심의 거리 ≤ `BLOCK_CONTACT_DIST` (0.7)
-3. 적의 진행 방향 앞쪽에 유닛이 있음: 현재 구간 방향 벡터와 (유닛 중심 − 적 위치)의 내적 > 0
-4. `유닛이 저지 중인 적들의 blockCost 합 + 이 적의 blockCost ≤ 실제 저지 수`
-
-검사 순서: 유닛은 uid 오름차순, 각 유닛마다 적은 `remaining` 오름차순(같으면 uid 오름차순)으로 봅니다.
-저지되면 `enemy.blockedBy = unit.uid`, `unit.blocking.push(enemy.uid)`, `block` 이벤트를 냅니다. 저지된 적은 그 자리에 멈춥니다 (위치를 옮기지 않음).
-
-**풀어 주는 경우**
-- 유닛이 후퇴하거나 쓰러짐 → 저지 중인 적 전부
-- 실제 저지 수가 줄어 합계를 넘음 (예: `blockAdd` 스킬 종료) → 가장 나중에 저지한 적부터, 합계가 맞을 때까지
-- `pushback`으로 밀려남 → 그 적
-
-풀려난 적은 `blockedBy = null`이 되고 `unblock` 이벤트가 나갑니다. 같은 틱의 저지 단계에서 다른 유닛에게 다시 저지될 수 있습니다.
+친구는 고지대에 머물며 적이 사거리에 들어오면 자동 공격합니다. 적은 친구와 몸으로 부딪혀 멈추거나 반격하지 않습니다. 이동 방해는 스킬·특성의 둔화, 기절, 밀치기로만 발생합니다.
 
 ## 8. 사거리와 타겟팅
 
-**사거리**
-- 사거리 정의(`ranges.json`)는 오른쪽을 바라볼 때의 `[dx, dy]` 오프셋 목록입니다.
-- 방향별 회전 (`src/core/grid.ts`):
+- ranges.json은 오른쪽 기준 `[dx, dy]` 목록입니다. right `(dx,dy)`, down `(-dy,dx)`, left `(-dx,-dy)`, up `(dy,-dx)`로 회전합니다.
+- 유닛 타일에 더하고 맵 밖 칸을 제외합니다. 적의 현재 칸이 포함되면 사거리 안입니다.
+- 살아 있는 적 중 `remaining`이 가장 작은 적, 같으면 uid가 작은 적을 고릅니다.
+- 비행 적은 `canHitAir` 친구만 공격합니다. 범위 공격·펄스·둔화 오라에도 같은 대공 조건이 적용됩니다.
+- 사거리 밖 적을 공격하는 저지 우선 규칙이나 아군 회복 타겟팅은 없습니다.
 
-| dir | (dx, dy) → |
-| --- | --- |
-| `right` | (dx, dy) |
-| `down` | (−dy, dx) |
-| `left` | (−dx, −dy) |
-| `up` | (dy, −dx) |
+## 9. 자동 공격과 피해
 
-- 사거리 타일 = 유닛 타일 + 회전된 오프셋. 맵 밖 타일은 버립니다.
-- 적이 사거리 안인지는 **적 위치가 속한 타일이 사거리 타일 집합에 있는지**로 판정합니다.
-- 비행 적은 `canHitAir`인 유닛만 노릴 수 있습니다.
-- 유닛은 **자신이 저지 중인 적은 사거리와 상관없이 항상 공격할 수 있습니다.**
-
-**공격 대상 선택** (피해형 유닛)
-1. 자신이 저지 중인 적 (`blocking` 배열 순서)
-2. 사거리 안 공격 가능한 적 중 `remaining`이 가장 작은 적
-3. 같으면 uid가 작은 적
-
-**회복 대상 선택** (`damageType: "heal"`): 사거리 안 아군 중 `hp < maxHp`인 유닛 가운데 hp 비율이 가장 낮은 유닛을 고릅니다. 같으면 uid가 작은 유닛. 대상이 없으면 아무것도 하지 않습니다.
-
-## 9. 공격과 피해
-
-**유닛 공격** (매 틱, uid 오름차순)
-```
-if (u.atkCooldown > 0) u.atkCooldown -= 1;
-if (u.atkCooldown === 0) {
-  const target = pickTarget(u);
-  if (target) { performAttack(u, target); u.atkCooldown = atkIntervalTicks(u); }
-  // 대상이 없으면 0에 머물러 있다가 대상이 생기면 바로 공격
-}
-```
-- `atkIntervalTicks(u) = max(1, round(def.atkIntervalSec * 곱해진 atkInterval 배율 * TICK_RATE))`
-- 피해는 **즉시** 적용합니다. 투사체 비행은 화면 연출일 뿐입니다 (04 문서).
-- 공격할 때마다 `attack` 이벤트, 피해마다 `damage` 이벤트를 냅니다.
-
-**피해 공식** (`src/sim/formulas.ts`)
-
-| damageType | 피해량 |
-| --- | --- |
-| `physical` | `max(atk - def, atk * MIN_DAMAGE_RATIO)` |
-| `magic` | `max(atk * (1 - res / 100), atk * MIN_DAMAGE_RATIO)` |
-| `true` | `atk` |
-| `heal` | 대상 `hp = min(maxHp, hp + atk)` |
-
-`MIN_DAMAGE_RATIO = 0.05`. sim은 반올림하지 않습니다. 화면에 표시할 때만 반올림합니다.
-
-**공격 시 추가 효과** (스킬이나 특성에서 활성화된 것)
-- `splash { radius }`: 주 대상 위치에서 거리 ≤ radius 안의 다른 적에게도 같은 피해를 줍니다. 공격자가 `canHitAir`가 아니면 비행 적은 제외합니다.
-- `onHitSlow { amount, sec }`: 맞은 적 전부(스플래시 포함)에 둔화를 겁니다.
-- `stunEveryNthHit { n, sec }`: 스킬 중 공격 횟수를 세다가 n번째마다 주 대상을 기절시킵니다. 카운터는 스킬 시작 때 0이 됩니다.
-
-**적 공격**: 저지된 적만 공격하며, 대상은 자신을 저지한 유닛입니다. 쿨다운 방식은 유닛과 같고, 공식은 적의 `damageType`(physical 또는 magic)을 씁니다. `atk`가 0인 적은 공격하지 않습니다.
-
-저지가 풀린 동안에도 공격 쿨다운은 매 틱 감소해 0에서 기다립니다. 기절 중에는 쿨다운도 멈춥니다.
-
-**스탯 계산** (`src/sim/stats.ts`): 실제 스탯 = 기본값 × (활성 `statMul` 중 해당 스탯 값의 곱). `blockAdd`는 더합니다. 버프는 같은 효과끼리도 중첩되지만, v0.1에서는 한 유닛에 스킬이 하나라 사실상 중첩되지 않습니다.
+- 유닛 uid 순서로 쿨다운을 1씩 줄입니다. 0이며 대상이 있으면 즉시 공격하고 간격을 다시 설정합니다. 대상이 없으면 0에서 기다립니다.
+- 실제 공격력 = 기본 공격력 × statMul(atk)의 곱.
+- 공격 간격 = `max(1, round(기본 초 * statMul(atkInterval)의 곱 * 적용 중 hasteAura의 곱 * 30))`.
+- 간격은 공격 직후 결정합니다. 버프가 생겨도 이미 진행 중인 쿨다운은 소급 변경하지 않습니다.
+- 물리 피해: `max(atk - def, atk * 0.05)`. 마법 피해: `max(atk * (1 - res / 100), atk * 0.05)`. true 피해: atk.
+- 피해는 즉시 적용하고 attack/damage 이벤트를 냅니다. sim에서는 반올림하지 않습니다.
+- 스플래시는 주 대상 주변 반경 안의 살아 있는 적들에게 같은 공격력으로 피해를 줍니다. 각 적의 방어·마저를 적용합니다.
+- onHitSlow는 스플래시 대상에도 적용합니다. stunEveryNthHit는 활성 스킬의 공격 횟수를 세고 n번째마다 주 대상을 기절시킵니다.
 
 ## 10. SP와 스킬
 
-유닛마다 `sp`(실수)와 `skillState: 'charging' | 'ready' | 'active'`를 가집니다.
+모든 친구에게 고유 스킬 하나가 있습니다. 상태는 charging/ready/active입니다.
 
-**충전** (`charging`일 때만)
-| charge | 증가 |
+- auto 충전은 초당 1 SP, attack 충전은 실제 공격 1회마다 1 SP입니다. 피격 충전은 없습니다.
+- charging일 때만 충전하며 spCost에서 멈춥니다. `SP_EPSILON = 1e-6` 오차를 허용합니다. ready 이벤트는 전환 시 한 번만 냅니다.
+- 발동 조건은 always 또는 enemyInRange입니다. 토끼는 ready 상태로 적을 기다렸다가 자동 발동합니다.
+- 수동 명령 거부 순서: ended → notDeployed → autoSkill → skillNotReady → noTarget.
+- 즉시형은 발동 즉시 효과 적용 후 SP 0, charging, skillEnd. 지속형은 `skillEndTick = 현재 틱 + 지속 틱`까지 active입니다.
+- 활성 중에는 충전하지 않습니다. 만료 틱에서 버프 제거·SP 0·skillEnd, 다음 틱부터 자동 재충전합니다.
+- 펄스는 발동 틱부터 interval 틱 간격으로 count회. 마지막 펄스와 만료 틱이 같으면 펄스를 먼저 적용합니다. 각 초를 틱으로 반올림해 마지막 펄스가 늦어지는 경우 종료 시각을 마지막 펄스까지 보존합니다.
+
+| 효과 | 동작 |
 | --- | --- |
-| `auto` | 매 틱 `1 / TICK_RATE` |
-| `attack` | 공격 1회(회복 포함)마다 +1 |
-| `hit` | 피해를 1번 받을 때마다 +1 |
+| statMul | 자신의 atk 또는 atkInterval에 배율 적용 |
+| splash | 기본 공격의 범위 피해 |
+| onHitSlow | 공격한 적의 이동 속도 감소 |
+| stunEveryNthHit | n번째 공격의 주 대상 기절 |
+| gainDp | 즉시 도토리 지급, 최대 99 |
+| hasteAura | 사거리 안 아군의 공격 간격에 배율 적용. 자기 칸 포함 시 자신도 적용 |
+| pulseDamage | 사거리 안 공격 가능한 적 전부에 반복 피해 |
+| slowAura | 매 틱 범위 안 공격 가능한 적에게 1틱 둔화 갱신 |
+| pushback | 우선 대상의 dist를 지정 칸만큼 감소, 최소 0. 위치·이전 위치·구간 캐시도 갱신 |
 
-`sp`가 `spCost`에 도달하면 `sp = spCost`, 상태를 `ready`로 바꾸고 `skillReady` 이벤트를 한 번 냅니다.
-auto 충전은 `1/30`을 계속 더하므로 부동소수 오차가 생깁니다. 그래서 `sp >= spCost - SP_EPSILON`(1e-6)이면 도달한 것으로 봅니다.
-
-**발동 조건** (`condition`). 수동·자동 발동 모두에 적용합니다.
-| condition | 참인 경우 |
-| --- | --- |
-| `always` | 항상 |
-| `enemyInRange` | 공격 가능한 적이 사거리 안에 있거나 저지 중 |
-| `allyDamagedInRange` | 사거리 안에 `hp < maxHp`인 아군이 있음 |
-
-**발동**
-- `trigger: "auto"`: `ready`이고 조건이 참이면 스킬 단계에서 자동으로 발동합니다.
-- `trigger: "manual"`: `activateSkill` 명령으로만 발동합니다. 검사 순서와 거부 이유는 `ended` → `notDeployed`(uid가 배치 중이 아님) → `autoSkill`(자동 발동 스킬) → `skillNotReady` → `noTarget`(조건 거짓)입니다.
-- 발동하면 `skillStart` 이벤트를 내고, 즉시 효과를 적용하고, 지속 효과를 버프로 붙입니다.
-  - `durationSec`가 0인 스킬: 즉시 `sp = 0`, `charging`, 같은 틱에 `skillEnd`.
-  - 지속 스킬: `active`, `skillTicksLeft = secToTicks(durationSec)`. 상태 단계에서 매 틱 1씩 줄고, 0이 되면 버프 제거, `sp = 0`, `charging`, `skillEnd`.
-- `active` 동안에는 SP가 차지 않습니다.
-
-**효과 목록** (`Effect`, 타입은 03 문서)
-
-| type | 시점 | 동작 |
-| --- | --- | --- |
-| `statMul { stat, value }` | 지속 / 특성 | atk·def·res·atkInterval에 곱함 |
-| `blockAdd { value }` | 지속 | 저지 수 증가. 끝나면 7절 규칙으로 초과분 해제 |
-| `splash { radius }` | 지속 / 특성 | 9절 |
-| `onHitSlow { amount, sec }` | 지속 / 특성 | 9절, 11절 |
-| `stunEveryNthHit { n, sec }` | 지속 | 9절 |
-| `gainDp { value }` | 즉시 | 도토리 증가 (최대 99) |
-| `healAllies { ratioOfMaxHp }` | 즉시 | 사거리 안 아군 전원 `maxHp * ratio` 회복 (자신 포함, 사거리에 자기 칸이 있으면) |
-| `pulseDamage { count, intervalSec, atkMul, damageType }` | 지속 | 발동 틱에 1회, 이후 `intervalSec`마다 사거리 안 공격 가능한 적 전부에게 `atk * atkMul`로 피해, 총 `count`회. `durationSec ≥ (count−1) × intervalSec` |
-| `slowAura { amount }` | 지속 | 매 틱 사거리 안 적 전부에 1틱짜리 둔화(갱신형) |
-| `pushback { tiles }` | 즉시 | 대상(저지 중인 첫 적, 없으면 8절 규칙의 첫 대상)을 `dist -= tiles`(최소 0)로 되돌리고 저지 해제 |
-
-**특성** (`traits`): 유닛에 항상 적용되는 효과입니다. 허용 타입은 `statMul`, `splash`, `onHitSlow`뿐이며 검증기가 확인합니다.
+특성은 statMul/splash/onHitSlow만 허용하며 항상 적용합니다. skill buffs는 지속 스킬이 끝나거나 후퇴하면 제거됩니다.
 
 ## 11. 적 상태이상
 
-- **둔화**: `slowAmount`, `slowUntilTick`. 새 둔화가 들어오면
-  - 기존보다 강하면 (amount 큼) 교체합니다.
-  - 같은 세기면 끝나는 시각을 더 늦은 쪽으로 늘립니다.
-  - 약하면 기존이 끝나기 전까지 무시합니다.
-  - 상한은 `SLOW_CAP = 0.8`입니다.
-- **기절**: `stunUntilTick = max(기존, 새 값)`. 기절 중에는 이동과 공격을 하지 않고, 공격 쿨다운도 멈춥니다.
-- 만료는 상태 단계에서 `tick >= until`이면 해제합니다. 해제될 때 `status` 이벤트를 냅니다 (연출 끄기용).
+- 둔화: 가장 강한 것 우선. 같은 세기는 더 늦은 만료 시각을 사용하며 약한 효과는 무시합니다. 상한 80%.
+- 기절: 기존/신규 중 더 늦은 만료 시각. 기절 중에는 이동하지 않습니다.
+- `tick >= until`이면 해제하고 status(on:false)를 냅니다. 새 상태가 생기면 status(on:true)를 냅니다.
+- slowAura는 범위를 벗어나거나 시전자가 후퇴한 뒤 다음 틱에 만료됩니다.
 
-## 12. 사망과 정리
+## 12. 처치와 정리
 
-- 사망 단계에서 `hp <= 0`인 적을 제거합니다: 저지 해제, `killed += 1`, `enemyDie` 이벤트.
-- `hp <= 0`인 유닛을 제거합니다: 저지 해제, 슬롯을 cooldown으로, `unitDie` 이벤트.
-- 한 틱 안에서는 hp가 0 이하가 되어도 사망 단계 전까지 남아 있습니다. 이번 틱의 다른 공격이 이미 죽은 대상을 고르지 않도록 대상 선택에서 `hp > 0`인 것만 고릅니다.
+HP가 0 이하인 적만 uid 순서로 제거하고 killed 증가·enemyDie를 냅니다. 같은 틱의 다른 공격은 이미 죽은 대상을 고르지 않습니다. 친구는 전투 중 쓰러지지 않습니다.
 
 ## 13. 승패
 
-- **패배**: `life <= 0`이 되는 즉시 (누수 처리 직후) `phase = 'lost'`.
-- **승리**: 모든 스폰이 끝났고, 살아 있는 적이 없고, `life > 0`이면 `phase = 'won'`.
-- 끝나면 `battleEnd` 이벤트를 한 번 냅니다. 종료를 발생시킨 `step()`은 해당 틱을 완료해 `tick += 1`하고, 이후 `step()`은 아무것도 하지 않습니다 (tick도 그대로). 치명적 누수 뒤 같은 틱의 다른 적 이동·사망·승리 단계는 건너뜁니다.
-- **웨이브 표시**: `state.currentWave`는 마지막으로 처리한 틱까지 스폰이 시작된 그룹의 최대 `wave`, `state.totalWaves`는 전체 그룹의 최대 `wave`입니다. 시작 전·스폰 없음은 0입니다.
+- 패배: 누수 직후 life <= 0이면 즉시 lost. 같은 틱의 나머지 이동·공격을 멈춥니다.
+- 승리: 모든 스폰 종료, 적 없음, life > 0이면 won.
+- battleEnd는 한 번만 냅니다. 종료한 step은 tick을 1 증가시키며 이후 step은 아무 일도 하지 않습니다.
+- currentWave는 이미 시작한 스폰 그룹의 최대 wave, totalWaves는 전체 최대 wave. 시작 전은 0입니다.
 
-## 14. 틱 순서 (step 한 번)
+## 14. 틱 순서
 
-| 단계 | 파일 | 내용 |
-| --- | --- | --- |
-| 1 | `commands.ts` | 큐의 명령을 받은 순서대로 검증 후 적용 |
-| 2 | `dp.ts` | 도토리 증가 |
-| 3 | `roster.ts` | 재배치 대기 감소 |
-| 4 | `spawn.ts` | 이번 틱 스폰 |
-| 5 | `status.ts` | 둔화·기절 만료, slowAura 적용, 스킬 남은 시간 감소와 종료 |
-| 6 | `movement.ts` | 적 이동, 누수, 패배 체크 |
-| 7 | `block.ts` | 초과분 해제, 새 저지 |
-| 8 | `skills.ts` | auto SP 충전, ready 전환, 자동 발동 |
-| 9 | `attack.ts` | 유닛 공격, 예정된 pulseDamage 적용 |
-| 10 | `enemyAttack.ts` | 적 공격 |
-| 11 | `death.ts` | 사망 정리 |
-| 12 | `outcome.ts` | 승리 체크 |
-| 13 | — | `tick += 1` |
+명령 → DP → 재배치 대기 → 스폰 → 예약 펄스·스킬 만료·상태이상 만료·둔화 오라 → 적 이동·누수 → SP 충전·자동 스킬 → 아군 자동 공격 → 적 처치 → 승리 확인 → tick 증가.
 
-이벤트는 이 순서대로 쌓입니다. `flush()`는 1단계만 실행합니다.
+flush는 명령만 처리합니다. 수동 스킬의 즉시 효과·첫 펄스도 flush 안에서 발생하므로 일시정지 중 사용이 가능합니다.
 
-## 15. 규칙 상수 (src/sim/constants.ts)
+## 15. 규칙 상수
 
-| 이름 | 값 | 설명 |
-| --- | --- | --- |
-| `TICK_RATE` | 30 | 초당 틱 |
-| DEFAULT_SEED | 1 | seed 미지정 시 결정론 초기값 |
-| `DP_MAX` | 99 | 도토리 최대 |
-| `DEFAULT_DP_PER_SEC` | 1 | 스테이지에 `dpPerSec`가 없을 때 |
-| `RETREAT_REFUND_RATIO` | 0.5 | 후퇴 환급 비율 (내림) |
-| `MIN_DAMAGE_RATIO` | 0.05 | 최소 피해 비율 |
-| `BLOCK_CONTACT_DIST` | 0.7 | 저지 접촉 거리 (타일) |
-| `SLOW_CAP` | 0.8 | 둔화 상한 |
-| `SP_EPSILON` | 1e-6 | SP 도달 판정 오차 |
+| 상수 | 값 |
+| --- | --- |
+| TICK_RATE | 30 |
+| DEFAULT_SEED | 1 |
+| DP_MAX | 99 |
+| DEFAULT_DP_PER_SEC | 1 |
+| RETREAT_REFUND_RATIO | 0.5 |
+| MIN_DAMAGE_RATIO | 0.05 |
+| SLOW_CAP | 0.8 |
+| SP_EPSILON | 1e-6 |
 
-앱 쪽 상수 (`src/app/loop.ts`): `MAX_STEPS_PER_FRAME = 8`, `BULLET_TIME_SCALE = 0.25`.
+앱의 MAX_STEPS_PER_FRAME은 8, BULLET_TIME_SCALE은 0.25입니다.
 
 ## 16. 결정론
 
-- `options.seed`는 uint32로 정규화해 `state.rngState`에 저장하며, 0도 유효합니다. seed를 생략하면 `DEFAULT_SEED`를 사용합니다.
-- sim 안에서 Math.random, `Date`, `performance`를 쓰지 않습니다. 난수가 필요해지면 `state.rngState`의 mulberry32를 씁니다 (v0.1 규칙에는 난수가 없음).
-- 배열은 항상 uid 순서로 돌고, 정렬할 때는 반드시 uid로 마지막 동점을 깹니다.
-- 삼각함수 결과로 게임 판정을 하지 않습니다 (sqrt는 허용).
-- 같은 콘텐츠 + 같은 스테이지 + 같은 명령 기록(틱 포함)이면 항상 같은 `hashState(state)`가 나와야 합니다.
-- hashState는 동일한 생성 순서의 전체 상태 JSON에 32비트 FNV-1a를 적용한 8자리 16진수입니다. 상태 비교 테스트용이며 보안 용도가 아닙니다.
+seed는 uint32로 정규화해 rngState에 보관하며 0도 유효합니다. sim은 Math.random/DOM/Date/performance를 쓰지 않습니다. 엔티티는 uid 순서이며 정렬 동점도 uid로 해소합니다. 같은 데이터·시드·명령이면 상태와 이벤트가 같습니다.
 
-## 17. 명령과 이벤트 타입
+## 17. 명령과 이벤트 계약
 
-```ts
-// Dir, Tile은 src/core/grid.ts에 정의
-import type { Dir, Tile } from '../core/grid';
-import type { DamageType } from '../data/types';
+정확한 타입은 [src/sim/types.ts](../../src/sim/types.ts)에 정의합니다.
 
-export type Command =
-  | { type: 'deploy'; unitId: string; tile: Tile; dir: Dir }
-  | { type: 'retreat'; uid: number }
-  | { type: 'activateSkill'; uid: number };
-
-export type RejectReason =
-  | 'ended' | 'notReady' | 'limit' | 'noDp' | 'badTile' | 'occupied'   // deploy
-  | 'notDeployed'                                                       // retreat, activateSkill
-  | 'skillNotReady' | 'noTarget' | 'autoSkill';                         // activateSkill (autoSkill = 자동 발동 스킬은 수동 불가)
-
-export interface Ref { kind: 'unit' | 'enemy'; uid: number }
-
-export type SimEvent =
-  | { type: 'commandRejected'; cmd: Command; reason: RejectReason }
-  | { type: 'unitDeploy'; uid: number; unitId: string; tile: Tile; dir: Dir }
-  | { type: 'unitRetreat'; uid: number; refund: number }
-  | { type: 'unitDie'; uid: number }
-  | { type: 'enemySpawn'; uid: number; enemyId: string }
-  | { type: 'enemyLeak'; uid: number; lifeLeft: number }
-  | { type: 'enemyDie'; uid: number }
-  | { type: 'block'; unit: number; enemy: number }
-  | { type: 'unblock'; unit: number; enemy: number }
-  | { type: 'attack'; src: Ref; dst: Ref; damageType: DamageType; ranged: boolean }
-  | { type: 'damage'; dst: Ref; amount: number; damageType: DamageType; src: Ref | null }
-  | { type: 'heal'; dst: Ref; amount: number; src: Ref }
-  | { type: 'status'; enemy: number; kind: 'slow' | 'stun'; on: boolean }
-  | { type: 'skillReady'; uid: number }
-  | { type: 'skillStart'; uid: number; skillId: string }
-  | { type: 'skillPulse'; uid: number }
-  | { type: 'skillEnd'; uid: number }
-  | { type: 'dpGain'; amount: number; source: 'skill' | 'refund' }
-  | { type: 'battleEnd'; result: 'won' | 'lost' };
-```
-
-- uid는 유닛과 적이 하나의 카운터를 공유합니다 (1부터 시작). 그래서 uid만으로도 엔티티가 유일하게 정해집니다.
-- `attack.ranged`는 유닛의 사거리 정의가 `melee`가 아니면 true입니다. 연출에서 투사체를 날릴지 정할 때 씁니다.
-
-## 18. 상태 타입 (요약)
-
-```ts
-export interface BattleState {
-  tick: number;
-  phase: 'running' | 'won' | 'lost';
-  dp: number; dpTicks: number;
-  life: number; maxLife: number;
-  roster: RosterSlot[];
-  units: UnitEntity[];      // uid 오름차순
-  enemies: EnemyEntity[];   // uid 오름차순
-  spawnCursor: number[];    // 그룹별로 이미 낸 마리 수
-  totalEnemies: number; killed: number; leaked: number;
-  currentWave: number; totalWaves: number;
-  nextUid: number;
-  rngState: number;
-}
-
-export interface UnitEntity {
-  uid: number; unitId: string; tile: Tile; dir: Dir;
-  hp: number; maxHp: number;
-  atkCooldown: number;
-  sp: number; skillState: 'charging' | 'ready' | 'active'; skillTicksLeft: number;
-  skillHitCount: number;              // stunEveryNthHit용
-  pulsesLeft: number; nextPulseTick: number;
-  blocking: number[];                 // 저지 중인 적 uid (저지한 순서)
-  buffs: ActiveEffect[];              // 스킬 지속 효과
-}
-
-export interface EnemyEntity {
-  uid: number; enemyId: string; routeId: string;
-  dist: number; segIndex: number;
-  x: number; y: number; px: number; py: number;
-  hp: number; maxHp: number;
-  atkCooldown: number;
-  blockedBy: number | null;
-  slowAmount: number; slowUntilTick: number;
-  stunUntilTick: number;
-}
-```
-
-구현하면서 필드를 더해도 됩니다. 단, 여기 있는 이름과 의미는 유지합니다.
-
-`ActiveEffect`는 현재 `Effect`의 별칭입니다. 스킬 지속 효과는 해당 유닛의 `skillTicksLeft` 동안 함께 유지하는 것으로 가정합니다 (실제 스킬 처리는 T2.2).
-
-```ts
-interface StageRuntime {
-  readonly definition: StageDef;
-  readonly board: Board;
-  readonly routes: ReadonlyMap<string, Polyline>;
-  readonly spawns: readonly SpawnRuntime[];
-}
-interface SpawnRuntime {
-  readonly enemy: EnemyDef;
-  readonly routeId: string;
-  readonly route: Polyline;
-  readonly wave: number;
-  readonly count: number;
-  readonly atTick: number;
-  readonly intervalTicks: number;
-}
-```
-
-`createBattle`에서 모든 경로를 한 번 계산하고 스폰 시각·간격을 정수 틱으로 바꿉니다. 원본 콘텐츠의 초 값은 변경하지 않습니다. 경로 생성에 실패하면 스테이지·경로명이 포함된 오류로 중단합니다.
+- Command: deploy(unitId/tile/dir), retreat(uid), activateSkill(uid).
+- UnitEntity: uid/unitId/tile/dir, 공격 쿨다운, SP/스킬 상태/종료 틱/공격 횟수/펄스 일정/buffs. 체력 필드는 없습니다.
+- EnemyEntity: 경로·현재/이전 위치·거리·HP·둔화/기절 일정. 반격·저지 필드는 없습니다.
+- 이벤트: commandRejected, unitDeploy/unitRetreat, enemySpawn/enemyLeak/enemyDie, attack/damage, status, skillReady/skillStart/skillPulse/skillEnd, dpGain, battleEnd.
+- unitDie/block/unblock/heal 이벤트는 제거했습니다. view/ui는 읽기만 하며 명령 enqueue로만 상태를 바꿉니다.

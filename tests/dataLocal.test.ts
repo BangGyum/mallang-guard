@@ -55,19 +55,14 @@ describe('콘텐츠 검증', () => {
     ['role', 'wizard'],
     ['art', 'dragon'],
     ['deployOn', 'air'],
+    ['deployOn', 'ground'],
+    ['damageType', 'heal'],
     ['damageType', 'true'],
     ['canHitAir', 'false'],
-    ['hp', 0],
-    ['hp', -1],
     ['atkIntervalSec', 0],
     ['cost', -1],
     ['atk', -1],
-    ['def', -1],
-    ['block', -1],
     ['redeploySec', -1],
-    ['res', -1],
-    ['res', 101],
-    ['hp', NaN],
     ['atk', Infinity],
     ['cost', '9'],
   ])('유닛의 잘못된 %s=%s를 경로와 함께 거부한다', (field, value) => {
@@ -76,7 +71,7 @@ describe('콘텐츠 검증', () => {
     expect(() => validateContent({ ...raw, units: [unit] })).toThrow(`content/units[0].${field}:`);
   });
 
-  it('고지대 저지와 존재하지 않는 스킬·사거리 참조를 거부한다', () => {
+  it('지상 배치와 존재하지 않는 스킬·사거리 참조를 거부한다', () => {
     for (const [field, value] of [
       ['skill', 'missing'],
       ['range', 'missing'],
@@ -87,9 +82,9 @@ describe('콘텐츠 검증', () => {
       );
     }
     const raw = fixture();
-    expect(() =>
-      validateContent({ ...raw, units: [{ ...first(raw.units), deployOn: 'high', block: 1 }] }),
-    ).toThrow('content/units[0].block:');
+    expect(() => validateContent({ ...raw, units: [{ ...first(raw.units), deployOn: 'ground' }] })).toThrow(
+      'content/units[0].deployOn:',
+    );
   });
 
   it('traits 허용 효과와 효과 필드를 검사한다', () => {
@@ -105,13 +100,10 @@ describe('콘텐츠 검증', () => {
 
   it.each([
     ['hp', 0],
-    ['atkIntervalSec', 0],
     ['speed', 0],
-    ['atk', -1],
     ['def', -1],
     ['res', 101],
     ['flying', 'true'],
-    ['damageType', 'heal'],
     ['art', 'dragon'],
   ])('적의 잘못된 %s=%s를 거부한다', (field, value) => {
     const raw = fixture();
@@ -139,12 +131,12 @@ describe('콘텐츠 검증', () => {
     [{ type: 'unknown' }, 'type'],
     [{ type: 'statMul', stat: 'hp', value: 1 }, 'stat'],
     [{ type: 'statMul', stat: 'atk', value: 0 }, 'value'],
-    [{ type: 'blockAdd', value: -1.5 }, 'value'],
+    [{ type: 'blockAdd', value: 1 }, 'type'],
     [{ type: 'splash', radius: -1 }, 'radius'],
     [{ type: 'onHitSlow', amount: 0.5, sec: 0 }, 'sec'],
     [{ type: 'stunEveryNthHit', n: 1.5, sec: 1 }, 'n'],
     [{ type: 'gainDp', value: -1 }, 'value'],
-    [{ type: 'healAllies', ratioOfMaxHp: 2 }, 'ratioOfMaxHp'],
+    [{ type: 'hasteAura', value: 0 }, 'value'],
     [{ type: 'pulseDamage', count: 0, intervalSec: 1, atkMul: 1, damageType: 'magic' }, 'count'],
     [{ type: 'pulseDamage', count: 1, intervalSec: 0, atkMul: 1, damageType: 'magic' }, 'intervalSec'],
     [{ type: 'pulseDamage', count: 1, intervalSec: 1, atkMul: 1, damageType: 'heal' }, 'damageType'],

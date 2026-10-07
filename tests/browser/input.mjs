@@ -36,16 +36,26 @@ try {
     await frame(page);
     await pause(page);
     console.log('잘못된 타일 배치 확인');
-    await drag(page, cdp, 'squirrel', { x: 2, y: 0 });
+    await drag(page, cdp, 'squirrel', { x: 2, y: 1 });
     assert.equal(await page.locator('.aim-directions').isVisible(), false);
     assert.equal(await page.locator('.toast').textContent(), '여기엔 놓을 수 없어요');
-    await deploy(page, cdp, 'squirrel', { x: 2, y: 1 }, 'left');
-    const center = await tilePoint(page, { x: 2, y: 1 });
+    await deploy(page, cdp, 'squirrel', { x: 2, y: 0 }, 'down');
+    const center = await tilePoint(page, { x: 2, y: 0 });
     if (mobile) await page.touchscreen.tap(center.x, center.y);
     else await page.mouse.click(center.x, center.y);
     await frame(page);
     assert.equal(await page.locator('.unit-panel').isVisible(), true);
-    await page.getByRole('button', { name: '후퇴', exact: false }).click();
+    assert.equal(
+      await page
+        .locator('.unit-panel')
+        .innerText()
+        .then((text) => /HP|체력|저지|방어력/.test(text)),
+      false,
+    );
+    assert.equal(await page.locator('.skill-button').isDisabled(), true);
+    const retreat = page.getByRole('button', { name: '후퇴', exact: false });
+    if (mobile) await retreat.tap();
+    else await retreat.click();
     await frame(page);
     assert.equal(await page.locator('[data-unit-id="squirrel"]').getAttribute('data-state'), 'cooldown');
     assert.equal(await page.locator('.dp-panel strong').textContent(), '5');
@@ -63,28 +73,52 @@ try {
     await page.locator('.deploy-bar').waitFor();
     await frame(page);
     await pause(page);
-    await deploy(page, cdp, 'squirrel', { x: 2, y: 1 }, 'left');
+    await deploy(page, cdp, 'squirrel', { x: 2, y: 0 }, 'down');
     const plans = [
       { ms: 12000, unitId: 'penguin', tile: { x: 5, y: 2 }, dir: 'left' },
       { ms: 15000, unitId: 'bunny', tile: { x: 3, y: 0 }, dir: 'down' },
       { ms: 17000, unitId: 'sheep', tile: { x: 2, y: 2 }, dir: 'up' },
-      { ms: 14000, unitId: 'cat', tile: { x: 6, y: 1 }, dir: 'down' },
+      { ms: 14000, unitId: 'cat', tile: { x: 6, y: 4 }, dir: 'up' },
     ];
     for (const plan of plans) {
       await resume(page);
       await frame(page, plan.ms);
       await deploy(page, cdp, plan.unitId, plan.tile, plan.dir);
+      if (plan.unitId === 'penguin' || plan.unitId === 'sheep') {
+        const source = plan.unitId === 'penguin' ? { x: 2, y: 0 } : { x: 5, y: 2 };
+        const at = await tilePoint(page, source);
+        if (mobile) await page.touchscreen.tap(at.x, at.y);
+        else await page.mouse.click(at.x, at.y);
+        await frame(page);
+        assert.equal(await page.locator('.unit-panel').getAttribute('data-skill-state'), 'ready');
+        const dp = Number(await page.locator('.dp-panel strong').textContent());
+        const activate = page.getByRole('button', { name: '스킬 발동', exact: true });
+        if (mobile) await activate.tap();
+        else await activate.click();
+        await frame(page);
+        if (plan.unitId === 'penguin') {
+          assert.equal(Number(await page.locator('.dp-panel strong').textContent()), dp + 12);
+          assert.equal(await page.locator('.unit-panel').getAttribute('data-skill-state'), 'charging');
+        } else {
+          assert.equal(await page.locator('.unit-panel').getAttribute('data-skill-state'), 'active');
+          await page.screenshot({
+            path: `docs/verification/defense-${mobile ? 'mobile' : 'desktop'}-skill.png`,
+          });
+        }
+        await page.keyboard.press('Escape');
+        await frame(page);
+      }
       console.log(`${mobile ? 'touch' : 'mouse'}: ${plan.unitId} 배치 완료`);
     }
     await resume(page);
     await frame(page, 4000);
     await pause(page);
-    await page.screenshot({ path: `docs/verification/t1.6-${mobile ? 'mobile' : 'desktop'}.png` });
+    await page.screenshot({ path: `docs/verification/defense-${mobile ? 'mobile' : 'desktop'}.png` });
     await resume(page);
     await frame(page, 60000);
     assert.equal(await page.locator('.battle-result strong').textContent(), '방어 성공!');
     assert.equal(await page.locator('.battle-result p').textContent(), '푸딩 3개 · 처치 21/21');
-    await page.screenshot({ path: `docs/verification/t1.6-${mobile ? 'mobile' : 'desktop'}-clear.png` });
+    await page.screenshot({ path: `docs/verification/defense-${mobile ? 'mobile' : 'desktop'}-clear.png` });
     assert.deepEqual(errors, []);
     console.log(
       JSON.stringify({

@@ -8,11 +8,9 @@ export function parseEffect(value: unknown, path: string): Effect {
     case 'statMul':
       return {
         type,
-        stat: oneOf(raw.stat, `${path}.stat`, ['atk', 'def', 'res', 'atkInterval']),
+        stat: oneOf(raw.stat, `${path}.stat`, ['atk', 'atkInterval']),
         value: positive(raw.value, `${path}.value`),
       };
-    case 'blockAdd':
-      return { type, value: integer(raw.value, `${path}.value`, -Infinity) };
     case 'splash':
       return { type, radius: number(raw.radius, `${path}.radius`) };
     case 'onHitSlow':
@@ -25,8 +23,8 @@ export function parseEffect(value: unknown, path: string): Effect {
       return { type, n: integer(raw.n, `${path}.n`, 1), sec: positive(raw.sec, `${path}.sec`) };
     case 'gainDp':
       return { type, value: integer(raw.value, `${path}.value`) };
-    case 'healAllies':
-      return { type, ratioOfMaxHp: number(raw.ratioOfMaxHp, `${path}.ratioOfMaxHp`, 0, 1) };
+    case 'hasteAura':
+      return { type, value: number(raw.value, `${path}.value`, Number.MIN_VALUE, 1) };
     case 'pulseDamage':
       return {
         type,

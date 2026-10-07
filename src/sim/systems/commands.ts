@@ -3,7 +3,7 @@ import type { ContentDb } from '../../data/types';
 import { DP_MAX, RETREAT_REFUND_RATIO, secToTicks } from '../constants';
 import { checkDeploy } from '../queries';
 import type { BattleState, Command, SimEvent, StageRuntime } from '../types';
-import { releaseUnit } from './blocking';
+import { chargeSkill, skillHasTarget, startSkill } from './skills';
 
 export function applyCommand(
   content: ContentDb,
@@ -33,21 +33,21 @@ export function applyCommand(
       unitId: def.id,
       tile: { ...cmd.tile },
       dir: cmd.dir,
-      hp: def.hp,
-      maxHp: def.hp,
       atkCooldown: 0,
       sp: skill.spStart,
       skillState: 'charging',
-      skillTicksLeft: 0,
+      skillEndTick: -1,
       skillHitCount: 0,
       pulsesLeft: 0,
       nextPulseTick: 0,
-      blocking: [],
       buffs: [],
     });
     slot.state = 'deployed';
     slot.uid = uid;
     events.push({ type: 'unitDeploy', uid, unitId: def.id, tile: { ...cmd.tile }, dir: cmd.dir });
+    const unit = state.units.at(-1);
+    assert(unit, 'battle.deploy: missing unit');
+    chargeSkill(content, unit, 0, events);
     return;
   }
   const unit = state.units.find((entry) => entry.uid === cmd.uid);
@@ -60,14 +60,18 @@ export function applyCommand(
   if (cmd.type === 'activateSkill') {
     const skill = content.skills.get(def.skill);
     assert(skill, 'battle.units: missing skill');
-    events.push({
-      type: 'commandRejected',
-      cmd,
-      reason: skill.trigger === 'auto' ? 'autoSkill' : 'skillNotReady',
-    });
+    const reason =
+      skill.trigger === 'auto'
+        ? 'autoSkill'
+        : unit.skillState !== 'ready'
+          ? 'skillNotReady'
+          : !skillHasTarget(content, stage, state, unit)
+            ? 'noTarget'
+            : null;
+    if (reason) events.push({ type: 'commandRejected', cmd, reason });
+    else startSkill(content, stage, state, unit, events);
     return;
   }
-  releaseUnit(state, unit, events);
   const slot = state.roster.find((entry) => entry.uid === unit.uid);
   assert(slot, 'battle.units: missing roster slot');
   slot.state = 'cooldown';

@@ -4,15 +4,15 @@ import { DEFAULT_SEED } from './constants';
 import { checkDeploy, rangeTilesFor, rosterView, unitAt } from './queries';
 import { createStage } from './stage';
 import { attackEnemies } from './systems/attack';
-import { blockEnemies } from './systems/block';
 import { applyCommand } from './systems/commands';
 import { removeDead } from './systems/death';
 import { recoverDp } from './systems/dp';
-import { attackUnits } from './systems/enemyAttack';
 import { moveEnemies } from './systems/movement';
 import { checkOutcome } from './systems/outcome';
 import { updateRoster } from './systems/roster';
+import { updateSkills } from './systems/skills';
 import { spawnEnemies } from './systems/spawn';
+import { updateStatus } from './systems/status';
 import type {
   BattleState,
   Command,
@@ -82,12 +82,12 @@ export class Battle {
     recoverDp(this.stage, this.#state);
     updateRoster(this.#state);
     spawnEnemies(this.stage, this.#state, events);
+    updateStatus(this.content, this.stage, this.#state, events);
     moveEnemies(this.content, this.stage, this.#state, events);
     if (this.#state.phase === 'running') {
-      blockEnemies(this.content, this.stage, this.#state, events);
+      updateSkills(this.content, this.stage, this.#state, events);
       attackEnemies(this.content, this.stage, this.#state, events);
-      attackUnits(this.content, this.#state, events);
-      removeDead(this.content, this.#state, events);
+      removeDead(this.#state, events);
       checkOutcome(this.stage, this.#state, events);
     }
     this.#state.tick += 1;

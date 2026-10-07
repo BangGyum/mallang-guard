@@ -41,15 +41,11 @@ export type SimEvent =
   | { type: 'commandRejected'; cmd: Command; reason: RejectReason }
   | { type: 'unitDeploy'; uid: number; unitId: string; tile: Tile; dir: Dir }
   | { type: 'unitRetreat'; uid: number; refund: number }
-  | { type: 'unitDie'; uid: number }
   | { type: 'enemySpawn'; uid: number; enemyId: string }
   | { type: 'enemyLeak'; uid: number; lifeLeft: number }
   | { type: 'enemyDie'; uid: number }
-  | { type: 'block'; unit: number; enemy: number }
-  | { type: 'unblock'; unit: number; enemy: number }
   | { type: 'attack'; src: Ref; dst: Ref; damageType: DamageType; ranged: boolean }
   | { type: 'damage'; dst: Ref; amount: number; damageType: DamageType; src: Ref | null }
-  | { type: 'heal'; dst: Ref; amount: number; src: Ref }
   | { type: 'status'; enemy: number; kind: 'slow' | 'stun'; on: boolean }
   | { type: 'skillReady'; uid: number }
   | { type: 'skillStart'; uid: number; skillId: string }
@@ -72,16 +68,13 @@ export interface UnitEntity {
   unitId: string;
   tile: Tile;
   dir: Dir;
-  hp: number;
-  maxHp: number;
   atkCooldown: number;
   sp: number;
   skillState: 'charging' | 'ready' | 'active';
-  skillTicksLeft: number;
+  skillEndTick: number;
   skillHitCount: number;
   pulsesLeft: number;
   nextPulseTick: number;
-  blocking: number[];
   buffs: ActiveEffect[];
 }
 
@@ -97,8 +90,6 @@ export interface EnemyEntity {
   py: number;
   hp: number;
   maxHp: number;
-  atkCooldown: number;
-  blockedBy: number | null;
   slowAmount: number;
   slowUntilTick: number;
   stunUntilTick: number;

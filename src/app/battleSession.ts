@@ -17,7 +17,7 @@ export function createBattleSession(content: ContentDb, app: HTMLDivElement) {
   assert(canvas && overlayCanvas && hudRoot, '전투 화면 요소가 없습니다');
   const battle = createBattle(content, 'stage-1');
   const view = createBoardView(canvas, battle.stage.board, content, ROLE_COLORS);
-  const overlay = createOverlay(overlayCanvas, battle.stage.board);
+  const overlay = createOverlay(overlayCanvas, battle.stage.board, content);
   const controls: LoopControls = { paused: false, speed: 1, bulletTime: false };
   const orientation = watchOrientation(app, controls);
   const hud = createHud(hudRoot, battle, {

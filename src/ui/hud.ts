@@ -20,7 +20,11 @@ export function createHud(
   pause.dataset.action = 'pause';
   speed.setAttribute('aria-label', '전투 배속 변경');
   top.append(title, stats, speed, pause);
-  const hint = element('p', 'battle-hint', '친구 카드를 길이나 고지대에 놓고, 바라볼 방향을 골라주세요.');
+  const hint = element(
+    'p',
+    'battle-hint',
+    '친구를 보라색 고지대에 놓아주세요. 자동으로 공격하고, 친구를 누르면 스킬을 쓸 수 있어요.',
+  );
   const toast = element('div', 'toast');
   toast.setAttribute('role', 'status');
   toast.setAttribute('aria-live', 'polite');

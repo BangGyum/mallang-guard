@@ -8,7 +8,7 @@ import { makeFixture, SPAWN } from './battleFixtures';
 const DEPLOY: Command & { type: 'deploy' } = {
   type: 'deploy',
   unitId: 'squirrel',
-  tile: { x: 1, y: 0 },
+  tile: { x: 1, y: 1 },
   dir: 'left',
 };
 
@@ -58,13 +58,13 @@ describe('배치·후퇴·조회', () => {
       item.setup(f);
       const events: SimEvent[] = [];
       const before = structuredClone(f.state);
-      const cmd = ['noDp', 'badTile'].includes(item.reason) ? { ...DEPLOY, tile: { x: 0, y: 1 } } : DEPLOY;
+      const cmd = ['noDp', 'badTile'].includes(item.reason) ? { ...DEPLOY, tile: { x: 0, y: 0 } } : DEPLOY;
       applyCommand(f.content, f.stage, f.state, cmd, events);
       expect(events).toEqual([{ type: 'commandRejected', cmd, reason: item.reason }]);
       expect(f.state).toEqual(before);
     }
   });
-  it('배치 비용·초기 HP·SP·공유 uid와 조회 상태를 반환한다', () => {
+  it('배치 비용·초기 SP·공유 uid와 조회 상태를 반환한다', () => {
     const { battle } = makeFixture();
     expect(battle.checkDeploy('squirrel', DEPLOY.tile)).toEqual({ ok: true });
     expect(battle.rosterView().find((card) => card.unitId === 'bear')?.state).toBe('noDp');
@@ -74,8 +74,6 @@ describe('배치·후퇴·조회', () => {
     ]);
     expect(battle.state.dp).toBe(1);
     expect(battle.unitAt(DEPLOY.tile)).toMatchObject({
-      hp: 1100,
-      maxHp: 1100,
       sp: 8,
       atkCooldown: 0,
       dir: 'left',
@@ -86,7 +84,7 @@ describe('배치·후퇴·조회', () => {
     expect(battle.state.enemies[0]?.uid).toBe(2);
   });
   it('후퇴 후 정확히 재배치 시간만큼 기다리면 준비된다', () => {
-    const { battle } = makeFixture(laneStage(['S.G'], [{ ...SPAWN, atSec: 500 }]));
+    const { battle } = makeFixture(laneStage(['S.G', 'HHH'], [{ ...SPAWN, atSec: 500 }]));
     battle.enqueue(DEPLOY);
     battle.flush();
     battle.enqueue({ type: 'retreat', uid: 1 });
@@ -105,7 +103,7 @@ describe('배치·후퇴·조회', () => {
       { x: -1, y: 0 },
       { x: 1.5, y: 0 },
       { x: 0, y: 0 },
-      { x: 0, y: 1 },
+      { x: 1, y: 0 },
     ]) {
       expect(battle.checkDeploy('squirrel', tile)).toEqual({ ok: false, reason: 'badTile' });
     }

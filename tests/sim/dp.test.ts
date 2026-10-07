@@ -5,7 +5,7 @@ import { makeFixture, SPAWN } from './battleFixtures';
 
 describe('도토리', () => {
   it('30틱마다 1개씩 회복한다', () => {
-    const { battle } = makeFixture(laneStage(['S.G'], [{ ...SPAWN, atSec: 500 }]));
+    const { battle } = makeFixture(laneStage(['S.G', 'HHH'], [{ ...SPAWN, atSec: 500 }]));
     run(battle, 29);
     expect(battle.state).toMatchObject({ dp: 10, dpTicks: 29 });
     battle.step();
@@ -23,13 +23,13 @@ describe('도토리', () => {
     expect([state.dp, state.dpTicks]).toEqual([98, 1]);
   });
   it('스테이지 회복 속도를 정수 틱으로 바꾼다', () => {
-    const { stage } = makeFixture(laneStage(['S.G'], [], { dpPerSec: 2 }));
+    const { stage } = makeFixture(laneStage(['S.G', 'HHH'], [], { dpPerSec: 2 }));
     expect(ticksPerDp(stage)).toBe(15);
   });
   it('비용 9인 후퇴는 4개를 환급하며 상한을 넘지 않는다', () => {
     for (const startDp of [10, 99]) {
-      const { battle } = makeFixture(laneStage(['S.G'], [{ ...SPAWN, atSec: 500 }], { startDp }));
-      battle.enqueue({ type: 'deploy', unitId: 'squirrel', tile: { x: 1, y: 0 }, dir: 'left' });
+      const { battle } = makeFixture(laneStage(['S.G', 'HHH'], [{ ...SPAWN, atSec: 500 }], { startDp }));
+      battle.enqueue({ type: 'deploy', unitId: 'squirrel', tile: { x: 1, y: 1 }, dir: 'left' });
       battle.flush();
       if (startDp === 99) run(battle, 9 * 30);
       battle.enqueue({ type: 'retreat', uid: 1 });

@@ -1,6 +1,6 @@
 export type { Dir, Tile } from '../core/grid'; // Dir, Tile은 core/grid.ts에 한 번만 정의
-export type DamageType = 'physical' | 'magic' | 'true' | 'heal';
-export type DeployOn = 'ground' | 'high';
+export type DamageType = 'physical' | 'magic' | 'true';
+export type DeployOn = 'high';
 export type Role =
   | 'vanguard'
   | 'guard'
@@ -38,12 +38,8 @@ export interface UnitDef {
   cost: number;
   deployOn: DeployOn;
   redeploySec: number;
-  hp: number;
   atk: number;
-  def: number;
-  res: number; // res: 0~100
   atkIntervalSec: number;
-  block: number; // 고지대 유닛은 0
   range: string; // RangeDef.id
   damageType: DamageType; // 'true'는 유닛에 쓰지 않음
   canHitAir: boolean;
@@ -56,38 +52,33 @@ export interface EnemyDef {
   name: string;
   art: ArtId;
   hp: number;
-  atk: number;
   def: number;
   res: number;
-  atkIntervalSec: number;
   speed: number; // 초당 타일
   flying: boolean;
-  blockCost: number; // 저지 수를 몇 칸 차지하는지 (기본 1)
   lifeDamage: number; // 누수 시 깎는 푸딩 수
-  damageType: 'physical' | 'magic';
 }
 
 export interface SkillDef {
   id: string;
   name: string;
   description: string; // UI에 그대로 표시
-  charge: 'auto' | 'attack' | 'hit';
+  charge: 'auto' | 'attack';
   spCost: number;
   spStart: number;
   trigger: 'manual' | 'auto';
-  condition: 'always' | 'enemyInRange' | 'allyDamagedInRange';
+  condition: 'always' | 'enemyInRange';
   durationSec: number; // 0이면 즉시형
   effects: Effect[];
 }
 
 export type Effect =
-  | { type: 'statMul'; stat: 'atk' | 'def' | 'res' | 'atkInterval'; value: number }
-  | { type: 'blockAdd'; value: number }
+  | { type: 'statMul'; stat: 'atk' | 'atkInterval'; value: number }
   | { type: 'splash'; radius: number }
   | { type: 'onHitSlow'; amount: number; sec: number }
   | { type: 'stunEveryNthHit'; n: number; sec: number }
   | { type: 'gainDp'; value: number }
-  | { type: 'healAllies'; ratioOfMaxHp: number }
+  | { type: 'hasteAura'; value: number }
   | {
       type: 'pulseDamage';
       count: number;

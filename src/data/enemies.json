@@ -4,44 +4,32 @@
     "name": "말썽젤리",
     "art": "jelly",
     "hp": 600,
-    "atk": 260,
     "def": 50,
     "res": 0,
-    "atkIntervalSec": 1.7,
     "speed": 0.9,
     "flying": false,
-    "blockCost": 1,
-    "lifeDamage": 1,
-    "damageType": "physical"
+    "lifeDamage": 1
   },
   {
     "id": "hardJelly",
     "name": "단단젤리",
     "art": "hardJelly",
     "hp": 1500,
-    "atk": 400,
     "def": 300,
     "res": 0,
-    "atkIntervalSec": 2.0,
     "speed": 0.6,
     "flying": false,
-    "blockCost": 1,
-    "lifeDamage": 1,
-    "damageType": "physical"
+    "lifeDamage": 1
   },
   {
     "id": "crow",
     "name": "까악",
     "art": "crow",
     "hp": 450,
-    "atk": 0,
     "def": 30,
     "res": 0,
-    "atkIntervalSec": 1.0,
     "speed": 1.2,
     "flying": true,
-    "blockCost": 1,
-    "lifeDamage": 1,
-    "damageType": "physical"
+    "lifeDamage": 1
   }
 ]
