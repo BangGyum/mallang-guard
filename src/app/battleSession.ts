@@ -10,25 +10,36 @@ import { createOverlay } from '../view/overlay';
 import { type LoopControls, startLoop } from './loop';
 import { watchOrientation } from './orientation';
 
-export function createBattleSession(content: ContentDb, app: HTMLDivElement) {
-  const canvas = app.querySelector<HTMLCanvasElement>('#board');
+export function createBattleSession(
+  content: ContentDb,
+  app: HTMLDivElement,
+  actions: { speed: 1 | 2; onMenu(): void; onEnd(): void; onSpeed(speed: 1 | 2): void },
+) {
+  const oldCanvas = app.querySelector<HTMLCanvasElement>('#board');
   const overlayCanvas = app.querySelector<HTMLCanvasElement>('#overlay');
   const hudRoot = app.querySelector<HTMLDivElement>('#hud');
-  assert(canvas && overlayCanvas && hudRoot, '전투 화면 요소가 없습니다');
+  assert(oldCanvas && overlayCanvas && hudRoot, '전투 화면 요소가 없습니다');
+  // 이전 세션에서 해제한 WebGL 컨텍스트를 재사용하지 않습니다.
+  const canvas = oldCanvas.cloneNode(false) as HTMLCanvasElement;
+  oldCanvas.replaceWith(canvas);
+  hudRoot.inert = false;
   const battle = createBattle(content, 'stage-1');
   const view = createBoardView(canvas, battle.stage.board, content, ROLE_COLORS);
   const overlay = createOverlay(overlayCanvas, battle.stage.board, content);
-  const controls: LoopControls = { paused: false, speed: 1, bulletTime: false };
+  const controls: LoopControls = { paused: false, speed: actions.speed, bulletTime: false };
+  let disposed = false;
+  function setSpeed(speed: 1 | 2) {
+    controls.speed = speed;
+    actions.onSpeed(speed);
+  }
   const orientation = watchOrientation(app, controls);
   const hud = createHud(hudRoot, battle, {
     pause() {
-      controls.paused = !controls.paused;
+      if (controls.paused) orientation.setPaused(false);
+      else actions.onMenu();
     },
     speed() {
-      controls.speed = controls.speed === 1 ? 2 : 1;
-    },
-    restart() {
-      window.location.reload();
+      setSpeed(controls.speed === 1 ? 2 : 1);
     },
   });
   const controller = createController(canvas, hudRoot, battle, view, {
@@ -36,11 +47,10 @@ export function createBattleSession(content: ContentDb, app: HTMLDivElement) {
       controls.bulletTime = active;
     },
     pause() {
-      controls.paused = !controls.paused;
+      orientation.setPaused(!controls.paused);
     },
-    speed(value) {
-      controls.speed = value;
-    },
+    speed: setSpeed,
+    menu: actions.onMenu,
     notify(message) {
       hud.notify(message);
     },
@@ -49,6 +59,10 @@ export function createBattleSession(content: ContentDb, app: HTMLDivElement) {
   const observer = new ResizeObserver(() => {
     view.resize();
     overlay.resize();
+    if (battle.state.phase !== 'running') {
+      view.render(battle.state, 1, 0);
+      overlay.render(battle.state, view.camera, 1);
+    }
   });
   observer.observe(app);
   view.resize();
@@ -59,6 +73,13 @@ export function createBattleSession(content: ContentDb, app: HTMLDivElement) {
     (events) => {
       view.onEvents(events);
       controller.onEvents(events);
+      if (events.some((event) => event.type === 'battleEnd'))
+        queueMicrotask(() => {
+          if (!disposed) {
+            loop.dispose();
+            actions.onEnd();
+          }
+        });
     },
     (alpha, dt) => {
       controller.update();
@@ -72,7 +93,15 @@ export function createBattleSession(content: ContentDb, app: HTMLDivElement) {
     battle,
     view,
     controls,
+    setPaused: orientation.setPaused,
+    setMenuOpen(open: boolean) {
+      if (open) orientation.setPaused(true);
+      controller.setEnabled(!open);
+      hudRoot.inert = open;
+    },
     dispose() {
+      if (disposed) return;
+      disposed = true;
       loop.dispose();
       orientation.dispose();
       controller.dispose();
@@ -81,6 +110,7 @@ export function createBattleSession(content: ContentDb, app: HTMLDivElement) {
       observer.disconnect();
       overlay.dispose();
       view.dispose();
+      hudRoot.inert = false;
     },
   };
 }

@@ -1,4 +1,4 @@
-import { createBattleSession } from './app/battleSession';
+import { createApp } from './app/app';
 import { assert } from './core/assert';
 import './ui/styles.css';
 
@@ -9,8 +9,8 @@ async function boot(): Promise<void> {
     const { content } = await import('./data');
     const app = document.querySelector<HTMLDivElement>('#app');
     assert(app, '보드 화면 요소가 없습니다');
-    const session = createBattleSession(content, app);
-    dispose = () => session.dispose();
+    const game = createApp(content, app);
+    dispose = () => game.dispose();
   } catch (error) {
     const message = document.createElement('div');
     message.className = 'load-error';

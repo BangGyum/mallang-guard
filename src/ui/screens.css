@@ -1,0 +1,203 @@
+#app [hidden] {
+  display: none;
+}
+.title-screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 24px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  pointer-events: auto;
+  background: radial-gradient(ellipse at 80% 5%, #ffffff99, transparent 50%);
+}
+.title-card {
+  display: grid;
+  grid-template-columns: 1fr 0.95fr;
+  gap: 40px;
+  width: min(880px, 100%);
+  padding: 44px;
+  box-sizing: border-box;
+  border: 2px solid #ffffff;
+  border-radius: 36px;
+  background: #fffdf1f5;
+  box-shadow: 0 18px 60px #3762461c;
+}
+.title-intro {
+  align-self: center;
+}
+.screen-eyebrow {
+  margin: 0 0 12px;
+  color: #698454;
+  font-size: 14px;
+}
+.title-card h1 {
+  margin: 0 0 18px;
+  font:
+    400 clamp(36px, 4vw, 56px) / 1.1 "Jua",
+    "Malgun Gothic",
+    sans-serif;
+  color: #3e684c;
+  letter-spacing: -1px;
+}
+.title-description,
+.title-controls {
+  color: #6d7e68;
+  font-size: 14px;
+  line-height: 1.8;
+  word-break: keep-all;
+}
+.title-stage {
+  display: grid;
+  gap: 5px;
+  padding: 18px;
+  margin: 24px 0 18px;
+  border: 1px solid #dce8ce;
+  border-radius: 18px;
+  background: #f1f7e8;
+}
+.title-stage small {
+  color: #799363;
+}
+.title-stage strong {
+  color: #3e6248;
+}
+.title-record {
+  color: #6d7e68;
+  font-size: 12px;
+}
+.primary-button {
+  border-color: #83ae70;
+  background: #59834f;
+  color: #fffef3;
+  font-weight: 700;
+}
+.start-button {
+  width: 100%;
+  min-height: 52px;
+  font-size: 18px;
+}
+.title-controls {
+  margin-bottom: 0;
+  text-align: center;
+  font-size: 11px;
+}
+.title-garden {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border-radius: 28px;
+  background: linear-gradient(#dff2f1, #eaf3d8);
+  color: #668252;
+}
+.title-pudding {
+  font-size: 100px;
+  line-height: 1.4;
+  filter: drop-shadow(0 10px 0 #6894501a);
+}
+.title-garden > p {
+  font-size: 13px;
+  margin: 12px 0 24px;
+}
+.title-friends {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+.title-friend {
+  display: grid;
+  justify-items: center;
+  gap: 5px;
+  color: #62735b;
+}
+.title-friend span {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  font-size: 28px;
+  border-radius: 18px;
+  border: 1px solid color-mix(in srgb, var(--friend-color) 25%, white);
+  background: #fffdf3;
+  animation: friend-bob 2.4s ease-in-out infinite;
+  animation-delay: var(--friend-delay);
+}
+.title-friend small,
+.title-version {
+  font-size: 11px;
+}
+.title-version {
+  color: #809579;
+}
+.game-dialog {
+  width: min(400px, calc(100vw - 32px));
+  max-height: calc(100dvh - 32px);
+  box-sizing: border-box;
+  padding: 30px;
+  border: 2px solid #ffffff;
+  border-radius: 26px;
+  background: #fffdf2;
+  color: #3e6248;
+  text-align: center;
+  box-shadow: 0 14px 60px #3153322e;
+  pointer-events: auto;
+}
+.game-dialog::backdrop {
+  background: #32563d59;
+  backdrop-filter: blur(3px);
+}
+.game-dialog h2 {
+  margin: 0 0 14px;
+  font:
+    400 32px "Jua",
+    "Malgun Gothic",
+    sans-serif;
+}
+.game-dialog p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #708068;
+  word-break: keep-all;
+}
+.screen-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 22px;
+}
+.screen-actions .primary-button {
+  grid-column: 1 / -1;
+}
+.pause-menu .screen-actions button:last-child {
+  grid-column: 1 / -1;
+}
+.result-icon {
+  font-size: 48px;
+  margin-bottom: 12px;
+}
+.result-best {
+  display: block;
+  padding: 10px;
+  border-radius: 12px;
+  background: #edf5df;
+  font-size: 13px;
+  color: #65814e;
+}
+.battle-result .screen-actions button {
+  grid-column: 1 / -1;
+}
+@keyframes friend-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}

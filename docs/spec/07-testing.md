@@ -160,3 +160,10 @@ stage-1의 검증된 고지대 배치 기록입니다. 수동 스킬 없이도 �
 가능하면 Playwright로 `npm run dev` 페이지를 열어 캡처합니다. Playwright 도입은 선택 사항이고, devDependency로만 둡니다.
 
 `node tests/browser/input.mjs`는 Edge에서 실제 마우스·터치 입력으로 잘못된 칸 거부, 고지대 배치·방향 선택·후퇴·환급·회전 안내·수동 스킬 2종의 발동과 stage-1 완주를 확인하고 스크린샷을 저장합니다. 가상 시계와 100ms 프레임으로 고정 틱을 진행하며 FPS 검증은 아닙니다. `node tests/browser/inputEdges.mjs`는 기본 rAF에서 키보드 확정·Esc 취소·터치 취소·두 손가락 입력·방향 드래그를 확인합니다.
+
+T2.4부터 브라우저 입력 검증은 타이틀의 시작 버튼으로 진입합니다. `input.mjs`는 승리 기록의 저장과 새로고침 후 복원도 확인하며, `MALLANG_SCREENSHOT_PREFIX`로 기존 검증 이미지를 덮어쓰지 않고 새 스크린샷을 남길 수 있습니다.
+
+- `tests/app/save.test.ts`: 기본값, 저장/복원, 깨진 JSON·버전·필드, 다른 설정 보존, 저장소 읽기/쓰기 실패를 검사합니다.
+- `node tests/browser/appFlow.mjs`: PC·모바일에서 메뉴·정지 배치·새로고침 없는 재시작과 타이틀 복귀를 확인합니다. 각 10회 반복 후 HUD·다이얼로그·프레임 예약·입력 리스너가 남지 않고 기존 최고 기록을 유지하는지 확인합니다.
+- `node tests/browser/sessionResources.mjs`: 유닛과 배치 고스트를 포함한 10개 세션에서 활성 자원 개수가 동일하고, 종료 후 `renderer.info.memory`의 지오메트리·텍스처가 0인지 검사합니다.
+- `node tests/browser/pauseOrientation.mjs`: 세로 화면에서 메뉴를 닫아도 전투가 멈추고, 가로 복귀 시 선택한 계속하기/정지 배치 상태를 유지하는지 검사합니다.

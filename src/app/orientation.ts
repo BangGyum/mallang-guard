@@ -23,6 +23,10 @@ export function watchOrientation(app: HTMLDivElement, controls: LoopControls) {
   observer.observe(app);
   update();
   return {
+    setPaused(paused: boolean) {
+      previouslyPaused = paused;
+      controls.paused = paused || rotating;
+    },
     dispose() {
       observer.disconnect();
       guide.remove();

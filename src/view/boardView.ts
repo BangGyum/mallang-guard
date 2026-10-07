@@ -20,6 +20,7 @@ import { createTiles } from './tiles';
 
 export interface BoardView {
   readonly camera: PerspectiveCamera;
+  readonly memory: { geometries: number; textures: number };
   resize(): void;
   render(state: Readonly<BattleState>, alpha: number, dt: number): void;
   onEvents(events: readonly SimEvent[]): void;
@@ -73,6 +74,9 @@ export function createBoardView(
   let camera = fitCamera(bounds, 1);
   let highlightState: HighlightState = {};
   return {
+    get memory() {
+      return { ...renderer.info.memory };
+    },
     get camera() {
       return camera;
     },

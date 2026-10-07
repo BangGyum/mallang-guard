@@ -1,9 +1,10 @@
 import assert from 'node:assert/strict';
 import { mkdir } from 'node:fs/promises';
 import { chromium } from 'playwright';
-import { deploy, drag, frame, pause, resume, tilePoint } from './helpers.mjs';
+import { deploy, drag, enterBattle, frame, pause, resume, tilePoint } from './helpers.mjs';
 
 const url = process.env.MALLANG_TEST_URL ?? 'http://127.0.0.1:43195/';
+const screenshotPrefix = process.env.MALLANG_SCREENSHOT_PREFIX ?? 'defense';
 await mkdir('docs/verification', { recursive: true });
 const browser = await chromium.launch({
   channel: 'msedge',
@@ -30,7 +31,7 @@ try {
     });
     console.log(`${mobile ? 'touch' : 'mouse'}: 페이지 로드`);
     await page.goto(url);
-    await page.locator('.deploy-bar').waitFor();
+    await enterBattle(page);
     console.log('시계 일시정지');
     await page.clock.pauseAt(new Date('2026-10-07T03:02:00Z'));
     await frame(page);
@@ -57,7 +58,10 @@ try {
     if (mobile) await retreat.tap();
     else await retreat.click();
     await frame(page);
-    assert.equal(await page.locator('[data-unit-id="squirrel"]').getAttribute('data-state'), 'cooldown');
+    assert.equal(
+      await page.locator('.deploy-card[data-unit-id="squirrel"]').getAttribute('data-state'),
+      'cooldown',
+    );
     assert.equal(await page.locator('.dp-panel strong').textContent(), '5');
     if (mobile) {
       await page.setViewportSize({ width: 390, height: 844 });
@@ -70,7 +74,7 @@ try {
       assert.equal(await page.locator('.rotate-guide').isVisible(), false);
     }
     await page.reload();
-    await page.locator('.deploy-bar').waitFor();
+    await enterBattle(page);
     await frame(page);
     await pause(page);
     await deploy(page, cdp, 'squirrel', { x: 2, y: 0 }, 'down');
@@ -102,7 +106,7 @@ try {
         } else {
           assert.equal(await page.locator('.unit-panel').getAttribute('data-skill-state'), 'active');
           await page.screenshot({
-            path: `docs/verification/defense-${mobile ? 'mobile' : 'desktop'}-skill.png`,
+            path: `docs/verification/${screenshotPrefix}-${mobile ? 'mobile' : 'desktop'}-skill.png`,
           });
         }
         await page.keyboard.press('Escape');
@@ -113,17 +117,30 @@ try {
     await resume(page);
     await frame(page, 4000);
     await pause(page);
-    await page.screenshot({ path: `docs/verification/defense-${mobile ? 'mobile' : 'desktop'}.png` });
+    await page.screenshot({
+      path: `docs/verification/${screenshotPrefix}-${mobile ? 'mobile' : 'desktop'}.png`,
+    });
     await resume(page);
     await frame(page, 60000);
-    assert.equal(await page.locator('.battle-result strong').textContent(), '방어 성공!');
-    assert.equal(await page.locator('.battle-result p').textContent(), '푸딩 3개 · 처치 21/21');
-    await page.screenshot({ path: `docs/verification/defense-${mobile ? 'mobile' : 'desktop'}-clear.png` });
+    assert.equal(await page.locator('.battle-result h2').textContent(), '방어 성공!');
+    assert.equal(await page.locator('.result-detail').textContent(), '푸딩 3개 · 처치 21/21');
+    await page.screenshot({
+      path: `docs/verification/${screenshotPrefix}-${mobile ? 'mobile' : 'desktop'}-clear.png`,
+    });
+    const saved = await page.evaluate(() => JSON.parse(localStorage.getItem('mallang-guard:v1')));
+    assert.deepEqual(saved.stages['stage-1'], { cleared: true, bestLife: 3 });
+    await page.getByRole('button', { name: '타이틀로', exact: true }).click();
+    await frame(page);
+    assert.match(await page.locator('.title-record').textContent(), /최고 푸딩 3개/);
+    await page.reload();
+    await page.locator('.title-screen').waitFor();
+    assert.match(await page.locator('.title-record').textContent(), /최고 푸딩 3개/);
     assert.deepEqual(errors, []);
     console.log(
       JSON.stringify({
         input: mobile ? 'touch' : 'mouse',
-        result: await page.locator('.battle-result p').textContent(),
+        result: '푸딩 3개 · 처치 21/21',
+        saved: saved.stages['stage-1'],
         errors,
       }),
     );
