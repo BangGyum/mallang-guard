@@ -1,5 +1,6 @@
 import type { Battle } from '../sim/battle';
 import { button, element } from './dom';
+import { playFeedback } from './feedback';
 
 interface Controls {
   paused: boolean;
@@ -15,6 +16,10 @@ export function createHud(
   title.append(element('small', '', battle.stage.definition.name));
   const stats = element('div', 'battle-stats');
   stats.setAttribute('aria-label', '전투 현황');
+  const life = element('span', 'battle-life');
+  const enemies = element('span', 'battle-enemies');
+  const wave = element('span', 'battle-wave');
+  stats.append(life, enemies, wave);
   const pause = button('일시정지', actions.pause);
   const speed = button('×1', actions.speed);
   pause.dataset.action = 'pause';
@@ -36,6 +41,8 @@ export function createHud(
   result.append(heading, detail, button('다시 하기', actions.restart));
   root.append(top, hint, toast, result);
   let timeoutId: ReturnType<typeof setTimeout> | undefined;
+  let previousLife = battle.state.life;
+  let previousWave = battle.state.currentWave;
   return {
     notify(message: string) {
       clearTimeout(timeoutId);
@@ -47,7 +54,14 @@ export function createHud(
     },
     update(controls: Controls) {
       const state = battle.state;
-      stats.textContent = `♥ 푸딩 ${state.life}　 젤리 ${state.killed + state.leaked}/${state.totalEnemies}　 WAVE ${state.currentWave}/${state.totalWaves}`;
+      life.textContent = `♥ 푸딩 ${state.life}`;
+      enemies.textContent = `젤리 ${state.killed + state.leaked}/${state.totalEnemies}`;
+      wave.textContent = `WAVE ${state.currentWave}/${state.totalWaves}`;
+      if (state.life < previousLife) playFeedback(life, 'shake');
+      if (state.currentWave !== previousWave) playFeedback(wave, 'pulse');
+      previousLife = state.life;
+      previousWave = state.currentWave;
+      life.classList.toggle('is-critical', state.life <= 1);
       pause.textContent = controls.paused ? '계속하기' : '일시정지';
       speed.textContent = `×${controls.speed}`;
       pause.disabled = state.phase !== 'running';

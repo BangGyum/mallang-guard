@@ -3,6 +3,7 @@ import { assert } from '../core/assert';
 import type { Battle } from '../sim/battle';
 import { ticksPerDp } from '../sim/systems/dp';
 import { element } from './dom';
+import { playFeedback } from './feedback';
 
 export function createDeployBar(
   root: HTMLDivElement,
@@ -44,11 +45,15 @@ export function createDeployBar(
       element('span', 'card-role', ROLE_NAMES[def.role]),
       status,
     );
-    card.addEventListener('pointerdown', (event) => onCardDown(def.id, event));
+    const select = (event?: PointerEvent) => {
+      if (card.getAttribute('aria-disabled') === 'true') playFeedback(card, 'shake');
+      onCardDown(def.id, event);
+    };
+    card.addEventListener('pointerdown', select);
     card.addEventListener('keydown', (event) => {
       if (event.key === 'Enter' || event.code === 'Space') {
         event.preventDefault();
-        onCardDown(def.id);
+        select();
       }
     });
     cards.append(card);
@@ -58,6 +63,7 @@ export function createDeployBar(
     update() {
       const left = battle.stage.definition.deployLimit - battle.state.units.length;
       remaining.textContent = `남은 배치 ${left}`;
+      remaining.classList.toggle('is-full', left <= 0);
       amount.textContent = String(battle.state.dp);
       progress.value = battle.state.dpTicks / ticksPerDp(battle.stage);
       for (const info of battle.rosterView()) {
