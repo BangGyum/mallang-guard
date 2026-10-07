@@ -4,6 +4,7 @@
 @import "./screens.css";
 @import "./screensMobile.css";
 @import "./portraits.css";
+@import "./settings.css";
 
 :root {
   font-family: "IBM Plex Sans KR", "Malgun Gothic", system-ui, sans-serif;

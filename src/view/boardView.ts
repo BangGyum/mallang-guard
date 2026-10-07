@@ -22,11 +22,17 @@ import { createTextures } from './textures';
 import { createTiles } from './tiles';
 import { createVfx } from './vfx';
 
+export interface ViewOptions {
+  quality: 'high' | 'low';
+  reducedMotion: boolean;
+}
+
 export interface BoardView {
   readonly camera: PerspectiveCamera;
   readonly memory: { geometries: number; textures: number };
   readonly metrics: { drawCalls: number; particles: number };
   entityPosition(uid: number): Vector3 | undefined;
+  setOptions(options: ViewOptions): void;
   resize(): void;
   render(state: Readonly<BattleState>, alpha: number, dt: number): void;
   onEvents(events: readonly SimEvent[], state: Readonly<BattleState>): void;
@@ -87,8 +93,21 @@ export function createBoardView(
 
   let camera = fitCamera(bounds, 1);
   let highlightState: HighlightState = {};
+  let quality: 'high' | 'low' = 'high';
+  let reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let shake = 0;
   return {
     entityPosition: entities.position,
+    setOptions(options) {
+      quality = options.quality;
+      reduced = options.reducedMotion;
+      renderer.setPixelRatio(quality === 'low' ? 1 : Math.min(window.devicePixelRatio, 2));
+      renderer.shadowMap.enabled = quality === 'high';
+      renderer.shadowMap.needsUpdate = true;
+      entities.setReducedMotion(reduced);
+      vfx.setOptions(reduced, quality === 'low');
+      landmarks.setReducedMotion(reduced);
+    },
     get metrics() {
       return { drawCalls: renderer.info.render.calls, particles: vfx.count };
     },
@@ -101,7 +120,7 @@ export function createBoardView(
     resize() {
       const width = Math.max(1, canvas.clientWidth);
       const height = Math.max(1, canvas.clientHeight);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setPixelRatio(quality === 'low' ? 1 : Math.min(window.devicePixelRatio, 2));
       renderer.setSize(width, height, false);
       renderer.shadowMap.needsUpdate = true;
       camera = fitCamera(
@@ -115,13 +134,19 @@ export function createBoardView(
       vfx.update(state, camera, dt);
       landmarks.update(camera, dt);
       highlights.update(highlightState, camera);
+      shake = Math.max(0, shake - dt);
+      const offset = reduced ? 0 : Math.sin(shake * 130) * (shake / 0.2) * 0.05;
+      camera.position.x += offset;
       renderer.render(scene, camera);
+      camera.position.x -= offset;
+      camera.updateMatrixWorld();
     },
     onEvents(events, state) {
       const delays = impactDelays(events);
       entities.onEvents(events, state, delays);
       vfx.onEvents(events, state, delays);
       landmarks.onEvents(events);
+      if (events.some((event) => event.type === 'enemyLeak')) shake = 0.2;
     },
     setHighlights(state) {
       highlightState = state;

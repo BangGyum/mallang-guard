@@ -22,7 +22,8 @@
 
 Node.js 24와 npm을 사용합니다 (`.nvmrc`: `24`). 고지대 디펜스와 캐릭터별 스킬을 브라우저에서 플레이할 수 있습니다.
 카드를 고지대에 끌어 놓고 방향을 고릅니다. 자동 공격·SP 충전·스킬 8종과 도토리·후퇴·재배치가 동작합니다.
-캐릭터는 역할색과 이니셜의 임시 그림이며, 상세 동물 그림은 T3.1에서 연결합니다.
+원본 목업의 동물 그림과 푸딩·포털, 배치/공격/스킬 애니메이션, 투사체·피해 숫자·상태이상 효과를 연결했습니다.
+타이틀 또는 일시정지 메뉴의 설정에서 효과음·품질·배속·움직임을 변경하고 저장할 수 있습니다. 소리는 첫 입력 후 켜집니다.
 
 ```bash
 npm install
@@ -46,7 +47,7 @@ push와 pull request에서는 Node.js 24로 `npm ci → check → lint → test 
 
 저장소의 Settings → Pages → Build and deployment → Source를 **GitHub Actions**로 선택합니다.
 이 설정은 저장소 관리자가 적용합니다. 이후 `main`에 push하면 검사와 빌드를 통과한 `dist/`를 배포합니다.
-배포 주소는 <https://banggyum.github.io/mallang-guard/>이며, 실제 배포 확인은 저장소 쓰기 인증과 Pages 설정 후 진행합니다.
+배포 주소는 <https://banggyum.github.io/mallang-guard/>이며, 실제 배포 확인은 관리자 Pages 설정과 구현 PR 병합 후 진행합니다.
 
 ## 문서
 

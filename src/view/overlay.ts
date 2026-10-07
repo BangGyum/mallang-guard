@@ -16,6 +16,7 @@ export function createOverlay(canvas: HTMLCanvasElement, board: Board, content: 
   const point = new Vector3();
   const combatText = createCombatText(ctx);
   let reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let low = false;
   let time = 0;
   let width = 1;
   let height = 1;
@@ -34,8 +35,9 @@ export function createOverlay(canvas: HTMLCanvasElement, board: Board, content: 
     return { x: ((point.x + 1) / 2) * width, y: ((1 - point.y) / 2) * height };
   }
   return {
-    setReducedMotion(value: boolean) {
-      reduced = value;
+    setOptions(options: { quality: 'high' | 'low'; reducedMotion: boolean }) {
+      reduced = options.reducedMotion;
+      low = options.quality === 'low';
     },
     onEvents(events: readonly SimEvent[], entityPosition: (uid: number) => Vector3 | undefined) {
       combatText.onEvents(events, entityPosition, impactDelays(events));
@@ -43,7 +45,7 @@ export function createOverlay(canvas: HTMLCanvasElement, board: Board, content: 
     resize() {
       width = Math.max(1, canvas.clientWidth);
       height = Math.max(1, canvas.clientHeight);
-      const dpr = Math.min(window.devicePixelRatio, 2);
+      const dpr = low ? 1 : Math.min(window.devicePixelRatio, 2);
       canvas.width = Math.round(width * dpr);
       canvas.height = Math.round(height * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);

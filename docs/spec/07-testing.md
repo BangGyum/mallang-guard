@@ -4,6 +4,20 @@
 
 `node tests/browser/performance.mjs`는 적 60·유닛 8의 1920×1080 실제 GPU 렌더와 빈 rAF 기준을 함께 측정합니다. 표시 주기가 60Hz 미만인 환경에서는 기준 대비 95% 이상을 확인하고, `--uncapped`로 표시 제한 없는 처리량이 60fps 이상인지 별도로 확인합니다. 두 결과를 `docs/verification/t3.3-performance*.json`에 기록합니다. 처리량을 사용자 화면의 실제 fps로 해석하지 않습니다. 드로우콜 120 이하·파티클 200 이하도 검사합니다.
 
+## M3 브라우저 회귀 검증
+
+개발 서버(127.0.0.1:43195)와 Edge에서 `node tests/browser/<이름>.mjs`로 실행합니다. `MALLANG_SCREENSHOT_PREFIX`를 지정하면 완주·HUD·스킬 팝업·화면 흐름·성능 기록을 별도 이름으로 보존합니다. 성능 측정은 다른 브라우저 검증과 동시에 실행하지 않습니다.
+
+| 스크립트 | 확인 내용 |
+| --- | --- |
+| `art`, `animations`, `effects`, `landmarks` | 그림·상태별 움직임·정지·투사체/사망 동기화·풀 상한·포털/골 |
+| `audio` | 실제 입력 전 컨텍스트 없음, 9종 합성, 50ms 중복 제한, 음소거, 종료/리스너 정리 |
+| `settings` | PC/터치 설정, 즉시 DPR 변경, 저장/복원, 모션 우선순위, 품질 자동/수동 선택, 재시작 |
+| `input`, `inputEdges`, `hud`, `skillPopover` | PC/터치 완주·입력 경계·단축키·수동/자동 스킬·겹침과 리사이즈 |
+| `smallPopup`, `pauseOrientation` | 740×360 팝업 버튼 잘림 회귀, 44px 터치 영역, 세로 화면 중 일시정지 |
+| `appFlow`, `sessionResources` | PC/모바일 10회 재시작, 이벤트/프레임 정리, GPU 자원 해제 |
+| `production` | `npm run preview -- --port 43205`의 `/mallang-guard/`에서 실제 빌드·아트·설정·전투 로딩 |
+
 `npm test`(Vitest)로 돌립니다. sim은 DOM 없이 Node에서 돌아야 하므로 sim 테스트의 environment는 `node`입니다.
 **sim 규칙을 바꾸거나 더할 때는 반드시 테스트를 같이 씁니다.** 화면(view/ui)은 순수 함수만 테스트하고, 나머지는 스크린샷으로 확인합니다.
 

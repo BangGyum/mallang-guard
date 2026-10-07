@@ -2,6 +2,10 @@ import assert from 'node:assert/strict';
 import { chromium } from 'playwright';
 import { enterBattle, frame, pause, resume } from './helpers.mjs';
 
+const prefix = process.env.MALLANG_SCREENSHOT_PREFIX
+  ? `${process.env.MALLANG_SCREENSHOT_PREFIX}-hud`
+  : 't2.3';
+
 const browser = await chromium.launch({
   channel: 'msedge',
   headless: true,
@@ -46,7 +50,7 @@ try {
       await unavailable.locator('.card-cost').evaluate((node) => getComputedStyle(node).color),
       'rgb(182, 70, 78)',
     );
-    await page.screenshot({ path: `docs/verification/t2.3-${mobile ? 'mobile' : 'desktop'}.png` });
+    await page.screenshot({ path: `docs/verification/${prefix}-${mobile ? 'mobile' : 'desktop'}.png` });
     await page.keyboard.press('2');
     await frame(page);
     assert.equal(await page.getByRole('button', { name: '전투 배속 변경' }).textContent(), '×2');
@@ -64,7 +68,9 @@ try {
     assert.equal(await page.locator('.battle-life').textContent(), '♥ 푸딩 1');
     assert.equal(await page.locator('.battle-life').getAttribute('class'), 'battle-life is-critical');
     assert.match(await page.locator('.battle-wave').textContent(), /WAVE 2\/5/);
-    await page.screenshot({ path: `docs/verification/t2.3-${mobile ? 'mobile' : 'desktop'}-critical.png` });
+    await page.screenshot({
+      path: `docs/verification/${prefix}-${mobile ? 'mobile' : 'desktop'}-critical.png`,
+    });
     assert.deepEqual(errors, []);
     console.log(JSON.stringify({ input: mobile ? 'touch' : 'mouse', hud: true, shortcuts: true, errors }));
     await context.close();

@@ -4,6 +4,7 @@ import { chromium } from 'playwright';
 import { createTestScene } from './scene.mjs';
 
 const uncapped = process.argv.includes('--uncapped');
+const prefix = process.env.MALLANG_SCREENSHOT_PREFIX ?? 't3.3';
 const browser = await chromium.launch({
   channel: 'msedge',
   headless: true,
@@ -85,7 +86,7 @@ try {
     };
   });
   await writeFile(
-    `docs/verification/t3.3-performance${uncapped ? '-uncapped' : ''}.json`,
+    `docs/verification/${prefix}-performance${uncapped ? '-uncapped' : ''}.json`,
     `${JSON.stringify({ mode: uncapped ? 'uncapped-throughput' : 'display-paced', ...result, errors }, null, 2)}\n`,
   );
   assert(result.peakCalls <= 120);
