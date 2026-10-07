@@ -113,6 +113,7 @@ interface RosterSlot {
 - `dp += floor(cost * RETREAT_REFUND_RATIO)` (0.5)
 - 저지 중인 적을 모두 풀어 줍니다.
 - 슬롯을 `cooldown`으로 바꾸고 `cooldownTicks = secToTicks(redeploySec)`. 이벤트는 `unitRetreat`.
+- `unitRetreat.refund`와 `dpGain.amount`는 상한 99를 적용한 실제 환급량입니다. 실제 환급이 0이면 `dpGain`은 생략합니다. 상한에 도달하면 회복 진행분도 0으로 초기화합니다.
 
 **쓰러짐**: 후퇴와 같지만 환급이 없고 이벤트는 `unitDie`입니다.
 

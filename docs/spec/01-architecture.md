@@ -150,13 +150,15 @@ export interface Battle {
   // UI가 쓰는 조회 헬퍼 (상태를 바꾸지 않음)
   checkDeploy(unitId: string, tile: Tile): DeployCheck;   // { ok: true } | { ok: false, reason }
   rangeTilesFor(unitId: string, tile: Tile, dir: Dir): Tile[];
-  unitAt(tile: Tile): UnitEntity | undefined;
+  unitAt(tile: Tile): Readonly<UnitEntity> | undefined;
   rosterView(): RosterCardView[];          // 카드 표시용: 상태, 비용, 남은 대기 시간
 }
 ```
 
 
-T1.3까지 `createBattle`, 상태·런타임 경로, `enqueue`, `flush`, `step`을 구현합니다. `flush`는 종료·없는 로스터·없는 배치 uid의 명령을 기존 거부 사유로 처리합니다. 실제 배치·후퇴 처리는 T1.4, 스킬 발동은 T2.2에서 연결합니다. 아직 연결되지 않은 명령은 개발 오류로 throw해 성공처럼 소비하지 않습니다. 조회 헬퍼는 T1.4에서 추가하며, 브라우저 전투 루프·뷰 연결은 T1.5 범위입니다.
+T1.4까지 배치·후퇴·도토리·재배치·저지·기본 공격·회복과 조회 헬퍼를 구현합니다. `flush`는 명령만 처리하고 시간을 진행하지 않습니다. 스킬 충전·발동·특성·버프는 T2.2에서 연결합니다. 이 단계의 배치 유닛은 초기 SP를 가지되 충전 상태에 머물며, 스킬 명령은 `autoSkill` 또는 `skillNotReady`로 거부합니다. 브라우저 전투 루프·뷰 연결은 T1.5 범위입니다.
+
+`DeployCheck`는 `{ ok: true } | { ok: false, reason: RejectReason }`입니다. `RosterCardView`는 `unitId`, `state`(`ready`/`noDp`/`deployed`/`cooldown`), `cost`, `cooldownSec`(실수 초), `uid`를 반환합니다. 카드 상태는 기존 로스터 상태에서 도토리 부족만 파생하며, 배치 제한은 `stage.definition.deployLimit`과 현재 유닛 수로 표시합니다. 조회 함수와 명령 처리에서 같은 배치 판정을 재사용합니다.
 
 - 명령(Command)과 이벤트(SimEvent)의 정확한 형태는 [02-combat-rules.md](02-combat-rules.md) 17절에 있습니다.
 - 거부된 명령은 상태를 바꾸지 않고 `{ type: 'commandRejected', cmd, reason }` 이벤트를 냅니다. UI는 이 이벤트로 토스트를 띄웁니다.

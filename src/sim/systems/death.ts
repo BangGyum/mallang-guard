@@ -1,16 +1,8 @@
 import { assert } from '../../core/assert';
 import type { ContentDb } from '../../data/types';
 import { secToTicks } from '../constants';
-import type { BattleState, EnemyEntity, SimEvent } from '../types';
-
-function unblock(state: BattleState, enemy: EnemyEntity, events: SimEvent[]): void {
-  const uid = enemy.blockedBy;
-  if (uid === null) return;
-  const unit = state.units.find((entry) => entry.uid === uid);
-  if (unit) unit.blocking = unit.blocking.filter((id) => id !== enemy.uid);
-  enemy.blockedBy = null;
-  events.push({ type: 'unblock', unit: uid, enemy: enemy.uid });
-}
+import type { BattleState, SimEvent } from '../types';
+import { releaseUnit, unblock } from './blocking';
 
 export function removeDead(content: ContentDb, state: BattleState, events: SimEvent[]): void {
   for (const enemy of state.enemies) {
@@ -22,10 +14,7 @@ export function removeDead(content: ContentDb, state: BattleState, events: SimEv
   state.enemies = state.enemies.filter((enemy) => enemy.hp > 0);
   for (const unit of state.units) {
     if (unit.hp > 0) continue;
-    for (const uid of [...unit.blocking]) {
-      const enemy = state.enemies.find((entry) => entry.uid === uid);
-      if (enemy) unblock(state, enemy, events);
-    }
+    releaseUnit(state, unit, events);
     const definition = content.units.get(unit.unitId);
     const slot = state.roster.find((entry) => entry.uid === unit.uid);
     assert(definition && slot, 'battle.units: missing definition or roster slot');
