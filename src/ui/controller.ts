@@ -6,6 +6,7 @@ import type { HighlightState } from '../view/highlights';
 import { pickTile, tileScreen } from '../view/picking';
 import { button, element } from './dom';
 import { directionFromDrag, type InputState } from './inputState';
+import { createSkillNotices } from './skillNotices';
 import { REJECTION_MESSAGES } from './toast';
 import { createUnitPanel } from './unitPanel';
 
@@ -41,7 +42,11 @@ export function createController(
     activateSkill() {
       if (state.mode === 'selected') battle.enqueue({ type: 'activateSkill', uid: state.uid });
     },
+    close() {
+      transition({ mode: 'idle' });
+    },
   });
+  const notices = createSkillNotices(root, canvas, battle, view);
   const arrows = new Map<Dir, HTMLButtonElement>();
   for (const [dir, symbol, name] of [
     ['up', '↑', '위'],
@@ -202,6 +207,7 @@ export function createController(
       transition({ mode: 'dragging', unitId, hover: null });
     },
     onEvents(events: readonly SimEvent[]) {
+      notices.onEvents(events);
       for (const event of events)
         if (event.type === 'commandRejected') actions.notify(REJECTION_MESSAGES[event.reason]);
     },
@@ -240,7 +246,8 @@ export function createController(
       }
       if (state.mode === 'selected') {
         const unit = battle.state.units.find((unit) => unit.uid === selectedUid);
-        if (unit) highlights = { range: battle.rangeTilesFor(unit.unitId, unit.tile, unit.dir) };
+        if (unit)
+          highlights = { range: battle.rangeTilesFor(unit.unitId, unit.tile, unit.dir), hover: unit.tile };
       }
       directions.hidden = state.mode !== 'aiming';
       ghost.hidden = state.mode !== 'dragging' || !!state.hover;
@@ -248,7 +255,13 @@ export function createController(
         ghost.textContent = battle.content.units.get(state.unitId)?.name ?? '';
         ghost.style.transform = `translate(${pointerX + 14}px, ${pointerY - 24}px)`;
       }
-      panel.update(state.mode === 'selected' ? state.uid : null);
+      const selected =
+        state.mode === 'selected' ? battle.state.units.find((unit) => unit.uid === selectedUid) : undefined;
+      panel.update(
+        selected?.uid ?? null,
+        selected ? tileScreen(canvas, view.camera, battle.stage.board, selected.tile) : null,
+      );
+      notices.update();
       view.setHighlights(highlights);
     },
     dispose() {
@@ -260,6 +273,7 @@ export function createController(
       document.removeEventListener('pointercancel', onCancel);
       document.removeEventListener('keydown', onKey);
       panel.dispose();
+      notices.dispose();
       directions.remove();
       ghost.remove();
     },
