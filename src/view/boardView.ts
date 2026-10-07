@@ -17,6 +17,7 @@ import { fitCamera } from './camera';
 import { createEntityViews } from './entityViews';
 import { impactDelays } from './eventTiming';
 import { createHighlights, type HighlightState } from './highlights';
+import { createLandmarks } from './landmarks';
 import { createTextures } from './textures';
 import { createTiles } from './tiles';
 import { createVfx } from './vfx';
@@ -52,10 +53,13 @@ export function createBoardView(
   const entities = createEntityViews(content, board, cache.textures);
   const highlights = createHighlights(board, cache.textures, content);
   const vfx = createVfx(content, board, cache.textures, entities.position);
+  const landmarks = createLandmarks(board, cache.textures);
+  landmarks.setReducedMotion(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   scene.add(tiles.group);
   scene.add(entities.group);
   scene.add(highlights.group);
   scene.add(vfx.group);
+  scene.add(landmarks.group);
   scene.add(new HemisphereLight(0xffffff, 0xb9a7d9, 1));
   const sunlight = new DirectionalLight(0xfff4e0, 2);
   sunlight.position.set(-4, 8, 5);
@@ -109,6 +113,7 @@ export function createBoardView(
     render(state, alpha, dt) {
       entities.update(state, camera, alpha, dt);
       vfx.update(state, camera, dt);
+      landmarks.update(camera, dt);
       highlights.update(highlightState, camera);
       renderer.render(scene, camera);
     },
@@ -116,6 +121,7 @@ export function createBoardView(
       const delays = impactDelays(events);
       entities.onEvents(events, state, delays);
       vfx.onEvents(events, state, delays);
+      landmarks.onEvents(events);
     },
     setHighlights(state) {
       highlightState = state;
@@ -125,6 +131,7 @@ export function createBoardView(
       entities.dispose();
       highlights.dispose();
       vfx.dispose();
+      landmarks.dispose();
       cache.dispose();
       sunlight.shadow.dispose();
       scene.clear();
