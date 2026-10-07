@@ -7,6 +7,22 @@ import { makeFixture, SPAWN, unitFixture } from './battleFixtures';
 import { combatFixture, placeEnemy } from './combatFixtures';
 
 describe('공격', () => {
+  it('저지가 풀린 동안에도 적 쿨다운이 감소해 다시 접촉하면 즉시 공격할 수 있다', () => {
+    const f = combatFixture();
+    const unit = f.state.units[0];
+    if (!unit) throw new Error('unit');
+    const enemy = placeEnemy(f, 0.8, { atkCooldown: 2 });
+    f.state.enemies = [enemy];
+    const events: SimEvent[] = [];
+    attackUnits(f.content, f.state, events);
+    expect(enemy.atkCooldown).toBe(1);
+    attackUnits(f.content, f.state, events);
+    expect(enemy.atkCooldown).toBe(0);
+    expect(events).toEqual([]);
+    enemy.blockedBy = unit.uid;
+    attackUnits(f.content, f.state, events);
+    expect(events.filter((event) => event.type === 'attack')).toHaveLength(1);
+  });
   it('첫 대상 즉시 공격하고 30틱 간격으로 공격한다', () => {
     const f = combatFixture();
     f.state.enemies = [placeEnemy(f, 0.8, { hp: 5000 })];
