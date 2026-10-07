@@ -109,11 +109,12 @@
   명령 큐는 골격만 준비했으며 배치·후퇴·공격·DP 처리와 조회 API는 T1.4에서 연결합니다. 화면의 적 표시는 T1.5 범위입니다.
   `t1.3-battle-core` 로컬 브랜치 완료, 원격 PR은 쓰기 인증 대기 중입니다.
 
-### [ ] T1.4 배치·저지·공격
+### [x] T1.4 배치·저지·공격
 - 읽을 문서: 02 (4~5, 7~9절)
 - 할 일: `commands.ts`, `dp.ts`, `roster.ts`, `block.ts`, `attack.ts`, `enemyAttack.ts`, `formulas.ts`, `stats.ts`(버프 없이 기본값), 조회 헬퍼 (`checkDeploy`, `rangeTilesFor`, `unitAt`, `rosterView`).
 - 테스트: formulas, dp, deploy, block, targeting, attack (07 문서).
 - 완료 조건: 테스트에서 유닛을 배치하면 적을 막고 처치합니다.
+- 검증 (2026-10-07): 조회 API와 명령 처리가 같은 배치 판정을 사용합니다. 배치·후퇴·DP·재배치·저지·기본 공격·회복·반격을 연결하고 28개 파일 438개 테스트 및 check/lint/build를 통과했습니다. 스킬·특성·버프는 T2.2 범위로 유지합니다.
 
 ### [ ] T1.5 엔티티 뷰 (임시 그래픽)
 - 읽을 문서: 04 (4, 6, 9절)

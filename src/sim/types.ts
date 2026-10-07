@@ -22,6 +22,16 @@ export type RejectReason =
   | 'noTarget'
   | 'autoSkill';
 
+export type DeployCheck = { ok: true } | { ok: false; reason: RejectReason };
+
+export interface RosterCardView {
+  readonly unitId: string;
+  readonly state: 'ready' | 'noDp' | 'deployed' | 'cooldown';
+  readonly cost: number;
+  readonly cooldownSec: number;
+  readonly uid: number | null;
+}
+
 export interface Ref {
   kind: 'unit' | 'enemy';
   uid: number;

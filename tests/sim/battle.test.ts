@@ -95,13 +95,12 @@ describe('battle core', () => {
     expect(battle.step().map((event) => event.type)).toEqual(['commandRejected', 'enemySpawn']);
     expect(battle.state.tick).toBe(1);
   });
-  it('T1.4의 유효한 배치 처리가 연결되기 전에는 명령을 조용히 버리지 않는다', () => {
+  it('flush로 유효한 배치를 적용해도 틱·스폰·도토리 회복 시간은 흐르지 않는다', () => {
     const { battle } = makeFixture();
-    const before = hashState(battle.state);
     battle.enqueue({ type: 'deploy', unitId: 'squirrel', tile: { x: 1, y: 0 }, dir: 'right' });
-    expect(() => battle.flush()).toThrow('deploy handling requires T1.4');
-    expect(() => battle.step()).toThrow('deploy handling requires T1.4');
-    expect(hashState(battle.state)).toBe(before);
+    expect(battle.flush()).toMatchObject([{ type: 'unitDeploy', unitId: 'squirrel' }]);
+    expect(battle.state).toMatchObject({ tick: 0, dp: 1, dpTicks: 0, enemies: [], nextUid: 2 });
+    expect(battle.unitAt({ x: 1, y: 0 })?.uid).toBe(1);
   });
   it('끝난 전투의 step은 큐와 틱을 진행하지 않고 flush는 ended로 거부한다', () => {
     const { battle } = makeFixture(laneStage(['S.G'], []));
