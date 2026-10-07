@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { chromium } from 'playwright';
-import { drag, frame, pause, tilePoint } from './helpers.mjs';
+import { drag, enterBattle, frame, pause, tilePoint } from './helpers.mjs';
 
 const browser = await chromium.launch({
   channel: 'msedge',
@@ -20,7 +20,7 @@ try {
     page.on('pageerror', (error) => errors.push(error.message));
     await page.clock.install({ time: new Date('2026-10-07T03:00:00Z') });
     await page.goto('http://127.0.0.1:43195/');
-    await page.locator('.deploy-bar').waitFor();
+    await enterBattle(page);
     await page.clock.pauseAt(new Date('2026-10-07T03:02:00Z'));
     await frame(page);
     await pause(page);

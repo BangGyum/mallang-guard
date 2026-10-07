@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { chromium } from 'playwright';
-import { frame, pause, resume } from './helpers.mjs';
+import { enterBattle, frame, pause, resume } from './helpers.mjs';
 
 const browser = await chromium.launch({
   channel: 'msedge',
@@ -29,7 +29,7 @@ try {
       window.cancelAnimationFrame = (id) => clearTimeout(id);
     });
     await page.goto('http://127.0.0.1:43195/');
-    await page.locator('.deploy-bar').waitFor();
+    await enterBattle(page);
     await frame(page);
     await pause(page);
     const unavailable = page.locator('.deploy-card[data-unit-id="bunny"]');

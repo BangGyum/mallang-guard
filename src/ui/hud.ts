@@ -6,11 +6,7 @@ interface Controls {
   paused: boolean;
   speed: 1 | 2;
 }
-export function createHud(
-  root: HTMLDivElement,
-  battle: Battle,
-  actions: { pause(): void; speed(): void; restart(): void },
-) {
+export function createHud(root: HTMLDivElement, battle: Battle, actions: { pause(): void; speed(): void }) {
   const top = element('div', 'battle-top');
   const title = element('div', 'stage-title', '말랑방위대');
   title.append(element('small', '', battle.stage.definition.name));
@@ -34,12 +30,7 @@ export function createHud(
   toast.setAttribute('role', 'status');
   toast.setAttribute('aria-live', 'polite');
   toast.hidden = true;
-  const result = element('div', 'battle-result');
-  result.hidden = true;
-  const heading = element('strong', '');
-  const detail = element('p', '');
-  result.append(heading, detail, button('다시 하기', actions.restart));
-  root.append(top, hint, toast, result);
+  root.append(top, hint, toast);
   let timeoutId: ReturnType<typeof setTimeout> | undefined;
   let previousLife = battle.state.life;
   let previousWave = battle.state.currentWave;
@@ -67,18 +58,12 @@ export function createHud(
       pause.disabled = state.phase !== 'running';
       speed.disabled = state.phase !== 'running';
       hint.hidden = state.tick > 150 || state.units.length > 0;
-      result.hidden = state.phase === 'running';
-      if (!result.hidden) {
-        heading.textContent = state.phase === 'won' ? '방어 성공!' : '푸딩을 뺏겼어요…';
-        detail.textContent = `푸딩 ${Math.max(0, state.life)}개 · 처치 ${state.killed}/${state.totalEnemies}`;
-      }
     },
     dispose() {
       clearTimeout(timeoutId);
       top.remove();
       hint.remove();
       toast.remove();
-      result.remove();
     },
   };
 }

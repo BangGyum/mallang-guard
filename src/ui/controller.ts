@@ -13,6 +13,7 @@ import { createUnitPanel } from './unitPanel';
 interface Actions {
   onModeChange(active: boolean): void;
   pause(): void;
+  menu(): void;
   speed(value: 1 | 2): void;
   notify(message: string): void;
 }
@@ -25,6 +26,7 @@ export function createController(
   actions: Actions,
 ) {
   let state: InputState = { mode: 'idle' };
+  let enabled = true;
   let pointerId: number | null = null;
   let captureTarget: HTMLElement | null = null;
   let pointerX = 0;
@@ -94,7 +96,13 @@ export function createController(
     transition({ mode: 'idle' });
   }
   function onDown(event: PointerEvent) {
-    if (pointerId !== null || !event.isPrimary || event.button !== 0 || battle.state.phase !== 'running')
+    if (
+      !enabled ||
+      pointerId !== null ||
+      !event.isPrimary ||
+      event.button !== 0 ||
+      battle.state.phase !== 'running'
+    )
       return;
     event.preventDefault();
     if (state.mode === 'aiming') {
@@ -143,9 +151,13 @@ export function createController(
     }
   }
   function onKey(event: KeyboardEvent) {
+    if (!enabled) return;
     if (event.key === 'Escape') {
+      const wasIdle = state.mode === 'idle';
       releasePointer();
       transition({ mode: 'idle' });
+      if (wasIdle && battle.state.phase === 'running') actions.menu();
+      event.preventDefault();
       return;
     }
     if (
@@ -183,7 +195,7 @@ export function createController(
   document.addEventListener('keydown', onKey);
   return {
     startDrag(unitId: string, event?: PointerEvent) {
-      if (!event && state.mode === 'aiming') return;
+      if (!enabled || (!event && state.mode === 'aiming')) return;
       if (pointerId !== null || (event && (!event.isPrimary || event.button !== 0))) return;
       const card = battle.rosterView().find((entry) => entry.unitId === unitId);
       const reason =
@@ -205,6 +217,13 @@ export function createController(
         capture(event, event.currentTarget);
       }
       transition({ mode: 'dragging', unitId, hover: null });
+    },
+    setEnabled(value: boolean) {
+      enabled = value;
+      if (!value) {
+        releasePointer();
+        transition({ mode: 'idle' });
+      }
     },
     onEvents(events: readonly SimEvent[]) {
       notices.onEvents(events);

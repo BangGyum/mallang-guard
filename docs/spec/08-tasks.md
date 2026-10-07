@@ -187,10 +187,13 @@
 - 검증 (2026-10-07): 푸딩 감소·웨이브 변경 피드백, 배치 불가 카드 흔들림, 부족 비용·배치 제한·재배치 상태 표시와 한글 글꼴을 마무리했습니다. 기존 배치·스킬 검증 및 `tests/browser/hud.mjs`의 PC·모바일 HUD/배속/키보드 확인, check/lint/test/build(456개 테스트)가 통과했습니다. 일시정지 메뉴와 배속 저장은 T2.4에서 연결합니다.
   화면: [PC](../verification/t2.3-desktop.png), [모바일](../verification/t2.3-mobile.png), [PC 푸딩 감소](../verification/t2.3-desktop-critical.png), [모바일 푸딩 감소](../verification/t2.3-mobile-critical.png).
 
-### [ ] T2.4 화면 흐름과 저장
+### [x] T2.4 화면 흐름과 저장
 - 읽을 문서: 05 (1, 3, 7절)
 - 할 일: 타이틀, 일시정지 메뉴, 결과 화면, 다시 시작, `dispose()`로 리소스 정리, `save.ts`.
 - 완료 조건: 타이틀 → 전투 → 결과 → 다시 하기를 10번 반복해도 메모리(Three.js `renderer.info.memory`)가 늘지 않습니다.
+- 검증 (2026-10-07): 타이틀·일시정지·정지 배치·승패 결과·새로고침 없는 재시작과 배속/최고 푸딩 기록 저장을 연결했습니다. PC·모바일 각 10회 반복 후 HUD·모달·입력 리스너·예약 프레임이 남지 않았습니다. 유닛/고스트를 포함한 세션 10회의 활성 GPU 자원은 매번 지오메트리 14·텍스처 5였고 종료 후 모두 0이었습니다.
+- 저장소 예외·잘못된 기록 테스트, 세로 화면 중 메뉴 재개/정지 배치, 실제 PC·모바일 stage-1 승리(푸딩 3·처치 21)와 새로고침 후 기록 복원을 확인했습니다. check/lint/test/build, 34개 파일 467개 테스트 통과. 브라우저 오류·경고 0건.
+  화면: [PC 타이틀](../verification/t2.4-desktop-title.png), [모바일 타이틀](../verification/t2.4-mobile-title.png), [PC 메뉴](../verification/t2.4-desktop-pause.png), [모바일 메뉴](../verification/t2.4-mobile-pause.png), [PC 승리](../verification/t2.4-desktop-clear.png), [모바일 승리](../verification/t2.4-mobile-clear.png), [PC 패배](../verification/t2.4-desktop-lost.png), [모바일 패배](../verification/t2.4-mobile-lost.png).
 
 ### [ ] T2.5 골든 시나리오와 밸런스 1차
 - 읽을 문서: 07 (2~4절)

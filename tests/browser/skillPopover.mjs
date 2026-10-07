@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { chromium } from 'playwright';
-import { deploy, frame, pause, resume, tilePoint } from './helpers.mjs';
+import { deploy, enterBattle, frame, pause, resume, tilePoint } from './helpers.mjs';
 
 const browser = await chromium.launch({
   channel: 'msedge',
@@ -27,7 +27,7 @@ try {
       window.cancelAnimationFrame = (id) => clearTimeout(id);
     });
     await page.goto(process.env.MALLANG_TEST_URL ?? 'http://127.0.0.1:43195/');
-    await page.locator('.deploy-bar').waitFor();
+    await enterBattle(page);
     await page.clock.pauseAt(new Date('2026-10-07T03:02:00Z'));
     await frame(page);
     await pause(page);

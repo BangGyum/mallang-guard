@@ -23,8 +23,7 @@ button:disabled {
 .battle-top,
 .deploy-bar,
 .unit-panel,
-.aim-directions,
-.battle-result {
+.aim-directions {
   pointer-events: auto;
 }
 .battle-top {
@@ -226,26 +225,4 @@ button:disabled {
   background: #536e58;
   white-space: nowrap;
   box-shadow: 0 3px 12px #334b3533;
-}
-.battle-result {
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  padding: 32px;
-  border-radius: 24px;
-  background: #fffdf0f5;
-  box-shadow: 0 6px 30px #334b3522;
-}
-.battle-result strong {
-  font-size: 27px;
-  white-space: nowrap;
-}
-.battle-result p {
-  font-size: 14px;
-}
-.battle-result button {
-  background: #daf0d0;
-  border-color: #b0d39e;
 }

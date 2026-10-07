@@ -4,10 +4,18 @@ export async function frame(page, ms = 120) {
   await page.clock.runFor(ms);
 }
 
+export async function enterBattle(page) {
+  await page.getByRole('button', { name: '시작', exact: true }).click();
+  await page.locator('.deploy-bar').waitFor();
+  await frame(page);
+}
+
 export async function pause(page) {
   const button = page.locator('[data-action="pause"]');
   if ((await button.textContent()) === '일시정지') {
     await button.click();
+    await frame(page);
+    await page.getByRole('button', { name: '멈춘 채 배치' }).click();
     await frame(page);
   }
 }
@@ -39,7 +47,7 @@ export async function tilePoint(page, tile) {
 }
 
 export async function drag(page, cdp, unitId, tile) {
-  const card = page.locator(`[data-unit-id="${unitId}"]`);
+  const card = page.locator(`.deploy-card[data-unit-id="${unitId}"]`);
   const box = await card.boundingBox();
   assert(box);
   const from = { x: box.x + box.width / 2, y: box.y + box.height / 2 };
@@ -70,5 +78,9 @@ export async function deploy(page, cdp, unitId, tile, dir) {
   if (cdp) await arrow.tap();
   else await arrow.click();
   await frame(page);
-  assert.equal(await page.locator(`[data-unit-id="${unitId}"]`).isVisible(), false, `${unitId}: 배치 성공`);
+  assert.equal(
+    await page.locator(`.deploy-card[data-unit-id="${unitId}"]`).isVisible(),
+    false,
+    `${unitId}: 배치 성공`,
+  );
 }

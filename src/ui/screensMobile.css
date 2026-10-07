@@ -1,0 +1,110 @@
+@media (max-height: 500px) {
+  .title-screen {
+    padding: 14px 24px;
+    gap: 6px;
+  }
+  .title-card {
+    max-width: 720px;
+    padding: 22px;
+    gap: 24px;
+    border-radius: 24px;
+  }
+  .title-card h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+  }
+  .screen-eyebrow {
+    margin-bottom: 7px;
+    font-size: 11px;
+  }
+  .title-description {
+    font-size: 11px;
+    margin: 0;
+    line-height: 1.6;
+  }
+  .title-stage {
+    margin: 12px 0;
+    padding: 10px 14px;
+    gap: 2px;
+    font-size: 13px;
+  }
+  .title-stage small,
+  .title-record {
+    font-size: 10px;
+  }
+  .start-button {
+    min-height: 44px;
+    font-size: 15px;
+  }
+  .title-controls {
+    margin-top: 6px;
+    font-size: 10px;
+  }
+  .title-garden {
+    padding: 12px;
+  }
+  .title-pudding {
+    font-size: 58px;
+    line-height: 1.2;
+  }
+  .title-garden > p {
+    font-size: 11px;
+    margin: 8px 0 14px;
+  }
+  .title-friends {
+    gap: 10px;
+  }
+  .title-friend span {
+    width: 37px;
+    height: 37px;
+    font-size: 23px;
+    border-radius: 13px;
+  }
+  .title-friend small {
+    font-size: 10px;
+  }
+  .game-dialog {
+    padding: 18px 24px;
+  }
+  .game-dialog h2 {
+    font-size: 27px;
+    margin-bottom: 8px;
+  }
+  .game-dialog p {
+    font-size: 12px;
+    margin: 8px 0;
+  }
+  .screen-actions {
+    margin-top: 14px;
+    gap: 8px;
+  }
+  .screen-actions button {
+    font-size: 12px;
+  }
+  .result-icon {
+    font-size: 30px;
+    margin-bottom: 6px;
+  }
+  .result-best {
+    padding: 6px;
+    font-size: 11px;
+  }
+}
+@media (max-width: 550px) and (min-height: 501px) {
+  .title-screen {
+    justify-content: flex-start;
+  }
+  .title-card {
+    grid-template-columns: 1fr;
+    padding: 24px;
+    gap: 24px;
+  }
+  .title-pudding {
+    font-size: 50px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .title-friend span {
+    animation: none;
+  }
+}
