@@ -4,6 +4,7 @@ import type { Battle } from '../sim/battle';
 import { ticksPerDp } from '../sim/systems/dp';
 import { element } from './dom';
 import { playFeedback } from './feedback';
+import { portrait } from './portrait';
 
 export function createDeployBar(
   root: HTMLDivElement,
@@ -40,8 +41,8 @@ export function createDeployBar(
     const status = element('span', 'card-status');
     card.append(
       element('span', 'card-cost', `🌰 ${def.cost}`),
+      portrait(def.art, 'card-portrait'),
       element('strong', 'card-name', def.name),
-      element('span', 'card-animal', def.animal),
       element('span', 'card-role', ROLE_NAMES[def.role]),
       status,
     );

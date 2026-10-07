@@ -1,4 +1,3 @@
-import { ROLE_COLORS } from '../art/palette';
 import { assert } from '../core/assert';
 import type { ContentDb } from '../data/types';
 import { createBattle } from '../sim/battle';
@@ -14,6 +13,7 @@ export function createBattleSession(
   content: ContentDb,
   app: HTMLDivElement,
   actions: { speed: 1 | 2; onMenu(): void; onEnd(): void; onSpeed(speed: 1 | 2): void },
+  images: ReadonlyMap<string, HTMLCanvasElement>,
 ) {
   const oldCanvas = app.querySelector<HTMLCanvasElement>('#board');
   const overlayCanvas = app.querySelector<HTMLCanvasElement>('#overlay');
@@ -24,7 +24,7 @@ export function createBattleSession(
   oldCanvas.replaceWith(canvas);
   hudRoot.inert = false;
   const battle = createBattle(content, 'stage-1');
-  const view = createBoardView(canvas, battle.stage.board, content, ROLE_COLORS);
+  const view = createBoardView(canvas, battle.stage.board, content, images);
   const overlay = createOverlay(overlayCanvas, battle.stage.board, content);
   const controls: LoopControls = { paused: false, speed: actions.speed, bulletTime: false };
   let disposed = false;

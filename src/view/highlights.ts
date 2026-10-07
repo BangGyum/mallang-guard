@@ -8,6 +8,7 @@ import {
   type Texture,
 } from 'three';
 import type { Dir, Tile } from '../core/grid';
+import type { ContentDb } from '../data/types';
 import type { Board } from '../sim/board';
 import { tileHeight } from './coords';
 import { createSprite } from './sprites';
@@ -19,7 +20,7 @@ export interface HighlightState {
   readonly ghost?: { readonly unitId: string; readonly tile: Tile; readonly dir: Dir | null };
 }
 
-export function createHighlights(board: Board, textures: ReadonlyMap<string, Texture>) {
+export function createHighlights(board: Board, textures: ReadonlyMap<string, Texture>, content: ContentDb) {
   const group = new Group();
   const geometry = new PlaneGeometry(0.92, 0.92).rotateX(-Math.PI / 2);
   const matrix = new Matrix4();
@@ -61,11 +62,13 @@ export function createHighlights(board: Board, textures: ReadonlyMap<string, Tex
           ghost = undefined;
         }
         ghostId = state.ghost?.unitId;
-        const texture = ghostId && textures.get(ghostId);
+        const art = ghostId && content.units.get(ghostId)?.art;
+        const texture = art && textures.get(art);
         if (texture) {
           ghost = createSprite(texture, 0.9, false);
           ghost.sprite.material.transparent = true;
-          ghost.sprite.material.opacity = 0.55;
+          const opacity = ghost.sprite.material.uniforms.uOpacity;
+          if (opacity) opacity.value = 0.55;
           ghost.sprite.material.depthWrite = false;
           group.add(ghost.group);
         }
@@ -75,6 +78,7 @@ export function createHighlights(board: Board, textures: ReadonlyMap<string, Tex
         const height = tileHeight(board.kindAt(tile.x, tile.y) ?? 'ground');
         ghost.sprite.position.set(tile.x + 0.5 - board.width / 2, height, tile.y + 0.5 - board.height / 2);
         ghost.sprite.quaternion.copy(camera.quaternion);
+        ghost.sprite.scale.x = state.ghost.dir === 'left' ? -0.9 : 0.9;
         ghost.shadow.position.set(ghost.sprite.position.x, height + 0.012, ghost.sprite.position.z);
       }
     },

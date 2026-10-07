@@ -1,31 +1,26 @@
-import { Group, type PerspectiveCamera } from 'three';
+import { Group, type PerspectiveCamera, type Texture } from 'three';
 import { assert } from '../core/assert';
 import { lerp } from '../core/math';
-import type { ContentDb, Role } from '../data/types';
+import type { ContentDb } from '../data/types';
 import type { Board } from '../sim/board';
 import type { BattleState, SimEvent } from '../sim/types';
 import { tileHeight } from './coords';
 import { createSprite } from './sprites';
-import { createTextures } from './textures';
 
 interface EntityView {
   visual: ReturnType<typeof createSprite>;
   flash: number;
 }
 
-export function createEntityViews(
-  content: ContentDb,
-  board: Board,
-  roleColors: Readonly<Record<Role, string>>,
-) {
+export function createEntityViews(content: ContentDb, board: Board, textures: ReadonlyMap<string, Texture>) {
   const group = new Group();
-  const cache = createTextures(content, roleColors);
   const views = new Map<number, EntityView>();
   const heights: Record<string, number> = { jelly: 0.75, hardJelly: 0.85, crow: 0.7 };
   function ensure(uid: number, id: string, enemy: boolean): EntityView {
     const existing = views.get(uid);
     if (existing) return existing;
-    const texture = cache.textures.get(id);
+    const art = (enemy ? content.enemies.get(id) : content.units.get(id))?.art;
+    const texture = art && textures.get(art);
     assert(texture, `캐릭터 그림이 없습니다: ${id}`);
     const visual = createSprite(
       texture,
@@ -54,11 +49,11 @@ export function createEntityViews(
     view.visual.sprite.quaternion.copy(camera.quaternion);
     view.visual.shadow.position.set(x - board.width / 2, elevation + 0.012, y - board.height / 2);
     view.flash = Math.max(0, view.flash - dt);
-    view.visual.sprite.material.color.set(view.flash > 0 ? '#ffd0da' : '#ffffff');
+    const flash = view.visual.sprite.material.uniforms.uFlash;
+    if (flash) flash.value = view.flash / 0.15;
   }
   return {
     group,
-    textures: cache.textures,
     onEvents(events: readonly SimEvent[]) {
       for (const event of events)
         if (event.type === 'damage') {
@@ -73,12 +68,15 @@ export function createEntityViews(
         const view = ensure(unit.uid, unit.unitId, false);
         const elevation = tileHeight(board.kindAt(unit.tile.x, unit.tile.y) ?? 'ground');
         place(view, unit.tile.x + 0.5, unit.tile.y + 0.5, elevation, false, camera, dt);
+        view.visual.sprite.scale.x = unit.dir === 'left' ? -0.9 : 0.9;
       }
       for (const enemy of state.enemies) {
         alive.add(enemy.uid);
         const view = ensure(enemy.uid, enemy.enemyId, true);
         const flying = !!content.enemies.get(enemy.enemyId)?.flying;
         place(view, lerp(enemy.px, enemy.x, alpha), lerp(enemy.py, enemy.y, alpha), 0, flying, camera, dt);
+        if (enemy.x !== enemy.px)
+          view.visual.sprite.scale.x = (heights[enemy.enemyId] ?? 0.75) * Math.sign(enemy.x - enemy.px);
       }
       for (const [uid, view] of views)
         if (!alive.has(uid)) {
@@ -91,7 +89,6 @@ export function createEntityViews(
       for (const view of views.values()) view.visual.dispose();
       views.clear();
       group.clear();
-      cache.dispose();
     },
   };
 }

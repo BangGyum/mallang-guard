@@ -1,3 +1,4 @@
+import { critterSvg } from '../art/critters';
 import { ROLE_COLORS, ROLE_NAMES } from '../art/palette';
 import type { Battle } from '../sim/battle';
 import { DP_MAX, RETREAT_REFUND_RATIO, TICK_RATE } from '../sim/constants';
@@ -52,6 +53,7 @@ export function createUnitPanel(
         return;
       }
       if (selectedUid !== uid) {
+        avatar.innerHTML = critterSvg(def.art);
         // 유닛 전환 시에도 짧게 열리지만, 매 프레임 애니메이션을 재시작하지 않습니다.
         for (const animation of card.getAnimations()) animation.cancel();
         if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches)
@@ -67,7 +69,6 @@ export function createUnitPanel(
       panel.dataset.unitId = def.id;
       panel.setAttribute('aria-label', `${def.name}의 스킬`);
       name.textContent = `${def.name}의 스킬`;
-      avatar.textContent = def.name.slice(0, 1);
       for (const node of [panel, marker, link]) node.style.setProperty('--unit-color', ROLE_COLORS[def.role]);
       description.textContent = `${def.animal} · ${ROLE_NAMES[def.role]} · ${skill.trigger === 'auto' ? '자동 발동' : '수동 발동'}`;
       skillName.textContent = skill.name;
