@@ -2,6 +2,7 @@ import { ART_COLORS } from './palette';
 
 const star = '<path d="M32 5L39 23L59 24L43 37L48 57L32 46L16 57L21 37L5 24L25 23Z"';
 const drawings = {
+  ring: '<circle cx="32" cy="32" r="25" stroke="#FFE596" stroke-width="5" fill="none"/>',
   snowball:
     '<circle cx="32" cy="32" r="24" fill="#fff"/><path d="M16 28Q20 15 32 15" fill="none" stroke="#C4DFFF" stroke-width="5"/>',
   star: `${star} fill="#FFD45C"/>`,

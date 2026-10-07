@@ -1,5 +1,9 @@
 # 07. 테스트
 
+## M3 렌더 성능 측정
+
+`node tests/browser/performance.mjs`는 적 60·유닛 8의 1920×1080 실제 GPU 렌더와 빈 rAF 기준을 함께 측정합니다. 표시 주기가 60Hz 미만인 환경에서는 기준 대비 95% 이상을 확인하고, `--uncapped`로 표시 제한 없는 처리량이 60fps 이상인지 별도로 확인합니다. 두 결과를 `docs/verification/t3.3-performance*.json`에 기록합니다. 처리량을 사용자 화면의 실제 fps로 해석하지 않습니다. 드로우콜 120 이하·파티클 200 이하도 검사합니다.
+
 `npm test`(Vitest)로 돌립니다. sim은 DOM 없이 Node에서 돌아야 하므로 sim 테스트의 environment는 `node`입니다.
 **sim 규칙을 바꾸거나 더할 때는 반드시 테스트를 같이 씁니다.** 화면(view/ui)은 순수 함수만 테스트하고, 나머지는 스크린샷으로 확인합니다.
 

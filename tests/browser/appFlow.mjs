@@ -2,6 +2,8 @@ import assert from 'node:assert/strict';
 import { chromium } from 'playwright';
 import { deploy, enterBattle, frame } from './helpers.mjs';
 
+const screenshotPrefix = process.env.MALLANG_SCREENSHOT_PREFIX ?? 't2.4';
+
 const browser = await chromium.launch({
   channel: 'msedge',
   headless: true,
@@ -54,7 +56,9 @@ try {
       window.flowMarker = true;
     });
     assert.match(await page.locator('.title-record').textContent(), /최고 푸딩 2개/);
-    await page.screenshot({ path: `docs/verification/t2.4-${mobile ? 'mobile' : 'desktop'}-title.png` });
+    await page.screenshot({
+      path: `docs/verification/${screenshotPrefix}-${mobile ? 'mobile' : 'desktop'}-title.png`,
+    });
     const cdp = await context.newCDPSession(page);
     const documentObject = await cdp.send('Runtime.evaluate', { expression: 'document' });
     const listenerCount = async () => {
@@ -81,7 +85,9 @@ try {
       '×1',
     );
     assert.equal(await page.locator('.dp-panel strong').textContent(), '10');
-    await page.screenshot({ path: `docs/verification/t2.4-${mobile ? 'mobile' : 'desktop'}-pause.png` });
+    await page.screenshot({
+      path: `docs/verification/${screenshotPrefix}-${mobile ? 'mobile' : 'desktop'}-pause.png`,
+    });
     await page.keyboard.press('Escape');
     await frame(page);
     assert.equal(await page.locator('.pause-menu').count(), 0);
@@ -96,17 +102,19 @@ try {
     await frame(page);
     assert.equal(await page.locator('.deploy-card[data-unit-id="squirrel"]').isVisible(), true);
     assert.equal(await page.locator('.dp-panel strong').textContent(), '10');
-    await frame(page, 27000);
+    await frame(page, 28000);
     assert.equal(await page.locator('.battle-result').getAttribute('data-result'), 'lost');
     assert.equal(await page.evaluate(() => window.pendingGameFrames()), 0);
-    await page.screenshot({ path: `docs/verification/t2.4-${mobile ? 'mobile' : 'desktop'}-lost.png` });
+    await page.screenshot({
+      path: `docs/verification/${screenshotPrefix}-${mobile ? 'mobile' : 'desktop'}-lost.png`,
+    });
     await page.getByRole('button', { name: '타이틀로', exact: true }).click();
     await frame(page);
     // 반복 검증은 작은 화면에서 진행해 소프트웨어 WebGL 렌더 비용을 줄입니다.
     await page.setViewportSize({ width: 740, height: 360 });
     for (let i = 0; i < 10; i++) {
       await enterBattle(page);
-      await frame(page, 27000);
+      await frame(page, 28000);
       assert.equal(await page.locator('.battle-result').getAttribute('data-result'), 'lost');
       await page.getByRole('button', { name: '다시 하기', exact: true }).click();
       await frame(page);
