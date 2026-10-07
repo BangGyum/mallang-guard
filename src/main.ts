@@ -1,30 +1,16 @@
+import { createBattleSession } from './app/battleSession';
 import { assert } from './core/assert';
-import { parseBoard } from './sim/board';
 import './ui/styles.css';
-import { createBoardView } from './view/boardView';
 
 let dispose: (() => void) | undefined;
 
 async function boot(): Promise<void> {
   try {
     const { content } = await import('./data');
-    const stage = content.stages.get('stage-1');
-    assert(stage, 'stage-1 콘텐츠가 없습니다');
-    const canvas = document.querySelector<HTMLCanvasElement>('#board');
     const app = document.querySelector<HTMLDivElement>('#app');
-    assert(canvas && app, '보드 화면 요소가 없습니다');
-    const view = createBoardView(canvas, parseBoard(stage.map));
-    const observer = new ResizeObserver(() => {
-      view.resize();
-      view.render();
-    });
-    observer.observe(app);
-    view.resize();
-    view.render();
-    dispose = () => {
-      observer.disconnect();
-      view.dispose();
-    };
+    assert(app, '보드 화면 요소가 없습니다');
+    const session = createBattleSession(content, app);
+    dispose = () => session.dispose();
   } catch (error) {
     const message = document.createElement('div');
     message.className = 'load-error';
