@@ -15,7 +15,7 @@ export function startLoop(
   battle: Battle,
   controls: LoopControls,
   onEvents: (events: SimEvent[]) => void,
-  render: (alpha: number, dt: number) => void,
+  render: (alpha: number, dt: number, wallDt: number) => void,
 ) {
   const tickSec = 1 / TICK_RATE;
   let acc = 0;
@@ -37,7 +37,7 @@ export function startLoop(
     }
     if (steps === MAX_STEPS_PER_FRAME) acc = 0;
     if (controls.paused) onEvents(battle.flush());
-    render(controls.paused || battle.state.phase !== 'running' ? 1 : acc / tickSec, dt * scale);
+    render(controls.paused || battle.state.phase !== 'running' ? 1 : acc / tickSec, dt * scale, dt);
     frameId = requestAnimationFrame(frame);
   }
   function onVisibility() {

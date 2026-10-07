@@ -1,4 +1,4 @@
-import { Group, type PerspectiveCamera, type Texture, Vector3 } from 'three';
+import { Color, Group, Matrix4, type PerspectiveCamera, type Texture, Vector3 } from 'three';
 import { assert } from '../core/assert';
 import { lerp } from '../core/math';
 import type { ContentDb } from '../data/types';
@@ -6,6 +6,8 @@ import type { Board } from '../sim/board';
 import type { BattleState, SimEvent } from '../sim/types';
 import { type Motion, type Pose, samplePose } from './animation';
 import { tileHeight } from './coords';
+import { createShadows } from './shadows';
+import { createSpriteBatch } from './spriteBatch';
 import { createSprite } from './sprites';
 
 interface EntityView {
@@ -15,11 +17,20 @@ interface EntityView {
   height: number;
   direction: number;
   flying: boolean;
+  hitDelay: number;
+  exitDelay: number;
+  art: string;
 }
 
 export function createEntityViews(content: ContentDb, board: Board, textures: ReadonlyMap<string, Texture>) {
   const group = new Group();
   const views = new Map<number, EntityView>();
+  const shadows = createShadows();
+  const sprites = createSpriteBatch(textures);
+  const spriteMatrix = new Matrix4();
+  const white = new Color('#ffffff');
+  group.add(shadows.group);
+  group.add(sprites.group);
   const heights: Record<string, number> = { jelly: 0.75, hardJelly: 0.85, crow: 0.7 };
   let reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function ensure(uid: number, id: string, enemy: boolean): EntityView {
@@ -31,11 +42,16 @@ export function createEntityViews(content: ContentDb, board: Board, textures: Re
     const flying = enemy && !!content.enemies.get(id)?.flying;
     const height = enemy ? (heights[id] ?? 0.75) : 0.9;
     const visual = createSprite(texture, height, flying);
+    visual.shadow.visible = false;
+    visual.sprite.visible = false;
     const view: EntityView = {
       visual,
       height,
       flying,
       direction: 1,
+      hitDelay: -1,
+      exitDelay: 0,
+      art: art || id,
       motion: {
         kind: enemy ? (flying ? 'air' : 'ground') : 'unit',
         age: 0,
@@ -73,7 +89,11 @@ export function createEntityViews(content: ContentDb, board: Board, textures: Re
         .clone()
         .add(new Vector3(0, (view.flying ? 1.2 : 0) + view.height * 0.45, 0));
     },
-    onEvents(events: readonly SimEvent[], state: Readonly<BattleState>) {
+    onEvents(
+      events: readonly SimEvent[],
+      state: Readonly<BattleState>,
+      delays: ReadonlyMap<SimEvent, number>,
+    ) {
       for (const event of events) {
         if (event.type === 'unitDeploy') {
           const view = ensure(event.uid, event.unitId, false);
@@ -88,19 +108,24 @@ export function createEntityViews(content: ContentDb, board: Board, textures: Re
           const enemy = state.enemies.find((enemy) => enemy.uid === event.uid);
           if (enemy) place(ensure(enemy.uid, enemy.enemyId, true), enemy.x, enemy.y, 0);
         }
-        if (event.type === 'attack') {
-          const view = views.get(event.src.uid);
+        if (event.type === 'attack' || event.type === 'skillStart') {
+          const view = views.get(event.type === 'attack' ? event.src.uid : event.uid);
           if (view) view.motion.attack = 0.1;
         }
         if (event.type === 'damage') {
           const view = views.get(event.dst.uid);
-          if (view) view.motion.hit = 0.08;
+          if (view) {
+            const delay = delays.get(event) ?? 0;
+            if (delay > 0) view.hitDelay = delay;
+            else view.motion.hit = 0.08;
+          }
         }
         if (event.type === 'enemyDie' || event.type === 'enemyLeak') {
           const view = views.get(event.uid);
           if (view) {
             view.motion.exit = event.type === 'enemyDie' ? 'death' : 'leak';
             view.motion.exitAge = 0;
+            view.exitDelay = delays.get(event) ?? 0;
             view.visual.sprite.material.transparent = true;
             view.visual.sprite.material.depthWrite = false;
           }
@@ -108,6 +133,8 @@ export function createEntityViews(content: ContentDb, board: Board, textures: Re
       }
     },
     update(state: Readonly<BattleState>, camera: PerspectiveCamera, alpha: number, dt: number) {
+      shadows.begin();
+      sprites.begin();
       const alive = new Set<number>();
       for (const unit of state.units) {
         alive.add(unit.uid);
@@ -144,7 +171,17 @@ export function createEntityViews(content: ContentDb, board: Board, textures: Re
         motion.age += dt;
         motion.attack = Math.max(0, motion.attack - dt);
         motion.hit = Math.max(0, motion.hit - dt);
-        if (motion.exit) motion.exitAge += dt;
+        if (view.hitDelay >= 0) {
+          view.hitDelay -= dt;
+          if (view.hitDelay <= 0) {
+            motion.hit = 0.08;
+            view.hitDelay = -1;
+          }
+        }
+        if (motion.exit) {
+          motion.exitAge += Math.max(0, dt - view.exitDelay);
+          view.exitDelay = Math.max(0, view.exitDelay - dt);
+        }
         if (motion.exitAge >= (motion.exit === 'death' ? 0.25 : 0.2)) {
           remove(uid, view);
           continue;
@@ -154,20 +191,32 @@ export function createEntityViews(content: ContentDb, board: Board, textures: Re
         visual.sprite.position.set(pose.x * view.direction, (view.flying ? 1.2 : 0) + pose.y, 0);
         visual.sprite.scale.set(view.height * pose.scaleX * view.direction, view.height * pose.scaleY, 1);
         visual.sprite.quaternion.copy(camera.quaternion);
-        visual.shadow.position.y = 0.012;
-        visual.shadow.scale.set(1 - Math.max(0, pose.y) * 0.2, 0.65, 1);
-        visual.shadow.material.opacity = (view.flying ? 0.14 : 0.22) * pose.opacity;
+        shadows.add(visual.group.position, view.flying, pose.y, pose.opacity);
         const { uFlash, uOpacity } = visual.sprite.material.uniforms;
         if (uFlash) uFlash.value = pose.flash;
         if (uOpacity) uOpacity.value = pose.opacity;
+        visual.group.updateMatrix();
+        visual.sprite.updateMatrix();
+        spriteMatrix.multiplyMatrices(visual.group.matrix, visual.sprite.matrix);
+        sprites.add(
+          view.art,
+          spriteMatrix,
+          pose.flash,
+          pose.opacity,
+          visual.sprite.material.uniforms.uTint?.value ?? white,
+        );
         visual.ring.visible = motion.active;
         visual.ring.material.opacity = reduced ? 0.55 : 0.45 + Math.sin(motion.clock * 6) * 0.15;
         visual.ring.scale.setScalar(reduced ? 1 : 1 + Math.sin(motion.clock * 6) * 0.08);
       }
+      shadows.end();
+      sprites.end();
     },
     dispose() {
       for (const view of views.values()) view.visual.dispose();
       views.clear();
+      shadows.dispose();
+      sprites.dispose();
       group.clear();
     },
   };

@@ -28,6 +28,7 @@ export function createBattleSession(
   const overlay = createOverlay(overlayCanvas, battle.stage.board, content);
   const controls: LoopControls = { paused: false, speed: actions.speed, bulletTime: false };
   let disposed = false;
+  let ending = 0;
   function setSpeed(speed: 1 | 2) {
     controls.speed = speed;
     actions.onSpeed(speed);
@@ -72,21 +73,31 @@ export function createBattleSession(
     controls,
     (events) => {
       view.onEvents(events, battle.state);
+      overlay.onEvents(events, view.entityPosition);
       controller.onEvents(events);
-      if (events.some((event) => event.type === 'battleEnd'))
-        queueMicrotask(() => {
-          if (!disposed) {
-            loop.dispose();
-            actions.onEnd();
-          }
-        });
+      if (events.some((event) => event.type === 'battleEnd')) {
+        controller.setEnabled(false);
+        controls.bulletTime = false;
+        ending = 0.65;
+      }
     },
-    (alpha, dt) => {
+    (alpha, dt, wallDt) => {
+      const visualDt = ending > 0 ? wallDt * controls.speed : dt;
       controller.update();
       deployBar.update();
       hud.update(controls);
-      view.render(battle.state, alpha, dt);
-      overlay.render(battle.state, view.camera, alpha);
+      view.render(battle.state, alpha, visualDt);
+      overlay.render(battle.state, view.camera, alpha, visualDt);
+      if (ending > 0) {
+        ending = Math.max(0, ending - visualDt);
+        if (ending === 0)
+          queueMicrotask(() => {
+            if (!disposed) {
+              loop.dispose();
+              actions.onEnd();
+            }
+          });
+      }
     },
   );
   return {

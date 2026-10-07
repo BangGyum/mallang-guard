@@ -15,13 +15,17 @@ import type { Board } from '../sim/board';
 import type { BattleState, SimEvent } from '../sim/types';
 import { fitCamera } from './camera';
 import { createEntityViews } from './entityViews';
+import { impactDelays } from './eventTiming';
 import { createHighlights, type HighlightState } from './highlights';
 import { createTextures } from './textures';
 import { createTiles } from './tiles';
+import { createVfx } from './vfx';
 
 export interface BoardView {
   readonly camera: PerspectiveCamera;
   readonly memory: { geometries: number; textures: number };
+  readonly metrics: { drawCalls: number; particles: number };
+  entityPosition(uid: number): Vector3 | undefined;
   resize(): void;
   render(state: Readonly<BattleState>, alpha: number, dt: number): void;
   onEvents(events: readonly SimEvent[], state: Readonly<BattleState>): void;
@@ -40,14 +44,18 @@ export function createBoardView(
   renderer.toneMapping = NoToneMapping;
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = PCFShadowMap;
+  renderer.shadowMap.autoUpdate = false;
+  renderer.shadowMap.needsUpdate = true;
   const scene = new Scene();
   const tiles = createTiles(board);
   const cache = createTextures(images);
   const entities = createEntityViews(content, board, cache.textures);
   const highlights = createHighlights(board, cache.textures, content);
+  const vfx = createVfx(content, board, cache.textures, entities.position);
   scene.add(tiles.group);
   scene.add(entities.group);
   scene.add(highlights.group);
+  scene.add(vfx.group);
   scene.add(new HemisphereLight(0xffffff, 0xb9a7d9, 1));
   const sunlight = new DirectionalLight(0xfff4e0, 2);
   sunlight.position.set(-4, 8, 5);
@@ -76,6 +84,10 @@ export function createBoardView(
   let camera = fitCamera(bounds, 1);
   let highlightState: HighlightState = {};
   return {
+    entityPosition: entities.position,
+    get metrics() {
+      return { drawCalls: renderer.info.render.calls, particles: vfx.count };
+    },
     get memory() {
       return { ...renderer.info.memory };
     },
@@ -87,6 +99,7 @@ export function createBoardView(
       const height = Math.max(1, canvas.clientHeight);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       renderer.setSize(width, height, false);
+      renderer.shadowMap.needsUpdate = true;
       camera = fitCamera(
         bounds,
         width / height,
@@ -95,11 +108,14 @@ export function createBoardView(
     },
     render(state, alpha, dt) {
       entities.update(state, camera, alpha, dt);
+      vfx.update(state, camera, dt);
       highlights.update(highlightState, camera);
       renderer.render(scene, camera);
     },
     onEvents(events, state) {
-      entities.onEvents(events, state);
+      const delays = impactDelays(events);
+      entities.onEvents(events, state, delays);
+      vfx.onEvents(events, state, delays);
     },
     setHighlights(state) {
       highlightState = state;
@@ -108,6 +124,7 @@ export function createBoardView(
       tiles.dispose();
       entities.dispose();
       highlights.dispose();
+      vfx.dispose();
       cache.dispose();
       sunlight.shadow.dispose();
       scene.clear();
