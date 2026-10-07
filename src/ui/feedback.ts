@@ -1,5 +1,7 @@
+import { reducedMotion } from './motion';
+
 export function playFeedback(node: HTMLElement, kind: 'shake' | 'pulse') {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (reducedMotion()) return;
   for (const animation of node.getAnimations()) animation.cancel();
   node.animate(
     kind === 'shake'

@@ -3,7 +3,7 @@ import { button, element } from './dom';
 
 export function createPauseMenu(
   root: HTMLElement,
-  actions: { resume(): void; deployPaused(): void; restart(): void; exit(): void },
+  actions: { resume(): void; deployPaused(): void; restart(): void; exit(): void; settings(): void },
 ) {
   const dialog = element('dialog', 'game-dialog pause-menu');
   const heading = element('h2', '', '잠깐 쉬어가요');
@@ -13,6 +13,7 @@ export function createPauseMenu(
     button('계속하기', actions.resume, 'primary-button'),
     button('멈춘 채 배치', actions.deployPaused),
     button('다시 시작', actions.restart),
+    button('설정', actions.settings),
     button('타이틀로', actions.exit),
   );
   dialog.append(

@@ -29,12 +29,14 @@
 | `src/data` | `src/core`, `src/data` | `src/sim`, `src/view`, `src/ui`, `three` |
 | `src/sim` | `src/core`, `src/data/types.ts`, `src/sim` | `three`, `src/view`, `src/ui`, `src/app`, DOM(`window`, `document`), `Math.random`, `Date`, `performance` |
 | `src/art` | `src/core`, `src/art` | `three`, `src/sim` |
-| `src/view` | `three`, `src/core`, `src/data`, `src/sim`(타입·읽기 전용 조회), `src/art` | `src/ui` |
+| `src/view` | `three`, `src/core`, `src/data`, `src/sim`(타입·읽기 전용 조회) | `src/ui`, `src/art` (앱이 구운 이미지 전달) |
 | `src/ui` | DOM, `src/core`, `src/data`, `src/sim`(타입·Command), `src/art`, `src/view`(picking 등 공개 함수만) | sim 상태 직접 수정 |
 | `src/app` | 전부 | — |
+| `src/audio` | WebAudio, `src/sim` 이벤트 타입 | sim 상태 수정 |
 
 - view와 ui는 sim 상태를 **읽기만** 합니다. 바꾸는 방법은 `battle.enqueue(command)` 하나뿐입니다.
 - sim은 화면이 있는지조차 모릅니다. 그래서 Node(Vitest)에서 그대로 돌릴 수 있어야 합니다.
+- 앱이 설정 저장·OS 모션 설정·오디오 이벤트를 연결합니다. UI는 설정 값을 콜백으로 전달하며, view/overlay는 품질과 확정된 모션 감소 값만 받습니다. 전투 종료 후 0.65초 동안 마지막 연출을 진행한 뒤 결과 화면으로 전환합니다.
 
 ## 2. 폴더 구조
 

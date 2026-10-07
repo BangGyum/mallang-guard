@@ -1,18 +1,29 @@
 import { assert } from '../core/assert';
 import type { ContentDb } from '../data/types';
 import { createBattle } from '../sim/battle';
+import type { SimEvent } from '../sim/types';
 import { createController } from '../ui/controller';
 import { createDeployBar } from '../ui/deployBar';
 import { createHud } from '../ui/hud';
-import { createBoardView } from '../view/boardView';
+import { createBoardView, type ViewOptions } from '../view/boardView';
 import { createOverlay } from '../view/overlay';
 import { type LoopControls, startLoop } from './loop';
 import { watchOrientation } from './orientation';
+import { createQualityMonitor } from './quality';
 
 export function createBattleSession(
   content: ContentDb,
   app: HTMLDivElement,
-  actions: { speed: 1 | 2; onMenu(): void; onEnd(): void; onSpeed(speed: 1 | 2): void },
+  actions: {
+    speed: 1 | 2;
+    options?: ViewOptions;
+    automaticQuality?: boolean;
+    onMenu(): void;
+    onEnd(): void;
+    onSpeed(speed: 1 | 2): void;
+    onEvents?(events: readonly SimEvent[], speed: number): void;
+    onAutoQuality?(): void;
+  },
   images: ReadonlyMap<string, HTMLCanvasElement>,
 ) {
   const oldCanvas = app.querySelector<HTMLCanvasElement>('#board');
@@ -29,6 +40,20 @@ export function createBattleSession(
   const controls: LoopControls = { paused: false, speed: actions.speed, bulletTime: false };
   let disposed = false;
   let ending = 0;
+  const qualityMonitor = createQualityMonitor();
+  if (actions.automaticQuality === false) qualityMonitor.stop();
+  let options = actions.options ?? {
+    quality: 'high',
+    reducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+  };
+  function setOptions(value: ViewOptions, manualQuality = false) {
+    options = value;
+    if (manualQuality) qualityMonitor.stop();
+    view.setOptions(options);
+    overlay.setOptions(options);
+    overlay.resize();
+  }
+  setOptions(options);
   function setSpeed(speed: 1 | 2) {
     controls.speed = speed;
     actions.onSpeed(speed);
@@ -74,6 +99,7 @@ export function createBattleSession(
     (events) => {
       view.onEvents(events, battle.state);
       overlay.onEvents(events, view.entityPosition);
+      actions.onEvents?.(events, controls.speed * (controls.bulletTime ? 0.25 : 1));
       controller.onEvents(events);
       if (events.some((event) => event.type === 'battleEnd')) {
         controller.setEnabled(false);
@@ -88,6 +114,16 @@ export function createBattleSession(
       hud.update(controls);
       view.render(battle.state, alpha, visualDt);
       overlay.render(battle.state, view.camera, alpha, visualDt);
+      if (
+        options.quality === 'high' &&
+        !controls.paused &&
+        battle.state.phase === 'running' &&
+        qualityMonitor.sample(wallDt)
+      ) {
+        setOptions({ ...options, quality: 'low' });
+        actions.onAutoQuality?.();
+        hud.notify('부드러운 플레이를 위해 화면을 가볍게 바꿨어요. 설정에서 변경할 수 있어요.');
+      }
       if (ending > 0) {
         ending = Math.max(0, ending - visualDt);
         if (ending === 0)
@@ -104,6 +140,8 @@ export function createBattleSession(
     battle,
     view,
     controls,
+    setOptions,
+    setSpeed,
     setPaused: orientation.setPaused,
     setMenuOpen(open: boolean) {
       if (open) orientation.setPaused(true);

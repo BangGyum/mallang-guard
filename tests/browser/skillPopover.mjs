@@ -2,6 +2,10 @@ import assert from 'node:assert/strict';
 import { chromium } from 'playwright';
 import { deploy, enterBattle, frame, pause, resume, tilePoint } from './helpers.mjs';
 
+const prefix = process.env.MALLANG_SCREENSHOT_PREFIX
+  ? `${process.env.MALLANG_SCREENSHOT_PREFIX}-skill`
+  : 'skill-popover';
+
 const browser = await chromium.launch({
   channel: 'msedge',
   headless: true,
@@ -95,7 +99,10 @@ try {
       assert(point.x < bounds.panel.left || point.x > bounds.panel.right, '유닛을 가리지 않음');
       for (const button of bounds.buttons) {
         assert(button.height >= 44 && button.width >= 44, `터치 영역: ${JSON.stringify(button)}`);
-        assert(button.bottom <= bounds.panel.bottom && button.top >= bounds.panel.top, '버튼이 잘리지 않음');
+        assert(
+          button.bottom <= bounds.panel.bottom && button.top >= bounds.panel.top,
+          `버튼이 잘리지 않음: ${JSON.stringify(bounds)}`,
+        );
       }
     };
     await deploy(page, cdp, 'squirrel', { x: 2, y: 0 }, 'down');
@@ -111,7 +118,7 @@ try {
     assert.equal(await page.locator('.unit-panel').getAttribute('data-skill-state'), 'ready');
     const before = Number(await page.locator('.dp-panel strong').textContent());
     await page.screenshot({
-      path: `docs/verification/skill-popover-${mobile ? 'mobile' : 'desktop'}-ready.png`,
+      path: `docs/verification/${prefix}-${mobile ? 'mobile' : 'desktop'}-ready.png`,
     });
     await click(page.getByRole('button', { name: '스킬 발동', exact: true }));
     assert.equal(Number(await page.locator('.dp-panel strong').textContent()), before + 12);
@@ -121,7 +128,7 @@ try {
     );
     await checkNotices();
     await page.screenshot({
-      path: `docs/verification/skill-popover-${mobile ? 'mobile' : 'desktop'}-cast.png`,
+      path: `docs/verification/${prefix}-${mobile ? 'mobile' : 'desktop'}-cast.png`,
     });
     await frame(page, 2000);
     assert.equal(await page.locator('.skill-notice').count(), 0);
@@ -155,7 +162,7 @@ try {
       /토실.*자동 발동\n✦ 당근 수프/,
     );
     await page.screenshot({
-      path: `docs/verification/skill-popover-${mobile ? 'mobile' : 'desktop'}-auto.png`,
+      path: `docs/verification/${prefix}-${mobile ? 'mobile' : 'desktop'}-auto.png`,
     });
     await pause(page);
     await page.emulateMedia({ reducedMotion: 'reduce' });
@@ -178,7 +185,7 @@ try {
       '다른 유닛 팝업을 열어도 자동 발동 알림은 자신의 유닛 근처에 유지',
     );
     await page.screenshot({
-      path: `docs/verification/skill-popover-${mobile ? 'mobile' : 'desktop'}-active.png`,
+      path: `docs/verification/${prefix}-${mobile ? 'mobile' : 'desktop'}-active.png`,
     });
     await click(page.getByRole('button', { name: '후퇴', exact: false }));
     assert.equal(await page.locator('.unit-panel').isVisible(), false);
