@@ -124,7 +124,7 @@ try {
     assert.equal(Number(await page.locator('.dp-panel strong').textContent()), before + 12);
     assert.match(
       await page.locator('.skill-notice[data-unit-id="squirrel"]').innerText(),
-      /토리.*스킬 발동\n✦ 도토리 줍줍/,
+      /토리.*스킬 발동\n✦ 보급 요청/,
     );
     await checkNotices();
     await page.screenshot({
@@ -159,7 +159,7 @@ try {
     assert(sawAuto, '선택하지 않은 유닛의 자동 스킬 알림');
     assert.match(
       await page.locator('.skill-notice[data-unit-id="bunny"]').innerText(),
-      /토실.*자동 발동\n✦ 당근 수프/,
+      /토실.*자동 발동\n✦ 전술 가속/,
     );
     await page.screenshot({
       path: `docs/verification/${prefix}-${mobile ? 'mobile' : 'desktop'}-auto.png`,

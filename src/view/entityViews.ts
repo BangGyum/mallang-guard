@@ -4,7 +4,7 @@ import { clamp, lerp } from '../core/math';
 import type { ContentDb } from '../data/types';
 import type { Board } from '../sim/board';
 import type { BattleState, SimEvent } from '../sim/types';
-import { type Motion, type Pose, samplePose } from './animation';
+import { ATTACK_DURATION, attackKindFor, type Motion, type Pose, samplePose } from './animation';
 import { tileHeight } from './coords';
 import { createShadows } from './shadows';
 import { createSpriteBatch } from './spriteBatch';
@@ -72,13 +72,14 @@ export function createEntityViews(content: ContentDb, board: Board, textures: Re
         clock: 0,
         phase: uid * 1.7,
         attack: 0,
+        attackKind: attackKindFor(art || id),
         hit: 0,
         active: false,
         stunned: false,
         exit: null,
         exitAge: 0,
       },
-      pose: { x: 0, y: 0, scaleX: 1, scaleY: 1, flash: 0, opacity: 1 },
+      pose: { x: 0, y: 0, scaleX: 1, scaleY: 1, flash: 0, opacity: 1, rotation: 0 },
     };
     views.set(uid, view);
     group.add(visual.group);
@@ -103,6 +104,16 @@ export function createEntityViews(content: ContentDb, board: Board, textures: Re
         .clone()
         .add(new Vector3(0, (view.flying ? 1.2 : 0) + view.height * 0.45, 0));
     },
+    attackOrigin(uid: number): Vector3 | undefined {
+      const view = views.get(uid);
+      if (!view) return undefined;
+      // 오른쪽 무기 끝을 빌보드의 실제 변환으로 월드 좌표에 맞춥니다.
+      const tipY =
+        view.art === 'sheep' ? 0.49 : view.art === 'cat' ? 0.42 : view.art === 'bear' ? 0.36 : 0.18;
+      const tip = new Vector3(0.4, tipY, 0);
+      view.visual.group.updateMatrixWorld(true);
+      return view.visual.sprite.localToWorld(tip);
+    },
     onEvents(
       events: readonly SimEvent[],
       state: Readonly<BattleState>,
@@ -111,6 +122,8 @@ export function createEntityViews(content: ContentDb, board: Board, textures: Re
       for (const event of events) {
         if (event.type === 'unitDeploy') {
           const view = ensure(event.uid, event.unitId, false);
+          view.direction = event.dir === 'left' ? -1 : 1;
+          view.visual.sprite.scale.x = view.height * view.direction;
           place(
             view,
             event.tile.x + 0.5,
@@ -126,7 +139,7 @@ export function createEntityViews(content: ContentDb, board: Board, textures: Re
         }
         if (event.type === 'attack' || event.type === 'skillStart') {
           const view = views.get(event.type === 'attack' ? event.src.uid : event.uid);
-          if (view) view.motion.attack = 0.1;
+          if (view) view.motion.attack = ATTACK_DURATION[view.motion.attackKind];
         }
         if (event.type === 'damage') {
           const view = views.get(event.dst.uid);
@@ -216,6 +229,7 @@ export function createEntityViews(content: ContentDb, board: Board, textures: Re
         visual.sprite.position.set(pose.x * view.direction, (view.flying ? 1.2 : 0) + pose.y, 0);
         visual.sprite.scale.set(view.height * pose.scaleX * view.direction, view.height * pose.scaleY, 1);
         visual.sprite.quaternion.copy(camera.quaternion);
+        visual.sprite.rotateZ(pose.rotation * view.direction);
         shadows.add(visual.group.position, view.flying, pose.y, pose.opacity);
         const { uFlash, uOpacity } = visual.sprite.material.uniforms;
         if (uFlash) uFlash.value = pose.flash;

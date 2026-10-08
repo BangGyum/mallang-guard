@@ -15,7 +15,7 @@ export const ROLE_NAMES = {
   defender: '제어',
   sniper: '스나이퍼',
   caster: '캐스터',
-  medic: '응원',
+  medic: '전술지원',
   specialist: '특수',
   supporter: '서포터',
 };

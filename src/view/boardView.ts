@@ -58,7 +58,7 @@ export function createBoardView(
   const cache = createTextures(images);
   const entities = createEntityViews(content, board, cache.textures);
   const highlights = createHighlights(board, cache.textures, content);
-  const vfx = createVfx(content, board, cache.textures, entities.position);
+  const vfx = createVfx(content, board, cache.textures, entities.position, entities.attackOrigin);
   const landmarks = createLandmarks(board, cache.textures);
   landmarks.setReducedMotion(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   scene.add(tiles.group);

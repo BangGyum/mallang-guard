@@ -8,6 +8,7 @@ function sample(patch: Partial<Motion> = {}, reduced = false): Pose {
     clock: 0,
     phase: 0,
     attack: 0,
+    attackKind: 'shot',
     hit: 0,
     active: false,
     stunned: false,
@@ -15,7 +16,7 @@ function sample(patch: Partial<Motion> = {}, reduced = false): Pose {
     exitAge: 0,
     ...patch,
   };
-  const pose: Pose = { x: 0, y: 0, scaleX: 1, scaleY: 1, flash: 0, opacity: 1 };
+  const pose: Pose = { x: 0, y: 0, scaleX: 1, scaleY: 1, flash: 0, opacity: 1, rotation: 0 };
   samplePose(motion, reduced, pose);
   return pose;
 }
@@ -39,8 +40,22 @@ describe('캐릭터 애니메이션', () => {
       scaleY: 1,
       flash: 0,
       opacity: 1,
+      rotation: 0,
     });
   });
+  it('검격은 앞으로 움직이고 사격은 뒤로 반동하며 종료 후 기본 자세로 돌아온다', () => {
+    expect(sample({ attackKind: 'slash', attack: 0.18 }).x).toBeGreaterThan(0);
+    expect(sample({ attackKind: 'slash', attack: 0.18 }).rotation).not.toBe(0);
+    expect(sample({ attackKind: 'shot', attack: 0.1 }).x).toBeLessThan(0);
+    expect(sample({ attackKind: 'slash', attack: 0 })).toEqual(sample());
+  });
+  it.each(['shot', 'slash', 'impact', 'cast'] as const)(
+    '모션 감소 시 %s의 회전·반동을 생략한다',
+    (attackKind) => {
+      const pose = sample({ attackKind, attack: 0.1 }, true);
+      expect([pose.x, pose.y, pose.rotation]).toEqual([0, 0, 0]);
+    },
+  );
   it('이동 점프를 줄이고 기절한 적은 뛰지 않는다', () => {
     const normal = sample({ kind: 'ground', clock: 0.1 });
     expect(sample({ kind: 'ground', clock: 0.1 }, true).y).toBeCloseTo(normal.y / 2);
