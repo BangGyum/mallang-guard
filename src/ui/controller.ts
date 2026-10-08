@@ -17,7 +17,6 @@ interface Actions {
   speed(value: 1 | 2): void;
   notify(message: string): void;
 }
-
 export function createController(
   canvas: HTMLCanvasElement,
   root: HTMLDivElement,
@@ -34,7 +33,7 @@ export function createController(
   const directions = element('div', 'aim-directions');
   directions.hidden = true;
   directions.setAttribute('aria-label', '배치 방향 선택');
-  const ghost = element('div', 'drag-label');
+  const ghost = element('div', 'drag-ghost');
   ghost.hidden = true;
   const panel = createUnitPanel(root, battle, {
     retreat() {
@@ -217,6 +216,8 @@ export function createController(
         capture(event, event.currentTarget);
       }
       transition({ mode: 'dragging', unitId, hover: null });
+      const art = battle.content.units.get(unitId)?.art;
+      if (art) ghost.innerHTML = critterSvg(art);
     },
     setEnabled(value: boolean) {
       enabled = value;
@@ -270,10 +271,7 @@ export function createController(
       }
       directions.hidden = state.mode !== 'aiming';
       ghost.hidden = state.mode !== 'dragging' || !!state.hover;
-      if (state.mode === 'dragging') {
-        ghost.textContent = battle.content.units.get(state.unitId)?.name ?? '';
-        ghost.style.transform = `translate(${pointerX + 14}px, ${pointerY - 24}px)`;
-      }
+      if (state.mode === 'dragging') ghost.style.translate = `${pointerX - 40}px ${pointerY - 64}px`;
       const selected =
         state.mode === 'selected' ? battle.state.units.find((unit) => unit.uid === selectedUid) : undefined;
       panel.update(
@@ -298,3 +296,5 @@ export function createController(
     },
   };
 }
+
+import { critterSvg } from '../art/critters';

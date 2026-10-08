@@ -1,6 +1,6 @@
 import { Color, Group, Matrix4, type PerspectiveCamera, type Texture, Vector3 } from 'three';
 import { assert } from '../core/assert';
-import { lerp } from '../core/math';
+import { clamp, lerp } from '../core/math';
 import type { ContentDb } from '../data/types';
 import type { Board } from '../sim/board';
 import type { BattleState, SimEvent } from '../sim/types';
@@ -18,9 +18,12 @@ interface EntityView {
   direction: number;
   flying: boolean;
   hitDelays: number[];
+  hitStop: number;
   exitDelay: number;
   art: string;
 }
+
+const HIT_STOP_SEC = 0.045;
 
 export function createEntityViews(content: ContentDb, board: Board, textures: ReadonlyMap<string, Texture>) {
   const group = new Group();
@@ -50,6 +53,7 @@ export function createEntityViews(content: ContentDb, board: Board, textures: Re
       flying,
       direction: 1,
       hitDelays: [],
+      hitStop: 0,
       exitDelay: 0,
       art: art || id,
       motion: {
@@ -117,7 +121,10 @@ export function createEntityViews(content: ContentDb, board: Board, textures: Re
           if (view) {
             const delay = delays.get(event) ?? 0;
             if (delay > 0) view.hitDelays.push(delay);
-            else view.motion.hit = 0.08;
+            else {
+              view.motion.hit = 0.08;
+              view.hitStop = HIT_STOP_SEC;
+            }
           }
         }
         if (event.type === 'enemyDie' || event.type === 'enemyLeak') {
@@ -152,7 +159,8 @@ export function createEntityViews(content: ContentDb, board: Board, textures: Re
       for (const enemy of state.enemies) {
         alive.add(enemy.uid);
         const view = ensure(enemy.uid, enemy.enemyId, true);
-        place(view, lerp(enemy.px, enemy.x, alpha), lerp(enemy.py, enemy.y, alpha), 0);
+        if (reduced || view.hitStop <= dt)
+          place(view, lerp(enemy.px, enemy.x, alpha), lerp(enemy.py, enemy.y, alpha), 0);
         if (enemy.x !== enemy.px) view.direction = Math.sign(enemy.x - enemy.px);
         view.motion.stunned = enemy.stunUntilTick > state.tick;
         if (!view.motion.stunned)
@@ -171,10 +179,12 @@ export function createEntityViews(content: ContentDb, board: Board, textures: Re
         motion.age += dt;
         motion.attack = Math.max(0, motion.attack - dt);
         motion.hit = Math.max(0, motion.hit - dt);
+        view.hitStop = Math.max(0, view.hitStop - dt);
         for (let i = view.hitDelays.length - 1; i >= 0; i--) {
           const remaining = (view.hitDelays[i] ?? 0) - dt;
           if (remaining <= 0) {
             motion.hit = 0.08;
+            view.hitStop = Math.max(view.hitStop, HIT_STOP_SEC + remaining);
             view.hitDelays.splice(i, 1);
           } else view.hitDelays[i] = remaining;
         }
@@ -186,7 +196,8 @@ export function createEntityViews(content: ContentDb, board: Board, textures: Re
           remove(uid, view);
           continue;
         }
-        samplePose(motion, reduced, view.pose);
+        if (reduced || view.hitStop === 0) samplePose(motion, reduced, view.pose);
+        else view.pose.flash = clamp(motion.hit / 0.08, 0, 1);
         const { visual, pose } = view;
         visual.sprite.position.set(pose.x * view.direction, (view.flying ? 1.2 : 0) + pose.y, 0);
         visual.sprite.scale.set(view.height * pose.scaleX * view.direction, view.height * pose.scaleY, 1);

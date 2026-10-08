@@ -2,6 +2,7 @@ import { critterSvg } from '../art/critters';
 import { ROLE_COLORS, ROLE_NAMES } from '../art/palette';
 import type { Battle } from '../sim/battle';
 import { DP_MAX, RETREAT_REFUND_RATIO, TICK_RATE } from '../sim/constants';
+import { acornIcon } from './acornIcon';
 import { button, element } from './dom';
 import { reducedMotion } from './motion';
 import { placeUnitPopup, type ScreenPoint } from './popupPosition';
@@ -31,7 +32,9 @@ export function createUnitPanel(
   gauge.setAttribute('aria-label', '스킬 충전');
   const status = element('p', 'skill-status');
   const activate = button('스킬 발동', actions.activateSkill, 'skill-button');
-  const retreat = button('후퇴', actions.retreat, 'unit-retreat');
+  const retreat = button('', actions.retreat, 'unit-retreat');
+  const refundAmount = element('span', '');
+  retreat.append('후퇴 (+', refundAmount, acornIcon(), ')');
   const buttons = element('div', 'unit-popup-actions');
   buttons.append(activate, retreat);
   card.append(header, skillName, skillDescription, status, gauge, buttons);
@@ -90,7 +93,8 @@ export function createUnitPanel(
       activate.disabled = !ready || battle.state.phase !== 'running';
       activate.textContent = active ? '스킬 사용 중' : ready ? '스킬 발동' : '스킬 충전 중';
       const refund = Math.min(DP_MAX - battle.state.dp, Math.floor(def.cost * RETREAT_REFUND_RATIO));
-      retreat.textContent = `후퇴 (+${refund}🌰)`;
+      refundAmount.textContent = String(refund);
+      retreat.setAttribute('aria-label', `후퇴, 도토리 ${refund}개 환급`);
       retreat.disabled = battle.state.phase !== 'running';
       const { anchor, edge } = placeUnitPopup(root, panel, point);
       marker.style.left = `${anchor.x}px`;
