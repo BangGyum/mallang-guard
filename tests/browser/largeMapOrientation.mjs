@@ -4,6 +4,7 @@ import { chromium } from 'playwright';
 import { deploy, frame, pause, tilePoint } from './helpers.mjs';
 
 const browser = await chromium.launch({ channel: 'msedge', headless: true });
+const prefix = process.env.MALLANG_SCREENSHOT_PREFIX ?? 't4.4';
 try {
   const context = await browser.newContext({
     viewport: { width: 844, height: 390 },
@@ -52,35 +53,35 @@ try {
   await page.locator('.rotate-guide').waitFor({ state: 'visible' });
   await frame(page, 2000);
   assert.equal(await page.evaluate(() => window.largeMapBattle.state.tick), 0);
-  await page.screenshot({ path: 'docs/verification/t4.3-mobile-large-map-portrait.png' });
+  await page.screenshot({ path: `docs/verification/${prefix}-mobile-large-map-portrait.png` });
   await page.setViewportSize({ width: 844, height: 390 });
   await page.locator('.rotate-guide').waitFor({ state: 'hidden' });
   await frame(page);
   assert.equal(await page.locator('[data-action="pause"]').textContent(), '계속하기');
   const cdp = await context.newCDPSession(page);
-  await deploy(page, cdp, 'squirrel', { x: 20, y: 8 }, 'left');
-  await deploy(page, cdp, 'penguin', { x: 2, y: 1 }, 'down');
+  await deploy(page, cdp, 'squirrel', { x: 21, y: 8 }, 'left');
+  await deploy(page, cdp, 'penguin', { x: 3, y: 1 }, 'down');
   await page.setViewportSize({ width: 740, height: 360 });
   await frame(page);
   await page.screenshot({
-    path: 'docs/verification/t4.3-compact-large-map-selection.png',
+    path: `docs/verification/${prefix}-compact-large-map-selection.png`,
     animations: 'disabled',
   });
   await frame(page);
-  const point = await tilePoint(page, { x: 20, y: 8 });
+  const point = await tilePoint(page, { x: 21, y: 8 });
   await page.touchscreen.tap(point.x, point.y);
   await frame(page);
   assert.equal(await page.locator('.unit-popup-name').textContent(), '토리');
   await page.screenshot({
-    path: 'docs/verification/t4.3-compact-large-map-selection.png',
+    path: `docs/verification/${prefix}-compact-large-map-selection.png`,
     animations: 'disabled',
   });
   const units = await page.evaluate(() =>
     window.largeMapBattle.state.units.map(({ unitId, tile, dir }) => ({ unitId, tile, dir })),
   );
   assert.deepEqual(units, [
-    { unitId: 'squirrel', tile: { x: 20, y: 8 }, dir: 'left' },
-    { unitId: 'penguin', tile: { x: 2, y: 1 }, dir: 'down' },
+    { unitId: 'squirrel', tile: { x: 21, y: 8 }, dir: 'left' },
+    { unitId: 'penguin', tile: { x: 3, y: 1 }, dir: 'down' },
   ]);
   assert.deepEqual(errors, []);
   const result = {
@@ -91,7 +92,7 @@ try {
     units,
     errors,
   };
-  await writeFile('docs/verification/t4.3-orientation.json', `${JSON.stringify(result, null, 2)}\n`);
+  await writeFile(`docs/verification/${prefix}-orientation.json`, `${JSON.stringify(result, null, 2)}\n`);
   console.log(JSON.stringify(result));
   await context.close();
 } finally {

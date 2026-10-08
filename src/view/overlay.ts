@@ -21,14 +21,14 @@ export function createOverlay(canvas: HTMLCanvasElement, board: Board, content: 
   let time = 0;
   let width = 1;
   let height = 1;
-  function bar(x: number, y: number, hp: number, maxHp: number, color: string) {
+  function bar(x: number, y: number, hp: number, maxHp: number, color: string, size = 40) {
     ctx.fillStyle = 'rgba(36,28,48,.65)';
     ctx.beginPath();
-    ctx.roundRect(x - 20, y + 6, 40, 5, 2.5);
+    ctx.roundRect(x - size / 2, y + 6, size, 5, 2.5);
     ctx.fill();
     ctx.fillStyle = color;
     ctx.beginPath();
-    ctx.roundRect(x - 19, y + 7, 38 * Math.max(0, hp / maxHp), 3, 1.5);
+    ctx.roundRect(x - size / 2 + 1, y + 7, (size - 2) * Math.max(0, hp / maxHp), 3, 1.5);
     ctx.fill();
   }
   function position(x: number, y: number, elevation: number, camera: PerspectiveCamera) {
@@ -74,22 +74,26 @@ export function createOverlay(canvas: HTMLCanvasElement, board: Board, content: 
         assert(skill, '스킬 정보가 없습니다');
         const active = unit.skillState === 'active';
         const ready = unit.skillState === 'ready';
+        const cellWidth = Math.abs(position(unit.tile.x + 1.5, unit.tile.y + 0.5, 0.5, camera).x - p.x);
+        const compact = cellWidth < 36;
+        const gaugeWidth = compact ? Math.max(14, cellWidth * 0.9) : 40;
         bar(
           p.x,
           p.y,
           active ? Math.max(0, unit.skillEndTick - state.tick) / TICK_RATE : unit.sp,
           active ? skill.durationSec : skill.spCost,
           active ? '#eea54b' : ready ? '#f1c743' : '#759bdb',
+          gaugeWidth,
         );
         ctx.font = 'bold 12px sans-serif';
         ctx.textAlign = 'center';
         ctx.fillStyle = '#446052';
         ctx.fillText(
-          `${{ right: '→', down: '↓', left: '←', up: '↑' }[unit.dir]} ${active ? '스킬 중' : ready ? '준비!' : 'SP'}`,
+          `${{ right: '→', down: '↓', left: '←', up: '↑' }[unit.dir]}${compact ? '' : ` ${active ? '스킬 중' : ready ? '준비!' : 'SP'}`}`,
           p.x,
           p.y + 26,
         );
-        if (unit.disruptedUntilTick > state.tick) {
+        if (unit.disruptedUntilTick > state.tick && !compact) {
           ctx.fillStyle = '#8363a5';
           ctx.fillText('끈적 · 공격 느림', p.x, p.y + 40);
         }
@@ -98,11 +102,12 @@ export function createOverlay(canvas: HTMLCanvasElement, board: Board, content: 
           const y = head.y - (reduced ? 0 : Math.sin(time * 3 + unit.uid) * 2);
           ctx.fillStyle = '#ffe494';
           ctx.beginPath();
-          ctx.roundRect(head.x - 22, y - 13, 44, 19, 7);
+          const badgeWidth = compact ? Math.max(14, Math.min(22, cellWidth * 0.9)) : 44;
+          ctx.roundRect(head.x - badgeWidth / 2, y - 13, badgeWidth, 19, 7);
           ctx.fill();
           ctx.fillStyle = '#70522d';
           ctx.font = '12px Jua, sans-serif';
-          ctx.fillText('스킬!', head.x, y + 1);
+          ctx.fillText(compact ? '!' : '스킬!', head.x, y + 1);
         }
       }
       for (const enemy of state.enemies) {
