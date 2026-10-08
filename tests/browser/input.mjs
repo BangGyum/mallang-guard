@@ -23,7 +23,10 @@ try {
     page.on('console', (message) => {
       if (['error', 'warning'].includes(message.type())) errors.push(message.text());
     });
-    await page.clock.install({ time: new Date('2026-10-07T03:00:00Z') });
+    const time = new Date('2026-10-07T03:00:00Z');
+    await page.clock.install({ time });
+    // 초기 도토리 검사가 페이지 로딩 시간의 영향을 받지 않도록 먼저 멈춥니다.
+    await page.clock.pauseAt(time);
     // 낮은 프레임 빈도에서도 30Hz 전투와 입력이 유지되는지 확인한다.
     await page.addInitScript(() => {
       window.requestAnimationFrame = (callback) => setTimeout(() => callback(performance.now()), 100);
@@ -33,7 +36,6 @@ try {
     await page.goto(url);
     await enterBattle(page);
     console.log('시계 일시정지');
-    await page.clock.pauseAt(new Date('2026-10-07T03:02:00Z'));
     await frame(page);
     await pause(page);
     console.log('잘못된 타일 배치 확인');

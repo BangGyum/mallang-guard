@@ -4,6 +4,7 @@ import { chromium } from 'playwright';
 import { drag, enterBattle, frame, tilePoint } from './helpers.mjs';
 
 const report = [];
+const prefix = process.env.MALLANG_SCREENSHOT_PREFIX ?? 't3.10';
 const browser = await chromium.launch({ channel: 'msedge', headless: true });
 try {
   for (const mobile of [false, true]) {
@@ -124,7 +125,7 @@ try {
     };
     const layout = await checkPanel();
     await page.screenshot({
-      path: `docs/verification/t3.10-${label}-preparation.png`,
+      path: `docs/verification/${prefix}-${label}-preparation.png`,
       animations: 'disabled',
     });
     await runUntil(initialTime, 10400);
@@ -173,7 +174,7 @@ try {
     else await page.mouse.click(nextPoint.x, nextPoint.y);
     await frame(page, 220);
     const compact = await checkPanel();
-    await page.screenshot({ path: `docs/verification/t3.10-${label}-info.png`, animations: 'disabled' });
+    await page.screenshot({ path: `docs/verification/${prefix}-${label}-info.png`, animations: 'disabled' });
     await click(page.locator('.unit-retreat'));
     assert.equal((await read()).units.length, 0);
     assert.equal(await page.locator('.unit-panel').isVisible(), false);
@@ -196,7 +197,7 @@ try {
     console.log(`${label}: 10초·3초 시작, 정지·재시작·후퇴, 오른쪽 하단 정보 통과`);
     await context.close();
   }
-  await writeFile('docs/verification/t3.10-preparation.json', `${JSON.stringify(report, null, 2)}\n`);
+  await writeFile(`docs/verification/${prefix}-preparation.json`, `${JSON.stringify(report, null, 2)}\n`);
 } finally {
   await browser.close();
 }

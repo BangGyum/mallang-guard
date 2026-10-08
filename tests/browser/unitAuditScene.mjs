@@ -1,4 +1,4 @@
-export async function createUnitAuditGame({ dir }) {
+export async function createUnitAuditGame({ dir, spawnAtSec = 0 }) {
   const { createApp } = await import('/src/app/app.ts');
   const { loadArtAssets } = await import('/src/app/artAssets.ts');
   const { rawContent } = await import('/src/data/index.ts');
@@ -36,7 +36,7 @@ export async function createUnitAuditGame({ dir }) {
         ).join(''),
       ),
       routes: { ground: { from, to: [0, 0] } },
-      spawns: [{ wave: 1, atSec: 0, enemy: 'jelly', count: 1, intervalSec: 0, route: 'ground' }],
+      spawns: [{ wave: 1, atSec: spawnAtSec, enemy: 'jelly', count: 1, intervalSec: 0, route: 'ground' }],
     },
   ];
   raw.enemies = raw.enemies.map((enemy) => ({ ...enemy, hp: 100000, speed: 0.001 }));

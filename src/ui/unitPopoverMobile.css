@@ -1,0 +1,84 @@
+@media (max-height: 500px) {
+  .unit-panel {
+    width: 264px;
+    border-top-width: 3px;
+    border-radius: 12px;
+  }
+  .unit-popup-card {
+    padding: 4px 8px;
+  }
+  .unit-popup-header {
+    gap: 6px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border: 0;
+  }
+  .unit-popup-avatar {
+    flex-basis: 32px;
+    height: 32px;
+    border-radius: 8px;
+  }
+  .unit-popup-name {
+    font-size: 15px;
+  }
+  .unit-panel .unit-description {
+    font-size: 10px;
+    margin-top: 0;
+  }
+  .skill-heading {
+    gap: 7px;
+  }
+  .skill-icon {
+    flex-basis: 30px;
+    height: 30px;
+    border-radius: 7px;
+  }
+  .skill-icon .battle-icon {
+    width: 20px;
+    height: 20px;
+  }
+  .unit-panel .skill-name {
+    font-size: 15px;
+  }
+  .skill-meta {
+    font-size: 9px;
+    margin-top: 0;
+  }
+  .unit-info-details {
+    margin: 2px 0;
+  }
+  .unit-panel .skill-description {
+    font-size: 10px;
+    line-height: 1.4;
+  }
+  .unit-panel .unit-stats {
+    padding: 4px 6px;
+    margin-top: 4px;
+    font-size: 10px;
+  }
+  .skill-meter {
+    padding: 3px 6px;
+    margin-bottom: 3px;
+  }
+  .skill-meter-label {
+    font-size: 10px;
+    line-height: 1.2;
+  }
+  .skill-gauge {
+    height: 5px;
+    margin-top: 2px;
+  }
+  .unit-popup-actions {
+    gap: 7px;
+  }
+  .unit-popup-actions button {
+    font-size: 11px;
+    padding: 4px 6px;
+  }
+  .unit-panel .skill-button {
+    min-height: 44px;
+  }
+  .skill-automatic {
+    font-size: 11px;
+  }
+}

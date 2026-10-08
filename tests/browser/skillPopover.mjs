@@ -144,7 +144,8 @@ try {
     await deploy(page, cdp, 'bunny', { x: 3, y: 0 }, 'down');
     await select({ x: 3, y: 0 }, 'bunny');
     assert.equal(await page.locator('.skill-button').isVisible(), false);
-    assert.match(await page.locator('.unit-description').textContent(), /자동 발동/);
+    assert.match(await page.locator('.skill-meta').textContent(), /자동 발동/);
+    assert.equal(await page.locator('.skill-automatic').isVisible(), true);
     await page.keyboard.press('Escape');
     await frame(page);
     await resume(page);
@@ -176,6 +177,8 @@ try {
       'none',
     );
     assert.equal(await page.locator('.unit-panel').getAttribute('data-skill-state'), 'active');
+    assert.match(await page.locator('.skill-value').textContent(), /초$/);
+    assert.equal(await page.locator('.skill-gauge').getAttribute('aria-label'), '스킬 남은 시간');
     await checkNotices();
     const bunnyPoint = await tilePoint(page, { x: 3, y: 0 });
     const bunnyNotice = await page.locator('.skill-notice[data-unit-id="bunny"]').boundingBox();
