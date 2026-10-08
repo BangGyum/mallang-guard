@@ -76,6 +76,7 @@ T3.1부터 목업의 SVG 동물·적을 사용하며 방향에 따라 좌우 반
 - 비행 적은 지면 위 1.2 높이에 그립니다.
 - **빌보드**: 카메라가 고정이므로 모든 스프라이트에 `quaternion.copy(camera.quaternion)`를 한 번 적용합니다 (카메라를 다시 맞출 때도 갱신).
 - 좌우 방향: 유닛 `dir`이 left면 `scale.x = −1`, 그 외는 +1. 적은 이동 방향의 x 부호를 따릅니다 (0이면 직전 값 유지).
+- 배치 이벤트에서 낙하 시작 자세·숨쉬기 스케일·빌보드 방향을 먼저 적용합니다. 첫 렌더 전 공격도 같은 무기 끝 좌표에서 발사합니다.
 - **스프라이트 셰이더** (`ShaderMaterial`, 텍스처마다 하나씩, 공유 가능)
   ```glsl
   uniform sampler2D map; uniform float uFlash; uniform vec3 uTint; uniform float uOpacity;
