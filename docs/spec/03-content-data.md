@@ -364,7 +364,7 @@ export interface RawContent {
 [
   {
     "id": "acornPickup",
-    "name": "도토리 줍줍",
+    "name": "보급 요청",
     "description": "즉시 도토리 +12",
     "charge": "auto",
     "spCost": 20,
@@ -381,7 +381,7 @@ export interface RawContent {
   },
   {
     "id": "nyangCombo",
-    "name": "냥냥 연타",
+    "name": "연속 참격",
     "description": "8초 동안 공격 속도 2배, 세 번째 공격마다 0.5초 기절",
     "charge": "attack",
     "spCost": 12,
@@ -404,7 +404,7 @@ export interface RawContent {
   },
   {
     "id": "potLidGuard",
-    "name": "냄비뚜껑 쾅쾅",
+    "name": "충격 제압",
     "description": "10초 동안 공격력 +80%, 공격할 때마다 0.6초 기절",
     "charge": "auto",
     "spCost": 15,
@@ -427,7 +427,7 @@ export interface RawContent {
   },
   {
     "id": "snowballBarrage",
-    "name": "눈덩이 폭격",
+    "name": "냉각탄 포화",
     "description": "15초 동안 공격이 반경 1칸 범위 피해, 맞은 적은 1.5초간 30% 둔화",
     "charge": "auto",
     "spCost": 30,
@@ -449,7 +449,7 @@ export interface RawContent {
   },
   {
     "id": "stardustShower",
-    "name": "별가루 샤워",
+    "name": "아크 폭격",
     "description": "사거리 안 모든 적에게 공격력 130% 마법 피해 3회",
     "charge": "auto",
     "spCost": 35,
@@ -469,7 +469,7 @@ export interface RawContent {
   },
   {
     "id": "carrotSoup",
-    "name": "당근 수프",
+    "name": "전술 가속",
     "description": "8초 동안 사거리 안 친구들의 공격 간격 30% 감소 (자동 발동)",
     "charge": "auto",
     "spCost": 25,
@@ -486,7 +486,7 @@ export interface RawContent {
   },
   {
     "id": "tunnelAmbush",
-    "name": "땅굴 기습",
+    "name": "돌파 사격",
     "description": "앞의 적 하나를 경로 뒤쪽으로 2칸 밀어냄",
     "charge": "auto",
     "spCost": 10,
@@ -503,7 +503,7 @@ export interface RawContent {
   },
   {
     "id": "stickyRoad",
-    "name": "끈적끈적 길",
+    "name": "점착탄 지대",
     "description": "12초 동안 사거리 안 적 이동 속도 60% 감소",
     "charge": "auto",
     "spCost": 25,

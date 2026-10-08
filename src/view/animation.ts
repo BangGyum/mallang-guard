@@ -1,11 +1,18 @@
 import { clamp } from '../core/math';
 
+export type AttackKind = 'shot' | 'slash' | 'impact' | 'cast';
+export const ATTACK_DURATION = { shot: 0.14, slash: 0.24, impact: 0.22, cast: 0.18 };
+export function attackKindFor(art: string): AttackKind {
+  return art === 'cat' ? 'slash' : art === 'bear' ? 'impact' : art === 'sheep' ? 'cast' : 'shot';
+}
+
 export interface Motion {
   kind: 'unit' | 'ground' | 'air';
   age: number;
   clock: number;
   phase: number;
   attack: number;
+  attackKind: AttackKind;
   hit: number;
   active: boolean;
   stunned: boolean;
@@ -20,6 +27,7 @@ export interface Pose {
   scaleY: number;
   flash: number;
   opacity: number;
+  rotation: number;
 }
 
 function bounce(t: number): number {
@@ -31,13 +39,14 @@ function bounce(t: number): number {
 
 export function samplePose(motion: Readonly<Motion>, reduced: boolean, pose: Pose): void {
   pose.x = pose.y = 0;
+  pose.rotation = 0;
   pose.scaleX = pose.scaleY = pose.opacity = 1;
   pose.flash = clamp(motion.hit / 0.08, 0, 1);
   if (motion.kind === 'unit') {
     const breath = reduced ? 0 : (1 + Math.sin((motion.clock * Math.PI * 2) / 1.35 + motion.phase)) / 2;
     const amplitude = motion.active ? 1.5 : 1;
-    pose.scaleX += breath * 0.05 * amplitude;
-    pose.scaleY -= breath * 0.07 * amplitude;
+    pose.scaleX += breath * 0.018 * amplitude;
+    pose.scaleY -= breath * 0.025 * amplitude;
     if (!reduced && motion.age < 0.25) pose.y = 1.2 * (1 - bounce(clamp(motion.age / 0.25, 0, 1)));
     if (!reduced && motion.age >= 0.25 && motion.age < 0.4) {
       const landing = 1 - (motion.age - 0.25) / 0.15;
@@ -45,10 +54,19 @@ export function samplePose(motion: Readonly<Motion>, reduced: boolean, pose: Pos
       pose.scaleY *= 1 - 0.2 * landing;
     }
     if (motion.attack > 0 && !reduced) {
-      const recoil = motion.attack / 0.1;
-      pose.x -= 0.05 * recoil;
-      pose.scaleX *= 1 - 0.08 * recoil;
-      pose.scaleY *= 1 + 0.08 * recoil;
+      const recoil = clamp(motion.attack / ATTACK_DURATION[motion.attackKind], 0, 1);
+      if (motion.attackKind === 'slash') {
+        pose.x += Math.sin((1 - recoil) * Math.PI) * 0.1;
+        pose.rotation = Math.sin((1 - recoil) * Math.PI * 2) * 0.3;
+      } else if (motion.attackKind === 'impact') {
+        pose.y -= Math.sin((1 - recoil) * Math.PI) * 0.06;
+        pose.rotation = -0.18 * recoil;
+      } else {
+        pose.x -= (motion.attackKind === 'cast' ? 0.03 : 0.075) * recoil;
+        pose.rotation = 0.06 * recoil;
+      }
+      pose.scaleX *= 1 - 0.04 * recoil;
+      pose.scaleY *= 1 + 0.04 * recoil;
     }
   } else if (!motion.stunned) {
     if (motion.kind === 'air')

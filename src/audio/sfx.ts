@@ -58,18 +58,17 @@ export function createSfx(initialVolume: number) {
     times.push(start);
     recent.set(sound, times);
     if (sound === 'deploy') tone(start, 400, 900, 0.12);
-    if (sound === 'shoot') tone(start, 700, 180, 0.09, 'triangle');
     if (sound === 'pop') tone(start, 540, 110, 0.12);
-    if (sound === 'hit' && noise) {
+    if ((sound === 'hit' || sound === 'shoot') && noise) {
       const source = context.createBufferSource();
       const filter = context.createBiquadFilter();
       const gain = context.createGain();
       source.buffer = noise;
-      filter.type = 'lowpass';
-      filter.frequency.value = 900;
+      filter.type = sound === 'shoot' ? 'bandpass' : 'lowpass';
+      filter.frequency.value = sound === 'shoot' ? 2400 : 900;
       source.connect(filter);
       filter.connect(gain);
-      connect(source, gain, start, 0.06);
+      connect(source, gain, start, sound === 'shoot' ? 0.04 : 0.06);
       const ended = source.onended;
       source.onended = (event) => {
         filter.disconnect();

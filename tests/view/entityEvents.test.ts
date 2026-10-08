@@ -182,6 +182,17 @@ describe('이벤트 경계의 캐릭터 연출', () => {
       f.dispose();
     }
   });
+  it('왼쪽으로 배치한 첫 틱부터 무기 끝 발사 위치가 왼쪽에 있다', () => {
+    const f = fixture();
+    try {
+      f.battle.enqueue({ type: 'deploy', unitId: 'squirrel', tile: { x: 1, y: 1 }, dir: 'left' });
+      f.deliver(f.battle.step());
+      const uid = f.battle.state.units[0]?.uid ?? -1;
+      expect(f.view.attackOrigin(uid)?.x).toBeLessThan(f.view.position(uid)?.x ?? 0);
+    } finally {
+      f.dispose();
+    }
+  });
   it('서로 다른 친구의 연속 원거리 공격이 앞선 피격을 취소하지 않는다', () => {
     const f = fixture();
     try {

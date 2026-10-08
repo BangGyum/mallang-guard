@@ -35,7 +35,7 @@ try {
         return { id, opaque, total: canvas.width * canvas.height };
       });
     });
-    assert.equal(art.length, 27);
+    assert.equal(art.length, 30);
     assert(art.every((image) => image.opaque > 100 && image.opaque < image.total * 0.9));
     const label = mobile ? 'mobile' : 'desktop';
     await page.screenshot({ path: `docs/verification/${prefix}-${label}-title.png` });

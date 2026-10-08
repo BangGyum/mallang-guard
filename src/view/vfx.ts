@@ -7,12 +7,15 @@ import { tileHeight } from './coords';
 import { PROJECTILE_SEC } from './eventTiming';
 import { createParticlePool } from './particlePool';
 
-const SHOTS: Record<string, string> = {
-  penguin: 'snowball',
-  sheep: 'star',
-  snail: 'stickyDrop',
-  bunny: 'carrot',
-  squirrel: 'acorn',
+const SHOTS: Record<string, { art: string; size: number; arc: number; muzzle: boolean }> = {
+  squirrel: { art: 'bullet', size: 0.32, arc: 0, muzzle: true },
+  cat: { art: 'slash', size: 0.72, arc: 0, muzzle: false },
+  bear: { art: 'shockwave', size: 0.65, arc: 0, muzzle: false },
+  penguin: { art: 'iceRound', size: 0.42, arc: 0, muzzle: true },
+  sheep: { art: 'arcBolt', size: 0.4, arc: 0, muzzle: false },
+  bunny: { art: 'arcBolt', size: 0.3, arc: 0, muzzle: true },
+  mole: { art: 'bullet', size: 0.38, arc: 0, muzzle: true },
+  snail: { art: 'stickyDrop', size: 0.32, arc: 0.12, muzzle: true },
 };
 
 export function createVfx(
@@ -20,6 +23,7 @@ export function createVfx(
   board: Board,
   textures: ReadonlyMap<string, Texture>,
   position: (uid: number) => Vector3 | undefined,
+  attackOrigin: (uid: number) => Vector3 | undefined,
 ) {
   const pool = createParticlePool(textures);
   const point = new Vector3();
@@ -56,13 +60,17 @@ export function createVfx(
           if (from && to) pool.emit('stickyDrop', from, to, PROJECTILE_SEC, 0.25, 0.3);
         }
         if (event.type === 'attack') {
-          const from = position(event.src.uid);
+          const from = attackOrigin(event.src.uid);
           const to = position(event.dst.uid);
           if (from && to) {
             const unit = state.units.find((unit) => unit.uid === event.src.uid);
-            if (event.ranged)
-              pool.emit(SHOTS[unit?.unitId ?? ''] ?? 'spark', from, to, PROJECTILE_SEC, 0.22, 0.35);
-            else burst('spark', to, 3);
+            const shot = unit && SHOTS[unit.unitId];
+            if (event.ranged && shot) {
+              pool.emit(shot.art, from, to, PROJECTILE_SEC, shot.size, shot.arc, false, true);
+              if (shot.muzzle) pool.emit('muzzle', from, from, 0.09, reduced ? 0.17 : 0.3);
+              if (unit.unitId === 'cat') pool.emit('slash', from, from, 0.18, 0.8);
+              pending.push({ seconds: PROJECTILE_SEC, at: to, id: 'spark', count: 3 });
+            } else burst('spark', to, 3);
           }
         }
         if (event.type === 'unitDeploy' || event.type === 'skillStart') {
@@ -75,7 +83,8 @@ export function createVfx(
           );
           pool.emit('ring', point, point, 0.45, 0.35, 0, true);
           const at = position(unit.uid);
-          if (at && event.type === 'skillStart') burst(unit.unitId === 'bunny' ? 'heartPlus' : 'star', at, 6);
+          if (at && event.type === 'skillStart')
+            burst(unit.unitId === 'bunny' || unit.unitId === 'squirrel' ? 'signal' : 'spark', at, 6);
         }
         if (event.type === 'skillPulse') {
           const unit = state.units.find((unit) => unit.uid === event.uid);
@@ -95,7 +104,7 @@ export function createVfx(
               tileHeight(board.kindAt(tile.x, tile.y) ?? 'ground') + 0.1,
               tile.y + 0.5 - board.height / 2,
             );
-            pool.emit('star', end.clone().add(new Vector3(0, 0.8, 0)), end, 0.4, 0.22);
+            pool.emit('arcBolt', end.clone().add(new Vector3(0, 0.8, 0)), end, 0.4, 0.35, 0, false, true);
           }
         }
         if (event.type === 'enemyDie') {
