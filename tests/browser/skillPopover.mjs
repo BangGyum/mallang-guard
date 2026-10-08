@@ -107,9 +107,9 @@ try {
     };
     await deploy(page, cdp, 'squirrel', { x: 2, y: 0 }, 'down');
     await select({ x: 2, y: 0 }, 'squirrel');
-    assert.equal(await page.locator('.unit-popup-name').textContent(), '토리의 스킬');
+    assert.equal(await page.locator('.unit-popup-name').textContent(), '토리');
     assert.equal(await page.locator('.skill-button').isDisabled(), true);
-    await click(page.getByRole('button', { name: '스킬 팝업 닫기' }));
+    await click(page.getByRole('button', { name: '캐릭터 정보 닫기' }));
     assert.equal(await page.locator('.unit-panel').isVisible(), false);
     await resume(page);
     await frame(page, 12000);
@@ -136,7 +136,7 @@ try {
     await frame(page);
     await deploy(page, cdp, 'penguin', { x: 5, y: 2 }, 'left');
     await select({ x: 5, y: 2 }, 'penguin');
-    assert.equal(await page.locator('.unit-popup-name').textContent(), '펭펭의 스킬');
+    assert.equal(await page.locator('.unit-popup-name').textContent(), '펭펭');
     await page.keyboard.press('Escape');
     await frame(page);
     await resume(page);

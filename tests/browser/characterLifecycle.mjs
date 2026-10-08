@@ -5,9 +5,10 @@ import { enterBattle, frame, pause, resume } from './helpers.mjs';
 import { createUnitAuditGame, unitAuditPoint } from './unitAuditScene.mjs';
 
 const report = [];
+const prefix = process.env.MALLANG_SCREENSHOT_PREFIX ?? 't3.9';
 const browser = await chromium.launch({ channel: 'msedge', headless: true });
 try {
-  for (const mobile of [false, true]) {
+  for (const mobile of process.argv.includes('--mobile') ? [true] : [false, true]) {
     const label = mobile ? 'mobile' : 'desktop';
     const context = await browser.newContext({
       viewport: mobile ? { width: 844, height: 390 } : { width: 1920, height: 1080 },
@@ -31,7 +32,7 @@ try {
     await page.route('**/unit-audit', (route) =>
       route.fulfill({
         contentType: 'text/html',
-        body: '<link rel="stylesheet" href="/src/ui/styles.css"><div id="app"></div>',
+        body: '<meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/src/ui/styles.css"><div id="app"></div>',
       }),
     );
     await page.goto('http://127.0.0.1:43195/unit-audit');
@@ -113,7 +114,7 @@ try {
       assert.equal(await page.locator('.skill-name').textContent(), unit.skillDef.name);
       assert.equal(await page.locator('.skill-button').isVisible(), unit.skillDef.trigger === 'manual');
       if (unit.skillDef.trigger === 'manual') assert(await page.locator('.skill-button').isDisabled());
-      await click(page.getByRole('button', { name: '스킬 팝업 닫기' }));
+      await click(page.getByRole('button', { name: '캐릭터 정보 닫기' }));
       await resume(page);
       for (let second = 0; second < 40; second++) {
         await frame(page, 1000);
@@ -141,12 +142,13 @@ try {
           bounds.y >= 0 &&
           bounds.x + bounds.width <= page.viewportSize().width &&
           bounds.y + bounds.height <= page.viewportSize().height,
+        `${unit.id} 정보창 경계: ${JSON.stringify(bounds)}`,
       );
       await page.screenshot({
-        path: `docs/verification/t3.9-${label}-${unit.id}-skill.png`,
+        path: `docs/verification/${prefix}-${label}-${unit.id}-skill.png`,
         animations: 'disabled',
       });
-      await click(page.getByRole('button', { name: '스킬 팝업 닫기' }));
+      await click(page.getByRole('button', { name: '캐릭터 정보 닫기' }));
       await resume(page);
       await frame(page, (unit.skillDef.durationSec + 0.5) * 1000);
       await pause(page);
@@ -188,7 +190,7 @@ try {
     assert.deepEqual(errors, []);
     await context.close();
   }
-  await writeFile('docs/verification/t3.9-characters.json', `${JSON.stringify(report, null, 2)}\n`);
+  await writeFile(`docs/verification/${prefix}-characters.json`, `${JSON.stringify(report, null, 2)}\n`);
 } finally {
   await browser.close();
 }

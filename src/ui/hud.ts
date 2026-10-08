@@ -5,11 +5,22 @@ import { playFeedback } from './feedback';
 interface Controls {
   paused: boolean;
   speed: 1 | 2;
+  startInSec: number;
 }
-export function createHud(root: HTMLDivElement, battle: Battle, actions: { pause(): void; speed(): void }) {
+export function createHud(
+  root: HTMLDivElement,
+  battle: Battle,
+  actions: { pause(): void; speed(): void; start(): void },
+) {
   const top = element('div', 'battle-top');
   const title = element('div', 'stage-title', '말랑방위대');
   title.append(element('small', '', battle.stage.definition.name));
+  const preparation = element('div', 'battle-preparation');
+  const countdown = element('span', 'battle-countdown');
+  countdown.setAttribute('role', 'timer');
+  const start = button('3초 후 시작', actions.start, 'battle-start');
+  start.dataset.action = 'start';
+  preparation.append(start, countdown);
   const stats = element('div', 'battle-stats');
   stats.setAttribute('aria-label', '전투 현황');
   const life = element('span', 'battle-life');
@@ -20,7 +31,7 @@ export function createHud(root: HTMLDivElement, battle: Battle, actions: { pause
   const speed = button('×1', actions.speed);
   pause.dataset.action = 'pause';
   speed.setAttribute('aria-label', '전투 배속 변경');
-  top.append(title, stats, speed, pause);
+  top.append(title, preparation, stats, speed, pause);
   const hint = element(
     'p',
     'battle-hint',
@@ -45,6 +56,9 @@ export function createHud(root: HTMLDivElement, battle: Battle, actions: { pause
     },
     update(controls: Controls) {
       const state = battle.state;
+      preparation.hidden = controls.startInSec <= 0;
+      countdown.textContent = `시작까지 ${Math.ceil(controls.startInSec)}초`;
+      start.disabled = controls.paused || controls.startInSec <= 3;
       life.textContent = `♥ 푸딩 ${state.life}`;
       enemies.textContent = `젤리 ${state.killed + state.leaked}/${state.totalEnemies}`;
       wave.textContent = `WAVE ${state.currentWave}/${state.totalWaves}`;

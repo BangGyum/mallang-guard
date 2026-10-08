@@ -171,6 +171,10 @@ export interface Battle {
 
 sim은 고정 틱, 렌더는 `requestAnimationFrame`으로 돌고, 둘 사이는 보간합니다.
 
+앱의 `LoopControls.startInSec`는 전투마다 10초에서 시작합니다. 준비 중에는 `flush()`로 배치·후퇴 명령을 적용하고 `step()`은 멈춥니다. 실제 경과 시간으로 준비 시간을 세며 배속·선택 슬로모션의 영향을 받지 않습니다. 일시정지·세로 화면·숨긴 탭에서는 준비 시간도 멈춥니다. 마지막 프레임은 준비가 끝난 뒤의 시간만 sim에 전달합니다. 화면 애니메이션은 준비 중에도 진행하고, 자동 품질 측정은 준비가 끝난 뒤에 시작합니다.
+
+다음 의사코드는 준비가 끝난 이후의 고정 틱 흐름입니다.
+
 ```ts
 const TICK_SEC = 1 / TICK_RATE;           // 1/30
 const MAX_STEPS_PER_FRAME = 8;

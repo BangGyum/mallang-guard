@@ -7,7 +7,7 @@ import { createDeployBar } from '../ui/deployBar';
 import { createHud } from '../ui/hud';
 import { createBoardView, type ViewOptions } from '../view/boardView';
 import { createOverlay } from '../view/overlay';
-import { type LoopControls, startLoop } from './loop';
+import { type LoopControls, PREPARATION_SEC, QUICK_START_SEC, startLoop } from './loop';
 import { watchOrientation } from './orientation';
 import { createQualityMonitor } from './quality';
 
@@ -39,7 +39,12 @@ export function createBattleSession(
   const battle = createBattle(content, actions.stageId ?? 'stage-1');
   const view = createBoardView(canvas, battle.stage.board, content, images);
   const overlay = createOverlay(overlayCanvas, battle.stage.board, content);
-  const controls: LoopControls = { paused: false, speed: actions.speed, bulletTime: false };
+  const controls: LoopControls = {
+    paused: false,
+    speed: actions.speed,
+    bulletTime: false,
+    startInSec: PREPARATION_SEC,
+  };
   let disposed = false;
   let ending = 0;
   const qualityMonitor = createQualityMonitor();
@@ -62,6 +67,9 @@ export function createBattleSession(
   }
   const orientation = watchOrientation(app, controls);
   const hud = createHud(hudRoot, battle, {
+    start() {
+      controls.startInSec = Math.min(controls.startInSec, QUICK_START_SEC);
+    },
     pause() {
       if (controls.paused) orientation.setPaused(false);
       else actions.onMenu();
@@ -120,6 +128,7 @@ export function createBattleSession(
       if (
         options.quality === 'high' &&
         !controls.paused &&
+        controls.startInSec === 0 &&
         battle.state.phase === 'running' &&
         qualityMonitor.sample(wallDt)
       ) {

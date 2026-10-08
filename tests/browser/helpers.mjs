@@ -4,10 +4,11 @@ export async function frame(page, ms = 120) {
   await page.clock.runFor(ms);
 }
 
-export async function enterBattle(page) {
+export async function enterBattle(page, { waitForStart = true } = {}) {
   await page.getByRole('button', { name: '시작', exact: true }).click();
   await page.locator('.deploy-bar').waitFor();
   await frame(page);
+  if (waitForStart) await frame(page, 10000);
 }
 
 export async function pause(page) {

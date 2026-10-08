@@ -50,6 +50,23 @@ button:disabled {
   font-weight: 400;
   font-size: 11px;
 }
+.battle-preparation {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.battle-start {
+  background: #ffe795;
+  border-color: #d5b64a;
+  color: #6b5315;
+  font-weight: 700;
+}
+.battle-countdown {
+  color: #5b7663;
+  font-size: 13px;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
 .battle-stats {
   display: flex;
   gap: 16px;
