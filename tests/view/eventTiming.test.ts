@@ -17,6 +17,11 @@ const damage: SimEvent = {
   damageType: 'physical',
 };
 describe('피격 연출 시각', () => {
+  it('분열 자식의 그림도 부모를 맞힌 투사체 도착에 맞춘다', () => {
+    const child: SimEvent = { type: 'enemySpawn', uid: 4, enemyId: 'miniJelly', x: 1, y: 1, parentUid: 3 };
+    expect(impactDelays([ranged, damage, { type: 'enemyDie', uid: 3 }, child]).get(child)).toBe(0.25);
+    expect(impactDelays([{ type: 'enemyDie', uid: 3 }, child]).get(child)).toBe(0);
+  });
   it('원거리 피해와 사망을 투사체 도착까지 늦춘다', () => {
     const death: SimEvent = { type: 'enemyDie', uid: 3 };
     const delays = impactDelays([ranged, damage, death]);

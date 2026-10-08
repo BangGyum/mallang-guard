@@ -25,6 +25,7 @@ describe('enemy spawn', () => {
         slowAmount: 0,
         slowUntilTick: 0,
         stunUntilTick: 0,
+        abilityCooldown: 0,
       },
     ]);
     expect(events).toEqual([{ type: 'enemySpawn', uid: 1, enemyId: 'jelly', x: 0.5, y: 0.5 }]);

@@ -23,6 +23,10 @@ export function updateStatus(
     }
   }
   for (const unit of state.units) {
+    if (unit.disruptedUntilTick <= state.tick) {
+      unit.disruptedUntilTick = 0;
+      unit.disruptionMul = 1;
+    }
     for (const effect of unit.buffs) {
       if (effect.type !== 'slowAura') continue;
       for (const enemy of enemiesInRange(content, stage, state, unit))

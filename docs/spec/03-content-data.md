@@ -1,7 +1,7 @@
 # 03. 콘텐츠 데이터
 
 캐릭터, 적, 스킬, 사거리, 스테이지는 전부 `src/data`의 JSON입니다. 코드에 밸런스 숫자를 쓰지 않습니다.
-아래 수치는 **1차 값**입니다. 밸런스를 조정해도 되지만, 골든 시나리오 테스트(07 문서)를 통과해야 하고 PR 설명에 바꾼 이유를 적습니다.
+아래 초기 JSON은 **v0.1의 1차 값**입니다. M4는 이를 유지하고 스테이지 2~6과 새 적 4종을 추가합니다. 현재 수치는 `src/data` JSON, 확장 규칙은 [09-content-expansion.md](09-content-expansion.md)를 따릅니다. 밸런스를 조정해도 되지만, 골든 시나리오 테스트(07 문서)를 통과해야 하고 PR 설명에 바꾼 이유를 적습니다.
 
 ## 1. 타입 (src/data/types.ts)
 
@@ -30,6 +30,10 @@ export type ArtId =
   | 'jelly'
   | 'hardJelly'
   | 'crow'
+  | 'splitJelly'
+  | 'miniJelly'
+  | 'spitter'
+  | 'kingJelly'
   | 'pudding';
 
 export interface RangeDef {
@@ -65,6 +69,15 @@ export interface EnemyDef {
   speed: number; // 초당 타일
   flying: boolean;
   lifeDamage: number; // 누수 시 깎는 푸딩 수
+  description?: string;
+  split?: { enemy: string; count: number };
+  disrupt?: {
+    range: number;
+    intervalSec: number;
+    durationSec: number;
+    atkIntervalMul: number;
+    targets: number;
+  };
 }
 
 export interface SkillDef {
@@ -116,6 +129,7 @@ export interface SpawnGroup {
 export interface StageDef {
   id: string;
   name: string;
+  description?: string;
   map: string[]; // 02 문서 2절의 문자
   startDp: number;
   dpPerSec?: number; // 기본 1
@@ -175,6 +189,9 @@ export interface RawContent {
   - 지상 경로는 실제로 경로가 있어야 합니다. 모든 스테이지의 `createBattle` 성공으로 확인합니다 (T1.3). data는 sim을 import하지 않으며, 구조 검증 후 전투 생성 단계에서 경로를 계산합니다.
   - 적이 `flying`이면 그 스폰 그룹의 route는 `flying: true`여야 하고, 반대도 마찬가지입니다.
   - `count ≥ 1`이고, `count > 1`이면 `intervalSec > 0`입니다.
+- M4 적 능력
+  - 분열 자식은 존재해야 하고 부모와 비행 종류가 같아야 하며 다시 분열할 수 없습니다. `split.count`는 1 이상의 정수입니다.
+  - 방해 사거리·주기·지속 시간은 양수, 공격 간격 배율은 1 이상, 대상 수는 1 이상의 정수입니다.
 
 ## 3. 초기 데이터
 

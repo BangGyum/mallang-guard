@@ -47,7 +47,7 @@ mallang-guard/
 ├─ src/
 │  ├─ main.ts                  진입점: 콘텐츠 검증 → 텍스처 굽기 → App 시작
 │  ├─ app/
-│  │  ├─ app.ts                화면 전환: title → battle → result
+│  │  ├─ app.ts                화면 전환: title ↔ stages → battle → result
 │  │  ├─ battleSession.ts      Battle + BoardView + Overlay + Hud + Controller 연결
 │  │  ├─ loop.ts               고정 틱 루프, 배속, 일시정지, 슬로모션
 │  │  └─ save.ts               localStorage (모든 접근 try/catch)
@@ -61,7 +61,8 @@ mallang-guard/
 │  │  ├─ validate.ts           raw JSON → ContentDb, 실패 시 경로 포함 에러
 │  │  ├─ index.ts              JSON import + validate → `content` export
 │  │  ├─ units.json  enemies.json  skills.json  ranges.json
-│  │  └─ stages/stage-1.json
+│  │  ├─ progression.ts        별 평가·저장 기록으로 순차 해금
+│  │  └─ stages/stage-1~6.json
 │  ├─ sim/
 │  │  ├─ constants.ts          규칙 상수 (02 문서 15절)
 │  │  ├─ types.ts              BattleState, 엔티티, Command, SimEvent
@@ -73,7 +74,7 @@ mallang-guard/
 │  │  ├─ hash.ts               테스트용 상태 해시
 │  │  └─ systems/              틱 순서대로 한 파일씩
 │  │     ├─ commands.ts  dp.ts  roster.ts  spawn.ts  status.ts  movement.ts
-│  │     └─ skills.ts  attack.ts  damage.ts  death.ts  outcome.ts
+│  │     └─ enemyAbilities.ts  skills.ts  attack.ts  damage.ts  death.ts  outcome.ts
 │  ├─ view/
 │  │  ├─ boardView.ts          씬 소유. render(state, alpha, dt), onEvents(events)
 │  │  ├─ camera.ts             fitCamera() (순수 함수 부분 분리)
@@ -92,7 +93,7 @@ mallang-guard/
 │  │  ├─ deployBar.ts          배치 카드 + 도토리 표시
 │  │  ├─ unitPanel.ts          선택 유닛 정보, 스킬 버튼, 후퇴
 │  │  ├─ controller.ts         입력 상태 머신 (05 문서)
-│  │  ├─ toast.ts  titleScreen.ts  resultScreen.ts  pauseMenu.ts
+│  │  ├─ toast.ts  titleScreen.ts  stageSelect.ts  resultScreen.ts  pauseMenu.ts
 │  │  └─ styles.css
 │  ├─ art/
 │  │  ├─ palette.ts
@@ -106,7 +107,7 @@ mallang-guard/
    ├─ helpers.ts               테스트용 콘텐츠·시나리오 실행기
    ├─ sim/*.test.ts
    ├─ view/*.test.ts           순수 함수만 (camera fit, picking 수학)
-   └─ scenarios/stage-1-clear.json
+   └─ scenarios/stage-{1~6}-{clear,idle}.json
 ```
 
 - 파일 이름은 camelCase, 타입은 PascalCase, 상수는 UPPER_SNAKE_CASE를 씁니다.
@@ -238,7 +239,7 @@ function frame(now: number) {
 
 T2.4에서는 동적 콘텐츠 로드·검증 후 `createApp(content, app)`으로 타이틀을 표시합니다. App은 화면 전환과 저장 기록을 소유하고, 시작·다시 하기마다 새 BattleSession을 만듭니다. 세션은 Battle·뷰·오버레이·입력·HUD를 소유하며, `dispose`로 루프·observer·리스너·텍스처·메시·WebGL 컨텍스트를 정리합니다. 컨텍스트를 해제한 캔버스는 다음 시작 때 새 캔버스로 교체합니다. 페이지 새로고침은 사용하지 않습니다.
 
-전투 종료 이벤트가 오면 마지막 프레임을 그린 후 루프를 멈추고 결과를 표시합니다. 결과 화면 뒤 보드는 크기가 바뀔 때만 다시 그립니다. 결과·일시정지 메뉴는 native dialog로 표시하고, 메뉴가 열려 있는 동안 배치 입력과 전투 단축키를 막습니다. T3.1에서 앱 시작 시 SVG 22종을 캔버스로 선로딩해 App과 BattleSession에 전달하며 카드·타이틀·팝업에도 동물 초상화를 사용합니다.
+전투 종료 이벤트가 오면 마지막 연출을 마친 뒤 루프를 멈추고 결과를 표시합니다. 결과 화면 뒤 보드는 크기가 바뀔 때만 다시 그립니다. 결과·일시정지 메뉴는 native dialog로 표시하고, 메뉴가 열려 있는 동안 배치 입력과 전투 단축키를 막습니다. M4 기준 앱 시작 시 SVG 27종을 캔버스로 선로딩해 App과 BattleSession에 전달하며 카드·타이틀·팝업에도 동물 초상화를 사용합니다. 스테이지 선택과 다음 스테이지도 기존 세션을 정리하고 선택한 stageId로 새 세션을 만듭니다.
 
 1. `content = validateContent(raw)`. 실패하면 화면에 에러 메시지를 띄우고 중단합니다 (개발 중 데이터 실수를 바로 보이게).
 2. 폰트 로딩 대기 (`document.fonts.ready`, 최대 2초).

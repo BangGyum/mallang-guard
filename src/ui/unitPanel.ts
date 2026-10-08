@@ -28,6 +28,7 @@ export function createUnitPanel(
   header.append(avatar, identity, close);
   const skillName = element('b', 'skill-name');
   const skillDescription = element('p', 'skill-description');
+  const disruption = element('p', 'unit-disruption');
   const gauge = element('progress', 'skill-gauge');
   gauge.setAttribute('aria-label', '스킬 충전');
   const status = element('p', 'skill-status');
@@ -37,7 +38,7 @@ export function createUnitPanel(
   retreat.append('후퇴 (+', refundAmount, acornIcon(), ')');
   const buttons = element('div', 'unit-popup-actions');
   buttons.append(activate, retreat);
-  card.append(header, skillName, skillDescription, status, gauge, buttons);
+  card.append(header, skillName, skillDescription, disruption, status, gauge, buttons);
   panel.append(card);
   const link = element('div', 'unit-popup-link');
   const marker = element('div', 'unit-popup-anchor');
@@ -77,6 +78,8 @@ export function createUnitPanel(
       description.textContent = `${def.animal} · ${ROLE_NAMES[def.role]} · ${skill.trigger === 'auto' ? '자동 발동' : '수동 발동'}`;
       skillName.textContent = skill.name;
       skillDescription.textContent = skill.description;
+      disruption.hidden = unit.disruptedUntilTick <= battle.state.tick;
+      disruption.textContent = `끈적함 · 공격 느림 ${Math.max(0, (unit.disruptedUntilTick - battle.state.tick) / TICK_RATE).toFixed(1)}초`;
       const active = unit.skillState === 'active';
       const ready = unit.skillState === 'ready';
       panel.dataset.skillState = unit.skillState;

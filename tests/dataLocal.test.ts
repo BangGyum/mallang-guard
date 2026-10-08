@@ -19,7 +19,7 @@ describe('콘텐츠 검증', () => {
       'snail',
     ]);
     expect([content.units.size, content.enemies.size, content.skills.size, content.ranges.size]).toEqual([
-      8, 3, 8, 3,
+      8, 7, 8, 3,
     ]);
     expect(first(raw.stages).spawns.reduce((total, spawn) => total + spawn.count, 0)).toBe(21);
   });

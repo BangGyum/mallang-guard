@@ -32,6 +32,8 @@ export function unitFixture(patch: Partial<UnitEntity> = {}): UnitEntity {
     tile: { x: 1, y: 1 },
     dir: 'right',
     atkCooldown: 0,
+    disruptedUntilTick: 0,
+    disruptionMul: 1,
     sp: 8,
     skillState: 'charging',
     skillEndTick: -1,

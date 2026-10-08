@@ -22,6 +22,10 @@ export type ArtId =
   | 'jelly'
   | 'hardJelly'
   | 'crow'
+  | 'splitJelly'
+  | 'miniJelly'
+  | 'spitter'
+  | 'kingJelly'
   | 'pudding';
 
 export interface RangeDef {
@@ -57,6 +61,15 @@ export interface EnemyDef {
   speed: number; // 초당 타일
   flying: boolean;
   lifeDamage: number; // 누수 시 깎는 푸딩 수
+  description?: string;
+  split?: { enemy: string; count: number };
+  disrupt?: {
+    range: number;
+    intervalSec: number;
+    durationSec: number;
+    atkIntervalMul: number;
+    targets: number;
+  };
 }
 
 export interface SkillDef {
@@ -108,6 +121,7 @@ export interface SpawnGroup {
 export interface StageDef {
   id: string;
   name: string;
+  description?: string;
   map: string[]; // 02 문서 2절의 문자
   startDp: number;
   dpPerSec?: number; // 기본 1

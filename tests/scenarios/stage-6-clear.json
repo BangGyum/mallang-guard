@@ -1,0 +1,153 @@
+{
+  "stage": "stage-6",
+  "expect": {
+    "result": "won",
+    "minLife": 3
+  },
+  "commands": [
+    {
+      "atSec": 0,
+      "type": "deploy",
+      "unitId": "squirrel",
+      "tile": [3, 0],
+      "dir": "down"
+    },
+    {
+      "atSec": 0.033333,
+      "type": "deploy",
+      "unitId": "penguin",
+      "tile": [8, 2],
+      "dir": "left"
+    },
+    {
+      "atSec": 12,
+      "type": "skill",
+      "unitId": "squirrel"
+    },
+    {
+      "atSec": 12.033333,
+      "type": "deploy",
+      "unitId": "sheep",
+      "tile": [5, 3],
+      "dir": "left"
+    },
+    {
+      "atSec": 16,
+      "type": "deploy",
+      "unitId": "bunny",
+      "tile": [6, 2],
+      "dir": "left"
+    },
+    {
+      "atSec": 20.033333,
+      "type": "skill",
+      "unitId": "penguin"
+    },
+    {
+      "atSec": 30,
+      "type": "deploy",
+      "unitId": "cat",
+      "tile": [8, 4],
+      "dir": "up"
+    },
+    {
+      "atSec": 32.033333,
+      "type": "skill",
+      "unitId": "squirrel"
+    },
+    {
+      "atSec": 32.066667,
+      "type": "deploy",
+      "unitId": "snail",
+      "tile": [5, 2],
+      "dir": "left"
+    },
+    {
+      "atSec": 35.733333,
+      "type": "skill",
+      "unitId": "sheep"
+    },
+    {
+      "atSec": 49,
+      "type": "deploy",
+      "unitId": "bear",
+      "tile": [5, 5],
+      "dir": "up"
+    },
+    {
+      "atSec": 49.066667,
+      "type": "skill",
+      "unitId": "snail"
+    },
+    {
+      "atSec": 52.066667,
+      "type": "skill",
+      "unitId": "squirrel"
+    },
+    {
+      "atSec": 59,
+      "type": "skill",
+      "unitId": "bear"
+    },
+    {
+      "atSec": 65.066667,
+      "type": "skill",
+      "unitId": "penguin"
+    },
+    {
+      "atSec": 72.1,
+      "type": "skill",
+      "unitId": "squirrel"
+    },
+    {
+      "atSec": 76.433333,
+      "type": "skill",
+      "unitId": "sheep"
+    },
+    {
+      "atSec": 84.033333,
+      "type": "skill",
+      "unitId": "bear"
+    },
+    {
+      "atSec": 86.1,
+      "type": "skill",
+      "unitId": "snail"
+    },
+    {
+      "atSec": 92.133333,
+      "type": "skill",
+      "unitId": "squirrel"
+    },
+    {
+      "atSec": 109.066667,
+      "type": "skill",
+      "unitId": "bear"
+    },
+    {
+      "atSec": 110.1,
+      "type": "skill",
+      "unitId": "penguin"
+    },
+    {
+      "atSec": 112.166667,
+      "type": "skill",
+      "unitId": "squirrel"
+    },
+    {
+      "atSec": 123.133333,
+      "type": "skill",
+      "unitId": "snail"
+    },
+    {
+      "atSec": 132.2,
+      "type": "skill",
+      "unitId": "squirrel"
+    },
+    {
+      "atSec": 134.1,
+      "type": "skill",
+      "unitId": "bear"
+    }
+  ]
+}

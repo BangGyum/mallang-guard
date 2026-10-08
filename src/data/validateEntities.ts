@@ -15,6 +15,10 @@ const ART_IDS = [
   'jelly',
   'hardJelly',
   'crow',
+  'splitJelly',
+  'miniJelly',
+  'spitter',
+  'kingJelly',
   'pudding',
 ] as const satisfies readonly ArtId[];
 
@@ -64,7 +68,7 @@ export function parseUnit(value: unknown, path: string): UnitDef {
 
 export function parseEnemy(value: unknown, path: string): EnemyDef {
   const raw = object(value, path);
-  return {
+  const enemy: EnemyDef = {
     id: text(raw.id, `${path}.id`),
     name: text(raw.name, `${path}.name`),
     art: oneOf(raw.art, `${path}.art`, ART_IDS),
@@ -75,6 +79,25 @@ export function parseEnemy(value: unknown, path: string): EnemyDef {
     flying: bool(raw.flying, `${path}.flying`),
     lifeDamage: integer(raw.lifeDamage, `${path}.lifeDamage`, 1),
   };
+  if (raw.description !== undefined) enemy.description = text(raw.description, `${path}.description`);
+  if (raw.split !== undefined) {
+    const split = object(raw.split, `${path}.split`);
+    enemy.split = {
+      enemy: text(split.enemy, `${path}.split.enemy`),
+      count: integer(split.count, `${path}.split.count`, 1),
+    };
+  }
+  if (raw.disrupt !== undefined) {
+    const disrupt = object(raw.disrupt, `${path}.disrupt`);
+    enemy.disrupt = {
+      range: positive(disrupt.range, `${path}.disrupt.range`),
+      intervalSec: positive(disrupt.intervalSec, `${path}.disrupt.intervalSec`),
+      durationSec: positive(disrupt.durationSec, `${path}.disrupt.durationSec`),
+      atkIntervalMul: number(disrupt.atkIntervalMul, `${path}.disrupt.atkIntervalMul`, 1),
+      targets: integer(disrupt.targets, `${path}.disrupt.targets`, 1),
+    };
+  }
+  return enemy;
 }
 
 export function parseSkill(value: unknown, path: string): SkillDef {

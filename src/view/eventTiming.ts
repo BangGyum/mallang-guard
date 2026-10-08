@@ -14,6 +14,8 @@ export function impactDelays(events: readonly SimEvent[]): ReadonlyMap<SimEvent,
     }
     if (event.type === 'enemyDie' && lastImpact.has(event.uid))
       delays.set(event, lastImpact.get(event.uid) ?? 0);
+    if (event.type === 'enemySpawn' && event.parentUid !== undefined)
+      delays.set(event, lastImpact.get(event.parentUid) ?? 0);
   }
   return delays;
 }

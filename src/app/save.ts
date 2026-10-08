@@ -1,4 +1,5 @@
 import { clamp } from '../core/math';
+import type { StageRecord } from '../data/progression';
 
 export const SAVE_KEY = 'mallang-guard:v1';
 
@@ -10,7 +11,7 @@ export interface SaveData {
     sfxVolume: number;
     reducedMotion: boolean | null;
   };
-  stages: Record<string, { cleared: boolean; bestLife: number }>;
+  stages: Record<string, StageRecord>;
 }
 
 function defaults(): SaveData {

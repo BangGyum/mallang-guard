@@ -34,7 +34,9 @@ export async function tilePoint(page, tile) {
     const { tileScreen } = await import('/src/view/picking.ts');
     const { parseBoard } = await import('/src/sim/board.ts');
     const { content } = await import('/src/data/index.ts');
-    const board = parseBoard(content.stages.get('stage-1').map);
+    const board = parseBoard(
+      content.stages.get(document.querySelector('#app').dataset.stageId ?? 'stage-1').map,
+    );
     const canvas = document.querySelector('#board');
     const height = canvas.clientHeight;
     const camera = fitCamera(

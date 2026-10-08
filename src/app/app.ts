@@ -1,9 +1,11 @@
 import { createSfx } from '../audio/sfx';
 import { assert } from '../core/assert';
+import { starCount } from '../data/progression';
 import type { ContentDb } from '../data/types';
 import { createPauseMenu } from '../ui/pauseMenu';
 import { createResultScreen } from '../ui/resultScreen';
 import { createSettings } from '../ui/settings';
+import { createStageSelect } from '../ui/stageSelect';
 import { createTitleScreen } from '../ui/titleScreen';
 import { impactDelays } from '../view/eventTiming';
 import { createBattleSession } from './battleSession';
@@ -18,7 +20,8 @@ export function createApp(
   const stageDef = content.stages.get('stage-1');
   assert(screenRoot && stageDef, '시작 화면을 불러올 수 없습니다');
   const root = screenRoot;
-  const stage = stageDef;
+  let stage = stageDef;
+  const stages = [...content.stages.values()];
   const save = loadSave();
   const sound = createSfx(save.settings.sfxVolume);
   const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -77,7 +80,32 @@ export function createApp(
     session = undefined;
     setBattleVisible(false);
     app.dataset.screen = 'title';
-    screen = createTitleScreen(root, content, stage.name, save.stages[stage.id], startBattle, showSettings);
+    screen = createTitleScreen(
+      root,
+      content,
+      stage.name,
+      save.stages[stage.id],
+      startBattle,
+      showSettings,
+      showStages,
+    );
+  }
+  function showStages() {
+    sound.reset();
+    clearScreen();
+    session?.dispose();
+    session = undefined;
+    setBattleVisible(false);
+    app.dataset.screen = 'stages';
+    screen = createStageSelect(root, content, save.stages, stage.id, {
+      back: showTitle,
+      start(id) {
+        const selected = content.stages.get(id);
+        assert(selected, '선택한 스테이지가 없습니다');
+        stage = selected;
+        startBattle();
+      },
+    });
   }
   function closePause(resume: boolean) {
     clearScreen();
@@ -113,6 +141,7 @@ export function createApp(
     clearScreen();
     session.setMenuOpen(true);
     app.dataset.screen = 'result';
+    const next = won ? stages[stages.indexOf(stage) + 1] : undefined;
     screen = createResultScreen(
       root,
       {
@@ -121,8 +150,21 @@ export function createApp(
         killed: state.killed,
         totalEnemies: state.totalEnemies,
         bestLife: save.stages[stage.id]?.bestLife ?? 0,
+        stars: starCount({ cleared: won, bestLife: state.life }),
       },
-      { restart: startBattle, exit: showTitle },
+      {
+        restart: startBattle,
+        exit: showTitle,
+        stages: showStages,
+        ...(next
+          ? {
+              next() {
+                stage = next;
+                startBattle();
+              },
+            }
+          : {}),
+      },
     );
   }
   function startBattle() {
@@ -131,11 +173,13 @@ export function createApp(
     session?.dispose();
     setBattleVisible(true);
     app.dataset.screen = 'battle';
+    app.dataset.stageId = stage.id;
     session = createBattleSession(
       content,
       app,
       {
         speed: save.settings.speed,
+        stageId: stage.id,
         options: viewOptions(),
         automaticQuality,
         onMenu: showPause,
@@ -166,6 +210,7 @@ export function createApp(
       motionQuery.removeEventListener('change', onMotionChange);
       setBattleVisible(false);
       delete app.dataset.screen;
+      delete app.dataset.stageId;
       delete app.dataset.reducedMotion;
     },
   };

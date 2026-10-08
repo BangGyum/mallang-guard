@@ -50,6 +50,11 @@ export function createVfx(
       delays: ReadonlyMap<SimEvent, number>,
     ) {
       for (const event of events) {
+        if (event.type === 'unitDisrupt') {
+          const from = position(event.src);
+          const to = position(event.uid);
+          if (from && to) pool.emit('stickyDrop', from, to, PROJECTILE_SEC, 0.25, 0.3);
+        }
         if (event.type === 'attack') {
           const from = position(event.src.uid);
           const to = position(event.dst.uid);
