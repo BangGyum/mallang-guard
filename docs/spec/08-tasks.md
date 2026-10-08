@@ -296,6 +296,16 @@
 - 실제 조작 stage-1 완주는 PC·터치 모두 푸딩 3개·21/21 처치와 기록 복원을 확인했습니다. 모바일은 터치 에뮬레이션이며 FPS 측정은 아닙니다.
   결과: [준비/정보 검사](../verification/t3.10-preparation.json), [16회 캐릭터 기록](../verification/t3.10-characters.json), [PC 정보창](../verification/t3.10-desktop-info.png), [740×360 정보창](../verification/t3.10-mobile-info.png), [PC 완주](../verification/t3.10-desktop-clear.png), [모바일 완주](../verification/t3.10-mobile-clear.png).
 
+### [x] T3.11 전투 UI와 스킬 조작 정리
+- 사용자 요청: 비슷한 디펜스 게임의 UI를 참고해 스킬창과 전투 화면을 수정합니다.
+- 구현: 오른쪽 아래 정보창의 캐릭터·스킬·상태·조작 영역을 구분하고 직접 만든 스킬/조작 SVG 아이콘을 사용합니다. 후퇴는 보조 버튼으로, 발동은 큰 주 버튼으로 표시합니다. 충전·준비·발동 중·자동·대상 대기를 색과 문구로 구분합니다.
+- 상단 현황/조작 그룹과 개별 하단 카드를 사용해 보드를 가리는 배경을 줄이며 크림·초록과 역할 색을 유지합니다.
+- 완료 조건: PC·844×390·740×360에서 정보창·게이지·44px 버튼 경계를 확인하고 대상 대기→준비→발동, 자동 발동, 8종 스킬과 10초/3초 시작 회귀, check/lint/test/build를 통과합니다.
+- 수정: 740×360의 상세 스크롤 영역이 10px로 줄어드는 경우를 간격 조정으로 고쳐 27px를 확보했습니다. 대체 폰트에서 도토리 라벨이 줄바꿈되던 경우도 보정했습니다. 기존 입력 검사에서 초기 도토리가 로딩 시간에 따라 증가하지 않도록 가상 시계를 페이지 진입 전에 멈춥니다.
+- 검증 (2026-10-08): check/lint/test/build, 46개 파일 725개 테스트 통과. 자연 충전·대상 없음·비활성 버튼 터치·적 등장 후 발동, 8종 PC/터치 16회, 수동/자동 스킬·알림·남은 시간·모션 감소, 준비/재시작과 배속·정지 단축키 검사가 통과했습니다.
+- 실제 stage-1 완주는 PC·터치 모두 푸딩 3개·21/21 처치와 기록 복원, 브라우저 오류·경고 0건입니다. 캐릭터 단독/대상 대기 검사는 원본 아군 수치와 검사용 맵·적을 사용하며 가상 시계·터치 에뮬레이션 검사입니다. FPS 및 실제 모바일 하드웨어 측정은 포함하지 않습니다.
+  결과: [대상/배치 검사](../verification/t3.11-battle-ui.json), [16회 캐릭터 기록](../verification/t3.11-characters.json), [시작/정보 검사](../verification/t3.11-preparation.json), [PC 준비](../verification/t3.11-skill-desktop-ready.png), [터치 사용 중](../verification/t3.11-skill-mobile-active.png), [740×360 대상 대기](../verification/t3.11-compact-target-wait.png), [PC 완주](../verification/t3.11-desktop-clear.png), [터치 완주](../verification/t3.11-mobile-clear.png).
+
 ## M4 콘텐츠
 
 - 스테이지 2~6: 갈림길(경로 여러 개), `path` 전용 칸, 스폰 여러 곳

@@ -1,4 +1,5 @@
 import type { Battle } from '../sim/battle';
+import { battleIcon } from './battleIcon';
 import { button, element } from './dom';
 import { playFeedback } from './feedback';
 
@@ -27,11 +28,17 @@ export function createHud(
   const enemies = element('span', 'battle-enemies');
   const wave = element('span', 'battle-wave');
   stats.append(life, enemies, wave);
-  const pause = button('일시정지', actions.pause);
-  const speed = button('×1', actions.speed);
+  const pause = button('', actions.pause, 'battle-pause');
+  const pauseLabel = element('span', '', '일시정지');
+  const speed = button('', actions.speed, 'battle-speed');
+  const speedLabel = element('span', '', '×1');
+  const controls = element('div', 'battle-controls');
+  speed.append(battleIcon('speed'), speedLabel);
+  pause.append(battleIcon('pause'), pauseLabel);
+  controls.append(speed, pause);
   pause.dataset.action = 'pause';
   speed.setAttribute('aria-label', '전투 배속 변경');
-  top.append(title, preparation, stats, speed, pause);
+  top.append(title, preparation, stats, controls);
   const hint = element(
     'p',
     'battle-hint',
@@ -67,8 +74,12 @@ export function createHud(
       previousLife = state.life;
       previousWave = state.currentWave;
       life.classList.toggle('is-critical', state.life <= 1);
-      pause.textContent = controls.paused ? '계속하기' : '일시정지';
-      speed.textContent = `×${controls.speed}`;
+      if (pause.dataset.paused !== String(controls.paused)) {
+        pause.dataset.paused = String(controls.paused);
+        pause.querySelector('.battle-icon')?.replaceWith(battleIcon(controls.paused ? 'play' : 'pause'));
+      }
+      pauseLabel.textContent = controls.paused ? '계속하기' : '일시정지';
+      speedLabel.textContent = `×${controls.speed}`;
       pause.disabled = state.phase !== 'running';
       speed.disabled = state.phase !== 'running';
       hint.hidden = state.tick > 150 || state.units.length > 0;
