@@ -9,6 +9,7 @@ export function createSfx(initialVolume: number) {
   let volume = initialVolume;
   const sources = new Set<AudioScheduledSourceNode>();
   const recent = new Map<Sound, number[]>();
+  const pending: { sound: Sound; delay: number }[] = [];
   function unlock(event: Event) {
     if (!event.isTrusted) return;
     if (!context) {
@@ -49,9 +50,9 @@ export function createSfx(initialVolume: number) {
     source.connect(gain);
     connect(source, gain, start, duration);
   }
-  function play(sound: Sound, delay = 0) {
+  function play(sound: Sound) {
     if (context?.state !== 'running' || volume === 0) return;
-    const start = context.currentTime + delay;
+    const start = context.currentTime;
     const times = (recent.get(sound) ?? []).filter((time) => Math.abs(start - time) < 0.05);
     if (times.length >= 3) return;
     times.push(start);
@@ -94,28 +95,48 @@ export function createSfx(initialVolume: number) {
       });
     }
   }
-  function reset() {
+  function schedule(sound: Sound, delay = 0) {
+    if (delay > 0) pending.push({ sound, delay });
+    else play(sound);
+  }
+  function stop() {
     for (const source of sources) source.stop();
     recent.clear();
   }
+  function reset() {
+    stop();
+    pending.length = 0;
+  }
   return {
     play,
+    stop,
     reset,
+    update(dt: number) {
+      for (let i = 0; i < pending.length; ) {
+        const entry = pending[i];
+        if (!entry) break;
+        entry.delay -= dt;
+        if (entry.delay <= 0) {
+          play(entry.sound);
+          pending.splice(i, 1);
+        } else i++;
+      }
+    },
     setVolume(value: number) {
       volume = value;
       if (context && master) master.gain.setTargetAtTime(value, context.currentTime, 0.015);
     },
-    onEvents(events: readonly SimEvent[], delays: ReadonlyMap<SimEvent, number>, speed: number) {
+    onEvents(events: readonly SimEvent[], delays: ReadonlyMap<SimEvent, number>) {
       for (const event of events) {
-        const delay = (delays.get(event) ?? 0) / speed;
+        const delay = delays.get(event) ?? 0;
         if (event.type === 'unitDeploy') play('deploy');
         if (event.type === 'attack' && event.ranged) play('shoot');
-        if (event.type === 'damage') play(event.damageType === 'magic' ? 'magic' : 'hit', delay);
-        if (event.type === 'enemyDie') play('pop', delay);
+        if (event.type === 'damage') schedule(event.damageType === 'magic' ? 'magic' : 'hit', delay);
+        if (event.type === 'enemyDie') schedule('pop', delay);
         if (event.type === 'skillPulse') play('magic');
         if (event.type === 'skillStart') play('skill');
         if (event.type === 'enemyLeak') play('leak');
-        if (event.type === 'battleEnd') play(event.result === 'won' ? 'win' : 'lose', 0.5 / speed);
+        if (event.type === 'battleEnd') schedule(event.result === 'won' ? 'win' : 'lose', 0.5);
       }
     },
     dispose() {

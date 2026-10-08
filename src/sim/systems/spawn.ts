@@ -26,6 +26,6 @@ export function spawnEnemies(stage: StageRuntime, state: BattleState, events: Si
       stunUntilTick: 0,
     });
     state.spawnCursor[index] = cursor + 1;
-    events.push({ type: 'enemySpawn', uid, enemyId: group.enemy.id });
+    events.push({ type: 'enemySpawn', uid, enemyId: group.enemy.id, x, y });
   }
 }

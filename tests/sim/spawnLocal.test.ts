@@ -16,12 +16,12 @@ describe('스폰과 이동', () => {
     expect(run(battle, 30)).toEqual([]);
     expect(battle.state.currentWave).toBe(0);
     expect(battle.step()).toEqual([
-      { type: 'enemySpawn', uid: 1, enemyId: 'jelly' },
-      { type: 'enemySpawn', uid: 2, enemyId: 'hardJelly' },
+      { type: 'enemySpawn', uid: 1, enemyId: 'jelly', x: 0.5, y: 0.5 },
+      { type: 'enemySpawn', uid: 2, enemyId: 'hardJelly', x: 0.5, y: 0.5 },
     ]);
     expect(battle.state.currentWave).toBe(3);
     expect(battle.step()).toEqual([]);
-    expect(battle.step()).toEqual([{ type: 'enemySpawn', uid: 3, enemyId: 'jelly' }]);
+    expect(battle.step()).toEqual([{ type: 'enemySpawn', uid: 3, enemyId: 'jelly', x: 0.5, y: 0.5 }]);
     expect(battle.state.spawnCursor).toEqual([2, 1]);
   });
 

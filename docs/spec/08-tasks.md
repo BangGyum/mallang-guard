@@ -250,6 +250,16 @@
 
 ---
 
+### [x] T3.6 v0.1 구현 재점검
+- 사용자 요청: 기존 구현을 다시 검사하고 발견한 오류를 재현한 뒤 수정합니다.
+- 수정 (2026-10-08): 생성된 틱에 처치된 적의 모습·피격 연출이 사라지는 오류를 `enemySpawn` 위치 스냅샷으로 수정했습니다. 이벤트 생성자·소비자·직접 작성한 테스트 기대값을 함께 확인했습니다. 연속 원거리 공격은 피격 대기를 각각 보관해 앞선 효과를 취소하지 않습니다.
+- 효과음도 화면 연출과 같은 시간으로 진행합니다. 도중에 정지·배속·선택 중 느린 시간이 바뀌어도 투사체 도착과 맞고, 메뉴 재개 시 대기 소리를 유지하며 재시작/타이틀에서는 정리합니다. 선택 중 전투가 끝났을 때 종료 징글이 늦게 재생되던 경우도 같은 시간 기준을 적용했습니다.
+- 검증: 수정 전 실패한 캐릭터 경계 테스트 2개와 브라우저 효과음 시간 테스트가 수정 후 통과했습니다. check/lint/test/build, 41개 파일 514개 테스트 통과. `effects`, `audio`, `audioTiming`, `input`, `skillPopover`, `settings`, `appFlow`, `sessionResources` 브라우저 검사도 통과했습니다.
+- PC·모바일 모두 푸딩 3개·21/21 처치 완주, 수동/자동 스킬 팝업, 설정 저장/복원, 10회 화면 전환·재시작을 확인했습니다. 세션 10회에서 활성 GPU 자원은 매번 지오메트리 51·텍스처 26, 종료 후 0/0입니다. 입력 리스너가 누적되지 않고 타이틀 복귀 후 예약 프레임이 남지 않으며, 브라우저 오류도 없습니다.
+  화면: [PC 즉시 처치](../verification/review-desktop-instant-kill.png), [모바일 즉시 처치](../verification/review-mobile-instant-kill.png), [PC 피격](../verification/review-desktop-impact.png), [모바일 피격](../verification/review-mobile-impact.png), [PC 완주](../verification/review-desktop-clear.png), [모바일 완주](../verification/review-mobile-clear.png).
+
+---
+
 ## M4 콘텐츠 (시작 전에 상세 스펙을 따로 씁니다)
 
 - 스테이지 2~6: 갈림길(경로 여러 개), `path` 전용 칸, 스폰 여러 곳

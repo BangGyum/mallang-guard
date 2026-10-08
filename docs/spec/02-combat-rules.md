@@ -167,4 +167,5 @@ seed는 uint32로 정규화해 rngState에 보관하며 0도 유효합니다. si
 - UnitEntity: uid/unitId/tile/dir, 공격 쿨다운, SP/스킬 상태/종료 틱/공격 횟수/펄스 일정/buffs. 체력 필드는 없습니다.
 - EnemyEntity: 경로·현재/이전 위치·거리·HP·둔화/기절 일정. 반격·저지 필드는 없습니다.
 - 이벤트: commandRejected, unitDeploy/unitRetreat, enemySpawn/enemyLeak/enemyDie, attack/damage, status, skillReady/skillStart/skillPulse/skillEnd, dpGain, battleEnd.
+- `enemySpawn`은 `uid`, `enemyId`, 경로 시작점의 `x`, `y`를 담습니다. 같은 틱에 처치되어 최종 상태에서 빠져도 등장·투사체·사망 연출의 위치를 복원할 수 있어야 합니다.
 - unitDie/block/unblock/heal 이벤트는 제거했습니다. view/ui는 읽기만 하며 명령 enqueue로만 상태를 바꿉니다.

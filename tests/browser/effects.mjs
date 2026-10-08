@@ -2,6 +2,8 @@ import assert from 'node:assert/strict';
 import { chromium } from 'playwright';
 import { createTestScene } from './scene.mjs';
 
+const screenshotPrefix = process.env.MALLANG_SCREENSHOT_PREFIX ?? 't3.3';
+
 const browser = await chromium.launch({
   channel: 'msedge',
   headless: true,
@@ -58,9 +60,9 @@ try {
     assert(start.visible, '투사체 도착 전 마지막 피격 대상을 유지');
     assert(start.metrics.particles > 5 && start.metrics.particles <= 200);
     const label = mobile ? 'mobile' : 'desktop';
-    await page.screenshot({ path: `docs/verification/t3.3-${label}-projectile.png` });
+    await page.screenshot({ path: `docs/verification/${screenshotPrefix}-${label}-projectile.png` });
     await page.evaluate(() => window.testScene.render(0.15));
-    await page.screenshot({ path: `docs/verification/t3.3-${label}-impact.png` });
+    await page.screenshot({ path: `docs/verification/${screenshotPrefix}-${label}-impact.png` });
     assert(
       await page.evaluate(() => !!window.testScene.view.entityPosition(window.dyingUid)),
       '도착 시점에 사망 연출 진행',
@@ -78,12 +80,37 @@ try {
     });
     assert.equal(capacity.peak, 200, '파티클 풀 상한');
     assert(capacity.rest < 30, '종료된 효과 슬롯 반환');
+    const instantKill = await page.evaluate(() => {
+      const { battle, deliver, render, view } = window.testScene;
+      const uid = battle.state.nextUid;
+      const src = { kind: 'unit', uid: battle.state.units[0].uid };
+      const dst = { kind: 'enemy', uid };
+      deliver([
+        { type: 'enemySpawn', uid, enemyId: 'jelly', x: 1.5, y: 1.5 },
+        { type: 'attack', src, dst, damageType: 'physical', ranged: true },
+        { type: 'damage', src, dst, amount: 100, damageType: 'physical' },
+        { type: 'enemyDie', uid },
+      ]);
+      render(0.12);
+      const flying = !!view.entityPosition(uid);
+      render(0.15);
+      const impact = !!view.entityPosition(uid);
+      return { uid, flying, impact };
+    });
+    assert(instantKill.flying && instantKill.impact, '같은 틱에 생성·처치된 적도 피격까지 표시');
+    await page.screenshot({ path: `docs/verification/${screenshotPrefix}-${label}-instant-kill.png` });
+    await page.evaluate(() => window.testScene.render(0.3));
+    assert.equal(
+      await page.evaluate((uid) => !!window.testScene.view.entityPosition(uid), instantKill.uid),
+      false,
+      '사망 연출이 끝난 즉시 생성 적도 정리',
+    );
     await page.evaluate(() => {
       window.testScene.overlay.dispose();
       window.testScene.view.dispose();
     });
     assert.deepEqual(errors, []);
-    console.log(JSON.stringify({ viewport: label, capacity, errors }));
+    console.log(JSON.stringify({ viewport: label, capacity, instantKill, errors }));
     await context.close();
   }
 } finally {
