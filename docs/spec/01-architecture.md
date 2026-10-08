@@ -62,7 +62,7 @@ mallang-guard/
 │  │  ├─ index.ts              JSON import + validate → `content` export
 │  │  ├─ units.json  enemies.json  skills.json  ranges.json
 │  │  ├─ progression.ts        별 평가·저장 기록으로 순차 해금
-│  │  └─ stages/stage-1~6.json
+│  │  └─ stages/stage-1~7.json
 │  ├─ sim/
 │  │  ├─ constants.ts          규칙 상수 (02 문서 15절)
 │  │  ├─ types.ts              BattleState, 엔티티, Command, SimEvent
@@ -107,7 +107,7 @@ mallang-guard/
    ├─ helpers.ts               테스트용 콘텐츠·시나리오 실행기
    ├─ sim/*.test.ts
    ├─ view/*.test.ts           순수 함수만 (camera fit, picking 수학)
-   └─ scenarios/stage-{1~6}-{clear,idle}.json
+   └─ scenarios/stage-{1~7}-{clear,idle}.json
 ```
 
 - 파일 이름은 camelCase, 타입은 PascalCase, 상수는 UPPER_SNAKE_CASE를 씁니다.

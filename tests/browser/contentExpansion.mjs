@@ -61,7 +61,7 @@ try {
       }, battleModule);
       const click = async (locator) => (mobile ? locator.tap() : locator.click());
       await click(page.getByRole('button', { name: '스테이지 선택', exact: true }));
-      assert.equal(await page.locator('.stage-card').count(), 6);
+      assert.equal(await page.locator('.stage-card').count(), 7);
       assert.equal(await page.locator('[data-stage-id="stage-1"] .stage-stars').textContent(), '★☆☆');
       if (level === 2) assert(await page.locator('[data-stage-id="stage-3"]').isDisabled());
       const label = `${mobile ? 'mobile' : 'desktop'}-${level}`;

@@ -18,8 +18,8 @@ try {
   await page.getByLabel('화면 품질').selectOption('low');
   await page.getByRole('button', { name: '완료' }).click();
   await page.getByRole('button', { name: '스테이지 선택', exact: true }).click();
-  assert.equal(await page.locator('.stage-card').count(), 6);
-  assert.equal(await page.locator('.stage-card:disabled').count(), 5);
+  assert.equal(await page.locator('.stage-card').count(), 7);
+  assert.equal(await page.locator('.stage-card:disabled').count(), 6);
   assert((await page.locator('.stage-enemy svg').count()) > 7);
   await page.locator('.stage-card[data-stage-id="stage-1"]').click();
   await page.locator('.deploy-card').first().waitFor();

@@ -1,0 +1,131 @@
+{
+  "id": "stage-7",
+  "name": "1-7 드넓은 푸딩 정원",
+  "description": "22×12 넓은 정원. 두 입구와 긴 산책길을 중앙 고지대에서 방어해요.",
+  "map": [
+    "######################",
+    "##HH##H#H##H#H#HH##H##",
+    "S.......####.......###",
+    "##HH##H.H##H.H#HH#.HH#",
+    "######H.H#HH.H###H.H##",
+    "######H.HHHH.HH##H.H##",
+    "###..........###HH.HH#",
+    "##H.H#HH#HHH#HH#HH.H##",
+    "##H.HH##HH#H#HH#HH.HH#",
+    "S...##############...G",
+    "#HHH#HH##HH###HH#HH#H#",
+    "######################"
+  ],
+  "startDp": 25,
+  "dpPerSec": 1,
+  "life": 3,
+  "deployLimit": 7,
+  "routes": {
+    "ground": {
+      "from": [0, 2],
+      "via": [[7, 2], [7, 6], [12, 6], [12, 2], [18, 2], [18, 9]],
+      "to": [21, 9]
+    },
+    "lower": {
+      "from": [0, 9],
+      "via": [[3, 9], [3, 6], [7, 6], [12, 6], [12, 2], [18, 2], [18, 9]],
+      "to": [21, 9]
+    },
+    "air": {
+      "from": [0, 2],
+      "via": [[7, 6], [12, 6], [18, 9]],
+      "to": [21, 9],
+      "flying": true
+    }
+  },
+  "spawns": [
+    {
+      "wave": 1,
+      "atSec": 3,
+      "enemy": "jelly",
+      "count": 3,
+      "intervalSec": 3,
+      "route": "ground"
+    },
+    {
+      "wave": 2,
+      "atSec": 14,
+      "enemy": "jelly",
+      "count": 3,
+      "intervalSec": 3,
+      "route": "lower"
+    },
+    {
+      "wave": 3,
+      "atSec": 28,
+      "enemy": "hardJelly",
+      "count": 2,
+      "intervalSec": 6,
+      "route": "ground"
+    },
+    {
+      "wave": 3,
+      "atSec": 30,
+      "enemy": "crow",
+      "count": 2,
+      "intervalSec": 5,
+      "route": "air"
+    },
+    {
+      "wave": 4,
+      "atSec": 44,
+      "enemy": "splitJelly",
+      "count": 3,
+      "intervalSec": 5,
+      "route": "lower"
+    },
+    {
+      "wave": 4,
+      "atSec": 51,
+      "enemy": "spitter",
+      "count": 2,
+      "intervalSec": 6,
+      "route": "ground"
+    },
+    {
+      "wave": 5,
+      "atSec": 65,
+      "enemy": "hardJelly",
+      "count": 3,
+      "intervalSec": 5,
+      "route": "ground"
+    },
+    {
+      "wave": 5,
+      "atSec": 70,
+      "enemy": "splitJelly",
+      "count": 2,
+      "intervalSec": 6,
+      "route": "lower"
+    },
+    {
+      "wave": 6,
+      "atSec": 83,
+      "enemy": "kingJelly",
+      "count": 1,
+      "intervalSec": 0,
+      "route": "ground"
+    },
+    {
+      "wave": 6,
+      "atSec": 91,
+      "enemy": "crow",
+      "count": 4,
+      "intervalSec": 4,
+      "route": "air"
+    },
+    {
+      "wave": 6,
+      "atSec": 97,
+      "enemy": "spitter",
+      "count": 2,
+      "intervalSec": 7,
+      "route": "lower"
+    }
+  ]
+}
