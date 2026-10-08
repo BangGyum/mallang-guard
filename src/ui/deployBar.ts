@@ -2,6 +2,7 @@ import { ROLE_COLORS, ROLE_NAMES } from '../art/palette';
 import { assert } from '../core/assert';
 import type { Battle } from '../sim/battle';
 import { ticksPerDp } from '../sim/systems/dp';
+import { acornIcon } from './acornIcon';
 import { element } from './dom';
 import { playFeedback } from './feedback';
 import { portrait } from './portrait';
@@ -19,7 +20,9 @@ export function createDeployBar(
   const progress = element('progress', '');
   progress.max = 1;
   progress.setAttribute('aria-label', '다음 도토리까지');
-  dp.append(element('span', '', '🌰 도토리'), amount, progress);
+  const dpLabel = element('span', '', '도토리');
+  dpLabel.prepend(acornIcon());
+  dp.append(dpLabel, amount, progress);
   bar.append(remaining, cards, dp);
   root.append(bar);
   const entries = battle.state.roster
@@ -39,8 +42,10 @@ export function createDeployBar(
     card.setAttribute('aria-label', `${def.name} 배치, 도토리 ${def.cost}`);
     card.style.setProperty('--role-color', ROLE_COLORS[def.role]);
     const status = element('span', 'card-status');
+    const cost = element('span', 'card-cost', String(def.cost));
+    cost.prepend(acornIcon());
     card.append(
-      element('span', 'card-cost', `🌰 ${def.cost}`),
+      cost,
       portrait(def.art, 'card-portrait'),
       element('strong', 'card-name', def.name),
       element('span', 'card-role', ROLE_NAMES[def.role]),

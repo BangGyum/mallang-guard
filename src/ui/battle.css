@@ -203,15 +203,13 @@ button:disabled {
   right: -48px;
   bottom: 0;
 }
-.drag-label {
-  position: absolute;
+.drag-ghost {
+  position: fixed;
   top: 0;
   left: 0;
-  background: #fff8d8de;
-  border: 2px solid #dfce92;
-  border-radius: 16px;
-  padding: 10px 16px;
-  font-weight: 700;
+  width: 80px;
+  height: 80px;
+  opacity: 0.55;
   pointer-events: none;
 }
 .toast {

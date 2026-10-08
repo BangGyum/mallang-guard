@@ -74,6 +74,69 @@ function fixture(hp = 600) {
 }
 
 describe('이벤트 경계의 캐릭터 연출', () => {
+  it('피격한 적만 45ms 동안 위치를 붙잡고 이후 현재 전투 위치로 복귀한다', () => {
+    const f = fixture();
+    try {
+      f.deliver(f.battle.step());
+      f.render(0.1);
+      const uid = f.battle.state.enemies[0]?.uid ?? -1;
+      const x = f.view.position(uid)?.x;
+      f.deliver([
+        { type: 'damage', src: null, dst: { kind: 'enemy', uid }, amount: 1, damageType: 'physical' },
+      ]);
+      f.battle.step();
+      f.render(0.02);
+      expect(f.view.position(uid)?.x).toBe(x);
+      expect(f.flash()).toBeGreaterThan(0);
+      f.render(0);
+      f.render(0.02);
+      expect(f.view.position(uid)?.x).toBe(x);
+      f.render(0.01);
+      expect(f.view.position(uid)?.x).toBeGreaterThan(x ?? 0);
+    } finally {
+      f.dispose();
+    }
+  });
+  it('원거리 피격은 투사체 도착 이후에만 히트스톱을 시작한다', () => {
+    const f = fixture();
+    try {
+      f.deliver(f.battle.step());
+      f.render(0.1);
+      const uid = f.battle.state.enemies[0]?.uid ?? -1;
+      const before = f.view.position(uid)?.x;
+      f.attack(10, uid);
+      f.battle.step();
+      f.render(0.2);
+      expect(f.view.position(uid)?.x).toBeGreaterThan(before ?? 0);
+      f.render(0.05);
+      const impact = f.view.position(uid)?.x;
+      f.battle.step();
+      f.render(0.02);
+      expect(f.view.position(uid)?.x).toBe(impact);
+      f.render(0.03);
+      expect(f.view.position(uid)?.x).toBeGreaterThan(impact ?? 0);
+    } finally {
+      f.dispose();
+    }
+  });
+  it('모션 감소에서는 히트스톱을 생략한다', () => {
+    const f = fixture();
+    try {
+      f.deliver(f.battle.step());
+      f.render(0.1);
+      const uid = f.battle.state.enemies[0]?.uid ?? -1;
+      const x = f.view.position(uid)?.x;
+      f.deliver([
+        { type: 'damage', src: null, dst: { kind: 'enemy', uid }, amount: 1, damageType: 'physical' },
+      ]);
+      f.view.setReducedMotion(true);
+      f.battle.step();
+      f.render(0.01);
+      expect(f.view.position(uid)?.x).toBeGreaterThan(x ?? 0);
+    } finally {
+      f.dispose();
+    }
+  });
   it('등장한 틱에 처치되어 state에서 사라져도 투사체와 사망 대상을 유지한다', () => {
     const f = fixture(1);
     try {

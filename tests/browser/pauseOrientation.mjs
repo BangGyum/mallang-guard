@@ -29,6 +29,7 @@ try {
   await page.locator('[data-action="pause"]').tap();
   await frame(page);
   await page.setViewportSize({ width: 390, height: 844 });
+  await page.locator('.rotate-guide').waitFor({ state: 'visible' });
   await frame(page);
   await page.locator('.pause-menu').getByRole('button', { name: '계속하기', exact: true }).tap();
   await frame(page, 2000);
@@ -39,21 +40,27 @@ try {
     '세로 화면에서는 메뉴를 닫아도 정지 유지',
   );
   await page.setViewportSize({ width: 844, height: 390 });
+  await page.locator('.rotate-guide').waitFor({ state: 'hidden' });
+  await frame(page);
+  const beforeResume = Number(await page.locator('.dp-panel strong').textContent());
   await frame(page, 1100);
   assert.equal(await page.locator('[data-action="pause"]').textContent(), '일시정지');
-  assert.equal(await page.locator('.dp-panel strong').textContent(), '11');
+  assert(Number(await page.locator('.dp-panel strong').textContent()) > beforeResume);
   await page.locator('[data-action="pause"]').tap();
   await frame(page);
+  const pausedDp = await page.locator('.dp-panel strong').textContent();
   await page.setViewportSize({ width: 390, height: 844 });
+  await page.locator('.rotate-guide').waitFor({ state: 'visible' });
   await frame(page);
   await page.getByRole('button', { name: '멈춘 채 배치' }).tap();
   await frame(page);
   await page.setViewportSize({ width: 844, height: 390 });
+  await page.locator('.rotate-guide').waitFor({ state: 'hidden' });
   await frame(page, 2000);
   assert.equal(await page.locator('[data-action="pause"]').textContent(), '계속하기');
   assert.equal(
     await page.locator('.dp-panel strong').textContent(),
-    '11',
+    pausedDp,
     '수동으로 멈춘 전투는 회전 후에도 정지 유지',
   );
   assert.deepEqual(errors, []);

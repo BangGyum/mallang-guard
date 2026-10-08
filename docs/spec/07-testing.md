@@ -16,6 +16,7 @@
 | `settings` | PC/터치 설정, 즉시 DPR 변경, 저장/복원, 모션 우선순위, 품질 자동/수동 선택, 재시작 |
 | `input`, `inputEdges`, `hud`, `skillPopover` | PC/터치 완주·입력 경계·단축키·수동/자동 스킬·겹침과 리사이즈 |
 | `smallPopup`, `pauseOrientation` | 740×360 팝업 버튼 잘림 회귀, 44px 터치 영역, 세로 화면 중 일시정지 |
+| `planGaps` | PC·터치의 보드 밖 드래그 그림·취소, HUD·카드·환급의 도토리 그림 |
 | `appFlow`, `sessionResources` | PC/모바일 10회 재시작, 이벤트/프레임 정리, GPU 자원 해제 |
 | `production` | `npm run preview -- --port 43205`의 `/mallang-guard/`에서 실제 빌드·아트·설정·전투 로딩 |
 
