@@ -16,6 +16,7 @@ export function createBattleSession(
   app: HTMLDivElement,
   actions: {
     speed: 1 | 2;
+    stageId?: string;
     options?: ViewOptions;
     automaticQuality?: boolean;
     onMenu(): void;
@@ -35,7 +36,7 @@ export function createBattleSession(
   const canvas = oldCanvas.cloneNode(false) as HTMLCanvasElement;
   oldCanvas.replaceWith(canvas);
   hudRoot.inert = false;
-  const battle = createBattle(content, 'stage-1');
+  const battle = createBattle(content, actions.stageId ?? 'stage-1');
   const view = createBoardView(canvas, battle.stage.board, content, images);
   const overlay = createOverlay(overlayCanvas, battle.stage.board, content);
   const controls: LoopControls = { paused: false, speed: actions.speed, bulletTime: false };

@@ -1,0 +1,101 @@
+{
+  "id": "stage-4",
+  "name": "1-4 끈적한 온실",
+  "description": "두 입구를 살피고 끈적젤리의 공격 방해에 대비해요.",
+  "startDp": 24,
+  "routes": {
+    "upper": {
+      "from": [0, 1],
+      "via": [[4, 1], [4, 2]],
+      "to": [10, 2]
+    },
+    "lower": {
+      "from": [0, 4],
+      "via": [[6, 4], [6, 2]],
+      "to": [10, 2]
+    },
+    "air": {
+      "from": [0, 1],
+      "to": [10, 2],
+      "flying": true
+    }
+  },
+  "spawns": [
+    {
+      "wave": 1,
+      "atSec": 3,
+      "enemy": "jelly",
+      "count": 3,
+      "intervalSec": 3,
+      "route": "upper"
+    },
+    {
+      "wave": 2,
+      "atSec": 16,
+      "enemy": "jelly",
+      "count": 3,
+      "intervalSec": 3,
+      "route": "lower"
+    },
+    {
+      "wave": 2,
+      "atSec": 20,
+      "enemy": "spitter",
+      "count": 1,
+      "intervalSec": 0,
+      "route": "lower"
+    },
+    {
+      "wave": 3,
+      "atSec": 33,
+      "enemy": "hardJelly",
+      "count": 2,
+      "intervalSec": 6,
+      "route": "upper"
+    },
+    {
+      "wave": 3,
+      "atSec": 37,
+      "enemy": "spitter",
+      "count": 2,
+      "intervalSec": 7,
+      "route": "upper"
+    },
+    {
+      "wave": 4,
+      "atSec": 53,
+      "enemy": "splitJelly",
+      "count": 2,
+      "intervalSec": 6,
+      "route": "lower"
+    },
+    {
+      "wave": 4,
+      "atSec": 56,
+      "enemy": "crow",
+      "count": 3,
+      "intervalSec": 5,
+      "route": "air"
+    },
+    {
+      "wave": 5,
+      "atSec": 77,
+      "enemy": "spitter",
+      "count": 2,
+      "intervalSec": 5,
+      "route": "lower"
+    },
+    {
+      "wave": 5,
+      "atSec": 77,
+      "enemy": "hardJelly",
+      "count": 3,
+      "intervalSec": 5,
+      "route": "upper"
+    }
+  ],
+  "map": ["##H########", "S....H#H#H#", "###H......G", "##H##H.H#H#", "S......####", "####H######"],
+  "dpPerSec": 1,
+  "life": 3,
+  "deployLimit": 7
+}

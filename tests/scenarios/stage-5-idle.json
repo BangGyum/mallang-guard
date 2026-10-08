@@ -1,0 +1,7 @@
+{
+  "stage": "stage-5",
+  "expect": {
+    "result": "lost"
+  },
+  "commands": []
+}

@@ -11,7 +11,7 @@ export async function createTestScene(enemyCount = 3) {
   });
   raw.stages[0].deployLimit = 8;
   raw.stages[0].spawns = Array.from({ length: enemyCount }, (_, i) => {
-    const enemy = raw.enemies[i % 3];
+    const enemy = raw.enemies[i % (enemyCount >= 60 ? raw.enemies.length : 3)];
     return {
       wave: 1,
       atSec: 0,

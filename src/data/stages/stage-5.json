@@ -1,0 +1,96 @@
+{
+  "id": "stage-5",
+  "name": "1-5 바람 부는 연못",
+  "description": "연못 사이 좁은 길과 하늘을 함께 지켜요.",
+  "startDp": 22,
+  "routes": {
+    "ground": {
+      "from": [0, 2],
+      "via": [[3, 2], [3, 4], [7, 4], [7, 1], [9, 1], [9, 3]],
+      "to": [10, 3]
+    },
+    "air": {
+      "from": [0, 2],
+      "to": [10, 3],
+      "flying": true
+    }
+  },
+  "spawns": [
+    {
+      "wave": 1,
+      "atSec": 3,
+      "enemy": "jelly",
+      "count": 3,
+      "intervalSec": 3,
+      "route": "ground"
+    },
+    {
+      "wave": 2,
+      "atSec": 17,
+      "enemy": "crow",
+      "count": 3,
+      "intervalSec": 5,
+      "route": "air"
+    },
+    {
+      "wave": 2,
+      "atSec": 21,
+      "enemy": "hardJelly",
+      "count": 2,
+      "intervalSec": 6,
+      "route": "ground"
+    },
+    {
+      "wave": 3,
+      "atSec": 35,
+      "enemy": "splitJelly",
+      "count": 3,
+      "intervalSec": 4,
+      "route": "ground"
+    },
+    {
+      "wave": 3,
+      "atSec": 41,
+      "enemy": "spitter",
+      "count": 2,
+      "intervalSec": 7,
+      "route": "ground"
+    },
+    {
+      "wave": 4,
+      "atSec": 56,
+      "enemy": "crow",
+      "count": 4,
+      "intervalSec": 4,
+      "route": "air"
+    },
+    {
+      "wave": 4,
+      "atSec": 57,
+      "enemy": "hardJelly",
+      "count": 3,
+      "intervalSec": 4,
+      "route": "ground"
+    },
+    {
+      "wave": 5,
+      "atSec": 78,
+      "enemy": "splitJelly",
+      "count": 3,
+      "intervalSec": 4,
+      "route": "ground"
+    },
+    {
+      "wave": 5,
+      "atSec": 83,
+      "enemy": "crow",
+      "count": 3,
+      "intervalSec": 4,
+      "route": "air"
+    }
+  ],
+  "map": ["#######H###", "##H#H##,,,#", "S,,,##H,H,#", "#H#,HH#,#,G", "###,,,,,HH#", "###H##H####"],
+  "dpPerSec": 1,
+  "life": 3,
+  "deployLimit": 7
+}

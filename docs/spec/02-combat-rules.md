@@ -62,7 +62,7 @@
 ## 6. 적 스폰과 이동
 
 - 그룹 i번째 스폰 시각은 `secToTicks(atSec) + i * secToTicks(intervalSec)`입니다. 같은 틱은 그룹 배열 순서입니다.
-- 생성 시 `dist = 0`, 위치는 경로 시작점, `hp = maxHp`입니다. 적에게 아군을 공격하는 스탯·쿨다운·저지 상태는 없습니다.
+- 예약 스폰은 `dist = 0`, 위치는 경로 시작점, `hp = maxHp`입니다. M4 분열 자식은 부모의 경로와 처치 위치에서 생성합니다. 아군 피해·저지 필드는 없으며 방해 능력의 정수 틱 쿨다운만 가집니다.
 - 매 틱 px/py에 이전 위치를 저장합니다. 기절 중인 적과 이미 죽은 적은 움직이지 않습니다.
 - 그 외에는 `dist += speed * (1 - slowAmount) / 30`.
 - 골에 도착하면 lifeDamage만큼 푸딩 감소, 적 제거, leaked 증가, enemyLeak 이벤트를 냅니다. 푸딩 0이면 즉시 패배합니다.
@@ -83,7 +83,7 @@
 
 - 유닛 uid 순서로 쿨다운을 1씩 줄입니다. 0이며 대상이 있으면 즉시 공격하고 간격을 다시 설정합니다. 대상이 없으면 0에서 기다립니다.
 - 실제 공격력 = 기본 공격력 × statMul(atk)의 곱.
-- 공격 간격 = `max(1, round(기본 초 * statMul(atkInterval)의 곱 * 적용 중 hasteAura의 곱 * 30))`.
+- 공격 간격 = `max(1, round(기본 초 * statMul(atkInterval)의 곱 * 적용 중 hasteAura의 곱 * 방해 배율 * 30))`. 방해가 없으면 배율은 1입니다.
 - 간격은 공격 직후 결정합니다. 버프가 생겨도 이미 진행 중인 쿨다운은 소급 변경하지 않습니다.
 - 물리 피해: `max(atk - def, atk * 0.05)`. 마법 피해: `max(atk * (1 - res / 100), atk * 0.05)`. true 피해: atk.
 - 피해는 즉시 적용하고 attack/damage 이벤트를 냅니다. sim에서는 반올림하지 않습니다.
@@ -127,6 +127,8 @@
 
 HP가 0 이하인 적만 uid 순서로 제거하고 killed 증가·enemyDie를 냅니다. 같은 틱의 다른 공격은 이미 죽은 대상을 고르지 않습니다. 친구는 전투 중 쓰러지지 않습니다.
 
+M4 분열젤리는 처치 시 같은 경로에 작은 젤리를 생성하고 `totalEnemies`를 실제 생성 수만큼 늘립니다. 자식 간격은 뒤쪽으로 0.28타일이며 최소 거리는 0입니다. 누수 시에는 분열하지 않고 자식은 재분열할 수 없습니다. 승리는 자식까지 처치한 후 판정합니다.
+
 ## 13. 승패
 
 - 패배: 누수 직후 life <= 0이면 즉시 lost. 같은 틱의 나머지 이동·공격을 멈춥니다.
@@ -136,7 +138,7 @@ HP가 0 이하인 적만 uid 순서로 제거하고 killed 증가·enemyDie를 �
 
 ## 14. 틱 순서
 
-명령 → DP → 재배치 대기 → 스폰 → 예약 펄스·스킬 만료·상태이상 만료·둔화 오라 → 적 이동·누수 → SP 충전·자동 스킬 → 아군 자동 공격 → 적 처치 → 승리 확인 → tick 증가.
+명령 → DP → 재배치 대기 → 스폰 → 예약 펄스·스킬 만료·상태이상/아군 방해 만료·둔화 오라 → 적 이동·누수 → 적 방해 능력 → SP 충전·자동 스킬 → 아군 자동 공격 → 적 처치·분열 → 승리 확인 → tick 증가.
 
 flush는 명령만 처리합니다. 수동 스킬의 즉시 효과·첫 펄스도 flush 안에서 발생하므로 일시정지 중 사용이 가능합니다.
 
@@ -152,6 +154,7 @@ flush는 명령만 처리합니다. 수동 스킬의 즉시 효과·첫 펄스�
 | MIN_DAMAGE_RATIO | 0.05 |
 | SLOW_CAP | 0.8 |
 | SP_EPSILON | 1e-6 |
+| SPLIT_SPACING | 0.28 |
 
 앱의 MAX_STEPS_PER_FRAME은 8, BULLET_TIME_SCALE은 0.25입니다.
 
@@ -164,8 +167,13 @@ seed는 uint32로 정규화해 rngState에 보관하며 0도 유효합니다. si
 정확한 타입은 [src/sim/types.ts](../../src/sim/types.ts)에 정의합니다.
 
 - Command: deploy(unitId/tile/dir), retreat(uid), activateSkill(uid).
-- UnitEntity: uid/unitId/tile/dir, 공격 쿨다운, SP/스킬 상태/종료 틱/공격 횟수/펄스 일정/buffs. 체력 필드는 없습니다.
-- EnemyEntity: 경로·현재/이전 위치·거리·HP·둔화/기절 일정. 반격·저지 필드는 없습니다.
-- 이벤트: commandRejected, unitDeploy/unitRetreat, enemySpawn/enemyLeak/enemyDie, attack/damage, status, skillReady/skillStart/skillPulse/skillEnd, dpGain, battleEnd.
-- `enemySpawn`은 `uid`, `enemyId`, 경로 시작점의 `x`, `y`를 담습니다. 같은 틱에 처치되어 최종 상태에서 빠져도 등장·투사체·사망 연출의 위치를 복원할 수 있어야 합니다.
+- UnitEntity: uid/unitId/tile/dir, 공격 쿨다운, SP/스킬 상태/종료 틱/공격 횟수/펄스 일정/buffs, `disruptedUntilTick`(기본 0), `disruptionMul`(기본 1). 체력 필드는 없습니다.
+- EnemyEntity: 경로·현재/이전 위치·거리·HP·둔화/기절 일정, `abilityCooldown`(정수 틱). 반격·저지 필드는 없습니다.
+- 이벤트: commandRejected, unitDeploy/unitRetreat/unitDisrupt, enemySpawn/enemyLeak/enemyDie, attack/damage, status, skillReady/skillStart/skillPulse/skillEnd, dpGain, battleEnd.
+- `enemySpawn`은 `uid`, `enemyId`, 생성 위치의 `x`, `y`를 담습니다. 분열 자식만 선택 필드 `parentUid`를 가지며 원거리 부모 처치 연출과 등장 시점을 맞추는 데 사용합니다. 같은 틱에 처치되어 최종 상태에서 빠져도 등장·투사체·사망 연출의 위치를 복원할 수 있어야 합니다.
+- `unitDisrupt`는 `{ src: 적 uid, uid: 아군 uid, untilTick }`입니다. 이벤트 생성·뷰·오버레이·오디오가 같은 계약을 사용합니다.
 - unitDie/block/unblock/heal 이벤트는 제거했습니다. view/ui는 읽기만 하며 명령 enqueue로만 상태를 바꿉니다.
+
+## 18. M4 공격 방해
+
+끈적젤리와 왕젤리는 사거리 안의 가까운 친구부터 `targets`명까지 공격 간격을 늘립니다. 동점은 uid 순입니다. 등장 후 한 주기 충전하며 기절 중에는 충전·발사가 멈춥니다. 대상이 없으면 준비 상태를 유지합니다. 방해는 강한 배율과 긴 종료 시점을 유지하고 중첩 곱하지 않습니다. 만료·후퇴 때 제거되며 진행 중인 공격 쿨다운은 소급 변경하지 않습니다. 데이터와 별 평가 규칙은 [09-content-expansion.md](09-content-expansion.md)를 따릅니다.

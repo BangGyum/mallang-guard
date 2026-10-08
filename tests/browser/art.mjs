@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { chromium } from 'playwright';
 import { deploy, enterBattle, frame } from './helpers.mjs';
 
+const prefix = process.env.MALLANG_SCREENSHOT_PREFIX ?? 't3.1';
 const browser = await chromium.launch({
   channel: 'msedge',
   headless: true,
@@ -34,16 +35,16 @@ try {
         return { id, opaque, total: canvas.width * canvas.height };
       });
     });
-    assert.equal(art.length, 23);
+    assert.equal(art.length, 27);
     assert(art.every((image) => image.opaque > 100 && image.opaque < image.total * 0.9));
     const label = mobile ? 'mobile' : 'desktop';
-    await page.screenshot({ path: `docs/verification/t3.1-${label}-title.png` });
+    await page.screenshot({ path: `docs/verification/${prefix}-${label}-title.png` });
     await enterBattle(page);
     assert.equal(await page.locator('.card-portrait svg').count(), 8);
     const cdp = mobile ? await context.newCDPSession(page) : null;
     await deploy(page, cdp, 'squirrel', { x: 2, y: 0 }, 'down');
     await frame(page, 500);
-    await page.screenshot({ path: `docs/verification/t3.1-${label}.png` });
+    await page.screenshot({ path: `docs/verification/${prefix}-${label}.png` });
     assert.deepEqual(errors, []);
     console.log(JSON.stringify({ viewport: label, images: art.length, errors }));
     await context.close();

@@ -131,6 +131,7 @@ export function createSfx(initialVolume: number) {
         const delay = delays.get(event) ?? 0;
         if (event.type === 'unitDeploy') play('deploy');
         if (event.type === 'attack' && event.ranged) play('shoot');
+        if (event.type === 'unitDisrupt') play('shoot');
         if (event.type === 'damage') schedule(event.damageType === 'magic' ? 'magic' : 'hit', delay);
         if (event.type === 'enemyDie') schedule('pop', delay);
         if (event.type === 'skillPulse') play('magic');

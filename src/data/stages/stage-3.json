@@ -1,0 +1,88 @@
+{
+  "id": "stage-3",
+  "name": "1-3 방울 정원",
+  "description": "분열젤리가 나뉘면 범위 공격으로 함께 막아요.",
+  "startDp": 16,
+  "routes": {
+    "ground": {
+      "from": [0, 1],
+      "via": [[4, 1], [4, 4], [7, 4], [7, 1], [9, 1], [9, 4]],
+      "to": [10, 4]
+    },
+    "air": {
+      "from": [0, 1],
+      "to": [10, 4],
+      "flying": true
+    }
+  },
+  "spawns": [
+    {
+      "wave": 1,
+      "atSec": 3,
+      "enemy": "jelly",
+      "count": 3,
+      "intervalSec": 3,
+      "route": "ground"
+    },
+    {
+      "wave": 2,
+      "atSec": 20,
+      "enemy": "splitJelly",
+      "count": 2,
+      "intervalSec": 5,
+      "route": "ground"
+    },
+    {
+      "wave": 3,
+      "atSec": 35,
+      "enemy": "hardJelly",
+      "count": 2,
+      "intervalSec": 6,
+      "route": "ground"
+    },
+    {
+      "wave": 3,
+      "atSec": 38,
+      "enemy": "crow",
+      "count": 2,
+      "intervalSec": 5,
+      "route": "air"
+    },
+    {
+      "wave": 4,
+      "atSec": 52,
+      "enemy": "splitJelly",
+      "count": 3,
+      "intervalSec": 4,
+      "route": "ground"
+    },
+    {
+      "wave": 4,
+      "atSec": 57,
+      "enemy": "jelly",
+      "count": 4,
+      "intervalSec": 2,
+      "route": "ground"
+    },
+    {
+      "wave": 5,
+      "atSec": 77,
+      "enemy": "splitJelly",
+      "count": 3,
+      "intervalSec": 4,
+      "route": "ground"
+    },
+    {
+      "wave": 5,
+      "atSec": 81,
+      "enemy": "hardJelly",
+      "count": 2,
+      "intervalSec": 6,
+      "route": "ground"
+    }
+  ],
+  "map": ["##HH#######", "S....H#...#", "####.#H.H.#", "###H.H#.#.#", "####....H.G", "#####H##H##"],
+  "dpPerSec": 1,
+  "life": 3,
+  "deployLimit": 7
+}

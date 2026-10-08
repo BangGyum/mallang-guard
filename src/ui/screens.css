@@ -190,7 +190,7 @@
   color: #65814e;
 }
 .battle-result .screen-actions button {
-  grid-column: 1 / -1;
+  grid-column: auto;
 }
 @keyframes friend-bob {
   0%,

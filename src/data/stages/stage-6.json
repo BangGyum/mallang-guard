@@ -1,0 +1,117 @@
+{
+  "id": "stage-6",
+  "name": "1-6 푸딩 대연회",
+  "description": "왕젤리를 막아 정원의 마지막 푸딩을 지켜요!",
+  "startDp": 25,
+  "routes": {
+    "ground": {
+      "from": [0, 1],
+      "via": [[4, 1], [4, 4], [7, 4], [7, 1], [9, 1], [9, 3]],
+      "to": [10, 3]
+    },
+    "lower": {
+      "from": [0, 4],
+      "via": [[2, 4], [2, 2], [4, 2], [4, 4], [7, 4], [7, 1], [9, 1], [9, 3]],
+      "to": [10, 3]
+    },
+    "air": {
+      "from": [0, 1],
+      "to": [10, 3],
+      "flying": true
+    }
+  },
+  "spawns": [
+    {
+      "wave": 1,
+      "atSec": 3,
+      "enemy": "jelly",
+      "count": 3,
+      "intervalSec": 3,
+      "route": "ground"
+    },
+    {
+      "wave": 2,
+      "atSec": 14,
+      "enemy": "jelly",
+      "count": 3,
+      "intervalSec": 3,
+      "route": "lower"
+    },
+    {
+      "wave": 3,
+      "atSec": 28,
+      "enemy": "hardJelly",
+      "count": 2,
+      "intervalSec": 6,
+      "route": "ground"
+    },
+    {
+      "wave": 3,
+      "atSec": 30,
+      "enemy": "crow",
+      "count": 2,
+      "intervalSec": 5,
+      "route": "air"
+    },
+    {
+      "wave": 4,
+      "atSec": 44,
+      "enemy": "splitJelly",
+      "count": 3,
+      "intervalSec": 5,
+      "route": "lower"
+    },
+    {
+      "wave": 4,
+      "atSec": 51,
+      "enemy": "spitter",
+      "count": 2,
+      "intervalSec": 6,
+      "route": "ground"
+    },
+    {
+      "wave": 5,
+      "atSec": 65,
+      "enemy": "hardJelly",
+      "count": 3,
+      "intervalSec": 5,
+      "route": "ground"
+    },
+    {
+      "wave": 5,
+      "atSec": 70,
+      "enemy": "splitJelly",
+      "count": 2,
+      "intervalSec": 6,
+      "route": "lower"
+    },
+    {
+      "wave": 6,
+      "atSec": 83,
+      "enemy": "kingJelly",
+      "count": 1,
+      "intervalSec": 0,
+      "route": "ground"
+    },
+    {
+      "wave": 6,
+      "atSec": 91,
+      "enemy": "crow",
+      "count": 4,
+      "intervalSec": 4,
+      "route": "air"
+    },
+    {
+      "wave": 6,
+      "atSec": 97,
+      "enemy": "spitter",
+      "count": 2,
+      "intervalSec": 7,
+      "route": "lower"
+    }
+  ],
+  "map": ["##HH#######", "S....##...H", "##...HH.H.#", "##.H.H#.#.G", "S..#....H##", "###H#H##H##"],
+  "dpPerSec": 1,
+  "life": 3,
+  "deployLimit": 7
+}

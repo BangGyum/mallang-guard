@@ -83,12 +83,12 @@ describe('battle outcome', () => {
     expect(battle.state.phase).toBe('running');
   });
   it('마지막 적의 사망 정리 후 승리 이벤트를 한 번만 낸다', () => {
-    const { state, stage } = makeFixture();
+    const { content, state, stage } = makeFixture();
     spawnEnemies(stage, state, []);
     const enemy = state.enemies[0];
     if (enemy) enemy.hp = 0;
     const events: SimEvent[] = [];
-    removeDead(state, events);
+    removeDead(content, stage, state, events);
     checkOutcome(stage, state, events);
     checkOutcome(stage, state, events);
     expect(events).toEqual([

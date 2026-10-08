@@ -31,5 +31,71 @@
     "speed": 1.2,
     "flying": true,
     "lifeDamage": 1
+  },
+  {
+    "id": "splitJelly",
+    "name": "분열젤리",
+    "art": "splitJelly",
+    "hp": 950,
+    "def": 70,
+    "res": 10,
+    "speed": 0.7,
+    "flying": false,
+    "lifeDamage": 1,
+    "description": "처치되면 작은 젤리 둘로 나뉘어요.",
+    "split": {
+      "enemy": "miniJelly",
+      "count": 2
+    }
+  },
+  {
+    "id": "miniJelly",
+    "name": "작은 젤리",
+    "art": "miniJelly",
+    "hp": 200,
+    "def": 10,
+    "res": 0,
+    "speed": 1.25,
+    "flying": false,
+    "lifeDamage": 1,
+    "description": "작지만 빠르게 푸딩으로 달려가요."
+  },
+  {
+    "id": "spitter",
+    "name": "끈적젤리",
+    "art": "spitter",
+    "hp": 950,
+    "def": 60,
+    "res": 10,
+    "speed": 0.65,
+    "flying": false,
+    "lifeDamage": 1,
+    "description": "가까운 친구의 공격 속도를 잠깐 낮춰요.",
+    "disrupt": {
+      "range": 2.7,
+      "intervalSec": 7,
+      "durationSec": 2.2,
+      "atkIntervalMul": 1.5,
+      "targets": 1
+    }
+  },
+  {
+    "id": "kingJelly",
+    "name": "왕젤리",
+    "art": "kingJelly",
+    "hp": 14000,
+    "def": 160,
+    "res": 15,
+    "speed": 0.38,
+    "flying": false,
+    "lifeDamage": 3,
+    "description": "친구 셋을 방해하는 보스예요. 놓치면 푸딩 셋을 잃어요.",
+    "disrupt": {
+      "range": 3.3,
+      "intervalSec": 8,
+      "durationSec": 2.5,
+      "atkIntervalMul": 1.5,
+      "targets": 3
+    }
   }
 ]

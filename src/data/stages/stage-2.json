@@ -1,0 +1,93 @@
+{
+  "id": "stage-2",
+  "name": "1-2 두 갈래 산책길",
+  "description": "갈라진 두 길이 만나는 곳을 지켜요.",
+  "startDp": 18,
+  "routes": {
+    "upper": {
+      "from": [0, 2],
+      "via": [[2, 2], [2, 1], [8, 1], [8, 2]],
+      "to": [10, 2]
+    },
+    "lower": {
+      "from": [0, 2],
+      "via": [[2, 2], [2, 4], [8, 4], [8, 2]],
+      "to": [10, 2]
+    },
+    "air": {
+      "from": [0, 2],
+      "to": [10, 2],
+      "flying": true
+    }
+  },
+  "spawns": [
+    {
+      "wave": 1,
+      "atSec": 3,
+      "enemy": "jelly",
+      "count": 3,
+      "intervalSec": 4,
+      "route": "upper"
+    },
+    {
+      "wave": 2,
+      "atSec": 18,
+      "enemy": "jelly",
+      "count": 4,
+      "intervalSec": 3,
+      "route": "lower"
+    },
+    {
+      "wave": 3,
+      "atSec": 32,
+      "enemy": "hardJelly",
+      "count": 2,
+      "intervalSec": 6,
+      "route": "upper"
+    },
+    {
+      "wave": 3,
+      "atSec": 36,
+      "enemy": "crow",
+      "count": 2,
+      "intervalSec": 5,
+      "route": "air"
+    },
+    {
+      "wave": 4,
+      "atSec": 49,
+      "enemy": "jelly",
+      "count": 4,
+      "intervalSec": 2.5,
+      "route": "upper"
+    },
+    {
+      "wave": 4,
+      "atSec": 50,
+      "enemy": "jelly",
+      "count": 4,
+      "intervalSec": 2.5,
+      "route": "lower"
+    },
+    {
+      "wave": 5,
+      "atSec": 70,
+      "enemy": "hardJelly",
+      "count": 2,
+      "intervalSec": 5,
+      "route": "lower"
+    },
+    {
+      "wave": 5,
+      "atSec": 75,
+      "enemy": "crow",
+      "count": 3,
+      "intervalSec": 4,
+      "route": "air"
+    }
+  ],
+  "map": ["###########", "#H.......H#", "S..HH#H#..G", "#H.##H#H.H#", "##.......##", "####H##H###"],
+  "dpPerSec": 1,
+  "life": 3,
+  "deployLimit": 7
+}

@@ -15,6 +15,7 @@ export function createOverlay(canvas: HTMLCanvasElement, board: Board, content: 
   const ctx = context;
   const point = new Vector3();
   const combatText = createCombatText(ctx);
+  const births = new Map<number, number>();
   let reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let low = false;
   let time = 0;
@@ -40,7 +41,11 @@ export function createOverlay(canvas: HTMLCanvasElement, board: Board, content: 
       low = options.quality === 'low';
     },
     onEvents(events: readonly SimEvent[], entityPosition: (uid: number) => Vector3 | undefined) {
-      combatText.onEvents(events, entityPosition, impactDelays(events));
+      const delays = impactDelays(events);
+      for (const event of events)
+        if (event.type === 'enemySpawn' && (delays.get(event) ?? 0) > 0)
+          births.set(event.uid, delays.get(event) ?? 0);
+      combatText.onEvents(events, entityPosition, delays);
     },
     resize() {
       width = Math.max(1, canvas.clientWidth);
@@ -52,6 +57,10 @@ export function createOverlay(canvas: HTMLCanvasElement, board: Board, content: 
     },
     render(state: Readonly<BattleState>, camera: PerspectiveCamera, alpha: number, dt = 0) {
       time += dt;
+      for (const [uid, delay] of births) {
+        if (delay <= dt) births.delete(uid);
+        else births.set(uid, delay - dt);
+      }
       ctx.clearRect(0, 0, width, height);
       for (const unit of state.units) {
         const p = position(
@@ -80,6 +89,10 @@ export function createOverlay(canvas: HTMLCanvasElement, board: Board, content: 
           p.x,
           p.y + 26,
         );
+        if (unit.disruptedUntilTick > state.tick) {
+          ctx.fillStyle = '#8363a5';
+          ctx.fillText('끈적 · 공격 느림', p.x, p.y + 40);
+        }
         if (ready && skill.trigger === 'manual') {
           const head = position(unit.tile.x + 0.5, unit.tile.y + 0.5, 1.3, camera);
           const y = head.y - (reduced ? 0 : Math.sin(time * 3 + unit.uid) * 2);
@@ -93,6 +106,7 @@ export function createOverlay(canvas: HTMLCanvasElement, board: Board, content: 
         }
       }
       for (const enemy of state.enemies) {
+        if (births.has(enemy.uid)) continue;
         if (enemy.hp < enemy.maxHp) {
           const p = position(lerp(enemy.px, enemy.x, alpha), lerp(enemy.py, enemy.y, alpha), 0, camera);
           bar(p.x, p.y, enemy.hp, enemy.maxHp, '#FF5A6E');
@@ -108,6 +122,7 @@ export function createOverlay(canvas: HTMLCanvasElement, board: Board, content: 
       combatText.render(camera, width, height, dt, reduced);
     },
     dispose() {
+      births.clear();
       ctx.clearRect(0, 0, width, height);
     },
   };

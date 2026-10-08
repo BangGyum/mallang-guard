@@ -32,6 +32,14 @@ export function validateContent(value: unknown): ContentDb {
     assert(content.skills.has(unit.skill), `content/units[${index}].skill: unknown skill "${unit.skill}"`);
     assert(content.ranges.has(unit.range), `content/units[${index}].range: unknown range "${unit.range}"`);
   }
+  for (const [index, enemy] of enemies.entries()) {
+    if (!enemy.split) continue;
+    const path = `content/enemies[${index}].split.enemy`;
+    const child = content.enemies.get(enemy.split.enemy);
+    assert(child, `${path}: unknown enemy "${enemy.split.enemy}"`);
+    assert(!child.split, `${path}: split child cannot split again`);
+    assert(child.flying === enemy.flying, `${path}: flying flag does not match parent`);
+  }
   for (const [index, stage] of stages.entries()) {
     const path = `content/stages[${index}]`;
     for (const [rosterIndex, id] of (stage.roster ?? []).entries()) {

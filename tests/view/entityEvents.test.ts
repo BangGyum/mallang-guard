@@ -1,5 +1,6 @@
 import { InstancedMesh, PerspectiveCamera, ShaderMaterial, Texture } from 'three';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import type { ArtId } from '../../src/data/types';
 import { createBattle } from '../../src/sim/battle';
 import type { SimEvent } from '../../src/sim/types';
 import { createEntityViews } from '../../src/view/entityViews';
@@ -10,10 +11,10 @@ import { laneStage, makeContent } from '../helpers';
 beforeEach(() => vi.stubGlobal('window', { matchMedia: () => ({ matches: false }) }));
 afterEach(() => vi.unstubAllGlobals());
 
-function fixture(hp = 600) {
+function fixture(hp = 600, enemyId = 'jelly') {
   const stage = laneStage(
     ['S..G', 'HHHH'],
-    [{ wave: 1, atSec: 0, enemy: 'jelly', count: 1, intervalSec: 0, route: 'ground' }],
+    [{ wave: 1, atSec: 0, enemy: enemyId, count: 1, intervalSec: 0, route: 'ground' }],
   );
   const content = makeContent({
     stages: [stage],
@@ -66,6 +67,18 @@ function fixture(hp = 600) {
       });
       return value;
     },
+    visibleCount(art: ArtId) {
+      let count = 0;
+      view.group.traverse((node) => {
+        if (
+          node instanceof InstancedMesh &&
+          node.material instanceof ShaderMaterial &&
+          node.material.uniforms.map?.value === textures.get(art)
+        )
+          count += node.count;
+      });
+      return count;
+    },
     dispose() {
       view.dispose();
       for (const texture of textures.values()) texture.dispose();
@@ -74,6 +87,20 @@ function fixture(hp = 600) {
 }
 
 describe('이벤트 경계의 캐릭터 연출', () => {
+  it('부모의 투사체가 도착하기 전에는 분열 자식을 그리지 않는다', () => {
+    const f = fixture(1, 'splitJelly');
+    try {
+      f.battle.enqueue({ type: 'deploy', unitId: 'squirrel', tile: { x: 1, y: 1 }, dir: 'up' });
+      f.deliver(f.battle.step());
+      expect(f.battle.state.enemies).toHaveLength(2);
+      f.render(0.1);
+      expect(f.visibleCount('miniJelly')).toBe(0);
+      f.render(0.16);
+      expect(f.visibleCount('miniJelly')).toBe(2);
+    } finally {
+      f.dispose();
+    }
+  });
   it('피격한 적만 45ms 동안 위치를 붙잡고 이후 현재 전투 위치로 복귀한다', () => {
     const f = fixture();
     try {

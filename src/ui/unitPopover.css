@@ -76,6 +76,11 @@
   font-weight: 700;
   color: #5b7663;
 }
+.unit-disruption {
+  margin: 3px 0;
+  font-size: 11px;
+  color: #8363a5;
+}
 .skill-gauge {
   display: block;
   width: 100%;

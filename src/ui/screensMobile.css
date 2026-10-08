@@ -85,6 +85,13 @@
     font-size: 30px;
     margin-bottom: 6px;
   }
+  .battle-result .result-icon {
+    position: absolute;
+    top: 12px;
+    right: 20px;
+    margin: 0;
+    line-height: 1;
+  }
   .result-best {
     padding: 6px;
     font-size: 11px;

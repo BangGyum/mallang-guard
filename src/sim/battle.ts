@@ -7,6 +7,7 @@ import { attackEnemies } from './systems/attack';
 import { applyCommand } from './systems/commands';
 import { removeDead } from './systems/death';
 import { recoverDp } from './systems/dp';
+import { updateEnemyAbilities } from './systems/enemyAbilities';
 import { moveEnemies } from './systems/movement';
 import { checkOutcome } from './systems/outcome';
 import { updateRoster } from './systems/roster';
@@ -85,9 +86,10 @@ export class Battle {
     updateStatus(this.content, this.stage, this.#state, events);
     moveEnemies(this.content, this.stage, this.#state, events);
     if (this.#state.phase === 'running') {
+      updateEnemyAbilities(this.content, this.#state, events);
       updateSkills(this.content, this.stage, this.#state, events);
       attackEnemies(this.content, this.stage, this.#state, events);
-      removeDead(this.#state, events);
+      removeDead(this.content, this.stage, this.#state, events);
       checkOutcome(this.stage, this.#state, events);
     }
     this.#state.tick += 1;

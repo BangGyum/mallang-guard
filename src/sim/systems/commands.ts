@@ -34,6 +34,8 @@ export function applyCommand(
       tile: { ...cmd.tile },
       dir: cmd.dir,
       atkCooldown: 0,
+      disruptedUntilTick: 0,
+      disruptionMul: 1,
       sp: skill.spStart,
       skillState: 'charging',
       skillEndTick: -1,

@@ -19,6 +19,7 @@ interface EntityView {
   flying: boolean;
   hitDelays: number[];
   hitStop: number;
+  spawnDelay: number;
   exitDelay: number;
   art: string;
 }
@@ -34,7 +35,15 @@ export function createEntityViews(content: ContentDb, board: Board, textures: Re
   const white = new Color('#ffffff');
   group.add(shadows.group);
   group.add(sprites.group);
-  const heights: Record<string, number> = { jelly: 0.75, hardJelly: 0.85, crow: 0.7 };
+  const heights: Record<string, number> = {
+    jelly: 0.75,
+    hardJelly: 0.85,
+    crow: 0.7,
+    splitJelly: 0.85,
+    miniJelly: 0.65,
+    spitter: 0.8,
+    kingJelly: 1.2,
+  };
   let reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function ensure(uid: number, id: string, enemy: boolean): EntityView {
     const existing = views.get(uid);
@@ -54,6 +63,7 @@ export function createEntityViews(content: ContentDb, board: Board, textures: Re
       direction: 1,
       hitDelays: [],
       hitStop: 0,
+      spawnDelay: 0,
       exitDelay: 0,
       art: art || id,
       motion: {
@@ -110,7 +120,9 @@ export function createEntityViews(content: ContentDb, board: Board, textures: Re
         }
         if (event.type === 'enemySpawn') {
           const enemy = state.enemies.find((enemy) => enemy.uid === event.uid);
-          place(ensure(event.uid, event.enemyId, true), enemy?.x ?? event.x, enemy?.y ?? event.y, 0);
+          const view = ensure(event.uid, event.enemyId, true);
+          view.spawnDelay = delays.get(event) ?? 0;
+          place(view, enemy?.x ?? event.x, enemy?.y ?? event.y, 0);
         }
         if (event.type === 'attack' || event.type === 'skillStart') {
           const view = views.get(event.type === 'attack' ? event.src.uid : event.uid);
@@ -176,6 +188,7 @@ export function createEntityViews(content: ContentDb, board: Board, textures: Re
           continue;
         }
         const motion = view.motion;
+        view.spawnDelay = Math.max(0, view.spawnDelay - dt);
         motion.age += dt;
         motion.attack = Math.max(0, motion.attack - dt);
         motion.hit = Math.max(0, motion.hit - dt);
@@ -196,6 +209,7 @@ export function createEntityViews(content: ContentDb, board: Board, textures: Re
           remove(uid, view);
           continue;
         }
+        if (view.spawnDelay > 0) continue;
         if (reduced || view.hitStop === 0) samplePose(motion, reduced, view.pose);
         else view.pose.flash = clamp(motion.hit / 0.08, 0, 1);
         const { visual, pose } = view;

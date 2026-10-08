@@ -7,10 +7,14 @@ import { runScenario, type Scenario } from './helpers';
 const scenarios = import.meta.glob<Scenario>('./scenarios/*.json', { eager: true, import: 'default' });
 
 describe('골든 시나리오', () => {
-  it('클리어와 무배치 JSON을 모두 검증 대상으로 포함한다', () => {
-    expect(Object.keys(scenarios)).toEqual(
-      expect.arrayContaining(['./scenarios/stage-1-clear.json', './scenarios/stage-1-idle.json']),
-    );
+  it('6개 실제 스테이지의 클리어와 무배치 JSON을 모두 검증한다', () => {
+    expect(content.stages.size).toBe(6);
+    for (const id of content.stages.keys()) {
+      const clear = scenarios[`./scenarios/${id}-clear.json`];
+      const idle = scenarios[`./scenarios/${id}-idle.json`];
+      expect(clear?.expect).toMatchObject({ result: 'won', minLife: 3 });
+      expect(idle?.expect.result).toBe('lost');
+    }
   });
 
   it.each(Object.entries(scenarios))('%s의 기대 결과를 만족한다', (_file, scenario) => {

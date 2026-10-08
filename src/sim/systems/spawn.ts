@@ -1,5 +1,46 @@
 import { assert } from '../../core/assert';
+import type { EnemyDef } from '../../data/types';
+import { secToTicks } from '../constants';
+import type { Polyline } from '../path';
 import type { BattleState, SimEvent, StageRuntime } from '../types';
+
+export function spawnEnemy(
+  enemy: EnemyDef,
+  routeId: string,
+  route: Polyline,
+  state: BattleState,
+  events: SimEvent[],
+  distance = 0,
+  parentUid?: number,
+) {
+  const { x, y, segIndex } = route.positionAt(distance);
+  const uid = state.nextUid++;
+  state.enemies.push({
+    uid,
+    enemyId: enemy.id,
+    routeId,
+    dist: distance,
+    segIndex,
+    x,
+    y,
+    px: x,
+    py: y,
+    hp: enemy.hp,
+    maxHp: enemy.hp,
+    slowAmount: 0,
+    slowUntilTick: 0,
+    stunUntilTick: 0,
+    abilityCooldown: enemy.disrupt ? secToTicks(enemy.disrupt.intervalSec) : 0,
+  });
+  events.push({
+    type: 'enemySpawn',
+    uid,
+    enemyId: enemy.id,
+    x,
+    y,
+    ...(parentUid === undefined ? {} : { parentUid }),
+  });
+}
 
 export function spawnEnemies(stage: StageRuntime, state: BattleState, events: SimEvent[]): void {
   for (const [index, group] of stage.spawns.entries()) {
@@ -7,25 +48,7 @@ export function spawnEnemies(stage: StageRuntime, state: BattleState, events: Si
     const cursor = state.spawnCursor[index];
     assert(cursor !== undefined, 'battle.spawnCursor: missing group');
     if (cursor >= group.count || state.tick !== group.atTick + cursor * group.intervalTicks) continue;
-    const { x, y, segIndex } = group.route.positionAt(0);
-    const uid = state.nextUid++;
-    state.enemies.push({
-      uid,
-      enemyId: group.enemy.id,
-      routeId: group.routeId,
-      dist: 0,
-      segIndex,
-      x,
-      y,
-      px: x,
-      py: y,
-      hp: group.enemy.hp,
-      maxHp: group.enemy.hp,
-      slowAmount: 0,
-      slowUntilTick: 0,
-      stunUntilTick: 0,
-    });
+    spawnEnemy(group.enemy, group.routeId, group.route, state, events);
     state.spawnCursor[index] = cursor + 1;
-    events.push({ type: 'enemySpawn', uid, enemyId: group.enemy.id, x, y });
   }
 }

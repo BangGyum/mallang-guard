@@ -64,6 +64,7 @@ export function parseStage(value: unknown, path: string): StageDef {
     spawns: list(raw.spawns, `${path}.spawns`, parseSpawn),
   };
   if (raw.dpPerSec !== undefined) stage.dpPerSec = positive(raw.dpPerSec, `${path}.dpPerSec`);
+  if (raw.description !== undefined) stage.description = text(raw.description, `${path}.description`);
   if (raw.roster !== undefined) stage.roster = list(raw.roster, `${path}.roster`, text);
   return stage;
 }

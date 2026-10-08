@@ -141,6 +141,17 @@ const C = {
     S(3) +
     '/><path d="M27 48H73" stroke="#8A99AA" stroke-width="3"/>' +
     [34, 50, 66].map((x) => `<circle cx="${x}" cy="50" r="2" fill="#6E7F8E"/>`).join(''),
+  splitJelly: () =>
+    C.jelly().replaceAll('#9B7BFF', '#79B6BD').replaceAll('#8463F0', '#5498A5') +
+    `<path d="M48 48L43 60L54 66L47 85" fill="none" stroke="#D3F5EB" stroke-width="4" stroke-linecap="round"/><circle cx="74" cy="82" r="10" fill="#B0DFD6" ${S(2.5)}/>`,
+  miniJelly: () =>
+    `<g transform="translate(13 23) scale(.74)">${C.jelly().replaceAll('#9B7BFF', '#B0DFD6').replaceAll('#8463F0', '#80BEB9')}</g>`,
+  spitter: () =>
+    C.jelly().replaceAll('#9B7BFF', '#83A6CC').replaceAll('#8463F0', '#6389B1') +
+    `<ellipse cx="50" cy="77" rx="11" ry="8" fill="#BACFE8" ${S(2.5)}/><ellipse cx="50" cy="77" rx="5" ry="4" fill="#506887"/><path d="M74 35Q84 46 74 50Q64 46 74 35Z" fill="#ABC9DF" ${S(2.5)}/>`,
+  kingJelly: () =>
+    C.jelly().replaceAll('#9B7BFF', '#8B83C8').replaceAll('#8463F0', '#6B63A5') +
+    `<path d="M26 46L23 24L39 32L50 15L61 32L77 24L74 46Z" fill="#FFD46B" ${S(3)}/><path d="M28 41H72" stroke="#DCA546" stroke-width="4"/><circle cx="50" cy="35" r="4" fill="#E98CB0" ${S(2)}/>`,
   pudding: () =>
     '<ellipse cx="50" cy="90" rx="38" ry="7" fill="#fff" ' +
     S(3) +

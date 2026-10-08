@@ -27,5 +27,6 @@ export function unitStats(
       if (contains(tiles, unit.tile.x, unit.tile.y)) interval *= effect.value;
     }
   }
+  if (unit.disruptedUntilTick > state.tick) interval *= unit.disruptionMul;
   return { atk, atkIntervalTicks: Math.max(1, secToTicks(interval)) };
 }

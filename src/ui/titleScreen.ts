@@ -10,6 +10,7 @@ export function createTitleScreen(
   record: { cleared: boolean; bestLife: number } | undefined,
   onStart: () => void,
   onSettings: () => void,
+  onStages: () => void,
 ) {
   const screen = element('section', 'title-screen');
   screen.setAttribute('aria-label', '말랑방위대 시작 화면');
@@ -36,7 +37,10 @@ export function createTitleScreen(
   );
   const start = button('시작', onStart, 'primary-button start-button');
   intro.append(stage, start, element('p', 'title-controls', '드래그로 배치 · 친구를 눌러 스킬 사용'));
-  start.after(button('설정', onSettings, 'title-settings'));
+  start.after(
+    button('스테이지 선택', onStages, 'title-settings'),
+    button('설정', onSettings, 'title-settings'),
+  );
   const garden = element('div', 'title-garden');
   const pudding = portrait('pudding', 'title-pudding');
   pudding.setAttribute('aria-hidden', 'true');
