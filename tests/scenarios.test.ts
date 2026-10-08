@@ -7,8 +7,8 @@ import { runScenario, type Scenario } from './helpers';
 const scenarios = import.meta.glob<Scenario>('./scenarios/*.json', { eager: true, import: 'default' });
 
 describe('골든 시나리오', () => {
-  it('6개 실제 스테이지의 클리어와 무배치 JSON을 모두 검증한다', () => {
-    expect(content.stages.size).toBe(6);
+  it('7개 실제 스테이지의 클리어와 무배치 JSON을 모두 검증한다', () => {
+    expect(content.stages.size).toBe(7);
     for (const id of content.stages.keys()) {
       const clear = scenarios[`./scenarios/${id}-clear.json`];
       const idle = scenarios[`./scenarios/${id}-idle.json`];

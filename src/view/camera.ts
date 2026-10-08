@@ -57,7 +57,7 @@ export function fitCamera(box: Box3, aspect: number, safeRect: SafeRect = SAFE_R
   }
 
   let low = 4;
-  let high = 80;
+  let high = 160;
   assert(place(high), 'camera.boardBox: cannot fit within maximum distance');
   for (let iteration = 0; iteration < 24; iteration += 1) {
     const middle = (low + high) / 2;

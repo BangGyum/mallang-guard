@@ -4,7 +4,7 @@ import { chromium } from 'playwright';
 import { deploy, frame, pause, resume, tilePoint } from './helpers.mjs';
 
 const scenarios = await Promise.all(
-  [1, 2, 3, 4, 5, 6].map(async (level) => ({
+  [1, 2, 3, 4, 5, 6, 7].map(async (level) => ({
     scenario: JSON.parse(await readFile(`tests/scenarios/stage-${level}-clear.json`, 'utf8')),
     stage: JSON.parse(await readFile(`src/data/stages/stage-${level}.json`, 'utf8')),
   })),
@@ -15,6 +15,7 @@ const modes = process.argv.includes('--desktop')
     ? [true]
     : [false, true];
 const report = [];
+const prefix = process.env.MALLANG_SCREENSHOT_PREFIX ?? 't4.3';
 const browser = await chromium.launch({ channel: 'msedge', headless: true });
 try {
   for (const mobile of modes) {
@@ -61,8 +62,8 @@ try {
     const click = async (locator) => (mobile ? locator.tap() : locator.click());
     const cdp = mobile ? await context.newCDPSession(page) : null;
     await click(page.getByRole('button', { name: '스테이지 선택', exact: true }));
-    assert.equal(await page.locator('.stage-card').count(), 6);
-    assert.equal(await page.locator('.stage-card:disabled').count(), 5);
+    assert.equal(await page.locator('.stage-card').count(), scenarios.length);
+    assert.equal(await page.locator('.stage-card:disabled').count(), scenarios.length - 1);
     assert(
       await page
         .locator('.stage-stars')
@@ -74,12 +75,27 @@ try {
       await pause(page);
       assert.equal(await page.locator('#app').getAttribute('data-stage-id'), stage.id);
       assert.equal(await page.locator('.stage-title small').textContent(), stage.name);
+      if (stage.id === 'stage-7') {
+        await page.screenshot({ path: `docs/verification/${prefix}-${label}-large-map.png` });
+        if (mobile) {
+          await page.setViewportSize({ width: 740, height: 360 });
+          await frame(page);
+          await page.screenshot({ path: `docs/verification/${prefix}-compact-large-map.png` });
+          await frame(page);
+          await page.screenshot({ path: `docs/verification/${prefix}-compact-large-map.png` });
+          await page.setViewportSize({ width: 844, height: 390 });
+          await frame(page);
+          await page.screenshot({ path: `docs/verification/${prefix}-${label}-large-map.png` });
+          await frame(page);
+        }
+      }
       const placed = new Map();
       for (const command of scenario.commands) {
         const target = Math.round(command.atSec * 30);
         let tick = await page.evaluate(() => window.campaign.battle.state.tick);
         if (tick < target) {
           await resume(page);
+          if (await page.locator('.battle-preparation').isVisible()) await frame(page, 10000);
           tick = await page.evaluate(() => window.campaign.battle.state.tick);
           let frames = 0;
           while (tick < target) {
@@ -93,6 +109,8 @@ try {
           const tile = { x: command.tile[0], y: command.tile[1] };
           await deploy(page, cdp, command.unitId, tile, command.dir);
           placed.set(command.unitId, tile);
+          if (stage.id === 'stage-7' && command.unitId === 'cat')
+            await page.screenshot({ path: `docs/verification/${prefix}-${label}-large-map-battle.png` });
         } else {
           for (let attempt = 0; attempt < 12; attempt++) {
             const point = await tilePoint(page, placed.get(command.unitId));
@@ -112,6 +130,8 @@ try {
           );
           await click(page.locator('.skill-button'));
           await frame(page);
+          if (stage.id === 'stage-7' && command.unitId === 'bear' && command.atSec > 120)
+            await page.screenshot({ path: `docs/verification/${prefix}-${label}-large-map-skill.png` });
           await click(page.locator('.unit-popup-close'));
           await frame(page);
         }
@@ -145,10 +165,10 @@ try {
       assert.equal(Object.keys(records).length, index + 1);
       for (let i = 1; i <= index + 1; i++)
         assert.deepEqual(records[`stage-${i}`], { cleared: true, bestLife: 3 });
-      await page.screenshot({ path: `docs/verification/t4.2-${label}-${stage.id}-clear.png` });
+      await page.screenshot({ path: `docs/verification/${prefix}-${label}-${stage.id}-clear.png` });
       report.push({ viewport: label, stage: stage.id, ...result });
       console.log(JSON.stringify(report.at(-1)));
-      if (index < 5) {
+      if (index < scenarios.length - 1) {
         await click(page.getByRole('button', { name: '다음 스테이지', exact: true }));
         await frame(page);
       } else assert.equal(await page.getByRole('button', { name: '다음 스테이지', exact: true }).count(), 0);
@@ -170,8 +190,8 @@ try {
         .locator('.stage-stars')
         .evaluateAll((nodes) => nodes.every((node) => node.textContent === '★★★')),
     );
-    await page.screenshot({ path: `docs/verification/t4.2-${label}-all-stars.png` });
-    await click(page.locator('.stage-card[data-stage-id="stage-6"]'));
+    await page.screenshot({ path: `docs/verification/${prefix}-${label}-all-stars.png` });
+    await click(page.locator(`.stage-card[data-stage-id="${scenarios.at(-1).stage.id}"]`));
     await frame(page, 60000);
     assert.equal(await page.locator('.battle-result').getAttribute('data-result'), 'lost');
     assert.equal(await page.getByRole('button', { name: '다음 스테이지', exact: true }).count(), 0);
@@ -191,7 +211,7 @@ try {
     );
     await context.close();
   }
-  await writeFile('docs/verification/t4.2-campaign.json', `${JSON.stringify(report, null, 2)}\n`);
+  await writeFile(`docs/verification/${prefix}-campaign.json`, `${JSON.stringify(report, null, 2)}\n`);
 } finally {
   await browser.close();
 }

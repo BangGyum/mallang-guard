@@ -14,9 +14,10 @@ describe('별과 스테이지 해금', () => {
       false,
       false,
       false,
+      false,
     ]);
     expect(stageUnlocked(stages, {}, -1)).toBe(false);
-    expect(stageUnlocked(stages, {}, 6)).toBe(false);
+    expect(stageUnlocked(stages, {}, 7)).toBe(false);
   });
   it('별 하나의 클리어도 다음 스테이지를 열고 기존 v1 기록을 재사용한다', () => {
     const records = { 'stage-1': { cleared: true, bestLife: 1 } };
@@ -32,6 +33,10 @@ describe('별과 스테이지 해금', () => {
     expect(stageUnlocked(stages, { 'stage-6': { cleared: true, bestLife: 3 } }, 5)).toBe(true);
     expect(starCount({ cleared: true, bestLife: 10 })).toBe(3);
     expect(starCount(undefined)).toBe(0);
+  });
+  it('기존 6스테이지 클리어 기록으로 큰 정원을 열고 이전 패배 기록으로는 열지 않는다', () => {
+    expect(stageUnlocked(stages, { 'stage-6': { cleared: true, bestLife: 1 } }, 6)).toBe(true);
+    expect(stageUnlocked(stages, { 'stage-6': { cleared: false, bestLife: 0 } }, 6)).toBe(false);
   });
 });
 
