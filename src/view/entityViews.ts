@@ -1,4 +1,4 @@
-import { Color, Group, Matrix4, type PerspectiveCamera, type Texture, Vector3 } from 'three';
+import { Color, Group, Matrix4, type PerspectiveCamera, Quaternion, type Texture, Vector3 } from 'three';
 import { assert } from '../core/assert';
 import { clamp, lerp } from '../core/math';
 import type { ContentDb } from '../data/types';
@@ -32,6 +32,7 @@ export function createEntityViews(content: ContentDb, board: Board, textures: Re
   const shadows = createShadows();
   const sprites = createSpriteBatch(textures);
   const spriteMatrix = new Matrix4();
+  const billboard = new Quaternion();
   const white = new Color('#ffffff');
   group.add(shadows.group);
   group.add(sprites.group);
@@ -123,7 +124,11 @@ export function createEntityViews(content: ContentDb, board: Board, textures: Re
         if (event.type === 'unitDeploy') {
           const view = ensure(event.uid, event.unitId, false);
           view.direction = event.dir === 'left' ? -1 : 1;
-          view.visual.sprite.scale.x = view.height * view.direction;
+          samplePose(view.motion, reduced, view.pose);
+          const { visual, pose } = view;
+          visual.sprite.position.set(pose.x * view.direction, pose.y, 0);
+          visual.sprite.scale.set(view.height * pose.scaleX * view.direction, view.height * pose.scaleY, 1);
+          visual.sprite.quaternion.copy(billboard);
           place(
             view,
             event.tile.x + 0.5,
@@ -165,6 +170,7 @@ export function createEntityViews(content: ContentDb, board: Board, textures: Re
       }
     },
     update(state: Readonly<BattleState>, camera: PerspectiveCamera, alpha: number, dt: number) {
+      billboard.copy(camera.quaternion);
       shadows.begin();
       sprites.begin();
       const alive = new Set<number>();

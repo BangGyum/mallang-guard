@@ -1,5 +1,6 @@
 import { InstancedMesh, PerspectiveCamera, ShaderMaterial, Texture } from 'three';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import type { Dir } from '../../src/core/grid';
 import type { ArtId } from '../../src/data/types';
 import { createBattle } from '../../src/sim/battle';
 import type { SimEvent } from '../../src/sim/types';
@@ -11,10 +12,11 @@ import { laneStage, makeContent } from '../helpers';
 beforeEach(() => vi.stubGlobal('window', { matchMedia: () => ({ matches: false }) }));
 afterEach(() => vi.unstubAllGlobals());
 
-function fixture(hp = 600, enemyId = 'jelly') {
+function fixture(hp = 600, enemyId = 'jelly', startDp = 10) {
   const stage = laneStage(
     ['S..G', 'HHHH'],
     [{ wave: 1, atSec: 0, enemy: enemyId, count: 1, intervalSec: 0, route: 'ground' }],
+    { startDp },
   );
   const content = makeContent({
     stages: [stage],
@@ -49,6 +51,7 @@ function fixture(hp = 600, enemyId = 'jelly') {
   }
   return {
     battle,
+    camera,
     view,
     deliver,
     attack,
@@ -87,6 +90,28 @@ function fixture(hp = 600, enemyId = 'jelly') {
 }
 
 describe('이벤트 경계의 캐릭터 연출', () => {
+  it.each(
+    makeRawContent().units.flatMap((unit) =>
+      (['up', 'right', 'down', 'left'] as Dir[]).map((dir) => ({ unitId: unit.id, dir })),
+    ),
+  )('$unitId / $dir 배치 이벤트 직후 무기 좌표가 첫 렌더와 일치한다', ({ unitId, dir }) => {
+    const f = fixture(600, 'jelly', 99);
+    try {
+      f.camera.position.set(5, 7, 5);
+      f.camera.lookAt(0, 0, 0);
+      f.render(0);
+      f.battle.enqueue({ type: 'deploy', unitId, tile: { x: 1, y: 1 }, dir });
+      f.deliver(f.battle.flush());
+      const uid = f.battle.state.units[0]?.uid ?? -1;
+      const before = f.view.attackOrigin(uid);
+      f.render(0);
+      const visible = f.view.attackOrigin(uid);
+      if (!before || !visible) throw new Error('배치한 무기 좌표 없음');
+      expect(before.distanceTo(visible)).toBeLessThan(0.001);
+    } finally {
+      f.dispose();
+    }
+  });
   it('부모의 투사체가 도착하기 전에는 분열 자식을 그리지 않는다', () => {
     const f = fixture(1, 'splitJelly');
     try {

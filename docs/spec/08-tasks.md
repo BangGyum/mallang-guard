@@ -278,6 +278,14 @@
 - 세션 10회 반복에서 GPU 자원 60/33을 유지하고 종료 후 0/0을 확인했습니다. Edge·Intel Arc 130V·1920×1080에서 적 60·아군 8의 표시 60.00fps, 렌더 CPU p95 1.8ms, 최대 54 draw calls·104 파티클입니다. 실제 모바일 기기 측정은 아닙니다.
   화면: [무장 8종](../verification/t3.8-combat-roster.png), [PC 전투](../verification/t3.8-desktop-combat.png), [모바일 전투](../verification/t3.8-mobile-combat.png), [PC 스킬](../verification/t3.8-skill-desktop-cast.png), [성능 기록](../verification/t3.8-performance.json).
 
+### [x] T3.9 전체 캐릭터 오류 검사
+- 사용자 요청: 전부 캐릭터 오류가 없는지 테스트합니다.
+- 수정 (2026-10-08): 배치 후 첫 렌더 전에 공격하면 무기 좌표에 낙하 시작 자세·숨쉬기·빌보드가 반영되지 않아 첫 투사체가 낮은 위치에서 출발했습니다. 8종 × 4방향의 실패 검사 32개로 재현한 뒤 배치 이벤트에서 자세를 초기화했습니다.
+- 아군 원본 수치로 8종 × 4방향의 기본 공격·피해 종류·자연 충전·스킬 2회 발동/종료·후퇴 환급·재배치 경계·새 uid/SP 초기화를 확인했습니다. 뒤쪽 적 무시·대공 설정까지 신규 시뮬레이션 검사 96개가 통과했습니다.
+- Edge PC 1920×1080·터치 에뮬레이션 844×390에서 각각 8명 전원을 실제 카드 드래그·방향 선택·스킬 버튼/자동 발동·유닛별 알림·종료·후퇴·재배치로 검사했습니다. 총 16회에서 거부 명령·브라우저 오류·경고 0건이며 팝업은 화면 안에 표시됩니다.
+- check/lint/test/build, 45개 파일 718개 테스트 통과. 투사체 도착·즉시 처치·사망 정리·파티클 200개 상한의 PC/모바일 회귀 검사도 통과했습니다. 검사용 맵과 적은 단독 검사를 위한 것이며 실제 모바일 기기 측정은 아닙니다.
+  결과: [전체 캐릭터 기록](../verification/t3.9-characters.json), [PC 냥기사](../verification/t3.9-desktop-cat-skill.png), [모바일 토실](../verification/t3.9-mobile-bunny-skill.png), [PC 투사체](../verification/t3.9-desktop-projectile.png), [모바일 즉시 처치](../verification/t3.9-mobile-instant-kill.png).
+
 ## M4 콘텐츠
 
 - 스테이지 2~6: 갈림길(경로 여러 개), `path` 전용 칸, 스폰 여러 곳
