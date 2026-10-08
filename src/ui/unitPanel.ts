@@ -2,6 +2,7 @@ import { critterSvg } from '../art/critters';
 import { ROLE_COLORS, ROLE_NAMES } from '../art/palette';
 import type { Battle } from '../sim/battle';
 import { DP_MAX, RETREAT_REFUND_RATIO, TICK_RATE } from '../sim/constants';
+import { unitStats } from '../sim/stats';
 import { acornIcon } from './acornIcon';
 import { button, element } from './dom';
 import { reducedMotion } from './motion';
@@ -23,10 +24,12 @@ export function createUnitPanel(
   const name = element('strong', 'unit-popup-name');
   const description = element('p', 'unit-description');
   const close = button('×', actions.close, 'unit-popup-close');
-  close.setAttribute('aria-label', '스킬 팝업 닫기');
+  close.setAttribute('aria-label', '캐릭터 정보 닫기');
   identity.append(name, description);
   header.append(avatar, identity, close);
   const skillName = element('b', 'skill-name');
+  const details = element('div', 'unit-info-details');
+  const stats = element('p', 'unit-stats');
   const skillDescription = element('p', 'skill-description');
   const disruption = element('p', 'unit-disruption');
   const gauge = element('progress', 'skill-gauge');
@@ -38,21 +41,20 @@ export function createUnitPanel(
   retreat.append('후퇴 (+', refundAmount, acornIcon(), ')');
   const buttons = element('div', 'unit-popup-actions');
   buttons.append(activate, retreat);
-  card.append(header, skillName, skillDescription, disruption, status, gauge, buttons);
+  details.append(stats, skillDescription, disruption);
+  card.append(header, skillName, details, status, gauge, buttons);
   panel.append(card);
-  const link = element('div', 'unit-popup-link');
   const marker = element('div', 'unit-popup-anchor');
-  link.hidden = marker.hidden = true;
-  link.setAttribute('aria-hidden', 'true');
+  marker.hidden = true;
   marker.setAttribute('aria-hidden', 'true');
-  root.append(link, marker, panel);
+  root.append(marker, panel);
   let selectedUid: number | null = null;
   return {
     update(uid: number | null, point: ScreenPoint | null) {
       const unit = battle.state.units.find((entry) => entry.uid === uid);
       const def = unit && battle.content.units.get(unit.unitId);
       const skill = def && battle.content.skills.get(def.skill);
-      panel.hidden = link.hidden = marker.hidden = !unit || !def || !skill || !point;
+      panel.hidden = marker.hidden = !unit || !def || !skill || !point;
       if (!unit || !def || !skill || !point) {
         selectedUid = null;
         return;
@@ -72,10 +74,12 @@ export function createUnitPanel(
         selectedUid = uid;
       }
       panel.dataset.unitId = def.id;
-      panel.setAttribute('aria-label', `${def.name}의 스킬`);
-      name.textContent = `${def.name}의 스킬`;
-      for (const node of [panel, marker, link]) node.style.setProperty('--unit-color', ROLE_COLORS[def.role]);
+      panel.setAttribute('aria-label', `${def.name} 캐릭터 정보`);
+      name.textContent = def.name;
+      for (const node of [panel, marker]) node.style.setProperty('--unit-color', ROLE_COLORS[def.role]);
       description.textContent = `${def.animal} · ${ROLE_NAMES[def.role]} · ${skill.trigger === 'auto' ? '자동 발동' : '수동 발동'}`;
+      const current = unitStats(battle.content, battle.stage, battle.state, unit);
+      stats.textContent = `공격력 ${Math.round(current.atk)} · ${def.damageType === 'magic' ? '마법' : '물리'}\n공격 간격 ${(current.atkIntervalTicks / TICK_RATE).toFixed(2)}초 · ${def.canHitAir ? '대공 가능' : '지상 공격'}`;
       skillName.textContent = skill.name;
       skillDescription.textContent = skill.description;
       disruption.hidden = unit.disruptedUntilTick <= battle.state.tick;
@@ -99,17 +103,12 @@ export function createUnitPanel(
       refundAmount.textContent = String(refund);
       retreat.setAttribute('aria-label', `후퇴, 도토리 ${refund}개 환급`);
       retreat.disabled = battle.state.phase !== 'running';
-      const { anchor, edge } = placeUnitPopup(root, panel, point);
+      const anchor = placeUnitPopup(root, panel, point);
       marker.style.left = `${anchor.x}px`;
       marker.style.top = `${anchor.y}px`;
-      link.style.left = `${anchor.x}px`;
-      link.style.top = `${anchor.y}px`;
-      link.style.width = `${Math.hypot(edge.x - anchor.x, edge.y - anchor.y)}px`;
-      link.style.transform = `rotate(${Math.atan2(edge.y - anchor.y, edge.x - anchor.x)}rad)`;
     },
     dispose() {
       panel.remove();
-      link.remove();
       marker.remove();
     },
   };

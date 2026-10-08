@@ -15,6 +15,7 @@ M4 성능 장면은 적 7종을 모두 섞습니다. `MALLANG_SCREENSHOT_PREFIX=
 | `art`, `animations`, `effects`, `landmarks` | 그림·상태별 움직임·정지·투사체/사망 동기화·풀 상한·포털/골 |
 | `combatArt` | 무장 8종·전용 투사체·좌우 발사 위치·정지 중 연출 고정·전투 상태 보존, PC/모바일 화면과 캐릭터 전체 그림 |
 | `characterLifecycle` | 8종 각각의 실제 PC/터치 드래그·방향 선택·자연 충전·수동/자동 스킬 버튼/알림·종료·후퇴·재배치, 총 16회 |
+| `battlePreparation` | 실제 stage-1의 10초/3초 시작·준비 중 DP/SP/적 정지와 배치·선택·후퇴, 일시정지·재시작·대기 연장 방지, PC/844×390/740×360의 정보창 고정과 버튼 노출 |
 | `audio` | 실제 입력 전 컨텍스트 없음, 9종 합성, 50ms 중복 제한, 음소거, 종료/리스너 정리 |
 | `audioTiming` | 도착 전 정지·메뉴/배속 변경·재시작 시 효과음 처리, 종료 징글 시간 동기화 |
 | `settings` | PC/터치 설정, 즉시 DPR 변경, 저장/복원, 모션 우선순위, 품질 자동/수동 선택, 재시작 |
@@ -29,6 +30,8 @@ M4 성능 장면은 적 7종을 모두 섞습니다. `MALLANG_SCREENSHOT_PREFIX=
 
 `npm test`(Vitest)로 돌립니다. sim은 DOM 없이 Node에서 돌아야 하므로 sim 테스트의 environment는 `node`입니다.
 **sim 규칙을 바꾸거나 더할 때는 반드시 테스트를 같이 씁니다.** 화면(view/ui)은 순수 함수만 테스트하고, 나머지는 스크린샷으로 확인합니다.
+
+`tests/app/loop.test.ts`는 실제 Battle과 수동 rAF 시각으로 준비 중 명령 처리·DP/SP/틱 정지, 배속/슬로모션 독립성, 정지·탭 가시성·종료 경계와 리스너 정리를 검사합니다. 기존 브라우저의 `enterBattle` 도우미는 기본으로 10초 준비가 끝날 때까지 기다리며, 준비 동작 검사는 `waitForStart: false`를 사용합니다.
 
 ## 1. 테스트 도우미 (tests/helpers.ts)
 

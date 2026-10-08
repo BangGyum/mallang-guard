@@ -4,11 +4,14 @@ import type { SimEvent } from '../sim/types';
 
 export const MAX_STEPS_PER_FRAME = 8;
 export const BULLET_TIME_SCALE = 0.25;
+export const PREPARATION_SEC = 10;
+export const QUICK_START_SEC = 3;
 
 export interface LoopControls {
   paused: boolean;
   speed: 1 | 2;
   bulletTime: boolean;
+  startInSec: number;
 }
 
 export function startLoop(
@@ -22,13 +25,17 @@ export function startLoop(
   let last = performance.now();
   let frameId = 0;
   function frame(now: number) {
-    const dt = Math.min(Math.max(0, (now - last) / 1000), 0.25);
+    const elapsed = Math.max(0, (now - last) / 1000);
+    const dt = Math.min(elapsed, 0.25);
     last = now;
+    const preparing = controls.startInSec > 0;
+    const wait = controls.paused ? 0 : Math.min(elapsed, controls.startInSec);
+    controls.startInSec = Math.max(0, controls.startInSec - wait);
     const scale =
       controls.paused || battle.state.phase !== 'running'
         ? 0
         : controls.speed * (controls.bulletTime ? BULLET_TIME_SCALE : 1);
-    acc += dt * scale;
+    acc += Math.min(elapsed - wait, 0.25) * scale;
     let steps = 0;
     while (acc >= tickSec && steps < MAX_STEPS_PER_FRAME) {
       onEvents(battle.step());
@@ -36,8 +43,12 @@ export function startLoop(
       steps++;
     }
     if (steps === MAX_STEPS_PER_FRAME) acc = 0;
-    if (controls.paused) onEvents(battle.flush());
-    render(controls.paused || battle.state.phase !== 'running' ? 1 : acc / tickSec, dt * scale, dt);
+    if (controls.paused || preparing) onEvents(battle.flush());
+    render(
+      controls.paused || controls.startInSec > 0 || battle.state.phase !== 'running' ? 1 : acc / tickSec,
+      dt * scale,
+      dt,
+    );
     frameId = requestAnimationFrame(frame);
   }
   function onVisibility() {

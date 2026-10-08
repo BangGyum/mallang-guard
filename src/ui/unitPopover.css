@@ -1,17 +1,42 @@
 .unit-panel {
+  box-sizing: border-box;
   position: absolute;
   z-index: 2;
   width: 252px;
   max-width: calc(100% - 16px);
-  overflow-y: auto;
-  scrollbar-width: thin;
+  display: flex;
   border: 1px solid color-mix(in srgb, var(--unit-color) 45%, #fffdf5);
   border-radius: 18px;
   background: #fffdf5;
   box-shadow: 0 8px 24px #365f4930;
 }
 .unit-popup-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
   padding: 12px;
+}
+.unit-info-details {
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+.unit-panel .unit-stats {
+  margin-bottom: 10px;
+  padding: 7px 9px;
+  border-radius: 9px;
+  background: #edf2e8;
+  color: #4f6653;
+  font-size: 11px;
+  line-height: 1.5;
+  white-space: pre-line;
+}
+.unit-popup-header,
+.skill-name,
+.skill-status,
+.skill-gauge,
+.unit-popup-actions {
+  flex-shrink: 0;
 }
 .unit-popup-header {
   display: flex;
@@ -119,17 +144,10 @@
   color: #837165;
   border-color: #e9ded0;
 }
-.unit-popup-link,
 .unit-popup-anchor {
   position: absolute;
   pointer-events: none;
   z-index: 1;
-}
-.unit-popup-link {
-  height: 2px;
-  transform-origin: left center;
-  background: var(--unit-color);
-  opacity: 0.65;
 }
 .unit-popup-anchor {
   width: 30px;
@@ -204,6 +222,11 @@
   }
   .unit-popup-name {
     font-size: 12px;
+  }
+  .unit-panel .unit-stats {
+    padding: 4px 7px;
+    font-size: 10px;
+    margin-bottom: 5px;
   }
   .unit-popup-identity {
     line-height: 1.25;

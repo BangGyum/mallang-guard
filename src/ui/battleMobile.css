@@ -39,6 +39,12 @@
     gap: 8px;
     font-size: 12px;
   }
+  .battle-preparation {
+    gap: 6px;
+  }
+  .battle-countdown {
+    font-size: 11px;
+  }
   .battle-top button {
     padding: 6px 8px;
     font-size: 12px;
