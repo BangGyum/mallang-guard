@@ -49,8 +49,8 @@ describe('battle outcome', () => {
     const stage = laneStage(['S.G'], [SPAWN, SPAWN], { life: 1 });
     const { battle } = makeFixture(stage, { speed: 60 });
     expect(battle.step()).toEqual([
-      { type: 'enemySpawn', uid: 1, enemyId: 'jelly' },
-      { type: 'enemySpawn', uid: 2, enemyId: 'jelly' },
+      { type: 'enemySpawn', uid: 1, enemyId: 'jelly', x: 0.5, y: 0.5 },
+      { type: 'enemySpawn', uid: 2, enemyId: 'jelly', x: 0.5, y: 0.5 },
       { type: 'enemyLeak', uid: 1, lifeLeft: 0 },
       { type: 'battleEnd', result: 'lost' },
     ]);

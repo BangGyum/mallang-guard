@@ -17,7 +17,7 @@ interface EntityView {
   height: number;
   direction: number;
   flying: boolean;
-  hitDelay: number;
+  hitDelays: number[];
   exitDelay: number;
   art: string;
 }
@@ -49,7 +49,7 @@ export function createEntityViews(content: ContentDb, board: Board, textures: Re
       height,
       flying,
       direction: 1,
-      hitDelay: -1,
+      hitDelays: [],
       exitDelay: 0,
       art: art || id,
       motion: {
@@ -106,7 +106,7 @@ export function createEntityViews(content: ContentDb, board: Board, textures: Re
         }
         if (event.type === 'enemySpawn') {
           const enemy = state.enemies.find((enemy) => enemy.uid === event.uid);
-          if (enemy) place(ensure(enemy.uid, enemy.enemyId, true), enemy.x, enemy.y, 0);
+          place(ensure(event.uid, event.enemyId, true), enemy?.x ?? event.x, enemy?.y ?? event.y, 0);
         }
         if (event.type === 'attack' || event.type === 'skillStart') {
           const view = views.get(event.type === 'attack' ? event.src.uid : event.uid);
@@ -116,7 +116,7 @@ export function createEntityViews(content: ContentDb, board: Board, textures: Re
           const view = views.get(event.dst.uid);
           if (view) {
             const delay = delays.get(event) ?? 0;
-            if (delay > 0) view.hitDelay = delay;
+            if (delay > 0) view.hitDelays.push(delay);
             else view.motion.hit = 0.08;
           }
         }
@@ -171,12 +171,12 @@ export function createEntityViews(content: ContentDb, board: Board, textures: Re
         motion.age += dt;
         motion.attack = Math.max(0, motion.attack - dt);
         motion.hit = Math.max(0, motion.hit - dt);
-        if (view.hitDelay >= 0) {
-          view.hitDelay -= dt;
-          if (view.hitDelay <= 0) {
+        for (let i = view.hitDelays.length - 1; i >= 0; i--) {
+          const remaining = (view.hitDelays[i] ?? 0) - dt;
+          if (remaining <= 0) {
             motion.hit = 0.08;
-            view.hitDelay = -1;
-          }
+            view.hitDelays.splice(i, 1);
+          } else view.hitDelays[i] = remaining;
         }
         if (motion.exit) {
           motion.exitAge += Math.max(0, dt - view.exitDelay);

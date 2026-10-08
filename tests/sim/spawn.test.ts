@@ -27,7 +27,7 @@ describe('enemy spawn', () => {
         stunUntilTick: 0,
       },
     ]);
-    expect(events).toEqual([{ type: 'enemySpawn', uid: 1, enemyId: 'jelly' }]);
+    expect(events).toEqual([{ type: 'enemySpawn', uid: 1, enemyId: 'jelly', x: 0.5, y: 0.5 }]);
     expect(state.spawnCursor).toEqual([1]);
     expect(state.nextUid).toBe(2);
     expect(state.currentWave).toBe(1);
@@ -55,10 +55,10 @@ describe('enemy spawn', () => {
     const { battle } = makeFixture(stage);
     const events = run(battle, 2).filter((event) => event.type === 'enemySpawn');
     expect(events).toEqual([
-      { type: 'enemySpawn', uid: 1, enemyId: 'jelly' },
-      { type: 'enemySpawn', uid: 2, enemyId: 'hardJelly' },
-      { type: 'enemySpawn', uid: 3, enemyId: 'jelly' },
-      { type: 'enemySpawn', uid: 4, enemyId: 'hardJelly' },
+      { type: 'enemySpawn', uid: 1, enemyId: 'jelly', x: 0.5, y: 0.5 },
+      { type: 'enemySpawn', uid: 2, enemyId: 'hardJelly', x: 0.5, y: 0.5 },
+      { type: 'enemySpawn', uid: 3, enemyId: 'jelly', x: 0.5, y: 0.5 },
+      { type: 'enemySpawn', uid: 4, enemyId: 'hardJelly', x: 0.5, y: 0.5 },
     ]);
     expect(battle.state.enemies.map((enemy) => enemy.uid)).toEqual([1, 2, 3, 4]);
     expect(battle.state.currentWave).toBe(3);

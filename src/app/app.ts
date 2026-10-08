@@ -87,7 +87,7 @@ export function createApp(
   }
   function showPause() {
     if (session?.battle.state.phase !== 'running') return;
-    sound.reset();
+    sound.stop();
     clearScreen();
     session.setMenuOpen(true);
     app.dataset.screen = 'paused';
@@ -140,9 +140,10 @@ export function createApp(
         automaticQuality,
         onMenu: showPause,
         onEnd: showResult,
-        onEvents(events, speed) {
-          sound.onEvents(events, impactDelays(events), speed);
+        onEvents(events) {
+          sound.onEvents(events, impactDelays(events));
         },
+        onFrame: sound.update,
         onAutoQuality() {
           save.settings.quality = 'low';
           storeSave(save);

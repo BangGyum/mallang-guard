@@ -41,7 +41,7 @@ export type SimEvent =
   | { type: 'commandRejected'; cmd: Command; reason: RejectReason }
   | { type: 'unitDeploy'; uid: number; unitId: string; tile: Tile; dir: Dir }
   | { type: 'unitRetreat'; uid: number; refund: number }
-  | { type: 'enemySpawn'; uid: number; enemyId: string }
+  | { type: 'enemySpawn'; uid: number; enemyId: string; x: number; y: number }
   | { type: 'enemyLeak'; uid: number; lifeLeft: number }
   | { type: 'enemyDie'; uid: number }
   | { type: 'attack'; src: Ref; dst: Ref; damageType: DamageType; ranged: boolean }

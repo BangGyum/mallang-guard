@@ -21,7 +21,8 @@ export function createBattleSession(
     onMenu(): void;
     onEnd(): void;
     onSpeed(speed: 1 | 2): void;
-    onEvents?(events: readonly SimEvent[], speed: number): void;
+    onEvents?(events: readonly SimEvent[]): void;
+    onFrame?(dt: number): void;
     onAutoQuality?(): void;
   },
   images: ReadonlyMap<string, HTMLCanvasElement>,
@@ -99,7 +100,7 @@ export function createBattleSession(
     (events) => {
       view.onEvents(events, battle.state);
       overlay.onEvents(events, view.entityPosition);
-      actions.onEvents?.(events, controls.speed * (controls.bulletTime ? 0.25 : 1));
+      actions.onEvents?.(events);
       controller.onEvents(events);
       if (events.some((event) => event.type === 'battleEnd')) {
         controller.setEnabled(false);
@@ -114,6 +115,7 @@ export function createBattleSession(
       hud.update(controls);
       view.render(battle.state, alpha, visualDt);
       overlay.render(battle.state, view.camera, alpha, visualDt);
+      actions.onFrame?.(visualDt);
       if (
         options.quality === 'high' &&
         !controls.paused &&
