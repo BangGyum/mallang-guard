@@ -118,3 +118,12 @@
     padding: 9px 14px;
   }
 }
+
+@media (max-height: 500px) and (max-width: 780px) {
+  .deploy-cards:has(> .deploy-card:nth-child(9)) .deploy-card {
+    flex-basis: 58px;
+  }
+  .deploy-cards:has(> .deploy-card:nth-child(9)) .card-name {
+    font-size: 14px;
+  }
+}

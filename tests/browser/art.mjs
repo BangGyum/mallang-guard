@@ -24,7 +24,7 @@ try {
     await page.clock.install();
     await page.goto('http://127.0.0.1:43195/');
     await page.locator('.title-friend svg').first().waitFor();
-    assert.equal(await page.locator('.title-friend svg').count(), 8);
+    assert.equal(await page.locator('.title-friend svg').count(), 9);
     const art = await page.evaluate(async () => {
       const { loadArtAssets } = await import('/src/app/artAssets.ts');
       const images = await loadArtAssets();
@@ -35,12 +35,12 @@ try {
         return { id, opaque, total: canvas.width * canvas.height };
       });
     });
-    assert.equal(art.length, 30);
+    assert.equal(art.length, 31);
     assert(art.every((image) => image.opaque > 100 && image.opaque < image.total * 0.9));
     const label = mobile ? 'mobile' : 'desktop';
     await page.screenshot({ path: `docs/verification/${prefix}-${label}-title.png` });
     await enterBattle(page);
-    assert.equal(await page.locator('.card-portrait svg').count(), 8);
+    assert.equal(await page.locator('.card-portrait svg').count(), 9);
     const cdp = mobile ? await context.newCDPSession(page) : null;
     await deploy(page, cdp, 'squirrel', { x: 2, y: 0 }, 'down');
     await frame(page, 500);

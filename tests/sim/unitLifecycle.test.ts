@@ -14,7 +14,12 @@ const CASES = content.unitOrder.flatMap((unitId) => DIRECTIONS.map((dir) => ({ u
 
 function fixture(unitId: string, dir: Dir, behind = false, air = false) {
   const raw = makeRawContent();
-  const [dx, dy] = rotateOffset([behind ? -1 : 1, 0], dir);
+  const unitRange = raw.ranges.find(
+    (range) => range.id === raw.units.find((unit) => unit.id === unitId)?.range,
+  );
+  assert(unitRange, '기본 사거리 없음');
+  const rear = Math.min(...unitRange.tiles.map(([x]) => x)) - 1;
+  const [dx, dy] = rotateOffset([behind ? rear : 1, 0], dir);
   const map = Array.from({ length: 9 }, (_, y) =>
     Array.from({ length: 9 }, (_, x) =>
       x === 0 && y === 0
@@ -55,7 +60,7 @@ function fixture(unitId: string, dir: Dir, behind = false, air = false) {
   return { battle, def, skill, events, unit };
 }
 
-describe('아군 8종의 실제 충전·스킬·후퇴·재배치', () => {
+describe('모든 아군의 실제 충전·스킬·후퇴·재배치', () => {
   it.each(CASES)('$unitId / $dir 전체 생명주기', ({ unitId, dir }) => {
     const { battle, def, skill, unit, events } = fixture(unitId, dir);
     expect(battle.state.dp).toBe(99 - def.cost);

@@ -44,4 +44,7 @@ export const COMBAT_GEAR = {
   snail:
     vest('#647077', '#A8D6B5') +
     `<g ${line}><path d="M69 38H85L90 44V62H67V44Z" fill="${steel}"/><path d="M72 44H84V57H72Z" fill="#A8D6B5"/><path d="M80 60Q94 68 70 75" fill="none" stroke="${steel}" stroke-width="5"/><path d="M35 74H63L68 69H93V83H65L58 88H47L48 81H35Z" fill="${steel}"/><path d="M73 71H86V81H73Z" fill="#A8D6B5"/><path d="M91 68V84" stroke="${light}" stroke-width="5"/></g>`,
+  owl:
+    vest('#526A68', '#A4D9CA') +
+    `<g ${line}><path d="M25 43Q50 28 75 43L72 48H28Z" fill="${steel}"/><rect x="39" y="35" width="23" height="9" rx="2" fill="#A4D9CA"/><path d="M28 72L17 62V81L30 86" fill="${steel}"/><path d="M18 60V45M11 43Q18 34 25 43L18 49Z" fill="${light}"/><path d="M44 77H72L77 67H94V83H72L65 90H45Z" fill="${steel}"/><path d="M69 68H96V77H69Z" fill="${light}"/><path d="M94 65V80" stroke="${steel}" stroke-width="5"/><rect x="62" y="70" width="17" height="6" rx="2" fill="#A4D9CA"/><path d="M50 78L56 85" stroke="#D9B99B" stroke-width="5"/></g>`,
 };

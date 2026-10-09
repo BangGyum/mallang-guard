@@ -23,7 +23,7 @@ export function unitStats(
   for (const source of state.units) {
     for (const effect of source.buffs) {
       if (effect.type !== 'hasteAura') continue;
-      const tiles = rangeTilesFor(content, stage, source.unitId, source.tile, source.dir);
+      const tiles = rangeTilesFor(content, stage, source.unitId, source.tile, source.dir, source.buffs);
       if (contains(tiles, unit.tile.x, unit.tile.y)) interval *= effect.value;
     }
   }

@@ -108,6 +108,15 @@ const C = {
     body('#F3E3A0') +
     combatEyes() +
     COMBAT_GEAR.snail,
+  owl: () =>
+    `<path d="M25 47L24 23L42 38M75 47L76 23L58 38" fill="#B58B60" ${S(3)}/><ellipse cx="22" cy="72" rx="8" ry="15" fill="#947657" ${S(3)}/><ellipse cx="78" cy="72" rx="8" ry="15" fill="#947657" ${S(3)}/>` +
+    feet('#D8AD6B') +
+    body('#B58B60') +
+    belly('#EAD9B5') +
+    `<circle cx="38" cy="58" r="15" fill="#F6EDD4" ${S(2.5)}/><circle cx="62" cy="58" r="15" fill="#F6EDD4" ${S(2.5)}/>` +
+    combatEyes(58) +
+    `<path d="M45 65L55 65L50 73Z" fill="#E8B059" ${S(2)}/>` +
+    COMBAT_GEAR.owl,
   jelly: () =>
     `<path d="M17 90C13 66 29 43 50 43C71 43 87 66 83 90Z" fill="#9B7BFF" ${S(3.2)}/><path d="M24 90C24 84 76 84 76 90" fill="#8463F0" opacity=".6"/><ellipse cx="36" cy="57" rx="7" ry="3.2" fill="#fff" opacity=".55" transform="rotate(-28 36 57)"/>` +
     eyes(69, 9, 0.85) +

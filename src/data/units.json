@@ -133,5 +133,21 @@
       }
     ],
     "skill": "stickyRoad"
+  },
+  {
+    "id": "owl",
+    "name": "밤밤",
+    "animal": "부엉이",
+    "role": "caster",
+    "art": "owl",
+    "cost": 24,
+    "deployOn": "high",
+    "redeploySec": 55,
+    "atk": 320,
+    "atkIntervalSec": 1.8,
+    "range": "square5",
+    "damageType": "magic",
+    "canHitAir": true,
+    "skill": "wideBarrage"
   }
 ]

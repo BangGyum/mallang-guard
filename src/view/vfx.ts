@@ -1,7 +1,7 @@
 import { type PerspectiveCamera, type Texture, Vector3 } from 'three';
-import { rangeTiles } from '../core/grid';
 import type { ContentDb } from '../data/types';
 import type { Board } from '../sim/board';
+import { rangeTilesFor } from '../sim/queries';
 import type { BattleState, SimEvent } from '../sim/types';
 import { tileHeight } from './coords';
 import { PROJECTILE_SEC } from './eventTiming';
@@ -16,6 +16,7 @@ const SHOTS: Record<string, { art: string; size: number; arc: number; muzzle: bo
   bunny: { art: 'arcBolt', size: 0.3, arc: 0, muzzle: true },
   mole: { art: 'bullet', size: 0.38, arc: 0, muzzle: true },
   snail: { art: 'stickyDrop', size: 0.32, arc: 0.12, muzzle: true },
+  owl: { art: 'arcBolt', size: 0.48, arc: 0.25, muzzle: true },
 };
 
 export function createVfx(
@@ -89,14 +90,14 @@ export function createVfx(
         if (event.type === 'skillPulse') {
           const unit = state.units.find((unit) => unit.uid === event.uid);
           const def = unit && content.units.get(unit.unitId);
-          const range = def && content.ranges.get(def.range);
-          if (!unit || !range) continue;
-          for (const [i, tile] of rangeTiles(
+          if (!unit || !def) continue;
+          for (const [i, tile] of rangeTilesFor(
+            content,
+            { board },
+            unit.unitId,
             unit.tile,
-            range.tiles,
             unit.dir,
-            board.width,
-            board.height,
+            unit.buffs,
           ).entries()) {
             if ((reduced || low) && i % 2) continue;
             const end = new Vector3(

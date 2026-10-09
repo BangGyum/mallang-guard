@@ -25,7 +25,7 @@ export function enemiesInRange(
   const alive = state.enemies.filter(
     (enemy) => enemy.hp > 0 && (def.canHitAir || !content.enemies.get(enemy.enemyId)?.flying),
   );
-  const tiles = rangeTilesFor(content, stage, unit.unitId, unit.tile, unit.dir);
+  const tiles = rangeTilesFor(content, stage, unit.unitId, unit.tile, unit.dir, unit.buffs);
   return alive.filter((enemy) => contains(tiles, enemy.x, enemy.y));
 }
 

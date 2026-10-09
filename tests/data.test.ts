@@ -8,9 +8,19 @@ describe('content data', () => {
   it('실제 JSON과 원본 순서를 검증하고 21마리의 스폰을 유지한다', () => {
     const db = validateContent(rawContent);
     expect([db.units.size, db.enemies.size, db.skills.size, db.ranges.size, db.stages.size]).toEqual([
-      8, 7, 8, 3, 7,
+      9, 7, 9, 5, 7,
     ]);
-    expect(db.unitOrder).toEqual(['squirrel', 'cat', 'bear', 'penguin', 'sheep', 'bunny', 'mole', 'snail']);
+    expect(db.unitOrder).toEqual([
+      'squirrel',
+      'cat',
+      'bear',
+      'penguin',
+      'sheep',
+      'bunny',
+      'mole',
+      'snail',
+      'owl',
+    ]);
     expect(db.stages.get('stage-1')?.spawns.reduce((sum, spawn) => sum + spawn.count, 0)).toBe(21);
     expect([...db.units]).toEqual([...content.units]);
   });
