@@ -1,5 +1,6 @@
 {
   "id": "stage-3",
+  "waveRepeat": { "count": 10, "periodSec": 101 },
   "name": "1-3 방울 정원",
   "description": "분열젤리가 나뉘면 범위 공격으로 함께 막아요.",
   "startDp": 16,

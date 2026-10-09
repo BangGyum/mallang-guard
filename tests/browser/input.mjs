@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { mkdir } from 'node:fs/promises';
 import { chromium } from 'playwright';
-import { deploy, drag, enterBattle, frame, pause, resume, tilePoint } from './helpers.mjs';
+import { deploy, drag, enterBattle, finishBattle, frame, pause, resume, tilePoint } from './helpers.mjs';
 
 const url = process.env.MALLANG_TEST_URL ?? 'http://127.0.0.1:43195/';
 const screenshotPrefix = process.env.MALLANG_SCREENSHOT_PREFIX ?? 'defense';
@@ -123,9 +123,9 @@ try {
       path: `docs/verification/${screenshotPrefix}-${mobile ? 'mobile' : 'desktop'}.png`,
     });
     await resume(page);
-    await frame(page, 60000);
+    await finishBattle(page);
     assert.equal(await page.locator('.battle-result h2').textContent(), '방어 성공!');
-    assert.equal(await page.locator('.result-detail').textContent(), '푸딩 3개 · 처치 21/21');
+    assert.equal(await page.locator('.result-detail').textContent(), '푸딩 3개 · 처치 210/210');
     await page.screenshot({
       path: `docs/verification/${screenshotPrefix}-${mobile ? 'mobile' : 'desktop'}-clear.png`,
     });
@@ -141,7 +141,7 @@ try {
     console.log(
       JSON.stringify({
         input: mobile ? 'touch' : 'mouse',
-        result: '푸딩 3개 · 처치 21/21',
+        result: '푸딩 3개 · 처치 210/210',
         saved: saved.stages['stage-1'],
         errors,
       }),

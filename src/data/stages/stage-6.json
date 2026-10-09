@@ -1,5 +1,6 @@
 {
   "id": "stage-6",
+  "waveRepeat": { "count": 10, "periodSec": 146 },
   "name": "1-6 푸딩 대연회",
   "description": "왕젤리를 막아 정원의 마지막 푸딩을 지켜요!",
   "startDp": 25,

@@ -70,7 +70,12 @@ export function runScenario(
   options: ScenarioOptions = {},
 ): ScenarioResult {
   const prefix = `scenario ${scenario.stage}`;
-  const maxSec = options.maxSec ?? 300;
+  const stage = content.stages.get(scenario.stage);
+  const lastSpawn = Math.max(
+    0,
+    ...(stage?.spawns.map((group) => group.atSec + (group.count - 1) * group.intervalSec) ?? []),
+  );
+  const maxSec = options.maxSec ?? lastSpawn + 300;
   assert(Number.isFinite(maxSec) && maxSec > 0, `${prefix}: maxSec must be finite and positive`);
   const schedule = scenario.commands
     .map((command, index) => {

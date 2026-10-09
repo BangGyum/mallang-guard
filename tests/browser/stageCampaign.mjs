@@ -142,7 +142,14 @@ try {
         }
       }
       await resume(page);
-      await frame(page, 60000);
+      const lastSpawn =
+        Math.max(...stage.spawns.map((spawn) => spawn.atSec + (spawn.count - 1) * spawn.intervalSec)) +
+        (stage.waveRepeat?.count - 1 || 0) * (stage.waveRepeat?.periodSec ?? 0);
+      for (let seconds = 0; seconds <= lastSpawn + 300; seconds += 30) {
+        if ((await page.evaluate(() => window.campaign.battle.state.phase)) !== 'running') break;
+        await frame(page, 30000);
+      }
+      await frame(page, 1000);
       assert.equal(await page.locator('.battle-result h2').textContent(), '방어 성공!');
       assert.equal(await page.locator('.result-stars').textContent(), '★★★');
       const result = await page.evaluate(() => {
@@ -167,7 +174,10 @@ try {
       assert.equal(result.leaked, 0);
       assert.equal(result.enemies, 0);
       assert.equal(result.killed, result.totalEnemies);
-      assert.equal(result.wave, Math.max(...stage.spawns.map((spawn) => spawn.wave)));
+      assert.equal(
+        result.wave,
+        Math.max(...stage.spawns.map((spawn) => spawn.wave)) * (stage.waveRepeat?.count ?? 1),
+      );
       assert.deepEqual(result.rejected, []);
       const records = await page.evaluate(() => JSON.parse(localStorage.getItem('mallang-guard:v1')).stages);
       assert.equal(Object.keys(records).length, index + 1);

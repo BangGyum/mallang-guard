@@ -23,7 +23,7 @@ describe('콘텐츠 검증', () => {
     expect([content.units.size, content.enemies.size, content.skills.size, content.ranges.size]).toEqual([
       10, 15, 10, 7,
     ]);
-    expect(first(raw.stages).spawns.reduce((total, spawn) => total + spawn.count, 0)).toBe(21);
+    expect(first(raw.stages).spawns.reduce((total, spawn) => total + spawn.count, 0)).toBe(210);
   });
 
   it('검증은 입력 데이터를 수정하지 않는다', () => {

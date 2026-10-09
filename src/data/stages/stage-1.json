@@ -1,5 +1,6 @@
 {
   "id": "stage-1",
+  "waveRepeat": { "count": 10, "periodSec": 91 },
   "name": "1-1 푸딩 창고 앞마당",
   "map": ["##HH###HH##", "S....H....#", "#HH#.H.#H.#", "#HH#...#H.G", "####HHH#..#", "###########"],
   "startDp": 10,

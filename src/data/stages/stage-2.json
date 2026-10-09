@@ -1,5 +1,6 @@
 {
   "id": "stage-2",
+  "waveRepeat": { "count": 10, "periodSec": 95 },
   "name": "1-2 두 갈래 산책길",
   "description": "갈라진 두 길이 만나는 곳을 지켜요.",
   "startDp": 18,

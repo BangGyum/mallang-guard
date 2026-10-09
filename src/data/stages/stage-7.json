@@ -1,5 +1,6 @@
 {
   "id": "stage-7",
+  "waveRepeat": { "count": 10, "periodSec": 175 },
   "name": "1-7 드넓은 푸딩 정원",
   "description": "위·아래 산책길을 나눠 지켜요. 골 근처에서 합류하는 22×12 정원.",
   "map": [

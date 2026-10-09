@@ -11,7 +11,7 @@ interface Controls {
 export function createHud(
   root: HTMLDivElement,
   battle: Battle,
-  actions: { pause(): void; speed(): void; start(): void },
+  actions: { pause(): void; speed(): void; start(): void; exit(): void },
 ) {
   const top = element('div', 'battle-top');
   const title = element('div', 'stage-title', '말랑방위대');
@@ -35,7 +35,11 @@ export function createHud(
   const controls = element('div', 'battle-controls');
   speed.append(battleIcon('speed'), speedLabel);
   pause.append(battleIcon('pause'), pauseLabel);
-  controls.append(speed, pause);
+  const exit = button('', actions.exit, 'battle-exit');
+  exit.append(battleIcon('retreat'), element('span', '', '나가기'));
+  exit.dataset.action = 'exit';
+  exit.title = '전투를 종료하고 타이틀로 나가기';
+  controls.append(speed, pause, exit);
   pause.dataset.action = 'pause';
   speed.setAttribute('aria-label', '전투 배속 변경');
   top.append(title, preparation, stats, controls);
