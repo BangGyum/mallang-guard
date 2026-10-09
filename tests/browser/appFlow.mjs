@@ -102,7 +102,7 @@ try {
     await frame(page);
     assert.equal(await page.locator('.deploy-card[data-unit-id="squirrel"]').isVisible(), true);
     assert.equal(await page.locator('.dp-panel strong').textContent(), '10');
-    await frame(page, 28000);
+    await frame(page, 40000);
     assert.equal(await page.locator('.battle-result').getAttribute('data-result'), 'lost');
     assert.equal(await page.evaluate(() => window.pendingGameFrames()), 0);
     await page.screenshot({

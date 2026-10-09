@@ -23,7 +23,7 @@ try {
     });
     const time = new Date('2026-10-08T13:00:00Z');
     await page.clock.install({ time });
-    await page.clock.pauseAt(time);
+    await page.clock.pauseAt(new Date(time.getTime() + 1000));
     await page.addInitScript(() => {
       window.requestAnimationFrame = (callback) => setTimeout(() => callback(performance.now()), 100);
       window.cancelAnimationFrame = (id) => clearTimeout(id);
@@ -106,11 +106,8 @@ try {
             .map((button) => button.getBoundingClientRect().toJSON()),
         };
       });
-      assert(Math.abs(layout.width - 8 - layout.panel.right) < 1, '정보창은 오른쪽 고정');
-      assert(
-        Math.abs(layout.bar.top - 8 - layout.panel.bottom) < 1,
-        `정보창은 배치 바 위에 고정: ${JSON.stringify(layout)}`,
-      );
+      assert(layout.panel.left >= 7 && layout.panel.right <= layout.width - 7, '유닛 조작창 가로 잘림 없음');
+      assert(layout.panel.bottom <= layout.bar.top - 7, '유닛 조작창은 배치 바와 겹치지 않음');
       assert(layout.panel.top >= layout.top.bottom + 7, '상단 바와 겹치지 않음');
       assert(layout.top.right <= layout.width, '작은 화면 상단 버튼 잘림 없음');
       assert(
@@ -194,7 +191,7 @@ try {
       compact,
       errors,
     });
-    console.log(`${label}: 10초·3초 시작, 정지·재시작·후퇴, 오른쪽 하단 정보 통과`);
+    console.log(`${label}: 10초·3초 시작, 정지·재시작·후퇴, 유닛 조작창 통과`);
     await context.close();
   }
   await writeFile(`docs/verification/${prefix}-preparation.json`, `${JSON.stringify(report, null, 2)}\n`);

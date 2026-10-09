@@ -92,7 +92,7 @@ export function createBattleSession(
       hud.notify(message);
     },
   });
-  const deployBar = createDeployBar(hudRoot, battle, controller.startDrag);
+  const deployBar = createDeployBar(hudRoot, battle, controller.selectCard);
   const observer = new ResizeObserver(() => {
     view.resize();
     overlay.resize();

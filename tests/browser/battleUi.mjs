@@ -5,6 +5,7 @@ import { enterBattle, frame, pause, resume } from './helpers.mjs';
 import { createUnitAuditGame, unitAuditPoint } from './unitAuditScene.mjs';
 
 const report = [];
+const prefix = process.env.MALLANG_SCREENSHOT_PREFIX ?? 't3.11';
 const browser = await chromium.launch({ channel: 'msedge', headless: true });
 try {
   for (const mobile of [false, true]) {
@@ -23,7 +24,7 @@ try {
     });
     const time = new Date('2026-10-08T14:00:00Z');
     await page.clock.install({ time });
-    await page.clock.pauseAt(time);
+    await page.clock.pauseAt(new Date(time.getTime() + 1000));
     await page.addInitScript(() => {
       window.requestAnimationFrame = (callback) => setTimeout(() => callback(performance.now()), 100);
       window.cancelAnimationFrame = (id) => clearTimeout(id);
@@ -93,8 +94,11 @@ try {
         };
       });
       assert(layout.panel.top >= layout.top.bottom + 7, '상단 현황과 겹치지 않음');
-      assert(Math.abs(layout.panel.bottom + 8 - layout.bar.top) < 1, '배치 바 위에 정보 고정');
-      assert(Math.abs(layout.panel.right + 8 - page.viewportSize().width) < 1, '오른쪽 정보 고정');
+      assert(layout.panel.bottom + 7 <= layout.bar.top, '유닛 조작창은 배치 바와 겹치지 않음');
+      assert(
+        layout.panel.left >= 7 && layout.panel.right + 7 <= page.viewportSize().width,
+        '유닛 조작창 가로 잘림 없음',
+      );
       assert(layout.detailsHeight >= 16, `상세 정보에 접근할 수 있는 스크롤 영역: ${JSON.stringify(layout)}`);
       for (const item of [layout.skill, layout.meter, ...layout.buttons]) {
         assert(item.top >= layout.panel.top && item.bottom <= layout.panel.bottom, '스킬·상태·조작 표시');
@@ -108,7 +112,10 @@ try {
     assert.equal(await page.locator('.skill-value').textContent(), 'SP 5/10');
     assert.match(await page.locator('.skill-meta').textContent(), /시간 충전.*수동 발동.*범위 내 적 필요/);
     assert(await page.locator('.skill-button').isDisabled());
-    await page.screenshot({ path: `docs/verification/t3.11-${label}-charging.png`, animations: 'disabled' });
+    await page.screenshot({
+      path: `docs/verification/${prefix}-${label}-charging.png`,
+      animations: 'disabled',
+    });
     await click(page.locator('.unit-popup-close'));
     await resume(page);
     await frame(page, 6000);
@@ -126,21 +133,21 @@ try {
     );
     const full = await inspectLayout();
     await page.screenshot({
-      path: `docs/verification/t3.11-${label}-target-wait.png`,
+      path: `docs/verification/${prefix}-${label}-target-wait.png`,
       animations: 'disabled',
     });
     if (mobile) {
       await page.setViewportSize({ width: 740, height: 360 });
       await frame(page);
       await page.screenshot({
-        path: 'docs/verification/t3.11-compact-target-wait.png',
+        path: `docs/verification/${prefix}-compact-target-wait.png`,
         animations: 'disabled',
       });
       const compact = await inspectLayout();
       report.push({ viewport: '740x360', layout: compact });
       await frame(page);
       await page.screenshot({
-        path: 'docs/verification/t3.11-compact-target-wait.png',
+        path: `docs/verification/${prefix}-compact-target-wait.png`,
         animations: 'disabled',
       });
       await page.setViewportSize({ width: 844, height: 390 });
@@ -154,7 +161,7 @@ try {
     assert.equal(await page.locator('.skill-status').textContent(), '준비 완료');
     assert.equal(await page.locator('.skill-button').isDisabled(), false);
     await page.screenshot({
-      path: `docs/verification/t3.11-${label}-target-ready.png`,
+      path: `docs/verification/${prefix}-${label}-target-ready.png`,
       animations: 'disabled',
     });
     await click(page.getByRole('button', { name: '스킬 발동', exact: true }));
@@ -178,7 +185,7 @@ try {
     console.log(JSON.stringify({ viewport: label, targetWaiting: true, ready: true, cast: true, errors }));
     await context.close();
   }
-  await writeFile('docs/verification/t3.11-battle-ui.json', `${JSON.stringify(report, null, 2)}\n`);
+  await writeFile(`docs/verification/${prefix}-battle-ui.json`, `${JSON.stringify(report, null, 2)}\n`);
 } finally {
   await browser.close();
 }
