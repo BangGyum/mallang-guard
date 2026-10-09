@@ -3,7 +3,11 @@ export async function createUnitAuditGame({ dir, spawnAtSec = 0 }) {
   const { loadArtAssets } = await import('/src/app/artAssets.ts');
   const { rawContent } = await import('/src/data/index.ts');
   const { validateContent } = await import('/src/data/validate.ts');
-  const { Battle } = await import('/src/sim/battle.ts');
+  // HMR 뒤에도 앱이 실제 사용하는 모듈의 클래스를 관찰한다.
+  const sessionSource = await (await fetch('/src/app/battleSession.ts')).text();
+  const battleModule = sessionSource.match(/from ["']([^"']*\/sim\/battle\.ts[^"']*)["']/)?.[1];
+  if (!battleModule) throw new Error('전투 모듈 주소 없음');
+  const { Battle } = await import(battleModule);
   if (!window.unitAudit) {
     for (const method of ['step', 'flush']) {
       const original = Battle.prototype[method];

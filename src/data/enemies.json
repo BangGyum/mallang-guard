@@ -9,7 +9,8 @@
     "speed": 0.9,
     "flying": false,
     "lifeDamage": 1,
-    "description": "기본 지상 적이에요. 경로를 따라 푸딩으로 이동해요."
+    "description": "기본 지상 적이에요. 경로를 따라 푸딩으로 이동해요.",
+    "bounty": 5
   },
   {
     "id": "hardJelly",
@@ -21,7 +22,8 @@
     "speed": 0.6,
     "flying": false,
     "lifeDamage": 1,
-    "description": "물리 방어력이 높아요. 마법 공격으로 상대해요."
+    "description": "물리 방어력이 높아요. 마법 공격으로 상대해요.",
+    "bounty": 6
   },
   {
     "id": "crow",
@@ -33,7 +35,8 @@
     "speed": 1.2,
     "flying": true,
     "lifeDamage": 1,
-    "description": "빠르게 날아오는 비행 적이에요. 대공 가능한 친구로 막아요."
+    "description": "빠르게 날아오는 비행 적이에요. 대공 가능한 친구로 막아요.",
+    "bounty": 5
   },
   {
     "id": "splitJelly",
@@ -49,7 +52,8 @@
     "split": {
       "enemy": "miniJelly",
       "count": 2
-    }
+    },
+    "bounty": 5
   },
   {
     "id": "miniJelly",
@@ -61,7 +65,8 @@
     "speed": 1.25,
     "flying": false,
     "lifeDamage": 1,
-    "description": "작지만 빠르게 푸딩으로 달려가요."
+    "description": "작지만 빠르게 푸딩으로 달려가요.",
+    "bounty": 1
   },
   {
     "id": "spitter",
@@ -80,7 +85,8 @@
       "durationSec": 2.2,
       "atkIntervalMul": 1.5,
       "targets": 1
-    }
+    },
+    "bounty": 7
   },
   {
     "id": "kingJelly",
@@ -99,7 +105,8 @@
       "durationSec": 2.5,
       "atkIntervalMul": 1.5,
       "targets": 3
-    }
+    },
+    "bounty": 20
   },
   {
     "id": "dashJelly",
@@ -116,7 +123,8 @@
       "intervalSec": 6,
       "durationSec": 1.2,
       "speedMul": 1.8
-    }
+    },
+    "bounty": 5
   },
   {
     "id": "crystalJelly",
@@ -128,7 +136,8 @@
     "speed": 0.75,
     "flying": false,
     "lifeDamage": 1,
-    "description": "마법 피해를 65% 줄여요. 물리 사격에 약해요."
+    "description": "마법 피해를 65% 줄여요. 물리 사격에 약해요.",
+    "bounty": 6
   },
   {
     "id": "shieldJelly",
@@ -141,7 +150,8 @@
     "flying": false,
     "lifeDamage": 1,
     "description": "처음에 보호막 500으로 피해를 받아내요. 보호막은 다시 생기지 않아요.",
-    "shieldHp": 500
+    "shieldHp": 500,
+    "bounty": 6
   },
   {
     "id": "sproutJelly",
@@ -157,7 +167,8 @@
     "regenerate": {
       "intervalSec": 3,
       "amount": 80
-    }
+    },
+    "bounty": 6
   },
   {
     "id": "flowerJelly",
@@ -174,7 +185,8 @@
       "intervalSec": 5,
       "amount": 120,
       "range": 2.5
-    }
+    },
+    "bounty": 7
   },
   {
     "id": "drummerJelly",
@@ -190,7 +202,8 @@
     "haste": {
       "range": 2.4,
       "speedMul": 1.25
-    }
+    },
+    "bounty": 7
   },
   {
     "id": "nestJelly",
@@ -208,7 +221,8 @@
       "enemy": "miniJelly",
       "count": 1,
       "maxCasts": 3
-    }
+    },
+    "bounty": 8
   },
   {
     "id": "armoredCrow",
@@ -220,6 +234,28 @@
     "speed": 0.75,
     "flying": true,
     "lifeDamage": 1,
-    "description": "튼튼한 비행 적이에요. 대공 마법이나 강한 사격으로 막아요."
+    "description": "튼튼한 비행 적이에요. 대공 마법이나 강한 사격으로 막아요.",
+    "bounty": 7
+  },
+  {
+    "id": "captainJelly",
+    "name": "대장젤리",
+    "art": "captainJelly",
+    "hp": 5000,
+    "def": 140,
+    "res": 20,
+    "speed": 0.45,
+    "flying": false,
+    "lifeDamage": 2,
+    "bounty": 12,
+    "description": "보호막 600을 두른 중간보스예요. 친구 한 명의 공격을 방해하며, 놓치면 푸딩 둘을 잃어요. 처치 보상은 도토리 12개예요.",
+    "shieldHp": 600,
+    "disrupt": {
+      "range": 2.5,
+      "intervalSec": 10,
+      "durationSec": 1.6,
+      "atkIntervalMul": 1.25,
+      "targets": 1
+    }
   }
 ]

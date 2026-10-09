@@ -36,6 +36,7 @@ export type ArtId =
   | 'drummerJelly'
   | 'nestJelly'
   | 'armoredCrow'
+  | 'captainJelly'
   | 'pudding';
 
 export interface RangeDef {
@@ -71,6 +72,7 @@ export interface EnemyDef {
   speed: number; // 초당 타일
   flying: boolean;
   lifeDamage: number; // 누수 시 깎는 푸딩 수
+  bounty?: number; // 처치 도토리, 없으면 0
   description?: string;
   shieldHp?: number;
   rush?: { intervalSec: number; durationSec: number; speedMul: number };
@@ -108,7 +110,7 @@ export type Effect =
   | { type: 'splash'; radius: number }
   | { type: 'onHitSlow'; amount: number; sec: number }
   | { type: 'stunEveryNthHit'; n: number; sec: number }
-  | { type: 'gainDp'; value: number }
+  | { type: 'killBounty'; value: number }
   | { type: 'hasteAura'; value: number }
   | {
       type: 'pulseDamage';
@@ -142,7 +144,6 @@ export interface StageDef {
   description?: string;
   map: string[]; // 02 문서 2절의 문자
   startDp: number;
-  dpPerSec?: number; // 기본 1
   life: number;
   deployLimit: number;
   roster?: string[]; // 없으면 모든 유닛

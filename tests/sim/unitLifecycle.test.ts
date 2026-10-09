@@ -103,8 +103,9 @@ describe('모든 아군의 실제 충전·스킬·후퇴·재배치', () => {
     expect(retreat).toContainEqual({
       type: 'unitRetreat',
       uid: unit.uid,
-      refund: Math.min(99 - beforeRefund, Math.floor(def.cost / 2)),
+      refund: 0,
     });
+    expect(battle.state.dp).toBe(beforeRefund);
     expect(battle.unitAt(TILE)).toBeUndefined();
     expect(battle.rosterView().find((card) => card.unitId === unitId)).toMatchObject({
       state: 'cooldown',

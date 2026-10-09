@@ -46,7 +46,7 @@ describe('시나리오 실행기', () => {
     expect(stepped.events.filter((event) => event.type === 'unitRetreat').map((event) => event.uid)).toEqual([
       1, 2,
     ]);
-    expect(stepped.state).toMatchObject({ tick: 31, phase: 'lost', units: [], dp: 55 });
+    expect(stepped.state).toMatchObject({ tick: 31, phase: 'lost', units: [], dp: 22 });
   });
 
   it('서로 다른 초가 같은 틱으로 반올림되면 파일 순서를 유지한다', () => {
@@ -59,14 +59,11 @@ describe('시나리오 실행기', () => {
         { atSec: 0.05, type: 'retreat', unitId: 'squirrel' },
       ],
     });
-    expect(result.events.slice(0, 7).map((event) => event.type)).toEqual([
+    expect(result.events.slice(0, 4).map((event) => event.type)).toEqual([
       'unitDeploy',
       'skillReady',
       'skillStart',
-      'dpGain',
-      'skillEnd',
       'unitRetreat',
-      'dpGain',
     ]);
   });
 

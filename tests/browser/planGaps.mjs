@@ -49,8 +49,8 @@ try {
     if (mobile) await page.touchscreen.tap(point.x, point.y);
     else await page.mouse.click(point.x, point.y);
     await frame(page);
-    assert.equal(await page.locator('.unit-retreat .acorn-icon svg').count(), 1);
-    assert.equal(await page.locator('.unit-retreat').getAttribute('aria-label'), '후퇴, 도토리 4개 환급');
+    assert.equal(await page.locator('.unit-retreat .retreat-note').textContent(), '환급 없음');
+    assert.equal(await page.locator('.unit-retreat').getAttribute('aria-label'), '후퇴, 도토리 환급 없음');
     await page.screenshot({ path: `docs/verification/t3.7-${label}-popup.png` });
     assert.deepEqual(errors, []);
     console.log(JSON.stringify({ viewport: label, drag: true, acorn: true, errors }));

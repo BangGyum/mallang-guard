@@ -34,7 +34,7 @@ describe('분열젤리', () => {
       [3, 'miniJelly', 1.72],
     ]);
     expect(f.state.enemies.every((enemy) => enemy.hp === 200 && enemy.px === enemy.x)).toBe(true);
-    expect(f.events.map((event) => event.type)).toEqual(['enemyDie', 'enemySpawn', 'enemySpawn']);
+    expect(f.events.map((event) => event.type)).toEqual(['enemyDie', 'dpGain', 'enemySpawn', 'enemySpawn']);
     for (const enemy of f.state.enemies) enemy.hp = 0;
     removeDead(f.content, f.stage, f.state, f.events);
     checkOutcome(f.stage, f.state, f.events);
@@ -121,7 +121,7 @@ describe('적의 공격 방해', () => {
     expect(unitStats(f.content, f.stage, f.state, first).atkIntervalTicks).toBe(15);
   });
   it('후퇴 후 다시 배치한 친구는 방해 상태를 이어받지 않는다', () => {
-    const stage = laneStage(['S......G', 'HHHHHHHH'], [{ ...SPAWN, enemy: 'spitter' }]);
+    const stage = laneStage(['S......G', 'HHHHHHHH'], [{ ...SPAWN, enemy: 'spitter' }], { startDp: 18 });
     const content = makeContent();
     const enemies = [...content.enemies.values()].map(
       (enemy): EnemyDef => ({ ...enemy, speed: 0.001, hp: 100000 }),

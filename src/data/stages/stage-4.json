@@ -1,8 +1,11 @@
 {
   "id": "stage-4",
-  "waveRepeat": { "count": 10, "periodSec": 107 },
+  "waveRepeat": {
+    "count": 10,
+    "periodSec": 107
+  },
   "name": "1-4 끈적한 온실",
-  "description": "두 입구를 살피고 끈적젤리의 공격 방해에 대비해요.",
+  "description": "두 입구를 살피고 치유 지원자·중간보스의 공격 방해에 대비해요.",
   "startDp": 24,
   "routes": {
     "upper": {
@@ -109,10 +112,17 @@
       "count": 1,
       "intervalSec": 0,
       "route": "upper"
+    },
+    {
+      "wave": 4,
+      "atSec": 59,
+      "enemy": "captainJelly",
+      "count": 1,
+      "intervalSec": 0,
+      "route": "lower"
     }
   ],
   "map": ["##H########", "S....H#H#H#", "###H......G", "##H##H.H#H#", "S......####", "####H######"],
-  "dpPerSec": 1,
   "life": 3,
   "deployLimit": 7
 }

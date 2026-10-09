@@ -21,7 +21,7 @@ describe('콘텐츠 검증', () => {
       'wolf',
     ]);
     expect([content.units.size, content.enemies.size, content.skills.size, content.ranges.size]).toEqual([
-      10, 15, 10, 7,
+      10, 16, 10, 7,
     ]);
     expect(first(raw.stages).spawns.reduce((total, spawn) => total + spawn.count, 0)).toBe(210);
   });
@@ -93,7 +93,7 @@ describe('콘텐츠 검증', () => {
     const raw = fixture();
     const unit = first(raw.units);
     expect(() =>
-      validateContent({ ...raw, units: [{ ...unit, traits: [{ type: 'gainDp', value: 1 }] }] }),
+      validateContent({ ...raw, units: [{ ...unit, traits: [{ type: 'killBounty', value: 1 }] }] }),
     ).toThrow('content/units[0].traits[0].type:');
     expect(() =>
       validateContent({ ...raw, units: [{ ...unit, traits: [{ type: 'onHitSlow', amount: 2, sec: 1 }] }] }),
@@ -137,7 +137,7 @@ describe('콘텐츠 검증', () => {
     [{ type: 'splash', radius: -1 }, 'radius'],
     [{ type: 'onHitSlow', amount: 0.5, sec: 0 }, 'sec'],
     [{ type: 'stunEveryNthHit', n: 1.5, sec: 1 }, 'n'],
-    [{ type: 'gainDp', value: -1 }, 'value'],
+    [{ type: 'killBounty', value: -1 }, 'value'],
     [{ type: 'hasteAura', value: 0 }, 'value'],
     [{ type: 'pulseDamage', count: 0, intervalSec: 1, atkMul: 1, damageType: 'magic' }, 'count'],
     [{ type: 'pulseDamage', count: 1, intervalSec: 0, atkMul: 1, damageType: 'magic' }, 'intervalSec'],
@@ -154,13 +154,13 @@ describe('콘텐츠 검증', () => {
   it('즉시형과 지속형 효과를 구분하고 pulseDamage 지속시간을 확인한다', () => {
     const raw = fixture();
     const skill = first(raw.skills);
-    expect(() => validateContent({ ...raw, skills: [{ ...skill, durationSec: 1 }] })).toThrow(
+    expect(() => validateContent({ ...raw, skills: [{ ...skill, durationSec: 0 }] })).toThrow(
       'content/skills[0].effects[0].type:',
     );
     expect(() =>
       validateContent({
         ...raw,
-        skills: [{ ...skill, effects: [{ type: 'statMul', stat: 'atk', value: 2 }] }],
+        skills: [{ ...skill, durationSec: 0, effects: [{ type: 'statMul', stat: 'atk', value: 2 }] }],
       }),
     ).toThrow('content/skills[0].effects[0].type:');
     const pulse = {
@@ -274,7 +274,6 @@ describe('콘텐츠 검증', () => {
   it('선택 필드의 기본 생략과 단일 적 스폰 간격 0을 허용한다', () => {
     const raw = fixture();
     const stage = first(raw.stages);
-    delete stage.dpPerSec;
     ground(stage).flying = false;
     first(stage.spawns).count = 1;
     first(stage.spawns).intervalSec = 0;

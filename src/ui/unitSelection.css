@@ -194,7 +194,7 @@
 .is-deployed .unit-retreat {
   flex: 0 0 56px;
 }
-.is-deployed .retreat-refund {
+.is-deployed .retreat-note {
   display: flex;
   align-items: center;
   font-size: 9px;

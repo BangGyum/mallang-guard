@@ -1,8 +1,11 @@
 {
   "id": "stage-2",
-  "waveRepeat": { "count": 10, "periodSec": 95 },
+  "waveRepeat": {
+    "count": 10,
+    "periodSec": 95
+  },
   "name": "1-2 두 갈래 산책길",
-  "description": "갈라진 두 길이 만나는 곳을 지켜요.",
+  "description": "두 출현 지점의 적을 번갈아 막아요. 먼저 도토리를 모아 두 길에 전력을 나눠요.",
   "startDp": 18,
   "routes": {
     "upper": {
@@ -11,8 +14,8 @@
       "to": [10, 2]
     },
     "lower": {
-      "from": [0, 2],
-      "via": [[2, 2], [2, 4], [8, 4], [8, 2]],
+      "from": [0, 4],
+      "via": [[2, 4], [8, 4], [8, 2]],
       "to": [10, 2]
     },
     "air": {
@@ -87,8 +90,8 @@
       "route": "air"
     },
     {
-      "wave": 2,
-      "atSec": 18,
+      "wave": 3,
+      "atSec": 42,
       "enemy": "dashJelly",
       "count": 2,
       "intervalSec": 3,
@@ -103,8 +106,7 @@
       "route": "upper"
     }
   ],
-  "map": ["###########", "#H.......H#", "S..HH#H#..G", "#H.##H#H.H#", "##.......##", "####H##H###"],
-  "dpPerSec": 1,
+  "map": ["###########", "#H.......H#", "S..HH#H#..G", "#H.##H#H.H#", "S........##", "####H##H###"],
   "life": 3,
   "deployLimit": 7
 }

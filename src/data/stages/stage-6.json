@@ -1,8 +1,11 @@
 {
   "id": "stage-6",
-  "waveRepeat": { "count": 10, "periodSec": 146 },
+  "waveRepeat": {
+    "count": 10,
+    "periodSec": 146
+  },
   "name": "1-6 푸딩 대연회",
-  "description": "왕젤리를 막아 정원의 마지막 푸딩을 지켜요!",
+  "description": "세 출현 지점의 중간보스와 왕젤리를 막아요. 보상으로 전력을 먼저 갖춰요.",
   "startDp": 25,
   "routes": {
     "ground": {
@@ -16,7 +19,7 @@
       "to": [10, 3]
     },
     "air": {
-      "from": [0, 1],
+      "from": [0, 0],
       "to": [10, 3],
       "flying": true
     }
@@ -133,10 +136,17 @@
       "count": 1,
       "intervalSec": 0,
       "route": "lower"
+    },
+    {
+      "wave": 4,
+      "atSec": 55,
+      "enemy": "captainJelly",
+      "count": 1,
+      "intervalSec": 0,
+      "route": "lower"
     }
   ],
-  "map": ["##HH#######", "S....##...H", "##...HH.H.#", "##.H.H#.#.G", "S..#....H##", "###H#H##H##"],
-  "dpPerSec": 1,
+  "map": ["S#HH#######", "S....##...H", "##...HH.H.#", "##.H.H#.#.G", "S..#....H##", "###H#H##H##"],
   "life": 3,
   "deployLimit": 7
 }

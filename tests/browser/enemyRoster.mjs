@@ -32,20 +32,22 @@ try {
     else await select.click();
     const stage = page.locator('.stage-card[data-stage-id="stage-7"]');
     await stage.scrollIntoViewIfNeeded();
-    assert.equal(await stage.locator('.stage-enemy').count(), 15);
+    assert.equal(await stage.locator('.stage-enemy').count(), 16);
     const labels = await stage
       .locator('.stage-enemy')
       .evaluateAll((nodes) =>
         nodes.map((n) => ({ name: n.textContent, title: n.title, svg: n.querySelector('svg') !== null })),
       );
-    assert(labels.every((e) => e.svg && e.title.startsWith(e.name.trim())));
+    assert(
+      labels.every((e) => e.svg && e.title.startsWith(e.name.trim()) && /처치 보상 \d+개/.test(e.title)),
+    );
     await page.screenshot({ path: `docs/verification/${prefix}-${label}-enemy-selection.png` });
     if (!touch) {
       const data = await page.evaluate(async () => {
         const { content } = await import('/src/data/index.ts');
         const { critterSvg } = await import('/src/art/critters.ts');
         const enemies = [...content.enemies.values()];
-        document.body.innerHTML = '<main><h1>말랑방위대 · 적 15종</h1><section></section></main>';
+        document.body.innerHTML = '<main><h1>말랑방위대 · 적 16종</h1><section></section></main>';
         const style = document.createElement('style');
         style.textContent =
           'body{margin:0;background:#e5f1ec;color:#345349;font-family:system-ui}main{max-width:1260px;margin:30px auto}h1{font-size:28px}section{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}article{background:#fffdf3;border:1px solid #c6d9cc;border-radius:16px;padding:10px;text-align:center}svg{width:110px;height:110px}h2{font-size:18px;margin:0}small{font-size:11px;color:#567161}p{font-size:12px;line-height:1.4;margin:6px 0;min-height:35px}';
@@ -57,12 +59,12 @@ try {
         }
         return enemies.map(({ id, name, description }) => ({ id, name, description }));
       });
-      assert.equal(data.length, 15);
+      assert.equal(data.length, 16);
       await page.locator('main').screenshot({ path: `docs/verification/${prefix}-enemy-roster.png` });
     }
     assert.deepEqual(errors, []);
-    report.push({ viewport: label, enemies: 15, labels, errors });
-    console.log(JSON.stringify({ viewport: label, enemies: 15, errors }));
+    report.push({ viewport: label, enemies: 16, labels, errors });
+    console.log(JSON.stringify({ viewport: label, enemies: 16, errors }));
     await context.close();
   }
   await writeFile(`docs/verification/${prefix}-enemy-roster.json`, `${JSON.stringify(report, null, 2)}\n`);

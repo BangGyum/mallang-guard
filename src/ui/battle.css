@@ -222,10 +222,9 @@ button:disabled {
   line-height: 1.1;
   color: #694e2c;
 }
-.dp-panel progress {
-  width: 75px;
-  height: 5px;
-  accent-color: #75b05c;
+.dp-source {
+  font-size: 10px;
+  color: #647268;
 }
 .aim-directions {
   pointer-events: none;

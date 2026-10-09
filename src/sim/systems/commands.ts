@@ -1,6 +1,6 @@
 import { assert } from '../../core/assert';
 import type { ContentDb } from '../../data/types';
-import { DP_MAX, RETREAT_REFUND_RATIO, secToTicks } from '../constants';
+import { secToTicks } from '../constants';
 import { checkDeploy } from '../queries';
 import type { BattleState, Command, SimEvent, StageRuntime } from '../types';
 import { chargeSkill, skillHasTarget, startSkill } from './skills';
@@ -80,9 +80,5 @@ export function applyCommand(
   slot.cooldownTicks = secToTicks(def.redeploySec);
   slot.uid = null;
   state.units = state.units.filter((entry) => entry.uid !== unit.uid);
-  const refund = Math.min(DP_MAX - state.dp, Math.floor(def.cost * RETREAT_REFUND_RATIO));
-  state.dp += refund;
-  if (state.dp === DP_MAX) state.dpTicks = 0;
-  events.push({ type: 'unitRetreat', uid: unit.uid, refund });
-  if (refund > 0) events.push({ type: 'dpGain', amount: refund, source: 'refund' });
+  events.push({ type: 'unitRetreat', uid: unit.uid, refund: 0 });
 }

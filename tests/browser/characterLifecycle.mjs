@@ -114,7 +114,7 @@ try {
       assert.equal(await page.locator('.skill-name').textContent(), unit.skillDef.name);
       assert.equal(await page.locator('.skill-button').isVisible(), unit.skillDef.trigger === 'manual');
       if (unit.skillDef.trigger === 'manual') assert(await page.locator('.skill-button').isDisabled());
-      await click(page.getByRole('button', { name: '캐릭터 정보 닫기' }));
+      await click(page.locator('.unit-popup-close'));
       await resume(page);
       for (let second = 0; second < 40; second++) {
         await frame(page, 1000);
@@ -148,7 +148,7 @@ try {
         path: `docs/verification/${prefix}-${label}-${unit.id}-skill.png`,
         animations: 'disabled',
       });
-      await click(page.getByRole('button', { name: '캐릭터 정보 닫기' }));
+      await click(page.locator('.unit-popup-close'));
       await resume(page);
       await frame(page, (unit.skillDef.durationSec + 0.5) * 1000);
       await pause(page);

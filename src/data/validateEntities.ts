@@ -30,6 +30,7 @@ const ART_IDS = [
   'drummerJelly',
   'nestJelly',
   'armoredCrow',
+  'captainJelly',
   'pudding',
 ] as const satisfies readonly ArtId[];
 
@@ -91,6 +92,7 @@ export function parseEnemy(value: unknown, path: string): EnemyDef {
     lifeDamage: integer(raw.lifeDamage, `${path}.lifeDamage`, 1),
   };
   if (raw.description !== undefined) enemy.description = text(raw.description, `${path}.description`);
+  if (raw.bounty !== undefined) enemy.bounty = integer(raw.bounty, `${path}.bounty`);
   Object.assign(enemy, parseEnemyAbilities(raw, path));
   if (raw.split !== undefined) {
     const split = object(raw.split, `${path}.split`);
@@ -128,7 +130,7 @@ export function parseSkill(value: unknown, path: string): SkillDef {
     effects: list(raw.effects, `${path}.effects`, parseEffect),
   };
   for (const [index, effect] of skill.effects.entries()) {
-    const instant = ['gainDp', 'pushback'].includes(effect.type);
+    const instant = effect.type === 'pushback';
     assert(
       instant === (skill.durationSec === 0),
       `${path}.effects[${index}].type: effect incompatible with durationSec`,

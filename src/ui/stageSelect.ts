@@ -47,7 +47,7 @@ export function createStageSelect(
       const enemy = content.enemies.get(id);
       if (!enemy) continue;
       const foe = element('span', 'stage-enemy');
-      foe.title = `${enemy.name} · ${enemy.description ?? '경로를 따라 푸딩으로 이동해요.'}`;
+      foe.title = `${enemy.name} · ${enemy.description ?? '경로를 따라 푸딩으로 이동해요.'} · 처치 보상 ${enemy.bounty ?? 0}개`;
       foe.append(portrait(enemy.art, ''), element('small', '', enemy.name));
       foes.append(foe);
     }

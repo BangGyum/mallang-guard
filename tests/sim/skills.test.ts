@@ -3,6 +3,7 @@ import { createBattle } from '../../src/sim/battle';
 import { unitStats } from '../../src/sim/stats';
 import { attackEnemies } from '../../src/sim/systems/attack';
 import { applyCommand } from '../../src/sim/systems/commands';
+import { removeDead } from '../../src/sim/systems/death';
 import { updateSkills, updateSkillTimers } from '../../src/sim/systems/skills';
 import { updateStatus } from '../../src/sim/systems/status';
 import { laneStage, makeContent, run } from '../helpers';
@@ -24,8 +25,13 @@ describe('스킬 충전·명령', () => {
     battle.enqueue({ type: 'activateSkill', uid: 1 });
     battle.flush();
     expect(battle.state.tick).toBe(tick);
-    expect(battle.state.dp).toBe(dp + 12);
-    expect(battle.state.units[0]).toMatchObject({ sp: 0, skillState: 'charging' });
+    expect(battle.state.dp).toBe(dp);
+    expect(battle.state.units[0]).toMatchObject({ sp: 20, skillState: 'active' });
+    run(battle, 361);
+    expect(battle.state.units[0]).toMatchObject({ skillState: 'charging', buffs: [] });
+    expect(battle.state.units[0]?.sp).toBe(0);
+    battle.step();
+    expect(battle.state.units[0]?.sp).toBeCloseTo(1 / 30);
   });
   it('배치 시 SP가 가득 찬 스킬은 같은 flush에서 발동 가능하다', () => {
     const f = skillFixture('squirrel');
@@ -33,13 +39,7 @@ describe('스킬 충전·명령', () => {
     const battle = createBattle(f.content, f.stage.definition.id);
     battle.enqueue({ type: 'deploy', unitId: 'squirrel', tile: { x: 1, y: 1 }, dir: 'up' });
     battle.enqueue({ type: 'activateSkill', uid: 1 });
-    expect(battle.flush().map((e) => e.type)).toEqual([
-      'unitDeploy',
-      'skillReady',
-      'skillStart',
-      'dpGain',
-      'skillEnd',
-    ]);
+    expect(battle.flush().map((e) => e.type)).toEqual(['unitDeploy', 'skillReady', 'skillStart']);
   });
   it.each(['skillNotReady', 'noTarget', 'autoSkill', 'notDeployed', 'ended'] as const)(
     '%s 거부 시 상태가 변하지 않는다',
@@ -73,16 +73,18 @@ describe('스킬 충전·명령', () => {
 });
 
 describe('캐릭터별 스킬', () => {
-  it.each([10, 95, 99])('토리는 도토리 %s에서 최대 99까지만 지급한다', (dp) => {
+  it.each([10, 95, 99])('토리는 발동 때 지급하지 않고 도토리 %s에서 처치 보상을 강화한다', (dp) => {
     const f = skillFixture('squirrel');
     f.state.dp = dp;
-    f.state.dpTicks = 15;
     f.activate();
-    expect(f.state.dp).toBe(Math.min(99, dp + 12));
-    expect(f.unit).toMatchObject({ sp: 0, skillState: 'charging' });
-    if (dp >= 95) expect(f.state.dpTicks).toBe(0);
+    expect(f.state.dp).toBe(dp);
+    expect(f.unit.skillState).toBe('active');
+    expect(f.events.filter((e) => e.type === 'dpGain')).toEqual([]);
+    f.enemy.hp = 0;
+    removeDead(f.content, f.stage, f.state, f.events);
+    expect(f.state.dp).toBe(Math.min(99, dp + 7));
     expect(f.events.filter((e) => e.type === 'dpGain')).toEqual(
-      dp === 99 ? [] : [{ type: 'dpGain', amount: Math.min(12, 99 - dp), source: 'skill' }],
+      dp === 99 ? [] : [{ type: 'dpGain', amount: Math.min(7, 99 - dp), source: 'kill', uid: f.enemy.uid }],
     );
   });
   it('냥기사는 2배속으로 공격하고 세 번째마다 주 대상을 기절시킨다', () => {

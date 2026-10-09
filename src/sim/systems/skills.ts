@@ -1,6 +1,6 @@
 import { assert } from '../../core/assert';
 import type { ContentDb, SkillDef } from '../../data/types';
-import { DP_MAX, SP_EPSILON, secToTicks, TICK_RATE } from '../constants';
+import { SP_EPSILON, secToTicks, TICK_RATE } from '../constants';
 import { unitStats } from '../stats';
 import { enemiesInRange, pickEnemy } from '../targeting';
 import type { BattleState, SimEvent, StageRuntime, UnitEntity } from '../types';
@@ -74,12 +74,6 @@ export function startSkill(
   unit.skillEndTick = state.tick + secToTicks(skill.durationSec);
   unit.buffs = skill.durationSec > 0 ? skill.effects.map((effect) => ({ ...effect })) : [];
   for (const effect of skill.effects) {
-    if (effect.type === 'gainDp') {
-      const amount = Math.min(DP_MAX - state.dp, effect.value);
-      state.dp += amount;
-      if (state.dp === DP_MAX) state.dpTicks = 0;
-      if (amount > 0) events.push({ type: 'dpGain', amount, source: 'skill' });
-    }
     if (effect.type === 'pushback') {
       const enemy = pickEnemy(content, stage, state, unit);
       if (!enemy) continue;
