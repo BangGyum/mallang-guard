@@ -4,7 +4,7 @@ import { chromium } from 'playwright';
 import { deploy, frame, pause, tilePoint } from './helpers.mjs';
 
 const browser = await chromium.launch({ channel: 'msedge', headless: true });
-const prefix = process.env.MALLANG_SCREENSHOT_PREFIX ?? 't4.4';
+const prefix = process.env.MALLANG_SCREENSHOT_PREFIX ?? 't4.8';
 try {
   const context = await browser.newContext({
     viewport: { width: 844, height: 390 },
@@ -20,7 +20,7 @@ try {
   });
   const time = new Date('2026-10-09T11:00:00Z');
   await page.clock.install({ time });
-  await page.clock.pauseAt(time);
+  await page.clock.pauseAt(new Date(time.getTime() + 1000));
   await page.addInitScript(() => {
     window.requestAnimationFrame = (callback) => setTimeout(() => callback(performance.now()), 100);
     window.cancelAnimationFrame = (id) => clearTimeout(id);
@@ -50,12 +50,11 @@ try {
   assert.deepEqual(errors, []);
   await pause(page);
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.locator('.rotate-guide').waitFor({ state: 'visible' });
   await frame(page, 2000);
+  assert.equal(await page.locator('.rotate-guide').count(), 0);
   assert.equal(await page.evaluate(() => window.largeMapBattle.state.tick), 0);
   await page.screenshot({ path: `docs/verification/${prefix}-mobile-large-map-portrait.png` });
   await page.setViewportSize({ width: 844, height: 390 });
-  await page.locator('.rotate-guide').waitFor({ state: 'hidden' });
   await frame(page);
   assert.equal(await page.locator('[data-action="pause"]').textContent(), '계속하기');
   const cdp = await context.newCDPSession(page);
@@ -87,7 +86,8 @@ try {
   const result = {
     legacyUnlock: true,
     previewTiles: 264,
-    portrait: true,
+    portraitPlayable: true,
+    manualPausePreserved: true,
     compactSelection: true,
     units,
     errors,

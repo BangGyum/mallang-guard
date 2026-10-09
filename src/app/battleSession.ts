@@ -8,7 +8,6 @@ import { createHud } from '../ui/hud';
 import { createBoardView, type ViewOptions } from '../view/boardView';
 import { createOverlay } from '../view/overlay';
 import { type LoopControls, PREPARATION_SEC, QUICK_START_SEC, startLoop } from './loop';
-import { watchOrientation } from './orientation';
 import { createQualityMonitor } from './quality';
 
 export function createBattleSession(
@@ -65,13 +64,15 @@ export function createBattleSession(
     controls.speed = speed;
     actions.onSpeed(speed);
   }
-  const orientation = watchOrientation(app, controls);
+  function setPaused(paused: boolean) {
+    controls.paused = paused;
+  }
   const hud = createHud(hudRoot, battle, {
     start() {
       controls.startInSec = Math.min(controls.startInSec, QUICK_START_SEC);
     },
     pause() {
-      if (controls.paused) orientation.setPaused(false);
+      if (controls.paused) setPaused(false);
       else actions.onMenu();
     },
     speed() {
@@ -83,7 +84,7 @@ export function createBattleSession(
       controls.bulletTime = active;
     },
     pause() {
-      orientation.setPaused(!controls.paused);
+      setPaused(!controls.paused);
     },
     speed: setSpeed,
     menu: actions.onMenu,
@@ -154,9 +155,9 @@ export function createBattleSession(
     controls,
     setOptions,
     setSpeed,
-    setPaused: orientation.setPaused,
+    setPaused,
     setMenuOpen(open: boolean) {
-      if (open) orientation.setPaused(true);
+      if (open) setPaused(true);
       controller.setEnabled(!open);
       hudRoot.inert = open;
     },
@@ -164,7 +165,6 @@ export function createBattleSession(
       if (disposed) return;
       disposed = true;
       loop.dispose();
-      orientation.dispose();
       controller.dispose();
       deployBar.dispose();
       hud.dispose();
