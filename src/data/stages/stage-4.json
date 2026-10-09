@@ -92,6 +92,22 @@
       "count": 3,
       "intervalSec": 5,
       "route": "upper"
+    },
+    {
+      "wave": 2,
+      "atSec": 23,
+      "enemy": "shieldJelly",
+      "count": 1,
+      "intervalSec": 0,
+      "route": "lower"
+    },
+    {
+      "wave": 3,
+      "atSec": 36,
+      "enemy": "flowerJelly",
+      "count": 1,
+      "intervalSec": 0,
+      "route": "upper"
     }
   ],
   "map": ["##H########", "S....H#H#H#", "###H......G", "##H##H.H#H#", "S......####", "####H######"],

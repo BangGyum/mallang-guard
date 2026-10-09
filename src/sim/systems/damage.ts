@@ -15,13 +15,16 @@ export function damageEnemy(
   const def = content.enemies.get(enemy.enemyId);
   assert(def, 'battle.enemies: missing definition');
   const amount = damageAmount(damageType, attack, def.def, def.res);
-  enemy.hp -= amount;
+  const shieldDamage = Math.min(enemy.shield, amount);
+  enemy.shield -= shieldDamage;
+  enemy.hp -= amount - shieldDamage;
   events.push({
     type: 'damage',
     dst: { kind: 'enemy', uid: enemy.uid },
     amount,
     damageType,
     src: { kind: 'unit', uid: unit.uid },
+    ...(shieldDamage > 0 ? { shieldDamage } : {}),
   });
 }
 

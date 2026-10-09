@@ -74,7 +74,7 @@ mallang-guard/
 │  │  ├─ hash.ts               테스트용 상태 해시
 │  │  └─ systems/              틱 순서대로 한 파일씩
 │  │     ├─ commands.ts  dp.ts  roster.ts  spawn.ts  status.ts  movement.ts
-│  │     └─ enemyAbilities.ts  skills.ts  attack.ts  damage.ts  death.ts  outcome.ts
+│  │     └─ enemyMotion.ts  enemyAbilities.ts  enemySupport.ts  skills.ts  attack.ts  damage.ts  death.ts  outcome.ts
 │  ├─ view/
 │  │  ├─ boardView.ts          씬 소유. render(state, alpha, dt), onEvents(events)
 │  │  ├─ camera.ts             fitCamera() (순수 함수 부분 분리)

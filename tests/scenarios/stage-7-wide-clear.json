@@ -83,6 +83,13 @@
       "unitId": "owl"
     },
     {
+      "atSec": 66,
+      "type": "deploy",
+      "unitId": "wolf",
+      "tile": [17, 6],
+      "dir": "down"
+    },
+    {
       "atSec": 72.1,
       "type": "skill",
       "unitId": "squirrel"
@@ -96,6 +103,11 @@
       "atSec": 97.53333333333333,
       "type": "skill",
       "unitId": "bear"
+    },
+    {
+      "atSec": 98.23333333333333,
+      "type": "skill",
+      "unitId": "wolf"
     },
     {
       "atSec": 103.6,

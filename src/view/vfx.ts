@@ -57,6 +57,10 @@ export function createVfx(
     ) {
       const flashed = new Set<number>();
       for (const event of events) {
+        if (event.type === 'enemyHeal') {
+          const at = position(event.uid);
+          if (at) burst('signal', at, 2);
+        }
         if (event.type === 'unitDisrupt') {
           const from = position(event.src);
           const to = position(event.uid);

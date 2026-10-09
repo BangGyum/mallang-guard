@@ -44,6 +44,14 @@ export function createEntityViews(content: ContentDb, board: Board, textures: Re
     miniJelly: 0.65,
     spitter: 0.8,
     kingJelly: 1.2,
+    dashJelly: 0.75,
+    crystalJelly: 0.85,
+    shieldJelly: 0.85,
+    sproutJelly: 0.8,
+    flowerJelly: 0.85,
+    drummerJelly: 0.9,
+    nestJelly: 1,
+    armoredCrow: 0.85,
   };
   let reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function ensure(uid: number, id: string, enemy: boolean): EntityView {

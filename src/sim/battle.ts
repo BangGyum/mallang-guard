@@ -8,6 +8,8 @@ import { applyCommand } from './systems/commands';
 import { removeDead } from './systems/death';
 import { recoverDp } from './systems/dp';
 import { updateEnemyAbilities } from './systems/enemyAbilities';
+import { updateEnemyMotion } from './systems/enemyMotion';
+import { updateEnemySupport } from './systems/enemySupport';
 import { moveEnemies } from './systems/movement';
 import { checkOutcome } from './systems/outcome';
 import { updateRoster } from './systems/roster';
@@ -84,9 +86,11 @@ export class Battle {
     updateRoster(this.#state);
     spawnEnemies(this.stage, this.#state, events);
     updateStatus(this.content, this.stage, this.#state, events);
+    updateEnemyMotion(this.content, this.#state);
     moveEnemies(this.content, this.stage, this.#state, events);
     if (this.#state.phase === 'running') {
       updateEnemyAbilities(this.content, this.#state, events);
+      updateEnemySupport(this.content, this.stage, this.#state, events);
       updateSkills(this.content, this.stage, this.#state, events);
       attackEnemies(this.content, this.stage, this.#state, events);
       removeDead(this.content, this.stage, this.#state, events);

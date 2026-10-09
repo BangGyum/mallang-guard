@@ -112,16 +112,25 @@ export function createOverlay(canvas: HTMLCanvasElement, board: Board, content: 
       }
       for (const enemy of state.enemies) {
         if (births.has(enemy.uid)) continue;
+        if (enemy.shield > 0) {
+          const p = position(lerp(enemy.px, enemy.x, alpha), lerp(enemy.py, enemy.y, alpha), 0, camera);
+          const max = content.enemies.get(enemy.enemyId)?.shieldHp ?? enemy.shield;
+          bar(p.x, p.y - 5, enemy.shield, max, '#78BDDA');
+        }
         if (enemy.hp < enemy.maxHp) {
           const p = position(lerp(enemy.px, enemy.x, alpha), lerp(enemy.py, enemy.y, alpha), 0, camera);
           bar(p.x, p.y, enemy.hp, enemy.maxHp, '#FF5A6E');
         }
-        if (enemy.slowAmount > 0 || enemy.stunUntilTick > state.tick) {
+        if (enemy.slowAmount > 0 || enemy.stunUntilTick > state.tick || enemy.speedMul > 1) {
           const p = position(enemy.x, enemy.y, 0, camera);
           ctx.font = '11px Jua, sans-serif';
           ctx.textAlign = 'center';
           ctx.fillStyle = '#725096';
-          ctx.fillText(enemy.stunUntilTick > state.tick ? '기절' : '느림', p.x, p.y + 24);
+          ctx.fillText(
+            enemy.stunUntilTick > state.tick ? '기절' : enemy.slowAmount > 0 ? '느림' : '가속',
+            p.x,
+            p.y + 24,
+          );
         }
       }
       combatText.render(camera, width, height, dt, reduced);

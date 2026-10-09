@@ -190,11 +190,13 @@ try {
         children: window.expansionCheck.children,
         rejected: window.expansionCheck.rejected,
         killed: window.expansionCheck.battle.state.killed,
+        total: window.expansionCheck.battle.state.totalEnemies,
         leaked: window.expansionCheck.battle.state.leaked,
         life: window.expansionCheck.battle.state.life,
       }));
       assert.deepEqual(counters.rejected, []);
       assert.equal(counters.leaked, 0);
+      assert.equal(counters.killed, counters.total);
       assert.equal(counters.life, 3);
       if (level >= 6) {
         assert(counters.disruptions > 0 && counters.children > 0);

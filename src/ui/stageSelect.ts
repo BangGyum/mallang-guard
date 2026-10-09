@@ -40,12 +40,14 @@ export function createStageSelect(
     for (const id of [...enemyIds]) {
       const split = content.enemies.get(id)?.split;
       if (split) enemyIds.add(split.enemy);
+      const summon = content.enemies.get(id)?.summon;
+      if (summon) enemyIds.add(summon.enemy);
     }
     for (const id of enemyIds) {
       const enemy = content.enemies.get(id);
       if (!enemy) continue;
       const foe = element('span', 'stage-enemy');
-      foe.title = enemy.description ?? enemy.name;
+      foe.title = `${enemy.name} · ${enemy.description ?? '경로를 따라 푸딩으로 이동해요.'}`;
       foe.append(portrait(enemy.art, ''), element('small', '', enemy.name));
       foes.append(foe);
     }

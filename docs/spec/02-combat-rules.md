@@ -145,7 +145,7 @@ M4 분열젤리는 처치 시 같은 경로에 작은 젤리를 생성하고 `to
 
 ## 14. 틱 순서
 
-명령 → DP → 재배치 대기 → 스폰 → 예약 펄스·스킬 만료·상태이상/아군 방해 만료·둔화 오라 → 적 이동·누수 → 적 방해 능력 → SP 충전·자동 스킬 → 아군 자동 공격 → 적 처치·분열 → 승리 확인 → tick 증가.
+명령 → DP → 재배치 대기 → 스폰 → 예약 펄스·스킬 만료·상태이상/아군 방해 만료·둔화 오라 → 적 돌진/가속 → 적 이동·누수 → 적 방해 능력 → 재생/치유/소환 → SP 충전·자동 스킬 → 아군 자동 공격 → 적 처치·분열 → 승리 확인 → tick 증가.
 
 flush는 명령만 처리합니다. 수동 스킬의 즉시 효과·첫 펄스도 flush 안에서 발생하므로 일시정지 중 사용이 가능합니다.
 
@@ -175,9 +175,10 @@ seed는 uint32로 정규화해 rngState에 보관하며 0도 유효합니다. si
 
 - Command: deploy(unitId/tile/dir), retreat(uid), activateSkill(uid).
 - UnitEntity: uid/unitId/tile/dir, 공격 쿨다운, SP/스킬 상태/종료 틱/공격 횟수/펄스 일정/buffs, `disruptedUntilTick`(기본 0), `disruptionMul`(기본 1). 체력 필드는 없습니다.
-- EnemyEntity: 경로·현재/이전 위치·거리·HP·둔화/기절 일정, `abilityCooldown`(정수 틱). 반격·저지 필드는 없습니다.
-- 이벤트: commandRejected, unitDeploy/unitRetreat/unitDisrupt, enemySpawn/enemyLeak/enemyDie, attack/damage, status, skillReady/skillStart/skillPulse/skillEnd, dpGain, battleEnd.
-- `enemySpawn`은 `uid`, `enemyId`, 생성 위치의 `x`, `y`를 담습니다. 분열 자식만 선택 필드 `parentUid`를 가지며 원거리 부모 처치 연출과 등장 시점을 맞추는 데 사용합니다. 같은 틱에 처치되어 최종 상태에서 빠져도 등장·투사체·사망 연출의 위치를 복원할 수 있어야 합니다.
+- EnemyEntity: 경로·현재/이전 위치·거리·HP·둔화/기절 일정, `abilityCooldown`(정수 틱), 보호막·현재 이동 배율·돌진/재생/치유/소환 일정과 남은 소환 횟수. 기본값과 세부 능력은 [10-enemy-roster.md](10-enemy-roster.md)입니다.
+- 이벤트: commandRejected, unitDeploy/unitRetreat/unitDisrupt, enemySpawn/enemyLeak/enemyDie/enemyHeal, attack/damage, status, skillReady/skillStart/skillPulse/skillEnd, dpGain, battleEnd.
+- `enemySpawn`은 `uid`, `enemyId`, 생성 위치의 `x`, `y`를 담습니다. 분열·소환 자식은 선택 필드 `parentUid`를 가지며 분열의 원거리 부모 처치 연출과 등장 시점을 맞추는 데 사용합니다. 같은 틱에 처치되어 최종 상태에서 빠져도 등장·투사체·사망 연출의 위치를 복원할 수 있어야 합니다.
+- `damage.amount`는 보호막과 HP에 준 전체 피해이며 선택 필드 `shieldDamage`는 흡수한 양입니다. `src: Ref | null`은 유지합니다. `enemyHeal`은 `{ src: 적 uid, uid: 회복 대상 적 uid, amount: 실제 회복량 }`입니다.
 - `unitDisrupt`는 `{ src: 적 uid, uid: 아군 uid, untilTick }`입니다. 이벤트 생성·뷰·오버레이·오디오가 같은 계약을 사용합니다.
 - unitDie/block/unblock/heal 이벤트는 제거했습니다. view/ui는 읽기만 하며 명령 enqueue로만 상태를 바꿉니다.
 

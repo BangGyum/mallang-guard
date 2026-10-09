@@ -79,6 +79,22 @@
       "count": 2,
       "intervalSec": 6,
       "route": "ground"
+    },
+    {
+      "wave": 2,
+      "atSec": 23,
+      "enemy": "sproutJelly",
+      "count": 1,
+      "intervalSec": 0,
+      "route": "ground"
+    },
+    {
+      "wave": 3,
+      "atSec": 40,
+      "enemy": "shieldJelly",
+      "count": 1,
+      "intervalSec": 0,
+      "route": "ground"
     }
   ],
   "map": ["##HH#######", "S....H#...#", "####.#H.H.#", "###H.H#.#.#", "####....H.G", "#####H##H##"],

@@ -84,6 +84,22 @@
       "count": 3,
       "intervalSec": 4,
       "route": "air"
+    },
+    {
+      "wave": 2,
+      "atSec": 18,
+      "enemy": "dashJelly",
+      "count": 2,
+      "intervalSec": 3,
+      "route": "lower"
+    },
+    {
+      "wave": 3,
+      "atSec": 35,
+      "enemy": "crystalJelly",
+      "count": 1,
+      "intervalSec": 0,
+      "route": "upper"
     }
   ],
   "map": ["###########", "#H.......H#", "S..HH#H#..G", "#H.##H#H.H#", "##.......##", "####H##H###"],
