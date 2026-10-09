@@ -154,5 +154,21 @@
         "amount": 0.6
       }
     ]
+  },
+  {
+    "id": "wideBarrage",
+    "name": "전면 포격",
+    "description": "기본 사거리 주변 5×5칸. 12초 동안 10×10칸으로 확대, 공격력 +50%, 공격 속도 2배",
+    "charge": "auto",
+    "spCost": 35,
+    "spStart": 10,
+    "trigger": "manual",
+    "condition": "always",
+    "durationSec": 12,
+    "effects": [
+      { "type": "rangeOverride", "range": "square10" },
+      { "type": "statMul", "stat": "atk", "value": 1.5 },
+      { "type": "statMul", "stat": "atkInterval", "value": 0.5 }
+    ]
   }
 ]

@@ -17,12 +17,13 @@ const levels = process.argv.includes('--stage7')
       ? [6]
       : [2, 6, 7];
 const rear = process.argv.includes('--rear');
+const wide = process.argv.includes('--wide');
 const prefix = process.env.MALLANG_SCREENSHOT_PREFIX ?? 't4.4';
 const report = [];
 try {
   for (const mobile of modes) {
     for (const level of levels) {
-      const variant = level === 7 && rear ? '-rear' : '';
+      const variant = level === 7 ? (wide ? '-wide' : rear ? '-rear' : '') : '';
       const scenario = JSON.parse(
         await readFile(`tests/scenarios/stage-${level}${variant}-clear.json`, 'utf8'),
       );
@@ -147,7 +148,7 @@ try {
           const tile = { x: command.tile[0], y: command.tile[1] };
           await deploy(page, cdp, command.unitId, tile, command.dir);
           placed.set(command.unitId, tile);
-          if (level === 7 && placed.size === 7)
+          if (level === 7 && (placed.size === 7 || command.unitId === 'bear'))
             await page.screenshot({ path: `docs/verification/${prefix}-${label}-battle.png` });
         } else {
           for (let attempt = 0; attempt < 12; attempt++) {
@@ -169,7 +170,7 @@ try {
           if (await page.locator('.unit-disruption').isVisible()) disruptionShown = true;
           await click(page.locator('.skill-button'));
           await frame(page);
-          if (level === 7 && command.unitId === 'bear')
+          if (level === 7 && (command.unitId === 'bear' || command.unitId === 'owl'))
             await page.screenshot({
               path: `docs/verification/${prefix}-${label}-skill.png`,
               animations: 'disabled',
@@ -247,7 +248,7 @@ try {
       await context.close();
     }
   }
-  const run = `${levels.join('-')}${rear ? '-rear' : ''}${modes.length === 1 ? (modes[0] ? '-mobile' : '-desktop') : ''}`;
+  const run = `${levels.join('-')}${wide ? '-wide' : rear ? '-rear' : ''}${modes.length === 1 ? (modes[0] ? '-mobile' : '-desktop') : ''}`;
   await writeFile(`docs/verification/${prefix}-content-${run}.json`, `${JSON.stringify(report, null, 2)}\n`);
 } finally {
   await browser.close();

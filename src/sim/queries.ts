@@ -1,6 +1,6 @@
 import { assert } from '../core/assert';
 import { type Dir, rangeTiles, type Tile } from '../core/grid';
-import type { ContentDb } from '../data/types';
+import type { ContentDb, Effect } from '../data/types';
 import { TICK_RATE } from './constants';
 import type { BattleState, DeployCheck, RosterCardView, StageRuntime, UnitEntity } from './types';
 
@@ -34,13 +34,15 @@ export function checkDeploy(
 
 export function rangeTilesFor(
   content: ContentDb,
-  stage: StageRuntime,
+  stage: Pick<StageRuntime, 'board'>,
   unitId: string,
   tile: Tile,
   dir: Dir,
+  buffs: readonly Effect[] = [],
 ): Tile[] {
   const def = content.units.get(unitId);
-  const range = def && content.ranges.get(def.range);
+  const override = buffs.find((effect) => effect.type === 'rangeOverride');
+  const range = def && content.ranges.get(override?.range ?? def.range);
   assert(range, `battle.units: unknown range for ${unitId}`);
   return rangeTiles(tile, range.tiles, dir, stage.board.width, stage.board.height);
 }

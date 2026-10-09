@@ -32,6 +32,13 @@ export function validateContent(value: unknown): ContentDb {
     assert(content.skills.has(unit.skill), `content/units[${index}].skill: unknown skill "${unit.skill}"`);
     assert(content.ranges.has(unit.range), `content/units[${index}].range: unknown range "${unit.range}"`);
   }
+  for (const [index, skill] of skills.entries())
+    for (const [effectIndex, effect] of skill.effects.entries())
+      if (effect.type === 'rangeOverride')
+        assert(
+          content.ranges.has(effect.range),
+          `content/skills[${index}].effects[${effectIndex}].range: unknown range "${effect.range}"`,
+        );
   for (const [index, enemy] of enemies.entries()) {
     if (!enemy.split) continue;
     const path = `content/enemies[${index}].split.enemy`;

@@ -17,9 +17,10 @@ describe('콘텐츠 검증', () => {
       'bunny',
       'mole',
       'snail',
+      'owl',
     ]);
     expect([content.units.size, content.enemies.size, content.skills.size, content.ranges.size]).toEqual([
-      8, 7, 8, 3,
+      9, 7, 9, 5,
     ]);
     expect(first(raw.stages).spawns.reduce((total, spawn) => total + spawn.count, 0)).toBe(21);
   });

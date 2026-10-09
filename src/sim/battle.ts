@@ -101,7 +101,15 @@ export class Battle {
   }
 
   rangeTilesFor(unitId: string, tile: Tile, dir: Dir): Tile[] {
-    return rangeTilesFor(this.content, this.stage, unitId, tile, dir);
+    const unit = this.unitAt(tile);
+    return rangeTilesFor(
+      this.content,
+      this.stage,
+      unitId,
+      tile,
+      dir,
+      unit?.unitId === unitId ? unit.buffs : [],
+    );
   }
 
   unitAt(tile: Tile): Readonly<UnitEntity> | undefined {

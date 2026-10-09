@@ -13,6 +13,8 @@ export function parseEffect(value: unknown, path: string): Effect {
       };
     case 'splash':
       return { type, radius: number(raw.radius, `${path}.radius`) };
+    case 'rangeOverride':
+      return { type, range: text(raw.range, `${path}.range`) };
     case 'onHitSlow':
       return {
         type,
