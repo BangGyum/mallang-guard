@@ -18,7 +18,7 @@ describe('승패와 누수', () => {
   it('stage-1은 배치하지 않으면 세 번 누수 후 즉시 패배한다', () => {
     const battle = createBattle(content, 'stage-1');
     const events = run(battle, secToTicks(120));
-    expect(battle.state.totalEnemies).toBe(210);
+    expect(battle.state.totalEnemies).toBe(426);
     expect(battle.state.phase).toBe('lost');
     expect(battle.state.life).toBe(0);
     expect(battle.state.leaked).toBe(3);
@@ -31,15 +31,15 @@ describe('승패와 누수', () => {
   });
 
   it.each([
-    { life: 210, result: 'lost', remaining: 0 },
-    { life: 220, result: 'won', remaining: 10 },
-  ])('목숨 $life이면 예정된 210마리 전체 이동 후 $result로 끝난다', ({ life, result, remaining }) => {
+    { life: 426, result: 'lost', remaining: 0 },
+    { life: 436, result: 'won', remaining: 10 },
+  ])('목숨 $life이면 예정된 426마리 전체 이동 후 $result로 끝난다', ({ life, result, remaining }) => {
     const stage = content.stages.get('stage-1');
     if (!stage) throw new Error('stage-1 없음');
     const battle = createBattle(makeContent({ stages: [{ ...stage, life }] }), stage.id);
     const events = run(battle, secToTicks(1100));
-    expect(events.filter((event) => event.type === 'enemySpawn')).toHaveLength(210);
-    expect(events.filter((event) => event.type === 'enemyLeak')).toHaveLength(210);
+    expect(events.filter((event) => event.type === 'enemySpawn')).toHaveLength(426);
+    expect(events.filter((event) => event.type === 'enemyLeak')).toHaveLength(426);
     expect(battle.state.enemies).toEqual([]);
     expect(battle.state.life).toBe(remaining);
     expect(battle.state.phase).toBe(result);

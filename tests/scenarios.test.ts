@@ -33,22 +33,19 @@ describe('골든 시나리오', () => {
     expect(result.hashes.at(-1)?.hash).toBe(hashState(result.state));
   });
 
-  it('기본 배치만으로 50웨이브의 지상·비행 적 210마리를 처치하고 푸딩 3개를 지킨다', () => {
+  it('배치와 수동 스킬로 50웨이브의 지상·비행 적 426마리를 처치하고 푸딩 3개를 지킨다', () => {
     const scenario = scenarios['./scenarios/stage-1-clear.json'];
     if (!scenario) throw new Error('클리어 시나리오 없음');
     const result = runScenario(content, scenario);
-    expect(result.state).toMatchObject({ phase: 'won', life: 3, killed: 210, leaked: 0, currentWave: 50 });
-    expect(result.events.filter((event) => event.type === 'enemyDie')).toHaveLength(210);
+    expect(result.state).toMatchObject({ phase: 'won', life: 3, killed: 426, leaked: 0, currentWave: 50 });
+    expect(result.events.filter((event) => event.type === 'enemyDie')).toHaveLength(426);
     const spawns = result.events.filter((event) => event.type === 'enemySpawn');
-    expect(spawns.filter((event) => event.enemyId === 'jelly')).toHaveLength(150);
-    expect(spawns.filter((event) => event.enemyId === 'hardJelly')).toHaveLength(30);
-    expect(spawns.filter((event) => event.enemyId === 'crow')).toHaveLength(30);
+    expect(spawns.filter((event) => event.enemyId === 'jelly')).toHaveLength(298);
+    expect(spawns.filter((event) => event.enemyId === 'hardJelly')).toHaveLength(64);
+    expect(spawns.filter((event) => event.enemyId === 'crow')).toHaveLength(64);
     expect(
       result.events.filter((event) => event.type === 'skillStart').map((event) => event.skillId),
-    ).toEqual(expect.arrayContaining(['carrotSoup']));
-    expect(result.events.some((event) => event.type === 'skillStart' && event.skillId !== 'carrotSoup')).toBe(
-      false,
-    );
+    ).toEqual(expect.arrayContaining(['carrotSoup', 'snowballBarrage', 'stardustShower', 'potLidGuard']));
   });
 
   it('무배치는 26.8초에 세 번째 누수로 즉시 패배한다', () => {

@@ -124,25 +124,25 @@ try {
     });
     await resume(page);
     await finishBattle(page);
-    assert.equal(await page.locator('.battle-result h2').textContent(), '방어 성공!');
-    assert.equal(await page.locator('.result-detail').textContent(), '푸딩 3개 · 처치 210/210');
+    assert.equal(await page.locator('.battle-result').getAttribute('data-result'), 'lost');
+    const result = await page.locator('.result-detail').textContent();
+    assert.match(result, /^푸딩 0개 · 처치 \d+\/426$/);
     await page.screenshot({
-      path: `docs/verification/${screenshotPrefix}-${mobile ? 'mobile' : 'desktop'}-clear.png`,
+      path: `docs/verification/${screenshotPrefix}-${mobile ? 'mobile' : 'desktop'}-failed.png`,
     });
     const saved = await page.evaluate(() => JSON.parse(localStorage.getItem('mallang-guard:v1')));
-    assert.deepEqual(saved.stages['stage-1'], { cleared: true, bestLife: 3 });
+    assert.equal(saved?.stages?.['stage-1'], undefined);
     await page.getByRole('button', { name: '타이틀로', exact: true }).click();
     await frame(page);
-    assert.match(await page.locator('.title-record').textContent(), /최고 푸딩 3개/);
     await page.reload();
     await page.locator('.title-screen').waitFor();
-    assert.match(await page.locator('.title-record').textContent(), /최고 푸딩 3개/);
+    assert.deepEqual(await page.evaluate(() => JSON.parse(localStorage.getItem('mallang-guard:v1'))), saved);
     assert.deepEqual(errors, []);
     console.log(
       JSON.stringify({
         input: mobile ? 'touch' : 'mouse',
-        result: '푸딩 3개 · 처치 210/210',
-        saved: saved.stages['stage-1'],
+        result,
+        failedRunNotSaved: saved?.stages?.['stage-1'] === undefined,
         errors,
       }),
     );

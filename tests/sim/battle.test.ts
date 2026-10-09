@@ -27,7 +27,7 @@ describe('battle core', () => {
       units: [],
       enemies: [],
       spawnCursor: Array.from({ length: 80 }, () => 0),
-      totalEnemies: 210,
+      totalEnemies: 426,
       killed: 0,
       leaked: 0,
       currentWave: 0,
