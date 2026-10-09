@@ -1,0 +1,26 @@
+{
+  "legacyUnlock": true,
+  "previewTiles": 264,
+  "portraitPlayable": true,
+  "manualPausePreserved": true,
+  "compactSelection": true,
+  "units": [
+    {
+      "unitId": "squirrel",
+      "tile": {
+        "x": 21,
+        "y": 8
+      },
+      "dir": "left"
+    },
+    {
+      "unitId": "penguin",
+      "tile": {
+        "x": 3,
+        "y": 1
+      },
+      "dir": "down"
+    }
+  ],
+  "errors": []
+}

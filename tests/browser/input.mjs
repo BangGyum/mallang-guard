@@ -26,7 +26,7 @@ try {
     const time = new Date('2026-10-07T03:00:00Z');
     await page.clock.install({ time });
     // 초기 도토리 검사가 페이지 로딩 시간의 영향을 받지 않도록 먼저 멈춥니다.
-    await page.clock.pauseAt(time);
+    await page.clock.pauseAt(new Date(time.getTime() + 1000));
     // 낮은 프레임 빈도에서도 30Hz 전투와 입력이 유지되는지 확인한다.
     await page.addInitScript(() => {
       window.requestAnimationFrame = (callback) => setTimeout(() => callback(performance.now()), 100);
@@ -68,12 +68,12 @@ try {
     if (mobile) {
       await page.setViewportSize({ width: 390, height: 844 });
       await frame(page);
-      await page.locator('.rotate-guide').waitFor({ state: 'visible' });
-      assert.equal(await page.locator('.rotate-guide').isVisible(), true);
+      await frame(page);
+      assert.equal(await page.locator('.rotate-guide').count(), 0);
       await page.setViewportSize(viewport);
       await frame(page);
-      await page.locator('.rotate-guide').waitFor({ state: 'hidden' });
-      assert.equal(await page.locator('.rotate-guide').isVisible(), false);
+      await frame(page);
+      assert.equal(await page.locator('.rotate-guide').count(), 0);
     }
     await page.reload();
     await enterBattle(page);

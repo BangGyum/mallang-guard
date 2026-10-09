@@ -1,0 +1,4 @@
+[
+  { "input": "mouse", "result": "푸딩 3개 · 처치 21/21", "saved": { "cleared": true, "bestLife": 3 }, "errors": [] },
+  { "input": "touch", "result": "푸딩 3개 · 처치 21/21", "saved": { "cleared": true, "bestLife": 3 }, "errors": [] }
+]
