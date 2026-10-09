@@ -419,6 +419,15 @@
 - 회귀: 기존 10종의 PC/터치 공격·스킬·후퇴·재배치 20회, 스킬 대상 대기/비활성 탭/정상 발동, 10초·3초 준비·정지·재시작, 키보드·두 손가락·취소, 540×720/390×844/640×360의 카드 쓸기와 수동 정지를 통과했습니다. PC/터치 각 10회 재시작/복귀 후 HUD·프레임·리스너 정리와 프로덕션 로딩을 통과했으며 거부 명령·브라우저 오류/경고는 0건입니다. 정리 검사의 재시작 대기는 기본 10초 준비 시간을 반영했고 과거 스크린샷을 덮어쓰지 않도록 검증 파일 이름을 분리했습니다.
   결과: [두 선택 방식](../verification/t4.11-unit-selection.json), [20회 캐릭터](../verification/t4.11-characters.json), [대상 대기](../verification/t4.11-battle-ui.json), [준비](../verification/t4.11-preparation.json), [좁은 화면](../verification/t4.11-narrow-screen.json), [세션 정리](../verification/t4.11-app-flow.json), [프로덕션](../verification/t4.11-production.json). 화면: [카드 정보](../verification/t4.11-touch-740x360-card-info.png), [유닛 스킬 조작](../verification/t4.11-touch-740x360-deployed-ready.png), [세로 화면](../verification/t4.11-touch-390x844-deployed-ready.png).
 
+### [x] T4.12 무장에 맞는 공격음
+- 사용자 요청 (2026-10-09): 사격은 사격으로 들리도록 이상한 사운드를 수정합니다.
+- 읽을 문서: 01·06·07의 오디오 연결·자체 제작·타이밍·설정·정리 계약.
+- 원인: 모든 원거리 공격이 0.04초의 같은 대역 통과 노이즈를 사용해 총성의 저음/울림이 없고 검·해머·마법도 같은 발사음으로 들렸습니다.
+- 구현: 소총·저격총·산탄총의 파열/저음/기계음과 검·해머·아크·에너지포·점착탄·적 분사 총 9종의 버퍼를 자체 합성해 실제 무장에 연결했습니다. 작은 피격음은 도착 때 재생하고 동시 사격의 중복 증폭을 막으며 버퍼를 재사용합니다. 오디오 이벤트의 선택 콜백은 기존 두 인자 호출도 지원하며 공유 `SimEvent`·콘텐츠·전투 수치는 바꾸지 않습니다.
+- 수정: 최대 볼륨의 10종 동시 발사 검사에서 압축 전 피크 1.585가 발견돼 출력 압축기로 0.540까지 줄였습니다. 오디오 파형의 시작/끝과 총성 저음·감쇠를 확인하며 기록용 WAV를 생성합니다.
+- 검증: check/lint/test/build, 57개 파일 892개 테스트 통과. Edge PC 1920×1080·터치 에뮬레이션 844×390의 10종 × 2 총 20회에서 실제 기본 공격·무장에 맞는 버퍼·정지 후 소스 0·이전 컨텍스트 종료를 확인했습니다. 16종 재생·실제 입력 전 잠금·음소거·50ms 제한·삼중 사격/적 방해 중복 제한·정지/배속/재시작/종료 타이밍도 통과했습니다. 양쪽 설정 화면의 볼륨 35% 적용·음소거·저장/복원, 프로덕션 경로의 10개 그림·WebGL 로딩도 통과했고 오류/경고는 0건입니다.
+  결과: [20회 공격음](../verification/t4.12-audio-weapons.json), [재생/정리](../verification/t4.12-audio.json), [타이밍](../verification/t4.12-audio-timing.json), [파형/겹침](../verification/t4.12-audio-samples.json), [9종 미리듣기](../verification/t4.12-weapon-sounds.wav), [프로덕션](../verification/t4.12-production.json). 화면: [PC 설정](../verification/t4.12-desktop-settings.png), [터치 설정](../verification/t4.12-mobile-settings.png).
+
 ## M5 확장 (방향만 정해 둠)
 
 - 모바일 성능 최적화, PWA(오프라인 실행)

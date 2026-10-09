@@ -3,6 +3,7 @@ import { chromium } from 'playwright';
 import { installAudioProbe } from './audioProbe.mjs';
 import { enterBattle, frame } from './helpers.mjs';
 
+const prefix = process.env.MALLANG_SCREENSHOT_PREFIX ?? 't3.5';
 const browser = await chromium.launch({ channel: 'msedge', headless: true });
 try {
   for (const mobile of [false, true]) {
@@ -22,7 +23,7 @@ try {
     });
     const time = new Date('2026-10-07T03:00:00Z');
     await page.clock.install({ time });
-    await page.clock.pauseAt(time);
+    await page.clock.pauseAt(new Date(time.getTime() + 1000));
     await page.addInitScript(installAudioProbe);
     await page.addInitScript(() => {
       window.requestAnimationFrame = (callback) => setTimeout(() => callback(performance.now()), 100);
@@ -56,7 +57,7 @@ try {
       '설정 조작 영역 44px 이상',
     );
     const label = mobile ? 'mobile' : 'desktop';
-    await page.screenshot({ path: `docs/verification/t3.5-${label}-settings.png` });
+    await page.screenshot({ path: `docs/verification/${prefix}-${label}-settings.png` });
     await page.getByRole('button', { name: '완료' }).click();
     await enterBattle(page);
     assert.equal(await page.locator('#board').evaluate((node) => node.width / node.clientWidth), 1);

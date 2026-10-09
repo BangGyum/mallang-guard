@@ -1,3 +1,4 @@
+import { unitAttackSound } from '../audio/combatSounds';
 import { createSfx } from '../audio/sfx';
 import { assert } from '../core/assert';
 import { starCount } from '../data/progression';
@@ -185,7 +186,11 @@ export function createApp(
         onMenu: showPause,
         onEnd: showResult,
         onEvents(events) {
-          sound.onEvents(events, impactDelays(events));
+          sound.onEvents(events, impactDelays(events), (uid) => {
+            const unit = session?.battle.state.units.find((unit) => unit.uid === uid);
+            const definition = unit && content.units.get(unit.unitId);
+            return definition && unitAttackSound(definition.art);
+          });
         },
         onFrame: sound.update,
         onAutoQuality() {
