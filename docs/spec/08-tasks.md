@@ -389,6 +389,15 @@
 - 회귀: 기존 가로 화면의 마우스/터치 입력과 수동 스킬·후퇴·환급·stage-1 완주가 모두 21/21 처치·푸딩 3개·저장 복원을 통과했습니다. 큰 맵의 264칸 미리보기·390×844 표시·수동 정지·양끝 터치 배치·740×360 선택, 프로덕션의 10개 초상화·WebGL 로딩도 통과했고 브라우저 오류/경고는 0건입니다. 가상 시계·터치 에뮬레이션의 기능 검사입니다.
   결과: [좁은 화면 4회](../verification/t4.8-narrow-screen.json), [큰 맵](../verification/t4.8-orientation.json), [기존 가로 입력](../verification/t4.8-input.json), [프로덕션](../verification/t4.8-production.json). 화면: [390×844 스킬](../verification/t4.8-touch-390x844-skill.png), [640×360 스킬](../verification/t4.8-touch-640x360-skill.png), [540×720 스킬](../verification/t4.8-mouse-540x720-skill.png).
 
+### [x] T4.9 은은한 전투 이펙트와 120fps 예산 확인
+- 사용자 요청 (2026-10-09): 120fps 기준의 여유를 확인하고 거슬리지 않는 이펙트를 살짝 추가합니다.
+- 읽을 문서: 01·04·06·07의 연출·모션 감소·풀링·성능·검증 계약.
+- 구현: 작은 총구 섬광을 동시 사격당 한 번 표시하고, 도착 후 짧고 옅은 피격 파문과 스킬 중 발밑 맥동 링을 추가합니다. 스파크·사망 방울·배치 파동의 크기와 이동 폭·투명도를 줄이며 기존 텍스처·200개 풀을 재사용합니다. 모션 감소/낮은 품질에서는 장식 파문과 맥동을 생략합니다.
+- 완료 조건: 현재 10종을 포함한 같은 성능 장면의 변경 전후 화면 주기·제한 없는 처리량과 프레임/CPU p95·드로우콜·파티클·자원을 비교합니다. PC·터치의 효과·정지·탄환 도착/사망·최대 풀·전투 상태 보존·삼중 사격과 check/lint/test/build를 통과합니다.
+- 검증: check/lint/test/build, 54개 파일 844개 테스트 통과. 투명도 기본값/슬롯 재사용·단일 총구 섬광·도착 후 피격 파문·모션 감소/낮은 품질·정지 유지·스킬 링 제거를 새로 검사했습니다. PC·터치 각각 10종 투사체·발사 방향·전투 상태 보존·정지 화면, 파티클 상한 200·종료 후 16·같은 틱 생성/처치·도착/사망과 랑랑의 실제 적 세 명/한 명 총 4회 검사를 통과했고 브라우저 오류/경고는 0건입니다.
+- 성능: Edge headless·Intel Arc 130V·1920×1080의 적 60/유닛 10 렌더 장면을 전후 각각 표시 주기와 제한 없는 모드로 순차 측정했습니다. 표시 주기 60fps 유지, 제한 없는 처리량 690.45→678.48fps·프레임 간격 p95 2.3→2.4ms, 표시 주기의 렌더 CPU p95 1.8→1.9ms입니다. 최대 드로우콜 58→59·파티클 104→110, GPU 자원 69/35 유지입니다. 측정 장면의 p95 2.4ms는 120fps의 8.33ms 예산 이내입니다. 이 수치는 렌더 스트레스 장면의 처리량이며 사용자의 실제 120Hz 화면에서 전체 게임을 측정한 결과는 아닙니다.
+  결과: [적용 전 화면 주기](../verification/t4.9-before-performance.json), [적용 후 화면 주기](../verification/t4.9-after-performance.json), [적용 전 처리량](../verification/t4.9-before-performance-uncapped.json), [적용 후 처리량](../verification/t4.9-after-performance-uncapped.json), [연출 검증](../verification/t4.9-effects.json), [랑랑 회귀](../verification/t4.9-line-sniper.json). 화면: [PC 사격](../verification/t4.9-desktop-combat.png), [모바일 사격](../verification/t4.9-mobile-combat.png), [피격](../verification/t4.9-mobile-impact.png), [삼중 사격](../verification/t4.9-desktop-line-3-volley.png).
+
 ## M5 확장 (방향만 정해 둠)
 
 - 모바일 성능 최적화, PWA(오프라인 실행)
