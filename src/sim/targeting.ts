@@ -35,7 +35,17 @@ export function pickEnemy(
   state: Readonly<BattleState>,
   unit: Readonly<UnitEntity>,
 ): EnemyEntity | undefined {
-  return enemiesInRange(content, stage, state, unit).sort(
-    (a, b) => remaining(stage, a) - remaining(stage, b) || a.uid - b.uid,
-  )[0];
+  return pickEnemies(content, stage, state, unit, 1)[0];
+}
+
+export function pickEnemies(
+  content: ContentDb,
+  stage: StageRuntime,
+  state: Readonly<BattleState>,
+  unit: Readonly<UnitEntity>,
+  count: number,
+): EnemyEntity[] {
+  return enemiesInRange(content, stage, state, unit)
+    .sort((a, b) => remaining(stage, a) - remaining(stage, b) || a.uid - b.uid)
+    .slice(0, count);
 }

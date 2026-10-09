@@ -23,7 +23,7 @@ try {
   assert((await page.locator('.stage-enemy svg').count()) > 7);
   await page.locator('.stage-card[data-stage-id="stage-1"]').click();
   await page.locator('.deploy-card').first().waitFor();
-  assert.equal(await page.locator('.card-portrait svg').count(), 9);
+  assert.equal(await page.locator('.card-portrait svg').count(), 10);
   assert.equal(
     await page.locator('#board').evaluate((node) => node.getContext('webgl2').isContextLost()),
     false,
@@ -32,7 +32,7 @@ try {
   await page.locator('.pause-menu').getByRole('button', { name: '멈춘 채 배치' }).click();
   await page.screenshot({ path: `docs/verification/${prefix}-production.png` });
   assert.deepEqual(errors, []);
-  console.log(JSON.stringify({ productionBase: '/mallang-guard/', portraits: 9, webgl: true, errors }));
+  console.log(JSON.stringify({ productionBase: '/mallang-guard/', portraits: 10, webgl: true, errors }));
 } finally {
   await browser.close();
 }

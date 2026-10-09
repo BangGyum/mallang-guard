@@ -47,4 +47,9 @@ export const COMBAT_GEAR = {
   owl:
     `<g ${line}><path d="M31 71Q50 77 69 71L75 87Q68 94 61 89Q50 96 40 90Q27 96 23 87Z" fill="#F4F1E5"/><path d="M34 72Q50 77 66 72L64 84Q50 88 36 84Z" fill="#ABD7CD"/><path d="M30 78Q27 83 26 87M37 82L35 91M62 82L65 91" fill="none" stroke="#84AEA8" stroke-width="1.8"/><path d="M32 71Q39 67 45 73L50 77L55 73Q61 67 68 71L61 78H39Z" fill="#FFFDF5"/><path d="M46 75L35 71L37 80L46 78M54 75L63 71L61 80L54 78" fill="#C8B9E8"/><circle cx="50" cy="77" r="3.4" fill="#E8D4A2"/></g>` +
     `<g ${line}><path d="M20 65V45M13 43Q20 35 27 43L20 48Z" fill="${light}"/><path d="M43 77H72L77 67H94V83H72L65 90H45Z" fill="#6D8991"/><path d="M69 68H96V77H69Z" fill="#E0EFED"/><path d="M94 65V80" stroke="${steel}" stroke-width="5"/><rect x="62" y="70" width="17" height="6" rx="2" fill="#B9E2D8"/><path d="M50 78L56 85" stroke="#E8D4C1" stroke-width="5"/><path d="M78 81L70 87L73 92" fill="none" stroke="#D5C7EB" stroke-width="3"/></g>`,
+  wolf:
+    vest('#586D7B', '#E8C585') +
+    `<g ${line}><path d="M28 48Q50 37 72 48" fill="none" stroke="${steel}" stroke-width="5"/><rect x="23" y="48" width="9" height="12" rx="2" fill="${steel}"/><path d="M27 60L34 65H39" fill="none"/><path d="M31 70Q50 75 70 69L65 76H37Z" fill="#B6DCCE"/><path d="M31 70L22 82L32 86L37 75" fill="#B6DCCE"/></g>` +
+    rifle('#E8C585', true) +
+    `<path d="M79 71H94M66 84L76 90" fill="none" stroke="${steel}" stroke-width="3" stroke-linecap="round"/>`,
 };

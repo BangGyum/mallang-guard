@@ -13,6 +13,7 @@ const ART_IDS = [
   'mole',
   'snail',
   'owl',
+  'wolf',
   'jelly',
   'hardJelly',
   'crow',
@@ -136,6 +137,10 @@ export function parseSkill(value: unknown, path: string): SkillDef {
   assert(
     skill.effects.filter((effect) => effect.type === 'rangeOverride').length <= 1,
     `${path}.effects: only one range override per skill`,
+  );
+  assert(
+    skill.effects.filter((effect) => effect.type === 'multiTarget').length <= 1,
+    `${path}.effects: only one target count per skill`,
   );
   return skill;
 }

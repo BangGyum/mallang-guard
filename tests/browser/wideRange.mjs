@@ -27,7 +27,7 @@ try {
     });
     const time = new Date('2026-10-09T06:00:00Z');
     await page.clock.install({ time });
-    await page.clock.pauseAt(time);
+    await page.clock.pauseAt(new Date(time.getTime() + 1000));
     await page.addInitScript(() => {
       window.requestAnimationFrame = (callback) => setTimeout(() => callback(performance.now()), 100);
       window.cancelAnimationFrame = (id) => clearTimeout(id);
@@ -37,7 +37,7 @@ try {
     });
     await page.goto('http://127.0.0.1:43195/');
     await page.locator('.title-screen').waitFor();
-    assert.equal(await page.locator('.title-friend svg').count(), 9);
+    assert.equal(await page.locator('.title-friend svg').count(), 10);
     assert(moduleUrl);
     await page.evaluate(async (url) => {
       const { Battle } = await import(url);
@@ -82,8 +82,8 @@ try {
         return rect.width >= 44 && rect.left >= bounds.left && rect.right <= bounds.right;
       });
     });
-    assert(cardsFit, '작은 화면에서도 새 캐릭터를 포함한 9개 카드를 바로 선택할 수 있음');
-    assert.equal(await page.locator('.deploy-card').count(), 9);
+    assert(cardsFit, '작은 화면에서도 새 캐릭터를 포함한 10개 카드를 바로 선택할 수 있음');
+    assert.equal(await page.locator('.deploy-card').count(), 10);
     const tile = { x: 9, y: 5 };
     const cdp = mobile ? await context.newCDPSession(page) : null;
     await deploy(page, cdp, 'owl', tile, 'right');

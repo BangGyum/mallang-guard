@@ -149,5 +149,21 @@
     "damageType": "magic",
     "canHitAir": true,
     "skill": "wideBarrage"
+  },
+  {
+    "id": "wolf",
+    "name": "랑랑",
+    "animal": "늑대",
+    "role": "sniper",
+    "art": "wolf",
+    "cost": 22,
+    "deployOn": "high",
+    "redeploySec": 50,
+    "atk": 650,
+    "atkIntervalSec": 2.4,
+    "range": "line5",
+    "damageType": "physical",
+    "canHitAir": true,
+    "skill": "tripleAim"
   }
 ]

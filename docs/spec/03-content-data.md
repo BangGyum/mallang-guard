@@ -28,6 +28,7 @@ export type ArtId =
   | 'mole'
   | 'snail'
   | 'owl'
+  | 'wolf'
   | 'jelly'
   | 'hardJelly'
   | 'crow'
@@ -97,6 +98,7 @@ export interface SkillDef {
 export type Effect =
   | { type: 'statMul'; stat: 'atk' | 'atkInterval'; value: number }
   | { type: 'rangeOverride'; range: string }
+  | { type: 'multiTarget'; count: number }
   | { type: 'splash'; radius: number }
   | { type: 'onHitSlow'; amount: number; sec: number }
   | { type: 'stunEveryNthHit'; n: number; sec: number }
@@ -171,6 +173,7 @@ export interface RawContent {
 - 모든 id는 종류별로 유일해야 합니다.
 - 참조가 모두 존재해야 합니다: unit.skill, unit.range, spawn.enemy, spawn.route, stage.roster의 유닛.
 - `rangeOverride.range`도 존재하는 사거리 ID여야 하며 지속 스킬 하나당 최대 한 개입니다. 즉시 스킬과 상시 특성에는 사용할 수 없습니다.
+- `multiTarget.count`는 1 이상의 정수이며 지속 스킬 하나당 최대 한 개입니다. 즉시 스킬과 상시 특성에는 사용할 수 없습니다.
 - 숫자 범위
   - hp, atkIntervalSec, speed, spCost는 0보다 커야 합니다.
   - atk, def, cost, spStart는 0 이상이고, res는 0~100입니다.

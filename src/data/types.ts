@@ -20,6 +20,7 @@ export type ArtId =
   | 'mole'
   | 'snail'
   | 'owl'
+  | 'wolf'
   | 'jelly'
   | 'hardJelly'
   | 'crow'
@@ -89,6 +90,7 @@ export interface SkillDef {
 export type Effect =
   | { type: 'statMul'; stat: 'atk' | 'atkInterval'; value: number }
   | { type: 'rangeOverride'; range: string }
+  | { type: 'multiTarget'; count: number }
   | { type: 'splash'; radius: number }
   | { type: 'onHitSlow'; amount: number; sec: number }
   | { type: 'stunEveryNthHit'; n: number; sec: number }

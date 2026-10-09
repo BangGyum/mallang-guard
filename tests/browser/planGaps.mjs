@@ -23,7 +23,7 @@ try {
     await enterBattle(page);
     await pause(page);
     assert.equal(await page.locator('.dp-panel .acorn-icon svg').count(), 1);
-    assert.equal(await page.locator('.card-cost .acorn-icon svg').count(), 9);
+    assert.equal(await page.locator('.card-cost .acorn-icon svg').count(), 10);
     const cdp = mobile ? await context.newCDPSession(page) : null;
     const box = await page.locator('[data-unit-id="squirrel"]').boundingBox();
     const from = { x: box.x + box.width / 2, y: box.y + box.height / 2 };

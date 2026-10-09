@@ -17,6 +17,7 @@ const SHOTS: Record<string, { art: string; size: number; arc: number; muzzle: bo
   mole: { art: 'bullet', size: 0.38, arc: 0, muzzle: true },
   snail: { art: 'stickyDrop', size: 0.32, arc: 0.12, muzzle: true },
   owl: { art: 'arcBolt', size: 0.48, arc: 0.25, muzzle: true },
+  wolf: { art: 'bullet', size: 0.44, arc: 0, muzzle: true },
 };
 
 export function createVfx(
