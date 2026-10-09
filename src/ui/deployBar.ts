@@ -4,7 +4,6 @@ import type { Battle } from '../sim/battle';
 import { ticksPerDp } from '../sim/systems/dp';
 import { acornIcon } from './acornIcon';
 import { element } from './dom';
-import { playFeedback } from './feedback';
 import { portrait } from './portrait';
 
 export function createDeployBar(
@@ -39,7 +38,7 @@ export function createDeployBar(
     const card = element('button', 'deploy-card');
     card.type = 'button';
     card.dataset.unitId = def.id;
-    card.setAttribute('aria-label', `${def.name} 배치, 도토리 ${def.cost}`);
+    card.setAttribute('aria-label', `${def.name} 정보와 배치, 도토리 ${def.cost}`);
     card.style.setProperty('--role-color', ROLE_COLORS[def.role]);
     const status = element('span', 'card-status');
     const cost = element('span', 'card-cost', String(def.cost));
@@ -52,7 +51,6 @@ export function createDeployBar(
       status,
     );
     const select = (event?: PointerEvent) => {
-      if (card.getAttribute('aria-disabled') === 'true') playFeedback(card, 'shake');
       onCardDown(def.id, event);
     };
     card.addEventListener('pointerdown', select);
@@ -89,9 +87,8 @@ export function createDeployBar(
               : left <= 0
                 ? '배치 가득'
                 : '';
-        entry.card.setAttribute(
-          'aria-disabled',
-          String(info.state !== 'ready' || left <= 0 || battle.state.phase !== 'running'),
+        entry.card.dataset.deployAvailable = String(
+          info.state === 'ready' && left > 0 && battle.state.phase === 'running',
         );
       }
     },

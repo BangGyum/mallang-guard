@@ -2,10 +2,11 @@ import type { Dir } from '../core/grid';
 import type { Battle } from '../sim/battle';
 import type { SimEvent } from '../sim/types';
 import type { BoardView } from '../view/boardView';
-import type { HighlightState } from '../view/highlights';
 import { pickTile, tileScreen } from '../view/picking';
 import { button, element } from './dom';
-import { directionFromDrag, type InputState } from './inputState';
+import { cardDeployReason, directionFromDrag, type InputState, isCardDrag } from './inputState';
+import { createRosterPanel } from './rosterPanel';
+import { selectionHighlights } from './selectionHighlights';
 import { createSkillNotices } from './skillNotices';
 import { REJECTION_MESSAGES } from './toast';
 import { createUnitPanel } from './unitPanel';
@@ -30,6 +31,9 @@ export function createController(
   let captureTarget: HTMLElement | null = null;
   let pointerX = 0;
   let pointerY = 0;
+  let pressX = 0;
+  let pressY = 0;
+  let cardPanX = false;
   const directions = element('div', 'aim-directions');
   directions.hidden = true;
   directions.setAttribute('aria-label', '배치 방향 선택');
@@ -48,6 +52,7 @@ export function createController(
     },
   });
   const notices = createSkillNotices(root, canvas, battle, view);
+  const rosterPanel = createRosterPanel(root, battle, () => transition({ mode: 'idle' }));
   const arrows = new Map<Dir, HTMLButtonElement>();
   for (const [dir, symbol, name] of [
     ['up', '↑', '위'],
@@ -70,6 +75,8 @@ export function createController(
   root.append(directions, ghost);
   function transition(next: InputState) {
     state = next;
+    for (const card of root.querySelectorAll<HTMLElement>('.deploy-card'))
+      card.dataset.selected = String(next.mode === 'preview' && card.dataset.unitId === next.unitId);
     actions.onModeChange(next.mode !== 'idle');
   }
   function releasePointer() {
@@ -84,6 +91,9 @@ export function createController(
     target.setPointerCapture(event.pointerId);
     pointerX = event.clientX;
     pointerY = event.clientY;
+    pressX = pointerX;
+    pressY = pointerY;
+    cardPanX = event.pointerType === 'touch' && getComputedStyle(target).touchAction === 'pan-x';
   }
   function tileAt(event: PointerEvent) {
     return pickTile(canvas, view.camera, battle.stage.board, event.clientX, event.clientY);
@@ -118,6 +128,22 @@ export function createController(
     if (event.pointerId !== pointerId) return;
     pointerX = event.clientX;
     pointerY = event.clientY;
+    if (
+      state.mode === 'preview' &&
+      captureTarget !== canvas &&
+      isCardDrag(pointerX - pressX, pointerY - pressY, cardPanX)
+    ) {
+      const reason = cardDeployReason(battle, state.unitId);
+      if (reason) {
+        actions.notify(REJECTION_MESSAGES[reason]);
+        releasePointer();
+        return;
+      }
+      const unitId = state.unitId;
+      transition({ mode: 'dragging', unitId, hover: null });
+      const art = battle.content.units.get(unitId)?.art;
+      if (art) ghost.innerHTML = critterSvg(art);
+    }
     if (state.mode === 'dragging') state = { ...state, hover: tileAt(event) };
     if (state.mode === 'aiming') {
       const center = tileScreen(canvas, view.camera, battle.stage.board, state.tile);
@@ -127,6 +153,7 @@ export function createController(
   }
   function onUp(event: PointerEvent) {
     if (event.pointerId !== pointerId) return;
+    const fromCard = captureTarget !== canvas;
     releasePointer();
     const tile = tileAt(event);
     if (state.mode === 'dragging') {
@@ -138,6 +165,12 @@ export function createController(
       }
     } else if (state.mode === 'aiming') {
       if (state.dir) commit(state.dir);
+    } else if (state.mode === 'preview' && fromCard) {
+      return;
+    } else if (state.mode === 'preview' && tile && !battle.unitAt(tile)) {
+      const check = battle.checkDeploy(state.unitId, tile);
+      if (check.ok) transition({ mode: 'aiming', unitId: state.unitId, tile, dir: null });
+      else actions.notify(REJECTION_MESSAGES[check.reason]);
     } else {
       const unit = tile && battle.unitAt(tile);
       transition(unit ? { mode: 'selected', uid: unit.uid } : { mode: 'idle' });
@@ -193,31 +226,15 @@ export function createController(
   document.addEventListener('pointercancel', onCancel);
   document.addEventListener('keydown', onKey);
   return {
-    startDrag(unitId: string, event?: PointerEvent) {
+    selectCard(unitId: string, event?: PointerEvent) {
       if (!enabled || (!event && state.mode === 'aiming')) return;
       if (pointerId !== null || (event && (!event.isPrimary || event.button !== 0))) return;
-      const card = battle.rosterView().find((entry) => entry.unitId === unitId);
-      const reason =
-        battle.state.phase !== 'running'
-          ? 'ended'
-          : !card || card.state === 'cooldown' || card.state === 'deployed'
-            ? 'notReady'
-            : battle.state.units.length >= battle.stage.definition.deployLimit
-              ? 'limit'
-              : card.state === 'noDp'
-                ? 'noDp'
-                : null;
-      if (reason) {
-        actions.notify(REJECTION_MESSAGES[reason]);
-        return;
-      }
+      if (battle.state.phase !== 'running') return;
       if (event && event.currentTarget instanceof HTMLElement) {
         event.preventDefault();
         capture(event, event.currentTarget);
       }
-      transition({ mode: 'dragging', unitId, hover: null });
-      const art = battle.content.units.get(unitId)?.art;
-      if (art) ghost.innerHTML = critterSvg(art);
+      transition({ mode: 'preview', unitId });
     },
     setEnabled(value: boolean) {
       enabled = value;
@@ -240,34 +257,13 @@ export function createController(
         releasePointer();
         transition({ mode: 'idle' });
       }
-      let highlights: HighlightState = {};
-      if (state.mode === 'dragging') {
-        const available = [];
-        for (let y = 0; y < battle.stage.board.height; y++)
-          for (let x = 0; x < battle.stage.board.width; x++)
-            if (battle.checkDeploy(state.unitId, { x, y }).ok) available.push({ x, y });
-        highlights = {
-          available,
-          hover: state.hover,
-          ghost: state.hover ? { unitId: state.unitId, tile: state.hover, dir: null } : undefined,
-        };
-      }
+      const highlights = selectionHighlights(battle, state);
       if (state.mode === 'aiming') {
-        highlights = {
-          range: state.dir ? battle.rangeTilesFor(state.unitId, state.tile, state.dir) : [],
-          ghost: state,
-          hover: state.tile,
-        };
         const center = tileScreen(canvas, view.camera, battle.stage.board, state.tile);
         const rect = root.getBoundingClientRect();
         directions.style.left = `${Math.max(72, Math.min(rect.width - 72, center.x - rect.left))}px`;
         directions.style.top = `${Math.max(90, Math.min(rect.height - 90, center.y - rect.top))}px`;
         for (const [dir, arrow] of arrows) arrow.classList.toggle('is-active', dir === state.dir);
-      }
-      if (state.mode === 'selected') {
-        const unit = battle.state.units.find((unit) => unit.uid === selectedUid);
-        if (unit)
-          highlights = { range: battle.rangeTilesFor(unit.unitId, unit.tile, unit.dir), hover: unit.tile };
       }
       directions.hidden = state.mode !== 'aiming';
       ghost.hidden = state.mode !== 'dragging' || !!state.hover;
@@ -278,6 +274,7 @@ export function createController(
         selected?.uid ?? null,
         selected ? tileScreen(canvas, view.camera, battle.stage.board, selected.tile) : null,
       );
+      rosterPanel.update(state.mode === 'preview' ? state.unitId : null);
       notices.update();
       view.setHighlights(highlights);
     },
@@ -290,6 +287,7 @@ export function createController(
       document.removeEventListener('pointercancel', onCancel);
       document.removeEventListener('keydown', onKey);
       panel.dispose();
+      rosterPanel.dispose();
       notices.dispose();
       directions.remove();
       ghost.remove();

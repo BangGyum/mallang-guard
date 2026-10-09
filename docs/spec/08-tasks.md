@@ -409,6 +409,16 @@
 - 성능: 적 60·유닛 10·15종 혼합의 실제 GPU 렌더 검사에서 화면 주기 60fps·렌더 CPU p95 1.9ms, 제한 없는 처리량 674.16fps·프레임 간격 p95 2.3ms·최대 67 draw calls/110 파티클을 확인했습니다. Edge headless·Intel Arc 130V의 렌더 장면 측정이며 가상 시계의 브라우저 기능 검사와 실제 120Hz 화면의 전체 게임 성능은 구분합니다.
   결과: [14회 캠페인](../verification/t4.10-campaign.json), [15종 표시](../verification/t4.10-enemy-roster.json), [아트](../verification/t4.10-art.json), [화면 주기](../verification/t4.10-performance.json), [처리량](../verification/t4.10-performance-uncapped.json). 화면: [적 15종](../verification/t4.10-enemy-roster.png), [PC 전체 기록](../verification/t4.10-desktop-all-stars.png), [터치 전체 기록](../verification/t4.10-mobile-all-stars.png).
 
+### [x] T4.11 배치 카드 정보와 유닛 스킬 조작 구분
+- 사용자 요청 (2026-10-09): 오른쪽 아래 정보창은 아래 배치 카드를 누를 때 표시하고, 배치된 유닛은 명일방주식 선택·스킬 조작으로 바꿉니다.
+- 읽을 문서: 01·05·07의 읽기 전용 UI·입력 상태·슬로모션·팝업·검증 계약.
+- 구현: 카드 선택은 오른쪽 아래의 기본 정보/스킬 설명이고 배치된 친구 선택은 유닛 근처의 사거리·SP·큰 스킬/후퇴 버튼입니다. 도토리 부족/재배치 카드도 정보를 보고 탭·끌기·가로 스크롤을 구분합니다. 양옆 공간이 부족하면 위·아래로 이동하며 버튼을 44px 이상으로 유지합니다.
+- 완료 조건: 10종 정보와 탭/드래그/키보드 배치, 직접 스킬·후퇴·재배치·자동 스킬/대상 대기, PC·터치·좁은 창의 두 위치·리사이즈·스크롤·취소·정리와 check/lint/test/build를 통과합니다.
+- 수정: 유닛 조작창의 등장 애니메이션을 투명도만 바뀌도록 바꿔 즉시 누를 수 있는 버튼 크기를 유지했습니다. 좁은 세로 화면에서 유닛을 가리던 위치는 위·아래 배치로, 740×360의 상세 영역은 닫기 버튼 배치와 간격으로 보정했습니다. 정보창의 기본 내용은 선택 시에만 갱신하고 가로 스크롤을 드래그로 오인하지 않습니다.
+- 검증: check/lint/test/build, 56개 파일 881개 테스트 통과. 카드 탭/12px 끌기/가로 쓸기와 배치 가능 표시·전투 상태 보존을 검사했습니다. PC 1920×1080·터치 844×390/740×360/390×844의 4회 검사가 각 10종 정보·도토리 부족/재배치 대기 정보·오른쪽 아래 고정, 탭/드래그 배치·자연 충전 후 스킬·후퇴와 리사이즈/버튼 노출을 통과했습니다.
+- 회귀: 기존 10종의 PC/터치 공격·스킬·후퇴·재배치 20회, 스킬 대상 대기/비활성 탭/정상 발동, 10초·3초 준비·정지·재시작, 키보드·두 손가락·취소, 540×720/390×844/640×360의 카드 쓸기와 수동 정지를 통과했습니다. PC/터치 각 10회 재시작/복귀 후 HUD·프레임·리스너 정리와 프로덕션 로딩을 통과했으며 거부 명령·브라우저 오류/경고는 0건입니다. 정리 검사의 재시작 대기는 기본 10초 준비 시간을 반영했고 과거 스크린샷을 덮어쓰지 않도록 검증 파일 이름을 분리했습니다.
+  결과: [두 선택 방식](../verification/t4.11-unit-selection.json), [20회 캐릭터](../verification/t4.11-characters.json), [대상 대기](../verification/t4.11-battle-ui.json), [준비](../verification/t4.11-preparation.json), [좁은 화면](../verification/t4.11-narrow-screen.json), [세션 정리](../verification/t4.11-app-flow.json), [프로덕션](../verification/t4.11-production.json). 화면: [카드 정보](../verification/t4.11-touch-740x360-card-info.png), [유닛 스킬 조작](../verification/t4.11-touch-740x360-deployed-ready.png), [세로 화면](../verification/t4.11-touch-390x844-deployed-ready.png).
+
 ## M5 확장 (방향만 정해 둠)
 
 - 모바일 성능 최적화, PWA(오프라인 실행)

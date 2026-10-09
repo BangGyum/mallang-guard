@@ -1,0 +1,114 @@
+[
+  {
+    "viewport": "mouse-1920x1080",
+    "cards": 10,
+    "preview": {
+      "right": 8,
+      "bottom": 7.625,
+      "topClear": true
+    },
+    "charging": {
+      "fits": true,
+      "avoidsUnit": true,
+      "buttons": true,
+      "skillHeight": 65
+    },
+    "edge": {
+      "fits": true,
+      "avoidsUnit": true,
+      "buttons": true,
+      "skillHeight": 65
+    },
+    "tapDeploy": true,
+    "dragDeploy": true,
+    "manualSkill": true,
+    "retreat": true,
+    "unavailableInfo": true,
+    "rejected": [],
+    "errors": []
+  },
+  {
+    "viewport": "touch-844x390",
+    "cards": 10,
+    "preview": {
+      "right": 8,
+      "bottom": 8,
+      "topClear": true
+    },
+    "charging": {
+      "fits": true,
+      "avoidsUnit": true,
+      "buttons": true,
+      "skillHeight": 65
+    },
+    "edge": {
+      "fits": true,
+      "avoidsUnit": true,
+      "buttons": true,
+      "skillHeight": 65
+    },
+    "tapDeploy": true,
+    "dragDeploy": true,
+    "manualSkill": true,
+    "retreat": true,
+    "unavailableInfo": true,
+    "rejected": [],
+    "errors": []
+  },
+  {
+    "viewport": "touch-740x360",
+    "cards": 10,
+    "preview": {
+      "right": 8,
+      "bottom": 8,
+      "topClear": true
+    },
+    "charging": {
+      "fits": true,
+      "avoidsUnit": true,
+      "buttons": true,
+      "skillHeight": 65
+    },
+    "edge": {
+      "fits": true,
+      "avoidsUnit": true,
+      "buttons": true,
+      "skillHeight": 65
+    },
+    "tapDeploy": true,
+    "dragDeploy": true,
+    "manualSkill": true,
+    "retreat": true,
+    "unavailableInfo": true,
+    "rejected": [],
+    "errors": []
+  },
+  {
+    "viewport": "touch-390x844",
+    "cards": 10,
+    "preview": {
+      "right": 8,
+      "bottom": 7.625,
+      "topClear": true
+    },
+    "charging": {
+      "fits": true,
+      "avoidsUnit": true,
+      "buttons": true,
+      "skillHeight": 65
+    },
+    "edge": {
+      "fits": true,
+      "avoidsUnit": true,
+      "buttons": true,
+      "skillHeight": 65
+    },
+    "tapDeploy": true,
+    "dragDeploy": true,
+    "manualSkill": true,
+    "retreat": true,
+    "unavailableInfo": true,
+    "rejected": [],
+    "errors": []
+  }
+]

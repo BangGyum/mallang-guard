@@ -2,6 +2,8 @@ import assert from 'node:assert/strict';
 import { chromium } from 'playwright';
 import { drag, enterBattle, frame, pause, tilePoint } from './helpers.mjs';
 
+const prefix = process.env.MALLANG_SCREENSHOT_PREFIX ?? 'defense';
+
 const browser = await chromium.launch({
   channel: 'msedge',
   headless: true,
@@ -40,7 +42,7 @@ try {
     assert.equal(await page.locator('.aim-directions').isVisible(), true);
     await page.keyboard.press('ArrowLeft');
     await frame(page);
-    await page.screenshot({ path: `docs/verification/defense-${mobile ? 'mobile' : 'desktop'}-aim.png` });
+    await page.screenshot({ path: `docs/verification/${prefix}-${mobile ? 'mobile' : 'desktop'}-aim.png` });
     await page.keyboard.press('Escape');
     await frame(page);
     assert.equal(await page.locator('.aim-directions').isVisible(), false);

@@ -1,0 +1,265 @@
+.roster-panel {
+  position: absolute;
+  z-index: 2;
+  width: 312px;
+  max-width: calc(100% - 16px);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid #d2dfce;
+  border-top: 4px solid var(--unit-color);
+  border-radius: 16px;
+  background: #fffdf5;
+  box-shadow: 0 8px 24px #365f4930;
+  pointer-events: auto;
+}
+.roster-panel[hidden] {
+  display: none;
+}
+.roster-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.roster-avatar {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+}
+.roster-avatar span,
+.roster-avatar svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.roster-identity {
+  flex: 1;
+  min-width: 0;
+}
+.roster-name {
+  display: block;
+  color: #294c3b;
+  font-size: 20px;
+}
+.roster-role {
+  font-size: 11px;
+  color: #526b5d;
+}
+.roster-close {
+  padding: 0;
+  width: 44px;
+  background: transparent;
+  border: 0;
+  font-size: 23px;
+}
+.roster-details {
+  overflow-y: auto;
+  min-height: 0;
+  scrollbar-width: thin;
+}
+.roster-panel p {
+  margin: 0;
+}
+.roster-stats {
+  white-space: pre-line;
+  padding: 7px;
+  border-radius: 8px;
+  background: #eef3eb;
+  font-size: 11px;
+  line-height: 1.6;
+}
+.roster-skill-name {
+  display: block;
+  margin: 8px 0 4px;
+  font-size: 16px;
+  color: #2f493a;
+}
+.roster-skill-description {
+  font-size: 12px;
+  line-height: 1.5;
+  word-break: keep-all;
+}
+.roster-charge {
+  display: block;
+  margin-top: 5px;
+  font-size: 10px;
+  color: #587260;
+}
+.roster-deploy-hint {
+  flex-shrink: 0;
+  padding-top: 7px;
+  border-top: 1px solid #e1e8dc;
+  font-size: 11px;
+  color: #57705e;
+}
+.roster-panel[data-deploy-available="false"] .roster-deploy-hint {
+  color: #a26646;
+}
+.deploy-card[data-selected="true"] {
+  outline: 3px solid #d3a34f;
+  outline-offset: -3px;
+}
+
+.unit-panel.is-deployed {
+  width: 240px;
+  border-radius: 14px;
+}
+.is-deployed .unit-popup-card {
+  padding: 8px;
+  gap: 4px;
+}
+.is-deployed .unit-popup-header {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  gap: 6px;
+  padding-right: 44px;
+}
+.is-deployed .unit-popup-close {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 44px;
+  height: 44px;
+}
+.is-deployed .unit-popup-avatar {
+  flex-basis: 28px;
+  height: 28px;
+  border-radius: 7px;
+}
+.is-deployed .unit-popup-name {
+  font-size: 16px;
+}
+.is-deployed .unit-description {
+  font-size: 10px;
+  margin-top: 0;
+}
+.is-deployed .skill-heading {
+  gap: 6px;
+}
+.is-deployed .skill-icon {
+  flex-basis: 26px;
+  height: 26px;
+  border-radius: 6px;
+}
+.is-deployed .skill-icon .battle-icon {
+  width: 18px;
+  height: 18px;
+}
+.is-deployed .skill-name {
+  font-size: 14px;
+}
+.is-deployed .skill-meta {
+  font-size: 9px;
+  margin: 0;
+}
+.is-deployed .unit-info-details {
+  margin: 0;
+}
+.is-deployed .skill-description {
+  display: none;
+}
+.is-deployed .unit-stats {
+  padding: 3px 5px;
+  margin: 0;
+  font-size: 10px;
+  line-height: 1.4;
+}
+.is-deployed .unit-disruption {
+  font-size: 9px;
+}
+.is-deployed .skill-meter {
+  margin: 0;
+  padding: 4px 6px;
+}
+.is-deployed .skill-meter-label {
+  font-size: 10px;
+}
+.is-deployed .skill-gauge {
+  height: 5px;
+  margin-top: 3px;
+}
+.is-deployed .unit-popup-actions {
+  gap: 6px;
+}
+.is-deployed .unit-popup-actions button {
+  flex-direction: column;
+  padding: 5px;
+  gap: 2px;
+  font-size: 11px;
+}
+.is-deployed .unit-retreat {
+  flex: 0 0 56px;
+}
+.is-deployed .retreat-refund {
+  display: flex;
+  align-items: center;
+  font-size: 9px;
+}
+.is-deployed .skill-button,
+.is-deployed .skill-automatic {
+  min-height: 64px;
+  border-radius: 12px;
+}
+.is-deployed .skill-button .battle-icon {
+  width: 26px;
+  height: 26px;
+}
+@media (max-height: 500px) {
+  .is-deployed .unit-popup-name {
+    font-size: 14px;
+    line-height: 1.1;
+  }
+  .is-deployed .unit-description {
+    font-size: 9px;
+    line-height: 1.1;
+  }
+  .is-deployed .unit-popup-card {
+    padding: 6px;
+    gap: 2px;
+  }
+  .is-deployed .skill-name {
+    font-size: 13px;
+  }
+  .is-deployed .skill-meta {
+    font-size: 8px;
+  }
+  .is-deployed .skill-meter {
+    padding: 3px 5px;
+  }
+  .is-deployed .skill-gauge {
+    height: 4px;
+    margin-top: 2px;
+  }
+  .is-deployed .skill-button,
+  .is-deployed .skill-automatic {
+    min-height: 60px;
+  }
+  .roster-panel {
+    width: 264px;
+    padding: 8px;
+    gap: 4px;
+  }
+  .roster-avatar {
+    width: 32px;
+    height: 32px;
+  }
+  .roster-name {
+    font-size: 16px;
+  }
+  .roster-stats {
+    font-size: 10px;
+    padding: 5px;
+    line-height: 1.4;
+  }
+  .roster-skill-name {
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  .roster-skill-description {
+    font-size: 10px;
+  }
+}

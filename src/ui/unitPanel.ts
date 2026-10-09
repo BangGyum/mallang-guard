@@ -15,7 +15,7 @@ export function createUnitPanel(
   battle: Battle,
   actions: { retreat(): void; activateSkill(): void; close(): void },
 ) {
-  const panel = element('div', 'unit-panel');
+  const panel = element('div', 'unit-panel is-deployed');
   panel.hidden = true;
   panel.setAttribute('role', 'region');
   const card = element('div', 'unit-popup-card');
@@ -26,7 +26,7 @@ export function createUnitPanel(
   const name = element('strong', 'unit-popup-name');
   const description = element('p', 'unit-description');
   const close = button('×', actions.close, 'unit-popup-close');
-  close.setAttribute('aria-label', '캐릭터 정보 닫기');
+  close.setAttribute('aria-label', '유닛 선택 닫기');
   identity.append(name, description);
   header.append(avatar, identity, close);
   const skillHeading = element('div', 'skill-heading');
@@ -54,7 +54,9 @@ export function createUnitPanel(
   const automatic = element('span', 'skill-automatic', '자동 발동');
   const retreat = button('', actions.retreat, 'unit-retreat');
   const refundAmount = element('span', '');
-  retreat.append(battleIcon('retreat'), '후퇴 +', refundAmount, acornIcon());
+  const refund = element('span', 'retreat-refund');
+  refund.append('+', refundAmount, acornIcon());
+  retreat.append(battleIcon('retreat'), element('span', '', '후퇴'), refund);
   const buttons = element('div', 'unit-popup-actions');
   buttons.append(retreat, activate, automatic);
   details.append(skillDescription, stats, disruption);
@@ -81,17 +83,11 @@ export function createUnitPanel(
         // 유닛 전환 시에도 짧게 열리지만, 매 프레임 애니메이션을 재시작하지 않습니다.
         for (const animation of card.getAnimations()) animation.cancel();
         if (!reducedMotion())
-          card.animate(
-            [
-              { opacity: 0, transform: 'translateY(6px) scale(.96)' },
-              { opacity: 1, transform: 'none' },
-            ],
-            { duration: 160, easing: 'ease-out' },
-          );
+          card.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 160, easing: 'ease-out' });
         selectedUid = uid;
       }
       panel.dataset.unitId = def.id;
-      panel.setAttribute('aria-label', `${def.name} 캐릭터 정보`);
+      panel.setAttribute('aria-label', `${def.name} 스킬 조작`);
       name.textContent = def.name;
       for (const node of [panel, marker]) node.style.setProperty('--unit-color', ROLE_COLORS[def.role]);
       description.textContent = `${def.animal} · ${ROLE_NAMES[def.role]}`;
@@ -133,9 +129,9 @@ export function createUnitPanel(
             ? '스킬 발동'
             : '대상 대기'
           : '스킬 충전 중';
-      const refund = Math.min(DP_MAX - battle.state.dp, Math.floor(def.cost * RETREAT_REFUND_RATIO));
-      refundAmount.textContent = String(refund);
-      retreat.setAttribute('aria-label', `후퇴, 도토리 ${refund}개 환급`);
+      const refundValue = Math.min(DP_MAX - battle.state.dp, Math.floor(def.cost * RETREAT_REFUND_RATIO));
+      refundAmount.textContent = String(refundValue);
+      retreat.setAttribute('aria-label', `후퇴, 도토리 ${refundValue}개 환급`);
       retreat.disabled = battle.state.phase !== 'running';
       const anchor = placeUnitPopup(root, panel, point);
       marker.style.left = `${anchor.x}px`;
