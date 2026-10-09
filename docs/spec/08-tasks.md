@@ -449,6 +449,14 @@
 - 캐릭터/화면: PC·터치 10종 총 20회의 실제 공격·자연 충전·스킬 발동/종료·후퇴/재배치, PC·844×390·740×360·390×844의 카드/유닛 정보와 버튼 노출·토리 발동 자체의 0 지급·환급 없음, 16종 미리보기/보상·41개 그림, 추가 PC·터치 입력/210마리 완주에서 오류/경고 0건입니다. 검증 도구는 HMR 후 앱이 쓰는 전투 클래스를 관찰하고 자원/재배치 준비를 실제 게임 조건으로 기다립니다. 최종 check/lint/test/build와 프로덕션 경로의 10개 초상화·16종 미리보기·처치 수입 표시·50웨이브·WebGL·나가기까지 통과했습니다.
   결과: [PC 완주](../verification/t4.14-campaign.json), [터치 완주](../verification/t4.14-touch-campaign.json), [20회 캐릭터](../verification/t4.14-characters.json), [4화면 선택](../verification/t4.14-unit-selection.json), [16종/보상](../verification/t4.14-enemy-roster.json), [추가 입력](../verification/t4.14-input.json), [프로덕션](../verification/t4.14-production.json). 화면: [세 입구](../verification/t4.14-desktop-large-map-battle.png), [작은 화면 스킬/자원](../verification/t4.14-touch-740x360-deployed-ready.png), [중간보스](../verification/t4.14-enemy-roster.png).
 
+### [x] T4.15 1·2 정원 중후반 압박
+- 사용자 요청: 1·2번이 특히 중후반에 너무 쉬운지 확인 후 수정합니다.
+- 읽을 문서: 01·03·07·09의 데이터 계약·50웨이브·초반 보존·실제 비용/SP·기능 검증.
+- 구현: 공통 타입과 전투 규칙을 유지하고 첫 5웨이브 이후 50웨이브 전체를 JSON에 직접 작성합니다. 1번은 426마리, 2번은 497마리이며 단계적으로 밀도를 늘리고 2번의 양쪽 지상/공중 진입을 겹칩니다. 맵·초기 예산·개별 전투 수치·3~7번은 유지합니다.
+- 난이도: 기존 4인 무조작과 스킬 없는 7인은 중후반에 실패하며 1초 반응 지연의 자연 충전 스킬 공략은 모두 푸딩 3개로 완주합니다. 1번 2초 지연 공략은 푸딩 2개, 2번은 2초 지연도 푸딩 3개입니다.
+- 검증: 자동 테스트 60개 파일 954개와 check/lint/build가 통과했습니다. 초반/예산 보존·단계별 증가·동시 진입·후반 공백/동시 적·15분/10배 길이·양성/음성 공략·결정론을 검사합니다. Edge PC 1920×1080·터치 에뮬레이션 844×390의 1→2 총 4회는 푸딩 3개·누수/거부 명령 0으로 완주하며 별 6개 저장/복원·3번 해금·재도전 패배 시 최고 기록 유지를 통과했습니다. 추가 PC/터치 입력 2회는 배치·잘못된 타일·후퇴 0 환급·쿨다운·스킬·회전을 확인하고 5인 조합의 후반 패배가 클리어 기록을 만들지 않는지 검사합니다. 프로덕션 경로의 10개 초상화·50웨이브·처치 수입·WebGL·나가기도 통과했으며 브라우저 오류/경고는 0건입니다.
+  기록: [수정 전](../verification/t4.15-pressure-before.json), [공략 비교](../verification/t4.15-pressure-after.json), [0~2초 반응](../verification/t4.15-pressure-reaction.json), [PC·터치 완주](../verification/t4.15-campaign.json), [추가 입력](../verification/t4.15-input.json), [프로덕션](../verification/t4.15-production.json). 화면: [1번 후반](../verification/t4.15-desktop-stage-1-pressure.png), [터치 2번 후반](../verification/t4.15-mobile-stage-2-pressure.png), [배포용 빌드](../verification/t4.15-production.png).
+
 ## M5 확장 (방향만 정해 둠)
 
 - 모바일 성능 최적화, PWA(오프라인 실행)

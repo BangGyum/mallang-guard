@@ -1,0 +1,69 @@
+[
+  {
+    "id": "stage-1",
+    "name": "1-1 푸딩 창고 앞마당",
+    "map": ["##HH###HH##", "S....H....#", "#HH#.H.#H.#", "#HH#...#H.G", "####HHH#..#", "###########"],
+    "startDp": 10,
+    "life": 3,
+    "deployLimit": 7,
+    "routes": {
+      "ground": {
+        "from": [0, 1],
+        "to": [10, 3]
+      },
+      "air": {
+        "from": [0, 1],
+        "to": [10, 3],
+        "flying": true
+      }
+    },
+    "spawns": [
+      { "wave": 1, "atSec": 3, "enemy": "jelly", "count": 3, "intervalSec": 3, "route": "ground" },
+      { "wave": 2, "atSec": 20, "enemy": "jelly", "count": 4, "intervalSec": 2.5, "route": "ground" },
+      { "wave": 3, "atSec": 36, "enemy": "crow", "count": 2, "intervalSec": 4, "route": "air" },
+      { "wave": 3, "atSec": 45, "enemy": "hardJelly", "count": 1, "intervalSec": 0, "route": "ground" },
+      { "wave": 4, "atSec": 56, "enemy": "jelly", "count": 5, "intervalSec": 2, "route": "ground" },
+      { "wave": 4, "atSec": 62, "enemy": "crow", "count": 1, "intervalSec": 0, "route": "air" },
+      { "wave": 5, "atSec": 76, "enemy": "hardJelly", "count": 2, "intervalSec": 5, "route": "ground" },
+      { "wave": 5, "atSec": 80, "enemy": "jelly", "count": 3, "intervalSec": 2, "route": "ground" }
+    ]
+  },
+  {
+    "id": "stage-2",
+    "name": "1-2 두 갈래 산책길",
+    "description": "두 출현 지점의 적을 번갈아 막아요. 먼저 도토리를 모아 두 길에 전력을 나눠요.",
+    "startDp": 18,
+    "routes": {
+      "upper": {
+        "from": [0, 2],
+        "via": [[2, 2], [2, 1], [8, 1], [8, 2]],
+        "to": [10, 2]
+      },
+      "lower": {
+        "from": [0, 4],
+        "via": [[2, 4], [8, 4], [8, 2]],
+        "to": [10, 2]
+      },
+      "air": {
+        "from": [0, 2],
+        "to": [10, 2],
+        "flying": true
+      }
+    },
+    "spawns": [
+      { "wave": 1, "atSec": 3, "enemy": "jelly", "count": 3, "intervalSec": 4, "route": "upper" },
+      { "wave": 2, "atSec": 18, "enemy": "jelly", "count": 4, "intervalSec": 3, "route": "lower" },
+      { "wave": 3, "atSec": 32, "enemy": "hardJelly", "count": 2, "intervalSec": 6, "route": "upper" },
+      { "wave": 3, "atSec": 36, "enemy": "crow", "count": 2, "intervalSec": 5, "route": "air" },
+      { "wave": 4, "atSec": 49, "enemy": "jelly", "count": 4, "intervalSec": 2.5, "route": "upper" },
+      { "wave": 4, "atSec": 50, "enemy": "jelly", "count": 4, "intervalSec": 2.5, "route": "lower" },
+      { "wave": 5, "atSec": 70, "enemy": "hardJelly", "count": 2, "intervalSec": 5, "route": "lower" },
+      { "wave": 5, "atSec": 75, "enemy": "crow", "count": 3, "intervalSec": 4, "route": "air" },
+      { "wave": 3, "atSec": 42, "enemy": "dashJelly", "count": 2, "intervalSec": 3, "route": "lower" },
+      { "wave": 3, "atSec": 35, "enemy": "crystalJelly", "count": 1, "intervalSec": 0, "route": "upper" }
+    ],
+    "map": ["###########", "#H.......H#", "S..HH#H#..G", "#H.##H#H.H#", "S........##", "####H##H###"],
+    "life": 3,
+    "deployLimit": 7
+  }
+]

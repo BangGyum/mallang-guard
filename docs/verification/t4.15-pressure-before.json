@@ -1,0 +1,2998 @@
+{
+  "source": "actual Battle rules in Edge; legal commands; no state mutations",
+  "results": [
+    {
+      "stage": "stage-1",
+      "variant": "golden",
+      "phase": "won",
+      "life": 3,
+      "killed": 210,
+      "leaked": 0,
+      "seconds": 906.1,
+      "lastInputSec": 58.56666666666667,
+      "capFirstSec": 140,
+      "manualSkills": 0,
+      "deployed": [
+        {
+          "unit": "squirrel",
+          "atSec": 0,
+          "tile": {
+            "x": 2,
+            "y": 0
+          },
+          "dir": "down"
+        },
+        {
+          "unit": "penguin",
+          "atSec": 12,
+          "tile": {
+            "x": 5,
+            "y": 2
+          },
+          "dir": "left"
+        },
+        {
+          "unit": "bunny",
+          "atSec": 27,
+          "tile": {
+            "x": 3,
+            "y": 0
+          },
+          "dir": "down"
+        },
+        {
+          "unit": "sheep",
+          "atSec": 44,
+          "tile": {
+            "x": 2,
+            "y": 2
+          },
+          "dir": "up"
+        },
+        {
+          "unit": "cat",
+          "atSec": 58.56666666666667,
+          "tile": {
+            "x": 6,
+            "y": 4
+          },
+          "dir": "up"
+        }
+      ],
+      "byUnit": [
+        {
+          "unit": "squirrel",
+          "attacks": 300
+        },
+        {
+          "unit": "penguin",
+          "attacks": 116
+        },
+        {
+          "unit": "bunny",
+          "attacks": 50
+        },
+        {
+          "unit": "sheep",
+          "attacks": 241
+        },
+        {
+          "unit": "cat",
+          "attacks": 0
+        }
+      ],
+      "rejected": [],
+      "cycles": [
+        {
+          "cycle": 1,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.48,
+          "emptyPercent": 58.8,
+          "averageLifetimeSec": 2.1,
+          "maxRouteProgressPercent": 26.7,
+          "dpEnd": 51,
+          "dpCapPercent": 0,
+          "reward": 108,
+          "manualSkills": 0,
+          "attacks": 77
+        },
+        {
+          "cycle": 2,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.35,
+          "emptyPercent": 72.4,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 46.2,
+          "reward": 48,
+          "manualSkills": 0,
+          "attacks": 70
+        },
+        {
+          "cycle": 3,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.35,
+          "emptyPercent": 72.4,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 70
+        },
+        {
+          "cycle": 4,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.35,
+          "emptyPercent": 72.4,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 70
+        },
+        {
+          "cycle": 5,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.35,
+          "emptyPercent": 72.4,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 70
+        },
+        {
+          "cycle": 6,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.35,
+          "emptyPercent": 72.4,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 70
+        },
+        {
+          "cycle": 7,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.35,
+          "emptyPercent": 72.4,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 70
+        },
+        {
+          "cycle": 8,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.35,
+          "emptyPercent": 72.4,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 70
+        },
+        {
+          "cycle": 9,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.35,
+          "emptyPercent": 72.4,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 70
+        },
+        {
+          "cycle": 10,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.36,
+          "emptyPercent": 71.2,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 70
+        }
+      ]
+    },
+    {
+      "stage": "stage-1",
+      "variant": "stop-after-60s",
+      "phase": "won",
+      "life": 3,
+      "killed": 210,
+      "leaked": 0,
+      "seconds": 906.1,
+      "lastInputSec": 58.56666666666667,
+      "capFirstSec": 140,
+      "manualSkills": 0,
+      "deployed": [
+        {
+          "unit": "squirrel",
+          "atSec": 0,
+          "tile": {
+            "x": 2,
+            "y": 0
+          },
+          "dir": "down"
+        },
+        {
+          "unit": "penguin",
+          "atSec": 12,
+          "tile": {
+            "x": 5,
+            "y": 2
+          },
+          "dir": "left"
+        },
+        {
+          "unit": "bunny",
+          "atSec": 27,
+          "tile": {
+            "x": 3,
+            "y": 0
+          },
+          "dir": "down"
+        },
+        {
+          "unit": "sheep",
+          "atSec": 44,
+          "tile": {
+            "x": 2,
+            "y": 2
+          },
+          "dir": "up"
+        },
+        {
+          "unit": "cat",
+          "atSec": 58.56666666666667,
+          "tile": {
+            "x": 6,
+            "y": 4
+          },
+          "dir": "up"
+        }
+      ],
+      "byUnit": [
+        {
+          "unit": "squirrel",
+          "attacks": 300
+        },
+        {
+          "unit": "penguin",
+          "attacks": 116
+        },
+        {
+          "unit": "bunny",
+          "attacks": 50
+        },
+        {
+          "unit": "sheep",
+          "attacks": 241
+        },
+        {
+          "unit": "cat",
+          "attacks": 0
+        }
+      ],
+      "rejected": [],
+      "cycles": [
+        {
+          "cycle": 1,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.48,
+          "emptyPercent": 58.8,
+          "averageLifetimeSec": 2.1,
+          "maxRouteProgressPercent": 26.7,
+          "dpEnd": 51,
+          "dpCapPercent": 0,
+          "reward": 108,
+          "manualSkills": 0,
+          "attacks": 77
+        },
+        {
+          "cycle": 2,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.35,
+          "emptyPercent": 72.4,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 46.2,
+          "reward": 48,
+          "manualSkills": 0,
+          "attacks": 70
+        },
+        {
+          "cycle": 3,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.35,
+          "emptyPercent": 72.4,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 70
+        },
+        {
+          "cycle": 4,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.35,
+          "emptyPercent": 72.4,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 70
+        },
+        {
+          "cycle": 5,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.35,
+          "emptyPercent": 72.4,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 70
+        },
+        {
+          "cycle": 6,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.35,
+          "emptyPercent": 72.4,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 70
+        },
+        {
+          "cycle": 7,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.35,
+          "emptyPercent": 72.4,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 70
+        },
+        {
+          "cycle": 8,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.35,
+          "emptyPercent": 72.4,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 70
+        },
+        {
+          "cycle": 9,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.35,
+          "emptyPercent": 72.4,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 70
+        },
+        {
+          "cycle": 10,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.36,
+          "emptyPercent": 71.2,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 70
+        }
+      ]
+    },
+    {
+      "stage": "stage-1",
+      "variant": "stop-after-first-cycle",
+      "phase": "won",
+      "life": 3,
+      "killed": 210,
+      "leaked": 0,
+      "seconds": 906.1,
+      "lastInputSec": 58.56666666666667,
+      "capFirstSec": 140,
+      "manualSkills": 0,
+      "deployed": [
+        {
+          "unit": "squirrel",
+          "atSec": 0,
+          "tile": {
+            "x": 2,
+            "y": 0
+          },
+          "dir": "down"
+        },
+        {
+          "unit": "penguin",
+          "atSec": 12,
+          "tile": {
+            "x": 5,
+            "y": 2
+          },
+          "dir": "left"
+        },
+        {
+          "unit": "bunny",
+          "atSec": 27,
+          "tile": {
+            "x": 3,
+            "y": 0
+          },
+          "dir": "down"
+        },
+        {
+          "unit": "sheep",
+          "atSec": 44,
+          "tile": {
+            "x": 2,
+            "y": 2
+          },
+          "dir": "up"
+        },
+        {
+          "unit": "cat",
+          "atSec": 58.56666666666667,
+          "tile": {
+            "x": 6,
+            "y": 4
+          },
+          "dir": "up"
+        }
+      ],
+      "byUnit": [
+        {
+          "unit": "squirrel",
+          "attacks": 300
+        },
+        {
+          "unit": "penguin",
+          "attacks": 116
+        },
+        {
+          "unit": "bunny",
+          "attacks": 50
+        },
+        {
+          "unit": "sheep",
+          "attacks": 241
+        },
+        {
+          "unit": "cat",
+          "attacks": 0
+        }
+      ],
+      "rejected": [],
+      "cycles": [
+        {
+          "cycle": 1,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.48,
+          "emptyPercent": 58.8,
+          "averageLifetimeSec": 2.1,
+          "maxRouteProgressPercent": 26.7,
+          "dpEnd": 51,
+          "dpCapPercent": 0,
+          "reward": 108,
+          "manualSkills": 0,
+          "attacks": 77
+        },
+        {
+          "cycle": 2,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.35,
+          "emptyPercent": 72.4,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 46.2,
+          "reward": 48,
+          "manualSkills": 0,
+          "attacks": 70
+        },
+        {
+          "cycle": 3,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.35,
+          "emptyPercent": 72.4,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 70
+        },
+        {
+          "cycle": 4,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.35,
+          "emptyPercent": 72.4,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 70
+        },
+        {
+          "cycle": 5,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.35,
+          "emptyPercent": 72.4,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 70
+        },
+        {
+          "cycle": 6,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.35,
+          "emptyPercent": 72.4,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 70
+        },
+        {
+          "cycle": 7,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.35,
+          "emptyPercent": 72.4,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 70
+        },
+        {
+          "cycle": 8,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.35,
+          "emptyPercent": 72.4,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 70
+        },
+        {
+          "cycle": 9,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.35,
+          "emptyPercent": 72.4,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 70
+        },
+        {
+          "cycle": 10,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.36,
+          "emptyPercent": 71.2,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 70
+        }
+      ]
+    },
+    {
+      "stage": "stage-1",
+      "variant": "deploy-only-2",
+      "phase": "lost",
+      "life": 0,
+      "killed": 21,
+      "leaked": 3,
+      "seconds": 107.7,
+      "lastInputSec": 12,
+      "capFirstSec": null,
+      "manualSkills": 0,
+      "deployed": [
+        {
+          "unit": "squirrel",
+          "atSec": 0,
+          "tile": {
+            "x": 2,
+            "y": 0
+          },
+          "dir": "down"
+        },
+        {
+          "unit": "penguin",
+          "atSec": 12,
+          "tile": {
+            "x": 5,
+            "y": 2
+          },
+          "dir": "left"
+        }
+      ],
+      "byUnit": [
+        {
+          "unit": "squirrel",
+          "attacks": 51
+        },
+        {
+          "unit": "penguin",
+          "attacks": 44
+        }
+      ],
+      "rejected": [],
+      "cycles": [
+        {
+          "cycle": 1,
+          "spawned": 21,
+          "killed": 18,
+          "peak": 4,
+          "averageAlive": 1.11,
+          "emptyPercent": 33.7,
+          "averageLifetimeSec": 2.75,
+          "maxRouteProgressPercent": 100,
+          "dpEnd": 79,
+          "dpCapPercent": 0,
+          "reward": 90,
+          "manualSkills": 0,
+          "attacks": 83
+        },
+        {
+          "cycle": 2,
+          "spawned": 3,
+          "killed": 3,
+          "peak": 3,
+          "averageAlive": 1.99,
+          "emptyPercent": 0.2,
+          "averageLifetimeSec": 1.63,
+          "maxRouteProgressPercent": 100,
+          "dpEnd": 94,
+          "dpCapPercent": 0,
+          "reward": 15,
+          "manualSkills": 0,
+          "attacks": 12
+        }
+      ]
+    },
+    {
+      "stage": "stage-1",
+      "variant": "deploy-only-3",
+      "phase": "lost",
+      "life": 0,
+      "killed": 63,
+      "leaked": 3,
+      "seconds": 289.7,
+      "lastInputSec": 27,
+      "capFirstSec": 115.13333333333334,
+      "manualSkills": 0,
+      "deployed": [
+        {
+          "unit": "squirrel",
+          "atSec": 0,
+          "tile": {
+            "x": 2,
+            "y": 0
+          },
+          "dir": "down"
+        },
+        {
+          "unit": "penguin",
+          "atSec": 12,
+          "tile": {
+            "x": 5,
+            "y": 2
+          },
+          "dir": "left"
+        },
+        {
+          "unit": "bunny",
+          "atSec": 27,
+          "tile": {
+            "x": 3,
+            "y": 0
+          },
+          "dir": "down"
+        }
+      ],
+      "byUnit": [
+        {
+          "unit": "squirrel",
+          "attacks": 142
+        },
+        {
+          "unit": "penguin",
+          "attacks": 122
+        },
+        {
+          "unit": "bunny",
+          "attacks": 31
+        }
+      ],
+      "rejected": [],
+      "cycles": [
+        {
+          "cycle": 1,
+          "spawned": 21,
+          "killed": 20,
+          "peak": 4,
+          "averageAlive": 0.77,
+          "emptyPercent": 44.3,
+          "averageLifetimeSec": 3.02,
+          "maxRouteProgressPercent": 37.5,
+          "dpEnd": 76,
+          "dpCapPercent": 0,
+          "reward": 102,
+          "manualSkills": 0,
+          "attacks": 94
+        },
+        {
+          "cycle": 2,
+          "spawned": 21,
+          "killed": 20,
+          "peak": 4,
+          "averageAlive": 0.98,
+          "emptyPercent": 32.2,
+          "averageLifetimeSec": 3.13,
+          "maxRouteProgressPercent": 100,
+          "dpEnd": 99,
+          "dpCapPercent": 73.5,
+          "reward": 23,
+          "manualSkills": 0,
+          "attacks": 92
+        },
+        {
+          "cycle": 3,
+          "spawned": 21,
+          "killed": 20,
+          "peak": 4,
+          "averageAlive": 0.93,
+          "emptyPercent": 34.4,
+          "averageLifetimeSec": 2.89,
+          "maxRouteProgressPercent": 100,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 97
+        },
+        {
+          "cycle": 4,
+          "spawned": 3,
+          "killed": 3,
+          "peak": 2,
+          "averageAlive": 1.29,
+          "emptyPercent": 0.2,
+          "averageLifetimeSec": 1.63,
+          "maxRouteProgressPercent": 100,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 12
+        }
+      ]
+    },
+    {
+      "stage": "stage-1",
+      "variant": "deploy-only-4",
+      "phase": "won",
+      "life": 3,
+      "killed": 210,
+      "leaked": 0,
+      "seconds": 906.1,
+      "lastInputSec": 44,
+      "capFirstSec": 119.03333333333333,
+      "manualSkills": 0,
+      "deployed": [
+        {
+          "unit": "squirrel",
+          "atSec": 0,
+          "tile": {
+            "x": 2,
+            "y": 0
+          },
+          "dir": "down"
+        },
+        {
+          "unit": "penguin",
+          "atSec": 12,
+          "tile": {
+            "x": 5,
+            "y": 2
+          },
+          "dir": "left"
+        },
+        {
+          "unit": "bunny",
+          "atSec": 27,
+          "tile": {
+            "x": 3,
+            "y": 0
+          },
+          "dir": "down"
+        },
+        {
+          "unit": "sheep",
+          "atSec": 44,
+          "tile": {
+            "x": 2,
+            "y": 2
+          },
+          "dir": "up"
+        }
+      ],
+      "byUnit": [
+        {
+          "unit": "squirrel",
+          "attacks": 300
+        },
+        {
+          "unit": "penguin",
+          "attacks": 116
+        },
+        {
+          "unit": "bunny",
+          "attacks": 50
+        },
+        {
+          "unit": "sheep",
+          "attacks": 241
+        }
+      ],
+      "rejected": [],
+      "cycles": [
+        {
+          "cycle": 1,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.48,
+          "emptyPercent": 58.8,
+          "averageLifetimeSec": 2.1,
+          "maxRouteProgressPercent": 26.7,
+          "dpEnd": 65,
+          "dpCapPercent": 0,
+          "reward": 108,
+          "manualSkills": 0,
+          "attacks": 77
+        },
+        {
+          "cycle": 2,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.35,
+          "emptyPercent": 72.4,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 69.2,
+          "reward": 34,
+          "manualSkills": 0,
+          "attacks": 70
+        },
+        {
+          "cycle": 3,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.35,
+          "emptyPercent": 72.4,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 70
+        },
+        {
+          "cycle": 4,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.35,
+          "emptyPercent": 72.4,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 70
+        },
+        {
+          "cycle": 5,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.35,
+          "emptyPercent": 72.4,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 70
+        },
+        {
+          "cycle": 6,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.35,
+          "emptyPercent": 72.4,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 70
+        },
+        {
+          "cycle": 7,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.35,
+          "emptyPercent": 72.4,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 70
+        },
+        {
+          "cycle": 8,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.35,
+          "emptyPercent": 72.4,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 70
+        },
+        {
+          "cycle": 9,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.35,
+          "emptyPercent": 72.4,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 70
+        },
+        {
+          "cycle": 10,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.36,
+          "emptyPercent": 71.2,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 70
+        }
+      ]
+    },
+    {
+      "stage": "stage-1",
+      "variant": "deploy-only-5",
+      "phase": "won",
+      "life": 3,
+      "killed": 210,
+      "leaked": 0,
+      "seconds": 906.1,
+      "lastInputSec": 58.56666666666667,
+      "capFirstSec": 140,
+      "manualSkills": 0,
+      "deployed": [
+        {
+          "unit": "squirrel",
+          "atSec": 0,
+          "tile": {
+            "x": 2,
+            "y": 0
+          },
+          "dir": "down"
+        },
+        {
+          "unit": "penguin",
+          "atSec": 12,
+          "tile": {
+            "x": 5,
+            "y": 2
+          },
+          "dir": "left"
+        },
+        {
+          "unit": "bunny",
+          "atSec": 27,
+          "tile": {
+            "x": 3,
+            "y": 0
+          },
+          "dir": "down"
+        },
+        {
+          "unit": "sheep",
+          "atSec": 44,
+          "tile": {
+            "x": 2,
+            "y": 2
+          },
+          "dir": "up"
+        },
+        {
+          "unit": "cat",
+          "atSec": 58.56666666666667,
+          "tile": {
+            "x": 6,
+            "y": 4
+          },
+          "dir": "up"
+        }
+      ],
+      "byUnit": [
+        {
+          "unit": "squirrel",
+          "attacks": 300
+        },
+        {
+          "unit": "penguin",
+          "attacks": 116
+        },
+        {
+          "unit": "bunny",
+          "attacks": 50
+        },
+        {
+          "unit": "sheep",
+          "attacks": 241
+        },
+        {
+          "unit": "cat",
+          "attacks": 0
+        }
+      ],
+      "rejected": [],
+      "cycles": [
+        {
+          "cycle": 1,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.48,
+          "emptyPercent": 58.8,
+          "averageLifetimeSec": 2.1,
+          "maxRouteProgressPercent": 26.7,
+          "dpEnd": 51,
+          "dpCapPercent": 0,
+          "reward": 108,
+          "manualSkills": 0,
+          "attacks": 77
+        },
+        {
+          "cycle": 2,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.35,
+          "emptyPercent": 72.4,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 46.2,
+          "reward": 48,
+          "manualSkills": 0,
+          "attacks": 70
+        },
+        {
+          "cycle": 3,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.35,
+          "emptyPercent": 72.4,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 70
+        },
+        {
+          "cycle": 4,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.35,
+          "emptyPercent": 72.4,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 70
+        },
+        {
+          "cycle": 5,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.35,
+          "emptyPercent": 72.4,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 70
+        },
+        {
+          "cycle": 6,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.35,
+          "emptyPercent": 72.4,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 70
+        },
+        {
+          "cycle": 7,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.35,
+          "emptyPercent": 72.4,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 70
+        },
+        {
+          "cycle": 8,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.35,
+          "emptyPercent": 72.4,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 70
+        },
+        {
+          "cycle": 9,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.35,
+          "emptyPercent": 72.4,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 70
+        },
+        {
+          "cycle": 10,
+          "spawned": 21,
+          "killed": 21,
+          "peak": 3,
+          "averageAlive": 0.36,
+          "emptyPercent": 71.2,
+          "averageLifetimeSec": 1.51,
+          "maxRouteProgressPercent": 18.5,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 70
+        }
+      ]
+    },
+    {
+      "stage": "stage-2",
+      "variant": "golden",
+      "phase": "won",
+      "life": 3,
+      "killed": 270,
+      "leaked": 0,
+      "seconds": 944.2,
+      "lastInputSec": 942.1333333333333,
+      "capFirstSec": 129.36666666666667,
+      "manualSkills": 71,
+      "deployed": [
+        {
+          "unit": "squirrel",
+          "atSec": 0,
+          "tile": {
+            "x": 3,
+            "y": 2
+          },
+          "dir": "up"
+        },
+        {
+          "unit": "penguin",
+          "atSec": 6.666666666666667,
+          "tile": {
+            "x": 9,
+            "y": 1
+          },
+          "dir": "down"
+        },
+        {
+          "unit": "sheep",
+          "atSec": 27.333333333333332,
+          "tile": {
+            "x": 7,
+            "y": 3
+          },
+          "dir": "right"
+        },
+        {
+          "unit": "bunny",
+          "atSec": 35.333333333333336,
+          "tile": {
+            "x": 4,
+            "y": 2
+          },
+          "dir": "right"
+        },
+        {
+          "unit": "cat",
+          "atSec": 48.2,
+          "tile": {
+            "x": 9,
+            "y": 3
+          },
+          "dir": "up"
+        },
+        {
+          "unit": "snail",
+          "atSec": 50.63333333333333,
+          "tile": {
+            "x": 5,
+            "y": 3
+          },
+          "dir": "right"
+        },
+        {
+          "unit": "bear",
+          "atSec": 53.9,
+          "tile": {
+            "x": 7,
+            "y": 5
+          },
+          "dir": "up"
+        }
+      ],
+      "byUnit": [
+        {
+          "unit": "squirrel",
+          "attacks": 330
+        },
+        {
+          "unit": "penguin",
+          "attacks": 99
+        },
+        {
+          "unit": "sheep",
+          "attacks": 134
+        },
+        {
+          "unit": "bunny",
+          "attacks": 69
+        },
+        {
+          "unit": "cat",
+          "attacks": 51
+        },
+        {
+          "unit": "snail",
+          "attacks": 249
+        },
+        {
+          "unit": "bear",
+          "attacks": 223
+        }
+      ],
+      "rejected": [],
+      "cycles": [
+        {
+          "cycle": 1,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.26,
+          "emptyPercent": 18.1,
+          "averageLifetimeSec": 7.94,
+          "maxRouteProgressPercent": 88,
+          "dpEnd": 66,
+          "dpCapPercent": 0,
+          "reward": 146,
+          "manualSkills": 8,
+          "attacks": 111
+        },
+        {
+          "cycle": 2,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.21,
+          "emptyPercent": 17.4,
+          "averageLifetimeSec": 7.77,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 63.8,
+          "reward": 33,
+          "manualSkills": 7,
+          "attacks": 116
+        },
+        {
+          "cycle": 3,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.21,
+          "emptyPercent": 17.4,
+          "averageLifetimeSec": 7.77,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 7,
+          "attacks": 116
+        },
+        {
+          "cycle": 4,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.21,
+          "emptyPercent": 17.4,
+          "averageLifetimeSec": 7.77,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 7,
+          "attacks": 116
+        },
+        {
+          "cycle": 5,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.21,
+          "emptyPercent": 17.4,
+          "averageLifetimeSec": 7.77,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 7,
+          "attacks": 116
+        },
+        {
+          "cycle": 6,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.21,
+          "emptyPercent": 17.4,
+          "averageLifetimeSec": 7.77,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 7,
+          "attacks": 116
+        },
+        {
+          "cycle": 7,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.21,
+          "emptyPercent": 17.4,
+          "averageLifetimeSec": 7.77,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 7,
+          "attacks": 116
+        },
+        {
+          "cycle": 8,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.21,
+          "emptyPercent": 17.4,
+          "averageLifetimeSec": 7.77,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 7,
+          "attacks": 116
+        },
+        {
+          "cycle": 9,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.21,
+          "emptyPercent": 17.4,
+          "averageLifetimeSec": 7.77,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 7,
+          "attacks": 116
+        },
+        {
+          "cycle": 10,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.35,
+          "emptyPercent": 12,
+          "averageLifetimeSec": 7.77,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 7,
+          "attacks": 116
+        }
+      ]
+    },
+    {
+      "stage": "stage-2",
+      "variant": "stop-after-60s",
+      "phase": "won",
+      "life": 3,
+      "killed": 270,
+      "leaked": 0,
+      "seconds": 945.5333333333333,
+      "lastInputSec": 53.9,
+      "capFirstSec": 129.36666666666667,
+      "manualSkills": 4,
+      "deployed": [
+        {
+          "unit": "squirrel",
+          "atSec": 0,
+          "tile": {
+            "x": 3,
+            "y": 2
+          },
+          "dir": "up"
+        },
+        {
+          "unit": "penguin",
+          "atSec": 6.666666666666667,
+          "tile": {
+            "x": 9,
+            "y": 1
+          },
+          "dir": "down"
+        },
+        {
+          "unit": "sheep",
+          "atSec": 27.333333333333332,
+          "tile": {
+            "x": 7,
+            "y": 3
+          },
+          "dir": "right"
+        },
+        {
+          "unit": "bunny",
+          "atSec": 35.333333333333336,
+          "tile": {
+            "x": 4,
+            "y": 2
+          },
+          "dir": "right"
+        },
+        {
+          "unit": "cat",
+          "atSec": 48.2,
+          "tile": {
+            "x": 9,
+            "y": 3
+          },
+          "dir": "up"
+        },
+        {
+          "unit": "snail",
+          "atSec": 50.63333333333333,
+          "tile": {
+            "x": 5,
+            "y": 3
+          },
+          "dir": "right"
+        },
+        {
+          "unit": "bear",
+          "atSec": 53.9,
+          "tile": {
+            "x": 7,
+            "y": 5
+          },
+          "dir": "up"
+        }
+      ],
+      "byUnit": [
+        {
+          "unit": "squirrel",
+          "attacks": 330
+        },
+        {
+          "unit": "penguin",
+          "attacks": 108
+        },
+        {
+          "unit": "sheep",
+          "attacks": 171
+        },
+        {
+          "unit": "bunny",
+          "attacks": 69
+        },
+        {
+          "unit": "cat",
+          "attacks": 80
+        },
+        {
+          "unit": "snail",
+          "attacks": 240
+        },
+        {
+          "unit": "bear",
+          "attacks": 242
+        }
+      ],
+      "rejected": [],
+      "cycles": [
+        {
+          "cycle": 1,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.26,
+          "emptyPercent": 17.6,
+          "averageLifetimeSec": 7.95,
+          "maxRouteProgressPercent": 88,
+          "dpEnd": 66,
+          "dpCapPercent": 0,
+          "reward": 146,
+          "manualSkills": 4,
+          "attacks": 115
+        },
+        {
+          "cycle": 2,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.15,
+          "emptyPercent": 17.5,
+          "averageLifetimeSec": 7.57,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 63.8,
+          "reward": 33,
+          "manualSkills": 0,
+          "attacks": 125
+        },
+        {
+          "cycle": 3,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.15,
+          "emptyPercent": 17.5,
+          "averageLifetimeSec": 7.57,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 125
+        },
+        {
+          "cycle": 4,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.15,
+          "emptyPercent": 17.5,
+          "averageLifetimeSec": 7.57,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 125
+        },
+        {
+          "cycle": 5,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.15,
+          "emptyPercent": 17.5,
+          "averageLifetimeSec": 7.57,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 125
+        },
+        {
+          "cycle": 6,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.15,
+          "emptyPercent": 17.5,
+          "averageLifetimeSec": 7.57,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 125
+        },
+        {
+          "cycle": 7,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.15,
+          "emptyPercent": 17.5,
+          "averageLifetimeSec": 7.57,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 125
+        },
+        {
+          "cycle": 8,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.15,
+          "emptyPercent": 17.5,
+          "averageLifetimeSec": 7.57,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 125
+        },
+        {
+          "cycle": 9,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.15,
+          "emptyPercent": 17.5,
+          "averageLifetimeSec": 7.57,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 125
+        },
+        {
+          "cycle": 10,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.26,
+          "emptyPercent": 13.5,
+          "averageLifetimeSec": 7.57,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 125
+        }
+      ]
+    },
+    {
+      "stage": "stage-2",
+      "variant": "stop-after-first-cycle",
+      "phase": "won",
+      "life": 3,
+      "killed": 270,
+      "leaked": 0,
+      "seconds": 945.5333333333333,
+      "lastInputSec": 88.93333333333334,
+      "capFirstSec": 129.36666666666667,
+      "manualSkills": 8,
+      "deployed": [
+        {
+          "unit": "squirrel",
+          "atSec": 0,
+          "tile": {
+            "x": 3,
+            "y": 2
+          },
+          "dir": "up"
+        },
+        {
+          "unit": "penguin",
+          "atSec": 6.666666666666667,
+          "tile": {
+            "x": 9,
+            "y": 1
+          },
+          "dir": "down"
+        },
+        {
+          "unit": "sheep",
+          "atSec": 27.333333333333332,
+          "tile": {
+            "x": 7,
+            "y": 3
+          },
+          "dir": "right"
+        },
+        {
+          "unit": "bunny",
+          "atSec": 35.333333333333336,
+          "tile": {
+            "x": 4,
+            "y": 2
+          },
+          "dir": "right"
+        },
+        {
+          "unit": "cat",
+          "atSec": 48.2,
+          "tile": {
+            "x": 9,
+            "y": 3
+          },
+          "dir": "up"
+        },
+        {
+          "unit": "snail",
+          "atSec": 50.63333333333333,
+          "tile": {
+            "x": 5,
+            "y": 3
+          },
+          "dir": "right"
+        },
+        {
+          "unit": "bear",
+          "atSec": 53.9,
+          "tile": {
+            "x": 7,
+            "y": 5
+          },
+          "dir": "up"
+        }
+      ],
+      "byUnit": [
+        {
+          "unit": "squirrel",
+          "attacks": 330
+        },
+        {
+          "unit": "penguin",
+          "attacks": 108
+        },
+        {
+          "unit": "sheep",
+          "attacks": 170
+        },
+        {
+          "unit": "bunny",
+          "attacks": 69
+        },
+        {
+          "unit": "cat",
+          "attacks": 78
+        },
+        {
+          "unit": "snail",
+          "attacks": 240
+        },
+        {
+          "unit": "bear",
+          "attacks": 241
+        }
+      ],
+      "rejected": [],
+      "cycles": [
+        {
+          "cycle": 1,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.26,
+          "emptyPercent": 18.1,
+          "averageLifetimeSec": 7.94,
+          "maxRouteProgressPercent": 88,
+          "dpEnd": 66,
+          "dpCapPercent": 0,
+          "reward": 146,
+          "manualSkills": 8,
+          "attacks": 111
+        },
+        {
+          "cycle": 2,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.15,
+          "emptyPercent": 17.5,
+          "averageLifetimeSec": 7.57,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 63.8,
+          "reward": 33,
+          "manualSkills": 0,
+          "attacks": 125
+        },
+        {
+          "cycle": 3,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.15,
+          "emptyPercent": 17.5,
+          "averageLifetimeSec": 7.57,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 125
+        },
+        {
+          "cycle": 4,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.15,
+          "emptyPercent": 17.5,
+          "averageLifetimeSec": 7.57,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 125
+        },
+        {
+          "cycle": 5,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.15,
+          "emptyPercent": 17.5,
+          "averageLifetimeSec": 7.57,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 125
+        },
+        {
+          "cycle": 6,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.15,
+          "emptyPercent": 17.5,
+          "averageLifetimeSec": 7.57,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 125
+        },
+        {
+          "cycle": 7,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.15,
+          "emptyPercent": 17.5,
+          "averageLifetimeSec": 7.57,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 125
+        },
+        {
+          "cycle": 8,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.15,
+          "emptyPercent": 17.5,
+          "averageLifetimeSec": 7.57,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 125
+        },
+        {
+          "cycle": 9,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.15,
+          "emptyPercent": 17.5,
+          "averageLifetimeSec": 7.57,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 125
+        },
+        {
+          "cycle": 10,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.26,
+          "emptyPercent": 13.5,
+          "averageLifetimeSec": 7.57,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 125
+        }
+      ]
+    },
+    {
+      "stage": "stage-2",
+      "variant": "deploy-only-2",
+      "phase": "lost",
+      "life": 0,
+      "killed": 13,
+      "leaked": 3,
+      "seconds": 58.03333333333333,
+      "lastInputSec": 6.666666666666667,
+      "capFirstSec": null,
+      "manualSkills": 0,
+      "deployed": [
+        {
+          "unit": "squirrel",
+          "atSec": 0,
+          "tile": {
+            "x": 3,
+            "y": 2
+          },
+          "dir": "up"
+        },
+        {
+          "unit": "penguin",
+          "atSec": 6.666666666666667,
+          "tile": {
+            "x": 9,
+            "y": 1
+          },
+          "dir": "down"
+        }
+      ],
+      "byUnit": [
+        {
+          "unit": "squirrel",
+          "attacks": 30
+        },
+        {
+          "unit": "penguin",
+          "attacks": 22
+        }
+      ],
+      "rejected": [],
+      "cycles": [
+        {
+          "cycle": 1,
+          "spawned": 22,
+          "killed": 13,
+          "peak": 7,
+          "averageAlive": 2.92,
+          "emptyPercent": 12.2,
+          "averageLifetimeSec": 7.35,
+          "maxRouteProgressPercent": 100,
+          "dpEnd": 63,
+          "dpCapPercent": 0,
+          "reward": 66,
+          "manualSkills": 0,
+          "attacks": 52
+        }
+      ]
+    },
+    {
+      "stage": "stage-2",
+      "variant": "deploy-only-3",
+      "phase": "lost",
+      "life": 0,
+      "killed": 35,
+      "leaked": 3,
+      "seconds": 147.03333333333333,
+      "lastInputSec": 27.333333333333332,
+      "capFirstSec": 89.5,
+      "manualSkills": 0,
+      "deployed": [
+        {
+          "unit": "squirrel",
+          "atSec": 0,
+          "tile": {
+            "x": 3,
+            "y": 2
+          },
+          "dir": "up"
+        },
+        {
+          "unit": "penguin",
+          "atSec": 6.666666666666667,
+          "tile": {
+            "x": 9,
+            "y": 1
+          },
+          "dir": "down"
+        },
+        {
+          "unit": "sheep",
+          "atSec": 27.333333333333332,
+          "tile": {
+            "x": 7,
+            "y": 3
+          },
+          "dir": "right"
+        }
+      ],
+      "byUnit": [
+        {
+          "unit": "squirrel",
+          "attacks": 58
+        },
+        {
+          "unit": "penguin",
+          "attacks": 45
+        },
+        {
+          "unit": "sheep",
+          "attacks": 33
+        }
+      ],
+      "rejected": [],
+      "cycles": [
+        {
+          "cycle": 1,
+          "spawned": 27,
+          "killed": 25,
+          "peak": 7,
+          "averageAlive": 2.47,
+          "emptyPercent": 13.8,
+          "averageLifetimeSec": 7.79,
+          "maxRouteProgressPercent": 100,
+          "dpEnd": 99,
+          "dpCapPercent": 5.8,
+          "reward": 119,
+          "manualSkills": 0,
+          "attacks": 92
+        },
+        {
+          "cycle": 2,
+          "spawned": 17,
+          "killed": 10,
+          "peak": 7,
+          "averageAlive": 2.44,
+          "emptyPercent": 13.6,
+          "averageLifetimeSec": 7.05,
+          "maxRouteProgressPercent": 100,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 44
+        }
+      ]
+    },
+    {
+      "stage": "stage-2",
+      "variant": "deploy-only-4",
+      "phase": "won",
+      "life": 3,
+      "killed": 270,
+      "leaked": 0,
+      "seconds": 948.2333333333333,
+      "lastInputSec": 35.333333333333336,
+      "capFirstSec": 89.5,
+      "manualSkills": 0,
+      "deployed": [
+        {
+          "unit": "squirrel",
+          "atSec": 0,
+          "tile": {
+            "x": 3,
+            "y": 2
+          },
+          "dir": "up"
+        },
+        {
+          "unit": "penguin",
+          "atSec": 6.666666666666667,
+          "tile": {
+            "x": 9,
+            "y": 1
+          },
+          "dir": "down"
+        },
+        {
+          "unit": "sheep",
+          "atSec": 27.333333333333332,
+          "tile": {
+            "x": 7,
+            "y": 3
+          },
+          "dir": "right"
+        },
+        {
+          "unit": "bunny",
+          "atSec": 35.333333333333336,
+          "tile": {
+            "x": 4,
+            "y": 2
+          },
+          "dir": "right"
+        }
+      ],
+      "byUnit": [
+        {
+          "unit": "squirrel",
+          "attacks": 330
+        },
+        {
+          "unit": "penguin",
+          "attacks": 301
+        },
+        {
+          "unit": "sheep",
+          "attacks": 240
+        },
+        {
+          "unit": "bunny",
+          "attacks": 69
+        }
+      ],
+      "rejected": [],
+      "cycles": [
+        {
+          "cycle": 1,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.41,
+          "emptyPercent": 13.8,
+          "averageLifetimeSec": 8.48,
+          "maxRouteProgressPercent": 91,
+          "dpEnd": 99,
+          "dpCapPercent": 5.8,
+          "reward": 134,
+          "manualSkills": 0,
+          "attacks": 94
+        },
+        {
+          "cycle": 2,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.36,
+          "emptyPercent": 13.8,
+          "averageLifetimeSec": 8.31,
+          "maxRouteProgressPercent": 91,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 94
+        },
+        {
+          "cycle": 3,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.36,
+          "emptyPercent": 13.8,
+          "averageLifetimeSec": 8.31,
+          "maxRouteProgressPercent": 91,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 94
+        },
+        {
+          "cycle": 4,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.36,
+          "emptyPercent": 13.8,
+          "averageLifetimeSec": 8.31,
+          "maxRouteProgressPercent": 91,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 94
+        },
+        {
+          "cycle": 5,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.36,
+          "emptyPercent": 13.8,
+          "averageLifetimeSec": 8.31,
+          "maxRouteProgressPercent": 91,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 94
+        },
+        {
+          "cycle": 6,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.36,
+          "emptyPercent": 13.8,
+          "averageLifetimeSec": 8.31,
+          "maxRouteProgressPercent": 91,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 94
+        },
+        {
+          "cycle": 7,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.36,
+          "emptyPercent": 13.8,
+          "averageLifetimeSec": 8.31,
+          "maxRouteProgressPercent": 91,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 94
+        },
+        {
+          "cycle": 8,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.36,
+          "emptyPercent": 13.8,
+          "averageLifetimeSec": 8.31,
+          "maxRouteProgressPercent": 91,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 94
+        },
+        {
+          "cycle": 9,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.36,
+          "emptyPercent": 13.8,
+          "averageLifetimeSec": 8.31,
+          "maxRouteProgressPercent": 91,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 94
+        },
+        {
+          "cycle": 10,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.41,
+          "emptyPercent": 12.2,
+          "averageLifetimeSec": 8.31,
+          "maxRouteProgressPercent": 91,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 94
+        }
+      ]
+    },
+    {
+      "stage": "stage-2",
+      "variant": "deploy-only-5",
+      "phase": "won",
+      "life": 3,
+      "killed": 270,
+      "leaked": 0,
+      "seconds": 946.6,
+      "lastInputSec": 48.2,
+      "capFirstSec": 105.63333333333334,
+      "manualSkills": 0,
+      "deployed": [
+        {
+          "unit": "squirrel",
+          "atSec": 0,
+          "tile": {
+            "x": 3,
+            "y": 2
+          },
+          "dir": "up"
+        },
+        {
+          "unit": "penguin",
+          "atSec": 6.666666666666667,
+          "tile": {
+            "x": 9,
+            "y": 1
+          },
+          "dir": "down"
+        },
+        {
+          "unit": "sheep",
+          "atSec": 27.333333333333332,
+          "tile": {
+            "x": 7,
+            "y": 3
+          },
+          "dir": "right"
+        },
+        {
+          "unit": "bunny",
+          "atSec": 35.333333333333336,
+          "tile": {
+            "x": 4,
+            "y": 2
+          },
+          "dir": "right"
+        },
+        {
+          "unit": "cat",
+          "atSec": 48.2,
+          "tile": {
+            "x": 9,
+            "y": 3
+          },
+          "dir": "up"
+        }
+      ],
+      "byUnit": [
+        {
+          "unit": "squirrel",
+          "attacks": 330
+        },
+        {
+          "unit": "penguin",
+          "attacks": 272
+        },
+        {
+          "unit": "sheep",
+          "attacks": 209
+        },
+        {
+          "unit": "bunny",
+          "attacks": 69
+        },
+        {
+          "unit": "cat",
+          "attacks": 120
+        }
+      ],
+      "rejected": [],
+      "cycles": [
+        {
+          "cycle": 1,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.36,
+          "emptyPercent": 15.5,
+          "averageLifetimeSec": 8.3,
+          "maxRouteProgressPercent": 88,
+          "dpEnd": 91,
+          "dpCapPercent": 0,
+          "reward": 140,
+          "manualSkills": 0,
+          "attacks": 100
+        },
+        {
+          "cycle": 2,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.31,
+          "emptyPercent": 15.5,
+          "averageLifetimeSec": 8.12,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 88.8,
+          "reward": 8,
+          "manualSkills": 0,
+          "attacks": 100
+        },
+        {
+          "cycle": 3,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.31,
+          "emptyPercent": 15.5,
+          "averageLifetimeSec": 8.12,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 100
+        },
+        {
+          "cycle": 4,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.31,
+          "emptyPercent": 15.5,
+          "averageLifetimeSec": 8.12,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 100
+        },
+        {
+          "cycle": 5,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.31,
+          "emptyPercent": 15.5,
+          "averageLifetimeSec": 8.12,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 100
+        },
+        {
+          "cycle": 6,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.31,
+          "emptyPercent": 15.5,
+          "averageLifetimeSec": 8.12,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 100
+        },
+        {
+          "cycle": 7,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.31,
+          "emptyPercent": 15.5,
+          "averageLifetimeSec": 8.12,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 100
+        },
+        {
+          "cycle": 8,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.31,
+          "emptyPercent": 15.5,
+          "averageLifetimeSec": 8.12,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 100
+        },
+        {
+          "cycle": 9,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.31,
+          "emptyPercent": 15.5,
+          "averageLifetimeSec": 8.12,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 100
+        },
+        {
+          "cycle": 10,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.39,
+          "emptyPercent": 12.4,
+          "averageLifetimeSec": 8.12,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 100
+        }
+      ]
+    },
+    {
+      "stage": "stage-2",
+      "variant": "deploy-only-7",
+      "phase": "won",
+      "life": 3,
+      "killed": 270,
+      "leaked": 0,
+      "seconds": 945.5333333333333,
+      "lastInputSec": 55.666666666666664,
+      "capFirstSec": 136.66666666666666,
+      "manualSkills": 0,
+      "deployed": [
+        {
+          "unit": "squirrel",
+          "atSec": 0,
+          "tile": {
+            "x": 3,
+            "y": 2
+          },
+          "dir": "up"
+        },
+        {
+          "unit": "penguin",
+          "atSec": 6.666666666666667,
+          "tile": {
+            "x": 9,
+            "y": 1
+          },
+          "dir": "down"
+        },
+        {
+          "unit": "sheep",
+          "atSec": 27.333333333333332,
+          "tile": {
+            "x": 7,
+            "y": 3
+          },
+          "dir": "right"
+        },
+        {
+          "unit": "bunny",
+          "atSec": 35.333333333333336,
+          "tile": {
+            "x": 4,
+            "y": 2
+          },
+          "dir": "right"
+        },
+        {
+          "unit": "cat",
+          "atSec": 48.2,
+          "tile": {
+            "x": 9,
+            "y": 3
+          },
+          "dir": "up"
+        },
+        {
+          "unit": "snail",
+          "atSec": 50.63333333333333,
+          "tile": {
+            "x": 5,
+            "y": 3
+          },
+          "dir": "right"
+        },
+        {
+          "unit": "bear",
+          "atSec": 55.666666666666664,
+          "tile": {
+            "x": 7,
+            "y": 5
+          },
+          "dir": "up"
+        }
+      ],
+      "byUnit": [
+        {
+          "unit": "squirrel",
+          "attacks": 330
+        },
+        {
+          "unit": "penguin",
+          "attacks": 109
+        },
+        {
+          "unit": "sheep",
+          "attacks": 171
+        },
+        {
+          "unit": "bunny",
+          "attacks": 69
+        },
+        {
+          "unit": "cat",
+          "attacks": 81
+        },
+        {
+          "unit": "snail",
+          "attacks": 240
+        },
+        {
+          "unit": "bear",
+          "attacks": 242
+        }
+      ],
+      "rejected": [],
+      "cycles": [
+        {
+          "cycle": 1,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.27,
+          "emptyPercent": 17.6,
+          "averageLifetimeSec": 7.98,
+          "maxRouteProgressPercent": 88,
+          "dpEnd": 60,
+          "dpCapPercent": 0,
+          "reward": 140,
+          "manualSkills": 0,
+          "attacks": 117
+        },
+        {
+          "cycle": 2,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.15,
+          "emptyPercent": 17.5,
+          "averageLifetimeSec": 7.57,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 56.1,
+          "reward": 39,
+          "manualSkills": 0,
+          "attacks": 125
+        },
+        {
+          "cycle": 3,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.15,
+          "emptyPercent": 17.5,
+          "averageLifetimeSec": 7.57,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 125
+        },
+        {
+          "cycle": 4,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.15,
+          "emptyPercent": 17.5,
+          "averageLifetimeSec": 7.57,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 125
+        },
+        {
+          "cycle": 5,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.15,
+          "emptyPercent": 17.5,
+          "averageLifetimeSec": 7.57,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 125
+        },
+        {
+          "cycle": 6,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.15,
+          "emptyPercent": 17.5,
+          "averageLifetimeSec": 7.57,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 125
+        },
+        {
+          "cycle": 7,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.15,
+          "emptyPercent": 17.5,
+          "averageLifetimeSec": 7.57,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 125
+        },
+        {
+          "cycle": 8,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.15,
+          "emptyPercent": 17.5,
+          "averageLifetimeSec": 7.57,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 125
+        },
+        {
+          "cycle": 9,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.15,
+          "emptyPercent": 17.5,
+          "averageLifetimeSec": 7.57,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 125
+        },
+        {
+          "cycle": 10,
+          "spawned": 27,
+          "killed": 27,
+          "peak": 6,
+          "averageAlive": 2.26,
+          "emptyPercent": 13.5,
+          "averageLifetimeSec": 7.57,
+          "maxRouteProgressPercent": 82.8,
+          "dpEnd": 99,
+          "dpCapPercent": 100,
+          "reward": 0,
+          "manualSkills": 0,
+          "attacks": 125
+        }
+      ]
+    }
+  ]
+}

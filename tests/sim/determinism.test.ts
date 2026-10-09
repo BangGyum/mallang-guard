@@ -5,15 +5,7 @@ import { runScenario, type Scenario } from '../helpers';
 const scenarios = import.meta.glob<Scenario>('../scenarios/*.json', { eager: true, import: 'default' });
 const clear = scenarios['../scenarios/stage-1-clear.json'];
 if (!clear) throw new Error('클리어 시나리오 없음');
-const withSkills: Scenario = {
-  ...clear,
-  commands: [
-    { atSec: 12, type: 'skill', unitId: 'squirrel' },
-    ...clear.commands,
-    { atSec: 32, type: 'skill', unitId: 'penguin' },
-  ],
-};
-const cases = [...Object.entries(scenarios), ['stage-1-skills', withSkills] as const];
+const cases = Object.entries(scenarios);
 
 describe('시나리오 결정론', () => {
   it.each(cases)('%s는 같은 시드로 반복하면 30틱 간격 해시와 이벤트가 같다', (_file, scenario) => {
@@ -33,11 +25,11 @@ describe('시나리오 결정론', () => {
     expect(flushed.state).toEqual(stepped.state);
   });
 
-  it('결정론 검증에 도토리 지급·눈덩이 스킬과 자동 지원 스킬이 실제 포함된다', () => {
-    const result = runScenario(content, withSkills);
+  it('결정론 검증에 처치 보상·냉각탄 포화와 자동 지원 스킬이 실제 포함된다', () => {
+    const result = runScenario(content, clear);
     expect(
       result.events.filter((event) => event.type === 'skillStart').map((event) => event.skillId),
     ).toEqual(expect.arrayContaining(['acornPickup', 'snowballBarrage', 'carrotSoup']));
-    expect(result.state).toMatchObject({ phase: 'won', life: 3, killed: 210, leaked: 0 });
+    expect(result.state).toMatchObject({ phase: 'won', life: 3, killed: 426, leaked: 0 });
   });
 });

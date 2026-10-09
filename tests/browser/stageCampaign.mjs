@@ -1,10 +1,12 @@
 import assert from 'node:assert/strict';
 import { readFile, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
+import { installCampaignAudit } from './campaignAudit.mjs';
 import { deploy, frame, pause, resume, tilePoint } from './helpers.mjs';
 
+const earlyOnly = process.argv.includes('--early');
 const scenarios = await Promise.all(
-  [1, 2, 3, 4, 5, 6, 7].map(async (level) => ({
+  (earlyOnly ? [1, 2] : [1, 2, 3, 4, 5, 6, 7]).map(async (level) => ({
     scenario: JSON.parse(await readFile(`tests/scenarios/stage-${level}-clear.json`, 'utf8')),
     stage: JSON.parse(await readFile(`src/data/stages/stage-${level}.json`, 'utf8')),
   })),
@@ -46,52 +48,12 @@ try {
     await page.goto('http://127.0.0.1:43195/');
     await page.locator('.title-screen').waitFor();
     assert(moduleUrl);
-    await page.evaluate(async (url) => {
-      const { Battle } = await import(url);
-      window.campaign = {
-        battle: null,
-        rejected: [],
-        seen: new Set(),
-        heals: 0,
-        shieldHits: 0,
-        rewards: 0,
-        invalidRewards: [],
-        rewarded: new Set(),
-      };
-      for (const name of ['step', 'flush']) {
-        const original = Battle.prototype[name];
-        Battle.prototype[name] = function (...args) {
-          const events = original.apply(this, args);
-          window.campaign.battle = this;
-          window.campaign.rejected.push(...events.filter((event) => event.type === 'commandRejected'));
-          for (const event of events) {
-            if (event.type === 'enemySpawn') window.campaign.seen.add(event.enemyId);
-            if (event.type === 'enemyHeal') window.campaign.heals++;
-            if (event.type === 'damage' && event.shieldDamage > 0) window.campaign.shieldHits++;
-            if (event.type === 'dpGain') {
-              const key = `${this.stage.definition.id}:${event.uid}`;
-              if (
-                event.source !== 'kill' ||
-                event.amount <= 0 ||
-                window.campaign.rewarded.has(key) ||
-                !events.some((entry) => entry.type === 'enemyDie' && entry.uid === event.uid)
-              )
-                window.campaign.invalidRewards.push(event);
-              window.campaign.rewarded.add(key);
-              window.campaign.rewards++;
-            }
-            if (event.type === 'unitRetreat' && event.refund !== 0)
-              window.campaign.invalidRewards.push(event);
-          }
-          return events;
-        };
-      }
-    }, moduleUrl);
+    await installCampaignAudit(page, moduleUrl);
     const click = async (locator) => (mobile ? locator.tap() : locator.click());
     const cdp = mobile ? await context.newCDPSession(page) : null;
     await click(page.getByRole('button', { name: '스테이지 선택', exact: true }));
-    assert.equal(await page.locator('.stage-card').count(), scenarios.length);
-    assert.equal(await page.locator('.stage-card:disabled').count(), scenarios.length - 1);
+    assert.equal(await page.locator('.stage-card').count(), 7);
+    assert.equal(await page.locator('.stage-card:disabled').count(), 6);
     assert(
       await page
         .locator('.stage-stars')
@@ -99,6 +61,7 @@ try {
     );
     await click(page.locator('.stage-card[data-stage-id="stage-1"]'));
     await page.locator('.deploy-bar').waitFor();
+    await page.locator('[data-action="pause"]').waitFor();
     await frame(page);
     for (const [index, { scenario, stage }] of scenarios.entries()) {
       await pause(page);
@@ -119,6 +82,7 @@ try {
         }
       }
       const placed = new Map();
+      let pressureCaptured = false;
       for (const command of scenario.commands) {
         const target = Math.round(command.atSec * 30);
         let tick = await page.evaluate(() => window.campaign.battle.state.tick);
@@ -133,6 +97,15 @@ try {
             tick = await page.evaluate(() => window.campaign.battle.state.tick);
           }
           await pause(page);
+        }
+        if (earlyOnly && !pressureCaptured && command.atSec >= (stage.id === 'stage-1' ? 637 : 665)) {
+          const enemies = await page.evaluate(() => window.campaign.battle.state.enemies.length);
+          if (enemies >= (stage.id === 'stage-1' ? 6 : 12)) {
+            await page.screenshot({
+              path: `docs/verification/${prefix}-${label}-${stage.id}-pressure.png`,
+            });
+            pressureCaptured = true;
+          }
         }
         if (command.type === 'deploy') {
           const tile = { x: command.tile[0], y: command.tile[1] };
@@ -218,6 +191,7 @@ try {
           shieldHits: window.campaign.shieldHits,
           rewards: window.campaign.rewards,
           invalidRewards: window.campaign.invalidRewards,
+          latePressure: window.campaign.latePressure[window.campaign.battle.stage.definition.id],
         };
       });
       assert.equal(result.life, 3);
@@ -241,27 +215,41 @@ try {
         await click(page.getByRole('button', { name: '다음 스테이지', exact: true }));
         await page.locator('.deploy-bar').waitFor();
         await frame(page);
-      } else assert.equal(await page.getByRole('button', { name: '다음 스테이지', exact: true }).count(), 0);
+      } else
+        assert.equal(
+          await page.getByRole('button', { name: '다음 스테이지', exact: true }).count(),
+          earlyOnly ? 1 : 0,
+        );
     }
     const completed = await page.evaluate(() => JSON.parse(localStorage.getItem('mallang-guard:v1')).stages);
-    assert.equal(await page.evaluate(() => window.campaign.seen.size), 16, '1→7에서 적 16종 모두 실제 등장');
-    assert((await page.evaluate(() => window.campaign.heals)) > 0, '실제 치유 발동');
-    assert((await page.evaluate(() => window.campaign.shieldHits)) > 0, '실제 보호막 피해');
+    assert.equal(await page.evaluate(() => window.campaign.seen.size), earlyOnly ? 5 : 16, '실제 적 종류');
+    if (!earlyOnly) {
+      assert((await page.evaluate(() => window.campaign.heals)) > 0, '실제 치유 발동');
+      assert((await page.evaluate(() => window.campaign.shieldHits)) > 0, '실제 보호막 피해');
+    }
     await click(page.getByRole('button', { name: '스테이지 선택', exact: true }));
-    assert.equal(await page.locator('.stage-card:disabled').count(), 0);
+    assert.equal(await page.locator('.stage-card:disabled').count(), earlyOnly ? 4 : 0);
     assert(
       await page
         .locator('.stage-stars')
-        .evaluateAll((nodes) => nodes.every((node) => node.textContent === '★★★')),
+        .evaluateAll(
+          (nodes, count) =>
+            nodes.every((node, index) => node.textContent === (index < count ? '★★★' : '☆☆☆')),
+          scenarios.length,
+        ),
     );
     await page.reload();
     await page.locator('.title-screen').waitFor();
     await click(page.getByRole('button', { name: '스테이지 선택', exact: true }));
-    assert.equal(await page.locator('.stage-card:disabled').count(), 0);
+    assert.equal(await page.locator('.stage-card:disabled').count(), earlyOnly ? 4 : 0);
     assert(
       await page
         .locator('.stage-stars')
-        .evaluateAll((nodes) => nodes.every((node) => node.textContent === '★★★')),
+        .evaluateAll(
+          (nodes, count) =>
+            nodes.every((node, index) => node.textContent === (index < count ? '★★★' : '☆☆☆')),
+          scenarios.length,
+        ),
     );
     await page.screenshot({ path: `docs/verification/${prefix}-${label}-all-stars.png` });
     await click(page.locator(`.stage-card[data-stage-id="${scenarios.at(-1).stage.id}"]`));
