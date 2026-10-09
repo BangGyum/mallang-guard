@@ -1,18 +1,18 @@
 [
   {
     "id": "acornPickup",
-    "name": "보급 요청",
-    "description": "즉시 도토리 +12",
+    "name": "전리품 수거",
+    "description": "12초 동안 토리의 사거리 안에서 처치된 적의 도토리 보상 +2. 발동만으로 도토리를 얻지는 않아요.",
     "charge": "auto",
     "spCost": 20,
     "spStart": 8,
     "trigger": "manual",
     "condition": "always",
-    "durationSec": 0,
+    "durationSec": 12,
     "effects": [
       {
-        "type": "gainDp",
-        "value": 12
+        "type": "killBounty",
+        "value": 2
       }
     ]
   },

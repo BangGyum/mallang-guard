@@ -2,6 +2,8 @@ import { describe, expect, it } from 'vitest';
 import { content, rawContent } from '../src/data';
 import { validateContent } from '../src/data/validate';
 import { parseStage } from '../src/data/validateStage';
+import { createBattle } from '../src/sim/battle';
+import { secToTicks } from '../src/sim/constants';
 import { runScenario, type Scenario } from './helpers';
 
 const scenarios = import.meta.glob<Scenario>('./scenarios/*-clear.json', { eager: true, import: 'default' });
@@ -26,10 +28,31 @@ describe('10배 길이의 스테이지', () => {
     const scenario = scenarios[`./scenarios/${stage.id}-clear.json`];
     if (!scenario) throw new Error('클리어 시나리오 없음');
     const once = validateContent({ ...rawContent, stages: [{ ...raw, waveRepeat: undefined }] });
-    const original = runScenario(once, {
-      ...scenario,
-      commands: scenario.commands.filter((command) => command.atSec < repeat.periodSec),
-    });
+    const original = createBattle(once, raw.id);
+    const commands = scenario.commands.filter((command) => command.atSec < repeat.periodSec);
+    let cursor = 0;
+    // 미래 웨이브를 기다리는 동안의 스킬 명령은 단일 주기가 끝난 뒤에는 실행하지 않는다.
+    while (original.state.phase === 'running' && original.state.tick < secToTicks(repeat.periodSec + 300)) {
+      while (commands[cursor] && secToTicks(commands[cursor]?.atSec ?? 0) === original.state.tick) {
+        const command = commands[cursor++];
+        if (!command) throw new Error('명령 없음');
+        if (command.type === 'deploy') {
+          original.enqueue({
+            type: 'deploy',
+            unitId: command.unitId,
+            tile: { x: command.tile[0], y: command.tile[1] },
+            dir: command.dir,
+          });
+        } else {
+          expect(original.flush().filter((event) => event.type === 'commandRejected')).toEqual([]);
+          const unit = original.state.units.find((unit) => unit.unitId === command.unitId);
+          if (!unit) throw new Error('배치된 유닛 없음');
+          original.enqueue({ type: command.type === 'skill' ? 'activateSkill' : 'retreat', uid: unit.uid });
+        }
+      }
+      expect(original.step().filter((event) => event.type === 'commandRejected')).toEqual([]);
+    }
+    expect(original.state).toMatchObject({ phase: 'won', life: 3, leaked: 0 });
     const extended = runScenario(content, scenario);
     expect(extended.state.life).toBe(3);
     expect(extended.state.leaked).toBe(0);

@@ -77,6 +77,7 @@ describe('승패와 누수', () => {
     enemy.hp = 0; // T1.4의 공격 시스템이 적용할 피해를 대입합니다.
     expect(battle.step()).toEqual([
       { type: 'enemyDie', uid: enemy.uid },
+      { type: 'dpGain', amount: 5, source: 'kill', uid: enemy.uid },
       { type: 'battleEnd', result: 'won' },
     ]);
     expect(battle.state.killed).toBe(1);

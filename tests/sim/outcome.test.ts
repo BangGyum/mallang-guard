@@ -95,6 +95,7 @@ describe('battle outcome', () => {
     checkOutcome(stage, state, events);
     expect(events).toEqual([
       { type: 'enemyDie', uid: 1 },
+      { type: 'dpGain', amount: 5, source: 'kill', uid: 1 },
       { type: 'battleEnd', result: 'won' },
     ]);
     expect(state.killed).toBe(1);

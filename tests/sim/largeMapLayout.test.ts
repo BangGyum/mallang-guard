@@ -24,7 +24,11 @@ describe('큰 정원의 배치 구성', () => {
   if (!upper || !lower || !mid) throw new Error('실제 경로·사거리 없음');
   const upperTiles = routeTiles(upper);
   const lowerTiles = routeTiles(lower);
-  const path = new Set([...upperTiles, ...lowerTiles]);
+  const path = new Set(
+    [...routes]
+      .filter(([id]) => !battle.stage.definition.routes[id]?.flying)
+      .flatMap(([, route]) => [...routeTiles(route)]),
+  );
 
   it('위·아래 경로가 후방 골 근처에서만 합류한다', () => {
     const shared = [...upperTiles].filter((tile) => lowerTiles.has(tile));

@@ -72,6 +72,7 @@ try {
     assert.deepEqual(errors, []);
     assert.equal(await page.locator('[data-action="pause"]').count(), 1);
     await pause(page);
+    assert.equal(await page.locator('.dp-source').textContent(), '처치 보상');
     const units = await page.evaluate(() => [...window.selectionAudit.battle.content.units.values()]);
     const before = await page.evaluate(() => JSON.stringify(window.selectionAudit.battle.state));
     for (const unit of units) {
@@ -159,11 +160,14 @@ try {
     await select({ x: 2, y: 0 });
     assert.equal(await page.locator('.skill-button').isDisabled(), false);
     await page.screenshot({ path: `docs/verification/${prefix}-${label}-deployed-ready.png` });
+    const beforeSkill = await page.evaluate(() => window.selectionAudit.battle.state.dp);
     await click(page.locator('.skill-button'));
+    assert.equal(await page.evaluate(() => window.selectionAudit.battle.state.dp), beforeSkill);
+    assert.equal(await page.locator('.unit-panel').getAttribute('data-skill-state'), 'active');
     assert.equal(await page.evaluate(() => window.selectionAudit.skills), 1);
     assert.match(
       await page.locator('.skill-notice[data-unit-id="squirrel"]').textContent(),
-      /토리.*보급 요청/s,
+      /토리.*전리품 수거/s,
     );
     await click(page.locator('.unit-popup-close'));
     const cdp = touch ? await context.newCDPSession(page) : null;
@@ -184,7 +188,10 @@ try {
       await page.setViewportSize(viewport);
       await frame(page, 300);
     }
+    assert.equal(await page.locator('.retreat-note').textContent(), '환급 없음');
+    const beforeRetreat = await page.evaluate(() => window.selectionAudit.battle.state.dp);
     await click(page.locator('.unit-retreat'));
+    assert.equal(await page.evaluate(() => window.selectionAudit.battle.state.dp), beforeRetreat);
     assert.equal(await page.locator('.unit-panel').isVisible(), false);
     assert.equal(
       await page.locator('.deploy-card[data-unit-id="penguin"]').getAttribute('data-state'),
@@ -196,6 +203,9 @@ try {
     await frame(page);
     assert.equal(await page.locator('.roster-panel').isVisible(), false);
     if (!touch) {
+      await resume(page);
+      await frame(page, 12000);
+      await pause(page);
       await page.locator('.deploy-card[data-unit-id="mole"]').focus();
       await page.keyboard.press('Enter');
       await frame(page);

@@ -151,6 +151,9 @@ const C = {
   kingJelly: () =>
     C.jelly().replaceAll('#9B7BFF', '#8B83C8').replaceAll('#8463F0', '#6B63A5') +
     `<path d="M26 46L23 24L39 32L50 15L61 32L77 24L74 46Z" fill="#FFD46B" ${S(3)}/><path d="M28 41H72" stroke="#DCA546" stroke-width="4"/><circle cx="50" cy="35" r="4" fill="#E98CB0" ${S(2)}/>`,
+  captainJelly: () =>
+    C.jelly().replaceAll('#9B7BFF', '#B49E83').replaceAll('#8463F0', '#8C7B69') +
+    `<path d="M26 52L30 28Q50 19 70 28L74 52Z" fill="#849AA5" ${S(3)}/><path d="M50 24L50 12Q68 12 72 23L59 25Z" fill="#D89083" ${S(2.5)}/><path d="M25 45H75" stroke="#E8D3A1" stroke-width="5"/><path d="M14 68L31 60L47 68L45 85L31 95L16 85Z" fill="#A8B7AD" ${S(3)}/><path d="M31 65L34 73L42 74L36 79L37 87L31 83L25 87L26 79L20 74L28 73Z" fill="#F4D99F" ${S(1.5)}/>`,
   dashJelly: () =>
     C.jelly().replaceAll('#9B7BFF', '#E7A18C').replaceAll('#8463F0', '#C87973') +
     `<path d="M25 54Q50 44 75 54" fill="none" stroke="#E5F4ED" stroke-width="7"/><path d="M73 53L92 46L87 59L73 57Z" fill="#81BABC" ${S(2.3)}/><path d="M2 67H15M7 76H17" stroke="#81BABC" stroke-width="3" stroke-linecap="round"/><path d="M23 84H39L37 94H20ZM62 84H77L82 94H64Z" fill="#586D7B" ${S(2.5)}/>`,

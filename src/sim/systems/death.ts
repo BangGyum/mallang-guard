@@ -2,6 +2,7 @@ import { assert } from '../../core/assert';
 import type { ContentDb } from '../../data/types';
 import { SPLIT_SPACING } from '../constants';
 import type { BattleState, SimEvent, StageRuntime } from '../types';
+import { awardKillBounty } from './dp';
 import { spawnEnemy } from './spawn';
 
 export function removeDead(
@@ -15,6 +16,7 @@ export function removeDead(
   for (const enemy of dead) {
     state.killed += 1;
     events.push({ type: 'enemyDie', uid: enemy.uid });
+    awardKillBounty(content, stage, state, enemy, events);
     const split = content.enemies.get(enemy.enemyId)?.split;
     if (!split) continue;
     const child = content.enemies.get(split.enemy);

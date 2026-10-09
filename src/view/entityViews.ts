@@ -44,6 +44,7 @@ export function createEntityViews(content: ContentDb, board: Board, textures: Re
     miniJelly: 0.65,
     spitter: 0.8,
     kingJelly: 1.2,
+    captainJelly: 1.05,
     dashJelly: 0.75,
     crystalJelly: 0.85,
     shieldJelly: 0.85,

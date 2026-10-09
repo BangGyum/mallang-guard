@@ -8,7 +8,7 @@ const effects: Effect[] = [
   { type: 'splash', radius: 1 },
   { type: 'onHitSlow', amount: 0.3, sec: 1 },
   { type: 'stunEveryNthHit', n: 3, sec: 0.5 },
-  { type: 'gainDp', value: 12 },
+  { type: 'killBounty', value: 2 },
   { type: 'hasteAura', value: 0.7 },
   { type: 'pulseDamage', count: 3, intervalSec: 0.5, atkMul: 1.3, damageType: 'magic' },
   { type: 'slowAura', amount: 0.6 },
@@ -21,7 +21,7 @@ describe('content effects', () => {
     const skill = raw.skills[0];
     if (!skill) throw new Error('fixture missing');
     skill.effects = [effect];
-    skill.durationSec = ['gainDp', 'pushback'].includes(effect.type) ? 0 : 2;
+    skill.durationSec = effect.type === 'pushback' ? 0 : 2;
     expect(validateContent(raw).skills.get(skill.id)?.effects).toEqual([effect]);
   });
   it.each(effects)('$type 효과와 맞지 않는 즉시/지속형을 거부한다', (effect) => {
@@ -29,7 +29,7 @@ describe('content effects', () => {
     const skill = raw.skills[0];
     if (!skill) throw new Error('fixture missing');
     skill.effects = [effect];
-    skill.durationSec = ['gainDp', 'pushback'].includes(effect.type) ? 2 : 0;
+    skill.durationSec = effect.type === 'pushback' ? 2 : 0;
     expect(() => validateContent(raw)).toThrow('content/skills[0].effects[0].type');
   });
   it('연속 피해 일정에 못 미치는 지속 시간을 거부한다', () => {

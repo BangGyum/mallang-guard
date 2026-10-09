@@ -60,7 +60,7 @@ export type SimEvent =
   | { type: 'skillStart'; uid: number; skillId: string }
   | { type: 'skillPulse'; uid: number }
   | { type: 'skillEnd'; uid: number }
-  | { type: 'dpGain'; amount: number; source: 'skill' | 'refund' }
+  | { type: 'dpGain'; amount: number; source: 'kill'; uid: number }
   | { type: 'battleEnd'; result: 'won' | 'lost' };
 
 export interface RosterSlot {
@@ -119,7 +119,6 @@ export interface BattleState {
   tick: number;
   phase: 'running' | 'won' | 'lost';
   dp: number;
-  dpTicks: number;
   life: number;
   maxLife: number;
   roster: RosterSlot[];

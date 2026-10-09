@@ -58,7 +58,7 @@ try {
     await page.keyboard.press('Space');
     await frame(page, 2000);
     await pause(page);
-    assert.equal(await page.locator('.dp-panel strong').textContent(), '14');
+    assert.equal(await page.locator('.dp-panel strong').textContent(), '10');
     await page.keyboard.press('1');
     await frame(page);
     assert.equal(await page.getByRole('button', { name: '전투 배속 변경' }).textContent(), '×1');
@@ -67,7 +67,7 @@ try {
     await pause(page);
     assert.equal(await page.locator('.battle-life').textContent(), '♥ 푸딩 1');
     assert.equal(await page.locator('.battle-life').getAttribute('class'), 'battle-life is-critical');
-    assert.match(await page.locator('.battle-wave').textContent(), /WAVE 2\/5/);
+    assert.match(await page.locator('.battle-wave').textContent(), /WAVE 2\/50/);
     await page.screenshot({
       path: `docs/verification/${prefix}-${mobile ? 'mobile' : 'desktop'}-critical.png`,
     });

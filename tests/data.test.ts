@@ -8,7 +8,7 @@ describe('content data', () => {
   it('실제 JSON과 원본 순서를 검증하고 210마리의 스폰을 유지한다', () => {
     const db = validateContent(rawContent);
     expect([db.units.size, db.enemies.size, db.skills.size, db.ranges.size, db.stages.size]).toEqual([
-      10, 15, 10, 7, 7,
+      10, 16, 10, 7, 7,
     ]);
     expect(db.unitOrder).toEqual([
       'squirrel',
@@ -37,10 +37,9 @@ describe('content data', () => {
     const raw = makeRawContent();
     const stage = raw.stages[0];
     if (!stage) throw new Error('fixture missing');
-    delete stage.dpPerSec;
     delete stage.routes.ground?.flying;
     stage.roster = ['squirrel'];
-    expect(validateContent(raw).stages.get('stage-1')?.dpPerSec).toBeUndefined();
+    expect(validateContent(raw).stages.get('stage-1')?.routes.ground?.flying).toBeUndefined();
   });
   it.each(['units', 'enemies', 'skills', 'ranges', 'stages'] as const)(
     '%s 중복 id에 경로를 포함한다',
@@ -217,7 +216,7 @@ describe('content data', () => {
       'content/units[0].traits[0].type',
       (raw: RawContent) => {
         const unit = raw.units[0];
-        if (unit) unit.traits = [{ type: 'gainDp', value: 1 }];
+        if (unit) unit.traits = [{ type: 'killBounty', value: 1 }];
       },
     ],
   ] as const)('%s를 경로가 있는 오류로 거부한다', (_name, path, patch) => {

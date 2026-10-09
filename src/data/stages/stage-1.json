@@ -4,7 +4,6 @@
   "name": "1-1 푸딩 창고 앞마당",
   "map": ["##HH###HH##", "S....H....#", "#HH#.H.#H.#", "#HH#...#H.G", "####HHH#..#", "###########"],
   "startDp": 10,
-  "dpPerSec": 1,
   "life": 3,
   "deployLimit": 7,
   "routes": {

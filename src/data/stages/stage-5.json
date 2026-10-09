@@ -1,8 +1,11 @@
 {
   "id": "stage-5",
-  "waveRepeat": { "count": 10, "periodSec": 105 },
+  "waveRepeat": {
+    "count": 10,
+    "periodSec": 105
+  },
   "name": "1-5 바람 부는 연못",
-  "description": "연못 사이 좁은 길과 하늘을 함께 지켜요.",
+  "description": "지상 두 입구와 비행 입구를 지켜요. 아래 길은 도토리를 모은 뒤부터 몰려와요.",
   "startDp": 22,
   "routes": {
     "ground": {
@@ -11,9 +14,14 @@
       "to": [10, 3]
     },
     "air": {
-      "from": [0, 2],
+      "from": [0, 0],
       "to": [10, 3],
       "flying": true
+    },
+    "lower": {
+      "from": [0, 4],
+      "via": [[3, 4], [7, 4], [7, 1], [9, 1], [9, 3]],
+      "to": [10, 3]
     }
   },
   "spawns": [
@@ -47,7 +55,7 @@
       "enemy": "splitJelly",
       "count": 3,
       "intervalSec": 4,
-      "route": "ground"
+      "route": "lower"
     },
     {
       "wave": 3,
@@ -79,7 +87,7 @@
       "enemy": "splitJelly",
       "count": 3,
       "intervalSec": 4,
-      "route": "ground"
+      "route": "lower"
     },
     {
       "wave": 5,
@@ -104,10 +112,17 @@
       "count": 1,
       "intervalSec": 0,
       "route": "air"
+    },
+    {
+      "wave": 4,
+      "atSec": 63,
+      "enemy": "captainJelly",
+      "count": 1,
+      "intervalSec": 0,
+      "route": "lower"
     }
   ],
-  "map": ["#######H###", "##H#H##,,,#", "S,,,##H,H,#", "#H#,HH#,#,G", "###,,,,,HH#", "###H##H####"],
-  "dpPerSec": 1,
+  "map": ["S######H###", "##H#H##,,,#", "S,,,##H,H,#", "#H#,HH#,#,G", "S,,,,,,,HH#", "###H##H####"],
   "life": 3,
   "deployLimit": 7
 }

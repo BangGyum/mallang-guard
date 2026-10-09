@@ -44,6 +44,7 @@ export type ArtId =
   | 'drummerJelly'
   | 'nestJelly'
   | 'armoredCrow'
+  | 'captainJelly'
   | 'pudding';
 
 export interface RangeDef {
@@ -79,6 +80,7 @@ export interface EnemyDef {
   speed: number; // 초당 타일
   flying: boolean;
   lifeDamage: number; // 누수 시 깎는 푸딩 수
+  bounty?: number; // 실제 처치 보상, 생략하면 0
   description?: string;
   shieldHp?: number;
   rush?: { intervalSec: number; durationSec: number; speedMul: number };
@@ -116,7 +118,7 @@ export type Effect =
   | { type: 'splash'; radius: number }
   | { type: 'onHitSlow'; amount: number; sec: number }
   | { type: 'stunEveryNthHit'; n: number; sec: number }
-  | { type: 'gainDp'; value: number }
+  | { type: 'killBounty'; value: number }
   | { type: 'hasteAura'; value: number }
   | {
       type: 'pulseDamage';
@@ -150,7 +152,6 @@ export interface StageDef {
   description?: string;
   map: string[]; // 02 문서 2절의 문자
   startDp: number;
-  dpPerSec?: number; // 기본 1
   life: number;
   deployLimit: number;
   roster?: string[]; // 없으면 모든 유닛
@@ -199,7 +200,7 @@ export interface RawContent {
   - atk, def, cost, spStart는 0 이상이고, res는 0~100입니다.
   - `spStart ≤ spCost`
   - 타일·사거리 좌표, wave, count, lifeDamage, life, deployLimit는 정수입니다. wave/count/lifeDamage/life/deployLimit는 1 이상입니다.
-  - redeploySec, durationSec, atSec, intervalSec, startDp는 0 이상이며, 지정된 dpPerSec는 양수입니다.
+  - redeploySec, durationSec, atSec, intervalSec, startDp는 0 이상입니다. 선택 `bounty`와 `killBounty.value`는 0 이상의 정수입니다.
 - 유닛
   - `deployOn`은 "high"만 허용합니다. 아군에는 hp/def/res/block이 없고, 적에는 atk/atkIntervalSec/blockCost/damageType이 없습니다.
   - 유닛의 `damageType`은 physical/magic만 허용합니다.
@@ -207,8 +208,8 @@ export interface RawContent {
 - 스킬
   - 효과 타입과 필수 필드도 검사합니다. 배율·효과 시간·pulse 간격은 양수, 느려짐은 0~1, hasteAura 배율은 0 초과 1 이하, radius/tiles/DP는 0 이상, 횟수는 정수입니다.
   - pulseDamage는 스킬당 최대 하나이며, 있으면 `durationSec ≥ (count − 1) × intervalSec`이어야 합니다.
-  - 즉시형(`durationSec === 0`) 스킬에는 `gainDp`, `pushback`만 있어야 합니다.
-  - 지속형 스킬에는 이 두 가지가 없어야 합니다.
+  - 즉시형(`durationSec === 0`) 스킬에는 `pushback`만 있어야 합니다.
+  - 지속형 스킬에는 `pushback`이 없어야 하며 `killBounty`는 지속형만 허용합니다.
 - 스테이지
   - 모든 줄의 길이가 같아야 합니다.
   - `from`, `to`, `via`가 맵 안에 있어야 하고, 지상 경로의 `from`은 `S`, `to`는 `G`여야 합니다.
@@ -391,18 +392,18 @@ export interface RawContent {
 [
   {
     "id": "acornPickup",
-    "name": "보급 요청",
-    "description": "즉시 도토리 +12",
+    "name": "전리품 수거",
+    "description": "12초 동안 토리의 사거리 안에서 처치된 적의 도토리 보상 +2. 발동만으로 도토리를 얻지는 않아요.",
     "charge": "auto",
     "spCost": 20,
     "spStart": 8,
     "trigger": "manual",
     "condition": "always",
-    "durationSec": 0,
+    "durationSec": 12,
     "effects": [
       {
-        "type": "gainDp",
-        "value": 12
+        "type": "killBounty",
+        "value": 2
       }
     ]
   },
@@ -608,7 +609,6 @@ export interface RawContent {
     "###########"
   ],
   "startDp": 10,
-  "dpPerSec": 1,
   "life": 3,
   "deployLimit": 7,
   "routes": {

@@ -1,7 +1,6 @@
 import { ROLE_COLORS, ROLE_NAMES } from '../art/palette';
 import { assert } from '../core/assert';
 import type { Battle } from '../sim/battle';
-import { ticksPerDp } from '../sim/systems/dp';
 import { acornIcon } from './acornIcon';
 import { element } from './dom';
 import { portrait } from './portrait';
@@ -16,12 +15,10 @@ export function createDeployBar(
   const cards = element('div', 'deploy-cards');
   const dp = element('div', 'dp-panel');
   const amount = element('strong', '');
-  const progress = element('progress', '');
-  progress.max = 1;
-  progress.setAttribute('aria-label', '다음 도토리까지');
+  const source = element('span', 'dp-source', '처치 보상');
   const dpLabel = element('span', '', '도토리');
   dpLabel.prepend(acornIcon());
-  dp.append(dpLabel, amount, progress);
+  dp.append(dpLabel, amount, source);
   bar.append(remaining, cards, dp);
   root.append(bar);
   const entries = battle.state.roster
@@ -69,7 +66,6 @@ export function createDeployBar(
       remaining.textContent = `남은 배치 ${left}`;
       remaining.classList.toggle('is-full', left <= 0);
       amount.textContent = String(battle.state.dp);
-      progress.value = battle.state.dpTicks / ticksPerDp(battle.stage);
       for (const info of battle.rosterView()) {
         const entry = buttons.get(info.unitId);
         if (!entry) continue;

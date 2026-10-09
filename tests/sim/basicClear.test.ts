@@ -9,7 +9,7 @@ const BASIC_DEPLOYMENTS: { tick: number; command: Command }[] = [
   { tick: 360, command: { type: 'deploy', unitId: 'penguin', tile: { x: 5, y: 2 }, dir: 'left' } },
   { tick: 810, command: { type: 'deploy', unitId: 'bunny', tile: { x: 3, y: 0 }, dir: 'down' } },
   { tick: 1320, command: { type: 'deploy', unitId: 'sheep', tile: { x: 2, y: 2 }, dir: 'up' } },
-  { tick: 1740, command: { type: 'deploy', unitId: 'cat', tile: { x: 6, y: 4 }, dir: 'up' } },
+  { tick: 1757, command: { type: 'deploy', unitId: 'cat', tile: { x: 6, y: 4 }, dir: 'up' } },
 ];
 
 describe('고지대 디펜스 완주', () => {

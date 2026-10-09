@@ -18,7 +18,9 @@ describe('death cleanup', () => {
     removeDead(content, stage, state, events);
     expect(events).toEqual([
       { type: 'enemyDie', uid: 1 },
+      { type: 'dpGain', amount: 5, source: 'kill', uid: 1 },
       { type: 'enemyDie', uid: 3 },
+      { type: 'dpGain', amount: 5, source: 'kill', uid: 3 },
     ]);
     expect(state.enemies.map((enemy) => enemy.uid)).toEqual([2]);
     expect(state.killed).toBe(2);

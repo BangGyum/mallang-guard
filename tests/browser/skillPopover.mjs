@@ -124,7 +124,7 @@ try {
     assert.equal(Number(await page.locator('.dp-panel strong').textContent()), before + 12);
     assert.match(
       await page.locator('.skill-notice[data-unit-id="squirrel"]').innerText(),
-      /토리.*스킬 발동\n✦ 보급 요청/,
+      /토리.*스킬 발동\n✦ 전리품 수거/,
     );
     await checkNotices();
     await page.screenshot({

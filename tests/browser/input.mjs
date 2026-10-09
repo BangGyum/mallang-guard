@@ -64,7 +64,7 @@ try {
       await page.locator('.deploy-card[data-unit-id="squirrel"]').getAttribute('data-state'),
       'cooldown',
     );
-    assert.equal(await page.locator('.dp-panel strong').textContent(), '5');
+    assert.equal(await page.locator('.dp-panel strong').textContent(), '1');
     if (mobile) {
       await page.setViewportSize({ width: 390, height: 844 });
       await frame(page);
@@ -84,7 +84,7 @@ try {
       { ms: 12000, unitId: 'penguin', tile: { x: 5, y: 2 }, dir: 'left' },
       { ms: 15000, unitId: 'bunny', tile: { x: 3, y: 0 }, dir: 'down' },
       { ms: 17000, unitId: 'sheep', tile: { x: 2, y: 2 }, dir: 'up' },
-      { ms: 14000, unitId: 'cat', tile: { x: 6, y: 4 }, dir: 'up' },
+      { ms: 15000, unitId: 'cat', tile: { x: 6, y: 4 }, dir: 'up' },
     ];
     for (const plan of plans) {
       await resume(page);
@@ -103,8 +103,8 @@ try {
         else await activate.click();
         await frame(page);
         if (plan.unitId === 'penguin') {
-          assert.equal(Number(await page.locator('.dp-panel strong').textContent()), dp + 12);
-          assert.equal(await page.locator('.unit-panel').getAttribute('data-skill-state'), 'charging');
+          assert.equal(Number(await page.locator('.dp-panel strong').textContent()), dp);
+          assert.equal(await page.locator('.unit-panel').getAttribute('data-skill-state'), 'active');
         } else {
           assert.equal(await page.locator('.unit-panel').getAttribute('data-skill-state'), 'active');
           await page.screenshot({

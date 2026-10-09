@@ -22,7 +22,6 @@ describe('battle core', () => {
       tick: 0,
       phase: 'running',
       dp: 10,
-      dpTicks: 0,
       life: 3,
       maxLife: 3,
       units: [],
@@ -101,7 +100,7 @@ describe('battle core', () => {
     const { battle } = makeFixture();
     battle.enqueue({ type: 'deploy', unitId: 'squirrel', tile: { x: 1, y: 1 }, dir: 'right' });
     expect(battle.flush()).toMatchObject([{ type: 'unitDeploy', unitId: 'squirrel' }]);
-    expect(battle.state).toMatchObject({ tick: 0, dp: 1, dpTicks: 0, enemies: [], nextUid: 2 });
+    expect(battle.state).toMatchObject({ tick: 0, dp: 1, enemies: [], nextUid: 2 });
     expect(battle.unitAt({ x: 1, y: 1 })?.uid).toBe(1);
   });
   it('끝난 전투의 step은 큐와 틱을 진행하지 않고 flush는 ended로 거부한다', () => {

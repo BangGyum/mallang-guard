@@ -48,7 +48,16 @@ try {
     assert(moduleUrl);
     await page.evaluate(async (url) => {
       const { Battle } = await import(url);
-      window.campaign = { battle: null, rejected: [], seen: new Set(), heals: 0, shieldHits: 0 };
+      window.campaign = {
+        battle: null,
+        rejected: [],
+        seen: new Set(),
+        heals: 0,
+        shieldHits: 0,
+        rewards: 0,
+        invalidRewards: [],
+        rewarded: new Set(),
+      };
       for (const name of ['step', 'flush']) {
         const original = Battle.prototype[name];
         Battle.prototype[name] = function (...args) {
@@ -59,6 +68,20 @@ try {
             if (event.type === 'enemySpawn') window.campaign.seen.add(event.enemyId);
             if (event.type === 'enemyHeal') window.campaign.heals++;
             if (event.type === 'damage' && event.shieldDamage > 0) window.campaign.shieldHits++;
+            if (event.type === 'dpGain') {
+              const key = `${this.stage.definition.id}:${event.uid}`;
+              if (
+                event.source !== 'kill' ||
+                event.amount <= 0 ||
+                window.campaign.rewarded.has(key) ||
+                !events.some((entry) => entry.type === 'enemyDie' && entry.uid === event.uid)
+              )
+                window.campaign.invalidRewards.push(event);
+              window.campaign.rewarded.add(key);
+              window.campaign.rewards++;
+            }
+            if (event.type === 'unitRetreat' && event.refund !== 0)
+              window.campaign.invalidRewards.push(event);
           }
           return events;
         };
@@ -75,6 +98,7 @@ try {
         .evaluateAll((nodes) => nodes.every((node) => node.textContent === '☆☆☆')),
     );
     await click(page.locator('.stage-card[data-stage-id="stage-1"]'));
+    await page.locator('.deploy-bar').waitFor();
     await frame(page);
     for (const [index, { scenario, stage }] of scenarios.entries()) {
       await pause(page);
@@ -112,10 +136,34 @@ try {
         }
         if (command.type === 'deploy') {
           const tile = { x: command.tile[0], y: command.tile[1] };
+          for (let attempt = 0; ; attempt++) {
+            const check = await page.evaluate(
+              ({ unitId, tile }) => window.campaign.battle.checkDeploy(unitId, tile),
+              { unitId: command.unitId, tile },
+            );
+            if (check.ok) break;
+            assert(
+              attempt < 40 && ['noDp', 'notReady'].includes(check.reason),
+              `${label}/${stage.id}/${command.unitId}: ${check.reason}`,
+            );
+            await resume(page);
+            await frame(page, 300);
+            await pause(page);
+          }
           await deploy(page, cdp, command.unitId, tile, command.dir);
           placed.set(command.unitId, tile);
           if (stage.id === 'stage-7' && command.unitId === 'cat')
             await page.screenshot({ path: `docs/verification/${prefix}-${label}-large-map-battle.png` });
+        } else if (command.type === 'retreat') {
+          const before = await page.evaluate(() => window.campaign.battle.state.dp);
+          const point = await tilePoint(page, placed.get(command.unitId));
+          if (mobile) await page.touchscreen.tap(point.x, point.y);
+          else await page.mouse.click(point.x, point.y);
+          await frame(page);
+          await click(page.locator('.unit-retreat'));
+          await frame(page);
+          assert.equal(await page.evaluate(() => window.campaign.battle.state.dp), before);
+          placed.delete(command.unitId);
         } else {
           for (let attempt = 0; attempt < 12; attempt++) {
             const point = await tilePoint(page, placed.get(command.unitId));
@@ -168,6 +216,8 @@ try {
           seenEnemies: [...window.campaign.seen].sort(),
           heals: window.campaign.heals,
           shieldHits: window.campaign.shieldHits,
+          rewards: window.campaign.rewards,
+          invalidRewards: window.campaign.invalidRewards,
         };
       });
       assert.equal(result.life, 3);
@@ -179,6 +229,7 @@ try {
         Math.max(...stage.spawns.map((spawn) => spawn.wave)) * (stage.waveRepeat?.count ?? 1),
       );
       assert.deepEqual(result.rejected, []);
+      assert.deepEqual(result.invalidRewards, []);
       const records = await page.evaluate(() => JSON.parse(localStorage.getItem('mallang-guard:v1')).stages);
       assert.equal(Object.keys(records).length, index + 1);
       for (let i = 1; i <= index + 1; i++)
@@ -188,11 +239,12 @@ try {
       console.log(JSON.stringify(report.at(-1)));
       if (index < scenarios.length - 1) {
         await click(page.getByRole('button', { name: '다음 스테이지', exact: true }));
+        await page.locator('.deploy-bar').waitFor();
         await frame(page);
       } else assert.equal(await page.getByRole('button', { name: '다음 스테이지', exact: true }).count(), 0);
     }
     const completed = await page.evaluate(() => JSON.parse(localStorage.getItem('mallang-guard:v1')).stages);
-    assert.equal(await page.evaluate(() => window.campaign.seen.size), 15, '1→7에서 적 15종 모두 실제 등장');
+    assert.equal(await page.evaluate(() => window.campaign.seen.size), 16, '1→7에서 적 16종 모두 실제 등장');
     assert((await page.evaluate(() => window.campaign.heals)) > 0, '실제 치유 발동');
     assert((await page.evaluate(() => window.campaign.shieldHits)) > 0, '실제 보호막 피해');
     await click(page.getByRole('button', { name: '스테이지 선택', exact: true }));

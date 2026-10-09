@@ -144,7 +144,7 @@ try {
     assert.equal(await page.locator('.skill-button').isDisabled(), false);
     await click(page.locator('.skill-button'));
     assert.equal(await page.evaluate(() => window.narrowAudit.skills), 1);
-    assert.match(await page.locator('.skill-notice').textContent(), /토리.*보급 요청/s);
+    assert.match(await page.locator('.skill-notice').textContent(), /토리.*전리품 수거/s);
     const panelFit = await page.locator('.unit-panel').evaluate((panel) => {
       const rect = panel.getBoundingClientRect();
       return rect.left >= 0 && rect.right <= innerWidth && rect.top >= 0 && rect.bottom <= innerHeight;

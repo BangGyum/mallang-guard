@@ -6,7 +6,6 @@ import { createStage } from './stage';
 import { attackEnemies } from './systems/attack';
 import { applyCommand } from './systems/commands';
 import { removeDead } from './systems/death';
-import { recoverDp } from './systems/dp';
 import { updateEnemyAbilities } from './systems/enemyAbilities';
 import { updateEnemyMotion } from './systems/enemyMotion';
 import { updateEnemySupport } from './systems/enemySupport';
@@ -40,7 +39,6 @@ export class Battle {
       tick: 0,
       phase: 'running',
       dp: definition.startDp,
-      dpTicks: 0,
       life: definition.life,
       maxLife: definition.life,
       roster: (definition.roster ?? content.unitOrder).map((unitId) => ({
@@ -82,7 +80,6 @@ export class Battle {
   step(): SimEvent[] {
     if (this.#state.phase !== 'running') return [];
     const events = this.flush();
-    recoverDp(this.stage, this.#state);
     updateRoster(this.#state);
     spawnEnemies(this.stage, this.#state, events);
     updateStatus(this.content, this.stage, this.#state, events);
