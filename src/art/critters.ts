@@ -109,14 +109,16 @@ const C = {
     combatEyes() +
     COMBAT_GEAR.snail,
   owl: () =>
-    `<path d="M25 47L24 23L42 38M75 47L76 23L58 38" fill="#B58B60" ${S(3)}/><ellipse cx="22" cy="72" rx="8" ry="15" fill="#947657" ${S(3)}/><ellipse cx="78" cy="72" rx="8" ry="15" fill="#947657" ${S(3)}/>` +
-    feet('#D8AD6B') +
-    body('#B58B60') +
-    belly('#EAD9B5') +
-    `<circle cx="38" cy="58" r="15" fill="#F6EDD4" ${S(2.5)}/><circle cx="62" cy="58" r="15" fill="#F6EDD4" ${S(2.5)}/>` +
-    combatEyes(58) +
-    `<path d="M45 65L55 65L50 73Z" fill="#E8B059" ${S(2)}/>` +
-    COMBAT_GEAR.owl,
+    `<path d="M32 61Q18 54 13 64Q16 73 9 81Q18 85 25 81L19 89Q34 91 38 79M68 61Q83 52 89 66Q84 75 92 84Q79 92 66 82" fill="#C5E5DB" ${S(2.5)}/><path d="M22 65Q27 75 21 83M78 65Q72 78 84 84" fill="none" stroke="#8BBCAF" stroke-width="2" stroke-linecap="round"/>` +
+    `<path d="M26 47Q19 33 25 23Q30 28 41 38M74 47Q81 33 75 23Q70 28 59 38" fill="#E8D8C2" ${S(2.8)}/>` +
+    feet('#D8BE9D') +
+    body('#E8D8C2') +
+    belly('#FFF5E7') +
+    `<path d="M28 55Q13 58 18 73L14 80Q22 81 29 69M72 55Q85 60 82 73L86 80Q76 82 71 69" fill="#F8EEDC" ${S(2.5)}/><circle cx="38" cy="57" r="15" fill="#FFFDF3" ${S(2.2)}/><circle cx="62" cy="57" r="15" fill="#FFFDF3" ${S(2.2)}/>` +
+    `<path d="M29 43Q38 29 51 33Q67 31 73 45Q63 39 58 47Q51 38 47 46Q36 38 29 48" fill="#F8EEDC" ${S(2.5)}/><path d="M31 52Q36 48 42 51M58 51Q64 48 69 52" fill="none" ${S(1.8)}/>` +
+    `<ellipse cx="38" cy="57" rx="4.1" ry="5.1" fill="#665D8A"/><ellipse cx="62" cy="57" rx="4.1" ry="5.1" fill="#665D8A"/><circle cx="39.3" cy="55.3" r="1.5" fill="#fff"/><circle cx="63.3" cy="55.3" r="1.5" fill="#fff"/><path d="M34 55L30 52M66 55L70 52" fill="none" ${S(1.8)}/><path d="M46 65L54 65L50 71Z" fill="#E8C486" ${S(1.8)}/>` +
+    COMBAT_GEAR.owl +
+    `<path d="M68 32Q64 23 58 26L60 36L68 36M72 32Q78 24 83 28L80 38L72 36M67 37Q65 44 60 46M73 37Q75 44 82 43" fill="#D8CDED" ${S(2.2)}/><circle cx="70" cy="34" r="3.5" fill="#E8D4A2" ${S(2)}/>`,
   jelly: () =>
     `<path d="M17 90C13 66 29 43 50 43C71 43 87 66 83 90Z" fill="#9B7BFF" ${S(3.2)}/><path d="M24 90C24 84 76 84 76 90" fill="#8463F0" opacity=".6"/><ellipse cx="36" cy="57" rx="7" ry="3.2" fill="#fff" opacity=".55" transform="rotate(-28 36 57)"/>` +
     eyes(69, 9, 0.85) +
