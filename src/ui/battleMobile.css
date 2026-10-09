@@ -127,3 +127,17 @@
     font-size: 14px;
   }
 }
+
+@media (max-height: 500px) and (max-width: 980px) {
+  .deploy-cards:has(> .deploy-card:nth-child(10)) .deploy-card {
+    flex-basis: 50px;
+  }
+  .deploy-cards:has(> .deploy-card:nth-child(10)) .card-name {
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  .deploy-cards:has(> .deploy-card:nth-child(10)) .card-role {
+    padding-inline: 2px;
+    white-space: nowrap;
+  }
+}

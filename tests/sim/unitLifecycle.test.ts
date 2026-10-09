@@ -18,7 +18,7 @@ function fixture(unitId: string, dir: Dir, behind = false, air = false) {
     (range) => range.id === raw.units.find((unit) => unit.id === unitId)?.range,
   );
   assert(unitRange, '기본 사거리 없음');
-  const rear = Math.min(...unitRange.tiles.map(([x]) => x)) - 1;
+  const rear = Math.min(0, ...unitRange.tiles.map(([x]) => x)) - 1;
   const [dx, dy] = rotateOffset([behind ? rear : 1, 0], dir);
   const map = Array.from({ length: 9 }, (_, y) =>
     Array.from({ length: 9 }, (_, x) =>

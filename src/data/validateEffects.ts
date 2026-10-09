@@ -15,6 +15,8 @@ export function parseEffect(value: unknown, path: string): Effect {
       return { type, radius: number(raw.radius, `${path}.radius`) };
     case 'rangeOverride':
       return { type, range: text(raw.range, `${path}.range`) };
+    case 'multiTarget':
+      return { type, count: integer(raw.count, `${path}.count`, 1) };
     case 'onHitSlow':
       return {
         type,

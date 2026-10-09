@@ -119,7 +119,7 @@ try {
       await page.getByRole('button', { name: '다시 하기', exact: true }).click();
       await frame(page);
       assert.equal(await page.locator('.dp-panel strong').textContent(), '10');
-      assert.equal(await page.locator('.deploy-card').count(), 9);
+      assert.equal(await page.locator('.deploy-card').count(), 10);
       await page.locator('[data-action="pause"]').click();
       await frame(page);
       await page.getByRole('button', { name: '타이틀로', exact: true }).click();

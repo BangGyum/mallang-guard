@@ -18,12 +18,13 @@ const levels = process.argv.includes('--stage7')
       : [2, 6, 7];
 const rear = process.argv.includes('--rear');
 const wide = process.argv.includes('--wide');
+const line = process.argv.includes('--line');
 const prefix = process.env.MALLANG_SCREENSHOT_PREFIX ?? 't4.4';
 const report = [];
 try {
   for (const mobile of modes) {
     for (const level of levels) {
-      const variant = level === 7 ? (wide ? '-wide' : rear ? '-rear' : '') : '';
+      const variant = level === 7 ? (line ? '-line' : wide ? '-wide' : rear ? '-rear' : '') : '';
       const scenario = JSON.parse(
         await readFile(`tests/scenarios/stage-${level}${variant}-clear.json`, 'utf8'),
       );
@@ -170,7 +171,7 @@ try {
           if (await page.locator('.unit-disruption').isVisible()) disruptionShown = true;
           await click(page.locator('.skill-button'));
           await frame(page);
-          if (level === 7 && (command.unitId === 'bear' || command.unitId === 'owl'))
+          if (level === 7 && ['bear', 'owl', 'wolf'].includes(command.unitId))
             await page.screenshot({
               path: `docs/verification/${prefix}-${label}-skill.png`,
               animations: 'disabled',
@@ -248,7 +249,7 @@ try {
       await context.close();
     }
   }
-  const run = `${levels.join('-')}${wide ? '-wide' : rear ? '-rear' : ''}${modes.length === 1 ? (modes[0] ? '-mobile' : '-desktop') : ''}`;
+  const run = `${levels.join('-')}${line ? '-line' : wide ? '-wide' : rear ? '-rear' : ''}${modes.length === 1 ? (modes[0] ? '-mobile' : '-desktop') : ''}`;
   await writeFile(`docs/verification/${prefix}-content-${run}.json`, `${JSON.stringify(report, null, 2)}\n`);
 } finally {
   await browser.close();

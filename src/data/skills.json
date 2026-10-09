@@ -170,5 +170,21 @@
       { "type": "statMul", "stat": "atk", "value": 1.5 },
       { "type": "statMul", "stat": "atkInterval", "value": 0.5 }
     ]
+  },
+  {
+    "id": "tripleAim",
+    "name": "삼중 조준",
+    "description": "12초 동안 정면 5×3칸에서 최대 3명 동시 사격. 적 한 명당 한 발, 공격력 10% 감소",
+    "charge": "auto",
+    "spCost": 30,
+    "spStart": 10,
+    "trigger": "manual",
+    "condition": "always",
+    "durationSec": 12,
+    "effects": [
+      { "type": "rangeOverride", "range": "line5Wide" },
+      { "type": "multiTarget", "count": 3 },
+      { "type": "statMul", "stat": "atk", "value": 0.9 }
+    ]
   }
 ]

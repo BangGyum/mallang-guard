@@ -119,6 +119,15 @@ const C = {
     `<ellipse cx="38" cy="57" rx="4.1" ry="5.1" fill="#665D8A"/><ellipse cx="62" cy="57" rx="4.1" ry="5.1" fill="#665D8A"/><circle cx="39.3" cy="55.3" r="1.5" fill="#fff"/><circle cx="63.3" cy="55.3" r="1.5" fill="#fff"/><path d="M34 55L30 52M66 55L70 52" fill="none" ${S(1.8)}/><path d="M46 65L54 65L50 71Z" fill="#E8C486" ${S(1.8)}/>` +
     COMBAT_GEAR.owl +
     `<path d="M68 32Q64 23 58 26L60 36L68 36M72 32Q78 24 83 28L80 38L72 36M67 37Q65 44 60 46M73 37Q75 44 82 43" fill="#D8CDED" ${S(2.2)}/><circle cx="70" cy="34" r="3.5" fill="#E8D4A2" ${S(2)}/>`,
+  wolf: () =>
+    `<path d="M69 86Q95 95 93 68L85 61Q79 62 79 70Q85 78 71 76Z" fill="#AEBBC7" ${S(3)}/><path d="M87 65Q89 78 81 84" fill="none" stroke="#F3EFE2" stroke-width="5" stroke-linecap="round"/><path d="M25 45L26 23L43 38M75 45L74 23L57 38" fill="#AEBBC7" ${S(3)}/><path d="M30 38L30 30L37 37M70 38L70 30L63 37" fill="#D4B8B7"/>` +
+    feet('#758798') +
+    body('#AEBBC7') +
+    belly('#F3EFE2') +
+    `<path d="M27 59L20 65L26 69L23 73L34 73M73 59L80 65L74 69L77 73L66 73" fill="#F3EFE2" ${S(2.5)}/>` +
+    combatEyes(57) +
+    `<path d="M38 63Q50 59 62 63L60 71Q50 77 40 71Z" fill="#F3EFE2" ${S(2.2)}/><path d="M46 63H54L50 67Z" fill="${OUT}"/><path d="M47 69Q50 72 53 69" fill="none" ${S(1.8)}/>` +
+    COMBAT_GEAR.wolf,
   jelly: () =>
     `<path d="M17 90C13 66 29 43 50 43C71 43 87 66 83 90Z" fill="#9B7BFF" ${S(3.2)}/><path d="M24 90C24 84 76 84 76 90" fill="#8463F0" opacity=".6"/><ellipse cx="36" cy="57" rx="7" ry="3.2" fill="#fff" opacity=".55" transform="rotate(-28 36 57)"/>` +
     eyes(69, 9, 0.85) +
