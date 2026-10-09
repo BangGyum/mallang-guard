@@ -9,10 +9,14 @@ describe('실제 스테이지의 전체 경로와 웨이브', () => {
   it.each([...content.stages.values()])(
     '$id의 모든 적이 지형을 지켜 이동하고 마지막 웨이브까지 도착한다',
     (stage) => {
-      const damage = stage.spawns.reduce(
-        (sum, group) => sum + group.count * (content.enemies.get(group.enemy)?.lifeDamage ?? 0),
-        0,
-      );
+      const damage = stage.spawns.reduce((sum, group) => {
+        const def = content.enemies.get(group.enemy);
+        const summon = def?.summon;
+        const children = summon
+          ? summon.count * summon.maxCasts * (content.enemies.get(summon.enemy)?.lifeDamage ?? 0)
+          : 0;
+        return sum + group.count * ((def?.lifeDamage ?? 0) + children);
+      }, 0);
       // 조기 패배 때문에 뒤 웨이브가 생략되지 않도록 검증용 목숨만 늘립니다.
       const stages = new Map(content.stages);
       stages.set(stage.id, { ...stage, life: damage + 1 });
@@ -45,7 +49,10 @@ describe('실제 스테이지의 전체 경로와 웨이브', () => {
             invalid.add(`${enemy.enemyId}/${enemy.routeId}@${x},${y}`);
         }
       }
-      const expected = stage.spawns.reduce((sum, group) => sum + group.count, 0);
+      const expected = stage.spawns.reduce((sum, group) => {
+        const summon = content.enemies.get(group.enemy)?.summon;
+        return sum + group.count * (1 + (summon ? summon.count * summon.maxCasts : 0));
+      }, 0);
       expect([...invalid]).toEqual([]);
       expect(battle.state).toMatchObject({
         phase: 'won',

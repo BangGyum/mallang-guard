@@ -40,6 +40,13 @@ export function validateContent(value: unknown): ContentDb {
           `content/skills[${index}].effects[${effectIndex}].range: unknown range "${effect.range}"`,
         );
   for (const [index, enemy] of enemies.entries()) {
+    if (enemy.summon) {
+      const path = `content/enemies[${index}].summon.enemy`;
+      const child = content.enemies.get(enemy.summon.enemy);
+      assert(child, `${path}: unknown enemy "${enemy.summon.enemy}"`);
+      assert(!child.summon && !child.split, `${path}: summoned child cannot summon or split`);
+      assert(child.flying === enemy.flying, `${path}: flying flag does not match parent`);
+    }
     if (!enemy.split) continue;
     const path = `content/enemies[${index}].split.enemy`;
     const child = content.enemies.get(enemy.split.enemy);

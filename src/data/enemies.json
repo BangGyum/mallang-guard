@@ -8,7 +8,8 @@
     "res": 0,
     "speed": 0.9,
     "flying": false,
-    "lifeDamage": 1
+    "lifeDamage": 1,
+    "description": "기본 지상 적이에요. 경로를 따라 푸딩으로 이동해요."
   },
   {
     "id": "hardJelly",
@@ -19,7 +20,8 @@
     "res": 0,
     "speed": 0.6,
     "flying": false,
-    "lifeDamage": 1
+    "lifeDamage": 1,
+    "description": "물리 방어력이 높아요. 마법 공격으로 상대해요."
   },
   {
     "id": "crow",
@@ -30,7 +32,8 @@
     "res": 0,
     "speed": 1.2,
     "flying": true,
-    "lifeDamage": 1
+    "lifeDamage": 1,
+    "description": "빠르게 날아오는 비행 적이에요. 대공 가능한 친구로 막아요."
   },
   {
     "id": "splitJelly",
@@ -97,5 +100,126 @@
       "atkIntervalMul": 1.5,
       "targets": 3
     }
+  },
+  {
+    "id": "dashJelly",
+    "name": "달림젤리",
+    "art": "dashJelly",
+    "hp": 440,
+    "def": 20,
+    "res": 0,
+    "speed": 1,
+    "flying": false,
+    "lifeDamage": 1,
+    "description": "6초마다 1.2초 동안 빠르게 달려요. 둔화와 기절로 막아요.",
+    "rush": {
+      "intervalSec": 6,
+      "durationSec": 1.2,
+      "speedMul": 1.8
+    }
+  },
+  {
+    "id": "crystalJelly",
+    "name": "수정젤리",
+    "art": "crystalJelly",
+    "hp": 950,
+    "def": 20,
+    "res": 65,
+    "speed": 0.75,
+    "flying": false,
+    "lifeDamage": 1,
+    "description": "마법 피해를 65% 줄여요. 물리 사격에 약해요."
+  },
+  {
+    "id": "shieldJelly",
+    "name": "방패젤리",
+    "art": "shieldJelly",
+    "hp": 850,
+    "def": 60,
+    "res": 5,
+    "speed": 0.6,
+    "flying": false,
+    "lifeDamage": 1,
+    "description": "처음에 보호막 500으로 피해를 받아내요. 보호막은 다시 생기지 않아요.",
+    "shieldHp": 500
+  },
+  {
+    "id": "sproutJelly",
+    "name": "새싹젤리",
+    "art": "sproutJelly",
+    "hp": 1000,
+    "def": 40,
+    "res": 5,
+    "speed": 0.65,
+    "flying": false,
+    "lifeDamage": 1,
+    "description": "3초마다 체력을 80 회복해요. 집중 공격과 기절로 막아요.",
+    "regenerate": {
+      "intervalSec": 3,
+      "amount": 80
+    }
+  },
+  {
+    "id": "flowerJelly",
+    "name": "꽃젤리",
+    "art": "flowerJelly",
+    "hp": 850,
+    "def": 30,
+    "res": 15,
+    "speed": 0.6,
+    "flying": false,
+    "lifeDamage": 1,
+    "description": "5초마다 주변에서 가장 다친 다른 적 한 명을 120 치유해요.",
+    "heal": {
+      "intervalSec": 5,
+      "amount": 120,
+      "range": 2.5
+    }
+  },
+  {
+    "id": "drummerJelly",
+    "name": "북젤리",
+    "art": "drummerJelly",
+    "hp": 1000,
+    "def": 60,
+    "res": 10,
+    "speed": 0.6,
+    "flying": false,
+    "lifeDamage": 1,
+    "description": "주변 다른 적의 이동 속도를 25% 올려요. 기절시키면 지원이 멈춰요.",
+    "haste": {
+      "range": 2.4,
+      "speedMul": 1.25
+    }
+  },
+  {
+    "id": "nestJelly",
+    "name": "둥지젤리",
+    "art": "nestJelly",
+    "hp": 1800,
+    "def": 80,
+    "res": 10,
+    "speed": 0.5,
+    "flying": false,
+    "lifeDamage": 1,
+    "description": "8초마다 작은 젤리를 한 마리 불러요. 최대 세 번 소환해요.",
+    "summon": {
+      "intervalSec": 8,
+      "enemy": "miniJelly",
+      "count": 1,
+      "maxCasts": 3
+    }
+  },
+  {
+    "id": "armoredCrow",
+    "name": "철갑까악",
+    "art": "armoredCrow",
+    "hp": 1400,
+    "def": 180,
+    "res": 0,
+    "speed": 0.75,
+    "flying": true,
+    "lifeDamage": 1,
+    "description": "튼튼한 비행 적이에요. 대공 마법이나 강한 사격으로 막아요."
   }
 ]

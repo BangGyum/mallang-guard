@@ -87,7 +87,7 @@
       "type": "deploy",
       "unitId": "wolf",
       "tile": [17, 6],
-      "dir": "up"
+      "dir": "down"
     },
     {
       "atSec": 72.1,

@@ -60,5 +60,13 @@ export function lineEnemy(uid: number, dx: number, dy = 0, dir: Dir = 'right'): 
     slowUntilTick: 0,
     stunUntilTick: 0,
     abilityCooldown: 0,
+    shield: 0,
+    speedMul: 1,
+    rushCooldown: 0,
+    rushUntilTick: 0,
+    regenCooldown: 0,
+    healCooldown: 0,
+    summonCooldown: 0,
+    summonsRemaining: 0,
   };
 }

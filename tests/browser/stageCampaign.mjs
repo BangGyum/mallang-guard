@@ -38,7 +38,7 @@ try {
     });
     const time = new Date('2026-10-08T11:00:00Z');
     await page.clock.install({ time });
-    await page.clock.pauseAt(time);
+    await page.clock.pauseAt(new Date(time.getTime() + 1000));
     await page.addInitScript(() => {
       window.requestAnimationFrame = (callback) => setTimeout(() => callback(performance.now()), 100);
       window.cancelAnimationFrame = (id) => clearTimeout(id);
@@ -48,13 +48,18 @@ try {
     assert(moduleUrl);
     await page.evaluate(async (url) => {
       const { Battle } = await import(url);
-      window.campaign = { battle: null, rejected: [] };
+      window.campaign = { battle: null, rejected: [], seen: new Set(), heals: 0, shieldHits: 0 };
       for (const name of ['step', 'flush']) {
         const original = Battle.prototype[name];
         Battle.prototype[name] = function (...args) {
           const events = original.apply(this, args);
           window.campaign.battle = this;
           window.campaign.rejected.push(...events.filter((event) => event.type === 'commandRejected'));
+          for (const event of events) {
+            if (event.type === 'enemySpawn') window.campaign.seen.add(event.enemyId);
+            if (event.type === 'enemyHeal') window.campaign.heals++;
+            if (event.type === 'damage' && event.shieldDamage > 0) window.campaign.shieldHits++;
+          }
           return events;
         };
       }
@@ -153,6 +158,9 @@ try {
           enemies: state.enemies.length,
           seconds: state.tick / 30,
           rejected: window.campaign.rejected,
+          seenEnemies: [...window.campaign.seen].sort(),
+          heals: window.campaign.heals,
+          shieldHits: window.campaign.shieldHits,
         };
       });
       assert.equal(result.life, 3);
@@ -174,6 +182,9 @@ try {
       } else assert.equal(await page.getByRole('button', { name: '다음 스테이지', exact: true }).count(), 0);
     }
     const completed = await page.evaluate(() => JSON.parse(localStorage.getItem('mallang-guard:v1')).stages);
+    assert.equal(await page.evaluate(() => window.campaign.seen.size), 15, '1→7에서 적 15종 모두 실제 등장');
+    assert((await page.evaluate(() => window.campaign.heals)) > 0, '실제 치유 발동');
+    assert((await page.evaluate(() => window.campaign.shieldHits)) > 0, '실제 보호막 피해');
     await click(page.getByRole('button', { name: '스테이지 선택', exact: true }));
     assert.equal(await page.locator('.stage-card:disabled').count(), 0);
     assert(

@@ -140,6 +140,70 @@
       "count": 2,
       "intervalSec": 4,
       "route": "airLower"
+    },
+    {
+      "wave": 1,
+      "atSec": 6,
+      "enemy": "dashJelly",
+      "count": 1,
+      "intervalSec": 0,
+      "route": "lower"
+    },
+    {
+      "wave": 2,
+      "atSec": 18,
+      "enemy": "shieldJelly",
+      "count": 1,
+      "intervalSec": 0,
+      "route": "lower"
+    },
+    {
+      "wave": 3,
+      "atSec": 32,
+      "enemy": "crystalJelly",
+      "count": 1,
+      "intervalSec": 0,
+      "route": "ground"
+    },
+    {
+      "wave": 3,
+      "atSec": 34,
+      "enemy": "sproutJelly",
+      "count": 1,
+      "intervalSec": 0,
+      "route": "lower"
+    },
+    {
+      "wave": 4,
+      "atSec": 48,
+      "enemy": "flowerJelly",
+      "count": 1,
+      "intervalSec": 0,
+      "route": "ground"
+    },
+    {
+      "wave": 4,
+      "atSec": 49,
+      "enemy": "drummerJelly",
+      "count": 1,
+      "intervalSec": 0,
+      "route": "ground"
+    },
+    {
+      "wave": 5,
+      "atSec": 68,
+      "enemy": "nestJelly",
+      "count": 1,
+      "intervalSec": 0,
+      "route": "lower"
+    },
+    {
+      "wave": 6,
+      "atSec": 95,
+      "enemy": "armoredCrow",
+      "count": 1,
+      "intervalSec": 0,
+      "route": "air"
     }
   ]
 }

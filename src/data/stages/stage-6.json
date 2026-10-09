@@ -108,6 +108,30 @@
       "count": 2,
       "intervalSec": 7,
       "route": "lower"
+    },
+    {
+      "wave": 4,
+      "atSec": 46,
+      "enemy": "nestJelly",
+      "count": 1,
+      "intervalSec": 0,
+      "route": "lower"
+    },
+    {
+      "wave": 5,
+      "atSec": 67,
+      "enemy": "flowerJelly",
+      "count": 1,
+      "intervalSec": 0,
+      "route": "ground"
+    },
+    {
+      "wave": 5,
+      "atSec": 69,
+      "enemy": "drummerJelly",
+      "count": 1,
+      "intervalSec": 0,
+      "route": "lower"
     }
   ],
   "map": ["##HH#######", "S....##...H", "##...HH.H.#", "##.H.H#.#.G", "S..#....H##", "###H#H##H##"],

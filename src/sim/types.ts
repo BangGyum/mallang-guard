@@ -45,8 +45,16 @@ export type SimEvent =
   | { type: 'enemySpawn'; uid: number; enemyId: string; x: number; y: number; parentUid?: number }
   | { type: 'enemyLeak'; uid: number; lifeLeft: number }
   | { type: 'enemyDie'; uid: number }
+  | { type: 'enemyHeal'; src: number; uid: number; amount: number }
   | { type: 'attack'; src: Ref; dst: Ref; damageType: DamageType; ranged: boolean }
-  | { type: 'damage'; dst: Ref; amount: number; damageType: DamageType; src: Ref | null }
+  | {
+      type: 'damage';
+      dst: Ref;
+      amount: number;
+      damageType: DamageType;
+      src: Ref | null;
+      shieldDamage?: number;
+    }
   | { type: 'status'; enemy: number; kind: 'slow' | 'stun'; on: boolean }
   | { type: 'skillReady'; uid: number }
   | { type: 'skillStart'; uid: number; skillId: string }
@@ -97,6 +105,14 @@ export interface EnemyEntity {
   slowUntilTick: number;
   stunUntilTick: number;
   abilityCooldown: number;
+  shield: number;
+  speedMul: number;
+  rushCooldown: number;
+  rushUntilTick: number;
+  regenCooldown: number;
+  healCooldown: number;
+  summonCooldown: number;
+  summonsRemaining: number;
 }
 
 export interface BattleState {

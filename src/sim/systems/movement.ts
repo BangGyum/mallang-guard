@@ -22,7 +22,7 @@ export function moveEnemies(
     const definition = content.enemies.get(enemy.enemyId);
     const route = stage.routes.get(enemy.routeId);
     assert(definition && route, 'battle.enemies: missing definition or route');
-    enemy.dist += (definition.speed * (1 - enemy.slowAmount)) / TICK_RATE;
+    enemy.dist += (definition.speed * enemy.speedMul * (1 - enemy.slowAmount)) / TICK_RATE;
     if (enemy.dist >= route.length) {
       state.life -= definition.lifeDamage;
       state.leaked += 1;

@@ -1,6 +1,7 @@
 import { assert } from '../core/assert';
 import type { ArtId, EnemyDef, RangeDef, SkillDef, UnitDef } from './types';
 import { parseEffect } from './validateEffects';
+import { parseEnemyAbilities } from './validateEnemyAbilities';
 import { bool, integer, list, number, object, oneOf, point, positive, text } from './validationHelpers';
 
 const ART_IDS = [
@@ -21,6 +22,14 @@ const ART_IDS = [
   'miniJelly',
   'spitter',
   'kingJelly',
+  'dashJelly',
+  'crystalJelly',
+  'shieldJelly',
+  'sproutJelly',
+  'flowerJelly',
+  'drummerJelly',
+  'nestJelly',
+  'armoredCrow',
   'pudding',
 ] as const satisfies readonly ArtId[];
 
@@ -82,6 +91,7 @@ export function parseEnemy(value: unknown, path: string): EnemyDef {
     lifeDamage: integer(raw.lifeDamage, `${path}.lifeDamage`, 1),
   };
   if (raw.description !== undefined) enemy.description = text(raw.description, `${path}.description`);
+  Object.assign(enemy, parseEnemyAbilities(raw, path));
   if (raw.split !== undefined) {
     const split = object(raw.split, `${path}.split`);
     enemy.split = {

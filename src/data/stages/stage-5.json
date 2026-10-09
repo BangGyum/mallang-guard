@@ -87,6 +87,22 @@
       "count": 3,
       "intervalSec": 4,
       "route": "air"
+    },
+    {
+      "wave": 2,
+      "atSec": 20,
+      "enemy": "drummerJelly",
+      "count": 1,
+      "intervalSec": 0,
+      "route": "ground"
+    },
+    {
+      "wave": 4,
+      "atSec": 60,
+      "enemy": "armoredCrow",
+      "count": 1,
+      "intervalSec": 0,
+      "route": "air"
     }
   ],
   "map": ["#######H###", "##H#H##,,,#", "S,,,##H,H,#", "#H#,HH#,#,G", "###,,,,,HH#", "###H##H####"],

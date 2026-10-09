@@ -151,6 +151,30 @@ const C = {
   kingJelly: () =>
     C.jelly().replaceAll('#9B7BFF', '#8B83C8').replaceAll('#8463F0', '#6B63A5') +
     `<path d="M26 46L23 24L39 32L50 15L61 32L77 24L74 46Z" fill="#FFD46B" ${S(3)}/><path d="M28 41H72" stroke="#DCA546" stroke-width="4"/><circle cx="50" cy="35" r="4" fill="#E98CB0" ${S(2)}/>`,
+  dashJelly: () =>
+    C.jelly().replaceAll('#9B7BFF', '#E7A18C').replaceAll('#8463F0', '#C87973') +
+    `<path d="M25 54Q50 44 75 54" fill="none" stroke="#E5F4ED" stroke-width="7"/><path d="M73 53L92 46L87 59L73 57Z" fill="#81BABC" ${S(2.3)}/><path d="M2 67H15M7 76H17" stroke="#81BABC" stroke-width="3" stroke-linecap="round"/><path d="M23 84H39L37 94H20ZM62 84H77L82 94H64Z" fill="#586D7B" ${S(2.5)}/>`,
+  crystalJelly: () =>
+    C.jelly().replaceAll('#9B7BFF', '#AEA2D8').replaceAll('#8463F0', '#8E82BE') +
+    `<path d="M36 44L29 29L37 18L48 34L50 13L62 26L66 44Z" fill="#CAE7EF" ${S(2.6)}/><path d="M37 20L40 38M51 17L57 40" stroke="#FBFFFF" stroke-width="3"/><path d="M21 69L11 59L14 47L26 59M77 71L90 60L86 46L74 60" fill="#CAE7EF" ${S(2.3)}/>`,
+  shieldJelly: () =>
+    C.jelly().replaceAll('#9B7BFF', '#82AEC4').replaceAll('#8463F0', '#638EAA') +
+    `<path d="M25 52L30 29Q50 20 70 29L75 52Z" fill="#8A9EAD" ${S(3)}/><path d="M34 42H66" stroke="#D5E8E9" stroke-width="4"/><path d="M62 62L84 53L96 64L92 83L78 94L62 82Z" fill="#A3D7E2" ${S(3)}/><path d="M79 61V83M68 70H88" stroke="#F7FFFF" stroke-width="4"/>`,
+  sproutJelly: () =>
+    C.jelly().replaceAll('#9B7BFF', '#91BD9D').replaceAll('#8463F0', '#6B9E87') +
+    `<path d="M50 47V24" stroke="#477B62" stroke-width="4"/><path d="M49 34Q25 34 25 16Q47 14 49 34ZM51 30Q51 11 75 14Q76 35 51 30Z" fill="#BDDDB0" ${S(2.5)}/><path d="M33 22L46 30M69 20L55 28" fill="none" stroke="#6EA886" stroke-width="2"/><path d="M31 83H40M65 80H74" stroke="#E5F4D7" stroke-width="4" stroke-linecap="round"/>`,
+  flowerJelly: () =>
+    C.jelly().replaceAll('#9B7BFF', '#D7A5B6').replaceAll('#8463F0', '#B982A1') +
+    `<g fill="#F4DDE0" ${S(2.3)}><ellipse cx="50" cy="21" rx="9" ry="13"/><ellipse cx="35" cy="32" rx="13" ry="9"/><ellipse cx="65" cy="32" rx="13" ry="9"/><ellipse cx="41" cy="43" rx="9" ry="11"/><ellipse cx="59" cy="43" rx="9" ry="11"/></g><circle cx="50" cy="32" r="8" fill="#EDD393" ${S(2.3)}/><path d="M79 64V48M73 54H85" stroke="#CBE7D1" stroke-width="6" stroke-linecap="round"/>`,
+  drummerJelly: () =>
+    C.jelly().replaceAll('#9B7BFF', '#C9A889').replaceAll('#8463F0', '#A38376') +
+    `<path d="M29 47L29 30L71 30L71 47Z" fill="#647D8D" ${S(2.5)}/><path d="M49 30V14L61 20L49 24" fill="#CBE4D6" ${S(2)}/><path d="M21 69H79V89H21Z" fill="#CC996B" ${S(2.8)}/><ellipse cx="50" cy="69" rx="29" ry="8" fill="#F0E4C7" ${S(2.5)}/><path d="M31 75L40 86L49 75L59 86L69 75" fill="none" stroke="#E7CF9E" stroke-width="3"/><path d="M12 57L33 68M88 57L67 68" stroke="#607C8B" stroke-width="4" stroke-linecap="round"/>`,
+  nestJelly: () =>
+    C.jelly().replaceAll('#9B7BFF', '#ACB6A2').replaceAll('#8463F0', '#869887') +
+    `<path d="M24 47L21 30L37 35L46 23L57 34L78 29L75 47Z" fill="#AA866E" ${S(2.8)}/><path d="M27 39L70 44M31 47L65 34" stroke="#D6BA8E" stroke-width="3"/><ellipse cx="43" cy="28" rx="8" ry="11" fill="#DEECD0" ${S(2.2)}/><ellipse cx="59" cy="28" rx="8" ry="11" fill="#D1E5D6" ${S(2.2)}/><circle cx="76" cy="79" r="12" fill="#B0DFD6" ${S(2.4)}/><circle cx="72" cy="78" r="2" fill="${OUT}"/><circle cx="80" cy="78" r="2" fill="${OUT}"/>`,
+  armoredCrow: () =>
+    C.crow().replaceAll('#44485E', '#657887').replaceAll('#383B50', '#4F6374') +
+    `<path d="M30 53L31 32Q50 22 69 32L70 53Z" fill="#A3B3BF" ${S(3)}/><path d="M31 42H69M50 30V48" stroke="#D9E4E6" stroke-width="3"/><path d="M24 59L11 51L8 64L25 71M76 59L89 51L92 64L75 71" fill="#A3B3BF" ${S(2.5)}/><path d="M38 79L50 72L62 79L57 88H43Z" fill="#C5D3D8" ${S(2.5)}/>`,
   pudding: () =>
     '<ellipse cx="50" cy="90" rx="38" ry="7" fill="#fff" ' +
     S(3) +

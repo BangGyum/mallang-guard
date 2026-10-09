@@ -28,6 +28,14 @@ export type ArtId =
   | 'miniJelly'
   | 'spitter'
   | 'kingJelly'
+  | 'dashJelly'
+  | 'crystalJelly'
+  | 'shieldJelly'
+  | 'sproutJelly'
+  | 'flowerJelly'
+  | 'drummerJelly'
+  | 'nestJelly'
+  | 'armoredCrow'
   | 'pudding';
 
 export interface RangeDef {
@@ -64,6 +72,12 @@ export interface EnemyDef {
   flying: boolean;
   lifeDamage: number; // 누수 시 깎는 푸딩 수
   description?: string;
+  shieldHp?: number;
+  rush?: { intervalSec: number; durationSec: number; speedMul: number };
+  regenerate?: { intervalSec: number; amount: number };
+  heal?: { intervalSec: number; amount: number; range: number };
+  haste?: { range: number; speedMul: number };
+  summon?: { intervalSec: number; enemy: string; count: number; maxCasts: number };
   split?: { enemy: string; count: number };
   disrupt?: {
     range: number;
