@@ -1,7 +1,9 @@
 import assert from 'node:assert/strict';
+import { writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 import { installAudioProbe } from './audioProbe.mjs';
 
+const prefix = process.env.MALLANG_SCREENSHOT_PREFIX ?? 't4.12';
 const browser = await chromium.launch({ channel: 'msedge', headless: true });
 try {
   const context = await browser.newContext();
@@ -63,7 +65,9 @@ try {
   await page.evaluate(() => window.sfx.dispose());
   await page.waitForFunction(() => window.audioProbe.contexts[0].state === 'closed');
   assert.deepEqual(errors, []);
-  console.log(JSON.stringify({ paused: true, speedChanges: true, restart: true, ending: true, errors }));
+  const report = { paused: true, speedChanges: true, restart: true, ending: true, errors };
+  await writeFile(`docs/verification/${prefix}-audio-timing.json`, `${JSON.stringify(report, null, 2)}\n`);
+  console.log(JSON.stringify(report));
 } finally {
   await browser.close();
 }
