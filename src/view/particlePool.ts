@@ -45,6 +45,7 @@ export function createParticlePool(textures: ReadonlyMap<string, Texture>) {
     arc: 0,
     wave: false,
     aimed: false,
+    opacity: 1,
     from: new Vector3(),
     to: new Vector3(),
   }));
@@ -107,10 +108,11 @@ export function createParticlePool(textures: ReadonlyMap<string, Texture>) {
       arc = 0,
       wave = false,
       aimed = false,
+      opacity = 1,
     ) {
       const particle = particles.find((particle) => !particle.active);
       if (!particle) return;
-      Object.assign(particle, { active: true, id, age: 0, duration, size, arc, wave, aimed });
+      Object.assign(particle, { active: true, id, age: 0, duration, size, arc, wave, aimed, opacity });
       particle.from.copy(from);
       particle.to.copy(to);
     },
@@ -139,7 +141,7 @@ export function createParticlePool(textures: ReadonlyMap<string, Texture>) {
           particle.id,
           point,
           particle.size * (particle.wave ? 1 + 3 * t : 1 - 0.4 * t),
-          1 - t,
+          (1 - t) * particle.opacity,
           camera,
           particle.wave,
           angle,

@@ -1,0 +1,18 @@
+{
+  "mode": "uncapped-throughput",
+  "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 130V GPU (8GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "baselineFps": 56.81004439776578,
+  "enemies": 60,
+  "units": 10,
+  "viewport": "1920x1080",
+  "fps": 690.4487917146143,
+  "renderP95Ms": 1.2000000029802322,
+  "frameP95Ms": 2.299999999999727,
+  "peakCalls": 58,
+  "peakParticles": 104,
+  "memory": {
+    "geometries": 69,
+    "textures": 35
+  },
+  "errors": []
+}

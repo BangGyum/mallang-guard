@@ -72,14 +72,16 @@ try {
       peakParticles = Math.max(peakParticles, view.metrics.particles);
     }
     renderTimes.sort((a, b) => a - b);
+    const frameTimes = [...intervals].sort((a, b) => a - b);
     return {
       renderer,
       baselineFps: 1000 / (baselineIntervals.reduce((sum, n) => sum + n, 0) / baselineIntervals.length),
       enemies: 60,
-      units: 8,
+      units: battle.state.units.length,
       viewport: '1920x1080',
       fps: 1000 / (intervals.reduce((sum, n) => sum + n, 0) / intervals.length),
       renderP95Ms: renderTimes[Math.floor(renderTimes.length * 0.95)],
+      frameP95Ms: frameTimes[Math.floor(frameTimes.length * 0.95)],
       peakCalls,
       peakParticles,
       memory: view.memory,

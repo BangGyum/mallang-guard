@@ -9,7 +9,7 @@ export async function createTestScene(enemyCount = 3) {
   raw.units.forEach((unit) => {
     unit.cost = 1;
   });
-  raw.stages[0].deployLimit = 8;
+  raw.stages[0].deployLimit = raw.units.length;
   raw.stages[0].spawns = Array.from({ length: enemyCount }, (_, i) => {
     const enemy = raw.enemies[i % (enemyCount >= 60 ? raw.enemies.length : 3)];
     return {
@@ -39,6 +39,8 @@ export async function createTestScene(enemyCount = 3) {
     [2, 2],
     [5, 2],
     [8, 3],
+    [5, 1],
+    [6, 4],
   ];
   raw.units.forEach((unit, i) => {
     battle.enqueue({
@@ -55,7 +57,13 @@ export async function createTestScene(enemyCount = 3) {
     if (i % 3 === 0) enemy.slowAmount = 0.6;
     if (i % 3 === 1) enemy.stunUntilTick = 1000;
   });
-  for (const unit of battle.state.units) unit.skillState = unit.unitId === 'squirrel' ? 'ready' : 'active';
+  for (const unit of battle.state.units) {
+    unit.skillState = unit.unitId === 'squirrel' ? 'ready' : 'active';
+    if (unit.unitId === 'owl' || unit.unitId === 'wolf') {
+      const skill = content.skills.get(content.units.get(unit.unitId).skill);
+      unit.buffs = skill.effects;
+    }
+  }
   view.resize();
   overlay.resize();
   function deliver(batch) {

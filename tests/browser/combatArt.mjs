@@ -2,6 +2,8 @@ import assert from 'node:assert/strict';
 import { chromium } from 'playwright';
 import { createTestScene } from './scene.mjs';
 
+const prefix = process.env.MALLANG_SCREENSHOT_PREFIX ?? 't3.8';
+
 const browser = await chromium.launch({
   channel: 'msedge',
   headless: true,
@@ -27,7 +29,7 @@ try {
       }),
     );
     await page.goto('http://127.0.0.1:43195/combat-art-check');
-    await page.evaluate(createTestScene, 8);
+    await page.evaluate(createTestScene, 10);
     const checks = await page.evaluate(async () => {
       const { createEntityViews } = await import('/src/view/entityViews.ts');
       const { createVfx } = await import('/src/view/vfx.ts');
@@ -54,6 +56,8 @@ try {
         'arcBolt',
         'bullet',
         'stickyDrop',
+        'arcBolt',
+        'bullet',
       ];
       const checks = [];
       const originalHash = hashState(battle.state);
@@ -110,7 +114,7 @@ try {
       render(0.05);
     });
     const label = mobile ? 'mobile' : 'desktop';
-    await page.screenshot({ path: `docs/verification/t3.8-${label}-combat.png` });
+    await page.screenshot({ path: `docs/verification/${prefix}-${label}-combat.png` });
     const paused = await page.locator('#board').screenshot();
     await page.evaluate(() => {
       for (let i = 0; i < 10; i++) window.testScene.render(0);
@@ -133,9 +137,11 @@ try {
           '지원 소총 · 전술 가속',
           '산탄총 · 밀쳐내기',
           '점착탄 발사기 · 둔화',
+          '에너지포 · 전면 포격',
+          '긴 저격총 · 삼중 조준',
         ];
         document.body.innerHTML =
-          '<main><h1>말랑방위대 · 전투 장비</h1><p>고지대에서 자동 공격하는 8명의 동물 방위대</p><section></section></main>';
+          '<main><h1>말랑방위대 · 전투 장비</h1><p>고지대에서 자동 공격하는 10명의 동물 방위대</p><section></section></main>';
         const style = document.createElement('style');
         style.textContent =
           'body{margin:0;background:#e8f2ee;color:#304850;font-family:system-ui}main{max-width:1160px;margin:70px auto}h1{font-size:34px;margin:0 0 10px}p{font-size:17px}section{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:28px}article{background:#fffcf3;border:1px solid #ccdcd3;border-radius:18px;padding:15px;text-align:center}article svg{width:190px;height:190px}h2{font-size:21px;margin:0 0 8px}article p{font-size:14px;margin:0 0 8px}small{color:#667876}';
@@ -146,7 +152,7 @@ try {
           document.querySelector('section').append(card);
         }
       });
-      await page.locator('main').screenshot({ path: 'docs/verification/t3.8-combat-roster.png' });
+      await page.locator('main').screenshot({ path: `docs/verification/${prefix}-combat-roster.png` });
     }
     assert.deepEqual(errors, []);
     console.log(JSON.stringify({ viewport: label, ...checks, paused: true, errors }));
