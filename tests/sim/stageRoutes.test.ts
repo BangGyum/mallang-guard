@@ -29,7 +29,10 @@ describe('실제 스테이지의 전체 경로와 웨이브', () => {
           );
       const events: SimEvent[] = [];
       const invalid = new Set<string>();
-      while (battle.state.phase === 'running' && battle.state.tick < 300 * TICK_RATE) {
+      const lastSpawn = Math.max(
+        ...stage.spawns.map((group) => group.atSec + (group.count - 1) * group.intervalSec),
+      );
+      while (battle.state.phase === 'running' && battle.state.tick < (lastSpawn + 300) * TICK_RATE) {
         events.push(...battle.step());
         for (const enemy of battle.state.enemies) {
           const x = Math.floor(enemy.x);

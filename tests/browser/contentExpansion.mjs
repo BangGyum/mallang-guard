@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFile, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
-import { deploy, frame, pause, resume, tilePoint } from './helpers.mjs';
+import { deploy, finishBattle, frame, pause, resume, tilePoint } from './helpers.mjs';
 
 const browser = await chromium.launch({ channel: 'msedge', headless: true });
 const modes = process.argv.includes('--desktop')
@@ -181,7 +181,7 @@ try {
         }
       }
       await resume(page);
-      await frame(page, 60000);
+      await finishBattle(page);
       assert.equal(await page.locator('.battle-result h2').textContent(), '방어 성공!');
       assert.equal(await page.locator('.result-stars').textContent(), '★★★');
       const details = await page.locator('.result-detail').textContent();

@@ -32,6 +32,7 @@ try {
         {
           speed: 1,
           onMenu() {},
+          onExit() {},
           onEnd() {},
           onSpeed() {},
         },

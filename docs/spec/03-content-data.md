@@ -167,17 +167,23 @@ export interface ContentDb {
   unitOrder: readonly string[]; // units.json 순서 (UI 정렬 동점 처리용)
 }
 
+export interface RawStageDef extends StageDef {
+  waveRepeat?: { count: number; periodSec: number };
+}
+
 export interface RawContent {
   units: UnitDef[];
   enemies: EnemyDef[];
   skills: SkillDef[];
   ranges: RangeDef[];
-  stages: StageDef[];
+  stages: RawStageDef[];
 }
 ```
 
 
 `RawContent`는 `units`, `enemies`, `skills`, `ranges`, `stages`의 배열을 가진 테스트·입력 구성용 타입입니다. `validateContent(raw: unknown): ContentDb`는 외부 JSON을 각 필드의 타입부터 검사해 새 객체로 구성합니다. 반환 Map은 타입 수준에서 읽기 전용이며, `unitOrder`는 원본 유닛 순서를 유지합니다.
+
+원본 스테이지의 선택 필드 `waveRepeat`는 기본 `spawns` 패턴을 `count`회 확장합니다. `count`는 1 이상의 정수, `periodSec`는 패턴의 마지막 예약 스폰 시각보다 큰 유한 양수여야 합니다. 반복마다 시각에 `periodSec × 반복 번호`, 웨이브에 `기본 최대 웨이브 × 반복 번호`를 더하며 적 종류·수·경로·개별 스폰 간격은 유지합니다. 검증 결과는 확장된 `StageDef.spawns`만 가지며 반복 설정을 남기지 않습니다. 따라서 sim·지도·HUD의 기존 타입을 유지하고, 검증된 콘텐츠를 다시 검증해도 중복 확장하지 않습니다. 설정이 없는 입력은 기존처럼 처리합니다.
 
 ## 2. 검증 규칙 (src/data/validate.ts)
 
@@ -591,6 +597,7 @@ export interface RawContent {
 ```json
 {
   "id": "stage-1",
+  "waveRepeat": { "count": 10, "periodSec": 91 },
   "name": "1-1 푸딩 창고 앞마당",
   "map": [
     "##HH###HH##",
@@ -621,6 +628,6 @@ export interface RawContent {
 }
 ```
 
-- 적은 모두 21마리입니다.
+- 표의 기본 패턴은 5웨이브·21마리이며 10회 확장한 실제 전투는 50웨이브·210마리입니다. 다른 스테이지의 반복 주기와 검증 시간은 [09 문서](09-content-expansion.md)를 따릅니다.
 - 지상 경로는 하나로 정해집니다. 꺾이는 점은 (0,1) → (4,1) → (4,3) → (6,3) → (6,1) → (9,1) → (9,3) → (10,3)이고, 길이는 16타일입니다 (07 문서의 경로 테스트 기대값).
 - 이 맵은 기획 노트 목업과 같은 지형입니다.

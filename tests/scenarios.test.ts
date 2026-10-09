@@ -33,16 +33,16 @@ describe('골든 시나리오', () => {
     expect(result.hashes.at(-1)?.hash).toBe(hashState(result.state));
   });
 
-  it('기본 배치만으로 지상·비행 적 21마리를 처치하고 푸딩 3개를 지킨다', () => {
+  it('기본 배치만으로 50웨이브의 지상·비행 적 210마리를 처치하고 푸딩 3개를 지킨다', () => {
     const scenario = scenarios['./scenarios/stage-1-clear.json'];
     if (!scenario) throw new Error('클리어 시나리오 없음');
     const result = runScenario(content, scenario);
-    expect(result.state).toMatchObject({ phase: 'won', life: 3, killed: 21, leaked: 0, currentWave: 5 });
-    expect(result.events.filter((event) => event.type === 'enemyDie')).toHaveLength(21);
+    expect(result.state).toMatchObject({ phase: 'won', life: 3, killed: 210, leaked: 0, currentWave: 50 });
+    expect(result.events.filter((event) => event.type === 'enemyDie')).toHaveLength(210);
     const spawns = result.events.filter((event) => event.type === 'enemySpawn');
-    expect(spawns.filter((event) => event.enemyId === 'jelly')).toHaveLength(15);
-    expect(spawns.filter((event) => event.enemyId === 'hardJelly')).toHaveLength(3);
-    expect(spawns.filter((event) => event.enemyId === 'crow')).toHaveLength(3);
+    expect(spawns.filter((event) => event.enemyId === 'jelly')).toHaveLength(150);
+    expect(spawns.filter((event) => event.enemyId === 'hardJelly')).toHaveLength(30);
+    expect(spawns.filter((event) => event.enemyId === 'crow')).toHaveLength(30);
     expect(
       result.events.filter((event) => event.type === 'skillStart').map((event) => event.skillId),
     ).toEqual(expect.arrayContaining(['carrotSoup']));

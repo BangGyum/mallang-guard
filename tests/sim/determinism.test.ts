@@ -38,6 +38,6 @@ describe('시나리오 결정론', () => {
     expect(
       result.events.filter((event) => event.type === 'skillStart').map((event) => event.skillId),
     ).toEqual(expect.arrayContaining(['acornPickup', 'snowballBarrage', 'carrotSoup']));
-    expect(result.state).toMatchObject({ phase: 'won', life: 3, killed: 21, leaked: 0 });
+    expect(result.state).toMatchObject({ phase: 'won', life: 3, killed: 210, leaked: 0 });
   });
 });

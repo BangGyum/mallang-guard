@@ -1,5 +1,6 @@
 {
   "id": "stage-4",
+  "waveRepeat": { "count": 10, "periodSec": 107 },
   "name": "1-4 끈적한 온실",
   "description": "두 입구를 살피고 끈적젤리의 공격 방해에 대비해요.",
   "startDp": 24,

@@ -19,6 +19,7 @@ export function createBattleSession(
     options?: ViewOptions;
     automaticQuality?: boolean;
     onMenu(): void;
+    onExit(): void;
     onEnd(): void;
     onSpeed(speed: 1 | 2): void;
     onEvents?(events: readonly SimEvent[]): void;
@@ -68,6 +69,7 @@ export function createBattleSession(
     controls.paused = paused;
   }
   const hud = createHud(hudRoot, battle, {
+    exit: actions.onExit,
     start() {
       controls.startInSec = Math.min(controls.startInSec, QUICK_START_SEC);
     },

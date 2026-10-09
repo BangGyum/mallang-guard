@@ -4,6 +4,21 @@ export async function frame(page, ms = 120) {
   await page.clock.runFor(ms);
 }
 
+export async function finishBattle(page) {
+  const limit = await page.evaluate(async () => {
+    const { content } = await import('/src/data/index.ts');
+    const stage = content.stages.get(document.querySelector('#app').dataset.stageId);
+    return (
+      Math.max(0, ...stage.spawns.map((group) => group.atSec + (group.count - 1) * group.intervalSec)) + 300
+    );
+  });
+  for (let seconds = 0; seconds <= limit; seconds += 30) {
+    if (await page.locator('.battle-result').isVisible()) return;
+    await frame(page, 30000);
+  }
+  assert(await page.locator('.battle-result').isVisible(), '마지막 스폰 이후에도 전투가 끝나지 않음');
+}
+
 export async function enterBattle(page, { waitForStart = true } = {}) {
   await page.getByRole('button', { name: '시작', exact: true }).click();
   await page.locator('.deploy-bar').waitFor();

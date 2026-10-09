@@ -1,5 +1,6 @@
 {
   "id": "stage-5",
+  "waveRepeat": { "count": 10, "periodSec": 105 },
   "name": "1-5 바람 부는 연못",
   "description": "연못 사이 좁은 길과 하늘을 함께 지켜요.",
   "startDp": 22,

@@ -66,5 +66,24 @@ export function parseStage(value: unknown, path: string): StageDef {
   if (raw.dpPerSec !== undefined) stage.dpPerSec = positive(raw.dpPerSec, `${path}.dpPerSec`);
   if (raw.description !== undefined) stage.description = text(raw.description, `${path}.description`);
   if (raw.roster !== undefined) stage.roster = list(raw.roster, `${path}.roster`, text);
+  if (raw.waveRepeat !== undefined) {
+    const repeat = object(raw.waveRepeat, `${path}.waveRepeat`);
+    const count = integer(repeat.count, `${path}.waveRepeat.count`, 1);
+    const periodSec = positive(repeat.periodSec, `${path}.waveRepeat.periodSec`);
+    const lastSpawn = Math.max(
+      0,
+      ...stage.spawns.map((group) => group.atSec + (group.count - 1) * group.intervalSec),
+    );
+    assert(periodSec > lastSpawn, `${path}.waveRepeat.periodSec: must exceed the last scheduled spawn`);
+    const waves = Math.max(0, ...stage.spawns.map((group) => group.wave));
+    const pattern = stage.spawns;
+    stage.spawns = Array.from({ length: count }, (_, cycle) =>
+      pattern.map((group) => ({
+        ...group,
+        wave: group.wave + cycle * waves,
+        atSec: group.atSec + cycle * periodSec,
+      })),
+    ).flat();
+  }
   return stage;
 }

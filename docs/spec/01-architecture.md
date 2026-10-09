@@ -89,7 +89,7 @@ mallang-guard/
 │  │  └─ textures.ts           SVG → CanvasTexture 굽기, 캐시
 │  ├─ ui/
 │  │  ├─ dom.ts                h() 헬퍼
-│  │  ├─ hud.ts                상단 바 (푸딩, 적 수, 웨이브, 배속, 일시정지)
+│  │  ├─ hud.ts                상단 바 (푸딩, 적 수, 웨이브, 배속, 일시정지, 나가기)
 │  │  ├─ deployBar.ts          배치 카드 + 도토리 표시
 │  │  ├─ unitPanel.ts          선택 유닛 정보, 스킬 버튼, 후퇴
 │  │  ├─ controller.ts         입력 상태 머신 (05 문서)

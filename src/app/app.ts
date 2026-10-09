@@ -184,6 +184,7 @@ export function createApp(
         options: viewOptions(),
         automaticQuality,
         onMenu: showPause,
+        onExit: showTitle,
         onEnd: showResult,
         onEvents(events) {
           sound.onEvents(events, impactDelays(events), (uid) => {
