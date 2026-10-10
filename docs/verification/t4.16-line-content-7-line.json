@@ -1,0 +1,30 @@
+[
+  {
+    "viewport": "desktop-7-line",
+    "result": "푸딩 3개 · 처치 502/502",
+    "disruptions": 172,
+    "children": 134,
+    "rejected": [],
+    "killed": 502,
+    "total": 502,
+    "leaked": 0,
+    "life": 3,
+    "disruptionShown": true,
+    "saved": true,
+    "errors": []
+  },
+  {
+    "viewport": "mobile-7-line",
+    "result": "푸딩 3개 · 처치 502/502",
+    "disruptions": 172,
+    "children": 134,
+    "rejected": [],
+    "killed": 502,
+    "total": 502,
+    "leaked": 0,
+    "life": 3,
+    "disruptionShown": true,
+    "saved": true,
+    "errors": []
+  }
+]

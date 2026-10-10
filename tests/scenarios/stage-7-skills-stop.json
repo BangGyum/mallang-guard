@@ -1,0 +1,33 @@
+{
+  "stage": "stage-7",
+  "expect": {
+    "result": "lost"
+  },
+  "commands": [
+    { "atSec": 0, "type": "deploy", "unitId": "squirrel", "tile": [6, 3], "dir": "left" },
+    { "atSec": 0.03333333333333333, "type": "deploy", "unitId": "penguin", "tile": [6, 8], "dir": "left" },
+    { "atSec": 12, "type": "skill", "unitId": "squirrel" },
+    { "atSec": 12.033333333333333, "type": "deploy", "unitId": "cat", "tile": [4, 8], "dir": "right" },
+    { "atSec": 17.8, "type": "deploy", "unitId": "sheep", "tile": [20, 3], "dir": "left" },
+    { "atSec": 30, "type": "retreat", "unitId": "penguin" },
+    { "atSec": 30.033333333333335, "type": "deploy", "unitId": "bunny", "tile": [10, 6], "dir": "down" },
+    { "atSec": 44.03333333333333, "type": "skill", "unitId": "squirrel" },
+    { "atSec": 50, "type": "retreat", "unitId": "squirrel" },
+    { "atSec": 51.53333333333333, "type": "deploy", "unitId": "snail", "tile": [11, 8], "dir": "left" },
+    { "atSec": 57.833333333333336, "type": "skill", "unitId": "cat" },
+    { "atSec": 60.5, "type": "deploy", "unitId": "bear", "tile": [16, 3], "dir": "right" },
+    { "atSec": 70, "type": "deploy", "unitId": "penguin", "tile": [18, 5], "dir": "up" },
+    { "atSec": 70.5, "type": "skill", "unitId": "bear" },
+    { "atSec": 74.9, "type": "skill", "unitId": "sheep" },
+    { "atSec": 80, "type": "deploy", "unitId": "squirrel", "tile": [18, 3], "dir": "left" },
+    { "atSec": 90, "type": "skill", "unitId": "penguin" },
+    { "atSec": 95.53333333333333, "type": "skill", "unitId": "bear" },
+    { "atSec": 100.43333333333334, "type": "skill", "unitId": "snail" },
+    { "atSec": 103.6, "type": "skill", "unitId": "cat" },
+    { "atSec": 111.43333333333334, "type": "skill", "unitId": "sheep" },
+    { "atSec": 120.56666666666666, "type": "skill", "unitId": "bear" },
+    { "atSec": 135.03333333333333, "type": "skill", "unitId": "penguin" },
+    { "atSec": 145.6, "type": "skill", "unitId": "bear" },
+    { "atSec": 150.76666666666668, "type": "skill", "unitId": "sheep" }
+  ]
+}

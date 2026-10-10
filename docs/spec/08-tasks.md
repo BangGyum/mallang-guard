@@ -457,6 +457,14 @@
 - 검증: 자동 테스트 60개 파일 954개와 check/lint/build가 통과했습니다. 초반/예산 보존·단계별 증가·동시 진입·후반 공백/동시 적·15분/10배 길이·양성/음성 공략·결정론을 검사합니다. Edge PC 1920×1080·터치 에뮬레이션 844×390의 1→2 총 4회는 푸딩 3개·누수/거부 명령 0으로 완주하며 별 6개 저장/복원·3번 해금·재도전 패배 시 최고 기록 유지를 통과했습니다. 추가 PC/터치 입력 2회는 배치·잘못된 타일·후퇴 0 환급·쿨다운·스킬·회전을 확인하고 5인 조합의 후반 패배가 클리어 기록을 만들지 않는지 검사합니다. 프로덕션 경로의 10개 초상화·50웨이브·처치 수입·WebGL·나가기도 통과했으며 브라우저 오류/경고는 0건입니다.
   기록: [수정 전](../verification/t4.15-pressure-before.json), [공략 비교](../verification/t4.15-pressure-after.json), [0~2초 반응](../verification/t4.15-pressure-reaction.json), [PC·터치 완주](../verification/t4.15-campaign.json), [추가 입력](../verification/t4.15-input.json), [프로덕션](../verification/t4.15-production.json). 화면: [1번 후반](../verification/t4.15-desktop-stage-1-pressure.png), [터치 2번 후반](../verification/t4.15-mobile-stage-2-pressure.png), [배포용 빌드](../verification/t4.15-production.png).
 
+### [x] T4.16 3~7 정원 중후반 난이도 점검
+- 사용자 요청: 나머지 스테이지도 확인 후 필요한 난이도 수정을 진행합니다.
+- 읽을 문서: 01·03·05·07·09의 데이터 계약·원본 초반 편성·골든 공략·전투 길이·HUD·저장 계약.
+- 기준: 첫 5/6웨이브·맵·초기 도토리·캐릭터/적 수치와 50/60웨이브 길이를 보존합니다. 3~5번의 무조작 완주와 6~7번의 반복 공세를 실제 전투에서 비교해 단계별 편성을 조정합니다. 중간보스·왕젤리는 구간당 한 마리씩 유지합니다.
+- 구현: 3~7번의 50/60웨이브를 직접 작성해 이후 9구간의 적 수·밀도를 단계적으로 높입니다. 기본 스킬 공략의 처치 수는 777/442/473/435/492이며 큰 맵의 후방·밤밤·랑랑 배치는 502마리를 막습니다. 3~5번 스킬 미사용/중단은 830~896초에, 6~7번 초반 이후 중단은 277/300초에 실패합니다. 0~2초 반응의 조건별 차이는 09 문서와 기록에 남겼습니다.
+- 검증: 자동 테스트 61개 파일 998개와 check/lint/build가 통과했습니다. 첫 구간·맵·예산 보존, 단계별 적 수/밀도·보스 한 마리, 후반 공백/동시 적·10배 길이·반복 입력 호환성과 29개 시나리오의 결과/결정론을 확인했습니다. Edge PC 1920×1080·터치 에뮬레이션 844×390에서 빈 저장의 1→5 완주 후 해당 기록을 복원해 6→7을 재개한 총 14회와 큰 맵 대체 조합 총 6회는 푸딩 3개·누수/거부 명령 0으로 완주합니다. 별 21개 저장/복원·순차 해금·재도전 패배 시 최고 기록 유지, 실제 적 16종·치유/보호막·처치 보상 연결과 방해 팝업/44px 버튼을 확인했습니다. 가상 시계의 마지막 틱 진행과 공격 충전 대기를 보완하고 실제 4번 후반 패배에서 재현한 음수 푸딩 표시를 0개로 보정했습니다. 추가 PC·터치 패배 2회는 HUD/결과 0개·별 0개·다음 버튼 없음·기록 보존을 확인합니다. 프로덕션 경로의 10개 초상화·50웨이브·WebGL·처치 수입·나가기와 브라우저 오류/경고 0건을 확인했습니다.
+  기록: [수정 전](../verification/t4.16-pressure-before.json), [공략 비교](../verification/t4.16-pressure-after.json), [0~2초 반응](../verification/t4.16-pressure-reaction.json), [PC 완주](../verification/t4.16-campaign-desktop.json), [터치 완주](../verification/t4.16-campaign-mobile.json), [후방 PC](../verification/t4.16-rear-content-7-rear-desktop.json), [후방 터치](../verification/t4.16-rear-content-7-rear-mobile.json), [밤밤](../verification/t4.16-wide-content-7-wide.json), [랑랑](../verification/t4.16-line-content-7-line.json), [패배 회귀](../verification/t4.16-defeat.json), [프로덕션](../verification/t4.16-production.json). 화면: [3번 후반](../verification/t4.16-desktop-stage-3-pressure.png), [터치 7번 후반](../verification/t4.16-mobile-stage-7-pressure.png), [740×360 화면](../verification/t4.16-compact-large-map.png), [별 21개](../verification/t4.16-mobile-all-stars.png).
+
 ## M5 확장 (방향만 정해 둠)
 
 - 모바일 성능 최적화, PWA(오프라인 실행)

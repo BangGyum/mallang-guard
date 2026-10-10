@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFile, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
-import { installCampaignAudit } from './campaignAudit.mjs';
+import { installCampaignAudit, skillRetryMs } from './campaignAudit.mjs';
 import { deploy, frame, pause, resume, tilePoint } from './helpers.mjs';
 
 const earlyOnly = process.argv.includes('--early');
@@ -42,7 +42,7 @@ try {
     await page.clock.install({ time });
     await page.clock.pauseAt(new Date(time.getTime() + 1000));
     await page.addInitScript(() => {
-      window.requestAnimationFrame = (callback) => setTimeout(() => callback(performance.now()), 100);
+      window.requestAnimationFrame = (callback) => setTimeout(() => callback(performance.now()), 33);
       window.cancelAnimationFrame = (id) => clearTimeout(id);
     });
     await page.goto('http://127.0.0.1:43195/');
@@ -83,24 +83,31 @@ try {
       }
       const placed = new Map();
       let pressureCaptured = false;
+      const waves = Math.max(...stage.spawns.map((spawn) => spawn.wave));
+      const next = stage.spawns.find((spawn) => spawn.wave > waves / 10);
+      const period = stage.waveRepeat?.periodSec ?? (next?.atSec ?? 0) - stage.spawns[0].atSec;
       for (const command of scenario.commands) {
         const target = Math.round(command.atSec * 30);
         let tick = await page.evaluate(() => window.campaign.battle.state.tick);
         if (tick < target) {
-          await resume(page);
-          if (await page.locator('.battle-preparation').isVisible()) await frame(page, 10000);
+          await resume(page, 1);
+          if (await page.locator('.battle-preparation').isVisible()) {
+            await frame(page, 9000);
+            while (await page.locator('.battle-preparation').isVisible()) await frame(page, 10);
+          }
           tick = await page.evaluate(() => window.campaign.battle.state.tick);
           let frames = 0;
           while (tick < target) {
             assert(frames++ < 10, `${label}/${stage.id}: ${target}틱까지 전투 시간이 진행되지 않음`);
-            await frame(page, ((target - tick) / 30) * 1000);
+            // 가상 시계의 소수 밀리초 반올림으로 마지막 한 틱을 계속 기다리지 않게 한다.
+            await frame(page, Math.max(34, Math.ceil(((target - tick) / 30) * 1000)));
             tick = await page.evaluate(() => window.campaign.battle.state.tick);
           }
           await pause(page);
         }
-        if (earlyOnly && !pressureCaptured && command.atSec >= (stage.id === 'stage-1' ? 637 : 665)) {
+        if (!pressureCaptured && command.atSec >= period * 7) {
           const enemies = await page.evaluate(() => window.campaign.battle.state.enemies.length);
-          if (enemies >= (stage.id === 'stage-1' ? 6 : 12)) {
+          if (enemies >= [6, 12, 12, 7, 8, 6, 9][Number(stage.id.slice(-1)) - 1]) {
             await page.screenshot({
               path: `docs/verification/${prefix}-${label}-${stage.id}-pressure.png`,
             });
@@ -138,15 +145,17 @@ try {
           assert.equal(await page.evaluate(() => window.campaign.battle.state.dp), before);
           placed.delete(command.unitId);
         } else {
-          for (let attempt = 0; attempt < 12; attempt++) {
+          // 공격 충전은 조작 시점에 따라 다음 적 무리까지 기다려야 할 수 있다.
+          for (let attempt = 0; attempt < 80; attempt++) {
             const point = await tilePoint(page, placed.get(command.unitId));
             if (mobile) await page.touchscreen.tap(point.x, point.y);
             else await page.mouse.click(point.x, point.y);
             await frame(page);
             if (!(await page.locator('.skill-button').isDisabled())) break;
+            const wait = await skillRetryMs(page, command.unitId);
             await click(page.locator('.unit-popup-close'));
-            await resume(page);
-            await frame(page, 300);
+            await resume(page, 1);
+            await frame(page, wait);
             await pause(page);
           }
           assert.equal(
@@ -272,7 +281,8 @@ try {
     );
     await context.close();
   }
-  await writeFile(`docs/verification/${prefix}-campaign.json`, `${JSON.stringify(report, null, 2)}\n`);
+  const run = modes.length === 1 ? (modes[0] ? '-mobile' : '-desktop') : '';
+  await writeFile(`docs/verification/${prefix}-campaign${run}.json`, `${JSON.stringify(report, null, 2)}\n`);
 } finally {
   await browser.close();
 }

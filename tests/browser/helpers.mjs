@@ -36,11 +36,11 @@ export async function pause(page) {
   }
 }
 
-export async function resume(page) {
+export async function resume(page, ms = 120) {
   const button = page.locator('[data-action="pause"]');
   if ((await button.textContent()) === '계속하기') {
     await button.click();
-    await frame(page);
+    await frame(page, ms);
   }
 }
 
