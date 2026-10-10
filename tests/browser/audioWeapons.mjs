@@ -6,13 +6,13 @@ import { enterBattle, frame, pause, resume } from './helpers.mjs';
 import { createUnitAuditGame, unitAuditPoint } from './unitAuditScene.mjs';
 
 const expected = {
-  squirrel: 0.16,
+  squirrel: 0.12,
   cat: 0.18,
   bear: 0.24,
   penguin: 0.26,
   sheep: 0.2,
   bunny: 0.16,
-  mole: 0.3,
+  mole: 0.12,
   snail: 0.22,
   owl: 0.28,
   wolf: 0.26,

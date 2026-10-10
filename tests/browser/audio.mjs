@@ -51,7 +51,7 @@ try {
       'hit',
       'shoot',
       'sniper',
-      'shotgun',
+      'pistol',
       'slash',
       'hammer',
       'magic',

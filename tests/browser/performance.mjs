@@ -45,24 +45,30 @@ try {
       if (frame >= 120) intervals.push(now - last);
       last = now;
       if (frame % 8 === 0) {
-        const unit = battle.state.units[3];
-        const enemy = battle.state.enemies[frame % 60];
-        deliver([
-          {
-            type: 'attack',
-            src: { kind: 'unit', uid: unit.uid },
-            dst: { kind: 'enemy', uid: enemy.uid },
-            ranged: true,
-            damageType: 'physical',
-          },
-          {
-            type: 'damage',
-            src: { kind: 'unit', uid: unit.uid },
-            dst: { kind: 'enemy', uid: enemy.uid },
-            amount: 120,
-            damageType: 'physical',
-          },
-        ]);
+        const unit = battle.state.units[Math.floor(frame / 8) % battle.state.units.length];
+        const damageType = battle.content.units.get(unit.unitId).damageType;
+        const targets = Array.from(
+          { length: unit.unitId === 'wolf' ? 3 : 1 },
+          (_, i) => battle.state.enemies[(frame + i) % 60],
+        );
+        deliver(
+          targets.flatMap((enemy) => [
+            {
+              type: 'attack',
+              src: { kind: 'unit', uid: unit.uid },
+              dst: { kind: 'enemy', uid: enemy.uid },
+              ranged: true,
+              damageType,
+            },
+            {
+              type: 'damage',
+              src: { kind: 'unit', uid: unit.uid },
+              dst: { kind: 'enemy', uid: enemy.uid },
+              amount: 120,
+              damageType,
+            },
+          ]),
+        );
       }
       if (frame % 30 === 0) deliver([{ type: 'skillPulse', uid: battle.state.units[4].uid }]);
       const start = performance.now();

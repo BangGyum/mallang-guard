@@ -42,7 +42,8 @@ try {
     if (mobile) await page.touchscreen.tap(card.x + card.width / 2, card.y + card.height / 2);
     else await page.mouse.click(card.x + card.width / 2, card.y + card.height / 2);
     await frame(page);
-    assert.equal(await page.locator('.toast').textContent(), '도토리가 부족해요');
+    assert.equal(await page.locator('.roster-panel').getAttribute('data-deploy-available'), 'false');
+    assert.match(await page.locator('.roster-deploy-hint').textContent(), /도토리/);
     assert.equal(await page.locator('.aim-directions').isVisible(), false);
     assert.equal(await page.locator('.dp-panel strong').textContent(), '10');
     assert.equal(await unavailable.getAttribute('data-state'), 'noDp');
@@ -51,6 +52,8 @@ try {
       'rgb(182, 70, 78)',
     );
     await page.screenshot({ path: `docs/verification/${prefix}-${mobile ? 'mobile' : 'desktop'}.png` });
+    await page.locator('.roster-close').click();
+    await frame(page);
     await page.keyboard.press('2');
     await frame(page);
     assert.equal(await page.getByRole('button', { name: '전투 배속 변경' }).textContent(), '×2');
@@ -63,11 +66,11 @@ try {
     await frame(page);
     assert.equal(await page.getByRole('button', { name: '전투 배속 변경' }).textContent(), '×1');
     await resume(page);
-    await frame(page, 22000);
+    await frame(page, 20000);
     await pause(page);
     assert.equal(await page.locator('.battle-life').textContent(), '♥ 푸딩 1');
     assert.equal(await page.locator('.battle-life').getAttribute('class'), 'battle-life is-critical');
-    assert.match(await page.locator('.battle-wave').textContent(), /WAVE 2\/50/);
+    assert.match(await page.locator('.battle-wave').textContent(), /WAVE 2\/12/);
     await page.screenshot({
       path: `docs/verification/${prefix}-${mobile ? 'mobile' : 'desktop'}-critical.png`,
     });

@@ -30,9 +30,9 @@ export async function installCampaignAudit(page, moduleUrl) {
         window.campaign.battle = this;
         const id = this.stage.definition.id;
         const spawns = this.stage.definition.spawns;
-        const next = spawns.find((group) => group.wave > this.state.totalWaves / 10);
-        const period = (next?.atSec ?? 0) - (spawns[0]?.atSec ?? 0);
-        if (name === 'step' && period && this.state.tick >= period * 7 * 30) {
+        const lateSec =
+          Math.max(...spawns.map((group) => group.atSec + (group.count - 1) * group.intervalSec)) * 0.7;
+        if (name === 'step' && this.state.tick >= lateSec * 30) {
           window.campaign.latePressure[id] ??= { ticks: 0, empty: 0, peak: 0 };
           const sample = window.campaign.latePressure[id];
           sample.ticks++;

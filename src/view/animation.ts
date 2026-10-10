@@ -1,8 +1,17 @@
 import { clamp } from '../core/math';
 
-export type AttackKind = 'shot' | 'slash' | 'impact' | 'cast';
-export const ATTACK_DURATION = { shot: 0.14, slash: 0.24, impact: 0.22, cast: 0.18 };
+export type AttackKind = 'pistol' | 'shot' | 'heavyShot' | 'slash' | 'impact' | 'cast';
+export const ATTACK_DURATION = {
+  pistol: 0.1,
+  shot: 0.14,
+  heavyShot: 0.22,
+  slash: 0.24,
+  impact: 0.22,
+  cast: 0.18,
+};
 export function attackKindFor(art: string): AttackKind {
+  if (art === 'squirrel' || art === 'mole') return 'pistol';
+  if (art === 'owl' || art === 'wolf') return 'heavyShot';
   return art === 'cat' ? 'slash' : art === 'bear' ? 'impact' : art === 'sheep' ? 'cast' : 'shot';
 }
 
@@ -62,8 +71,16 @@ export function samplePose(motion: Readonly<Motion>, reduced: boolean, pose: Pos
         pose.y -= Math.sin((1 - recoil) * Math.PI) * 0.06;
         pose.rotation = -0.18 * recoil;
       } else {
-        pose.x -= (motion.attackKind === 'cast' ? 0.03 : 0.075) * recoil;
-        pose.rotation = 0.06 * recoil;
+        const kick =
+          motion.attackKind === 'heavyShot'
+            ? 0.14
+            : motion.attackKind === 'pistol'
+              ? 0.045
+              : motion.attackKind === 'cast'
+                ? 0.03
+                : 0.075;
+        pose.x -= kick * recoil;
+        pose.rotation = (motion.attackKind === 'heavyShot' ? 0.12 : 0.06) * recoil;
       }
       pose.scaleX *= 1 - 0.04 * recoil;
       pose.scaleY *= 1 + 0.04 * recoil;

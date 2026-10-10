@@ -1,7 +1,7 @@
 export const COMBAT_SOUNDS = [
   'shoot',
   'sniper',
-  'shotgun',
+  'pistol',
   'slash',
   'hammer',
   'magic',
@@ -12,13 +12,13 @@ export const COMBAT_SOUNDS = [
 export type AttackSound = (typeof COMBAT_SOUNDS)[number];
 
 const UNIT_SOUNDS: Readonly<Record<string, AttackSound>> = {
-  squirrel: 'shoot',
+  squirrel: 'pistol',
   cat: 'slash',
   bear: 'hammer',
   penguin: 'sniper',
   sheep: 'magic',
   bunny: 'shoot',
-  mole: 'shotgun',
+  mole: 'pistol',
   snail: 'launcher',
   owl: 'energy',
   wolf: 'sniper',
@@ -31,13 +31,13 @@ export function unitAttackSound(art: string): AttackSound | undefined {
 const GUNS = {
   shoot: { sec: 0.16, crack: 0.006, body: 0.032, tail: 0.055, pitch: 155, bolt: 0.055 },
   sniper: { sec: 0.26, crack: 0.009, body: 0.05, tail: 0.09, pitch: 105, bolt: 0.12 },
-  shotgun: { sec: 0.3, crack: 0.016, body: 0.062, tail: 0.1, pitch: 125, bolt: 0.16 },
+  pistol: { sec: 0.12, crack: 0.004, body: 0.023, tail: 0.035, pitch: 185, bolt: 0.04 },
 } as const;
 
 const DURATIONS: Readonly<Record<AttackSound, number>> = {
   shoot: GUNS.shoot.sec,
   sniper: GUNS.sniper.sec,
-  shotgun: GUNS.shotgun.sec,
+  pistol: GUNS.pistol.sec,
   slash: 0.18,
   hammer: 0.24,
   magic: 0.2,
@@ -52,7 +52,7 @@ export function createCombatBuffers(context: BaseAudioContext): ReadonlyMap<Atta
     const sec = DURATIONS[sound];
     const buffer = context.createBuffer(1, Math.ceil(context.sampleRate * sec), context.sampleRate);
     const samples = buffer.getChannelData(0);
-    const gun = sound === 'shoot' || sound === 'sniper' || sound === 'shotgun' ? GUNS[sound] : undefined;
+    const gun = sound === 'shoot' || sound === 'sniper' || sound === 'pistol' ? GUNS[sound] : undefined;
     let seed = 0x6d2b79f5 + index;
     let low = 0;
     let mid = 0;

@@ -11,12 +11,12 @@ import { laneStage, makeContent, run } from '../helpers';
 import { makeFixture, SPAWN } from './battleFixtures';
 
 describe('battle outcome', () => {
-  it('실제 stage-1은 426마리를 계획하고 세 번째 누수로 즉시 패배한다', () => {
+  it('실제 stage-1은 119마리를 계획하고 세 번째 누수로 즉시 패배한다', () => {
     const battle = createBattle(content, 'stage-1');
     const events = run(battle, secToTicks(180));
-    expect(battle.state.totalEnemies).toBe(426);
-    expect(battle.state).toMatchObject({ phase: 'lost', life: 0, leaked: 3, killed: 0, tick: 804 });
-    expect(events.filter((event) => event.type === 'enemySpawn')).toHaveLength(6);
+    expect(battle.state.totalEnemies).toBe(119);
+    expect(battle.state).toMatchObject({ phase: 'lost', life: 0, leaked: 3, killed: 0, tick: 774 });
+    expect(events.filter((event) => event.type === 'enemySpawn')).toHaveLength(7);
     expect(events.filter((event) => event.type === 'enemyLeak').map((event) => event.uid)).toEqual([1, 2, 3]);
     expect(events.at(-1)).toEqual({ type: 'battleEnd', result: 'lost' });
     expect(events.filter((event) => event.type === 'battleEnd')).toHaveLength(1);
@@ -24,24 +24,24 @@ describe('battle outcome', () => {
     expect(run(battle, 300)).toEqual([]);
     expect(hashState(battle.state)).toBe(endedHash);
   });
-  it('테스트용 목숨 427에서 stage-1의 426마리가 모두 이동·누수한다', () => {
+  it('테스트용 목숨 120에서 stage-1의 119마리가 모두 이동·누수한다', () => {
     const stage = content.stages.get('stage-1');
     if (!stage) throw new Error('fixture missing');
-    const battle = createBattle(makeContent({ stages: [{ ...stage, life: 427 }] }), stage.id);
+    const battle = createBattle(makeContent({ stages: [{ ...stage, life: 120 }] }), stage.id);
     const events = run(battle, secToTicks(1100));
     const spawned = events.filter((event) => event.type === 'enemySpawn');
-    expect(spawned).toHaveLength(426);
-    expect(spawned.map((event) => event.uid)).toEqual(Array.from({ length: 426 }, (_, index) => index + 1));
+    expect(spawned).toHaveLength(119);
+    expect(spawned.map((event) => event.uid)).toEqual(Array.from({ length: 119 }, (_, index) => index + 1));
     const counts: Record<string, number> = {};
     for (const event of spawned) counts[event.enemyId] = (counts[event.enemyId] ?? 0) + 1;
-    expect(counts).toEqual({ jelly: 298, hardJelly: 64, crow: 64 });
+    expect(counts).toEqual({ jelly: 79, hardJelly: 17, crow: 23 });
     expect(battle.state).toMatchObject({
       phase: 'won',
       life: 1,
-      leaked: 426,
+      leaked: 119,
       killed: 0,
       enemies: [],
-      currentWave: 50,
+      currentWave: 12,
     });
     expect(battle.state.spawnCursor).toEqual(battle.stage.spawns.map((group) => group.count));
   });

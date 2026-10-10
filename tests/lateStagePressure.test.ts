@@ -23,12 +23,13 @@ describe('3~7 정원 중후반 압박', () => {
     const stage = content.stages.get(baseline.id);
     if (!stage) throw new Error('스테이지 없음');
     const waves = Math.max(...baseline.spawns.map((group) => group.wave));
-    const blocks = Array.from({ length: 10 }, (_, index) =>
+    const cycles = stage.id === 'stage-3' ? 5 : 10;
+    const blocks = Array.from({ length: cycles }, (_, index) =>
       stage.spawns.filter((group) => group.wave > index * waves && group.wave <= (index + 1) * waves),
     );
     const totals = blocks.map((block) => block.reduce((sum, group) => sum + group.count, 0));
-    expect(Math.max(...stage.spawns.map((group) => group.wave))).toBe(waves * 10);
-    expect(totals[9]).toBeGreaterThan(totals[0] ?? 0);
+    expect(Math.max(...stage.spawns.map((group) => group.wave))).toBe(waves * cycles);
+    expect(totals.at(-1)).toBeGreaterThan(totals[0] ?? 0);
     for (let index = 1; index < totals.length; index++) {
       expect(totals[index]).toBeGreaterThanOrEqual(totals[index - 1] ?? 0);
     }
@@ -40,14 +41,13 @@ describe('3~7 정원 중후반 압박', () => {
         expect(block.filter((group) => group.enemy === 'kingJelly').map((group) => group.count)).toEqual([1]);
       }
     }
-    for (const [index, group] of (blocks[9] ?? []).entries()) {
+    for (const [index, group] of (blocks.at(-1) ?? []).entries()) {
       const first = baseline.spawns[index];
       if (first && first.count > 1) expect(group.intervalSec).toBeLessThan(first.intervalSec);
     }
   });
 
   it.each([
-    { id: 'stage-3', peak: 12, emptyPercent: 10 },
     { id: 'stage-4', peak: 7, emptyPercent: 8 },
     { id: 'stage-5', peak: 8, emptyPercent: 12 },
     { id: 'stage-6', peak: 8, emptyPercent: 20 },

@@ -1,8 +1,6 @@
 {
   "stage": "stage-3",
-  "expect": {
-    "result": "lost"
-  },
+  "expect": { "result": "lost" },
   "commands": [
     { "atSec": 0, "type": "deploy", "unitId": "squirrel", "tile": [2, 0], "dir": "down" },
     { "atSec": 5.566666666666666, "type": "deploy", "unitId": "penguin", "tile": [8, 2], "dir": "left" },

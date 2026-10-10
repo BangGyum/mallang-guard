@@ -33,27 +33,27 @@ describe('골든 시나리오', () => {
     expect(result.hashes.at(-1)?.hash).toBe(hashState(result.state));
   });
 
-  it('배치와 수동 스킬로 50웨이브의 지상·비행 적 426마리를 처치하고 푸딩 3개를 지킨다', () => {
+  it('배치와 수동 스킬로 12웨이브의 지상·비행 적 119마리를 처치하고 푸딩 3개를 지킨다', () => {
     const scenario = scenarios['./scenarios/stage-1-clear.json'];
     if (!scenario) throw new Error('클리어 시나리오 없음');
     const result = runScenario(content, scenario);
-    expect(result.state).toMatchObject({ phase: 'won', life: 3, killed: 426, leaked: 0, currentWave: 50 });
-    expect(result.events.filter((event) => event.type === 'enemyDie')).toHaveLength(426);
+    expect(result.state).toMatchObject({ phase: 'won', life: 3, killed: 119, leaked: 0, currentWave: 12 });
+    expect(result.events.filter((event) => event.type === 'enemyDie')).toHaveLength(119);
     const spawns = result.events.filter((event) => event.type === 'enemySpawn');
-    expect(spawns.filter((event) => event.enemyId === 'jelly')).toHaveLength(298);
-    expect(spawns.filter((event) => event.enemyId === 'hardJelly')).toHaveLength(64);
-    expect(spawns.filter((event) => event.enemyId === 'crow')).toHaveLength(64);
+    expect(spawns.filter((event) => event.enemyId === 'jelly')).toHaveLength(79);
+    expect(spawns.filter((event) => event.enemyId === 'hardJelly')).toHaveLength(17);
+    expect(spawns.filter((event) => event.enemyId === 'crow')).toHaveLength(23);
     expect(
       result.events.filter((event) => event.type === 'skillStart').map((event) => event.skillId),
     ).toEqual(expect.arrayContaining(['carrotSoup', 'snowballBarrage', 'stardustShower', 'potLidGuard']));
   });
 
-  it('무배치는 26.8초에 세 번째 누수로 즉시 패배한다', () => {
+  it('무배치는 25.8초에 세 번째 누수로 즉시 패배한다', () => {
     const scenario = scenarios['./scenarios/stage-1-idle.json'];
     if (!scenario) throw new Error('무배치 시나리오 없음');
     const result = runScenario(content, scenario);
-    expect(result.state).toMatchObject({ phase: 'lost', tick: 804, life: 0, killed: 0, leaked: 3 });
-    expect(result.events.filter((event) => event.type === 'enemySpawn')).toHaveLength(6);
+    expect(result.state).toMatchObject({ phase: 'lost', tick: 774, life: 0, killed: 0, leaked: 3 });
+    expect(result.events.filter((event) => event.type === 'enemySpawn')).toHaveLength(7);
     expect(result.events.filter((event) => event.type === 'enemyLeak')).toHaveLength(3);
   });
 });

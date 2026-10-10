@@ -5,7 +5,7 @@ import { validateContent } from '../src/data/validate';
 import { makeRawContent } from './dataFixtures';
 
 describe('content data', () => {
-  it('실제 JSON과 원본 순서를 검증하고 426마리의 스폰을 유지한다', () => {
+  it('실제 JSON과 원본 순서를 검증하고 119마리의 스폰을 유지한다', () => {
     const db = validateContent(rawContent);
     expect([db.units.size, db.enemies.size, db.skills.size, db.ranges.size, db.stages.size]).toEqual([
       10, 16, 10, 7, 7,
@@ -22,7 +22,7 @@ describe('content data', () => {
       'owl',
       'wolf',
     ]);
-    expect(db.stages.get('stage-1')?.spawns.reduce((sum, spawn) => sum + spawn.count, 0)).toBe(426);
+    expect(db.stages.get('stage-1')?.spawns.reduce((sum, spawn) => sum + spawn.count, 0)).toBe(119);
     expect([...db.units]).toEqual([...content.units]);
   });
   it('검증 뒤 입력 변경이 콘텐츠 DB를 변경하지 않는다', () => {

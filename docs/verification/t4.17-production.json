@@ -1,0 +1,11 @@
+[
+  {
+    "productionBase": "/mallang-guard/",
+    "portraits": 10,
+    "webgl": true,
+    "waves": 12,
+    "killOnlyIncome": true,
+    "exit": true,
+    "errors": []
+  }
+]

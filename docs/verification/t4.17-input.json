@@ -1,0 +1,14 @@
+[
+  {
+    "input": "mouse",
+    "result": "푸딩 0개 · 처치 110/119",
+    "failedRunNotSaved": true,
+    "errors": []
+  },
+  {
+    "input": "touch",
+    "result": "푸딩 0개 · 처치 110/119",
+    "failedRunNotSaved": true,
+    "errors": []
+  }
+]

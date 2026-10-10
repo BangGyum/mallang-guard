@@ -1,0 +1,14 @@
+[
+  {
+    "input": "mouse",
+    "hud": true,
+    "shortcuts": true,
+    "errors": []
+  },
+  {
+    "input": "touch",
+    "hud": true,
+    "shortcuts": true,
+    "errors": []
+  }
+]

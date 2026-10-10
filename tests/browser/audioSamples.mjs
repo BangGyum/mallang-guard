@@ -58,13 +58,13 @@ try {
     }
     const mix = new Float32Array(sampleRate * 0.3);
     for (const sound of [
-      'shoot',
+      'pistol',
       'slash',
       'hammer',
       'sniper',
       'magic',
       'shoot',
-      'shotgun',
+      'pistol',
       'launcher',
       'energy',
       'sniper',
@@ -96,7 +96,7 @@ try {
     );
     assert.equal(Math.abs(metric.first), 0);
     assert(Math.abs(metric.last) < 0.0001, `${metric.sound}: 끝에서 클릭이 없음`);
-    if (['shoot', 'sniper', 'shotgun'].includes(metric.sound)) {
+    if (['shoot', 'sniper', 'pistol'].includes(metric.sound)) {
       assert(metric.bodyRms > 0.02, `${metric.sound}: 짧은 잡음에 그치지 않는 저음 몸통`);
       assert(metric.earlyRms > metric.lateRms * 5, `${metric.sound}: 총성의 파열과 감쇠`);
     }

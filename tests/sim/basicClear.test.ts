@@ -31,7 +31,7 @@ function enqueueAt(battle: Battle, tick: number): void {
 }
 
 describe('고지대 디펜스 완주', () => {
-  it('일곱 유닛 배치와 수동 스킬로 stage-1의 426마리를 처치한다', () => {
+  it('일곱 유닛 배치와 수동 스킬로 stage-1의 119마리를 처치한다', () => {
     const battle = createBattle(content, 'stage-1');
     const events: SimEvent[] = [];
     for (let tick = 0; tick < 33000 && battle.state.phase === 'running'; tick++) {
@@ -39,7 +39,7 @@ describe('고지대 디펜스 완주', () => {
       events.push(...battle.step());
     }
     expect(events.filter((event) => event.type === 'commandRejected')).toEqual([]);
-    expect(battle.state).toMatchObject({ phase: 'won', killed: 426, leaked: 0, life: 3 });
+    expect(battle.state).toMatchObject({ phase: 'won', killed: 119, leaked: 0, life: 3 });
   });
   it('스킬을 포함한 같은 입력은 매 틱 같은 상태와 이벤트를 만든다', () => {
     const a = createBattle(content, 'stage-1', { seed: 77 });
@@ -53,6 +53,6 @@ describe('고지대 디펜스 완주', () => {
       expect(hashState(b.state)).toBe(hashState(a.state));
     }
     expect(skills).toBeGreaterThan(3);
-    expect(a.state).toMatchObject({ phase: 'won', killed: 426, life: 3 });
+    expect(a.state).toMatchObject({ phase: 'won', killed: 119, life: 3 });
   });
 });

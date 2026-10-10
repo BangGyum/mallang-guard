@@ -1,0 +1,188 @@
+[
+  {
+    "viewport": "desktop",
+    "stage": "stage-1",
+    "phase": "won",
+    "life": 3,
+    "killed": 119,
+    "leaked": 0,
+    "totalEnemies": 119,
+    "wave": 12,
+    "totalWaves": 12,
+    "enemies": 0,
+    "seconds": 232.16666666666666,
+    "rejected": [],
+    "seenEnemies": [
+      "crow",
+      "hardJelly",
+      "jelly"
+    ],
+    "heals": 0,
+    "shieldHits": 0,
+    "rewards": 35,
+    "invalidRewards": [],
+    "latePressure": {
+      "ticks": 2329,
+      "empty": 674,
+      "peak": 12
+    }
+  },
+  {
+    "viewport": "desktop",
+    "stage": "stage-2",
+    "phase": "won",
+    "life": 3,
+    "killed": 192,
+    "leaked": 0,
+    "totalEnemies": 192,
+    "wave": 20,
+    "totalWaves": 20,
+    "enemies": 0,
+    "seconds": 351.76666666666665,
+    "rejected": [],
+    "seenEnemies": [
+      "crow",
+      "crystalJelly",
+      "dashJelly",
+      "hardJelly",
+      "jelly"
+    ],
+    "heals": 0,
+    "shieldHits": 0,
+    "rewards": 67,
+    "invalidRewards": [],
+    "latePressure": {
+      "ticks": 3561,
+      "empty": 75,
+      "peak": 18
+    }
+  },
+  {
+    "viewport": "desktop",
+    "stage": "stage-3",
+    "phase": "won",
+    "life": 3,
+    "killed": 369,
+    "leaked": 0,
+    "totalEnemies": 369,
+    "wave": 25,
+    "totalWaves": 25,
+    "enemies": 0,
+    "seconds": 479.4,
+    "rejected": [],
+    "seenEnemies": [
+      "captainJelly",
+      "crow",
+      "crystalJelly",
+      "dashJelly",
+      "hardJelly",
+      "jelly",
+      "miniJelly",
+      "shieldJelly",
+      "splitJelly",
+      "sproutJelly"
+    ],
+    "heals": 9,
+    "shieldHits": 33,
+    "rewards": 111,
+    "invalidRewards": [],
+    "latePressure": {
+      "ticks": 4586,
+      "empty": 1,
+      "peak": 16
+    }
+  },
+  {
+    "viewport": "mobile",
+    "stage": "stage-1",
+    "phase": "won",
+    "life": 3,
+    "killed": 119,
+    "leaked": 0,
+    "totalEnemies": 119,
+    "wave": 12,
+    "totalWaves": 12,
+    "enemies": 0,
+    "seconds": 232.16666666666666,
+    "rejected": [],
+    "seenEnemies": [
+      "crow",
+      "hardJelly",
+      "jelly"
+    ],
+    "heals": 0,
+    "shieldHits": 0,
+    "rewards": 35,
+    "invalidRewards": [],
+    "latePressure": {
+      "ticks": 2329,
+      "empty": 674,
+      "peak": 12
+    }
+  },
+  {
+    "viewport": "mobile",
+    "stage": "stage-2",
+    "phase": "won",
+    "life": 3,
+    "killed": 192,
+    "leaked": 0,
+    "totalEnemies": 192,
+    "wave": 20,
+    "totalWaves": 20,
+    "enemies": 0,
+    "seconds": 351.76666666666665,
+    "rejected": [],
+    "seenEnemies": [
+      "crow",
+      "crystalJelly",
+      "dashJelly",
+      "hardJelly",
+      "jelly"
+    ],
+    "heals": 0,
+    "shieldHits": 0,
+    "rewards": 67,
+    "invalidRewards": [],
+    "latePressure": {
+      "ticks": 3561,
+      "empty": 75,
+      "peak": 18
+    }
+  },
+  {
+    "viewport": "mobile",
+    "stage": "stage-3",
+    "phase": "won",
+    "life": 3,
+    "killed": 369,
+    "leaked": 0,
+    "totalEnemies": 369,
+    "wave": 25,
+    "totalWaves": 25,
+    "enemies": 0,
+    "seconds": 479.4,
+    "rejected": [],
+    "seenEnemies": [
+      "captainJelly",
+      "crow",
+      "crystalJelly",
+      "dashJelly",
+      "hardJelly",
+      "jelly",
+      "miniJelly",
+      "shieldJelly",
+      "splitJelly",
+      "sproutJelly"
+    ],
+    "heals": 9,
+    "shieldHits": 33,
+    "rewards": 111,
+    "invalidRewards": [],
+    "latePressure": {
+      "ticks": 4586,
+      "empty": 1,
+      "peak": 16
+    }
+  }
+]

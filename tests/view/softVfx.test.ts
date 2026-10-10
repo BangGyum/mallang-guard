@@ -56,7 +56,7 @@ function fixture() {
   return { ...f, state, textures, vfx, camera, events, mesh };
 }
 
-describe('은은한 전투 이펙트', () => {
+describe('무기별 전투 이펙트', () => {
   it('개별 투명도를 적용하고 슬롯을 재사용할 때 기본 투명도로 복원한다', () => {
     const texture = new Texture();
     const pool = createParticlePool(new Map(VFX_IDS.map((id) => [id, texture])));
@@ -82,12 +82,12 @@ describe('은은한 전투 이펙트', () => {
     }
   });
 
-  it('삼중 사격은 탄환 세 발과 작은 총구 섬광 하나를 표시한다', () =>
+  it('삼중 사격은 중화기 탄환 세 발과 총구 섬광 하나를 표시한다', () =>
     checkVfx((f) => {
       const before = hashState(f.state);
       f.vfx.onEvents(f.events, f.state, impactDelays(f.events));
       f.vfx.update(f.state, f.camera, 0.03);
-      expect(f.mesh('bullet').count).toBe(3);
+      expect(f.mesh('railRound').count).toBe(3);
       expect(f.mesh('muzzle').count).toBe(1);
       expect(f.mesh('muzzle').geometry.getAttribute('aOpacity').getX(0)).toBeLessThan(0.7);
       expect(f.mesh('ring').count).toBe(1);
@@ -102,7 +102,8 @@ describe('은은한 전투 이펙트', () => {
       expect(f.mesh('spark').count).toBe(0);
       expect(f.mesh('ring').count).toBe(1);
       f.vfx.update(f.state, f.camera, 0.02);
-      expect(f.mesh('spark').count).toBe(9);
+      expect(f.mesh('spark').count).toBe(15);
+      expect(f.mesh('impact').count).toBe(3);
       expect(f.mesh('ring').count).toBe(4);
       expect(f.mesh('ring').geometry.getAttribute('aOpacity').getX(0)).toBeLessThan(0.25);
       f.vfx.update(f.state, f.camera, 0.31);
@@ -115,7 +116,7 @@ describe('은은한 전투 이펙트', () => {
       f.vfx.setOptions(mode === 'reduced', mode === 'low');
       f.vfx.onEvents(f.events, f.state, impactDelays(f.events));
       f.vfx.update(f.state, f.camera, 0.03);
-      expect(f.mesh('bullet').count).toBe(3);
+      expect(f.mesh('railRound').count).toBe(3);
       const first = new Matrix4();
       f.mesh('ring').getMatrixAt(0, first);
       expect(f.mesh('ring').geometry.getAttribute('aOpacity').getX(0)).toBeCloseTo(0.14);
@@ -124,7 +125,8 @@ describe('은은한 전투 이펙트', () => {
       f.mesh('ring').getMatrixAt(0, second);
       expect(second.elements).toEqual(first.elements);
       expect(f.mesh('ring').count).toBe(1);
-      expect(f.mesh('spark').count).toBe(6);
+      expect(f.mesh('spark').count).toBe(9);
+      expect(f.mesh('impact').count).toBe(0);
     }),
   );
 
