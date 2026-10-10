@@ -1,0 +1,24 @@
+[
+  {
+    "viewport": "desktop",
+    "life": -1,
+    "phase": "lost",
+    "seconds": 834.6666666666666,
+    "rejected": [],
+    "hud": "♥ 푸딩 0",
+    "result": "푸딩 0개 · 처치 303/422",
+    "errors": [],
+    "recordUnchanged": true
+  },
+  {
+    "viewport": "mobile",
+    "life": -1,
+    "phase": "lost",
+    "seconds": 834.6666666666666,
+    "rejected": [],
+    "hud": "♥ 푸딩 0",
+    "result": "푸딩 0개 · 처치 303/422",
+    "errors": [],
+    "recordUnchanged": true
+  }
+]

@@ -1,0 +1,24 @@
+{
+  "stage": "stage-3",
+  "expect": {
+    "result": "lost"
+  },
+  "commands": [
+    { "atSec": 0, "type": "deploy", "unitId": "squirrel", "tile": [2, 0], "dir": "down" },
+    { "atSec": 5.566666666666666, "type": "deploy", "unitId": "penguin", "tile": [8, 2], "dir": "left" },
+    { "atSec": 12, "type": "skill", "unitId": "squirrel" },
+    { "atSec": 25.566666666666666, "type": "skill", "unitId": "penguin" },
+    { "atSec": 30.5, "type": "deploy", "unitId": "sheep", "tile": [5, 3], "dir": "left" },
+    { "atSec": 41.8, "type": "deploy", "unitId": "bunny", "tile": [6, 2], "dir": "left" },
+    { "atSec": 44.03333333333333, "type": "skill", "unitId": "squirrel" },
+    { "atSec": 48.2, "type": "deploy", "unitId": "cat", "tile": [8, 4], "dir": "up" },
+    { "atSec": 50.5, "type": "skill", "unitId": "sheep" },
+    { "atSec": 58.8, "type": "deploy", "unitId": "snail", "tile": [5, 1], "dir": "left" },
+    { "atSec": 63.13333333333333, "type": "deploy", "unitId": "bear", "tile": [5, 5], "dir": "up" },
+    { "atSec": 70.6, "type": "skill", "unitId": "penguin" },
+    { "atSec": 73.13333333333334, "type": "skill", "unitId": "bear" },
+    { "atSec": 75.8, "type": "skill", "unitId": "snail" },
+    { "atSec": 88.7, "type": "skill", "unitId": "sheep" },
+    { "atSec": 98.16666666666667, "type": "skill", "unitId": "bear" }
+  ]
+}

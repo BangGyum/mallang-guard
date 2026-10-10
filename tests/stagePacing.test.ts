@@ -1,72 +1,69 @@
 import { describe, expect, it } from 'vitest';
 import { content, rawContent } from '../src/data';
-import type { RawStageDef } from '../src/data/types';
 import { validateContent } from '../src/data/validate';
 import { parseStage } from '../src/data/validateStage';
 import { createBattle } from '../src/sim/battle';
 import { secToTicks } from '../src/sim/constants';
 import earlyStageStarts from './fixtures/earlyStageStarts.json';
+import lateStageStarts from './fixtures/lateStageStarts.json';
 import { runScenario, type Scenario } from './helpers';
 
 const scenarios = import.meta.glob<Scenario>('./scenarios/*-clear.json', { eager: true, import: 'default' });
 
 describe('10배 길이의 스테이지', () => {
-  it.each(rawContent.stages.filter((stage) => 'waveRepeat' in stage))(
-    '$id의 웨이브·스폰을 10회 확장하고 기존 전투 주기를 보존한다',
-    (raw) => {
-      const stage = content.stages.get(raw.id);
-      if (!stage) throw new Error('스테이지 없음');
-      const repeat = ('waveRepeat' in raw ? raw.waveRepeat : undefined) as RawStageDef['waveRepeat'];
-      if (!repeat) throw new Error('반복 설정 없음');
-      expect(repeat.count).toBe(10);
-      const waves = Math.max(...raw.spawns.map((group) => group.wave));
-      expect(stage.spawns).toHaveLength(raw.spawns.length * 10);
-      for (let cycle = 0; cycle < 10; cycle++) {
-        expect(stage.spawns.slice(cycle * raw.spawns.length, (cycle + 1) * raw.spawns.length)).toEqual(
-          raw.spawns.map((group) => ({
-            ...group,
-            wave: group.wave + cycle * waves,
-            atSec: group.atSec + cycle * repeat.periodSec,
-          })),
-        );
-      }
-      const scenario = scenarios[`./scenarios/${stage.id}-clear.json`];
-      if (!scenario) throw new Error('클리어 시나리오 없음');
-      const once = validateContent({ ...rawContent, stages: [{ ...raw, waveRepeat: undefined }] });
-      const original = createBattle(once, raw.id);
-      const commands = scenario.commands.filter((command) => command.atSec < repeat.periodSec);
-      let cursor = 0;
-      // 미래 웨이브를 기다리는 동안의 스킬 명령은 단일 주기가 끝난 뒤에는 실행하지 않는다.
-      while (original.state.phase === 'running' && original.state.tick < secToTicks(repeat.periodSec + 300)) {
-        while (commands[cursor] && secToTicks(commands[cursor]?.atSec ?? 0) === original.state.tick) {
-          const command = commands[cursor++];
-          if (!command) throw new Error('명령 없음');
-          if (command.type === 'deploy') {
-            original.enqueue({
-              type: 'deploy',
-              unitId: command.unitId,
-              tile: { x: command.tile[0], y: command.tile[1] },
-              dir: command.dir,
-            });
-          } else {
-            expect(original.flush().filter((event) => event.type === 'commandRejected')).toEqual([]);
-            const unit = original.state.units.find((unit) => unit.unitId === command.unitId);
-            if (!unit) throw new Error('배치된 유닛 없음');
-            original.enqueue({ type: command.type === 'skill' ? 'activateSkill' : 'retreat', uid: unit.uid });
-          }
+  it.each(lateStageStarts)('$id: 기존 입력을 10회 확장하고 실제 전투의 10배 길이를 보존한다', (raw) => {
+    const stage = validateContent({ ...rawContent, stages: [raw] }).stages.get(raw.id);
+    if (!stage) throw new Error('스테이지 없음');
+    const repeat = raw.waveRepeat;
+    if (!repeat) throw new Error('반복 설정 없음');
+    expect(repeat.count).toBe(10);
+    const waves = Math.max(...raw.spawns.map((group) => group.wave));
+    expect(stage.spawns).toHaveLength(raw.spawns.length * 10);
+    for (let cycle = 0; cycle < 10; cycle++) {
+      expect(stage.spawns.slice(cycle * raw.spawns.length, (cycle + 1) * raw.spawns.length)).toEqual(
+        raw.spawns.map((group) => ({
+          ...group,
+          wave: group.wave + cycle * waves,
+          atSec: group.atSec + cycle * repeat.periodSec,
+        })),
+      );
+    }
+    const scenario = scenarios[`./scenarios/${stage.id}-clear.json`];
+    if (!scenario) throw new Error('클리어 시나리오 없음');
+    const once = validateContent({ ...rawContent, stages: [{ ...raw, waveRepeat: undefined }] });
+    const original = createBattle(once, raw.id);
+    const commands = scenario.commands.filter((command) => command.atSec < repeat.periodSec);
+    let cursor = 0;
+    // 미래 웨이브를 기다리는 동안의 스킬 명령은 단일 주기가 끝난 뒤에는 실행하지 않는다.
+    while (original.state.phase === 'running' && original.state.tick < secToTicks(repeat.periodSec + 300)) {
+      while (commands[cursor] && secToTicks(commands[cursor]?.atSec ?? 0) === original.state.tick) {
+        const command = commands[cursor++];
+        if (!command) throw new Error('명령 없음');
+        if (command.type === 'deploy') {
+          original.enqueue({
+            type: 'deploy',
+            unitId: command.unitId,
+            tile: { x: command.tile[0], y: command.tile[1] },
+            dir: command.dir,
+          });
+        } else {
+          expect(original.flush().filter((event) => event.type === 'commandRejected')).toEqual([]);
+          const unit = original.state.units.find((unit) => unit.unitId === command.unitId);
+          if (!unit) throw new Error('배치된 유닛 없음');
+          original.enqueue({ type: command.type === 'skill' ? 'activateSkill' : 'retreat', uid: unit.uid });
         }
-        expect(original.step().filter((event) => event.type === 'commandRejected')).toEqual([]);
       }
-      expect(original.state).toMatchObject({ phase: 'won', life: 3, leaked: 0 });
-      const extended = runScenario(content, scenario);
-      expect(extended.state.life).toBe(3);
-      expect(extended.state.leaked).toBe(0);
-      expect(extended.state.killed).toBe(extended.state.totalEnemies);
-      expect(extended.state.currentWave).toBe(waves * 10);
-      expect(extended.state.tick / original.state.tick).toBeGreaterThanOrEqual(10);
-      expect(extended.state.tick / original.state.tick).toBeLessThan(11.5);
-    },
-  );
+      expect(original.step().filter((event) => event.type === 'commandRejected')).toEqual([]);
+    }
+    expect(original.state).toMatchObject({ phase: 'won', life: 3, leaked: 0 });
+    const extended = runScenario(content, scenario);
+    expect(extended.state.life).toBe(3);
+    expect(extended.state.leaked).toBe(0);
+    expect(extended.state.killed).toBe(extended.state.totalEnemies);
+    expect(extended.state.currentWave).toBe(waves * 10);
+    expect(extended.state.tick / original.state.tick).toBeGreaterThanOrEqual(10);
+    expect(extended.state.tick / original.state.tick).toBeLessThan(11.5);
+  });
 
   it('검증된 스폰을 다시 검증해도 중복 확장하거나 입력을 변경하지 않는다', () => {
     const before = structuredClone(rawContent);

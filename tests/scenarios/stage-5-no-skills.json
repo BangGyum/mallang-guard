@@ -1,0 +1,15 @@
+{
+  "stage": "stage-5",
+  "expect": {
+    "result": "lost"
+  },
+  "commands": [
+    { "atSec": 0, "type": "deploy", "unitId": "squirrel", "tile": [4, 3], "dir": "down" },
+    { "atSec": 0.03333333333333333, "type": "deploy", "unitId": "penguin", "tile": [6, 2], "dir": "right" },
+    { "atSec": 22.8, "type": "deploy", "unitId": "sheep", "tile": [8, 2], "dir": "left" },
+    { "atSec": 36.86666666666667, "type": "deploy", "unitId": "bunny", "tile": [5, 3], "dir": "up" },
+    { "atSec": 46.06666666666667, "type": "deploy", "unitId": "cat", "tile": [8, 4], "dir": "up" },
+    { "atSec": 48.5, "type": "deploy", "unitId": "snail", "tile": [4, 1], "dir": "down" },
+    { "atSec": 55.3, "type": "deploy", "unitId": "bear", "tile": [7, 0], "dir": "down" }
+  ]
+}

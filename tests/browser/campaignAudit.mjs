@@ -1,3 +1,12 @@
+export async function skillRetryMs(page, unitId) {
+  return page.evaluate((unitId) => {
+    const { state, content } = window.campaign.battle;
+    const unit = state.units.find((unit) => unit.unitId === unitId);
+    const skill = content.skills.get(content.units.get(unitId).skill);
+    return skill.charge === 'auto' && unit.skillState === 'charging' && skill.spCost - unit.sp < 1 ? 34 : 300;
+  }, unitId);
+}
+
 export async function installCampaignAudit(page, moduleUrl) {
   await page.evaluate(async (url) => {
     const { Battle } = await import(url);
@@ -7,6 +16,8 @@ export async function installCampaignAudit(page, moduleUrl) {
       seen: new Set(),
       heals: 0,
       shieldHits: 0,
+      disruptions: 0,
+      children: 0,
       rewards: 0,
       invalidRewards: [],
       rewarded: new Set(),
@@ -18,7 +29,9 @@ export async function installCampaignAudit(page, moduleUrl) {
         const events = original.apply(this, args);
         window.campaign.battle = this;
         const id = this.stage.definition.id;
-        const period = id === 'stage-1' ? 91 : id === 'stage-2' ? 95 : 0;
+        const spawns = this.stage.definition.spawns;
+        const next = spawns.find((group) => group.wave > this.state.totalWaves / 10);
+        const period = (next?.atSec ?? 0) - (spawns[0]?.atSec ?? 0);
         if (name === 'step' && period && this.state.tick >= period * 7 * 30) {
           window.campaign.latePressure[id] ??= { ticks: 0, empty: 0, peak: 0 };
           const sample = window.campaign.latePressure[id];
@@ -29,6 +42,8 @@ export async function installCampaignAudit(page, moduleUrl) {
         window.campaign.rejected.push(...events.filter((event) => event.type === 'commandRejected'));
         for (const event of events) {
           if (event.type === 'enemySpawn') window.campaign.seen.add(event.enemyId);
+          if (event.type === 'enemySpawn' && event.parentUid !== undefined) window.campaign.children++;
+          if (event.type === 'unitDisrupt') window.campaign.disruptions++;
           if (event.type === 'enemyHeal') window.campaign.heals++;
           if (event.type === 'damage' && event.shieldDamage > 0) window.campaign.shieldHits++;
           if (event.type === 'dpGain') {

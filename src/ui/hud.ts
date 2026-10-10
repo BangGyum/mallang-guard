@@ -70,7 +70,7 @@ export function createHud(
       preparation.hidden = controls.startInSec <= 0;
       countdown.textContent = `시작까지 ${Math.ceil(controls.startInSec)}초`;
       start.disabled = controls.paused || controls.startInSec <= 3;
-      life.textContent = `♥ 푸딩 ${state.life}`;
+      life.textContent = `♥ 푸딩 ${Math.max(0, state.life)}`;
       enemies.textContent = `젤리 ${state.killed + state.leaked}/${state.totalEnemies}`;
       wave.textContent = `WAVE ${state.currentWave}/${state.totalWaves}`;
       if (state.life < previousLife) playFeedback(life, 'shake');

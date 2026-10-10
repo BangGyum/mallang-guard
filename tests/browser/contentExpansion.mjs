@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFile, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
+import { installCampaignAudit, skillRetryMs } from './campaignAudit.mjs';
 import { deploy, finishBattle, frame, pause, resume, tilePoint } from './helpers.mjs';
 
 const browser = await chromium.launch({ channel: 'msedge', headless: true });
@@ -48,7 +49,7 @@ try {
       await page.clock.install({ time });
       await page.clock.pauseAt(time);
       await page.addInitScript((level) => {
-        window.requestAnimationFrame = (callback) => setTimeout(() => callback(performance.now()), 100);
+        window.requestAnimationFrame = (callback) => setTimeout(() => callback(performance.now()), 33);
         window.cancelAnimationFrame = (id) => clearTimeout(id);
         if (!localStorage.getItem('mallang-guard:v1')) {
           const stages = {};
@@ -59,27 +60,7 @@ try {
       await page.goto('http://127.0.0.1:43195/');
       await page.locator('.title-screen').waitFor();
       assert(battleModule);
-      await page.evaluate(async (moduleUrl) => {
-        const { Battle } = await import(moduleUrl);
-        window.expansionCheck = { battle: null, disruptions: 0, children: 0, rejected: [] };
-        for (const name of ['step', 'flush']) {
-          const original = Battle.prototype[name];
-          Battle.prototype[name] = function (...args) {
-            const events = original.apply(this, args);
-            window.expansionCheck.battle = this;
-            window.expansionCheck.disruptions += events.filter(
-              (event) => event.type === 'unitDisrupt',
-            ).length;
-            window.expansionCheck.children += events.filter(
-              (event) => event.type === 'enemySpawn' && event.parentUid !== undefined,
-            ).length;
-            window.expansionCheck.rejected.push(
-              ...events.filter((event) => event.type === 'commandRejected'),
-            );
-            return events;
-          };
-        }
-      }, battleModule);
+      await installCampaignAudit(page, battleModule);
       const click = async (locator) => (mobile ? locator.tap() : locator.click());
       await click(page.getByRole('button', { name: '스테이지 선택', exact: true }));
       assert.equal(await page.locator('.stage-card').count(), 7);
@@ -91,6 +72,7 @@ try {
       await card.scrollIntoViewIfNeeded();
       await frame(page);
       await click(card);
+      await page.locator('[data-action="pause"]').waitFor();
       await frame(page);
       await pause(page);
       assert.equal(await page.locator('#app').getAttribute('data-stage-id'), `stage-${level}`);
@@ -99,19 +81,23 @@ try {
       let disruptionShown = false;
       for (const command of scenario.commands) {
         const target = Math.round(command.atSec * 30);
-        let tick = await page.evaluate(() => window.expansionCheck.battle.state.tick);
+        let tick = await page.evaluate(() => window.campaign.battle.state.tick);
         if (tick < target) {
           await resume(page);
           if (await page.locator('.battle-preparation').isVisible()) await frame(page, 10000);
-          tick = await page.evaluate(() => window.expansionCheck.battle.state.tick);
+          tick = await page.evaluate(() => window.campaign.battle.state.tick);
           let frames = 0;
           while (tick < target) {
             assert(frames++ < 200, `${label}: ${target}틱까지 전투 시간이 진행되지 않음`);
             const remaining = ((target - tick) / 30) * 1000;
-            await frame(page, level >= 6 && !disruptionShown ? Math.min(600, remaining) : remaining);
+            // 가상 시계의 소수 밀리초 반올림으로 마지막 한 틱을 계속 기다리지 않게 한다.
+            await frame(
+              page,
+              Math.max(34, Math.ceil(level >= 6 && !disruptionShown ? Math.min(600, remaining) : remaining)),
+            );
             if (level >= 6 && !disruptionShown) {
               const tile = await page.evaluate(() => {
-                const state = window.expansionCheck.battle.state;
+                const state = window.campaign.battle.state;
                 return state.units.find((unit) => unit.disruptedUntilTick > state.tick)?.tile;
               });
               if (tile) {
@@ -141,26 +127,49 @@ try {
                 await resume(page);
               }
             }
-            tick = await page.evaluate(() => window.expansionCheck.battle.state.tick);
+            tick = await page.evaluate(() => window.campaign.battle.state.tick);
           }
           await pause(page);
         }
         if (command.type === 'deploy') {
           const tile = { x: command.tile[0], y: command.tile[1] };
+          for (let attempt = 0; ; attempt++) {
+            const check = await page.evaluate(
+              ({ unitId, tile }) => window.campaign.battle.checkDeploy(unitId, tile),
+              { unitId: command.unitId, tile },
+            );
+            if (check.ok) break;
+            assert(attempt < 40 && ['noDp', 'notReady'].includes(check.reason), check.reason);
+            await resume(page);
+            await frame(page, 300);
+            await pause(page);
+          }
           await deploy(page, cdp, command.unitId, tile, command.dir);
           placed.set(command.unitId, tile);
           if (level === 7 && (placed.size === 7 || command.unitId === 'bear'))
             await page.screenshot({ path: `docs/verification/${prefix}-${label}-battle.png` });
+        } else if (command.type === 'retreat') {
+          const before = await page.evaluate(() => window.campaign.battle.state.dp);
+          const point = await tilePoint(page, placed.get(command.unitId));
+          if (mobile) await page.touchscreen.tap(point.x, point.y);
+          else await page.mouse.click(point.x, point.y);
+          await frame(page);
+          await click(page.locator('.unit-retreat'));
+          await frame(page);
+          assert.equal(await page.evaluate(() => window.campaign.battle.state.dp), before);
+          placed.delete(command.unitId);
         } else {
-          for (let attempt = 0; attempt < 12; attempt++) {
+          // 공격 충전은 조작 시점에 따라 다음 적 무리까지 기다려야 할 수 있다.
+          for (let attempt = 0; attempt < 80; attempt++) {
             const point = await tilePoint(page, placed.get(command.unitId));
             if (mobile) await page.touchscreen.tap(point.x, point.y);
             else await page.mouse.click(point.x, point.y);
             await frame(page);
             if (!(await page.locator('.skill-button').isDisabled())) break;
+            const wait = await skillRetryMs(page, command.unitId);
             await click(page.locator('.unit-popup-close'));
-            await resume(page);
-            await frame(page, 300);
+            await resume(page, 1);
+            await frame(page, wait);
             await pause(page);
           }
           assert.equal(
@@ -186,13 +195,13 @@ try {
       assert.equal(await page.locator('.result-stars').textContent(), '★★★');
       const details = await page.locator('.result-detail').textContent();
       const counters = await page.evaluate(() => ({
-        disruptions: window.expansionCheck.disruptions,
-        children: window.expansionCheck.children,
-        rejected: window.expansionCheck.rejected,
-        killed: window.expansionCheck.battle.state.killed,
-        total: window.expansionCheck.battle.state.totalEnemies,
-        leaked: window.expansionCheck.battle.state.leaked,
-        life: window.expansionCheck.battle.state.life,
+        disruptions: window.campaign.disruptions,
+        children: window.campaign.children,
+        rejected: window.campaign.rejected,
+        killed: window.campaign.battle.state.killed,
+        total: window.campaign.battle.state.totalEnemies,
+        leaked: window.campaign.battle.state.leaked,
+        life: window.campaign.battle.state.life,
       }));
       assert.deepEqual(counters.rejected, []);
       assert.equal(counters.leaked, 0);
