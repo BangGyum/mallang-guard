@@ -1,8 +1,10 @@
 import assert from 'node:assert/strict';
+import { writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 import { createTestScene } from './scene.mjs';
 
 const prefix = process.env.MALLANG_SCREENSHOT_PREFIX ?? 't3.8';
+const report = [];
 
 const browser = await chromium.launch({
   channel: 'msedge',
@@ -56,8 +58,8 @@ try {
         'arcBolt',
         'bullet',
         'stickyDrop',
-        'arcBolt',
-        'bullet',
+        'plasma',
+        'railRound',
       ];
       const checks = [];
       const originalHash = hashState(battle.state);
@@ -103,13 +105,15 @@ try {
     await page.evaluate(() => {
       const { battle, deliver, render } = window.testScene;
       deliver(
-        battle.state.units.map((unit, i) => ({
-          type: 'attack',
-          src: { kind: 'unit', uid: unit.uid },
-          dst: { kind: 'enemy', uid: battle.state.enemies[i].uid },
-          damageType: battle.content.units.get(unit.unitId).damageType,
-          ranged: true,
-        })),
+        battle.state.units.flatMap((unit, i) =>
+          Array.from({ length: unit.unitId === 'wolf' ? 3 : 1 }, (_, target) => ({
+            type: 'attack',
+            src: { kind: 'unit', uid: unit.uid },
+            dst: { kind: 'enemy', uid: battle.state.enemies[(i + target) % battle.state.enemies.length].uid },
+            damageType: battle.content.units.get(unit.unitId).damageType,
+            ranged: true,
+          })),
+        ),
       );
       render(0.05);
     });
@@ -121,6 +125,13 @@ try {
     });
     assert.deepEqual(await page.locator('#board').screenshot(), paused, '정지 중 무기 반동과 투사체 유지');
     await page.evaluate(() => {
+      window.testScene.render(0.19);
+      window.testScene.render(0.025);
+    });
+    await page.screenshot({ path: `docs/verification/${prefix}-${label}-impact.png` });
+    const metrics = await page.evaluate(() => window.testScene.view.metrics);
+    assert(metrics.particles <= 200 && metrics.drawCalls <= 120, '이펙트·드로우콜 예산');
+    await page.evaluate(() => {
       window.testScene.overlay.dispose();
       window.testScene.view.dispose();
     });
@@ -129,13 +140,13 @@ try {
         const { content } = await import('/src/data/index.ts');
         const { critterSvg } = await import('/src/art/critters.ts');
         const weapons = [
-          '소총 · 보급',
+          '권총 · 보급',
           '전투검 · 검기',
           '방패 · 충격 해머',
           '저격총 · 냉각탄',
           '아크 스태프 · 포격',
           '지원 소총 · 전술 가속',
-          '산탄총 · 밀쳐내기',
+          '권총 · 밀쳐내기',
           '점착탄 발사기 · 둔화',
           '에너지포 · 전면 포격',
           '긴 저격총 · 삼중 조준',
@@ -155,9 +166,11 @@ try {
       await page.locator('main').screenshot({ path: `docs/verification/${prefix}-combat-roster.png` });
     }
     assert.deepEqual(errors, []);
-    console.log(JSON.stringify({ viewport: label, ...checks, paused: true, errors }));
+    report.push({ viewport: label, ...checks, metrics, paused: true, errors });
+    console.log(JSON.stringify(report.at(-1)));
     await context.close();
   }
+  await writeFile(`docs/verification/${prefix}-combat-art.json`, `${JSON.stringify(report, null, 2)}\n`);
 } finally {
   await browser.close();
 }

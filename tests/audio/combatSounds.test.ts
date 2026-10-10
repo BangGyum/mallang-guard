@@ -4,13 +4,13 @@ import { content } from '../../src/data';
 
 describe('무장에 맞는 발사음', () => {
   it.each([
-    ['squirrel', 'shoot'],
+    ['squirrel', 'pistol'],
     ['cat', 'slash'],
     ['bear', 'hammer'],
     ['penguin', 'sniper'],
     ['sheep', 'magic'],
     ['bunny', 'shoot'],
-    ['mole', 'shotgun'],
+    ['mole', 'pistol'],
     ['snail', 'launcher'],
     ['owl', 'energy'],
     ['wolf', 'sniper'],

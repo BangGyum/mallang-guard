@@ -1,5 +1,6 @@
 import { InstancedMesh, Matrix4, PerspectiveCamera, ShaderMaterial, Texture, Vector3 } from 'three';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { VFX_IDS } from '../../src/art/vfxArt';
 import { assert } from '../../src/core/assert';
 import { attackEnemies } from '../../src/sim/systems/attack';
 import type { BattleState, SimEvent } from '../../src/sim/types';
@@ -21,21 +22,7 @@ describe('랑랑의 동시 사격 투사체', () => {
     const events: SimEvent[] = [];
     attackEnemies(f.db, f.battle.stage, state, events);
     const textures = new Map(
-      [
-        'bullet',
-        'iceRound',
-        'arcBolt',
-        'slash',
-        'shockwave',
-        'muzzle',
-        'signal',
-        'stickyDrop',
-        'spark',
-        'droplet',
-        'goo',
-        'stunStar',
-        'ring',
-      ].map((id) => {
+      VFX_IDS.map((id) => {
         const texture = new Texture();
         texture.name = id;
         return [id, texture] as const;
@@ -55,7 +42,7 @@ describe('랑랑의 동시 사격 투사체', () => {
         (node) =>
           node instanceof InstancedMesh &&
           node.material instanceof ShaderMaterial &&
-          node.material.uniforms.map?.value.name === 'bullet',
+          node.material.uniforms.map?.value.name === 'railRound',
       );
       assert(bullet instanceof InstancedMesh, '탄환 메시 없음');
       expect(bullet.count).toBe(count);

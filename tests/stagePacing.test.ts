@@ -10,8 +10,8 @@ import { runScenario, type Scenario } from './helpers';
 
 const scenarios = import.meta.glob<Scenario>('./scenarios/*-clear.json', { eager: true, import: 'default' });
 
-describe('10배 길이의 스테이지', () => {
-  it.each(lateStageStarts)('$id: 기존 입력을 10회 확장하고 실제 전투의 10배 길이를 보존한다', (raw) => {
+describe('반복 입력 호환성과 4~7번 장기전', () => {
+  it.each(lateStageStarts)('$id: 기존 반복 입력과 장기전의 10배 길이를 보존한다', (raw) => {
     const stage = validateContent({ ...rawContent, stages: [raw] }).stages.get(raw.id);
     if (!stage) throw new Error('스테이지 없음');
     const repeat = raw.waveRepeat;
@@ -28,6 +28,8 @@ describe('10배 길이의 스테이지', () => {
         })),
       );
     }
+    // 3번의 실제 전투는 단축되어 earlyStagePressure에서 길이와 완주를 검사합니다.
+    if (raw.id === 'stage-3') return;
     const scenario = scenarios[`./scenarios/${stage.id}-clear.json`];
     if (!scenario) throw new Error('클리어 시나리오 없음');
     const once = validateContent({ ...rawContent, stages: [{ ...raw, waveRepeat: undefined }] });

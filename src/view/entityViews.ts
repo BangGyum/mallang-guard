@@ -119,7 +119,15 @@ export function createEntityViews(content: ContentDb, board: Board, textures: Re
       if (!view) return undefined;
       // 오른쪽 무기 끝을 빌보드의 실제 변환으로 월드 좌표에 맞춥니다.
       const tipY =
-        view.art === 'sheep' ? 0.49 : view.art === 'cat' ? 0.42 : view.art === 'bear' ? 0.36 : 0.18;
+        view.art === 'sheep'
+          ? 0.49
+          : view.art === 'cat'
+            ? 0.42
+            : view.art === 'bear'
+              ? 0.36
+              : view.art === 'squirrel' || view.art === 'mole'
+                ? 0.23
+                : 0.18;
       const tip = new Vector3(0.4, tipY, 0);
       view.visual.group.updateMatrixWorld(true);
       return view.visual.sprite.localToWorld(tip);

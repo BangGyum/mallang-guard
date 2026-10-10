@@ -53,7 +53,9 @@ describe('여러 입구와 중간보스', () => {
   it('중간보스는 1~2 정원에 없고 3~7 정원에 주기마다 한 번 등장한다', () => {
     for (const [index, stage] of [...content.stages.values()].entries()) {
       const captains = stage.spawns.filter((spawn) => spawn.enemy === 'captainJelly');
-      expect(captains.reduce((sum, spawn) => sum + spawn.count, 0)).toBe(index < 2 ? 0 : 10);
+      expect(captains.reduce((sum, spawn) => sum + spawn.count, 0)).toBe(
+        index < 2 ? 0 : index === 2 ? 5 : 10,
+      );
       if (index < 5) continue;
       const captain = captains[0];
       const king = stage.spawns.find((spawn) => spawn.enemy === 'kingJelly');

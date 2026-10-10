@@ -49,7 +49,14 @@ describe('캐릭터 애니메이션', () => {
     expect(sample({ attackKind: 'shot', attack: 0.1 }).x).toBeLessThan(0);
     expect(sample({ attackKind: 'slash', attack: 0 })).toEqual(sample());
   });
-  it.each(['shot', 'slash', 'impact', 'cast'] as const)(
+  it('중화기는 권총보다 큰 반동을 보이고 끝나면 기본 자세로 돌아온다', () => {
+    const pistol = sample({ attackKind: 'pistol', attack: 0.1 });
+    const heavy = sample({ attackKind: 'heavyShot', attack: 0.22 });
+    expect(heavy.x).toBeLessThan(pistol.x * 2);
+    expect(heavy.rotation).toBeGreaterThan(pistol.rotation);
+    expect(sample({ attackKind: 'heavyShot', attack: 0 })).toEqual(sample());
+  });
+  it.each(['pistol', 'shot', 'heavyShot', 'slash', 'impact', 'cast'] as const)(
     '모션 감소 시 %s의 회전·반동을 생략한다',
     (attackKind) => {
       const pose = sample({ attackKind, attack: 0.1 }, true);

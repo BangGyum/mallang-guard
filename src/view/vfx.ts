@@ -7,17 +7,27 @@ import { tileHeight } from './coords';
 import { PROJECTILE_SEC } from './eventTiming';
 import { createParticlePool } from './particlePool';
 
-const SHOTS: Record<string, { art: string; size: number; arc: number; muzzle: boolean }> = {
-  squirrel: { art: 'bullet', size: 0.32, arc: 0, muzzle: true },
-  cat: { art: 'slash', size: 0.72, arc: 0, muzzle: false },
-  bear: { art: 'shockwave', size: 0.65, arc: 0, muzzle: false },
-  penguin: { art: 'iceRound', size: 0.42, arc: 0, muzzle: true },
-  sheep: { art: 'arcBolt', size: 0.4, arc: 0, muzzle: false },
-  bunny: { art: 'arcBolt', size: 0.3, arc: 0, muzzle: true },
-  mole: { art: 'bullet', size: 0.38, arc: 0, muzzle: true },
-  snail: { art: 'stickyDrop', size: 0.32, arc: 0.12, muzzle: true },
-  owl: { art: 'arcBolt', size: 0.48, arc: 0.25, muzzle: true },
-  wolf: { art: 'bullet', size: 0.44, arc: 0, muzzle: true },
+const SHOTS: Record<
+  string,
+  {
+    art: string;
+    size: number;
+    arc: number;
+    muzzle: number;
+    impact?: string;
+    power?: number;
+  }
+> = {
+  squirrel: { art: 'bullet', size: 0.28, arc: 0, muzzle: 0.19 },
+  cat: { art: 'slash', size: 0.8, arc: 0, muzzle: 0 },
+  bear: { art: 'shockwave', size: 0.9, arc: 0, muzzle: 0, impact: 'impact', power: 1.15 },
+  penguin: { art: 'iceRound', size: 0.46, arc: 0, muzzle: 0.26 },
+  sheep: { art: 'arcBolt', size: 0.5, arc: 0, muzzle: 0, impact: 'plasmaImpact', power: 1 },
+  bunny: { art: 'arcBolt', size: 0.3, arc: 0, muzzle: 0.24 },
+  mole: { art: 'bullet', size: 0.3, arc: 0, muzzle: 0.19 },
+  snail: { art: 'stickyDrop', size: 0.32, arc: 0.12, muzzle: 0.24 },
+  owl: { art: 'plasma', size: 0.78, arc: 0.18, muzzle: 0.36, impact: 'plasmaImpact', power: 1.4 },
+  wolf: { art: 'railRound', size: 0.9, arc: 0, muzzle: 0.42, impact: 'impact', power: 1.5 },
 };
 
 export function createVfx(
@@ -29,7 +39,14 @@ export function createVfx(
 ) {
   const pool = createParticlePool(textures);
   const point = new Vector3();
-  const pending: { seconds: number; at: Vector3; id: string; count: number }[] = [];
+  const pending: {
+    seconds: number;
+    at: Vector3;
+    id: string;
+    count: number;
+    impact?: string;
+    power?: number;
+  }[] = [];
   let reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let low = false;
   let time = 0;
@@ -73,13 +90,31 @@ export function createVfx(
             const unit = state.units.find((unit) => unit.uid === event.src.uid);
             const shot = unit && SHOTS[unit.unitId];
             if (event.ranged && shot) {
-              pool.emit(shot.art, from, to, PROJECTILE_SEC, shot.size, shot.arc, false, true);
+              const boost = shot.power && unit.skillState === 'active' ? 1.15 : 1;
+              pool.emit(shot.art, from, to, PROJECTILE_SEC, shot.size * boost, shot.arc, false, true);
               if (shot.muzzle && !flashed.has(unit.uid)) {
-                pool.emit('muzzle', from, from, 0.07, reduced ? 0.15 : 0.24, 0, false, false, 0.7);
+                pool.emit(
+                  'muzzle',
+                  from,
+                  from,
+                  0.07,
+                  shot.muzzle * (reduced ? 0.65 : boost),
+                  0,
+                  false,
+                  false,
+                  0.85,
+                );
                 flashed.add(unit.uid);
               }
               if (unit.unitId === 'cat') pool.emit('slash', from, from, 0.18, 0.8);
-              pending.push({ seconds: PROJECTILE_SEC, at: to, id: 'spark', count: 3 });
+              pending.push({
+                seconds: PROJECTILE_SEC,
+                at: to,
+                id: 'spark',
+                count: shot.power ? 5 : 3,
+                impact: shot.impact,
+                power: (shot.power ?? 1) * boost,
+              });
             } else burst('spark', to, 3);
           }
         }
@@ -95,6 +130,9 @@ export function createVfx(
           const at = position(unit.uid);
           if (at && event.type === 'skillStart')
             burst(unit.unitId === 'bunny' || unit.unitId === 'squirrel' ? 'signal' : 'spark', at, 6);
+          const impact = SHOTS[unit.unitId]?.impact;
+          if (at && impact && event.type === 'skillStart' && !reduced && !low)
+            pool.emit(impact, at, at, 0.22, 0.7, 0, false, false, 0.65);
         }
         if (event.type === 'skillPulse') {
           const unit = state.units.find((unit) => unit.uid === event.uid);
@@ -131,8 +169,20 @@ export function createVfx(
         effect.seconds -= dt;
         if (effect.seconds <= 0) {
           burst(effect.id, effect.at, effect.count);
+          if (effect.impact && !reduced && !low)
+            pool.emit(
+              effect.impact,
+              effect.at,
+              effect.at,
+              0.18,
+              0.55 * (effect.power ?? 1),
+              0,
+              false,
+              false,
+              0.85,
+            );
           if (effect.id === 'spark' && !reduced && !low)
-            pool.emit('ring', effect.at, effect.at, 0.2, 0.28, 0, true, false, 0.25);
+            pool.emit('ring', effect.at, effect.at, 0.2, 0.28 * (effect.power ?? 1), 0, true, false, 0.25);
           pending.splice(i, 1);
         }
       }

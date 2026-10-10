@@ -184,7 +184,7 @@ export interface RawContent {
 
 `RawContent`는 `units`, `enemies`, `skills`, `ranges`, `stages`의 배열을 가진 테스트·입력 구성용 타입입니다. `validateContent(raw: unknown): ContentDb`는 외부 JSON을 각 필드의 타입부터 검사해 새 객체로 구성합니다. 반환 Map은 타입 수준에서 읽기 전용이며, `unitOrder`는 원본 유닛 순서를 유지합니다.
 
-원본 스테이지의 선택 필드 `waveRepeat`는 기본 `spawns` 패턴을 `count`회 확장합니다. `count`는 1 이상의 정수, `periodSec`는 패턴의 마지막 예약 스폰 시각보다 큰 유한 양수여야 합니다. 반복마다 시각에 `periodSec × 반복 번호`, 웨이브에 `기본 최대 웨이브 × 반복 번호`를 더하며 적 종류·수·경로·개별 스폰 간격은 유지합니다. 검증 결과는 확장된 `StageDef.spawns`만 가지며 반복 설정을 남기지 않습니다. 따라서 sim·지도·HUD의 기존 타입을 유지하고, 검증된 콘텐츠를 다시 검증해도 중복 확장하지 않습니다. 설정이 없는 입력은 기존처럼 처리합니다. 실제 7개 정원은 50/60웨이브 전체를 직접 작성해 첫 5/6웨이브 이후 수·간격·지원 무리를 단계적으로 바꾸므로 `waveRepeat`를 사용하지 않습니다. 기존 반복 입력은 테스트 원본에서 계속 검증합니다. `StageDef`, sim·HUD·지도·세이브 계약은 동일합니다.
+원본 스테이지의 선택 필드 `waveRepeat`는 기본 `spawns` 패턴을 `count`회 확장합니다. `count`는 1 이상의 정수, `periodSec`는 패턴의 마지막 예약 스폰 시각보다 큰 유한 양수여야 합니다. 반복마다 시각에 `periodSec × 반복 번호`, 웨이브에 `기본 최대 웨이브 × 반복 번호`를 더하며 적 종류·수·경로·개별 스폰 간격은 유지합니다. 검증 결과는 확장된 `StageDef.spawns`만 가지며 반복 설정을 남기지 않습니다. 따라서 sim·지도·HUD의 기존 타입을 유지하고, 검증된 콘텐츠를 다시 검증해도 중복 확장하지 않습니다. 설정이 없는 입력은 기존처럼 처리합니다. 실제 정원은 1~3번 12/20/25웨이브, 4~5번 50웨이브, 6~7번 60웨이브 전체를 직접 작성해 수·간격·지원 무리를 단계적으로 바꾸므로 `waveRepeat`를 사용하지 않습니다. 기존 반복 입력은 테스트 원본에서 계속 검증합니다. `StageDef`, sim·HUD·지도·세이브 계약은 동일합니다.
 
 ## 2. 검증 규칙 (src/data/validate.ts)
 
@@ -599,6 +599,7 @@ export interface RawContent {
 {
   "id": "stage-1",
   "name": "1-1 푸딩 창고 앞마당",
+  "description": "12웨이브의 짧은 방어전! 권총으로 첫 무리를 막고 대공·마법 친구와 마지막 혼성 공세를 맞아요.",
   "map": [
     "##HH###HH##",
     "S....H....#",
@@ -611,22 +612,97 @@ export interface RawContent {
   "life": 3,
   "deployLimit": 7,
   "routes": {
-    "ground": { "from": [0, 1], "to": [10, 3] },
-    "air":    { "from": [0, 1], "to": [10, 3], "flying": true }
+    "ground": {
+      "from": [
+        0,
+        1
+      ],
+      "to": [
+        10,
+        3
+      ]
+    },
+    "air": {
+      "from": [
+        0,
+        1
+      ],
+      "to": [
+        10,
+        3
+      ],
+      "flying": true
+    }
   },
   "spawns": [
-    { "wave": 1, "atSec": 3,  "enemy": "jelly",     "count": 3, "intervalSec": 3,   "route": "ground" },
-    { "wave": 2, "atSec": 20, "enemy": "jelly",     "count": 4, "intervalSec": 2.5, "route": "ground" },
-    { "wave": 3, "atSec": 36, "enemy": "crow",      "count": 2, "intervalSec": 4,   "route": "air" },
-    { "wave": 3, "atSec": 45, "enemy": "hardJelly", "count": 1, "intervalSec": 0,   "route": "ground" },
-    { "wave": 4, "atSec": 56, "enemy": "jelly",     "count": 5, "intervalSec": 2,   "route": "ground" },
-    { "wave": 4, "atSec": 62, "enemy": "crow",      "count": 1, "intervalSec": 0,   "route": "air" },
-    { "wave": 5, "atSec": 76, "enemy": "hardJelly", "count": 2, "intervalSec": 5,   "route": "ground" },
-    { "wave": 5, "atSec": 80, "enemy": "jelly",     "count": 3, "intervalSec": 2,   "route": "ground" }
+    {
+      "wave": 1,
+      "atSec": 3,
+      "enemy": "jelly",
+      "count": 3,
+      "intervalSec": 2.5,
+      "route": "ground"
+    },
+    {
+      "wave": 2,
+      "atSec": 14,
+      "enemy": "jelly",
+      "count": 4,
+      "intervalSec": 2,
+      "route": "ground"
+    },
+    {
+      "wave": 3,
+      "atSec": 26,
+      "enemy": "crow",
+      "count": 2,
+      "intervalSec": 3,
+      "route": "air"
+    },
+    {
+      "wave": 3,
+      "atSec": 30,
+      "enemy": "hardJelly",
+      "count": 1,
+      "intervalSec": 0,
+      "route": "ground"
+    },
+    {
+      "wave": 4,
+      "atSec": 40,
+      "enemy": "jelly",
+      "count": 6,
+      "intervalSec": 1.7,
+      "route": "ground"
+    },
+    {
+      "wave": 4,
+      "atSec": 44,
+      "enemy": "crow",
+      "count": 2,
+      "intervalSec": 2,
+      "route": "air"
+    },
+    {
+      "wave": 5,
+      "atSec": 54,
+      "enemy": "hardJelly",
+      "count": 2,
+      "intervalSec": 3,
+      "route": "ground"
+    },
+    {
+      "wave": 5,
+      "atSec": 58,
+      "enemy": "jelly",
+      "count": 6,
+      "intervalSec": 1.5,
+      "route": "ground"
+    }
   ]
 }
 ```
 
-- 위 예시는 변하지 않은 첫 5웨이브·21마리의 발췌입니다. 실제 JSON은 이후 45웨이브를 단계적으로 강화해 50웨이브·426마리를 명시하며, 2번은 50웨이브·497마리입니다. 구간별 편성과 검증 시간은 [09 문서](09-content-expansion.md)를 따릅니다.
+- 위 예시는 현재 첫 5웨이브·26마리의 발췌입니다. 전체 1번은 12웨이브·119마리, 2번은 20웨이브·192마리, 3번은 25웨이브입니다. 편성과 검증 시간은 [09 문서](09-content-expansion.md)를 따릅니다.
 - 지상 경로는 하나로 정해집니다. 꺾이는 점은 (0,1) → (4,1) → (4,3) → (6,3) → (6,1) → (9,1) → (9,3) → (10,3)이고, 길이는 16타일입니다 (07 문서의 경로 테스트 기대값).
 - 이 맵은 기획 노트 목업과 같은 지형입니다.

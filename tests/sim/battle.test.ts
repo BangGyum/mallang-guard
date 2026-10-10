@@ -14,9 +14,9 @@ describe('battle core', () => {
     expect([battle.stage.board.width, battle.stage.board.height]).toEqual([11, 6]);
     expect(battle.stage.routes.get('ground')?.length).toBe(16);
     expect(battle.stage.spawns.map((group) => group.atTick)).toEqual(
-      Array.from({ length: 10 }, (_, cycle) =>
-        [90, 600, 1080, 1350, 1680, 1860, 2280, 2400].map((tick) => tick + cycle * 2730),
-      ).flat(),
+      [
+        3, 14, 26, 30, 40, 44, 54, 58, 74, 82, 94, 98, 118, 122, 140, 146, 161, 165, 184, 188, 209, 212, 217,
+      ].map(secToTicks),
     );
     expect(battle.state).toMatchObject({
       tick: 0,
@@ -26,12 +26,12 @@ describe('battle core', () => {
       maxLife: 3,
       units: [],
       enemies: [],
-      spawnCursor: Array.from({ length: 80 }, () => 0),
-      totalEnemies: 426,
+      spawnCursor: Array.from({ length: 23 }, () => 0),
+      totalEnemies: 119,
       killed: 0,
       leaked: 0,
       currentWave: 0,
-      totalWaves: 50,
+      totalWaves: 12,
       nextUid: 1,
       rngState: DEFAULT_SEED,
     });

@@ -1,0 +1,27 @@
+{
+  "burst": 3,
+  "sounds": 16,
+  "volleys": {
+    "volley": [
+      {
+        "duration": 0.26,
+        "rate": 0.9801623225212097
+      }
+    ],
+    "sword": [
+      {
+        "duration": 0.18,
+        "rate": 0.9906670451164246
+      }
+    ],
+    "spit": [
+      {
+        "duration": 0.14002083333333334,
+        "rate": 0.9893515110015869
+      }
+    ]
+  },
+  "muted": true,
+  "contextClosed": true,
+  "errors": []
+}

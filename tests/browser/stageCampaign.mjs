@@ -6,7 +6,7 @@ import { deploy, frame, pause, resume, tilePoint } from './helpers.mjs';
 
 const earlyOnly = process.argv.includes('--early');
 const scenarios = await Promise.all(
-  (earlyOnly ? [1, 2] : [1, 2, 3, 4, 5, 6, 7]).map(async (level) => ({
+  (earlyOnly ? [1, 2, 3] : [1, 2, 3, 4, 5, 6, 7]).map(async (level) => ({
     scenario: JSON.parse(await readFile(`tests/scenarios/stage-${level}-clear.json`, 'utf8')),
     stage: JSON.parse(await readFile(`src/data/stages/stage-${level}.json`, 'utf8')),
   })),
@@ -83,9 +83,8 @@ try {
       }
       const placed = new Map();
       let pressureCaptured = false;
-      const waves = Math.max(...stage.spawns.map((spawn) => spawn.wave));
-      const next = stage.spawns.find((spawn) => spawn.wave > waves / 10);
-      const period = stage.waveRepeat?.periodSec ?? (next?.atSec ?? 0) - stage.spawns[0].atSec;
+      const lateSec =
+        Math.max(...stage.spawns.map((spawn) => spawn.atSec + (spawn.count - 1) * spawn.intervalSec)) * 0.7;
       for (const command of scenario.commands) {
         const target = Math.round(command.atSec * 30);
         let tick = await page.evaluate(() => window.campaign.battle.state.tick);
@@ -105,7 +104,7 @@ try {
           }
           await pause(page);
         }
-        if (!pressureCaptured && command.atSec >= period * 7) {
+        if (!pressureCaptured && command.atSec >= lateSec) {
           const enemies = await page.evaluate(() => window.campaign.battle.state.enemies.length);
           if (enemies >= [6, 12, 12, 7, 8, 6, 9][Number(stage.id.slice(-1)) - 1]) {
             await page.screenshot({
@@ -231,13 +230,13 @@ try {
         );
     }
     const completed = await page.evaluate(() => JSON.parse(localStorage.getItem('mallang-guard:v1')).stages);
-    assert.equal(await page.evaluate(() => window.campaign.seen.size), earlyOnly ? 5 : 16, '실제 적 종류');
+    assert.equal(await page.evaluate(() => window.campaign.seen.size), earlyOnly ? 10 : 16, '실제 적 종류');
     if (!earlyOnly) {
       assert((await page.evaluate(() => window.campaign.heals)) > 0, '실제 치유 발동');
       assert((await page.evaluate(() => window.campaign.shieldHits)) > 0, '실제 보호막 피해');
     }
     await click(page.getByRole('button', { name: '스테이지 선택', exact: true }));
-    assert.equal(await page.locator('.stage-card:disabled').count(), earlyOnly ? 4 : 0);
+    assert.equal(await page.locator('.stage-card:disabled').count(), earlyOnly ? 3 : 0);
     assert(
       await page
         .locator('.stage-stars')
@@ -250,7 +249,7 @@ try {
     await page.reload();
     await page.locator('.title-screen').waitFor();
     await click(page.getByRole('button', { name: '스테이지 선택', exact: true }));
-    assert.equal(await page.locator('.stage-card:disabled').count(), earlyOnly ? 4 : 0);
+    assert.equal(await page.locator('.stage-card:disabled').count(), earlyOnly ? 3 : 0);
     assert(
       await page
         .locator('.stage-stars')

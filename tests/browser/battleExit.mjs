@@ -121,7 +121,7 @@ try {
       );
       assert.equal(
         await page.locator('.battle-wave').textContent(),
-        `WAVE ${mode === 'running' || mode === 'paused' ? 1 : 0}/50`,
+        `WAVE ${mode === 'running' || mode === 'paused' ? 1 : 0}/12`,
       );
       if (index === 0)
         await page.screenshot({ path: `docs/verification/${prefix}-${width}x${height}-exit-button.png` });

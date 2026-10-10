@@ -118,8 +118,8 @@ describe('시나리오 실행기', () => {
   });
 
   it('시간 제한 직전에는 실패하고 마지막 허용 틱에 끝나면 성공한다', () => {
-    expect(() => runScenario(content, idle, { maxSec: 803 / 30 })).toThrow(/tick 803: timeout/);
-    expect(runScenario(content, idle, { maxSec: 804 / 30 }).state.tick).toBe(804);
+    expect(() => runScenario(content, idle, { maxSec: 773 / 30 })).toThrow(/tick 773: timeout/);
+    expect(runScenario(content, idle, { maxSec: 774 / 30 }).state.tick).toBe(774);
   });
 
   it('승패 기대값 불일치를 실패로 처리한다', () => {
@@ -136,7 +136,7 @@ describe('시나리오 실행기', () => {
 
   it('승패가 맞아도 종료 뒤 실행되지 않은 명령이 남으면 실패한다', () => {
     const scenario: Scenario = { ...idle, commands: [{ ...deploy, atSec: 100, tile: [2, 0] }] };
-    expect(() => runScenario(content, scenario)).toThrow('tick 804: 1 unrun commands');
+    expect(() => runScenario(content, scenario)).toThrow('tick 774: 1 unrun commands');
   });
 
   it.each([-1, Number.NaN, Number.POSITIVE_INFINITY])('잘못된 명령 시각 %s를 거부한다', (atSec) => {

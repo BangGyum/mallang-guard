@@ -12,6 +12,10 @@ function rifle(accent: string, long = false) {
   return `<g ${line}><path d="M29 72H40L47 69H75V79H58L55 89H48L49 79H40L29 82Z" fill="${steel}"/><path d="M74 72H${long ? 95 : 89}V77H74Z" fill="${light}"/><path d="M${long ? 93 : 87} 69V79"/><rect x="53" y="63" width="${long ? 20 : 11}" height="6" rx="1" fill="${steel}"/><path d="M53 65H${long ? 71 : 62}" stroke="${accent}" stroke-width="3"/><path d="M62 72H72V77H62Z" fill="${accent}"/><path d="M39 77L44 81M64 80L70 80" stroke="#D9B99B" stroke-width="5"/></g>`;
 }
 
+function pistol(accent: string) {
+  return `<g ${line}><path d="M55 65H86V76H70L66 89H57L60 76H55Z" fill="${steel}"/><path d="M56 65H87V70H56Z" fill="${light}"/><path d="M86 67H91V73H86Z" fill="${steel}"/><path d="M62 69H78" stroke="${accent}" stroke-width="3"/><path d="M72 76V81H67M60 81L64 82" fill="none"/><path d="M48 80L59 77M52 84L60 82" stroke="#D9B99B" stroke-width="5"/></g>`;
+}
+
 export function combatEyes(y = 60): string {
   return `<path d="M35 ${y - 6}L44 ${y - 4}M56 ${y - 4}L65 ${y - 6}" fill="none" ${line}/><ellipse cx="40" cy="${y}" rx="3.3" ry="3.8" fill="${ART_COLORS.eye}"/><ellipse cx="60" cy="${y}" rx="3.3" ry="3.8" fill="${ART_COLORS.eye}"/><path d="M47 ${y + 8}H53" ${line}/>`;
 }
@@ -20,7 +24,7 @@ export const COMBAT_GEAR = {
   squirrel:
     vest('#496D66', '#EABC67') +
     `<path d="M29 44Q49 32 71 44" fill="none" stroke="${steel}" stroke-width="6"/><path d="M27 51V63L35 67" fill="none" ${line}/><rect x="23" y="51" width="8" height="10" rx="2" fill="${steel}" ${line}/>` +
-    rifle('#EABC67'),
+    pistol('#EABC67'),
   cat:
     vest('#4D5C7B', '#E88D92') +
     `<g ${line}><path d="M24 70L16 73L20 84L30 83L33 74Z" fill="${light}"/><path d="M70 75L87 31L95 27L96 39L76 78Z" fill="${light}"/><path d="M75 71L91 36" stroke="#82DAD7" stroke-width="3"/><path d="M67 73L82 79" stroke="#D5AE63" stroke-width="5"/><path d="M72 79L69 88" stroke="${steel}" stroke-width="6"/></g>`,
@@ -40,7 +44,8 @@ export const COMBAT_GEAR = {
     rifle('#A0E1C4'),
   mole:
     vest('#666D61', '#D9AB66') +
-    `<g ${line}><path d="M28 47Q28 27 50 27Q72 27 72 47Z" fill="${steel}"/><path d="M29 45H71" stroke="${light}" stroke-width="4"/><rect x="36" y="36" width="28" height="10" rx="2" fill="#D9AB66"/><path d="M50 37V45"/><path d="M30 76L39 72H91V82H56L53 90H46L47 81H38L30 85Z" fill="${steel}"/><path d="M66 71H94V76H66Z" fill="${light}"/><path d="M67 78H83" stroke="#D9AB66" stroke-width="5"/><path d="M91 69V83"/></g>`,
+    `<g ${line}><path d="M28 47Q28 27 50 27Q72 27 72 47Z" fill="${steel}"/><path d="M29 45H71" stroke="${light}" stroke-width="4"/><rect x="36" y="36" width="28" height="10" rx="2" fill="#D9AB66"/><path d="M50 37V45"/></g>` +
+    pistol('#D9AB66'),
   snail:
     vest('#647077', '#A8D6B5') +
     `<g ${line}><path d="M69 38H85L90 44V62H67V44Z" fill="${steel}"/><path d="M72 44H84V57H72Z" fill="#A8D6B5"/><path d="M80 60Q94 68 70 75" fill="none" stroke="${steel}" stroke-width="5"/><path d="M35 74H63L68 69H93V83H65L58 88H47L48 81H35Z" fill="${steel}"/><path d="M73 71H86V81H73Z" fill="#A8D6B5"/><path d="M91 68V84" stroke="${light}" stroke-width="5"/></g>`,
