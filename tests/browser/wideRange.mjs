@@ -132,8 +132,8 @@ try {
     assert.equal(active.uiRange, 100);
     assert.equal(active.starts, 1);
     assert.match(await page.locator('.unit-stats').textContent(), /공격력 480.*0\.90초/s);
-    assert.equal(await page.locator('.skill-name').textContent(), '전면 포격');
-    assert.match(await page.locator('.skill-notice[data-unit-id="owl"]').textContent(), /밤밤.*전면 포격/s);
+    assert.equal(await page.locator('.skill-name').textContent(), '화염 개방');
+    assert.match(await page.locator('.skill-notice[data-unit-id="owl"]').textContent(), /밤밤.*화염 개방/s);
     const buttonsFit = await page.locator('.unit-panel').evaluate((panel) => {
       const bounds = panel.getBoundingClientRect();
       return [...panel.querySelectorAll('button')]

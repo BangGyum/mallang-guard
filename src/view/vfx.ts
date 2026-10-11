@@ -26,7 +26,7 @@ const SHOTS: Record<
   bunny: { art: 'arcBolt', size: 0.3, arc: 0, muzzle: 0.24 },
   mole: { art: 'bullet', size: 0.3, arc: 0, muzzle: 0.19 },
   snail: { art: 'stickyDrop', size: 0.32, arc: 0.12, muzzle: 0.24 },
-  owl: { art: 'plasma', size: 0.78, arc: 0.18, muzzle: 0.36, impact: 'plasmaImpact', power: 1.4 },
+  owl: { art: 'fireball', size: 0.78, arc: 0.18, muzzle: 0.36, impact: 'fireBurst', power: 1.4 },
   wolf: { art: 'railRound', size: 0.9, arc: 0, muzzle: 0.42, impact: 'impact', power: 1.5 },
 };
 
@@ -94,7 +94,7 @@ export function createVfx(
               pool.emit(shot.art, from, to, PROJECTILE_SEC, shot.size * boost, shot.arc, false, true);
               if (shot.muzzle && !flashed.has(unit.uid)) {
                 pool.emit(
-                  'muzzle',
+                  unit.unitId === 'owl' ? 'fireBurst' : 'muzzle',
                   from,
                   from,
                   0.07,

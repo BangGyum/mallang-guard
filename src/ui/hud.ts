@@ -27,6 +27,13 @@ export function createHud(
   const life = element('span', 'battle-life');
   const enemies = element('span', 'battle-enemies');
   const wave = element('span', 'battle-wave');
+  const waveNotice = element('div', 'wave-notice');
+  waveNotice.setAttribute('role', 'status');
+  waveNotice.setAttribute('aria-live', 'polite');
+  waveNotice.setAttribute('aria-atomic', 'true');
+  const waveNumber = element('strong', 'wave-notice-number');
+  waveNotice.append(element('span', 'wave-notice-caption', '웨이브 시작'), waveNumber);
+  waveNotice.hidden = true;
   stats.append(life, enemies, wave);
   const pause = button('', actions.pause, 'battle-pause');
   const pauseLabel = element('span', '', '일시정지');
@@ -42,7 +49,7 @@ export function createHud(
   controls.append(speed, pause, exit);
   pause.dataset.action = 'pause';
   speed.setAttribute('aria-label', '전투 배속 변경');
-  top.append(title, preparation, stats, controls);
+  top.append(title, preparation, stats, controls, waveNotice);
   const hint = element(
     'p',
     'battle-hint',
@@ -54,6 +61,7 @@ export function createHud(
   toast.hidden = true;
   root.append(top, hint, toast);
   let timeoutId: ReturnType<typeof setTimeout> | undefined;
+  let waveTimeoutId: ReturnType<typeof setTimeout> | undefined;
   let previousLife = battle.state.life;
   let previousWave = battle.state.currentWave;
   return {
@@ -75,6 +83,18 @@ export function createHud(
       wave.textContent = `WAVE ${state.currentWave}/${state.totalWaves}`;
       if (state.life < previousLife) playFeedback(life, 'shake');
       if (state.currentWave !== previousWave) playFeedback(wave, 'pulse');
+      if (state.currentWave > previousWave && state.phase === 'running') {
+        clearTimeout(waveTimeoutId);
+        waveNumber.textContent = `WAVE ${state.currentWave} / ${state.totalWaves}`;
+        waveNotice.hidden = false;
+        waveTimeoutId = setTimeout(() => {
+          waveNotice.hidden = true;
+        }, 1900);
+      }
+      if (state.phase !== 'running') {
+        clearTimeout(waveTimeoutId);
+        waveNotice.hidden = true;
+      }
       previousLife = state.life;
       previousWave = state.currentWave;
       life.classList.toggle('is-critical', state.life <= 1);
@@ -86,10 +106,11 @@ export function createHud(
       speedLabel.textContent = `×${controls.speed}`;
       pause.disabled = state.phase !== 'running';
       speed.disabled = state.phase !== 'running';
-      hint.hidden = state.tick > 150 || state.units.length > 0;
+      hint.hidden = state.tick > 150 || state.units.length > 0 || !waveNotice.hidden;
     },
     dispose() {
       clearTimeout(timeoutId);
+      clearTimeout(waveTimeoutId);
       top.remove();
       hint.remove();
       toast.remove();

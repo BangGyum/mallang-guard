@@ -55,7 +55,7 @@ try {
       'slash',
       'hammer',
       'magic',
-      'energy',
+      'fire',
       'launcher',
       'goo',
       'pop',
@@ -104,7 +104,7 @@ try {
   assert.equal(volleys.volley.length, 1, '삼중 사격은 같은 유닛의 총성을 중복 증폭하지 않음');
   assert(Math.abs(volleys.volley[0].duration - 0.26) < 0.0001);
   assert.equal(volleys.sword.length, 1, '근거리 이벤트도 무장에 맞게 재생');
-  assert(Math.abs(volleys.sword[0].duration - 0.18) < 0.0001);
+  assert(Math.abs(volleys.sword[0].duration - 0.12) < 0.0001);
   assert.equal(volleys.spit.length, 1, '적의 여러 대상 방해는 한 번의 침 뱉는 소리');
   assert(Math.abs(volleys.spit[0].duration - 0.14) < 0.0001);
   await page.evaluate(() => window.sfx.dispose());
