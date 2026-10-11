@@ -66,7 +66,7 @@ try {
       'shoot',
       'pistol',
       'launcher',
-      'energy',
+      'fire',
       'sniper',
     ]) {
       buffers

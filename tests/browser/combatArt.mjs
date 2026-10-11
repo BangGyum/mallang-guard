@@ -58,7 +58,7 @@ try {
         'arcBolt',
         'bullet',
         'stickyDrop',
-        'plasma',
+        'fireball',
         'railRound',
       ];
       const checks = [];
@@ -89,6 +89,29 @@ try {
           active,
           facing: Math.sign(origin.x - center.x) === (unit.dir === 'left' ? -1 : 1),
         });
+        if (unit.unitId === 'owl') {
+          const count = (id) =>
+            vfx.group.children.find((mesh) => mesh.material.uniforms.map.value === cache.textures.get(id))
+              .count;
+          const fire = {
+            aboveBody: origin.clone().project(view.camera).y > center.clone().project(view.camera).y,
+            staffFlash: count('fireBurst'),
+            gunFlash: count('muzzle'),
+          };
+          vfx.update(battle.state, view.camera, 0.2);
+          fire.beforeImpact = count('fireBurst');
+          vfx.update(battle.state, view.camera, 0.02);
+          fire.afterImpact = count('fireBurst');
+          vfx.update(battle.state, view.camera, 1);
+          vfx.setOptions(true, true);
+          vfx.onEvents(events, battle.state, new Map());
+          vfx.update(battle.state, view.camera, 0.12);
+          fire.reducedProjectile = count('fireball');
+          vfx.update(battle.state, view.camera, 0.14);
+          fire.reducedImpact = count('fireBurst');
+          checks.at(-1).fire = fire;
+          vfx.setOptions(false, false);
+        }
         vfx.update(battle.state, view.camera, 1);
       }
       const unchanged = originalHash === hashState(battle.state);
@@ -101,6 +124,17 @@ try {
     for (const check of checks.checks) {
       assert(check.active.includes(check.expected), `${check.id}의 전용 투사체`);
       assert(check.facing, `${check.id}의 좌우 방향과 무기 끝 발사 위치`);
+      if (check.fire) {
+        assert.deepEqual(check.fire, {
+          aboveBody: true,
+          staffFlash: 1,
+          gunFlash: 0,
+          beforeImpact: 0,
+          afterImpact: 1,
+          reducedProjectile: 1,
+          reducedImpact: 0,
+        });
+      }
     }
     await page.evaluate(() => {
       const { battle, deliver, render } = window.testScene;
@@ -148,7 +182,7 @@ try {
           '지원 소총 · 전술 가속',
           '권총 · 밀쳐내기',
           '점착탄 발사기 · 둔화',
-          '에너지포 · 전면 포격',
+          '불꽃 지팡이 · 화염 개방',
           '긴 저격총 · 삼중 조준',
         ];
         document.body.innerHTML =

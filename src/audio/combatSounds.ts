@@ -5,7 +5,7 @@ export const COMBAT_SOUNDS = [
   'slash',
   'hammer',
   'magic',
-  'energy',
+  'fire',
   'launcher',
   'goo',
 ] as const;
@@ -20,7 +20,7 @@ const UNIT_SOUNDS: Readonly<Record<string, AttackSound>> = {
   bunny: 'shoot',
   mole: 'pistol',
   snail: 'launcher',
-  owl: 'energy',
+  owl: 'fire',
   wolf: 'sniper',
 };
 
@@ -38,10 +38,10 @@ const DURATIONS: Readonly<Record<AttackSound, number>> = {
   shoot: GUNS.shoot.sec,
   sniper: GUNS.sniper.sec,
   pistol: GUNS.pistol.sec,
-  slash: 0.18,
+  slash: 0.12,
   hammer: 0.24,
   magic: 0.2,
-  energy: 0.28,
+  fire: 0.28,
   launcher: 0.22,
   goo: 0.14,
 };
@@ -59,6 +59,8 @@ export function createCombatBuffers(context: BaseAudioContext): ReadonlyMap<Atta
     let phase = 0;
     const lowStep = 1 - Math.exp((-2 * Math.PI * 420) / context.sampleRate);
     const midStep = 1 - Math.exp((-2 * Math.PI * 2600) / context.sampleRate);
+    const slashStep = 1 - Math.exp((-2 * Math.PI * 1050) / context.sampleRate);
+    let blade = 0;
     // 한 번 합성한 버퍼를 재사용해 사격마다 필터·오실레이터를 만들지 않습니다.
     for (let i = 0; i < samples.length; i++) {
       seed ^= seed << 13;
@@ -79,25 +81,28 @@ export function createCombatBuffers(context: BaseAudioContext): ReadonlyMap<Atta
           0.09 * mid * Math.exp(-t / gun.tail);
         if (boltTime >= 0) sample += 0.045 * (white - low) * Math.exp(-boltTime / 0.008);
       } else if (sound === 'slash') {
-        sample = 0.34 * (mid - low) * Math.sin((Math.PI * t) / sec) ** 3;
+        blade += slashStep * (white - blade);
+        sample = 0.16 * (blade - low) * Math.sin((Math.PI * t) / sec) ** 2;
       } else if (sound === 'hammer') {
         sample =
           (0.28 * Math.sin(2 * Math.PI * 82 * t) + 0.38 * low) * Math.exp(-t / 0.042) +
           0.04 * Math.sin(2 * Math.PI * 710 * t) * Math.exp(-t / 0.065);
-      } else if (sound === 'magic' || sound === 'energy') {
-        const heavy = sound === 'energy';
-        phase +=
-          (2 * Math.PI * (heavy ? 75 + 260 * Math.exp(-t / 0.03) : 280 + 820 * Math.exp(-t / 0.04))) /
-          context.sampleRate;
+      } else if (sound === 'fire') {
+        const swell = (1 - Math.exp(-t / 0.007)) * Math.exp(-t / 0.068);
         sample =
-          (0.14 * Math.sin(phase + 1.5 * Math.sin(2 * Math.PI * 70 * t)) + 0.18 * mid) *
-          Math.exp(-t / (heavy ? 0.065 : 0.043));
+          (0.5 * low + 0.3 * (mid - low)) * swell +
+          0.1 * (white - mid) * Math.max(0, Math.sin(2 * Math.PI * 137 * t)) ** 12 * swell +
+          0.08 * Math.sin(2 * Math.PI * 72 * t) * Math.exp(-t / 0.045);
+      } else if (sound === 'magic') {
+        phase += (2 * Math.PI * (280 + 820 * Math.exp(-t / 0.04))) / context.sampleRate;
+        sample =
+          (0.14 * Math.sin(phase + 1.5 * Math.sin(2 * Math.PI * 70 * t)) + 0.18 * mid) * Math.exp(-t / 0.043);
       } else {
         phase += (2 * Math.PI * (75 + 180 * Math.exp(-t / 0.025))) / context.sampleRate;
         sample = (0.2 * Math.sin(phase) + 0.4 * low) * Math.exp(-t / 0.035);
         if (sound === 'goo') sample *= 0.55;
       }
-      const attack = Math.min(1, t / (sound === 'slash' ? 0.005 : 0.0004));
+      const attack = Math.min(1, t / (sound === 'slash' ? 0.008 : 0.0004));
       const release = Math.min(1, (sec - t) / 0.025);
       samples[i] = sample * attack * release;
     }

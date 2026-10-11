@@ -73,7 +73,7 @@ function enemy(uid: number, x: number, y: number): EnemyEntity {
   };
 }
 
-describe('밤밤의 전방위 사거리와 전면 포격', () => {
+describe('밤밤의 전방위 사거리와 화염 개방', () => {
   it.each(DIRECTIONS)('%s: 기본 5×5와 스킬 10×10이 정확한 정사각형이다', (dir) => {
     const f = fixture(dir);
     const base = f.battle.rangeTilesFor('owl', TILE, dir);

@@ -476,6 +476,16 @@
 - 성능: Edge headless·Intel Arc 130V·1920×1080, 적 60·아군 10·전용 탄환/삼중 사격에서 표시 주기 60.00fps·렌더 CPU p95 2.4ms입니다. 제한 없는 처리량 616.02fps·프레임 간격 p95 2.8ms, 최대 70 draw calls·130 파티클로 예산 안입니다. 실제 120Hz 화면의 전체 게임 FPS를 측정한 결과는 아닙니다.
   기록: [공략 비교](../verification/t4.17-pacing.json), [6회 완주](../verification/t4.17-campaign.json), [탄환/정지](../verification/t4.17-combat-art.json), [발사음 20회](../verification/t4.17-audio-weapons.json), [음원](../verification/t4.17-audio-samples.json), [오디오](../verification/t4.17-audio.json), [입력](../verification/t4.17-input.json), [HUD](../verification/t4.17-hud.json), [40회 나가기](../verification/t4.17-battle-exit.json), [프로덕션](../verification/t4.17-production.json), [표시 성능](../verification/t4.17-performance.json), [처리량](../verification/t4.17-performance-uncapped.json). 화면: [무장 10종](../verification/t4.17-combat-roster.png), [PC 명중](../verification/t4.17-desktop-impact.png), [터치 전투](../verification/t4.17-mobile-combat.png), [1번 후반](../verification/t4.17-desktop-stage-1-pressure.png), [별 9개](../verification/t4.17-mobile-all-stars.png).
 
+### [x] T4.18 불꽃 캐스터·검격음·웨이브 알림
+- 사용자 요청: 도토리 24의 캐스터를 불꽃 마법사로 바꾸고 거슬리는 칼 소리를 줄이며 웨이브 시작을 중앙 위에 표시합니다.
+- 읽을 문서: 01·04·05·06·07·09의 읽기 전용 연출·SVG·음성 버퍼·HUD 정리·밤밤 수치 계약.
+- 구현: 밤밤의 여성 부엉이 디자인에 불꽃 지팡이·마법서를 적용하고 지팡이 끝 화염탄·불꽃 명중·짧은 시전·화염음을 연결합니다. 스킬 표기는 화염 개방이며 기존 ID와 전투 수치를 유지합니다. 검격은 짧고 작은 저역 바람 소리로 변경합니다. 새 웨이브의 첫 스폰 시 상단 버튼 아래 중앙에 1.9초간 번호를 표시하며 입력 통과·모션 감소·타이머 정리를 적용합니다.
+- 완료 조건: check/lint/test/build, PC·터치 10종 연출과 밤밤의 자연 충전·25→100→25칸·기존 수치 복원, 실제 음성 신호/음량·동시 발사·정리, 네 화면의 알림 위치·중복 없음·만료·재시작·종료와 프로덕션 경로를 확인합니다.
+- 검증 (2026-10-11): check/lint/test/build와 61개 파일 1,002개 자동 테스트가 통과했습니다. Edge PC·터치 10종의 전용 투사체·좌우 발사·정지·전투 상태 보존, 밤밤의 지팡이 끝 화염·250ms 명중·모션 감소와 실제 자연 충전 스킬의 25→100→25칸·320→480→320 공격력·1.8→0.9→1.8초 간격을 확인했습니다. 실제 공격음 20회·9종 신호·동시 발사·음소거/정리에서 오류 0건이며 검격 피크는 0.164→0.036으로 약 78.24% 감소하고 다른 7종의 신호는 같습니다.
+- 화면/정리: 1920×1080·844×390·740×360·390×844에서 준비/첫 스폰 구분·중앙 위·입력 통과·안내 문구 겹침 방지·1.9초 만료·다음 웨이브·모션 감소·나가기/재시작/결과를 확인했습니다. 추가 40회 전투 나가기의 입력·루프·효과음 정리와 기록 보존, 프로덕션의 10개 초상화·12웨이브·처치 수입·WebGL·나가기도 통과했습니다. 터치는 Edge 에뮬레이션입니다.
+- 성능: 1920×1080의 적 60·친구 10명 장면에서 표시 주기 약 60fps·렌더 CPU p95 5.1ms, 제한 해제 처리량 약 518fps·렌더 CPU p95 2.1ms입니다. 드로우콜 최고 70·파티클 130/200이며 실제 120Hz 화면 측정은 아닙니다.
+  결과: [연출](../verification/t4.18-combat-art.json), [밤밤 스킬](../verification/t4.18-wide-range.json), [음성](../verification/t4.18-audio-weapons.json), [검격 비교](../verification/t4.18-slash-comparison.json), [웨이브 알림](../verification/t4.18-wave-notice.json), [나가기](../verification/t4.18-battle-exit.json), [프로덕션](../verification/t4.18-production.json), [성능](../verification/t4.18-performance.json), [제한 해제](../verification/t4.18-performance-uncapped.json). 화면: [무장](../verification/t4.18-combat-roster.png), [PC 웨이브](../verification/t4.18-1920x1080-wave-start.png), [터치 웨이브](../verification/t4.18-844x390-wave-start.png), [불꽃 명중](../verification/t4.18-desktop-impact.png).
+
 ## M5 확장 (방향만 정해 둠)
 
 - 모바일 성능 최적화, PWA(오프라인 실행)

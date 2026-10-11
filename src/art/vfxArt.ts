@@ -10,8 +10,10 @@ const drawings = {
     '<path d="M3 30L21 19L40 25L59 32L40 39L21 45Z" fill="#B3C8FF"/><path d="M17 32H52" stroke="#F4F5FF" stroke-width="5"/>',
   railRound:
     '<g stroke="none"><path d="M0 23L45 27L64 32L45 37L0 41L15 32Z" fill="#EFAB57" opacity=".5"/><path d="M3 29H48L64 32L48 35H3Z" fill="#FFD386"/><path d="M15 31H53L61 32L53 33H15Z" fill="#FFFFFF"/></g>',
-  plasma:
-    '<g stroke="none"><ellipse cx="37" cy="32" rx="25" ry="19" fill="#9299EC" opacity=".25"/><path d="M2 17L37 23L7 30L40 32L7 43L38 40L2 51L55 43L63 32L55 21Z" fill="#AACFEF" opacity=".55"/><ellipse cx="44" cy="32" rx="15" ry="12" fill="#85E0D5"/><ellipse cx="48" cy="32" rx="9" ry="7" fill="#F1FFF4"/></g>',
+  fireball:
+    '<g stroke="none"><ellipse cx="42" cy="32" rx="22" ry="23" fill="#F78B46" opacity=".2"/><path d="M0 11Q21 11 32 18L18 7Q42 9 53 18Q69 30 56 45Q42 59 17 56L29 46Q9 47 2 37L22 34Q8 27 0 11Z" fill="#ED6943"/><path d="M10 19Q31 26 37 20Q60 16 59 34Q56 51 32 48L39 39Q23 42 17 35L32 31Z" fill="#FFB64E"/><path d="M37 26Q53 21 55 32Q54 43 40 40L44 34L29 29Z" fill="#FFF4BA"/></g>',
+  fireBurst:
+    '<g stroke="none"><circle cx="32" cy="34" r="27" fill="#F68A43" opacity=".18"/><path d="M32 3Q48 15 42 27L53 17Q65 37 48 51Q30 66 13 49Q0 35 14 20L17 34Q30 27 32 3Z" fill="#EB7143"/><path d="M33 18Q43 30 35 38L45 32Q53 48 35 55Q17 57 17 41L25 46Q23 32 33 18Z" fill="#FFB951"/><path d="M32 37Q43 48 33 52Q24 53 32 37Z" fill="#FFF3C4"/></g>',
   impact:
     '<g stroke="none"><path d="M32 4L37 24L57 10L43 29L64 33L43 37L57 56L37 43L32 64L27 43L8 57L21 37L0 32L23 27L9 8L27 22Z" fill="#EAB05F" opacity=".7"/><path d="M32 17L37 28L49 32L37 36L32 48L28 37L16 32L27 28Z" fill="#FFF9DF"/></g>',
   plasmaImpact:

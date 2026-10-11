@@ -11,7 +11,8 @@ export const ATTACK_DURATION = {
 };
 export function attackKindFor(art: string): AttackKind {
   if (art === 'squirrel' || art === 'mole') return 'pistol';
-  if (art === 'owl' || art === 'wolf') return 'heavyShot';
+  if (art === 'wolf') return 'heavyShot';
+  if (art === 'owl') return 'cast';
   return art === 'cat' ? 'slash' : art === 'bear' ? 'impact' : art === 'sheep' ? 'cast' : 'shot';
 }
 

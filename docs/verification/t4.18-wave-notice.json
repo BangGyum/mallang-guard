@@ -1,0 +1,86 @@
+[
+  {
+    "width": 1920,
+    "height": 1080,
+    "touch": false,
+    "reduced": false,
+    "layout": {
+      "center": 960,
+      "top": 77.1536865234375,
+      "headerBottom": 71,
+      "inViewport": true,
+      "pointerEvents": "none",
+      "animation": "wave-arrival"
+    },
+    "waves": [
+      1,
+      2,
+      1
+    ],
+    "cleanup": true,
+    "errors": []
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "touch": true,
+    "reduced": false,
+    "layout": {
+      "center": 422,
+      "top": 56.1530647277832,
+      "headerBottom": 50,
+      "inViewport": true,
+      "pointerEvents": "none",
+      "animation": "wave-arrival"
+    },
+    "waves": [
+      1,
+      2,
+      1
+    ],
+    "cleanup": true,
+    "errors": []
+  },
+  {
+    "width": 740,
+    "height": 360,
+    "touch": true,
+    "reduced": true,
+    "layout": {
+      "center": 370,
+      "top": 60,
+      "headerBottom": 50,
+      "inViewport": true,
+      "pointerEvents": "none",
+      "animation": "none"
+    },
+    "waves": [
+      1,
+      2,
+      1
+    ],
+    "cleanup": true,
+    "errors": []
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "touch": true,
+    "reduced": false,
+    "layout": {
+      "center": 195,
+      "top": 102.1508560180664,
+      "headerBottom": 96,
+      "inViewport": true,
+      "pointerEvents": "none",
+      "animation": "wave-arrival"
+    },
+    "waves": [
+      1,
+      2,
+      1
+    ],
+    "cleanup": true,
+    "errors": []
+  }
+]

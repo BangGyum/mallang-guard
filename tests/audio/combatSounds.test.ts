@@ -12,7 +12,7 @@ describe('무장에 맞는 발사음', () => {
     ['bunny', 'shoot'],
     ['mole', 'pistol'],
     ['snail', 'launcher'],
-    ['owl', 'energy'],
+    ['owl', 'fire'],
     ['wolf', 'sniper'],
   ])('%s의 현재 그림과 무기에 맞게 %s를 재생한다', (unitId, sound) => {
     const unit = content.units.get(unitId);

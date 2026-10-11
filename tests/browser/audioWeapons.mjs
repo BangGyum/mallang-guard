@@ -7,7 +7,7 @@ import { createUnitAuditGame, unitAuditPoint } from './unitAuditScene.mjs';
 
 const expected = {
   squirrel: 0.12,
-  cat: 0.18,
+  cat: 0.12,
   bear: 0.24,
   penguin: 0.26,
   sheep: 0.2,
