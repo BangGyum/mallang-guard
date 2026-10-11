@@ -1,0 +1,16 @@
+{
+  "method": "직접 플레이의 0~58.3초 배치·스킬 입력을 실제 Battle에서 동일하게 재현하고 enemySpawn의 uid와 enemyLeak을 대조",
+  "life": 2,
+  "killed": 15,
+  "dp": 43,
+  "leaks": [
+    {
+      "type": "enemyLeak",
+      "uid": 11,
+      "lifeLeft": 2,
+      "enemyId": "hardJelly",
+      "seconds": 52.03333333333333
+    }
+  ],
+  "rejected": []
+}

@@ -1,0 +1,149 @@
+{
+  "stage": "stage-4",
+  "map": [
+    "##H########",
+    "S....H#H#H#",
+    "###H......G",
+    "##H##H.H#H#",
+    "S......####",
+    "####H######"
+  ],
+  "tick": 2169,
+  "seconds": 72.3,
+  "phase": "running",
+  "dp": 24,
+  "life": 3,
+  "wave": 4,
+  "waves": 50,
+  "killed": 22,
+  "leaked": 0,
+  "total": 380,
+  "units": [
+    {
+      "id": "squirrel",
+      "tile": {
+        "x": 5,
+        "y": 3
+      },
+      "dir": "up",
+      "sp": 7.966666666666648,
+      "spCost": 20,
+      "skill": "charging"
+    },
+    {
+      "id": "penguin",
+      "tile": {
+        "x": 7,
+        "y": 1
+      },
+      "dir": "down",
+      "sp": 4.966666666666659,
+      "spCost": 30,
+      "skill": "charging"
+    },
+    {
+      "id": "sheep",
+      "tile": {
+        "x": 9,
+        "y": 3
+      },
+      "dir": "up",
+      "sp": 35,
+      "spCost": 35,
+      "skill": "ready"
+    },
+    {
+      "id": "owl",
+      "tile": {
+        "x": 7,
+        "y": 3
+      },
+      "dir": "down",
+      "sp": 35,
+      "spCost": 35,
+      "skill": "active"
+    },
+    {
+      "id": "wolf",
+      "tile": {
+        "x": 5,
+        "y": 1
+      },
+      "dir": "down",
+      "sp": 30,
+      "spCost": 30,
+      "skill": "active"
+    },
+    {
+      "id": "snail",
+      "tile": {
+        "x": 3,
+        "y": 2
+      },
+      "dir": "right",
+      "sp": 8,
+      "spCost": 25,
+      "skill": "charging"
+    },
+    {
+      "id": "bear",
+      "tile": {
+        "x": 2,
+        "y": 3
+      },
+      "dir": "down",
+      "sp": 5,
+      "spCost": 15,
+      "skill": "charging"
+    }
+  ],
+  "enemies": [
+    {
+      "id": "captainJelly",
+      "hp": 3458,
+      "x": 6.5,
+      "y": 4.5
+    }
+  ],
+  "popup": "랑랑늑대 · 스나이퍼×삼중 조준시간 충전 · 수동 발동12초 동안 정면 5×3칸에서 최대 3명 동시 사격. 적 한 명당 한 발, 공격력 10% 감소공격력 585 · 물리\n공격 간격 2.40초 · 대공 가능끈적함 · 공격 느림 0.0초발동 중12.0초후퇴환급 없음스킬 사용 중자동 발동",
+  "audit": {
+    "steps": 2169,
+    "empty": 124,
+    "peak": 5,
+    "skills": 5,
+    "attacks": {
+      "squirrel": 30,
+      "penguin": 30,
+      "owl": 17,
+      "sheep": 2,
+      "wolf": 4
+    },
+    "leaks": [],
+    "rejected": [],
+    "waves": [
+      {
+        "wave": 0,
+        "seconds": 0.03333333333333333
+      },
+      {
+        "wave": 1,
+        "seconds": 3.033333333333333
+      },
+      {
+        "wave": 2,
+        "seconds": 16.033333333333335
+      },
+      {
+        "wave": 3,
+        "seconds": 33.03333333333333
+      },
+      {
+        "wave": 4,
+        "seconds": 53.03333333333333
+      }
+    ],
+    "emptyRun": 0,
+    "maxEmpty": 90
+  },
+  "errors": []
+}

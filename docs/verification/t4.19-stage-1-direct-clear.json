@@ -1,0 +1,174 @@
+{
+  "stage": "stage-1",
+  "map": [
+    "##HH###HH##",
+    "S....H....#",
+    "#HH#.H.#H.#",
+    "#HH#...#H.G",
+    "####HHH#..#",
+    "###########"
+  ],
+  "tick": 6783,
+  "seconds": 226.1,
+  "phase": "won",
+  "dp": 99,
+  "life": 3,
+  "wave": 12,
+  "waves": 12,
+  "killed": 119,
+  "leaked": 0,
+  "total": 119,
+  "units": [
+    {
+      "id": "squirrel",
+      "tile": {
+        "x": 2,
+        "y": 0
+      },
+      "dir": "down",
+      "sp": 20,
+      "spCost": 20,
+      "skill": "ready"
+    },
+    {
+      "id": "penguin",
+      "tile": {
+        "x": 5,
+        "y": 2
+      },
+      "dir": "left",
+      "sp": 10.66666666666664,
+      "spCost": 30,
+      "skill": "charging"
+    },
+    {
+      "id": "owl",
+      "tile": {
+        "x": 5,
+        "y": 1
+      },
+      "dir": "down",
+      "sp": 8.666666666666647,
+      "spCost": 35,
+      "skill": "charging"
+    },
+    {
+      "id": "mole",
+      "tile": {
+        "x": 3,
+        "y": 0
+      },
+      "dir": "down",
+      "sp": 10,
+      "spCost": 10,
+      "skill": "ready"
+    },
+    {
+      "id": "sheep",
+      "tile": {
+        "x": 2,
+        "y": 2
+      },
+      "dir": "up",
+      "sp": 14.166666666666627,
+      "spCost": 35,
+      "skill": "charging"
+    },
+    {
+      "id": "wolf",
+      "tile": {
+        "x": 6,
+        "y": 4
+      },
+      "dir": "up",
+      "sp": 8.666666666666647,
+      "spCost": 30,
+      "skill": "charging"
+    },
+    {
+      "id": "snail",
+      "tile": {
+        "x": 5,
+        "y": 4
+      },
+      "dir": "up",
+      "sp": 25,
+      "spCost": 25,
+      "skill": "active"
+    }
+  ],
+  "enemies": [],
+  "audit": {
+    "steps": 6783,
+    "empty": 2671,
+    "peak": 10,
+    "skills": 23,
+    "attacks": {
+      "squirrel": 128,
+      "penguin": 83,
+      "owl": 56,
+      "mole": 65,
+      "sheep": 65,
+      "snail": 3
+    },
+    "leaks": [],
+    "rejected": [],
+    "waves": [
+      {
+        "wave": 0,
+        "seconds": 0.03333333333333333
+      },
+      {
+        "wave": 1,
+        "seconds": 3.033333333333333
+      },
+      {
+        "wave": 2,
+        "seconds": 14.033333333333333
+      },
+      {
+        "wave": 3,
+        "seconds": 26.033333333333335
+      },
+      {
+        "wave": 4,
+        "seconds": 40.03333333333333
+      },
+      {
+        "wave": 5,
+        "seconds": 54.03333333333333
+      },
+      {
+        "wave": 6,
+        "seconds": 74.03333333333333
+      },
+      {
+        "wave": 7,
+        "seconds": 94.03333333333333
+      },
+      {
+        "wave": 8,
+        "seconds": 118.03333333333333
+      },
+      {
+        "wave": 9,
+        "seconds": 140.03333333333333
+      },
+      {
+        "wave": 10,
+        "seconds": 161.03333333333333
+      },
+      {
+        "wave": 11,
+        "seconds": 184.03333333333333
+      },
+      {
+        "wave": 12,
+        "seconds": 209.03333333333333
+      }
+    ],
+    "emptyRun": 1,
+    "maxEmpty": 374
+  },
+  "errors": []
+}

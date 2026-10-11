@@ -35,7 +35,7 @@ export interface BoardView {
   setOptions(options: ViewOptions): void;
   resize(): void;
   render(state: Readonly<BattleState>, alpha: number, dt: number): void;
-  onEvents(events: readonly SimEvent[], state: Readonly<BattleState>): void;
+  onEvents(events: readonly SimEvent[], state: Readonly<BattleState>, paused?: boolean): void;
   setHighlights(state: HighlightState): void;
   dispose(): void;
 }
@@ -141,9 +141,9 @@ export function createBoardView(
       camera.position.x -= offset;
       camera.updateMatrixWorld();
     },
-    onEvents(events, state) {
+    onEvents(events, state, paused = false) {
       const delays = impactDelays(events);
-      entities.onEvents(events, state, delays);
+      entities.onEvents(events, state, delays, paused);
       vfx.onEvents(events, state, delays);
       landmarks.onEvents(events);
       if (events.some((event) => event.type === 'enemyLeak')) shake = 0.2;

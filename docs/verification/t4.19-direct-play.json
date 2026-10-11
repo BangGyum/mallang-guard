@@ -1,0 +1,1361 @@
+{
+  "stages": {
+    "stage-1": {
+      "steps": 6783,
+      "empty": 2671,
+      "peak": 10,
+      "skills": 23,
+      "attacks": {
+        "squirrel": 128,
+        "penguin": 83,
+        "owl": 56,
+        "mole": 65,
+        "sheep": 65,
+        "snail": 3
+      },
+      "leaks": [],
+      "rejected": [],
+      "waves": [
+        {
+          "wave": 0,
+          "seconds": 0.03333333333333333
+        },
+        {
+          "wave": 1,
+          "seconds": 3.033333333333333
+        },
+        {
+          "wave": 2,
+          "seconds": 14.033333333333333
+        },
+        {
+          "wave": 3,
+          "seconds": 26.033333333333335
+        },
+        {
+          "wave": 4,
+          "seconds": 40.03333333333333
+        },
+        {
+          "wave": 5,
+          "seconds": 54.03333333333333
+        },
+        {
+          "wave": 6,
+          "seconds": 74.03333333333333
+        },
+        {
+          "wave": 7,
+          "seconds": 94.03333333333333
+        },
+        {
+          "wave": 8,
+          "seconds": 118.03333333333333
+        },
+        {
+          "wave": 9,
+          "seconds": 140.03333333333333
+        },
+        {
+          "wave": 10,
+          "seconds": 161.03333333333333
+        },
+        {
+          "wave": 11,
+          "seconds": 184.03333333333333
+        },
+        {
+          "wave": 12,
+          "seconds": 209.03333333333333
+        }
+      ],
+      "emptyRun": 1,
+      "maxEmpty": 374
+    },
+    "stage-2": {
+      "steps": 10425,
+      "empty": 843,
+      "peak": 17,
+      "skills": 36,
+      "attacks": {
+        "squirrel": 155,
+        "penguin": 74,
+        "sheep": 80,
+        "cat": 49,
+        "owl": 175,
+        "snail": 62,
+        "bunny": 33
+      },
+      "leaks": [
+        {
+          "seconds": 52.03333333333333,
+          "type": "enemyLeak",
+          "uid": 11,
+          "lifeLeft": 2
+        }
+      ],
+      "rejected": [],
+      "waves": [
+        {
+          "wave": 0,
+          "seconds": 0.03333333333333333
+        },
+        {
+          "wave": 1,
+          "seconds": 3.033333333333333
+        },
+        {
+          "wave": 2,
+          "seconds": 18.033333333333335
+        },
+        {
+          "wave": 3,
+          "seconds": 32.03333333333333
+        },
+        {
+          "wave": 4,
+          "seconds": 49.03333333333333
+        },
+        {
+          "wave": 5,
+          "seconds": 70.03333333333333
+        },
+        {
+          "wave": 6,
+          "seconds": 88.03333333333333
+        },
+        {
+          "wave": 7,
+          "seconds": 103.03333333333333
+        },
+        {
+          "wave": 8,
+          "seconds": 117.03333333333333
+        },
+        {
+          "wave": 9,
+          "seconds": 134.03333333333333
+        },
+        {
+          "wave": 10,
+          "seconds": 155.03333333333333
+        },
+        {
+          "wave": 11,
+          "seconds": 173.03333333333333
+        },
+        {
+          "wave": 12,
+          "seconds": 188.03333333333333
+        },
+        {
+          "wave": 13,
+          "seconds": 202.03333333333333
+        },
+        {
+          "wave": 14,
+          "seconds": 219.03333333333333
+        },
+        {
+          "wave": 15,
+          "seconds": 240.03333333333333
+        },
+        {
+          "wave": 16,
+          "seconds": 258.03333333333336
+        },
+        {
+          "wave": 17,
+          "seconds": 273.03333333333336
+        },
+        {
+          "wave": 18,
+          "seconds": 287.03333333333336
+        },
+        {
+          "wave": 19,
+          "seconds": 304.03333333333336
+        },
+        {
+          "wave": 20,
+          "seconds": 325.03333333333336
+        }
+      ],
+      "emptyRun": 1,
+      "maxEmpty": 132
+    },
+    "stage-3": {
+      "steps": 14349,
+      "empty": 1015,
+      "peak": 16,
+      "skills": 56,
+      "attacks": {
+        "squirrel": 359,
+        "penguin": 46,
+        "sheep": 192,
+        "owl": 261,
+        "snail": 110,
+        "bunny": 117,
+        "cat": 61
+      },
+      "leaks": [],
+      "rejected": [],
+      "waves": [
+        {
+          "wave": 0,
+          "seconds": 0.03333333333333333
+        },
+        {
+          "wave": 1,
+          "seconds": 3.033333333333333
+        },
+        {
+          "wave": 2,
+          "seconds": 20.033333333333335
+        },
+        {
+          "wave": 3,
+          "seconds": 35.03333333333333
+        },
+        {
+          "wave": 4,
+          "seconds": 52.03333333333333
+        },
+        {
+          "wave": 5,
+          "seconds": 77.03333333333333
+        },
+        {
+          "wave": 6,
+          "seconds": 95.03333333333333
+        },
+        {
+          "wave": 7,
+          "seconds": 112.03333333333333
+        },
+        {
+          "wave": 8,
+          "seconds": 127.03333333333333
+        },
+        {
+          "wave": 9,
+          "seconds": 144.03333333333333
+        },
+        {
+          "wave": 10,
+          "seconds": 169.03333333333333
+        },
+        {
+          "wave": 11,
+          "seconds": 187.03333333333333
+        },
+        {
+          "wave": 12,
+          "seconds": 204.03333333333333
+        },
+        {
+          "wave": 13,
+          "seconds": 219.03333333333333
+        },
+        {
+          "wave": 14,
+          "seconds": 236.03333333333333
+        },
+        {
+          "wave": 15,
+          "seconds": 261.03333333333336
+        },
+        {
+          "wave": 16,
+          "seconds": 279.03333333333336
+        },
+        {
+          "wave": 17,
+          "seconds": 296.03333333333336
+        },
+        {
+          "wave": 18,
+          "seconds": 311.03333333333336
+        },
+        {
+          "wave": 19,
+          "seconds": 328.03333333333336
+        },
+        {
+          "wave": 20,
+          "seconds": 353.03333333333336
+        },
+        {
+          "wave": 21,
+          "seconds": 371.03333333333336
+        },
+        {
+          "wave": 22,
+          "seconds": 388.03333333333336
+        },
+        {
+          "wave": 23,
+          "seconds": 403.03333333333336
+        },
+        {
+          "wave": 24,
+          "seconds": 420.03333333333336
+        },
+        {
+          "wave": 25,
+          "seconds": 445.03333333333336
+        }
+      ],
+      "emptyRun": 3,
+      "maxEmpty": 254
+    },
+    "stage-4": {
+      "steps": 32226,
+      "empty": 2686,
+      "peak": 10,
+      "skills": 128,
+      "attacks": {
+        "squirrel": 453,
+        "penguin": 219,
+        "owl": 424,
+        "sheep": 17,
+        "wolf": 200,
+        "bear": 337,
+        "snail": 312
+      },
+      "leaks": [],
+      "rejected": [],
+      "waves": [
+        {
+          "wave": 0,
+          "seconds": 0.03333333333333333
+        },
+        {
+          "wave": 1,
+          "seconds": 3.033333333333333
+        },
+        {
+          "wave": 2,
+          "seconds": 16.033333333333335
+        },
+        {
+          "wave": 3,
+          "seconds": 33.03333333333333
+        },
+        {
+          "wave": 4,
+          "seconds": 53.03333333333333
+        },
+        {
+          "wave": 5,
+          "seconds": 77.03333333333333
+        },
+        {
+          "wave": 6,
+          "seconds": 110.03333333333333
+        },
+        {
+          "wave": 7,
+          "seconds": 123.03333333333333
+        },
+        {
+          "wave": 8,
+          "seconds": 140.03333333333333
+        },
+        {
+          "wave": 9,
+          "seconds": 160.03333333333333
+        },
+        {
+          "wave": 10,
+          "seconds": 184.03333333333333
+        },
+        {
+          "wave": 11,
+          "seconds": 217.03333333333333
+        },
+        {
+          "wave": 12,
+          "seconds": 230.03333333333333
+        },
+        {
+          "wave": 13,
+          "seconds": 247.03333333333333
+        },
+        {
+          "wave": 14,
+          "seconds": 267.03333333333336
+        },
+        {
+          "wave": 15,
+          "seconds": 291.03333333333336
+        },
+        {
+          "wave": 16,
+          "seconds": 324.03333333333336
+        },
+        {
+          "wave": 17,
+          "seconds": 337.03333333333336
+        },
+        {
+          "wave": 18,
+          "seconds": 354.03333333333336
+        },
+        {
+          "wave": 19,
+          "seconds": 374.03333333333336
+        },
+        {
+          "wave": 20,
+          "seconds": 398.03333333333336
+        },
+        {
+          "wave": 21,
+          "seconds": 431.03333333333336
+        },
+        {
+          "wave": 22,
+          "seconds": 444.03333333333336
+        },
+        {
+          "wave": 23,
+          "seconds": 461.03333333333336
+        },
+        {
+          "wave": 24,
+          "seconds": 481.03333333333336
+        },
+        {
+          "wave": 25,
+          "seconds": 505.03333333333336
+        },
+        {
+          "wave": 26,
+          "seconds": 538.0333333333333
+        },
+        {
+          "wave": 27,
+          "seconds": 551.0333333333333
+        },
+        {
+          "wave": 28,
+          "seconds": 568.0333333333333
+        },
+        {
+          "wave": 29,
+          "seconds": 588.0333333333333
+        },
+        {
+          "wave": 30,
+          "seconds": 612.0333333333333
+        },
+        {
+          "wave": 31,
+          "seconds": 645.0333333333333
+        },
+        {
+          "wave": 32,
+          "seconds": 658.0333333333333
+        },
+        {
+          "wave": 33,
+          "seconds": 675.0333333333333
+        },
+        {
+          "wave": 34,
+          "seconds": 695.0333333333333
+        },
+        {
+          "wave": 35,
+          "seconds": 719.0333333333333
+        },
+        {
+          "wave": 36,
+          "seconds": 752.0333333333333
+        },
+        {
+          "wave": 37,
+          "seconds": 765.0333333333333
+        },
+        {
+          "wave": 38,
+          "seconds": 782.0333333333333
+        },
+        {
+          "wave": 39,
+          "seconds": 802.0333333333333
+        },
+        {
+          "wave": 40,
+          "seconds": 826.0333333333333
+        },
+        {
+          "wave": 41,
+          "seconds": 859.0333333333333
+        },
+        {
+          "wave": 42,
+          "seconds": 872.0333333333333
+        },
+        {
+          "wave": 43,
+          "seconds": 889.0333333333333
+        },
+        {
+          "wave": 44,
+          "seconds": 909.0333333333333
+        },
+        {
+          "wave": 45,
+          "seconds": 933.0333333333333
+        },
+        {
+          "wave": 46,
+          "seconds": 966.0333333333333
+        },
+        {
+          "wave": 47,
+          "seconds": 979.0333333333333
+        },
+        {
+          "wave": 48,
+          "seconds": 996.0333333333333
+        },
+        {
+          "wave": 49,
+          "seconds": 1016.0333333333333
+        },
+        {
+          "wave": 50,
+          "seconds": 1040.0333333333333
+        }
+      ],
+      "emptyRun": 2,
+      "maxEmpty": 368
+    },
+    "stage-5": {
+      "steps": 31299,
+      "empty": 3648,
+      "peak": 9,
+      "skills": 98,
+      "attacks": {
+        "squirrel": 656,
+        "penguin": 193,
+        "sheep": 93,
+        "owl": 334,
+        "snail": 339,
+        "wolf": 155
+      },
+      "leaks": [],
+      "rejected": [],
+      "waves": [
+        {
+          "wave": 0,
+          "seconds": 0.03333333333333333
+        },
+        {
+          "wave": 1,
+          "seconds": 3.033333333333333
+        },
+        {
+          "wave": 2,
+          "seconds": 17.033333333333335
+        },
+        {
+          "wave": 3,
+          "seconds": 35.03333333333333
+        },
+        {
+          "wave": 4,
+          "seconds": 56.03333333333333
+        },
+        {
+          "wave": 5,
+          "seconds": 78.03333333333333
+        },
+        {
+          "wave": 6,
+          "seconds": 108.03333333333333
+        },
+        {
+          "wave": 7,
+          "seconds": 122.03333333333333
+        },
+        {
+          "wave": 8,
+          "seconds": 140.03333333333333
+        },
+        {
+          "wave": 9,
+          "seconds": 161.03333333333333
+        },
+        {
+          "wave": 10,
+          "seconds": 183.03333333333333
+        },
+        {
+          "wave": 11,
+          "seconds": 213.03333333333333
+        },
+        {
+          "wave": 12,
+          "seconds": 227.03333333333333
+        },
+        {
+          "wave": 13,
+          "seconds": 245.03333333333333
+        },
+        {
+          "wave": 14,
+          "seconds": 266.03333333333336
+        },
+        {
+          "wave": 15,
+          "seconds": 288.03333333333336
+        },
+        {
+          "wave": 16,
+          "seconds": 318.03333333333336
+        },
+        {
+          "wave": 17,
+          "seconds": 332.03333333333336
+        },
+        {
+          "wave": 18,
+          "seconds": 350.03333333333336
+        },
+        {
+          "wave": 19,
+          "seconds": 371.03333333333336
+        },
+        {
+          "wave": 20,
+          "seconds": 393.03333333333336
+        },
+        {
+          "wave": 21,
+          "seconds": 423.03333333333336
+        },
+        {
+          "wave": 22,
+          "seconds": 437.03333333333336
+        },
+        {
+          "wave": 23,
+          "seconds": 455.03333333333336
+        },
+        {
+          "wave": 24,
+          "seconds": 476.03333333333336
+        },
+        {
+          "wave": 25,
+          "seconds": 498.03333333333336
+        },
+        {
+          "wave": 26,
+          "seconds": 528.0333333333333
+        },
+        {
+          "wave": 27,
+          "seconds": 542.0333333333333
+        },
+        {
+          "wave": 28,
+          "seconds": 560.0333333333333
+        },
+        {
+          "wave": 29,
+          "seconds": 581.0333333333333
+        },
+        {
+          "wave": 30,
+          "seconds": 603.0333333333333
+        },
+        {
+          "wave": 31,
+          "seconds": 633.0333333333333
+        },
+        {
+          "wave": 32,
+          "seconds": 647.0333333333333
+        },
+        {
+          "wave": 33,
+          "seconds": 665.0333333333333
+        },
+        {
+          "wave": 34,
+          "seconds": 686.0333333333333
+        },
+        {
+          "wave": 35,
+          "seconds": 708.0333333333333
+        },
+        {
+          "wave": 36,
+          "seconds": 738.0333333333333
+        },
+        {
+          "wave": 37,
+          "seconds": 752.0333333333333
+        },
+        {
+          "wave": 38,
+          "seconds": 770.0333333333333
+        },
+        {
+          "wave": 39,
+          "seconds": 791.0333333333333
+        },
+        {
+          "wave": 40,
+          "seconds": 813.0333333333333
+        },
+        {
+          "wave": 41,
+          "seconds": 843.0333333333333
+        },
+        {
+          "wave": 42,
+          "seconds": 857.0333333333333
+        },
+        {
+          "wave": 43,
+          "seconds": 875.0333333333333
+        },
+        {
+          "wave": 44,
+          "seconds": 896.0333333333333
+        },
+        {
+          "wave": 45,
+          "seconds": 918.0333333333333
+        },
+        {
+          "wave": 46,
+          "seconds": 948.0333333333333
+        },
+        {
+          "wave": 47,
+          "seconds": 962.0333333333333
+        },
+        {
+          "wave": 48,
+          "seconds": 980.0333333333333
+        },
+        {
+          "wave": 49,
+          "seconds": 1001.0333333333333
+        },
+        {
+          "wave": 50,
+          "seconds": 1023.0333333333333
+        }
+      ],
+      "emptyRun": 2,
+      "maxEmpty": 376
+    }
+  },
+  "actions": [
+    {
+      "op": "deploy",
+      "id": "squirrel",
+      "x": 2,
+      "y": 0,
+      "dir": "down",
+      "name": "stage-1-first-deploy"
+    },
+    {
+      "op": "quick"
+    },
+    {
+      "op": "run",
+      "seconds": 14,
+      "name": "stage-1-early"
+    },
+    {
+      "op": "deploy",
+      "id": "penguin",
+      "x": 5,
+      "y": 2,
+      "dir": "left"
+    },
+    {
+      "op": "skill",
+      "id": "squirrel"
+    },
+    {
+      "op": "run",
+      "seconds": 16,
+      "name": "stage-1-air-introduction"
+    },
+    {
+      "op": "deploy",
+      "id": "owl",
+      "x": 5,
+      "y": 1,
+      "dir": "down"
+    },
+    {
+      "op": "deploy",
+      "id": "mole",
+      "x": 3,
+      "y": 0,
+      "dir": "down"
+    },
+    {
+      "op": "run",
+      "seconds": 20,
+      "name": "stage-1-mage"
+    },
+    {
+      "op": "deploy",
+      "id": "sheep",
+      "x": 2,
+      "y": 2,
+      "dir": "up"
+    },
+    {
+      "op": "deploy",
+      "id": "wolf",
+      "x": 6,
+      "y": 4,
+      "dir": "up"
+    },
+    {
+      "op": "deploy",
+      "id": "snail",
+      "x": 5,
+      "y": 4,
+      "dir": "up"
+    },
+    {
+      "op": "fight",
+      "seconds": 90,
+      "skills": [
+        "squirrel",
+        "owl",
+        "wolf",
+        "penguin",
+        "sheep"
+      ],
+      "name": "stage-1-midfight"
+    },
+    {
+      "op": "fight",
+      "seconds": 110,
+      "skills": [
+        "owl",
+        "wolf",
+        "penguin",
+        "sheep",
+        "snail"
+      ],
+      "name": "stage-1-direct-clear"
+    },
+    {
+      "op": "next",
+      "name": "stage-2-preparation"
+    },
+    {
+      "op": "deploy",
+      "id": "squirrel",
+      "x": 3,
+      "y": 2,
+      "dir": "up"
+    },
+    {
+      "op": "quick"
+    },
+    {
+      "op": "run",
+      "seconds": 8,
+      "name": "stage-2-early"
+    },
+    {
+      "op": "deploy",
+      "id": "penguin",
+      "x": 9,
+      "y": 1,
+      "dir": "down"
+    },
+    {
+      "op": "run",
+      "seconds": 10
+    },
+    {
+      "op": "skill",
+      "id": "squirrel"
+    },
+    {
+      "op": "run",
+      "seconds": 12,
+      "name": "stage-2-incoming"
+    },
+    {
+      "op": "deploy",
+      "id": "sheep",
+      "x": 7,
+      "y": 3,
+      "dir": "right"
+    },
+    {
+      "op": "skill",
+      "id": "penguin"
+    },
+    {
+      "op": "run",
+      "seconds": 16,
+      "name": "stage-2-two-entrances"
+    },
+    {
+      "op": "deploy",
+      "id": "cat",
+      "x": 9,
+      "y": 3,
+      "dir": "up"
+    },
+    {
+      "op": "run",
+      "seconds": 12
+    },
+    {
+      "op": "skill",
+      "id": "sheep"
+    },
+    {
+      "op": "skill",
+      "id": "squirrel"
+    },
+    {
+      "op": "run",
+      "seconds": 8,
+      "name": "stage-2-midfight"
+    },
+    {
+      "op": "snapshot",
+      "name": "stage-2-skill-window"
+    },
+    {
+      "op": "deploy",
+      "id": "owl",
+      "x": 5,
+      "y": 3,
+      "dir": "down"
+    },
+    {
+      "op": "deploy",
+      "id": "snail",
+      "x": 7,
+      "y": 5,
+      "dir": "up"
+    },
+    {
+      "op": "deploy",
+      "id": "bunny",
+      "x": 4,
+      "y": 2,
+      "dir": "right"
+    },
+    {
+      "op": "fight",
+      "seconds": 90,
+      "skills": [
+        "owl",
+        "penguin",
+        "sheep",
+        "cat",
+        "snail",
+        "squirrel"
+      ],
+      "name": "stage-2-pressure"
+    },
+    {
+      "op": "fight",
+      "seconds": 210,
+      "skills": [
+        "owl",
+        "sheep",
+        "penguin",
+        "cat",
+        "snail"
+      ],
+      "name": "stage-2-direct-clear"
+    },
+    {
+      "op": "next",
+      "name": "stage-3-preparation"
+    },
+    {
+      "op": "deploy",
+      "id": "squirrel",
+      "x": 2,
+      "y": 0,
+      "dir": "down"
+    },
+    {
+      "op": "quick"
+    },
+    {
+      "op": "run",
+      "seconds": 8
+    },
+    {
+      "op": "deploy",
+      "id": "penguin",
+      "x": 8,
+      "y": 2,
+      "dir": "left"
+    },
+    {
+      "op": "run",
+      "seconds": 14,
+      "name": "stage-3-split"
+    },
+    {
+      "op": "skill",
+      "id": "squirrel"
+    },
+    {
+      "op": "run",
+      "seconds": 12,
+      "name": "stage-3-air-pressure"
+    },
+    {
+      "op": "deploy",
+      "id": "sheep",
+      "x": 5,
+      "y": 3,
+      "dir": "left"
+    },
+    {
+      "op": "run",
+      "seconds": 14,
+      "name": "stage-3-midfight"
+    },
+    {
+      "op": "deploy",
+      "id": "owl",
+      "x": 5,
+      "y": 1,
+      "dir": "down"
+    },
+    {
+      "op": "run",
+      "seconds": 10
+    },
+    {
+      "op": "skill",
+      "id": "sheep"
+    },
+    {
+      "op": "run",
+      "seconds": 8,
+      "name": "stage-3-mage-support"
+    },
+    {
+      "op": "deploy",
+      "id": "cat",
+      "x": 8,
+      "y": 4,
+      "dir": "up"
+    },
+    {
+      "op": "deploy",
+      "id": "snail",
+      "x": 5,
+      "y": 5,
+      "dir": "up"
+    },
+    {
+      "op": "deploy",
+      "id": "bunny",
+      "x": 6,
+      "y": 2,
+      "dir": "left"
+    },
+    {
+      "op": "fight",
+      "seconds": 110,
+      "skills": [
+        "squirrel",
+        "owl",
+        "penguin",
+        "sheep",
+        "snail",
+        "cat"
+      ],
+      "name": "stage-3-boss"
+    },
+    {
+      "op": "fight",
+      "seconds": 310,
+      "skills": [
+        "owl",
+        "penguin",
+        "sheep",
+        "snail",
+        "cat"
+      ],
+      "name": "stage-3-direct-clear"
+    },
+    {
+      "op": "next",
+      "name": "stage-4-preparation"
+    },
+    {
+      "op": "deploy",
+      "id": "squirrel",
+      "x": 5,
+      "y": 3,
+      "dir": "up"
+    },
+    {
+      "op": "deploy",
+      "id": "penguin",
+      "x": 7,
+      "y": 1,
+      "dir": "down"
+    },
+    {
+      "op": "quick"
+    },
+    {
+      "op": "run",
+      "seconds": 14,
+      "name": "stage-4-early"
+    },
+    {
+      "op": "skill",
+      "id": "squirrel"
+    },
+    {
+      "op": "run",
+      "seconds": 8
+    },
+    {
+      "op": "deploy",
+      "id": "sheep",
+      "x": 9,
+      "y": 3,
+      "dir": "up"
+    },
+    {
+      "op": "run",
+      "seconds": 16,
+      "name": "stage-4-spitter"
+    },
+    {
+      "op": "deploy",
+      "id": "owl",
+      "x": 7,
+      "y": 3,
+      "dir": "down"
+    },
+    {
+      "op": "run",
+      "seconds": 14,
+      "name": "stage-4-disruption"
+    },
+    {
+      "op": "deploy",
+      "id": "wolf",
+      "x": 5,
+      "y": 1,
+      "dir": "down"
+    },
+    {
+      "op": "skill",
+      "id": "penguin"
+    },
+    {
+      "op": "skill",
+      "id": "squirrel"
+    },
+    {
+      "op": "fight",
+      "seconds": 20,
+      "skills": [
+        "owl",
+        "wolf",
+        "sheep"
+      ],
+      "name": "stage-4-sniper-attack"
+    },
+    {
+      "op": "deploy",
+      "id": "snail",
+      "x": 3,
+      "y": 2,
+      "dir": "right"
+    },
+    {
+      "op": "deploy",
+      "id": "bear",
+      "x": 2,
+      "y": 3,
+      "dir": "down"
+    },
+    {
+      "op": "select",
+      "id": "wolf",
+      "name": "stage-4-sniper-skill"
+    },
+    {
+      "op": "close"
+    },
+    {
+      "op": "fight",
+      "seconds": 280,
+      "skills": [
+        "owl",
+        "wolf",
+        "penguin",
+        "sheep",
+        "snail",
+        "bear"
+      ],
+      "name": "stage-4-midfight"
+    },
+    {
+      "op": "fight",
+      "seconds": 730,
+      "skills": [
+        "owl",
+        "wolf",
+        "penguin",
+        "sheep",
+        "snail",
+        "bear"
+      ],
+      "name": "stage-4-direct-clear"
+    },
+    {
+      "op": "next",
+      "name": "stage-5-preparation"
+    },
+    {
+      "op": "deploy",
+      "id": "squirrel",
+      "x": 4,
+      "y": 3,
+      "dir": "down"
+    },
+    {
+      "op": "deploy",
+      "id": "penguin",
+      "x": 6,
+      "y": 2,
+      "dir": "right"
+    },
+    {
+      "op": "quick"
+    },
+    {
+      "op": "run",
+      "seconds": 12
+    },
+    {
+      "op": "skill",
+      "id": "squirrel"
+    },
+    {
+      "op": "run",
+      "seconds": 6,
+      "name": "stage-5-early"
+    },
+    {
+      "op": "deploy",
+      "id": "sheep",
+      "x": 8,
+      "y": 2,
+      "dir": "left"
+    },
+    {
+      "op": "run",
+      "seconds": 16,
+      "name": "stage-5-air"
+    },
+    {
+      "op": "deploy",
+      "id": "bunny",
+      "x": 5,
+      "y": 3,
+      "dir": "up"
+    },
+    {
+      "op": "skill",
+      "id": "penguin"
+    },
+    {
+      "op": "fight",
+      "seconds": 15,
+      "skills": [
+        "sheep",
+        "squirrel"
+      ],
+      "name": "stage-5-drummer"
+    },
+    {
+      "op": "deploy",
+      "id": "owl",
+      "x": 8,
+      "y": 4,
+      "dir": "up"
+    },
+    {
+      "op": "fight",
+      "seconds": 20,
+      "skills": [
+        "sheep",
+        "penguin",
+        "squirrel"
+      ],
+      "name": "stage-5-three-entrances"
+    },
+    {
+      "op": "deploy",
+      "id": "wolf",
+      "x": 7,
+      "y": 0,
+      "dir": "down"
+    },
+    {
+      "op": "deploy",
+      "id": "snail",
+      "x": 4,
+      "y": 1,
+      "dir": "down"
+    },
+    {
+      "op": "fight",
+      "seconds": 310,
+      "skills": [
+        "owl",
+        "wolf",
+        "penguin",
+        "sheep",
+        "snail"
+      ],
+      "name": "stage-5-midfight"
+    },
+    {
+      "op": "fight",
+      "seconds": 690,
+      "skills": [
+        "owl",
+        "wolf",
+        "penguin",
+        "sheep",
+        "snail"
+      ],
+      "name": "stage-5-direct-clear"
+    },
+    {
+      "op": "quit"
+    }
+  ]
+}

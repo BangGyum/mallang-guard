@@ -110,7 +110,7 @@ export function createBattleSession(
     battle,
     controls,
     (events) => {
-      view.onEvents(events, battle.state);
+      view.onEvents(events, battle.state, controls.paused);
       overlay.onEvents(events, view.entityPosition);
       actions.onEvents?.(events);
       controller.onEvents(events);
