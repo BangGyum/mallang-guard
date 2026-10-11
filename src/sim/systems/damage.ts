@@ -11,10 +11,11 @@ export function damageEnemy(
   attack: number,
   damageType: DamageType,
   events: SimEvent[],
+  armorPen = 0,
 ): void {
   const def = content.enemies.get(enemy.enemyId);
   assert(def, 'battle.enemies: missing definition');
-  const amount = damageAmount(damageType, attack, def.def, def.res);
+  const amount = damageAmount(damageType, attack, def.def, def.res, armorPen);
   const shieldDamage = Math.min(enemy.shield, amount);
   enemy.shield -= shieldDamage;
   enemy.hp -= amount - shieldDamage;

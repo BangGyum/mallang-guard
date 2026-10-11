@@ -54,6 +54,7 @@ export interface UnitDef {
   deployOn: DeployOn;
   redeploySec: number;
   atk: number;
+  armorPen?: number; // 물리 방어 관통, 생략하면 0
   atkIntervalSec: number;
   range: string; // RangeDef.id
   damageType: DamageType; // 'true'는 유닛에 쓰지 않음
@@ -105,6 +106,7 @@ export interface SkillDef {
 
 export type Effect =
   | { type: 'statMul'; stat: 'atk' | 'atkInterval'; value: number }
+  | { type: 'armorPenAdd'; value: number }
   | { type: 'rangeOverride'; range: string }
   | { type: 'multiTarget'; count: number }
   | { type: 'splash'; radius: number }

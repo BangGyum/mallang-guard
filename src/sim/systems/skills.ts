@@ -52,10 +52,11 @@ function pulse(
   if (unit.pulsesLeft <= 0 || state.tick < unit.nextPulseTick) return;
   const effect = unit.buffs.find((entry) => entry.type === 'pulseDamage');
   assert(effect?.type === 'pulseDamage', 'battle.skill: missing pulse effect');
-  const attack = unitStats(content, stage, state, unit).atk * effect.atkMul;
+  const stats = unitStats(content, stage, state, unit);
+  const attack = stats.atk * effect.atkMul;
   events.push({ type: 'skillPulse', uid: unit.uid });
   for (const enemy of enemiesInRange(content, stage, state, unit))
-    damageEnemy(content, unit, enemy, attack, effect.damageType, events);
+    damageEnemy(content, unit, enemy, attack, effect.damageType, events, stats.armorPen);
   unit.pulsesLeft -= 1;
   unit.nextPulseTick += secToTicks(effect.intervalSec);
 }

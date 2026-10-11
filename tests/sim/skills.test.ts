@@ -105,7 +105,7 @@ describe('캐릭터별 스킬', () => {
     const f = skillFixture('bear');
     f.activate();
     attackEnemies(f.content, f.stage, f.state, f.events);
-    expect(f.enemy.hp).toBe(10000 - (220 * 1.8 - 50));
+    expect(f.enemy.hp).toBe(10000 - (220 * 1.8 - 45));
     expect(f.enemy.stunUntilTick).toBe(18);
   });
   it('펭펭은 범위 피해·둔화를 적용하고 반경 밖 적은 제외한다', () => {
@@ -115,8 +115,8 @@ describe('캐릭터별 스킬', () => {
     f.state.enemies.push(nearby, outside);
     f.activate();
     attackEnemies(f.content, f.stage, f.state, f.events);
-    expect(f.enemy.hp).toBe(9670);
-    expect(nearby.hp).toBe(4650);
+    expect(f.enemy.hp).toBe(9655);
+    expect(nearby.hp).toBe(4635);
     expect(outside.hp).toBe(5000);
     expect([f.enemy.slowAmount, nearby.slowAmount, outside.slowAmount]).toEqual([0.3, 0.3, 0]);
   });

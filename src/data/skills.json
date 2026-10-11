@@ -174,7 +174,7 @@
   {
     "id": "tripleAim",
     "name": "삼중 조준",
-    "description": "12초 동안 정면 5×3칸에서 최대 3명 동시 사격. 적 한 명당 한 발, 공격력 10% 감소",
+    "description": "12초 동안 정면 5×3칸에서 최대 3명 동시 사격. 적 한 명당 한 발, 공격력 10% 감소·관통력 +40",
     "charge": "auto",
     "spCost": 30,
     "spStart": 10,
@@ -184,6 +184,7 @@
     "effects": [
       { "type": "rangeOverride", "range": "line5Wide" },
       { "type": "multiTarget", "count": 3 },
+      { "type": "armorPenAdd", "value": 40 },
       { "type": "statMul", "stat": "atk", "value": 0.9 }
     ]
   }

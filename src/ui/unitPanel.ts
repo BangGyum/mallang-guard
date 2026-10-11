@@ -93,7 +93,8 @@ export function createUnitPanel(
       for (const node of [panel, marker]) node.style.setProperty('--unit-color', ROLE_COLORS[def.role]);
       description.textContent = `${def.animal} · ${ROLE_NAMES[def.role]}`;
       const current = unitStats(battle.content, battle.stage, battle.state, unit);
-      stats.textContent = `공격력 ${Math.round(current.atk)} · ${def.damageType === 'magic' ? '마법' : '물리'}\n공격 간격 ${(current.atkIntervalTicks / TICK_RATE).toFixed(2)}초 · ${def.canHitAir ? '대공 가능' : '지상 공격'}`;
+      const damageType = def.damageType === 'magic' ? '마법' : `물리 · 관통력 ${current.armorPen}`;
+      stats.textContent = `공격력 ${Math.round(current.atk)} · ${damageType}\n공격 간격 ${(current.atkIntervalTicks / TICK_RATE).toFixed(2)}초 · ${def.canHitAir ? '대공 가능' : '지상 공격'}`;
       skillName.textContent = skill.name;
       skillMeta.textContent = `${skill.charge === 'attack' ? '공격 충전' : '시간 충전'} · ${skill.trigger === 'auto' ? '자동 발동' : '수동 발동'}${skill.condition === 'enemyInRange' ? ' · 범위 내 적 필요' : ''}`;
       skillDescription.textContent = skill.description;

@@ -14,8 +14,10 @@ export function unitStats(
   const def = content.units.get(unit.unitId);
   assert(def, `battle.units: unknown unit ${unit.unitId}`);
   let atk = def.atk;
+  let armorPen = def.armorPen ?? 0;
   let interval = def.atkIntervalSec;
   for (const effect of [...(def.traits ?? []), ...unit.buffs]) {
+    if (effect.type === 'armorPenAdd') armorPen += effect.value;
     if (effect.type !== 'statMul') continue;
     if (effect.stat === 'atk') atk *= effect.value;
     else interval *= effect.value;
@@ -28,5 +30,5 @@ export function unitStats(
     }
   }
   if (unit.disruptedUntilTick > state.tick) interval *= unit.disruptionMul;
-  return { atk, atkIntervalTicks: Math.max(1, secToTicks(interval)) };
+  return { atk, armorPen, atkIntervalTicks: Math.max(1, secToTicks(interval)) };
 }

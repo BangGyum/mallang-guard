@@ -136,7 +136,6 @@
     { "atSec": 1684.8, "type": "skill", "unitId": "penguin" },
     { "atSec": 1688.0333333333333, "type": "skill", "unitId": "owl" },
     { "atSec": 1710.3333333333333, "type": "skill", "unitId": "bear" },
-    { "atSec": 1725.4, "type": "skill", "unitId": "sheep" },
-    { "atSec": 1730.8333333333333, "type": "skill", "unitId": "penguin" }
+    { "atSec": 1725.4, "type": "skill", "unitId": "sheep" }
   ]
 }

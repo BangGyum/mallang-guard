@@ -62,6 +62,7 @@ export interface UnitDef {
   deployOn: DeployOn;
   redeploySec: number;
   atk: number;
+  armorPen?: number; // 물리 관통력, 생략하면 0
   atkIntervalSec: number;
   range: string; // RangeDef.id
   damageType: DamageType; // 'true'는 유닛에 쓰지 않음
@@ -113,6 +114,7 @@ export interface SkillDef {
 
 export type Effect =
   | { type: 'statMul'; stat: 'atk' | 'atkInterval'; value: number }
+  | { type: 'armorPenAdd'; value: number }
   | { type: 'rangeOverride'; range: string }
   | { type: 'multiTarget'; count: number }
   | { type: 'splash'; radius: number }
@@ -195,6 +197,7 @@ export interface RawContent {
 - 참조가 모두 존재해야 합니다: unit.skill, unit.range, spawn.enemy, spawn.route, stage.roster의 유닛.
 - `rangeOverride.range`도 존재하는 사거리 ID여야 하며 지속 스킬 하나당 최대 한 개입니다. 즉시 스킬과 상시 특성에는 사용할 수 없습니다.
 - `multiTarget.count`는 1 이상의 정수이며 지속 스킬 하나당 최대 한 개입니다. 즉시 스킬과 상시 특성에는 사용할 수 없습니다.
+- `UnitDef.armorPen`과 `armorPenAdd.value`는 0 이상의 유한 정수입니다. 생략한 기본 관통력은 검증 결과에서 0으로 정규화하며 원본 JSON은 수정하지 않습니다. 관통 증가는 지속형 스킬에만 허용하며 여러 효과의 값을 합산합니다. 기존 입력과 마법 캐릭터는 필드 생략으로 호환됩니다.
 - 숫자 범위
   - hp, atkIntervalSec, speed, spCost는 0보다 커야 합니다.
   - atk, def, cost, spStart는 0 이상이고, res는 0~100입니다.

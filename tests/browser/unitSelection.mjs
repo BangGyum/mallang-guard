@@ -80,6 +80,9 @@ try {
       assert.equal(await page.locator('.roster-panel').getAttribute('data-unit-id'), unit.id);
       assert.equal(await page.locator('.roster-name').textContent(), unit.name);
       assert.match(await page.locator('.roster-stats').textContent(), new RegExp(`배치 도토리 ${unit.cost}`));
+      const stats = await page.locator('.roster-stats').textContent();
+      if (unit.damageType === 'physical') assert.match(stats, new RegExp(`관통력 ${unit.armorPen}`));
+      else assert.doesNotMatch(stats, /관통력/);
       assert.equal(await page.locator('.unit-panel').isVisible(), false);
       assert.equal(await page.locator('.roster-panel .skill-button').count(), 0);
       assert.equal(await page.locator('.drag-ghost').isVisible(), false);
@@ -116,6 +119,7 @@ try {
     assert.equal(await page.locator('.roster-panel').isVisible(), false);
     const point = await select({ x: 2, y: 0 });
     assert.equal(await page.locator('.unit-panel').getAttribute('data-unit-id'), 'squirrel');
+    assert.match(await page.locator('.unit-stats').textContent(), /물리 · 관통력 5/);
     assert.equal(await page.locator('.roster-panel').isVisible(), false);
     assert.equal(await page.locator('.skill-button').isDisabled(), true);
     const inspect = async (at) =>
@@ -123,6 +127,8 @@ try {
         const box = panel.getBoundingClientRect();
         const top = document.querySelector('.battle-top').getBoundingClientRect();
         const bar = document.querySelector('.deploy-bar').getBoundingClientRect();
+        const details = panel.querySelector('.unit-info-details').getBoundingClientRect();
+        const stats = panel.querySelector('.unit-stats').getBoundingClientRect();
         const buttons = [...panel.querySelectorAll('button')]
           .filter((button) => button.getClientRects().length > 0)
           .map((button) => button.getBoundingClientRect().toJSON());
@@ -143,12 +149,17 @@ try {
               b.bottom <= box.bottom,
           ),
           skillHeight: panel.querySelector('.skill-button').getBoundingClientRect().height,
+          statsVisible: stats.top >= details.top && stats.bottom <= details.bottom,
         };
       }, at);
     const charging = await inspect(point);
     await page.screenshot({ path: `docs/verification/${prefix}-${label}-deployed-charging.png` });
     assert(
-      charging.fits && charging.avoidsUnit && charging.buttons && charging.skillHeight >= 60,
+      charging.fits &&
+        charging.avoidsUnit &&
+        charging.buttons &&
+        charging.statsVisible &&
+        charging.skillHeight >= 60,
       `유닛 옆 스킬 조작창과 버튼 전체 노출 ${JSON.stringify(charging)}`,
     );
     await page.screenshot({ path: `docs/verification/${prefix}-${label}-deployed-charging.png` });
@@ -174,7 +185,10 @@ try {
     await deploy(page, cdp, 'penguin', { x: 8, y: 2 }, 'left');
     const other = await select({ x: 8, y: 2 });
     const edge = await inspect(other);
-    assert(edge.fits && edge.avoidsUnit && edge.buttons, '오른쪽 유닛은 반대편으로 조작창 이동');
+    assert(
+      edge.fits && edge.avoidsUnit && edge.buttons && edge.statsVisible,
+      '오른쪽 유닛은 반대편으로 조작창 이동',
+    );
     if (touch) {
       for (const size of [
         { width: 740, height: 360 },
@@ -183,7 +197,7 @@ try {
         await page.setViewportSize(size);
         await frame(page, 300);
         const resized = await inspect(await tilePoint(page, { x: 8, y: 2 }));
-        assert(resized.fits && resized.buttons, '리사이즈 후 버튼 잘림 없음');
+        assert(resized.fits && resized.buttons && resized.statsVisible, '리사이즈 후 능력치·버튼 잘림 없음');
       }
       await page.setViewportSize(viewport);
       await frame(page, 300);
@@ -225,6 +239,7 @@ try {
     report.push({
       viewport: label,
       cards: 10,
+      armorPen: units.map((unit) => ({ id: unit.id, damageType: unit.damageType, value: unit.armorPen })),
       preview,
       charging,
       edge,
