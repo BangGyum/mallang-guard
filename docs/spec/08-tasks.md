@@ -486,6 +486,17 @@
 - 성능: 1920×1080의 적 60·친구 10명 장면에서 표시 주기 약 60fps·렌더 CPU p95 5.1ms, 제한 해제 처리량 약 518fps·렌더 CPU p95 2.1ms입니다. 드로우콜 최고 70·파티클 130/200이며 실제 120Hz 화면 측정은 아닙니다.
   결과: [연출](../verification/t4.18-combat-art.json), [밤밤 스킬](../verification/t4.18-wide-range.json), [음성](../verification/t4.18-audio-weapons.json), [검격 비교](../verification/t4.18-slash-comparison.json), [웨이브 알림](../verification/t4.18-wave-notice.json), [나가기](../verification/t4.18-battle-exit.json), [프로덕션](../verification/t4.18-production.json), [성능](../verification/t4.18-performance.json), [제한 해제](../verification/t4.18-performance-uncapped.json). 화면: [무장](../verification/t4.18-combat-roster.png), [PC 웨이브](../verification/t4.18-1920x1080-wave-start.png), [터치 웨이브](../verification/t4.18-844x390-wave-start.png), [불꽃 명중](../verification/t4.18-desktop-impact.png).
 
+### [x] T4.19 1~5 정원 직접 플레이 점검
+- 사용자 요청 (2026-10-11): 1~5스테이지를 직접 플레이해 문제를 확인하고 재현된 오류를 수정한 뒤 보고합니다.
+- 읽을 문서: 01·02·04·05·06·07·09의 레이어·정지 중 명령·배치 낙하·UI 입력·진행 저장·스테이지 길이와 수치 계약.
+- 기준: 실제 카드 드래그·방향 선택·자연 비용/SP와 스킬 버튼으로 별도 조합을 플레이합니다. 첫 구간·확정 수치·4~5 장기전 길이를 유지하며 확인되지 않은 문제를 이유로 밸런스를 바꾸지 않습니다.
+- 완료 조건: 1~5 직접 플레이와 Edge PC·844×390 터치 캠페인, 전체 웨이브·처치/누수·보상·별 15개·6번 해금·새로고침·패배 후 최고 기록 유지, check/lint/test/build와 화면 증거를 확인합니다. 긴 구간 가속과 터치 에뮬레이션의 한계를 보고합니다.
+- 발견: 정지 중 새 배치는 낙하 시작 높이 +1.2에서 멈춰 그림·SP 표시·선택 칸이 어긋납니다. 10종 × 4방향의 정지 40개 검사와 실제 앱의 고지대 높이 0.5 대비 그림 높이 1.7로 재현했습니다. 정지 중 새 유닛의 착지 자세만 즉시 적용하고 기존 유닛·진행 중 낙하·sim 시간은 유지합니다.
+- 직접 플레이: 실제 입력으로 1→5를 모두 클리어했고 남은 푸딩은 3/2/3/3/3개, 전투 시간은 226.1/347.5/478.2/1074.2/1043.3초입니다. 2번의 누수 한 마리는 같은 입력을 재생해 스폰/누수 uid를 대조한 결과 52.03초의 강화젤리였습니다. 배치와 스킬 사용 시점에 따른 손실이며 무손실 공략도 함께 확인했습니다. 4~5번의 기존 50웨이브·전투 수치와 콘텐츠는 바꾸지 않았습니다.
+- 수정/검증: 10종 × 4방향 × 진행/정지의 80개 검사가 통과했습니다. 실제 앱의 PC·터치 준비/전투 정지 배치 총 4회에서 높이 0.5·기존 유닛/적/틱/SP 보존·실제 배치 비용·재개 후 낙하 재시작 없음을 확인했습니다. 최종 check/lint/test/build와 62개 파일 1,082개 자동 테스트, 10종 × PC/터치의 연출 20회와 프로덕션 경로의 초상화·WebGL·12웨이브·처치 수입·나가기도 통과했습니다.
+- 캠페인 회귀: 수정 후 PC·844×390 터치의 1→5 총 10회가 모두 푸딩 3개·119/192/369/442/473 처치·전체 웨이브·누수/거부 명령/잘못된 보상 0으로 끝났습니다. 14종 등장·치유·보호막 피해, 별 15개 저장/복원·6번 해금·7번 잠금·패배 후 최고 기록 유지를 확인했고 전투 결과·시간·보상·후반 압박은 수정 전 기록과 같습니다. 브라우저 오류/경고는 0건입니다. 긴 구간은 가상 시계로 가속했고 터치는 에뮬레이션이므로 실제 기기의 FPS나 실시간 재미를 측정한 결과는 아닙니다.
+  결과: [종합 기록](../verification/t4.19-stage-playtest.json), [직접 입력](../verification/t4.19-direct-play.json), [2번 누수 재현](../verification/t4.19-stage-2-leak.json), [정지 배치 수정 전](../verification/t4.19-before-paused-deployment.json), [정지 배치 수정 후](../verification/t4.19-paused-deployment.json), [PC 완주](../verification/t4.19-campaign-desktop.json), [터치 완주](../verification/t4.19-campaign-mobile.json), [연출](../verification/t4.19-combat-art.json). 화면: [수정 전 공중 배치](../verification/t4.19-before-desktop-paused-deploy.png), [수정 후 전투 정지 배치](../verification/t4.19-desktop-midbattle-deploy.png), [터치 정지 배치](../verification/t4.19-mobile-midbattle-deploy.png), [PC 5번 후반](../verification/t4.19-desktop-stage-5-pressure.png), [터치 별 15개](../verification/t4.19-mobile-all-stars.png).
+
 ## M5 확장 (방향만 정해 둠)
 
 - 모바일 성능 최적화, PWA(오프라인 실행)

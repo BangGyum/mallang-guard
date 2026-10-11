@@ -138,10 +138,12 @@ export function createEntityViews(content: ContentDb, board: Board, textures: Re
       events: readonly SimEvent[],
       state: Readonly<BattleState>,
       delays: ReadonlyMap<SimEvent, number>,
+      paused = false,
     ) {
       for (const event of events) {
         if (event.type === 'unitDeploy') {
           const view = ensure(event.uid, event.unitId, false);
+          if (paused) view.motion.age = 0.4;
           view.direction = event.dir === 'left' ? -1 : 1;
           samplePose(view.motion, reduced, view.pose);
           const { visual, pose } = view;

@@ -1,0 +1,135 @@
+[
+  {
+    "viewport": "desktop",
+    "mode": "preparation",
+    "position": {
+      "x": -3,
+      "y": 1.7000000476837158,
+      "z": -2.5
+    },
+    "state": {
+      "tick": 0,
+      "phase": "running",
+      "dp": 1,
+      "life": 3,
+      "maxLife": 3,
+      "roster": [
+        {
+          "unitId": "squirrel",
+          "state": "deployed",
+          "cooldownTicks": 0,
+          "uid": 1
+        },
+        {
+          "unitId": "cat",
+          "state": "ready",
+          "cooldownTicks": 0,
+          "uid": null
+        },
+        {
+          "unitId": "bear",
+          "state": "ready",
+          "cooldownTicks": 0,
+          "uid": null
+        },
+        {
+          "unitId": "penguin",
+          "state": "ready",
+          "cooldownTicks": 0,
+          "uid": null
+        },
+        {
+          "unitId": "sheep",
+          "state": "ready",
+          "cooldownTicks": 0,
+          "uid": null
+        },
+        {
+          "unitId": "bunny",
+          "state": "ready",
+          "cooldownTicks": 0,
+          "uid": null
+        },
+        {
+          "unitId": "mole",
+          "state": "ready",
+          "cooldownTicks": 0,
+          "uid": null
+        },
+        {
+          "unitId": "snail",
+          "state": "ready",
+          "cooldownTicks": 0,
+          "uid": null
+        },
+        {
+          "unitId": "owl",
+          "state": "ready",
+          "cooldownTicks": 0,
+          "uid": null
+        },
+        {
+          "unitId": "wolf",
+          "state": "ready",
+          "cooldownTicks": 0,
+          "uid": null
+        }
+      ],
+      "units": [
+        {
+          "uid": 1,
+          "unitId": "squirrel",
+          "tile": {
+            "x": 2,
+            "y": 0
+          },
+          "dir": "down",
+          "atkCooldown": 0,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 8,
+          "skillState": "charging",
+          "skillEndTick": -1,
+          "skillHitCount": 0,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": []
+        }
+      ],
+      "enemies": [],
+      "spawnCursor": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "totalEnemies": 119,
+      "killed": 0,
+      "leaked": 0,
+      "currentWave": 0,
+      "totalWaves": 12,
+      "nextUid": 2,
+      "rngState": 1
+    },
+    "errors": []
+  }
+]

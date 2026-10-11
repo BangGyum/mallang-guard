@@ -1,0 +1,233 @@
+{
+  "stage": "stage-5",
+  "map": [
+    "S######H###",
+    "##H#H##,,,#",
+    "S,,,##H,H,#",
+    "#H#,HH#,#,G",
+    "S,,,,,,,HH#",
+    "###H##H####"
+  ],
+  "tick": 11382,
+  "seconds": 379.4,
+  "phase": "running",
+  "dp": 99,
+  "life": 3,
+  "wave": 19,
+  "waves": 50,
+  "killed": 145,
+  "leaked": 0,
+  "total": 375,
+  "units": [
+    {
+      "id": "squirrel",
+      "tile": {
+        "x": 4,
+        "y": 3
+      },
+      "dir": "down",
+      "sp": 20,
+      "spCost": 20,
+      "skill": "ready"
+    },
+    {
+      "id": "penguin",
+      "tile": {
+        "x": 6,
+        "y": 2
+      },
+      "dir": "right",
+      "sp": 30,
+      "spCost": 30,
+      "skill": "active"
+    },
+    {
+      "id": "sheep",
+      "tile": {
+        "x": 8,
+        "y": 2
+      },
+      "dir": "left",
+      "sp": 35,
+      "spCost": 35,
+      "skill": "ready"
+    },
+    {
+      "id": "bunny",
+      "tile": {
+        "x": 5,
+        "y": 3
+      },
+      "dir": "up",
+      "sp": 25,
+      "spCost": 25,
+      "skill": "ready"
+    },
+    {
+      "id": "owl",
+      "tile": {
+        "x": 8,
+        "y": 4
+      },
+      "dir": "up",
+      "sp": 35,
+      "spCost": 35,
+      "skill": "active"
+    },
+    {
+      "id": "wolf",
+      "tile": {
+        "x": 7,
+        "y": 0
+      },
+      "dir": "down",
+      "sp": 7.966666666666648,
+      "spCost": 30,
+      "skill": "charging"
+    },
+    {
+      "id": "snail",
+      "tile": {
+        "x": 4,
+        "y": 1
+      },
+      "dir": "down",
+      "sp": 25,
+      "spCost": 25,
+      "skill": "active"
+    }
+  ],
+  "enemies": [
+    {
+      "id": "hardJelly",
+      "hp": 1500,
+      "x": 3.5,
+      "y": 2.8
+    },
+    {
+      "id": "armoredCrow",
+      "hp": 1400,
+      "x": 3.3,
+      "y": 1.3
+    },
+    {
+      "id": "hardJelly",
+      "hp": 1500,
+      "x": 2.7,
+      "y": 2.5
+    },
+    {
+      "id": "captainJelly",
+      "hp": 5000,
+      "x": 1.1,
+      "y": 4.5
+    },
+    {
+      "id": "crow",
+      "hp": 450,
+      "x": 1.4,
+      "y": 0.8
+    }
+  ],
+  "audit": {
+    "steps": 11382,
+    "empty": 1518,
+    "peak": 7,
+    "skills": 35,
+    "attacks": {
+      "squirrel": 224,
+      "penguin": 58,
+      "sheep": 32,
+      "owl": 108,
+      "snail": 96,
+      "wolf": 45
+    },
+    "leaks": [],
+    "rejected": [],
+    "waves": [
+      {
+        "wave": 0,
+        "seconds": 0.03333333333333333
+      },
+      {
+        "wave": 1,
+        "seconds": 3.033333333333333
+      },
+      {
+        "wave": 2,
+        "seconds": 17.033333333333335
+      },
+      {
+        "wave": 3,
+        "seconds": 35.03333333333333
+      },
+      {
+        "wave": 4,
+        "seconds": 56.03333333333333
+      },
+      {
+        "wave": 5,
+        "seconds": 78.03333333333333
+      },
+      {
+        "wave": 6,
+        "seconds": 108.03333333333333
+      },
+      {
+        "wave": 7,
+        "seconds": 122.03333333333333
+      },
+      {
+        "wave": 8,
+        "seconds": 140.03333333333333
+      },
+      {
+        "wave": 9,
+        "seconds": 161.03333333333333
+      },
+      {
+        "wave": 10,
+        "seconds": 183.03333333333333
+      },
+      {
+        "wave": 11,
+        "seconds": 213.03333333333333
+      },
+      {
+        "wave": 12,
+        "seconds": 227.03333333333333
+      },
+      {
+        "wave": 13,
+        "seconds": 245.03333333333333
+      },
+      {
+        "wave": 14,
+        "seconds": 266.03333333333336
+      },
+      {
+        "wave": 15,
+        "seconds": 288.03333333333336
+      },
+      {
+        "wave": 16,
+        "seconds": 318.03333333333336
+      },
+      {
+        "wave": 17,
+        "seconds": 332.03333333333336
+      },
+      {
+        "wave": 18,
+        "seconds": 350.03333333333336
+      },
+      {
+        "wave": 19,
+        "seconds": 371.03333333333336
+      }
+    ],
+    "emptyRun": 0,
+    "maxEmpty": 368
+  },
+  "errors": []
+}

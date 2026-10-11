@@ -5,8 +5,10 @@ import { installCampaignAudit, skillRetryMs } from './campaignAudit.mjs';
 import { deploy, frame, pause, resume, tilePoint } from './helpers.mjs';
 
 const earlyOnly = process.argv.includes('--early');
+const firstFive = process.argv.includes('--first-five');
+const stageCount = firstFive ? 5 : earlyOnly ? 3 : 7;
 const scenarios = await Promise.all(
-  (earlyOnly ? [1, 2, 3] : [1, 2, 3, 4, 5, 6, 7]).map(async (level) => ({
+  Array.from({ length: stageCount }, (_, i) => i + 1).map(async (level) => ({
     scenario: JSON.parse(await readFile(`tests/scenarios/stage-${level}-clear.json`, 'utf8')),
     stage: JSON.parse(await readFile(`src/data/stages/stage-${level}.json`, 'utf8')),
   })),
@@ -226,17 +228,21 @@ try {
       } else
         assert.equal(
           await page.getByRole('button', { name: '다음 스테이지', exact: true }).count(),
-          earlyOnly ? 1 : 0,
+          stageCount < 7 ? 1 : 0,
         );
     }
     const completed = await page.evaluate(() => JSON.parse(localStorage.getItem('mallang-guard:v1')).stages);
-    assert.equal(await page.evaluate(() => window.campaign.seen.size), earlyOnly ? 10 : 16, '실제 적 종류');
+    assert.equal(
+      await page.evaluate(() => window.campaign.seen.size),
+      firstFive ? 14 : earlyOnly ? 10 : 16,
+      '실제 적 종류',
+    );
     if (!earlyOnly) {
       assert((await page.evaluate(() => window.campaign.heals)) > 0, '실제 치유 발동');
       assert((await page.evaluate(() => window.campaign.shieldHits)) > 0, '실제 보호막 피해');
     }
     await click(page.getByRole('button', { name: '스테이지 선택', exact: true }));
-    assert.equal(await page.locator('.stage-card:disabled').count(), earlyOnly ? 3 : 0);
+    assert.equal(await page.locator('.stage-card:disabled').count(), firstFive ? 1 : earlyOnly ? 3 : 0);
     assert(
       await page
         .locator('.stage-stars')
@@ -249,7 +255,7 @@ try {
     await page.reload();
     await page.locator('.title-screen').waitFor();
     await click(page.getByRole('button', { name: '스테이지 선택', exact: true }));
-    assert.equal(await page.locator('.stage-card:disabled').count(), earlyOnly ? 3 : 0);
+    assert.equal(await page.locator('.stage-card:disabled').count(), firstFive ? 1 : earlyOnly ? 3 : 0);
     assert(
       await page
         .locator('.stage-stars')

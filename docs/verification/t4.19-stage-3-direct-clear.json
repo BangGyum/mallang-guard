@@ -1,0 +1,227 @@
+{
+  "stage": "stage-3",
+  "map": [
+    "##HH#######",
+    "S....H#...#",
+    "####.#H.H.#",
+    "###H.H#.#.#",
+    "S.......H.G",
+    "#####H##H##"
+  ],
+  "tick": 14347,
+  "seconds": 478.23333333333335,
+  "phase": "won",
+  "dp": 99,
+  "life": 3,
+  "wave": 25,
+  "waves": 25,
+  "killed": 369,
+  "leaked": 0,
+  "total": 369,
+  "units": [
+    {
+      "id": "squirrel",
+      "tile": {
+        "x": 2,
+        "y": 0
+      },
+      "dir": "down",
+      "sp": 20,
+      "spCost": 20,
+      "skill": "ready"
+    },
+    {
+      "id": "penguin",
+      "tile": {
+        "x": 8,
+        "y": 2
+      },
+      "dir": "left",
+      "sp": 30,
+      "spCost": 30,
+      "skill": "active"
+    },
+    {
+      "id": "sheep",
+      "tile": {
+        "x": 5,
+        "y": 3
+      },
+      "dir": "left",
+      "sp": 30.40000000000067,
+      "spCost": 35,
+      "skill": "charging"
+    },
+    {
+      "id": "owl",
+      "tile": {
+        "x": 5,
+        "y": 1
+      },
+      "dir": "down",
+      "sp": 35,
+      "spCost": 35,
+      "skill": "active"
+    },
+    {
+      "id": "cat",
+      "tile": {
+        "x": 8,
+        "y": 4
+      },
+      "dir": "up",
+      "sp": 12,
+      "spCost": 12,
+      "skill": "active"
+    },
+    {
+      "id": "snail",
+      "tile": {
+        "x": 5,
+        "y": 5
+      },
+      "dir": "up",
+      "sp": 19.900000000000148,
+      "spCost": 25,
+      "skill": "charging"
+    },
+    {
+      "id": "bunny",
+      "tile": {
+        "x": 6,
+        "y": 2
+      },
+      "dir": "left",
+      "sp": 17.066666666666674,
+      "spCost": 25,
+      "skill": "charging"
+    }
+  ],
+  "enemies": [],
+  "audit": {
+    "steps": 14349,
+    "empty": 1015,
+    "peak": 16,
+    "skills": 56,
+    "attacks": {
+      "squirrel": 359,
+      "penguin": 46,
+      "sheep": 192,
+      "owl": 261,
+      "snail": 110,
+      "bunny": 117,
+      "cat": 61
+    },
+    "leaks": [],
+    "rejected": [],
+    "waves": [
+      {
+        "wave": 0,
+        "seconds": 0.03333333333333333
+      },
+      {
+        "wave": 1,
+        "seconds": 3.033333333333333
+      },
+      {
+        "wave": 2,
+        "seconds": 20.033333333333335
+      },
+      {
+        "wave": 3,
+        "seconds": 35.03333333333333
+      },
+      {
+        "wave": 4,
+        "seconds": 52.03333333333333
+      },
+      {
+        "wave": 5,
+        "seconds": 77.03333333333333
+      },
+      {
+        "wave": 6,
+        "seconds": 95.03333333333333
+      },
+      {
+        "wave": 7,
+        "seconds": 112.03333333333333
+      },
+      {
+        "wave": 8,
+        "seconds": 127.03333333333333
+      },
+      {
+        "wave": 9,
+        "seconds": 144.03333333333333
+      },
+      {
+        "wave": 10,
+        "seconds": 169.03333333333333
+      },
+      {
+        "wave": 11,
+        "seconds": 187.03333333333333
+      },
+      {
+        "wave": 12,
+        "seconds": 204.03333333333333
+      },
+      {
+        "wave": 13,
+        "seconds": 219.03333333333333
+      },
+      {
+        "wave": 14,
+        "seconds": 236.03333333333333
+      },
+      {
+        "wave": 15,
+        "seconds": 261.03333333333336
+      },
+      {
+        "wave": 16,
+        "seconds": 279.03333333333336
+      },
+      {
+        "wave": 17,
+        "seconds": 296.03333333333336
+      },
+      {
+        "wave": 18,
+        "seconds": 311.03333333333336
+      },
+      {
+        "wave": 19,
+        "seconds": 328.03333333333336
+      },
+      {
+        "wave": 20,
+        "seconds": 353.03333333333336
+      },
+      {
+        "wave": 21,
+        "seconds": 371.03333333333336
+      },
+      {
+        "wave": 22,
+        "seconds": 388.03333333333336
+      },
+      {
+        "wave": 23,
+        "seconds": 403.03333333333336
+      },
+      {
+        "wave": 24,
+        "seconds": 420.03333333333336
+      },
+      {
+        "wave": 25,
+        "seconds": 445.03333333333336
+      }
+    ],
+    "emptyRun": 3,
+    "maxEmpty": 254
+  },
+  "errors": []
+}

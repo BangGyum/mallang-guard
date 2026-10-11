@@ -1,0 +1,624 @@
+[
+  {
+    "viewport": "desktop",
+    "mode": "preparation",
+    "position": {
+      "x": -3,
+      "y": 0.5,
+      "z": -2.5
+    },
+    "state": {
+      "tick": 0,
+      "phase": "running",
+      "dp": 1,
+      "life": 3,
+      "maxLife": 3,
+      "roster": [
+        {
+          "unitId": "squirrel",
+          "state": "deployed",
+          "cooldownTicks": 0,
+          "uid": 1
+        },
+        {
+          "unitId": "cat",
+          "state": "ready",
+          "cooldownTicks": 0,
+          "uid": null
+        },
+        {
+          "unitId": "bear",
+          "state": "ready",
+          "cooldownTicks": 0,
+          "uid": null
+        },
+        {
+          "unitId": "penguin",
+          "state": "ready",
+          "cooldownTicks": 0,
+          "uid": null
+        },
+        {
+          "unitId": "sheep",
+          "state": "ready",
+          "cooldownTicks": 0,
+          "uid": null
+        },
+        {
+          "unitId": "bunny",
+          "state": "ready",
+          "cooldownTicks": 0,
+          "uid": null
+        },
+        {
+          "unitId": "mole",
+          "state": "ready",
+          "cooldownTicks": 0,
+          "uid": null
+        },
+        {
+          "unitId": "snail",
+          "state": "ready",
+          "cooldownTicks": 0,
+          "uid": null
+        },
+        {
+          "unitId": "owl",
+          "state": "ready",
+          "cooldownTicks": 0,
+          "uid": null
+        },
+        {
+          "unitId": "wolf",
+          "state": "ready",
+          "cooldownTicks": 0,
+          "uid": null
+        }
+      ],
+      "units": [
+        {
+          "uid": 1,
+          "unitId": "squirrel",
+          "tile": {
+            "x": 2,
+            "y": 0
+          },
+          "dir": "down",
+          "atkCooldown": 0,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 8,
+          "skillState": "charging",
+          "skillEndTick": -1,
+          "skillHitCount": 0,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": []
+        }
+      ],
+      "enemies": [],
+      "spawnCursor": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "totalEnemies": 119,
+      "killed": 0,
+      "leaked": 0,
+      "currentWave": 0,
+      "totalWaves": 12,
+      "nextUid": 2,
+      "rngState": 1
+    },
+    "errors": []
+  },
+  {
+    "viewport": "desktop",
+    "mode": "midbattle",
+    "position": {
+      "x": -2,
+      "y": 0.5,
+      "z": -2.5
+    },
+    "state": {
+      "tick": 422,
+      "phase": "running",
+      "dp": 8,
+      "life": 3,
+      "maxLife": 3,
+      "roster": [
+        {
+          "unitId": "squirrel",
+          "state": "deployed",
+          "cooldownTicks": 0,
+          "uid": 1
+        },
+        {
+          "unitId": "cat",
+          "state": "ready",
+          "cooldownTicks": 0,
+          "uid": null
+        },
+        {
+          "unitId": "bear",
+          "state": "ready",
+          "cooldownTicks": 0,
+          "uid": null
+        },
+        {
+          "unitId": "penguin",
+          "state": "ready",
+          "cooldownTicks": 0,
+          "uid": null
+        },
+        {
+          "unitId": "sheep",
+          "state": "ready",
+          "cooldownTicks": 0,
+          "uid": null
+        },
+        {
+          "unitId": "bunny",
+          "state": "ready",
+          "cooldownTicks": 0,
+          "uid": null
+        },
+        {
+          "unitId": "mole",
+          "state": "deployed",
+          "cooldownTicks": 0,
+          "uid": 6
+        },
+        {
+          "unitId": "snail",
+          "state": "ready",
+          "cooldownTicks": 0,
+          "uid": null
+        },
+        {
+          "unitId": "owl",
+          "state": "ready",
+          "cooldownTicks": 0,
+          "uid": null
+        },
+        {
+          "unitId": "wolf",
+          "state": "ready",
+          "cooldownTicks": 0,
+          "uid": null
+        }
+      ],
+      "units": [
+        {
+          "uid": 1,
+          "unitId": "squirrel",
+          "tile": {
+            "x": 2,
+            "y": 0
+          },
+          "dir": "down",
+          "atkCooldown": 0,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 20,
+          "skillState": "ready",
+          "skillEndTick": -1,
+          "skillHitCount": 0,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": []
+        },
+        {
+          "uid": 6,
+          "unitId": "mole",
+          "tile": {
+            "x": 3,
+            "y": 0
+          },
+          "dir": "down",
+          "atkCooldown": 0,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 5,
+          "skillState": "charging",
+          "skillEndTick": -1,
+          "skillHitCount": 0,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": []
+        }
+      ],
+      "enemies": [
+        {
+          "uid": 5,
+          "enemyId": "jelly",
+          "routeId": "ground",
+          "dist": 0.060000000000000005,
+          "segIndex": 0,
+          "x": 0.56,
+          "y": 1.5,
+          "px": 0.53,
+          "py": 1.5,
+          "hp": 600,
+          "maxHp": 600,
+          "slowAmount": 0,
+          "slowUntilTick": 0,
+          "stunUntilTick": 0,
+          "abilityCooldown": 0,
+          "shield": 0,
+          "speedMul": 1,
+          "rushCooldown": 0,
+          "rushUntilTick": 0,
+          "regenCooldown": 0,
+          "healCooldown": 0,
+          "summonCooldown": 0,
+          "summonsRemaining": 0
+        }
+      ],
+      "spawnCursor": [
+        3,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "totalEnemies": 119,
+      "killed": 3,
+      "leaked": 0,
+      "currentWave": 2,
+      "totalWaves": 12,
+      "nextUid": 7,
+      "rngState": 1
+    },
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "mode": "preparation",
+    "position": {
+      "x": -3,
+      "y": 0.5,
+      "z": -2.5
+    },
+    "state": {
+      "tick": 0,
+      "phase": "running",
+      "dp": 1,
+      "life": 3,
+      "maxLife": 3,
+      "roster": [
+        {
+          "unitId": "squirrel",
+          "state": "deployed",
+          "cooldownTicks": 0,
+          "uid": 1
+        },
+        {
+          "unitId": "cat",
+          "state": "ready",
+          "cooldownTicks": 0,
+          "uid": null
+        },
+        {
+          "unitId": "bear",
+          "state": "ready",
+          "cooldownTicks": 0,
+          "uid": null
+        },
+        {
+          "unitId": "penguin",
+          "state": "ready",
+          "cooldownTicks": 0,
+          "uid": null
+        },
+        {
+          "unitId": "sheep",
+          "state": "ready",
+          "cooldownTicks": 0,
+          "uid": null
+        },
+        {
+          "unitId": "bunny",
+          "state": "ready",
+          "cooldownTicks": 0,
+          "uid": null
+        },
+        {
+          "unitId": "mole",
+          "state": "ready",
+          "cooldownTicks": 0,
+          "uid": null
+        },
+        {
+          "unitId": "snail",
+          "state": "ready",
+          "cooldownTicks": 0,
+          "uid": null
+        },
+        {
+          "unitId": "owl",
+          "state": "ready",
+          "cooldownTicks": 0,
+          "uid": null
+        },
+        {
+          "unitId": "wolf",
+          "state": "ready",
+          "cooldownTicks": 0,
+          "uid": null
+        }
+      ],
+      "units": [
+        {
+          "uid": 1,
+          "unitId": "squirrel",
+          "tile": {
+            "x": 2,
+            "y": 0
+          },
+          "dir": "down",
+          "atkCooldown": 0,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 8,
+          "skillState": "charging",
+          "skillEndTick": -1,
+          "skillHitCount": 0,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": []
+        }
+      ],
+      "enemies": [],
+      "spawnCursor": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "totalEnemies": 119,
+      "killed": 0,
+      "leaked": 0,
+      "currentWave": 0,
+      "totalWaves": 12,
+      "nextUid": 2,
+      "rngState": 1
+    },
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "mode": "midbattle",
+    "position": {
+      "x": -2,
+      "y": 0.5,
+      "z": -2.5
+    },
+    "state": {
+      "tick": 422,
+      "phase": "running",
+      "dp": 8,
+      "life": 3,
+      "maxLife": 3,
+      "roster": [
+        {
+          "unitId": "squirrel",
+          "state": "deployed",
+          "cooldownTicks": 0,
+          "uid": 1
+        },
+        {
+          "unitId": "cat",
+          "state": "ready",
+          "cooldownTicks": 0,
+          "uid": null
+        },
+        {
+          "unitId": "bear",
+          "state": "ready",
+          "cooldownTicks": 0,
+          "uid": null
+        },
+        {
+          "unitId": "penguin",
+          "state": "ready",
+          "cooldownTicks": 0,
+          "uid": null
+        },
+        {
+          "unitId": "sheep",
+          "state": "ready",
+          "cooldownTicks": 0,
+          "uid": null
+        },
+        {
+          "unitId": "bunny",
+          "state": "ready",
+          "cooldownTicks": 0,
+          "uid": null
+        },
+        {
+          "unitId": "mole",
+          "state": "deployed",
+          "cooldownTicks": 0,
+          "uid": 6
+        },
+        {
+          "unitId": "snail",
+          "state": "ready",
+          "cooldownTicks": 0,
+          "uid": null
+        },
+        {
+          "unitId": "owl",
+          "state": "ready",
+          "cooldownTicks": 0,
+          "uid": null
+        },
+        {
+          "unitId": "wolf",
+          "state": "ready",
+          "cooldownTicks": 0,
+          "uid": null
+        }
+      ],
+      "units": [
+        {
+          "uid": 1,
+          "unitId": "squirrel",
+          "tile": {
+            "x": 2,
+            "y": 0
+          },
+          "dir": "down",
+          "atkCooldown": 0,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 20,
+          "skillState": "ready",
+          "skillEndTick": -1,
+          "skillHitCount": 0,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": []
+        },
+        {
+          "uid": 6,
+          "unitId": "mole",
+          "tile": {
+            "x": 3,
+            "y": 0
+          },
+          "dir": "down",
+          "atkCooldown": 0,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 5,
+          "skillState": "charging",
+          "skillEndTick": -1,
+          "skillHitCount": 0,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": []
+        }
+      ],
+      "enemies": [
+        {
+          "uid": 5,
+          "enemyId": "jelly",
+          "routeId": "ground",
+          "dist": 0.060000000000000005,
+          "segIndex": 0,
+          "x": 0.56,
+          "y": 1.5,
+          "px": 0.53,
+          "py": 1.5,
+          "hp": 600,
+          "maxHp": 600,
+          "slowAmount": 0,
+          "slowUntilTick": 0,
+          "stunUntilTick": 0,
+          "abilityCooldown": 0,
+          "shield": 0,
+          "speedMul": 1,
+          "rushCooldown": 0,
+          "rushUntilTick": 0,
+          "regenCooldown": 0,
+          "healCooldown": 0,
+          "summonCooldown": 0,
+          "summonsRemaining": 0
+        }
+      ],
+      "spawnCursor": [
+        3,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "totalEnemies": 119,
+      "killed": 3,
+      "leaked": 0,
+      "currentWave": 2,
+      "totalWaves": 12,
+      "nextUid": 7,
+      "rngState": 1
+    },
+    "errors": []
+  }
+]

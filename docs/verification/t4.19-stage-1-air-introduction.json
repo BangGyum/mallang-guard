@@ -1,0 +1,92 @@
+{
+  "stage": "stage-1",
+  "map": [
+    "##HH###HH##",
+    "S....H....#",
+    "#HH#.H.#H.#",
+    "#HH#...#H.G",
+    "####HHH#..#",
+    "###########"
+  ],
+  "tick": 909,
+  "seconds": 30.3,
+  "phase": "running",
+  "dp": 37,
+  "life": 3,
+  "wave": 3,
+  "waves": 12,
+  "killed": 8,
+  "leaked": 0,
+  "total": 119,
+  "units": [
+    {
+      "id": "squirrel",
+      "tile": {
+        "x": 2,
+        "y": 0
+      },
+      "dir": "down",
+      "sp": 3.9666666666666623,
+      "spCost": 20,
+      "skill": "charging"
+    },
+    {
+      "id": "penguin",
+      "tile": {
+        "x": 5,
+        "y": 2
+      },
+      "dir": "left",
+      "sp": 26.000000000000476,
+      "spCost": 30,
+      "skill": "charging"
+    }
+  ],
+  "enemies": [
+    {
+      "id": "crow",
+      "hp": 100,
+      "x": 2,
+      "y": 1.8
+    },
+    {
+      "id": "hardJelly",
+      "hp": 1500,
+      "x": 0.7,
+      "y": 1.5
+    }
+  ],
+  "audit": {
+    "steps": 909,
+    "empty": 350,
+    "peak": 2,
+    "skills": 1,
+    "attacks": {
+      "squirrel": 17,
+      "penguin": 7
+    },
+    "leaks": [],
+    "rejected": [],
+    "waves": [
+      {
+        "wave": 0,
+        "seconds": 0.03333333333333333
+      },
+      {
+        "wave": 1,
+        "seconds": 3.033333333333333
+      },
+      {
+        "wave": 2,
+        "seconds": 14.033333333333333
+      },
+      {
+        "wave": 3,
+        "seconds": 26.033333333333335
+      }
+    ],
+    "emptyRun": 0,
+    "maxEmpty": 131
+  },
+  "errors": []
+}

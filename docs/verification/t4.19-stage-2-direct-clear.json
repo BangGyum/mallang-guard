@@ -1,0 +1,214 @@
+{
+  "stage": "stage-2",
+  "map": [
+    "###########",
+    "#H.......H#",
+    "S..HH#H#..G",
+    "#H.##H#H.H#",
+    "S........##",
+    "####H##H###"
+  ],
+  "tick": 10425,
+  "seconds": 347.5,
+  "phase": "won",
+  "dp": 99,
+  "life": 2,
+  "wave": 20,
+  "waves": 20,
+  "killed": 191,
+  "leaked": 1,
+  "total": 192,
+  "units": [
+    {
+      "id": "squirrel",
+      "tile": {
+        "x": 3,
+        "y": 2
+      },
+      "dir": "up",
+      "sp": 20,
+      "spCost": 20,
+      "skill": "ready"
+    },
+    {
+      "id": "penguin",
+      "tile": {
+        "x": 9,
+        "y": 1
+      },
+      "dir": "down",
+      "sp": 11.066666666666638,
+      "spCost": 30,
+      "skill": "charging"
+    },
+    {
+      "id": "sheep",
+      "tile": {
+        "x": 7,
+        "y": 3
+      },
+      "dir": "right",
+      "sp": 9.566666666666643,
+      "spCost": 35,
+      "skill": "charging"
+    },
+    {
+      "id": "cat",
+      "tile": {
+        "x": 9,
+        "y": 3
+      },
+      "dir": "up",
+      "sp": 4,
+      "spCost": 12,
+      "skill": "charging"
+    },
+    {
+      "id": "owl",
+      "tile": {
+        "x": 5,
+        "y": 3
+      },
+      "dir": "down",
+      "sp": 35,
+      "spCost": 35,
+      "skill": "active"
+    },
+    {
+      "id": "snail",
+      "tile": {
+        "x": 7,
+        "y": 5
+      },
+      "dir": "up",
+      "sp": 9.066666666666645,
+      "spCost": 25,
+      "skill": "charging"
+    },
+    {
+      "id": "bunny",
+      "tile": {
+        "x": 4,
+        "y": 2
+      },
+      "dir": "right",
+      "sp": 25,
+      "spCost": 25,
+      "skill": "ready"
+    }
+  ],
+  "enemies": [],
+  "audit": {
+    "steps": 10425,
+    "empty": 843,
+    "peak": 17,
+    "skills": 36,
+    "attacks": {
+      "squirrel": 155,
+      "penguin": 74,
+      "sheep": 80,
+      "cat": 49,
+      "owl": 175,
+      "snail": 62,
+      "bunny": 33
+    },
+    "leaks": [
+      {
+        "seconds": 52.03333333333333,
+        "type": "enemyLeak",
+        "uid": 11,
+        "lifeLeft": 2
+      }
+    ],
+    "rejected": [],
+    "waves": [
+      {
+        "wave": 0,
+        "seconds": 0.03333333333333333
+      },
+      {
+        "wave": 1,
+        "seconds": 3.033333333333333
+      },
+      {
+        "wave": 2,
+        "seconds": 18.033333333333335
+      },
+      {
+        "wave": 3,
+        "seconds": 32.03333333333333
+      },
+      {
+        "wave": 4,
+        "seconds": 49.03333333333333
+      },
+      {
+        "wave": 5,
+        "seconds": 70.03333333333333
+      },
+      {
+        "wave": 6,
+        "seconds": 88.03333333333333
+      },
+      {
+        "wave": 7,
+        "seconds": 103.03333333333333
+      },
+      {
+        "wave": 8,
+        "seconds": 117.03333333333333
+      },
+      {
+        "wave": 9,
+        "seconds": 134.03333333333333
+      },
+      {
+        "wave": 10,
+        "seconds": 155.03333333333333
+      },
+      {
+        "wave": 11,
+        "seconds": 173.03333333333333
+      },
+      {
+        "wave": 12,
+        "seconds": 188.03333333333333
+      },
+      {
+        "wave": 13,
+        "seconds": 202.03333333333333
+      },
+      {
+        "wave": 14,
+        "seconds": 219.03333333333333
+      },
+      {
+        "wave": 15,
+        "seconds": 240.03333333333333
+      },
+      {
+        "wave": 16,
+        "seconds": 258.03333333333336
+      },
+      {
+        "wave": 17,
+        "seconds": 273.03333333333336
+      },
+      {
+        "wave": 18,
+        "seconds": 287.03333333333336
+      },
+      {
+        "wave": 19,
+        "seconds": 304.03333333333336
+      },
+      {
+        "wave": 20,
+        "seconds": 325.03333333333336
+      }
+    ],
+    "emptyRun": 1,
+    "maxEmpty": 132
+  },
+  "errors": []
+}

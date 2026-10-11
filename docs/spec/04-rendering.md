@@ -77,6 +77,7 @@ T3.1부터 목업의 SVG 동물·적을 사용하며 방향에 따라 좌우 반
 - **빌보드**: 카메라가 고정이므로 모든 스프라이트에 `quaternion.copy(camera.quaternion)`를 한 번 적용합니다 (카메라를 다시 맞출 때도 갱신).
 - 좌우 방향: 유닛 `dir`이 left면 `scale.x = −1`, 그 외는 +1. 적은 이동 방향의 x 부호를 따릅니다 (0이면 직전 값 유지).
 - 배치 이벤트에서 낙하 시작 자세·숨쉬기 스케일·빌보드 방향을 먼저 적용합니다. 첫 렌더 전 공격도 같은 무기 끝 좌표에서 발사합니다.
+- 앱은 `BoardView.onEvents`의 선택적 `paused` 인자로 정지 상태를 전달합니다. 정지 중 새로 배치한 유닛은 낙하·착지 변형을 건너뛰어 고지대에 즉시 표시하며 재개 후 낙하를 다시 시작하지 않습니다. 기존 유닛의 정지 자세와 진행 중 배치 연출은 유지합니다. 생략한 호출은 기존 진행 상태로 처리합니다.
 - **스프라이트 셰이더** (`ShaderMaterial`, 텍스처마다 하나씩, 공유 가능)
   ```glsl
   uniform sampler2D map; uniform float uFlash; uniform vec3 uTint; uniform float uOpacity;
