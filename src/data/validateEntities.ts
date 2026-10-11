@@ -57,6 +57,7 @@ export function parseUnit(value: unknown, path: string): UnitDef {
     ]),
     art: oneOf(raw.art, `${path}.art`, ART_IDS),
     atk: number(raw.atk, `${path}.atk`),
+    armorPen: raw.armorPen === undefined ? 0 : integer(raw.armorPen, `${path}.armorPen`),
     atkIntervalSec: positive(raw.atkIntervalSec, `${path}.atkIntervalSec`),
     cost: number(raw.cost, `${path}.cost`),
     deployOn: oneOf(raw.deployOn, `${path}.deployOn`, ['high']),

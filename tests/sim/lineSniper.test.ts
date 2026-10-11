@@ -66,7 +66,7 @@ describe('랑랑의 정면 집중 사격과 삼중 조준', () => {
     const events: SimEvent[] = [];
     attackEnemies(f.db, f.battle.stage, f.state, events);
     expect(events.filter((event) => event.type === 'attack').map((event) => event.dst.uid)).toEqual([11]);
-    expect(f.state.enemies.map((enemy) => enemy.hp)).toEqual([10000, 9400, 10000, 10000, 10000]);
+    expect(f.state.enemies.map((enemy) => enemy.hp)).toEqual([10000, 9350, 10000, 10000, 10000]);
     expect(f.unit.atkCooldown).toBe(72);
   });
 
@@ -82,9 +82,9 @@ describe('랑랑의 정면 집중 사격과 삼중 조준', () => {
     expect(shots).toHaveLength(Math.min(count, 3));
     expect(hits).toHaveLength(shots.length);
     expect(new Set(shots.map((event) => event.dst.uid)).size).toBe(shots.length);
-    expect(hits.every((event) => event.amount === 535)).toBe(true);
+    expect(hits.every((event) => event.amount === 585)).toBe(true);
     for (const enemy of f.state.enemies)
-      expect(enemy.hp).toBe(shots.some((event) => event.dst.uid === enemy.uid) ? 9465 : 10000);
+      expect(enemy.hp).toBe(shots.some((event) => event.dst.uid === enemy.uid) ? 9415 : 10000);
     expect(f.unit.skillHitCount).toBe(count > 0 ? 1 : 0);
     expect(f.unit.atkCooldown).toBe(count > 0 ? 72 : 0);
   });
@@ -152,6 +152,7 @@ describe('랑랑의 정면 집중 사격과 삼중 조준', () => {
     activateLine(f);
     expect(unitStats(f.db, f.battle.stage, f.battle.state, f.unit)).toEqual({
       atk: 585,
+      armorPen: 160,
       atkIntervalTicks: 72,
     });
     run(f.battle, secToTicks(f.skill.durationSec) - 1);
@@ -161,6 +162,7 @@ describe('랑랑의 정면 집중 사격과 삼중 조준', () => {
     expect(f.battle.rangeTilesFor('wolf', LINE_TILE, 'right')).toHaveLength(5);
     expect(unitStats(f.db, f.battle.stage, f.battle.state, f.unit)).toEqual({
       atk: 650,
+      armorPen: 120,
       atkIntervalTicks: 72,
     });
     const active = shooting();
@@ -170,7 +172,7 @@ describe('랑랑의 정면 집중 사격과 삼중 조준', () => {
     const events: SimEvent[] = [];
     attackEnemies(active.db, active.battle.stage, active.state, events);
     expect(events.filter((event) => event.type === 'attack')).toHaveLength(1);
-    expect(events.find((event) => event.type === 'damage')?.amount).toBe(600);
+    expect(events.find((event) => event.type === 'damage')?.amount).toBe(650);
   });
 
   it('스킬 중 후퇴·재배치하면 단일 사격과 시작 SP로 돌아온다', () => {

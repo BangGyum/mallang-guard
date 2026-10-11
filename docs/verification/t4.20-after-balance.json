@@ -1,0 +1,395 @@
+{
+  "method": "실제 콘텐츠·고정 입력 시나리오, 비용·SP·수치 조작 없음",
+  "armorPen": [
+    {
+      "id": "squirrel",
+      "armorPen": 5
+    },
+    {
+      "id": "cat",
+      "armorPen": 10
+    },
+    {
+      "id": "bear",
+      "armorPen": 5
+    },
+    {
+      "id": "penguin",
+      "armorPen": 15
+    },
+    {
+      "id": "sheep",
+      "armorPen": 0
+    },
+    {
+      "id": "bunny",
+      "armorPen": 0
+    },
+    {
+      "id": "mole",
+      "armorPen": 10
+    },
+    {
+      "id": "snail",
+      "armorPen": 0
+    },
+    {
+      "id": "owl",
+      "armorPen": 0
+    },
+    {
+      "id": "wolf",
+      "armorPen": 120
+    }
+  ],
+  "results": [
+    {
+      "scenario": "stage-1-clear.json",
+      "phase": "won",
+      "life": 3,
+      "seconds": 231.06666666666666,
+      "killed": 119,
+      "leaked": 0,
+      "wave": 12,
+      "totalWaves": 12,
+      "skills": 18,
+      "rejected": []
+    },
+    {
+      "scenario": "stage-1-four-idle.json",
+      "phase": "lost",
+      "life": 0,
+      "seconds": 193.7,
+      "killed": 88,
+      "leaked": 3,
+      "wave": 11,
+      "totalWaves": 12,
+      "skills": 4,
+      "rejected": []
+    },
+    {
+      "scenario": "stage-1-idle.json",
+      "phase": "lost",
+      "life": 0,
+      "seconds": 25.8,
+      "killed": 0,
+      "leaked": 3,
+      "wave": 2,
+      "totalWaves": 12,
+      "skills": 0,
+      "rejected": []
+    },
+    {
+      "scenario": "stage-1-no-skills.json",
+      "phase": "lost",
+      "life": 0,
+      "seconds": 241.23333333333332,
+      "killed": 116,
+      "leaked": 3,
+      "wave": 12,
+      "totalWaves": 12,
+      "skills": 5,
+      "rejected": []
+    },
+    {
+      "scenario": "stage-2-clear.json",
+      "phase": "won",
+      "life": 3,
+      "seconds": 351.53333333333336,
+      "killed": 192,
+      "leaked": 0,
+      "wave": 20,
+      "totalWaves": 20,
+      "skills": 47,
+      "rejected": []
+    },
+    {
+      "scenario": "stage-2-four-idle.json",
+      "phase": "lost",
+      "life": 0,
+      "seconds": 222.6,
+      "killed": 91,
+      "leaked": 3,
+      "wave": 14,
+      "totalWaves": 20,
+      "skills": 4,
+      "rejected": []
+    },
+    {
+      "scenario": "stage-2-idle.json",
+      "phase": "lost",
+      "life": 0,
+      "seconds": 24.366666666666667,
+      "killed": 0,
+      "leaked": 3,
+      "wave": 2,
+      "totalWaves": 20,
+      "skills": 0,
+      "rejected": []
+    },
+    {
+      "scenario": "stage-2-no-skills.json",
+      "phase": "lost",
+      "life": 0,
+      "seconds": 349.1666666666667,
+      "killed": 187,
+      "leaked": 3,
+      "wave": 20,
+      "totalWaves": 20,
+      "skills": 6,
+      "rejected": []
+    },
+    {
+      "scenario": "stage-3-clear.json",
+      "phase": "won",
+      "life": 3,
+      "seconds": 479.4,
+      "killed": 369,
+      "leaked": 0,
+      "wave": 25,
+      "totalWaves": 25,
+      "skills": 64,
+      "rejected": []
+    },
+    {
+      "scenario": "stage-3-idle.json",
+      "phase": "lost",
+      "life": 0,
+      "seconds": 30.133333333333333,
+      "killed": 0,
+      "leaked": 3,
+      "wave": 2,
+      "totalWaves": 25,
+      "skills": 0,
+      "rejected": []
+    },
+    {
+      "scenario": "stage-3-no-skills.json",
+      "phase": "lost",
+      "life": 0,
+      "seconds": 448.8333333333333,
+      "killed": 324,
+      "leaked": 3,
+      "wave": 25,
+      "totalWaves": 25,
+      "skills": 12,
+      "rejected": []
+    },
+    {
+      "scenario": "stage-3-skills-stop.json",
+      "phase": "lost",
+      "life": 0,
+      "seconds": 448.8333333333333,
+      "killed": 324,
+      "leaked": 3,
+      "wave": 25,
+      "totalWaves": 25,
+      "skills": 18,
+      "rejected": []
+    },
+    {
+      "scenario": "stage-4-clear.json",
+      "phase": "won",
+      "life": 3,
+      "seconds": 1078.2,
+      "killed": 442,
+      "leaked": 0,
+      "wave": 50,
+      "totalWaves": 50,
+      "skills": 119,
+      "rejected": []
+    },
+    {
+      "scenario": "stage-4-idle.json",
+      "phase": "lost",
+      "life": 0,
+      "seconds": 21.233333333333334,
+      "killed": 0,
+      "leaked": 3,
+      "wave": 2,
+      "totalWaves": 50,
+      "skills": 0,
+      "rejected": []
+    },
+    {
+      "scenario": "stage-4-no-skills.json",
+      "phase": "lost",
+      "life": -1,
+      "seconds": 834.6666666666666,
+      "killed": 303,
+      "leaked": 2,
+      "wave": 40,
+      "totalWaves": 50,
+      "skills": 21,
+      "rejected": []
+    },
+    {
+      "scenario": "stage-4-skills-stop.json",
+      "phase": "lost",
+      "life": -1,
+      "seconds": 834.6666666666666,
+      "killed": 303,
+      "leaked": 2,
+      "wave": 40,
+      "totalWaves": 50,
+      "skills": 31,
+      "rejected": []
+    },
+    {
+      "scenario": "stage-5-clear.json",
+      "phase": "won",
+      "life": 3,
+      "seconds": 1043.7,
+      "killed": 473,
+      "leaked": 0,
+      "wave": 50,
+      "totalWaves": 50,
+      "skills": 91,
+      "rejected": []
+    },
+    {
+      "scenario": "stage-5-idle.json",
+      "phase": "lost",
+      "life": 0,
+      "seconds": 25.733333333333334,
+      "killed": 0,
+      "leaked": 3,
+      "wave": 2,
+      "totalWaves": 50,
+      "skills": 0,
+      "rejected": []
+    },
+    {
+      "scenario": "stage-5-no-skills.json",
+      "phase": "lost",
+      "life": 0,
+      "seconds": 830.8666666666667,
+      "killed": 355,
+      "leaked": 3,
+      "wave": 40,
+      "totalWaves": 50,
+      "skills": 0,
+      "rejected": []
+    },
+    {
+      "scenario": "stage-5-skills-stop.json",
+      "phase": "lost",
+      "life": 0,
+      "seconds": 830.8666666666667,
+      "killed": 355,
+      "leaked": 3,
+      "wave": 40,
+      "totalWaves": 50,
+      "skills": 11,
+      "rejected": []
+    },
+    {
+      "scenario": "stage-6-clear.json",
+      "phase": "won",
+      "life": 3,
+      "seconds": 1435.7666666666667,
+      "killed": 435,
+      "leaked": 0,
+      "wave": 60,
+      "totalWaves": 60,
+      "skills": 119,
+      "rejected": []
+    },
+    {
+      "scenario": "stage-6-idle.json",
+      "phase": "lost",
+      "life": 0,
+      "seconds": 29.033333333333335,
+      "killed": 0,
+      "leaked": 3,
+      "wave": 3,
+      "totalWaves": 60,
+      "skills": 0,
+      "rejected": []
+    },
+    {
+      "scenario": "stage-6-skills-stop.json",
+      "phase": "lost",
+      "life": 0,
+      "seconds": 277,
+      "killed": 83,
+      "leaked": 1,
+      "wave": 12,
+      "totalWaves": 60,
+      "skills": 21,
+      "rejected": []
+    },
+    {
+      "scenario": "stage-7-clear.json",
+      "phase": "won",
+      "life": 3,
+      "seconds": 1736.3666666666666,
+      "killed": 492,
+      "leaked": 0,
+      "wave": 60,
+      "totalWaves": 60,
+      "skills": 152,
+      "rejected": []
+    },
+    {
+      "scenario": "stage-7-idle.json",
+      "phase": "lost",
+      "life": 0,
+      "seconds": 42.666666666666664,
+      "killed": 0,
+      "leaked": 3,
+      "wave": 3,
+      "totalWaves": 60,
+      "skills": 0,
+      "rejected": []
+    },
+    {
+      "scenario": "stage-7-line-clear.json",
+      "phase": "won",
+      "life": 3,
+      "seconds": 1730.8,
+      "killed": 502,
+      "leaked": 0,
+      "wave": 60,
+      "totalWaves": 60,
+      "skills": 122,
+      "rejected": []
+    },
+    {
+      "scenario": "stage-7-rear-clear.json",
+      "phase": "won",
+      "life": 3,
+      "seconds": 1736.9666666666667,
+      "killed": 502,
+      "leaked": 0,
+      "wave": 60,
+      "totalWaves": 60,
+      "skills": 131,
+      "rejected": []
+    },
+    {
+      "scenario": "stage-7-skills-stop.json",
+      "phase": "lost",
+      "life": 0,
+      "seconds": 300.03333333333336,
+      "killed": 90,
+      "leaked": 3,
+      "wave": 12,
+      "totalWaves": 60,
+      "skills": 18,
+      "rejected": []
+    },
+    {
+      "scenario": "stage-7-wide-clear.json",
+      "phase": "won",
+      "life": 3,
+      "seconds": 1730.8,
+      "killed": 502,
+      "leaked": 0,
+      "wave": 60,
+      "totalWaves": 60,
+      "skills": 121,
+      "rejected": []
+    }
+  ]
+}

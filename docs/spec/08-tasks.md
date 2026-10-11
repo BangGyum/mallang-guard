@@ -497,6 +497,16 @@
 - 캠페인 회귀: 수정 후 PC·844×390 터치의 1→5 총 10회가 모두 푸딩 3개·119/192/369/442/473 처치·전체 웨이브·누수/거부 명령/잘못된 보상 0으로 끝났습니다. 14종 등장·치유·보호막 피해, 별 15개 저장/복원·6번 해금·7번 잠금·패배 후 최고 기록 유지를 확인했고 전투 결과·시간·보상·후반 압박은 수정 전 기록과 같습니다. 브라우저 오류/경고는 0건입니다. 긴 구간은 가상 시계로 가속했고 터치는 에뮬레이션이므로 실제 기기의 FPS나 실시간 재미를 측정한 결과는 아닙니다.
   결과: [종합 기록](../verification/t4.19-stage-playtest.json), [직접 입력](../verification/t4.19-direct-play.json), [2번 누수 재현](../verification/t4.19-stage-2-leak.json), [정지 배치 수정 전](../verification/t4.19-before-paused-deployment.json), [정지 배치 수정 후](../verification/t4.19-paused-deployment.json), [PC 완주](../verification/t4.19-campaign-desktop.json), [터치 완주](../verification/t4.19-campaign-mobile.json), [연출](../verification/t4.19-combat-art.json). 화면: [수정 전 공중 배치](../verification/t4.19-before-desktop-paused-deploy.png), [수정 후 전투 정지 배치](../verification/t4.19-desktop-midbattle-deploy.png), [터치 정지 배치](../verification/t4.19-mobile-midbattle-deploy.png), [PC 5번 후반](../verification/t4.19-desktop-stage-5-pressure.png), [터치 별 15개](../verification/t4.19-mobile-all-stars.png).
 
+### [x] T4.20 고정 관통력 도입
+- 사용자 요청 (2026-10-11): 보고한 관통력 컨벤션을 승인하고 실제 게임에 도입합니다.
+- 읽을 문서: 01·02·03·05·07·09의 공용 콘텐츠 타입·피해·스킬·UI·골든 공략 계약.
+- 기준: `armorPen`은 0 이상의 정수이며 생략하면 0입니다. 유효 방어력 `max(0, def - armorPen)`과 물리 피해 `max(atk - 유효 방어력, atk * 0.05)`를 사용합니다. 관통은 자신의 각 공격에 적용하고 적의 방어력을 바꾸지 않으며 마법·고정 피해는 기존 계산을 사용합니다. 소수 피해·보호막 우선 흡수를 유지합니다.
+- 최종 배분: 권총 토리 5·굴굴 10, 해머 뚜껑곰 5, 검 냥기사 10, 소총 펭펭 15, 저격 랑랑 120이며 삼중 조준 중 +40입니다. 일반 무기의 초기 후보는 기존 1~4번 수동 스킬 미사용 공략도 승리시켜 낮췄습니다. 기본 공격·물리 펄스·범위·동시 사격과 두 정보창에 같은 실제 값을 적용합니다. 공격력·비용·사거리·SP·적·맵·웨이브는 유지합니다.
+- 완료 조건: 관통 0의 호환·초과/최소 피해·마법 무시·보호막·스킬 합산/만료·대상별 계산·유효성 검증, 기존 양성/음성 공략과 PC·터치 1~5 완주·정보/스킬 표기, check/lint/test/build와 검증 기록을 확인합니다.
+- 구현/검증: 기본 필드의 0 정규화와 지속 스킬 `armorPenAdd`, 일반·범위·삼중 사격·물리 펄스의 공통 피해 계산, 두 정보창의 기본/현재 관통력을 연결했습니다. 64개 파일 1,123개 자동 테스트와 check/lint/test/build, 시나리오 순서 보정 후 결정론·기대 결과 재검사 91개가 통과했습니다. 전체 29개 공략의 승패가 유지되고 10개 클리어 공략은 모두 푸딩 3개이며 거부 명령은 없습니다. 공격 횟수·타깃 변화에 맞춰 2/4/6번 일부 스킬 입력 시각과 4번 대상 없는 펄스·7번 종료 후 입력만 보정했습니다.
+- 화면 검증/수정: PC·터치 1→5 총 10회가 모두 푸딩 3개·119/192/369/442/473 처치·전체 웨이브·누수/거부 명령/잘못된 보상 0으로 끝났습니다. 별 15개 저장/복원·6번 해금·패배 시 기록 보존도 통과했습니다. 10개 카드와 배치된 스킬 창을 PC·844×390·740×360·390×844에서 확인했고, 740×360의 능력치 잘림을 재현해 높이 380px 이하에서 보조 설명·그림을 줄여 두 줄을 모두 보여 줍니다. 60px 발동·44px 터치 영역을 유지하며 리사이즈 회귀도 통과했습니다. 랑랑의 PC·터치 3명/1명 총 4회는 관통 120→160→120·발수 3/1·자연 SP·실제 피해를 확인했습니다. 검증 스크립트는 개발 서버가 실제로 불러온 Battle 모듈을 관찰합니다. 프로덕션 경로의 WebGL·초상화 10개·12웨이브·처치 수입·나가기와 브라우저 오류/경고 0건을 확인했습니다. 가상 시계·터치 에뮬레이션이며 FPS·실제 기기·실시간 재미 검증은 아닙니다.
+  결과: [종합 기록](../verification/t4.20-armor-penetration.json), [도입 전](../verification/t4.20-before-balance.json), [도입 후](../verification/t4.20-after-balance.json), [PC 캠페인](../verification/t4.20-campaign-desktop.json), [터치 캠페인](../verification/t4.20-campaign-mobile.json), [정보창](../verification/t4.20-unit-selection.json), [랑랑](../verification/t4.20-line-sniper.json). 화면: [PC 기본 관통](../verification/t4.20-mouse-1920x1080-card-info.png), [터치 활성 관통](../verification/t4.20-mobile-line-3-volley.png), [좁은 화면 수정 전](../verification/t4.20-before-touch-740-popup.png), [수정 후](../verification/t4.20-touch-740x360-deployed-charging.png).
+
 ## M5 확장 (방향만 정해 둠)
 
 - 모바일 성능 최적화, PWA(오프라인 실행)

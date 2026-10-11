@@ -44,7 +44,7 @@ export function attackEnemies(
         ranged: true,
       });
       for (const target of targets) {
-        damageEnemy(content, unit, target, stats.atk, def.damageType, events);
+        damageEnemy(content, unit, target, stats.atk, def.damageType, events, stats.armorPen);
         for (const effect of effects) {
           if (effect.type === 'onHitSlow')
             slowEnemy(target, effect.amount, state.tick + secToTicks(effect.sec), state.tick, events);

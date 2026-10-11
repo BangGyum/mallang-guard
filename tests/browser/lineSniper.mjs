@@ -18,6 +18,10 @@ try {
     await context.grantPermissions(['local-network-access']);
     const page = await context.newPage();
     const errors = [];
+    let battleModuleUrl;
+    page.on('request', (request) => {
+      if (new URL(request.url()).pathname === '/src/sim/battle.ts') battleModuleUrl = request.url();
+    });
     page.on('pageerror', (error) => errors.push(error.message));
     page.on('console', (message) => {
       if (['error', 'warning'].includes(message.type())) errors.push(message.text());
@@ -72,9 +76,14 @@ try {
       else await page.mouse.click(point.x, point.y);
       await frame(page, 250);
       assert.equal(await page.locator('.unit-panel').getAttribute('data-unit-id'), 'wolf');
+      await page.locator('.unit-popup-card').evaluate(async (card) => {
+        await Promise.all(card.getAnimations().map((animation) => animation.finished));
+      });
     };
     for (const count of [3, 1]) {
-      await page.evaluate(createLineSniperGame, count);
+      await page.evaluate(() => import('/src/app/app.ts'));
+      assert(battleModuleUrl);
+      await page.evaluate(createLineSniperGame, { count, battleModuleUrl });
       await page.locator('.title-screen').waitFor();
       assert.equal(await page.locator('.title-friend svg').count(), 10);
       await enterBattle(page, { waitForStart: false });
@@ -148,8 +157,8 @@ try {
       const base = await read();
       assert.equal(base.uiRange, 5);
       assert(base.volleys.length > 0 && base.volleys.every((batch) => batch.shots.length === 1));
-      assert(base.volleys.every((batch) => batch.damage.length === 1 && batch.damage[0] === 600));
-      assert.match(await page.locator('.unit-stats').textContent(), /공격력 650.*2\.40초/s);
+      assert(base.volleys.every((batch) => batch.damage.length === 1 && batch.damage[0] === 650));
+      assert.match(await page.locator('.unit-stats').textContent(), /공격력 650.*관통력 120.*2\.40초/s);
       await page.screenshot({ path: `docs/verification/${prefix}-${label}-line-${count}-base.png` });
       await click(page.locator('.unit-popup-close'));
       await resume(page);
@@ -162,7 +171,7 @@ try {
       const active = await read();
       assert.equal(active.uiRange, 15);
       assert.equal(active.skillState, 'active');
-      assert.match(await page.locator('.unit-stats').textContent(), /공격력 585.*2\.40초/s);
+      assert.match(await page.locator('.unit-stats').textContent(), /공격력 585.*관통력 160.*2\.40초/s);
       assert.match(
         await page.locator('.skill-notice[data-unit-id="wolf"]').textContent(),
         /랑랑.*삼중 조준/s,
@@ -179,7 +188,7 @@ try {
       const volley = (await read()).volleys[mark];
       assert.equal(volley.shots.length, count);
       assert.equal(new Set(volley.shots).size, count);
-      assert.deepEqual(volley.damage, Array(count).fill(535));
+      assert.deepEqual(volley.damage, Array(count).fill(585));
       await page.screenshot({
         path: `docs/verification/${prefix}-${label}-line-${count}-volley.png`,
         animations: 'disabled',
@@ -195,7 +204,7 @@ try {
       await select();
       const restored = await read();
       assert.equal(restored.uiRange, 5);
-      assert.match(await page.locator('.unit-stats').textContent(), /공격력 650.*2\.40초/s);
+      assert.match(await page.locator('.unit-stats').textContent(), /공격력 650.*관통력 120.*2\.40초/s);
       await page.screenshot({ path: `docs/verification/${prefix}-${label}-line-${count}-restored.png` });
       assert.deepEqual(restored.rejected, []);
       assert.deepEqual(errors, []);
@@ -211,6 +220,7 @@ try {
         targets: volley.shots,
         damage: volley.damage,
         attack: [650, 585, 650],
+        armorPen: [120, 160, 120],
         intervalSec: 2.4,
         naturalCharge: true,
         rejected: restored.rejected,

@@ -1,9 +1,9 @@
-export async function createLineSniperGame(count) {
+export async function createLineSniperGame({ count, battleModuleUrl }) {
   const { createApp } = await import('/src/app/app.ts');
   const { loadArtAssets } = await import('/src/app/artAssets.ts');
   const { rawContent } = await import('/src/data/index.ts');
   const { validateContent } = await import('/src/data/validate.ts');
-  const { Battle } = await import('/src/sim/battle.ts');
+  const { Battle } = await import(battleModuleUrl);
   if (!window.lineSniperAudit) {
     for (const name of ['step', 'flush']) {
       const original = Battle.prototype[name];

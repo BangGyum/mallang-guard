@@ -48,7 +48,8 @@ export function createRosterPanel(root: HTMLDivElement, battle: Battle, close: (
         name.textContent = def.name;
         role.textContent = `${def.animal} · ${ROLE_NAMES[def.role]}`;
         const range = battle.content.ranges.get(def.range);
-        stats.textContent = `배치 도토리 ${def.cost} · 재배치 ${def.redeploySec}초\n공격력 ${def.atk} · ${def.damageType === 'magic' ? '마법' : '물리'}\n공격 간격 ${def.atkIntervalSec.toFixed(2)}초 · ${def.canHitAir ? '대공 가능' : '지상 공격'}\n기본 사거리 ${range?.tiles.length ?? 0}칸 · 보라색 고지대`;
+        const damageType = def.damageType === 'magic' ? '마법' : `물리 · 관통력 ${def.armorPen ?? 0}`;
+        stats.textContent = `배치 도토리 ${def.cost} · 재배치 ${def.redeploySec}초\n공격력 ${def.atk} · ${damageType}\n공격 간격 ${def.atkIntervalSec.toFixed(2)}초 · ${def.canHitAir ? '대공 가능' : '지상 공격'}\n기본 사거리 ${range?.tiles.length ?? 0}칸 · 보라색 고지대`;
         skillName.textContent = ability.name;
         skill.textContent = ability.description;
         charge.textContent = `${ability.charge === 'auto' ? '시간 충전' : '공격 충전'} · ${ability.trigger === 'manual' ? '수동 발동' : '자동 발동'} · 시작 SP ${ability.spStart}/${ability.spCost}${ability.condition === 'enemyInRange' ? ' · 범위 내 적 필요' : ''}`;

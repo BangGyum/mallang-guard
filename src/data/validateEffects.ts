@@ -27,6 +27,8 @@ export function parseEffect(value: unknown, path: string): Effect {
       return { type, n: integer(raw.n, `${path}.n`, 1), sec: positive(raw.sec, `${path}.sec`) };
     case 'killBounty':
       return { type, value: integer(raw.value, `${path}.value`) };
+    case 'armorPenAdd':
+      return { type, value: integer(raw.value, `${path}.value`) };
     case 'hasteAura':
       return { type, value: number(raw.value, `${path}.value`, Number.MIN_VALUE, 1) };
     case 'pulseDamage':

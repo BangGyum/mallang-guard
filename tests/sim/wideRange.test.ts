@@ -111,11 +111,13 @@ describe('밤밤의 전방위 사거리와 화염 개방', () => {
     const f = fixture();
     expect(unitStats(f.db, f.battle.stage, f.battle.state, f.unit)).toEqual({
       atk: 320,
+      armorPen: 0,
       atkIntervalTicks: 54,
     });
     activate(f);
     expect(unitStats(f.db, f.battle.stage, f.battle.state, f.unit)).toEqual({
       atk: 480,
+      armorPen: 0,
       atkIntervalTicks: 27,
     });
     run(f.battle, secToTicks(f.skill.durationSec) - 1);
@@ -130,6 +132,7 @@ describe('밤밤의 전방위 사거리와 화염 개방', () => {
     expect(f.battle.rangeTilesFor('owl', TILE, 'right')).toHaveLength(25);
     expect(unitStats(f.db, f.battle.stage, f.battle.state, f.unit)).toEqual({
       atk: 320,
+      armorPen: 0,
       atkIntervalTicks: 54,
     });
   });
