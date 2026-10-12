@@ -221,6 +221,7 @@ export function createEntityViews(content: ContentDb, board: Board, textures: Re
           place(view, lerp(enemy.px, enemy.x, alpha), lerp(enemy.py, enemy.y, alpha), 0);
         if (enemy.x !== enemy.px) view.direction = Math.sign(enemy.x - enemy.px);
         view.motion.stunned = enemy.stunUntilTick > state.tick;
+        view.motion.active = enemy.bossCastUntilTick > 0;
         if (!view.motion.stunned)
           view.motion.clock +=
             ((dt * (content.enemies.get(enemy.enemyId)?.speed ?? 0.9)) / 0.9) * (1 - enemy.slowAmount);

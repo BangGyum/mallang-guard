@@ -1,4 +1,6 @@
 import type { Battle } from '../sim/battle';
+import { TICK_RATE } from '../sim/constants';
+import { bossSkillTheme } from '../view/bossSkillTheme';
 import { element } from './dom';
 import { playFeedback } from './feedback';
 import { portrait } from './portrait';
@@ -15,14 +17,16 @@ export function createBossHud(root: HTMLElement, battle: Battle) {
   const hp = element('progress', 'boss-hp');
   const shield = element('progress', 'boss-shield');
   const shieldValue = element('span', 'boss-shield-value');
+  const skill = element('span', 'boss-skill');
   const announcement = element('span', 'boss-announcement');
   announcement.setAttribute('role', 'status');
   announcement.setAttribute('aria-live', 'polite');
   heading.append(caption, name, value);
-  details.append(heading, hp, shield, shieldValue);
+  details.append(heading, hp, shield, shieldValue, skill);
   panel.append(avatar, details);
   root.append(panel, announcement);
   let selectedUid: number | null = null;
+  let announcedCast = 0;
   function place() {
     for (const property of ['left', 'width', 'transform']) panel.style.removeProperty(property);
     const popup = root.parentElement?.querySelector<HTMLElement>(
@@ -109,6 +113,7 @@ export function createBossHud(root: HTMLElement, battle: Battle) {
         return false;
       }
       if (selectedUid !== enemy.uid) {
+        announcedCast = 0;
         avatar.replaceChildren(portrait(def.art, ''));
         announcement.textContent = `보스 출현: ${def.name}. 놓치면 푸딩 ${def.lifeDamage}개를 잃어요.`;
         playFeedback(name, 'pulse');
@@ -127,6 +132,20 @@ export function createBossHud(root: HTMLElement, battle: Battle) {
       shield.value = enemy.shield;
       shield.setAttribute('aria-label', `${def.name} 보호막`);
       shieldValue.textContent = `보호막 ${Math.ceil(enemy.shield)}`;
+      const preparing = enemy.bossCastUntilTick > 0;
+      if (preparing && def.bossSkill && announcedCast !== enemy.bossCastUntilTick) {
+        announcement.textContent = `${def.name}, ${def.bossSkill.name} 준비. 기절로 중단할 수 있어요.`;
+        announcedCast = enemy.bossCastUntilTick;
+      }
+      skill.hidden = !preparing || !def.bossSkill;
+      skill.textContent = `${def.bossSkill?.name ?? ''} · 준비 ${Math.max(0, (enemy.bossCastUntilTick - battle.state.tick) / TICK_RATE).toFixed(1)}초`;
+      panel.dataset.skillPhase = preparing
+        ? 'windup'
+        : enemy.stunUntilTick > battle.state.tick
+          ? 'stunned'
+          : 'charging';
+      panel.style.setProperty('--boss-skill-color', bossSkillTheme(def).color);
+      panel.title = def.bossSkill?.description ?? def.description ?? '';
       place();
       return true;
     },

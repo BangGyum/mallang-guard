@@ -11,7 +11,12 @@ export function updateEnemyMotion(content: ContentDb, state: BattleState): void 
   for (const enemy of state.enemies) {
     enemy.speedMul = 1;
     if (enemy.hp <= 0 || enemy.stunUntilTick > state.tick) continue;
-    const rush = content.enemies.get(enemy.enemyId)?.rush;
+    const def = content.enemies.get(enemy.enemyId);
+    if (enemy.bossCastUntilTick > 0) {
+      enemy.speedMul = 0;
+      continue;
+    }
+    const rush = def?.rush;
     if (rush) {
       enemy.rushCooldown = Math.max(0, enemy.rushCooldown - 1);
       if (enemy.rushCooldown === 0) {
@@ -20,6 +25,8 @@ export function updateEnemyMotion(content: ContentDb, state: BattleState): void 
       }
       if (enemy.rushUntilTick > state.tick) enemy.speedMul = rush.speedMul;
     }
+    if (def?.bossSkill?.effect.type === 'rush' && enemy.rushUntilTick > state.tick)
+      enemy.speedMul = def.bossSkill.effect.speedMul;
     let boost = 1;
     for (const { enemy: source, haste } of auras)
       if (source.uid !== enemy.uid && dist(source.x, source.y, enemy.x, enemy.y) <= haste.range)

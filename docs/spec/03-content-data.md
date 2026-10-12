@@ -71,6 +71,20 @@ export interface UnitDef {
   skill: string; // SkillDef.id
 }
 
+export interface BossSkillDef {
+  name: string;
+  description: string;
+  firstCastSec: number;
+  intervalSec: number;
+  windupSec: number;
+  effect:
+    | { type: 'rush'; durationSec: number; speedMul: number }
+    | { type: 'shield'; amount: number }
+    | { type: 'heal'; amount: number; range: number; targets: number }
+    | { type: 'summon'; enemy: string; count: number; maxCasts: number }
+    | { type: 'disrupt'; range: number; durationSec: number; atkIntervalMul: number; targets: number };
+}
+
 export interface EnemyDef {
   id: string;
   name: string;
@@ -84,6 +98,7 @@ export interface EnemyDef {
   bounty?: number; // 실제 처치 보상, 생략하면 0
   description?: string;
   boss?: boolean; // 보스 표시, 생략하면 일반 적
+  bossSkill?: BossSkillDef; // boss === true일 때만 허용
   shieldHp?: number;
   rush?: { intervalSec: number; durationSec: number; speedMul: number };
   regenerate?: { intervalSec: number; amount: number };
@@ -221,6 +236,7 @@ export interface RawContent {
   - 적이 `flying`이면 그 스폰 그룹의 route는 `flying: true`여야 하고, 반대도 마찬가지입니다.
   - `count ≥ 1`이고, `count > 1`이면 `intervalSec > 0`입니다.
 - M4 적 능력
+  - `bossSkill`은 `boss === true`에서만 허용합니다. 양수 첫 충전/재충전/예고·효과 수치와 예고 < 재충전을 검사합니다. 기존 능동 능력과의 중복·초기 보호막 없는 재구축·누락/비행 불일치/재소환·재분열 자식을 거부합니다. 구체적인 스킬 계약은 [10 문서](10-enemy-roster.md)를 따릅니다.
   - 15종 확장의 `shieldHp`·돌진·재생·치유·가속·소환 선택 필드와 참조 검증은 [10-enemy-roster.md](10-enemy-roster.md)를 따릅니다. 모든 생성 경로의 상태 기본값과 선택 피해 필드·회복 이벤트도 같은 문서에서 정의합니다.
   - 분열 자식은 존재해야 하고 부모와 비행 종류가 같아야 하며 다시 분열할 수 없습니다. `split.count`는 1 이상의 정수입니다.
   - 방해 사거리·주기·지속 시간은 양수, 공격 간격 배율은 1 이상, 대상 수는 1 이상의 정수입니다.

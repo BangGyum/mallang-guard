@@ -76,7 +76,7 @@ describe('짧고 점차 강해지는 초반 정원', () => {
       lateSec: 309,
       peak: 12,
       emptyPercent: 10,
-      kills: 376,
+      kills: 378,
       minSec: 450,
       maxSec: 510,
       idle: 8,

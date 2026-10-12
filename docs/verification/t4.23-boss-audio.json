@@ -1,0 +1,269 @@
+{
+  "rate": 48000,
+  "metrics": [
+    {
+      "sound": "boss-heavy-windup",
+      "seconds": 0.3,
+      "peak": 0.08981259912252426,
+      "rms": 0.026323038719855134,
+      "jump": 0.00545082613825798,
+      "first": 0,
+      "last": -1.547190890960337e-7,
+      "finite": true
+    },
+    {
+      "sound": "boss-heavy-cast",
+      "seconds": 0.5,
+      "peak": 0.2986060678958893,
+      "rms": 0.0741770868071801,
+      "jump": 0.01863950490951538,
+      "first": 0,
+      "last": 9.729771477395843e-8,
+      "finite": true
+    },
+    {
+      "sound": "boss-barrier-windup",
+      "seconds": 0.305,
+      "peak": 0.07142238318920135,
+      "rms": 0.016685010044636343,
+      "jump": 0.013402499724179506,
+      "first": 0,
+      "last": -7.74657053170813e-7,
+      "finite": true
+    },
+    {
+      "sound": "boss-barrier-cast",
+      "seconds": 0.515,
+      "peak": 0.27839234471321106,
+      "rms": 0.046476539912615175,
+      "jump": 0.05518803792074323,
+      "first": 0,
+      "last": -0.0000013344878198040533,
+      "finite": true
+    },
+    {
+      "sound": "boss-split-windup",
+      "seconds": 0.31,
+      "peak": 0.03139485418796539,
+      "rms": 0.009950923856847187,
+      "jump": 0.0014228271320462227,
+      "first": 0,
+      "last": -0.00000808659206086304,
+      "finite": true
+    },
+    {
+      "sound": "boss-split-cast",
+      "seconds": 0.53,
+      "peak": 0.10943759977817535,
+      "rms": 0.037503326806466696,
+      "jump": 0.00578141026198864,
+      "first": 0,
+      "last": -5.66025221360178e-7,
+      "finite": true
+    },
+    {
+      "sound": "boss-bloom-windup",
+      "seconds": 0.315,
+      "peak": 0.06612145155668259,
+      "rms": 0.018453284335517597,
+      "jump": 0.004045078530907631,
+      "first": 0,
+      "last": -0.0000030720641461812193,
+      "finite": true
+    },
+    {
+      "sound": "boss-bloom-cast",
+      "seconds": 0.5450208333333333,
+      "peak": 0.23614804446697235,
+      "rms": 0.05220431588363543,
+      "jump": 0.014446709305047989,
+      "first": 0,
+      "last": 0,
+      "finite": true
+    },
+    {
+      "sound": "boss-storm-windup",
+      "seconds": 0.32,
+      "peak": 0.05530746281147003,
+      "rms": 0.010897333585784551,
+      "jump": 0.02762944996356964,
+      "first": 0,
+      "last": 1.9298510001413555e-13,
+      "finite": true
+    },
+    {
+      "sound": "boss-storm-cast",
+      "seconds": 0.5600208333333333,
+      "peak": 0.218091681599617,
+      "rms": 0.03979813900904098,
+      "jump": 0.10287800431251526,
+      "first": 0,
+      "last": 0,
+      "finite": true
+    },
+    {
+      "sound": "boss-ink-windup",
+      "seconds": 0.325,
+      "peak": 0.05639979988336563,
+      "rms": 0.018694039385231013,
+      "jump": 0.003278113901615143,
+      "first": 0,
+      "last": -0.0000020371178379718913,
+      "finite": true
+    },
+    {
+      "sound": "boss-ink-cast",
+      "seconds": 0.575,
+      "peak": 0.20128343999385834,
+      "rms": 0.05084017037673706,
+      "jump": 0.012955047190189362,
+      "first": 0,
+      "last": -0.0000011261054169153795,
+      "finite": true
+    },
+    {
+      "sound": "boss-command-windup",
+      "seconds": 0.33,
+      "peak": 0.06607476621866226,
+      "rms": 0.02862431745988224,
+      "jump": 0.0021161285935704655,
+      "first": 0,
+      "last": -9.59757384677573e-10,
+      "finite": true
+    },
+    {
+      "sound": "boss-command-cast",
+      "seconds": 0.59,
+      "peak": 0.26966390013694763,
+      "rms": 0.10289707816473939,
+      "jump": 0.008604979142546654,
+      "first": 0,
+      "last": -9.847010318253524e-9,
+      "finite": true
+    }
+  ],
+  "correlations": [
+    {
+      "a": "boss-heavy-cast",
+      "b": "boss-barrier-cast",
+      "value": 0.0187359133497483
+    },
+    {
+      "a": "boss-heavy-cast",
+      "b": "boss-split-cast",
+      "value": 0.001927846167131388
+    },
+    {
+      "a": "boss-heavy-cast",
+      "b": "boss-bloom-cast",
+      "value": 0.006847805754730232
+    },
+    {
+      "a": "boss-heavy-cast",
+      "b": "boss-storm-cast",
+      "value": 0.003578224474549883
+    },
+    {
+      "a": "boss-heavy-cast",
+      "b": "boss-ink-cast",
+      "value": 0.2743702066552076
+    },
+    {
+      "a": "boss-heavy-cast",
+      "b": "boss-command-cast",
+      "value": 0.0028372525260343642
+    },
+    {
+      "a": "boss-barrier-cast",
+      "b": "boss-split-cast",
+      "value": 0.0014829795565759
+    },
+    {
+      "a": "boss-barrier-cast",
+      "b": "boss-bloom-cast",
+      "value": 0.03686032514172663
+    },
+    {
+      "a": "boss-barrier-cast",
+      "b": "boss-storm-cast",
+      "value": 0.014965164178965557
+    },
+    {
+      "a": "boss-barrier-cast",
+      "b": "boss-ink-cast",
+      "value": 0.003961656993708975
+    },
+    {
+      "a": "boss-barrier-cast",
+      "b": "boss-command-cast",
+      "value": 0.0022268355718328622
+    },
+    {
+      "a": "boss-split-cast",
+      "b": "boss-bloom-cast",
+      "value": 0.004062156151424848
+    },
+    {
+      "a": "boss-split-cast",
+      "b": "boss-storm-cast",
+      "value": 0.01085949469872166
+    },
+    {
+      "a": "boss-split-cast",
+      "b": "boss-ink-cast",
+      "value": 0.05709291781452531
+    },
+    {
+      "a": "boss-split-cast",
+      "b": "boss-command-cast",
+      "value": 0.008096558610454985
+    },
+    {
+      "a": "boss-bloom-cast",
+      "b": "boss-storm-cast",
+      "value": 0.01080592142576179
+    },
+    {
+      "a": "boss-bloom-cast",
+      "b": "boss-ink-cast",
+      "value": 0.004624020426386304
+    },
+    {
+      "a": "boss-bloom-cast",
+      "b": "boss-command-cast",
+      "value": 0.19495570843063698
+    },
+    {
+      "a": "boss-storm-cast",
+      "b": "boss-ink-cast",
+      "value": 0.012715921030594497
+    },
+    {
+      "a": "boss-storm-cast",
+      "b": "boss-command-cast",
+      "value": 0.005582716591750552
+    },
+    {
+      "a": "boss-ink-cast",
+      "b": "boss-command-cast",
+      "value": 0.00465867276978799
+    }
+  ],
+  "rawMixedPeak": 1.1564788818359375,
+  "mixedPeak": 0.7276404500007629,
+  "voices": [
+    {
+      "duration": 0.325,
+      "rate": 1.0015218257904053
+    },
+    {
+      "duration": 0.575,
+      "rate": 0.9936965107917786
+    }
+  ],
+  "muted": {
+    "before": 2,
+    "after": 2
+  },
+  "errors": []
+}

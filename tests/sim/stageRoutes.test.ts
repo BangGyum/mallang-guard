@@ -11,7 +11,8 @@ describe('실제 스테이지의 전체 경로와 웨이브', () => {
     (stage) => {
       const damage = stage.spawns.reduce((sum, group) => {
         const def = content.enemies.get(group.enemy);
-        const summon = def?.summon;
+        const summon =
+          def?.summon ?? (def?.bossSkill?.effect.type === 'summon' ? def.bossSkill.effect : undefined);
         const children = summon
           ? summon.count * summon.maxCasts * (content.enemies.get(summon.enemy)?.lifeDamage ?? 0)
           : 0;
@@ -53,7 +54,9 @@ describe('실제 스테이지의 전체 경로와 웨이브', () => {
         }
       }
       const expected = stage.spawns.reduce((sum, group) => {
-        const summon = content.enemies.get(group.enemy)?.summon;
+        const def = content.enemies.get(group.enemy);
+        const summon =
+          def?.summon ?? (def?.bossSkill?.effect.type === 'summon' ? def.bossSkill.effect : undefined);
         return sum + group.count * (1 + (summon ? summon.count * summon.maxCasts : 0));
       }, 0);
       expect([...invalid]).toEqual([]);

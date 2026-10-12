@@ -1,0 +1,207 @@
+{
+  "ticket": "T4.23",
+  "date": "2026-10-13",
+  "baseCommit": "dfe7cfff3de1091ba84f4027352faa1967167ce9",
+  "checks": {
+    "typecheck": "passed",
+    "lint": "passed",
+    "unitTests": {
+      "files": 70,
+      "tests": 1217,
+      "status": "passed"
+    },
+    "build": "passed"
+  },
+  "bossSkills": [
+    {
+      "id": "bigJelly",
+      "name": "덩치젤리",
+      "skill": "웅크린 돌진"
+    },
+    {
+      "id": "gateJelly",
+      "name": "성문젤리",
+      "skill": "방벽 재구축"
+    },
+    {
+      "id": "splitCaptain",
+      "name": "분열대장",
+      "skill": "분신 증식"
+    },
+    {
+      "id": "greenhouseKeeper",
+      "name": "온실지기",
+      "skill": "생명의 개화"
+    },
+    {
+      "id": "stormCrow",
+      "name": "폭풍까악",
+      "skill": "폭풍 활강"
+    },
+    {
+      "id": "kingJelly",
+      "name": "왕젤리",
+      "skill": "먹물 봉인"
+    },
+    {
+      "id": "gardenKing",
+      "name": "정원군주",
+      "skill": "왕실 집결"
+    }
+  ],
+  "browser": {
+    "skillActivations": {
+      "viewports": [
+        "1920x1080",
+        "844x390",
+        "740x360",
+        "390x844",
+        "320x568"
+      ],
+      "checks": 35,
+      "originalBossAndUnitStats": true
+    },
+    "bossPopups": {
+      "viewports": [
+        "740x360",
+        "844x390",
+        "1920x1080",
+        "390x844",
+        "320x568",
+        "600x400"
+      ],
+      "expandedChecks": 36,
+      "arrivalChecks": 6
+    },
+    "bossHud": {
+      "viewports": [
+        "1920x1080",
+        "844x390",
+        "740x360",
+        "390x844"
+      ],
+      "checks": 28
+    },
+    "campaign": {
+      "clears": 14,
+      "life": 3,
+      "leaks": 0,
+      "rejectedCommands": 0,
+      "invalidRewards": 0,
+      "sequentialUnlock": true,
+      "reload": true,
+      "defeatPreservesBest": true
+    },
+    "production": {
+      "productionBase": "/mallang-guard/",
+      "portraits": 10,
+      "webgl": true,
+      "waves": 12,
+      "killOnlyIncome": true,
+      "exit": true,
+      "errors": []
+    },
+    "errors": []
+  },
+  "balance": {
+    "scenarios": 29,
+    "fullLifeClears": 10,
+    "expectedLosses": 19,
+    "rejectedCommands": 0,
+    "pendingCommands": 0,
+    "adjustedScenarioFiles": 8
+  },
+  "audio": {
+    "bossBuffers": 14,
+    "mixedWeaponAndBossBuffers": 23,
+    "mixedPeak": 0.7276404500007629,
+    "maxCorrelation": 0.2743702066552076,
+    "multiTargetWindupAndCastVoices": 2,
+    "mutedCreatesNoSources": true,
+    "resetAndDispose": true,
+    "weaponCases": 20,
+    "existingLifecycle": {
+      "burst": 3,
+      "sounds": 16,
+      "volleys": {
+        "volley": [
+          {
+            "duration": 0.26,
+            "rate": 1.0001859664916992
+          }
+        ],
+        "sword": [
+          {
+            "duration": 0.12,
+            "rate": 1.0020495653152466
+          }
+        ],
+        "spit": [
+          {
+            "duration": 0.14002083333333334,
+            "rate": 0.9843761324882507
+          }
+        ]
+      },
+      "muted": true,
+      "contextClosed": true,
+      "errors": []
+    }
+  },
+  "fixes": [
+    "보스 예고 중 이동과 날갯짓 정지·기절 중단·대상 없는 준비 상태 유지",
+    "다중 먹물 방해의 일반 분사음 중복 제거",
+    "지휘 나팔의 음높이 전환에서 샘플 연속성 유지",
+    "분열 후 광역 공격·온실 최종 포격·자연 충전 타깃 시각을 공략에 반영"
+  ],
+  "limits": [
+    "Edge 가상 시계·터치 에뮬레이션, 실제 기기의 FPS/음질 평가는 포함하지 않음",
+    "스킬 단독 UI 검사는 맵·초기 예산만 별도 구성하고 보스/아군 수치와 전투 상태는 원본 규칙 사용",
+    "효과음 검증은 WebAudio 파형·혼합·재생/정리 검사이며 듣기 샘플은 별도 WAV"
+  ],
+  "sourceHashes": {
+    "src/audio/bossSounds.ts": "937576c87bfdc1f52222a22d64aa4008e618779525583653011311638777fa77",
+    "src/audio/sfx.ts": "aaa14ebf98a0528c6ce8ac05f85dd28dc5226d48636af31dd6e033cb5bf07704",
+    "src/data/enemies.json": "b53327c8ed31a18a94040c8beba237ee4cc707f866940827e83cd607c0131aa8",
+    "src/data/types.ts": "c773441fca29a5143b7832aecb95611ec2035e8f6579a9156c28023ad451a45c",
+    "src/data/validate.ts": "340798b4b939a44ff416558bab4d28818d5f689810b2ce87eab40f305038cdbc",
+    "src/data/validateBossSkill.ts": "2ddd8a73beb09e6d69d8d27a070f37f332ded09fba08aa4297f8048d598776e4",
+    "src/data/validateEntities.ts": "a26b476652b8ff9b197e9d53d552b9af75dc3f17ec933839bcd2f088d38a2bc3",
+    "src/sim/battle.ts": "cdbd18f30464999a9f43b9f145da9c0a149121d9134f64ccc176a85a65048f93",
+    "src/sim/systems/bossSkills.ts": "881b448f29a094276ae2a1175440664e6a052e4f8e38df0f025ca32857a4f48d",
+    "src/sim/systems/enemyMotion.ts": "32f1b46ebd9bb40f04a308ba7984e0bf3a8e2bd14980d7be20dc24b4892c2741",
+    "src/sim/systems/spawn.ts": "509d914aaaedf3fdb0e6a13d23297d0e8010e682927f53ea11d0124b5e4617e3",
+    "src/sim/types.ts": "b02c82ef54d54cf6d2e9f369e1f84a78a506fdb739b19b4df123bab32055ca43",
+    "src/ui/bossHud.css": "4df259cb7169e3a490b4c7dae97305f74ba2a9d076d6d20d8d5f151b68a9cbd5",
+    "src/ui/bossHud.ts": "2ef49c5bf27fc4afb6c6a520f4e05f0f2963b043aad6671e6264686dab83be57",
+    "src/ui/stageSelect.ts": "0c02f73903fd1f3b90d7e71f09d8d60f5e86564cdcc5b6554ca8e06ad15f738c",
+    "src/view/animation.ts": "29877cc669eb7082d0ca5c92da8a1ad5f5ed269509891e52c0e02e927569e6ae",
+    "src/view/bossSkillTheme.ts": "99fc89044d7d318574b148099867845d4bcef7d0883a9c5b17a62f0fc4f33993",
+    "src/view/entityViews.ts": "b55e7fec0c5a7e45a16057f790a7e29ad00940f260e279b8b041cc1062a70f38",
+    "src/view/overlay.ts": "65e46775f648e99b7a03c04a0dc14b298f8b5a09edffccbed45fd6f05c3dd405",
+    "src/view/vfx.ts": "5d733959470abf116d2dea75e07c22f74e01f3a15fa090ee2b3b278e2f5dc896",
+    "tests/audio/bossSounds.test.ts": "326fd69296595e974c7c9e7b9270def53ea1fe6bfb98e0da351f6c637ce8fa72",
+    "tests/bossSkillData.test.ts": "9405f712f84e0547d2a19294d9321aff295bcb9854468362d29e6e6030082d34",
+    "tests/bossSkills.test.ts": "36184431619cee9898ba595d91ecdb8d2f00d79ff7870696b4498e59ca47382b",
+    "tests/browser/bossAudio.mjs": "c966109123d3ff54cdff97f0fea99c60e305f428f6d6a7edb6ea141697b872e8",
+    "tests/browser/bossBalance.mjs": "12efeb04a51e11b40ccdc32989adeede5344d76f934b9f790c054f0295d3b7c7",
+    "tests/browser/bossSkillScene.mjs": "9e304d1fd1f683b0a1bc730435173f7a56d84fbf6ed61e66b64e11ea67e6fa10",
+    "tests/browser/bossSkills.mjs": "f9ddf31a97ad40db2eeb4cba886ef583ed5578542c98f0ef1bb9c5eac2bc2adb",
+    "tests/earlyStagePressure.test.ts": "9029a2254e72eb53002cfc3262c2f11af75891260c1dc5960c09212ebe8e38ad",
+    "tests/scenarios/stage-3-clear.json": "af57ffaf0b29807810d00f317ac312ef0f706f149e55117607eaafc20e7a133a",
+    "tests/scenarios/stage-4-clear.json": "fefd50631d4e038d5002a189d5d2483d4c86388b87b493298cb3c2820221ccb6",
+    "tests/scenarios/stage-6-clear.json": "0b51cfeaa984faa98318fc5d8dcf887773a9144b5013c2d0a89f9117e3479ae6",
+    "tests/scenarios/stage-7-clear.json": "3a86f72573a5323809168263529960fe8936ddf6205e01432cd4bbb20ff61e57",
+    "tests/scenarios/stage-7-line-clear.json": "1c5f6ebcc4c777a376752b9b7c56ba4350454fc76287b663324b36b9dcc6e8be",
+    "tests/scenarios/stage-7-rear-clear.json": "561a3e9102c6ede72d59d3d858cb9a463709686471500a445fb67452a4457c75",
+    "tests/scenarios/stage-7-skills-stop.json": "d3574bb28a7763b56ba7f5e0a4e637e2ebca9f6b8a89f05c8736bf085179107f",
+    "tests/scenarios/stage-7-wide-clear.json": "7227d595c0bddb43571a0389226c344ee2d87a35648c432c7838378def779a27",
+    "tests/sim/expansion.test.ts": "5c7d70d18e75c8d861d9f00e1b09ee4bc6a1b391d8ee3f08fca4e69eef2683f2",
+    "tests/sim/lineSniperFixtures.ts": "6c000267f91642e9c62651e972860db8a01ae3c69a00adf535ec3f5d5b9f3ffa",
+    "tests/sim/spawn.test.ts": "825358ff6f48a52ddc444beb3f060d0df63cc82ff9105ebc7c052fec7cd07f2e",
+    "tests/sim/stageRoutes.test.ts": "4263d903d2b701038f765974f8b2f21aabf4acf5c2d74f7dd1633ed74587110d",
+    "tests/sim/wideRange.test.ts": "fbcba81f463167de45d7ee78538520dd71f22cfde71adc965f3a298f35f026b9",
+    "tests/stageBosses.test.ts": "9c4b54da9d3fa636ead51e7737995db6385d588c0f58c0fb1beceb3a4f504245",
+    "tests/view/bossAnimation.test.ts": "76f1437f3a1b895fb4fed9a1fc0367b3bf7dec17c3c76d1e701550f822a3f529"
+  }
+}

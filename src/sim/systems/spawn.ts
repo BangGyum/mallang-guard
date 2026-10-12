@@ -30,7 +30,12 @@ export function spawnEnemy(
     slowAmount: 0,
     slowUntilTick: 0,
     stunUntilTick: 0,
-    abilityCooldown: enemy.disrupt ? secToTicks(enemy.disrupt.intervalSec) : 0,
+    abilityCooldown: enemy.bossSkill
+      ? secToTicks(enemy.bossSkill.firstCastSec)
+      : enemy.disrupt
+        ? secToTicks(enemy.disrupt.intervalSec)
+        : 0,
+    bossCastUntilTick: 0,
     shield: enemy.shieldHp ?? 0,
     speedMul: 1,
     rushCooldown: enemy.rush ? secToTicks(enemy.rush.intervalSec) : 0,
@@ -38,7 +43,10 @@ export function spawnEnemy(
     regenCooldown: enemy.regenerate ? secToTicks(enemy.regenerate.intervalSec) : 0,
     healCooldown: enemy.heal ? secToTicks(enemy.heal.intervalSec) : 0,
     summonCooldown: enemy.summon ? secToTicks(enemy.summon.intervalSec) : 0,
-    summonsRemaining: enemy.summon?.maxCasts ?? 0,
+    summonsRemaining:
+      enemy.bossSkill?.effect.type === 'summon'
+        ? enemy.bossSkill.effect.maxCasts
+        : (enemy.summon?.maxCasts ?? 0),
   });
   events.push({
     type: 'enemySpawn',

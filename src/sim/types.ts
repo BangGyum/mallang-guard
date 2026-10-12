@@ -46,6 +46,7 @@ export type SimEvent =
   | { type: 'enemyLeak'; uid: number; lifeLeft: number }
   | { type: 'enemyDie'; uid: number }
   | { type: 'enemyHeal'; src: number; uid: number; amount: number }
+  | { type: 'bossSkill'; uid: number; enemyId: string; phase: 'windup' | 'cast' | 'cancel' }
   | { type: 'attack'; src: Ref; dst: Ref; damageType: DamageType; ranged: boolean }
   | {
       type: 'damage';
@@ -105,6 +106,7 @@ export interface EnemyEntity {
   slowUntilTick: number;
   stunUntilTick: number;
   abilityCooldown: number;
+  bossCastUntilTick: number;
   shield: number;
   speedMul: number;
   rushCooldown: number;

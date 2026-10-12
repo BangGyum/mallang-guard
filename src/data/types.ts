@@ -69,6 +69,20 @@ export interface UnitDef {
   skill: string; // SkillDef.id
 }
 
+export interface BossSkillDef {
+  name: string;
+  description: string;
+  firstCastSec: number;
+  intervalSec: number;
+  windupSec: number;
+  effect:
+    | { type: 'rush'; durationSec: number; speedMul: number }
+    | { type: 'shield'; amount: number }
+    | { type: 'heal'; amount: number; range: number; targets: number }
+    | { type: 'summon'; enemy: string; count: number; maxCasts: number }
+    | { type: 'disrupt'; range: number; durationSec: number; atkIntervalMul: number; targets: number };
+}
+
 export interface EnemyDef {
   id: string;
   name: string;
@@ -82,6 +96,7 @@ export interface EnemyDef {
   bounty?: number; // 처치 도토리, 없으면 0
   description?: string;
   boss?: boolean; // 보스 표시용, 생략하면 일반 적
+  bossSkill?: BossSkillDef;
   shieldHp?: number;
   rush?: { intervalSec: number; durationSec: number; speedMul: number };
   regenerate?: { intervalSec: number; amount: number };

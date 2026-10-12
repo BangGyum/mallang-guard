@@ -4,6 +4,7 @@ import { DEFAULT_SEED } from './constants';
 import { checkDeploy, rangeTilesFor, rosterView, unitAt } from './queries';
 import { createStage } from './stage';
 import { attackEnemies } from './systems/attack';
+import { updateBossSkills } from './systems/bossSkills';
 import { applyCommand } from './systems/commands';
 import { removeDead } from './systems/death';
 import { updateEnemyAbilities } from './systems/enemyAbilities';
@@ -83,6 +84,7 @@ export class Battle {
     updateRoster(this.#state);
     spawnEnemies(this.stage, this.#state, events);
     updateStatus(this.content, this.stage, this.#state, events);
+    updateBossSkills(this.content, this.stage, this.#state, events);
     updateEnemyMotion(this.content, this.#state);
     moveEnemies(this.content, this.stage, this.#state, events);
     if (this.#state.phase === 'running') {

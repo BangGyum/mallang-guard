@@ -62,6 +62,7 @@ function enemy(uid: number, x: number, y: number): EnemyEntity {
     slowUntilTick: 0,
     stunUntilTick: 0,
     abilityCooldown: 0,
+    bossCastUntilTick: 0,
     shield: 0,
     speedMul: 1,
     rushCooldown: 0,

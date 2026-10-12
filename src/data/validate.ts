@@ -40,11 +40,16 @@ export function validateContent(value: unknown): ContentDb {
           `content/skills[${index}].effects[${effectIndex}].range: unknown range "${effect.range}"`,
         );
   for (const [index, enemy] of enemies.entries()) {
-    if (enemy.summon) {
-      const path = `content/enemies[${index}].summon.enemy`;
-      const child = content.enemies.get(enemy.summon.enemy);
-      assert(child, `${path}: unknown enemy "${enemy.summon.enemy}"`);
-      assert(!child.summon && !child.split, `${path}: summoned child cannot summon or split`);
+    const bossSummon = enemy.bossSkill?.effect.type === 'summon' ? enemy.bossSkill.effect : undefined;
+    const summon = enemy.summon ?? bossSummon;
+    if (summon) {
+      const path = `content/enemies[${index}].${bossSummon ? 'bossSkill.effect' : 'summon'}.enemy`;
+      const child = content.enemies.get(summon.enemy);
+      assert(child, `${path}: unknown enemy "${summon.enemy}"`);
+      assert(
+        !child.summon && child.bossSkill?.effect.type !== 'summon' && !child.split,
+        `${path}: summoned child cannot summon or split`,
+      );
       assert(child.flying === enemy.flying, `${path}: flying flag does not match parent`);
     }
     if (!enemy.split) continue;
