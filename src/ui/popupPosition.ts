@@ -37,7 +37,8 @@ export function placeUnitPopup(root: HTMLElement, popup: HTMLElement, point: Scr
 
 export function placeRosterPopup(root: HTMLElement, popup: HTMLElement): void {
   const bounds = popupBounds(root);
-  popup.style.maxHeight = `${Math.max(0, bounds.bottom - bounds.top)}px`;
+  const availableHeight = Math.max(0, bounds.bottom - bounds.top);
+  popup.style.maxHeight = `${root.clientWidth <= 700 ? Math.min(availableHeight, 320) : availableHeight}px`;
   popup.style.left = `${Math.max(bounds.left, bounds.right - popup.offsetWidth)}px`;
   popup.style.top = `${Math.max(bounds.top, bounds.bottom - popup.offsetHeight)}px`;
 }

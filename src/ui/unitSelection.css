@@ -131,6 +131,7 @@
   border-radius: 7px;
 }
 .is-deployed .unit-popup-name {
+  display: block;
   font-size: 16px;
 }
 .is-deployed .unit-description {
@@ -158,9 +159,6 @@
 }
 .is-deployed .unit-info-details {
   margin: 0;
-}
-.is-deployed .skill-description {
-  display: none;
 }
 .is-deployed .unit-stats {
   padding: 3px 5px;
@@ -218,7 +216,7 @@
     line-height: 1.1;
   }
   .is-deployed .unit-popup-card {
-    padding: 6px;
+    padding: 4px;
     gap: 2px;
   }
   .is-deployed .skill-name {
@@ -272,6 +270,13 @@
     display: none;
   }
   .is-deployed .unit-popup-card {
+    padding: 1px 4px;
     gap: 1px;
+  }
+  .is-deployed .unit-stats {
+    padding: 1px 5px;
+  }
+  .is-deployed .skill-meter {
+    padding: 1px 5px;
   }
 }

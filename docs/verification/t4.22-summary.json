@@ -1,0 +1,73 @@
+{
+  "ticket": "T4.22",
+  "date": "2026-10-12",
+  "baseCommit": "5115fbe6dbb3e258c01badc8ea27f268e81b2ae4",
+  "checks": {
+    "typecheck": "passed",
+    "lint": "passed",
+    "unitTests": {
+      "files": 66,
+      "tests": 1166,
+      "status": "passed"
+    },
+    "build": "passed"
+  },
+  "browser": {
+    "skillDetails": {
+      "viewports": [
+        "1920x1080",
+        "844x390",
+        "740x360",
+        "390x844",
+        "320x568"
+      ],
+      "characters": 50,
+      "naturalSkillActivations": 2
+    },
+    "unitSelection": {
+      "viewports": [
+        "mouse-1920x1080",
+        "touch-844x390",
+        "touch-740x360",
+        "touch-390x844"
+      ],
+      "cards": 40,
+      "manualSkillRetreatAndResize": true
+    },
+    "bossPopups": {
+      "viewports": [
+        "740x360",
+        "844x390",
+        "1920x1080",
+        "390x844",
+        "320x568",
+        "600x400"
+      ],
+      "expandedChecks": 36,
+      "arrivalChecks": 6
+    },
+    "errors": []
+  },
+  "fixes": [
+    "좁은 가로 준비 중 현재 능력치 잘림 보정",
+    "세로 화면 카드 정보 높이를 제한해 탭 배치 유지",
+    "상세 Enter/Space로 전투 정지 상태가 바뀌지 않음"
+  ],
+  "limits": [
+    "가상 시간과 터치 에뮬레이션",
+    "스킬 상세 검사는 단독 맵·느린 적을 사용하며 아군·스킬·sim 상태는 원본 유지"
+  ],
+  "sourceHashes": {
+    "src/ui/skillDetails.ts": "3a0d6451cf687b4f6006214b0bbc669a7fc64eeb470110023782f22f730f46b0",
+    "src/ui/skillDetails.css": "b79c98da941300794111c6cf602fe76bf611f0d670a5eb055420ee4d2b61353d",
+    "src/ui/rosterPanel.ts": "fb747f0be69fdfb8e65131b92e6474910e48220b76d9a51208d53eff709eca28",
+    "src/ui/unitPanel.ts": "01e47d3efe06ce1801699d1eebcd22e3c09f2e1d5baac339a81d7ca626159f20",
+    "src/ui/unitSelection.css": "9a9ac7e93a43c1e7534218d96631c3029823581995c82da6ab8cacbeb16771a0",
+    "src/ui/popupPosition.ts": "6db7db2c85e575d4f3e0b6c59f34e9e4c6f24f5cbfe766fa1d33b01087164e11",
+    "src/ui/styles.css": "ab7eeb34a236cfd3025ac2d96a6f5828c038bdab8d929ea443acd75a739d48aa",
+    "tests/skillDetails.test.ts": "15cce463f8d52e239ea5e9704631d140aac8ec9693cfa0680e4fd20076b354e5",
+    "tests/browser/skillDetails.mjs": "fa360a36569dc02d393c6d34cd84b8d7cf6b8d6ca721263c0921386c67470997",
+    "tests/browser/unitSelection.mjs": "f32d299af58de86b8465ef1db9f75266dd0557a710d475f4344f553d5296f7a5",
+    "tests/browser/bossPopups.mjs": "8a34421841c57b29e9aa6bca4e8a6ba245a23a7f4805a6d3d7998f35a88a5d83"
+  }
+}
