@@ -47,8 +47,12 @@ export function createStageSelect(
       const enemy = content.enemies.get(id);
       if (!enemy) continue;
       const foe = element('span', 'stage-enemy');
-      foe.title = `${enemy.name} · ${enemy.description ?? '경로를 따라 푸딩으로 이동해요.'} · 처치 보상 ${enemy.bounty ?? 0}개`;
-      foe.append(portrait(enemy.art, ''), element('small', '', enemy.name));
+      foe.classList.toggle('is-boss', enemy.boss === true);
+      foe.title = `${enemy.boss ? '보스 · ' : ''}${enemy.name} · ${enemy.description ?? '경로를 따라 푸딩으로 이동해요.'} · 처치 보상 ${enemy.bounty ?? 0}개`;
+      foe.append(
+        portrait(enemy.art, ''),
+        element('small', '', `${enemy.boss ? '보스 · ' : ''}${enemy.name}`),
+      );
       foes.append(foe);
     }
     card.append(

@@ -33,12 +33,12 @@ describe('골든 시나리오', () => {
     expect(result.hashes.at(-1)?.hash).toBe(hashState(result.state));
   });
 
-  it('배치와 수동 스킬로 12웨이브의 지상·비행 적 119마리를 처치하고 푸딩 3개를 지킨다', () => {
+  it('배치와 수동 스킬로 12웨이브의 지상·비행 적 120마리를 처치하고 푸딩 3개를 지킨다', () => {
     const scenario = scenarios['./scenarios/stage-1-clear.json'];
     if (!scenario) throw new Error('클리어 시나리오 없음');
     const result = runScenario(content, scenario);
-    expect(result.state).toMatchObject({ phase: 'won', life: 3, killed: 119, leaked: 0, currentWave: 12 });
-    expect(result.events.filter((event) => event.type === 'enemyDie')).toHaveLength(119);
+    expect(result.state).toMatchObject({ phase: 'won', life: 3, killed: 120, leaked: 0, currentWave: 12 });
+    expect(result.events.filter((event) => event.type === 'enemyDie')).toHaveLength(120);
     const spawns = result.events.filter((event) => event.type === 'enemySpawn');
     expect(spawns.filter((event) => event.enemyId === 'jelly')).toHaveLength(79);
     expect(spawns.filter((event) => event.enemyId === 'hardJelly')).toHaveLength(17);

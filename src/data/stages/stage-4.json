@@ -1,7 +1,7 @@
 {
   "id": "stage-4",
   "name": "1-4 끈적한 온실",
-  "description": "방해꾼과 치유 지원자가 후반에 큰 무리와 함께 와요. 양쪽 입구에 스킬을 나눠 써요.",
+  "description": "방해꾼과 치유 지원자가 후반에 큰 무리와 함께 와요. 양쪽 입구에 스킬을 나눠 써요. 마지막 웨이브에 온실지기 보스가 등장해요.",
   "startDp": 24,
   "routes": {
     "upper": {
@@ -143,6 +143,7 @@
     { "wave": 50, "atSec": 1040, "enemy": "hardJelly", "count": 8, "intervalSec": 3.2, "route": "upper" },
     { "wave": 47, "atSec": 986, "enemy": "shieldJelly", "count": 1, "intervalSec": 0, "route": "lower" },
     { "wave": 48, "atSec": 999, "enemy": "flowerJelly", "count": 1, "intervalSec": 0, "route": "upper" },
-    { "wave": 49, "atSec": 1022, "enemy": "captainJelly", "count": 1, "intervalSec": 0, "route": "lower" }
+    { "wave": 49, "atSec": 1022, "enemy": "captainJelly", "count": 1, "intervalSec": 0, "route": "lower" },
+    { "wave": 50, "atSec": 1040, "enemy": "greenhouseKeeper", "count": 1, "intervalSec": 0, "route": "lower" }
   ]
 }

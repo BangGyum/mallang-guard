@@ -1,7 +1,7 @@
 {
   "id": "stage-2",
   "name": "1-2 두 갈래 산책길",
-  "description": "20웨이브 동안 두 입구를 지켜요. 지상 돌진과 공중 무리를 겹쳐 보내는 후반 공세를 스킬로 막아요.",
+  "description": "20웨이브 동안 두 입구를 지켜요. 지상 돌진과 공중 무리를 겹쳐 보내는 후반 공세를 스킬로 막아요. 마지막 웨이브에 성문젤리 보스가 등장해요.",
   "startDp": 18,
   "routes": {
     "upper": { "from": [0, 2], "via": [[2, 2], [2, 1], [8, 1], [8, 2]], "to": [10, 2] },
@@ -48,7 +48,8 @@
     { "wave": 20, "atSec": 325, "enemy": "hardJelly", "count": 5, "intervalSec": 2, "route": "lower" },
     { "wave": 20, "atSec": 325.5, "enemy": "crow", "count": 8, "intervalSec": 1, "route": "air" },
     { "wave": 18, "atSec": 288, "enemy": "dashJelly", "count": 5, "intervalSec": 1.2, "route": "lower" },
-    { "wave": 18, "atSec": 290, "enemy": "crystalJelly", "count": 3, "intervalSec": 1.2, "route": "upper" }
+    { "wave": 18, "atSec": 290, "enemy": "crystalJelly", "count": 3, "intervalSec": 1.2, "route": "upper" },
+    { "wave": 20, "atSec": 325, "enemy": "gateJelly", "count": 1, "intervalSec": 0, "route": "upper" }
   ],
   "map": ["###########", "#H.......H#", "S..HH#H#..G", "#H.##H#H.H#", "S........##", "####H##H###"],
   "life": 3,

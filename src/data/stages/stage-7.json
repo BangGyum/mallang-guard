@@ -1,7 +1,7 @@
 {
   "id": "stage-7",
   "name": "1-7 드넓은 푸딩 정원",
-  "description": "넓은 정원의 세 입구에 지원 무리가 점점 늘어요. 후방 재배치와 보스·대공 스킬로 막아요.",
+  "description": "넓은 정원의 세 입구에 지원 무리가 점점 늘어요. 후방 재배치와 보스·대공 스킬로 막아요. 마지막 웨이브에 정원군주 보스가 등장해요.",
   "map": [
     "######################",
     "###H##H####H###H##H###",
@@ -246,7 +246,7 @@
     { "wave": 58, "atSec": 1626, "enemy": "spitter", "count": 2, "intervalSec": 5.5, "route": "ground" },
     { "wave": 59, "atSec": 1640, "enemy": "hardJelly", "count": 4, "intervalSec": 4.6, "route": "ground" },
     { "wave": 59, "atSec": 1645, "enemy": "splitJelly", "count": 2, "intervalSec": 5.5, "route": "lower" },
-    { "wave": 60, "atSec": 1658, "enemy": "kingJelly", "count": 1, "intervalSec": 0, "route": "ground" },
+    { "wave": 60, "atSec": 1658, "enemy": "gardenKing", "count": 1, "intervalSec": 0, "route": "ground" },
     { "wave": 60, "atSec": 1666, "enemy": "crow", "count": 2, "intervalSec": 3.7, "route": "air" },
     { "wave": 60, "atSec": 1672, "enemy": "spitter", "count": 2, "intervalSec": 6.4, "route": "lower" },
     { "wave": 60, "atSec": 1668, "enemy": "crow", "count": 2, "intervalSec": 3.7, "route": "airLower" },

@@ -83,6 +83,7 @@ export interface EnemyDef {
   lifeDamage: number; // 누수 시 깎는 푸딩 수
   bounty?: number; // 실제 처치 보상, 생략하면 0
   description?: string;
+  boss?: boolean; // 보스 표시, 생략하면 일반 적
   shieldHp?: number;
   rush?: { intervalSec: number; durationSec: number; speedMul: number };
   regenerate?: { intervalSec: number; amount: number };

@@ -31,6 +31,12 @@ const ART_IDS = [
   'nestJelly',
   'armoredCrow',
   'captainJelly',
+  'bigJelly',
+  'gateJelly',
+  'splitCaptain',
+  'greenhouseKeeper',
+  'stormCrow',
+  'gardenKing',
   'pudding',
 ] as const satisfies readonly ArtId[];
 
@@ -93,6 +99,7 @@ export function parseEnemy(value: unknown, path: string): EnemyDef {
     lifeDamage: integer(raw.lifeDamage, `${path}.lifeDamage`, 1),
   };
   if (raw.description !== undefined) enemy.description = text(raw.description, `${path}.description`);
+  if (raw.boss !== undefined) enemy.boss = bool(raw.boss, `${path}.boss`);
   if (raw.bounty !== undefined) enemy.bounty = integer(raw.bounty, `${path}.bounty`);
   Object.assign(enemy, parseEnemyAbilities(raw, path));
   if (raw.split !== undefined) {

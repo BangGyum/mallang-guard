@@ -1,7 +1,7 @@
 {
   "id": "stage-5",
   "name": "1-5 바람 부는 연못",
-  "description": "세 입구에서 지상·비행 무리가 점점 촘촘해져요. 가속과 중장갑 비행을 함께 대비해요.",
+  "description": "세 입구에서 지상·비행 무리가 점점 촘촘해져요. 가속과 중장갑 비행을 함께 대비해요. 마지막 웨이브에 폭풍까악 보스가 등장해요.",
   "startDp": 22,
   "routes": {
     "ground": {
@@ -143,6 +143,7 @@
     { "wave": 50, "atSec": 1028, "enemy": "crow", "count": 4, "intervalSec": 3.4, "route": "air" },
     { "wave": 47, "atSec": 965, "enemy": "drummerJelly", "count": 1, "intervalSec": 0, "route": "ground" },
     { "wave": 49, "atSec": 1005, "enemy": "armoredCrow", "count": 1, "intervalSec": 0, "route": "air" },
-    { "wave": 49, "atSec": 1008, "enemy": "captainJelly", "count": 1, "intervalSec": 0, "route": "lower" }
+    { "wave": 49, "atSec": 1008, "enemy": "captainJelly", "count": 1, "intervalSec": 0, "route": "lower" },
+    { "wave": 50, "atSec": 1023, "enemy": "stormCrow", "count": 1, "intervalSec": 0, "route": "air" }
   ]
 }

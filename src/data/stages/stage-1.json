@@ -1,7 +1,7 @@
 {
   "id": "stage-1",
   "name": "1-1 푸딩 창고 앞마당",
-  "description": "12웨이브의 짧은 방어전! 권총으로 첫 무리를 막고 대공·마법 친구와 마지막 혼성 공세를 맞아요.",
+  "description": "12웨이브의 짧은 방어전! 권총으로 첫 무리를 막고 대공·마법 친구와 마지막 혼성 공세를 맞아요. 마지막 웨이브에 덩치젤리 보스가 등장해요.",
   "map": ["##HH###HH##", "S....H....#", "#HH#.H.#H.#", "#HH#...#H.G", "####HHH#..#", "###########"],
   "startDp": 10,
   "life": 3,
@@ -33,6 +33,7 @@
     { "wave": 11, "atSec": 188, "enemy": "crow", "count": 5, "intervalSec": 0.9, "route": "air" },
     { "wave": 12, "atSec": 209, "enemy": "hardJelly", "count": 4, "intervalSec": 1.8, "route": "ground" },
     { "wave": 12, "atSec": 212, "enemy": "jelly", "count": 12, "intervalSec": 0.8, "route": "ground" },
-    { "wave": 12, "atSec": 217, "enemy": "crow", "count": 4, "intervalSec": 1, "route": "air" }
+    { "wave": 12, "atSec": 217, "enemy": "crow", "count": 4, "intervalSec": 1, "route": "air" },
+    { "wave": 12, "atSec": 209, "enemy": "bigJelly", "count": 1, "intervalSec": 0, "route": "ground" }
   ]
 }

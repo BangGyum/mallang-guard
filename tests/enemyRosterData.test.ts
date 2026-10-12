@@ -2,13 +2,13 @@ import { describe, expect, it } from 'vitest';
 import { validateContent } from '../src/data/validate';
 import { makeRawContent } from './dataFixtures';
 
-describe('16종 적 데이터 계약', () => {
-  it('16종을 원본 변경 없이 읽고 모든 신규 적을 실제 스테이지에서 소개한다', () => {
+describe('22종 적 데이터 계약', () => {
+  it('22종을 원본 변경 없이 읽고 모든 신규 적을 실제 스테이지에서 소개한다', () => {
     const raw = makeRawContent();
     const before = structuredClone(raw);
     const content = validateContent(raw);
-    expect(content.enemies.size).toBe(16);
-    expect(new Set([...content.enemies.values()].map((enemy) => enemy.art)).size).toBe(16);
+    expect(content.enemies.size).toBe(22);
+    expect(new Set([...content.enemies.values()].map((enemy) => enemy.art)).size).toBe(22);
     const scheduled = new Set(
       [...content.stages.values()].flatMap((stage) => stage.spawns.map((group) => group.enemy)),
     );

@@ -56,7 +56,7 @@ describe('짧고 점차 강해지는 초반 정원', () => {
       lateSec: 154,
       peak: 8,
       emptyPercent: 40,
-      kills: 119,
+      kills: 120,
       minSec: 210,
       maxSec: 270,
       idle: 38,
@@ -66,7 +66,7 @@ describe('짧고 점차 강해지는 초반 정원', () => {
       lateSec: 236,
       peak: 12,
       emptyPercent: 10,
-      kills: 192,
+      kills: 193,
       minSec: 330,
       maxSec: 390,
       idle: 8,
@@ -76,7 +76,7 @@ describe('짧고 점차 강해지는 초반 정원', () => {
       lateSec: 309,
       peak: 12,
       emptyPercent: 10,
-      kills: 369,
+      kills: 376,
       minSec: 450,
       maxSec: 510,
       idle: 8,
@@ -137,7 +137,7 @@ describe('짧고 점차 강해지는 초반 정원', () => {
     const spawns = content.stages.get('stage-1')?.spawns ?? [];
     expect(spawns.find((group) => group.enemy === 'crow')?.atSec).toBeLessThanOrEqual(30);
     expect(new Set(spawns.filter((group) => group.wave === 12).map((group) => group.enemy))).toEqual(
-      new Set(['jelly', 'hardJelly', 'crow']),
+      new Set(['jelly', 'hardJelly', 'crow', 'bigJelly']),
     );
   });
 });

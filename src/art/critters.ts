@@ -1,3 +1,4 @@
+import { createBossArt } from './bossArt';
 import { COMBAT_GEAR, combatEyes } from './combatGear';
 import { ART_COLORS } from './palette';
 
@@ -191,9 +192,10 @@ const C = {
     eyes(75, 10, 0.75) +
     blush(82),
 };
-export type CritterId = keyof typeof C;
-export const CRITTER_IDS = Object.keys(C) as CritterId[];
+const CRITTERS = { ...C, ...createBossArt(C.jelly, C.crow) };
+export type CritterId = keyof typeof CRITTERS;
+export const CRITTER_IDS = Object.keys(CRITTERS) as CritterId[];
 export const CRITTER_ANCHOR = { x: 50, y: 93 };
 export function critterSvg(id: CritterId): string {
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="256" height="256" aria-hidden="true">${C[id]()}</svg>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="256" height="256" aria-hidden="true">${CRITTERS[id]()}</svg>`;
 }
