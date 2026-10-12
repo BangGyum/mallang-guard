@@ -6,6 +6,8 @@
 
 `node tests/browser/stageBosses.mjs`는 실제 보스 데이터에서 마지막 조우만 분리한 UI 장면으로 PC·844×390·740×360·390×844 총 28회에서 등장·표기·웨이브와의 배치·실제 공격 후 체력/보호막 갱신·버튼 동작·종료/나가기 정리를 검사합니다. 비용·HP·이동·공격 수치는 바꾸지 않습니다. 전체 전투와 비용·SP·별 저장은 `node tests/browser/stageCampaign.mjs`가 실제 앱의 마우스/터치 입력으로 따로 검증합니다. 가상 시계를 사용하고 100ms 렌더 간격 안에서 기존 30Hz sim을 진행하므로 실제 기기의 FPS나 실시간 재미를 측정하지 않습니다.
 
+`node tests/browser/bossPopups.mjs`는 PC·844×390·740×360·390×844·320×568·600×400에서 보스 등장 당시 이미 열린 스킬창 6회, 실제 고지대 여섯 위치의 선택/정보창/수동 스킬/웨이브 종료/크기 변경/나가기 36회를 검사합니다. 실제 BoardView·Controller·배치 비용·자연 SP를 사용하며 stage-7의 마지막 보스 조우만 분리합니다. `node tests/browser/bossHudLifecycle.mjs`는 stage-2의 원래 경로·보스 수치에 성문젤리·덩치젤리를 0·10초(1·2웨이브)에 넣은 사본으로 동시 보스 수·첫 등장 순서·누수 후 다음 보스/보호막 전환·종료/재시작 정리를 검사합니다. 전투 수치나 sim 상태를 직접 고치지 않습니다. 재검사 기록은 `docs/verification/t4.21-recheck-*.json`입니다.
+
 ## M3 렌더 성능 측정
 
 `node tests/browser/performance.mjs`는 적 60·유닛 10의 1920×1080 실제 GPU 렌더와 빈 rAF 기준을 함께 측정합니다. 표시 주기가 60Hz 미만인 환경에서는 기준 대비 95% 이상을 확인하고, `--uncapped`로 표시 제한 없는 처리량이 60fps 이상인지 별도로 확인합니다. 렌더 CPU와 프레임 간격의 p95도 기록합니다. 두 결과를 `docs/verification/t3.3-performance*.json`에 기록하며 `MALLANG_SCREENSHOT_PREFIX`로 이름을 변경합니다. 처리량을 사용자 화면의 실제 fps로 해석하지 않습니다. 드로우콜 120 이하·파티클 200 이하도 검사합니다.

@@ -77,7 +77,6 @@ export function createHud(
     },
     update(controls: Controls) {
       const state = battle.state;
-      const bossVisible = bossHud.update();
       preparation.hidden = controls.startInSec <= 0;
       countdown.textContent = `시작까지 ${Math.ceil(controls.startInSec)}초`;
       start.disabled = controls.paused || controls.startInSec <= 3;
@@ -99,6 +98,7 @@ export function createHud(
         waveNotice.hidden = true;
       }
       top.classList.toggle('has-wave-notice', !waveNotice.hidden);
+      const bossVisible = bossHud.update();
       previousLife = state.life;
       previousWave = state.currentWave;
       life.classList.toggle('is-critical', state.life <= 1);

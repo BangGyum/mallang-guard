@@ -23,6 +23,78 @@ export function createBossHud(root: HTMLElement, battle: Battle) {
   panel.append(avatar, details);
   root.append(panel, announcement);
   let selectedUid: number | null = null;
+  function place() {
+    for (const property of ['left', 'width', 'transform']) panel.style.removeProperty(property);
+    const popup = root.parentElement?.querySelector<HTMLElement>(
+      '.unit-panel:not([hidden]), .roster-panel:not([hidden])',
+    );
+    if (!popup) return;
+    const box = panel.getBoundingClientRect();
+    let other = popup.getBoundingClientRect();
+    const wave = root.querySelector<HTMLElement>('.wave-notice:not([hidden])');
+    const waveBox = wave?.getBoundingClientRect();
+    if (!overlaps(box, other) && (!waveBox || !overlaps(waveBox, other))) return;
+    const parent = root.getBoundingClientRect();
+    const rect = popup.parentElement?.getBoundingClientRect();
+    if (!rect) return;
+    const gap = 8;
+    const bar = root.parentElement?.querySelector('.deploy-bar')?.getBoundingClientRect();
+    const bottom = bar ? bar.top - gap : innerHeight - gap;
+    const marker = root.parentElement?.querySelector<HTMLElement>('.unit-popup-anchor:not([hidden])');
+    const onRight = marker
+      ? marker.offsetLeft + rect.left < parent.left + parent.width / 2
+      : other.left + other.width / 2 >= parent.left + parent.width / 2;
+    if (waveBox && overlaps(waveBox, other)) {
+      const left = onRight ? waveBox.right + gap : waveBox.left - gap - other.width;
+      if (left >= parent.left && left + other.width <= parent.right) {
+        popup.style.left = `${left - rect.left}px`;
+      } else if (bottom > waveBox.bottom + gap) {
+        popup.style.top = `${waveBox.bottom + gap - rect.top}px`;
+        popup.style.maxHeight = `${bottom - waveBox.bottom - gap}px`;
+      }
+      other = popup.getBoundingClientRect();
+    }
+    if (!overlaps(box, other)) return;
+    const style = getComputedStyle(panel);
+    const inset =
+      Number.parseFloat(style.paddingLeft) +
+      Number.parseFloat(style.paddingRight) +
+      Number.parseFloat(style.borderLeftWidth) +
+      Number.parseFloat(style.borderRightWidth);
+    const labelWidth = [...heading.children].reduce(
+      (width, child) => width + (child as HTMLElement).offsetWidth,
+      0,
+    );
+    const minWidth = Math.ceil(
+      labelWidth +
+        Number.parseFloat(getComputedStyle(heading).gap) * (heading.children.length - 1) +
+        avatar.offsetWidth +
+        Number.parseFloat(style.gap) +
+        inset,
+    );
+    let leftSpace = other.left - parent.left - gap;
+    let rightSpace = parent.right - other.right - gap;
+    if (Math.max(leftSpace, rightSpace) < minWidth && parent.width >= minWidth + other.width + gap) {
+      popup.style.left = `${(onRight ? parent.right - other.width : parent.left) - rect.left}px`;
+      other = popup.getBoundingClientRect();
+      leftSpace = other.left - parent.left - gap;
+      rightSpace = parent.right - other.right - gap;
+    }
+    const space = Math.max(leftSpace, rightSpace);
+    if (space >= minWidth) {
+      const width = Math.min(box.width, space);
+      const left =
+        leftSpace >= rightSpace
+          ? Math.min(box.left, other.left - gap - width)
+          : Math.max(box.left, other.right + gap);
+      panel.style.width = `${width - inset}px`;
+      panel.style.left = `${left - parent.left}px`;
+      panel.style.transform = 'none';
+    } else if (bottom > box.bottom + gap) {
+      popup.style.top = `${box.bottom + gap - rect.top}px`;
+      popup.style.maxHeight = `${bottom - box.bottom - gap}px`;
+    }
+  }
   return {
     update() {
       const bosses = battle.state.enemies.filter(
@@ -55,6 +127,7 @@ export function createBossHud(root: HTMLElement, battle: Battle) {
       shield.value = enemy.shield;
       shield.setAttribute('aria-label', `${def.name} 보호막`);
       shieldValue.textContent = `보호막 ${Math.ceil(enemy.shield)}`;
+      place();
       return true;
     },
     dispose() {
@@ -62,4 +135,8 @@ export function createBossHud(root: HTMLElement, battle: Battle) {
       announcement.remove();
     },
   };
+}
+
+function overlaps(a: DOMRect, b: DOMRect): boolean {
+  return a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom;
 }

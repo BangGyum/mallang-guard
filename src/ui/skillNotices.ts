@@ -53,6 +53,16 @@ export function createSkillNotices(
       const rect = root.getBoundingClientRect();
       const bounds = popupBounds(root);
       const placed: { left: number; top: number; width: number; height: number }[] = [];
+      const hudBounds: typeof placed = [];
+      for (const hud of root.querySelectorAll('.boss-hud:not([hidden]), .wave-notice:not([hidden])')) {
+        const box = hud.getBoundingClientRect();
+        hudBounds.push({
+          left: box.left - rect.left,
+          top: box.top - rect.top,
+          width: box.width,
+          height: box.height,
+        });
+      }
       const gap = rect.height <= 500 ? 16 : 50;
       for (const unit of battle.state.units) {
         const point = tileScreen(canvas, view.camera, battle.stage.board, unit.tile);
@@ -100,8 +110,8 @@ export function createSkillNotices(
           left: clamp(candidate.left, bounds.left, bounds.right - width),
           top: clamp(candidate.top, bounds.top, bounds.bottom - height),
         }));
-        const overlap = (candidate: { left: number; top: number }) =>
-          placed.reduce(
+        const overlap = (candidate: { left: number; top: number }, obstacles: typeof placed) =>
+          obstacles.reduce(
             (area, other) =>
               area +
               Math.max(
@@ -116,7 +126,9 @@ export function createSkillNotices(
                 ),
             0,
           );
-        positions.sort((a, b) => overlap(a) - overlap(b));
+        positions.sort(
+          (a, b) => overlap(a, hudBounds) - overlap(b, hudBounds) || overlap(a, placed) - overlap(b, placed),
+        );
         const { left, top } = positions[0] ?? { left: x, top: y };
         notice.node.style.left = `${left}px`;
         notice.node.style.top = `${top}px`;

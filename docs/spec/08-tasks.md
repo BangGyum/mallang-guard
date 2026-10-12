@@ -515,6 +515,8 @@
 - 검증: 65개 파일 1,148개 자동 테스트와 check/lint/build가 통과했습니다. 기존 29개 공략의 승패를 유지하며 클리어 10개는 모두 푸딩 3개입니다. 실제 앱의 PC·844×390 터치 1→7 총 14회가 모두 푸딩 3개·누수/거부 명령/잘못된 처치 보상 0으로 끝났습니다. 별 21개 저장/복원·순차 해금·패배 후 최고 기록 보존도 확인했습니다. 네 화면 크기의 보스 표시 28회, 배포용 경로의 WebGL/초상화/처치 수입/나가기, 적 22종 그림과 큰 맵의 17종 소개가 통과했으며 브라우저 오류/경고는 0건입니다. 가상 시간·터치 에뮬레이션 검사로 실제 기기의 FPS·실시간 재미 측정은 아닙니다.
   결과: [종합 기록](../verification/t4.21-stage-bosses.json), [공략](../verification/t4.21-balance.json), [PC 완주](../verification/t4.21-campaign-desktop.json), [터치 완주](../verification/t4.21-campaign-mobile.json), [보스 UI](../verification/t4.21-boss-ui.json), [전체 적](../verification/t4.21-enemy-roster.json), [배포용 경로](../verification/t4.21-production.json). 화면: [터치 보스](../verification/t4.21-844x390-boss-2.png), [좁은 화면](../verification/t4.21-compact-boss.png), [PC 7번 완주](../verification/t4.21-desktop-stage-7-clear.png), [터치 별 21개](../verification/t4.21-mobile-all-stars.png).
 
+  재점검 보완: 작은 창의 스킬·카드 정보창과 보스/웨이브 겹침, 스킬 발동 알림의 보스 가림, 이미 선택한 상태로 보스가 등장하는 첫 프레임 배치를 수정했습니다. 여섯 화면 크기의 선택/스킬/정보창/리사이즈 회귀 검사와 동시 보스 전환·종료/재시작 검사를 추가했습니다. [재검사 기록](../verification/t4.21-recheck-summary.json).
+
 ## M5 확장 (방향만 정해 둠)
 
 - 모바일 성능 최적화, PWA(오프라인 실행)
