@@ -98,16 +98,23 @@
     "speed": 0.38,
     "flying": false,
     "lifeDamage": 3,
-    "description": "친구 셋을 방해하는 보스예요. 놓치면 푸딩 셋을 잃어요.",
-    "disrupt": {
-      "range": 3.3,
-      "intervalSec": 8,
-      "durationSec": 2.5,
-      "atkIntervalMul": 1.5,
-      "targets": 3
-    },
+    "description": "먹물 봉인: 1초 준비 후 3.3칸 안의 가까운 친구 최대 3명의 공격 간격을 2.5초간 1.5배로 늘립니다. 기절로 끊거나 예고 중 스킬을 먼저 쓰세요. 놓치면 푸딩 3개를 잃어요.",
     "bounty": 20,
-    "boss": true
+    "boss": true,
+    "bossSkill": {
+      "name": "먹물 봉인",
+      "description": "1초 준비 후 3.3칸 안의 가까운 친구 최대 3명의 공격 간격을 2.5초간 1.5배로 늘립니다. 기절로 끊거나 예고 중 스킬을 먼저 쓰세요.",
+      "firstCastSec": 3,
+      "intervalSec": 8,
+      "windupSec": 1,
+      "effect": {
+        "type": "disrupt",
+        "range": 3.3,
+        "durationSec": 2.5,
+        "atkIntervalMul": 1.5,
+        "targets": 3
+      }
+    }
   },
   {
     "id": "dashJelly",
@@ -271,7 +278,19 @@
     "lifeDamage": 2,
     "bounty": 12,
     "boss": true,
-    "description": "앞마당의 보스예요. 체력이 많고 천천히 이동해요. 화력 스킬을 모아 집중 공격해요. 놓치면 푸딩 둘을 잃어요."
+    "description": "웅크린 돌진: 0.8초 동안 힘을 모은 뒤 1.5초간 1.35배로 돌진합니다. 준비 중 기절로 끊거나 둔화로 이동을 줄이세요. 놓치면 푸딩 2개를 잃어요.",
+    "bossSkill": {
+      "name": "웅크린 돌진",
+      "description": "0.8초 동안 힘을 모은 뒤 1.5초간 1.35배로 돌진합니다. 준비 중 기절로 끊거나 둔화로 이동을 줄이세요.",
+      "firstCastSec": 2,
+      "intervalSec": 10,
+      "windupSec": 0.8,
+      "effect": {
+        "type": "rush",
+        "durationSec": 1.5,
+        "speedMul": 1.35
+      }
+    }
   },
   {
     "id": "gateJelly",
@@ -286,7 +305,18 @@
     "bounty": 16,
     "boss": true,
     "shieldHp": 900,
-    "description": "산책길의 보스예요. 보호막 900과 높은 방어력을 두르고 와요. 마법과 관통 사격으로 막아요. 놓치면 푸딩 둘을 잃어요."
+    "description": "방벽 재구축: 보호막이 줄면 1초 준비 후 최대 300을 재충전합니다. 보호막 상한은 900이며 준비 중 기절로 끊을 수 있습니다. 놓치면 푸딩 2개를 잃어요.",
+    "bossSkill": {
+      "name": "방벽 재구축",
+      "description": "보호막이 줄면 1초 준비 후 최대 300을 재충전합니다. 보호막 상한은 900이며 준비 중 기절로 끊을 수 있습니다.",
+      "firstCastSec": 2.5,
+      "intervalSec": 14,
+      "windupSec": 1,
+      "effect": {
+        "type": "shield",
+        "amount": 300
+      }
+    }
   },
   {
     "id": "splitCaptain",
@@ -304,7 +334,20 @@
       "enemy": "miniJelly",
       "count": 6
     },
-    "description": "방울 정원의 보스예요. 처치되면 작은 젤리 여섯으로 나뉘어요. 보스를 잡은 뒤에도 범위 공격으로 막아요. 놓치면 푸딩 둘을 잃어요."
+    "description": "분신 증식: 0.8초 준비 후 작은 젤리 한 마리를 소환하며 최대 2회입니다. 사망하면 기존처럼 여섯 마리로 분열합니다. 광역 공격을 준비하세요. 놓치면 푸딩 2개를 잃어요.",
+    "bossSkill": {
+      "name": "분신 증식",
+      "description": "0.8초 준비 후 작은 젤리 한 마리를 소환하며 최대 2회입니다. 사망하면 기존처럼 여섯 마리로 분열합니다. 광역 공격을 준비하세요.",
+      "firstCastSec": 2.5,
+      "intervalSec": 12,
+      "windupSec": 0.8,
+      "effect": {
+        "type": "summon",
+        "enemy": "miniJelly",
+        "count": 1,
+        "maxCasts": 2
+      }
+    }
   },
   {
     "id": "greenhouseKeeper",
@@ -318,18 +361,20 @@
     "lifeDamage": 2,
     "bounty": 20,
     "boss": true,
-    "regenerate": {
-      "intervalSec": 4,
-      "amount": 200
-    },
-    "disrupt": {
-      "range": 2.7,
+    "description": "생명의 개화: 1초 준비 후 자신을 포함한 2.5칸 안의 다친 적 최대 3명을 각각 최대 250 회복합니다. 준비 중 기절이나 집중 공격으로 막으세요. 놓치면 푸딩 2개를 잃어요.",
+    "bossSkill": {
+      "name": "생명의 개화",
+      "description": "1초 준비 후 자신을 포함한 2.5칸 안의 다친 적 최대 3명을 각각 최대 250 회복합니다. 준비 중 기절이나 집중 공격으로 막으세요.",
+      "firstCastSec": 3,
       "intervalSec": 8,
-      "durationSec": 2,
-      "atkIntervalMul": 1.3,
-      "targets": 2
-    },
-    "description": "온실의 보스예요. 4초마다 체력을 200 회복하고 가까운 친구 둘의 공격을 방해해요. 기절과 집중 화력으로 상대해요. 놓치면 푸딩 둘을 잃어요."
+      "windupSec": 1,
+      "effect": {
+        "type": "heal",
+        "amount": 250,
+        "range": 2.5,
+        "targets": 3
+      }
+    }
   },
   {
     "id": "stormCrow",
@@ -343,12 +388,19 @@
     "lifeDamage": 2,
     "bounty": 20,
     "boss": true,
-    "rush": {
+    "description": "폭풍 활강: 0.8초 동안 날개에 바람을 모은 뒤 1.3초간 1.8배로 활강합니다. 대공·둔화로 막고 준비 중 기절로 끊으세요. 놓치면 푸딩 2개를 잃어요.",
+    "bossSkill": {
+      "name": "폭풍 활강",
+      "description": "0.8초 동안 날개에 바람을 모은 뒤 1.3초간 1.8배로 활강합니다. 대공·둔화로 막고 준비 중 기절로 끊으세요.",
+      "firstCastSec": 2,
       "intervalSec": 8,
-      "durationSec": 1,
-      "speedMul": 1.45
-    },
-    "description": "연못의 비행 보스예요. 8초마다 1초 동안 빠르게 날아요. 대공 사격과 둔화 스킬로 막아요. 놓치면 푸딩 둘을 잃어요."
+      "windupSec": 0.8,
+      "effect": {
+        "type": "rush",
+        "durationSec": 1.3,
+        "speedMul": 1.8
+      }
+    }
   },
   {
     "id": "gardenKing",
@@ -363,19 +415,23 @@
     "bounty": 25,
     "boss": true,
     "shieldHp": 800,
-    "summon": {
+    "description": "왕실 집결: 1.2초 준비 후 작은 젤리 둘을 소환하며 최대 3회입니다. 주변 3.3칸의 다른 적은 1.12배로 행군합니다. 보스를 기절시키면 준비와 행군 지원을 끊을 수 있습니다. 놓치면 푸딩 3개를 잃어요.",
+    "bossSkill": {
+      "name": "왕실 집결",
+      "description": "1.2초 준비 후 작은 젤리 둘을 소환하며 최대 3회입니다. 주변 3.3칸의 다른 적은 1.12배로 행군합니다. 보스를 기절시키면 준비와 행군 지원을 끊을 수 있습니다.",
+      "firstCastSec": 4,
       "intervalSec": 12,
-      "enemy": "miniJelly",
-      "count": 1,
-      "maxCasts": 3
+      "windupSec": 1.2,
+      "effect": {
+        "type": "summon",
+        "enemy": "miniJelly",
+        "count": 2,
+        "maxCasts": 3
+      }
     },
-    "disrupt": {
+    "haste": {
       "range": 3.3,
-      "intervalSec": 8,
-      "durationSec": 2.5,
-      "atkIntervalMul": 1.5,
-      "targets": 3
-    },
-    "description": "드넓은 정원의 최종 보스예요. 보호막 800으로 버티고 작은 젤리를 최대 셋 소환하며 친구 셋을 방해해요. 범위 공격과 보스 집중 화력을 함께 준비해요. 놓치면 푸딩 셋을 잃어요."
+      "speedMul": 1.12
+    }
   }
 ]

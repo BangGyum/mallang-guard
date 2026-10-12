@@ -87,7 +87,10 @@ export function samplePose(motion: Readonly<Motion>, reduced: boolean, pose: Pos
       pose.scaleY *= 1 + 0.04 * recoil;
     }
   } else if (!motion.stunned) {
-    if (motion.kind === 'air')
+    if (motion.active) {
+      pose.scaleX = reduced ? 1 : 1.08;
+      pose.scaleY = reduced ? 1 : 0.9;
+    } else if (motion.kind === 'air')
       pose.y = Math.sin((motion.clock * Math.PI * 2) / 0.8 + motion.phase) * (reduced ? 0.03 : 0.06);
     else {
       const hop = Math.abs(Math.sin((motion.clock * Math.PI * 2) / 0.5 + motion.phase));

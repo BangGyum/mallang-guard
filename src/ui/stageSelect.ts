@@ -38,9 +38,11 @@ export function createStageSelect(
     const foes = element('span', 'stage-enemies');
     const enemyIds = new Set(stage.spawns.map((spawn) => spawn.enemy));
     for (const id of [...enemyIds]) {
-      const split = content.enemies.get(id)?.split;
+      const def = content.enemies.get(id);
+      const split = def?.split;
       if (split) enemyIds.add(split.enemy);
-      const summon = content.enemies.get(id)?.summon;
+      const summon =
+        def?.summon ?? (def?.bossSkill?.effect.type === 'summon' ? def.bossSkill.effect : undefined);
       if (summon) enemyIds.add(summon.enemy);
     }
     for (const id of enemyIds) {

@@ -1,5 +1,6 @@
 import { assert } from '../core/assert';
 import type { ArtId, EnemyDef, RangeDef, SkillDef, UnitDef } from './types';
+import { parseBossSkill } from './validateBossSkill';
 import { parseEffect } from './validateEffects';
 import { parseEnemyAbilities } from './validateEnemyAbilities';
 import { bool, integer, list, number, object, oneOf, point, positive, text } from './validationHelpers';
@@ -118,6 +119,16 @@ export function parseEnemy(value: unknown, path: string): EnemyDef {
       atkIntervalMul: number(disrupt.atkIntervalMul, `${path}.disrupt.atkIntervalMul`, 1),
       targets: integer(disrupt.targets, `${path}.disrupt.targets`, 1),
     };
+  }
+  if (raw.bossSkill !== undefined) {
+    assert(enemy.boss, `${path}.bossSkill: requires boss flag`);
+    enemy.bossSkill = parseBossSkill(raw.bossSkill, `${path}.bossSkill`);
+    assert(
+      !enemy.rush && !enemy.regenerate && !enemy.heal && !enemy.summon && !enemy.disrupt,
+      `${path}.bossSkill: legacy active abilities cannot overlap`,
+    );
+    if (enemy.bossSkill.effect.type === 'shield')
+      assert(enemy.shieldHp, `${path}.bossSkill: shield effect requires shieldHp`);
   }
   return enemy;
 }

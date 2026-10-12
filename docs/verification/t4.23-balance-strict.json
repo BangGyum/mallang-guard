@@ -1,0 +1,798 @@
+[
+  {
+    "file": "stage-1-clear.json",
+    "expect": {
+      "result": "won",
+      "minLife": 3
+    },
+    "phase": "won",
+    "life": 3,
+    "killed": 120,
+    "total": 120,
+    "seconds": 232.16666666666666,
+    "rejected": [],
+    "leaks": [],
+    "casts": {
+      "bigJelly/windup": 2,
+      "bigJelly/cast": 2
+    },
+    "executedCommands": 20,
+    "shifts": [],
+    "pending": []
+  },
+  {
+    "file": "stage-1-four-idle.json",
+    "expect": {
+      "result": "lost"
+    },
+    "phase": "lost",
+    "life": 0,
+    "killed": 88,
+    "total": 120,
+    "seconds": 193.7,
+    "rejected": [],
+    "leaks": [
+      {
+        "sec": 126.7,
+        "enemy": "hardJelly"
+      },
+      {
+        "sec": 188.8,
+        "enemy": "jelly"
+      },
+      {
+        "sec": 193.7,
+        "enemy": "hardJelly"
+      }
+    ],
+    "casts": {},
+    "executedCommands": 4,
+    "shifts": [],
+    "pending": []
+  },
+  {
+    "file": "stage-1-idle.json",
+    "expect": {
+      "result": "lost"
+    },
+    "phase": "lost",
+    "life": 0,
+    "killed": 0,
+    "total": 120,
+    "seconds": 25.8,
+    "rejected": [],
+    "leaks": [
+      {
+        "sec": 20.8,
+        "enemy": "jelly"
+      },
+      {
+        "sec": 23.3,
+        "enemy": "jelly"
+      },
+      {
+        "sec": 25.8,
+        "enemy": "jelly"
+      }
+    ],
+    "casts": {},
+    "executedCommands": 0,
+    "shifts": [],
+    "pending": []
+  },
+  {
+    "file": "stage-1-no-skills.json",
+    "expect": {
+      "result": "lost"
+    },
+    "phase": "lost",
+    "life": 0,
+    "killed": 115,
+    "total": 120,
+    "seconds": 239.43333333333334,
+    "rejected": [],
+    "leaks": [
+      {
+        "sec": 234.73333333333332,
+        "enemy": "jelly"
+      },
+      {
+        "sec": 237.8,
+        "enemy": "hardJelly"
+      },
+      {
+        "sec": 239.43333333333334,
+        "enemy": "hardJelly"
+      }
+    ],
+    "casts": {
+      "bigJelly/windup": 3,
+      "bigJelly/cast": 3
+    },
+    "executedCommands": 7,
+    "shifts": [],
+    "pending": []
+  },
+  {
+    "file": "stage-2-clear.json",
+    "expect": {
+      "result": "won",
+      "minLife": 3
+    },
+    "phase": "won",
+    "life": 3,
+    "killed": 193,
+    "total": 193,
+    "seconds": 356.53333333333336,
+    "rejected": [],
+    "leaks": [],
+    "casts": {
+      "gateJelly/windup": 2,
+      "gateJelly/cast": 2
+    },
+    "executedCommands": 48,
+    "shifts": [],
+    "pending": []
+  },
+  {
+    "file": "stage-2-four-idle.json",
+    "expect": {
+      "result": "lost"
+    },
+    "phase": "lost",
+    "life": 0,
+    "killed": 91,
+    "total": 193,
+    "seconds": 222.6,
+    "rejected": [],
+    "leaks": [
+      {
+        "sec": 182.43333333333334,
+        "enemy": "hardJelly"
+      },
+      {
+        "sec": 222.03333333333333,
+        "enemy": "hardJelly"
+      },
+      {
+        "sec": 222.6,
+        "enemy": "crystalJelly"
+      }
+    ],
+    "casts": {},
+    "executedCommands": 4,
+    "shifts": [],
+    "pending": []
+  },
+  {
+    "file": "stage-2-idle.json",
+    "expect": {
+      "result": "lost"
+    },
+    "phase": "lost",
+    "life": 0,
+    "killed": 0,
+    "total": 193,
+    "seconds": 24.366666666666667,
+    "rejected": [],
+    "leaks": [
+      {
+        "sec": 16.366666666666667,
+        "enemy": "jelly"
+      },
+      {
+        "sec": 20.366666666666667,
+        "enemy": "jelly"
+      },
+      {
+        "sec": 24.366666666666667,
+        "enemy": "jelly"
+      }
+    ],
+    "casts": {},
+    "executedCommands": 0,
+    "shifts": [],
+    "pending": []
+  },
+  {
+    "file": "stage-2-no-skills.json",
+    "expect": {
+      "result": "lost"
+    },
+    "phase": "lost",
+    "life": -1,
+    "killed": 190,
+    "total": 193,
+    "seconds": 357,
+    "rejected": [],
+    "leaks": [
+      {
+        "sec": 311.8333333333333,
+        "enemy": "hardJelly"
+      },
+      {
+        "sec": 316.6333333333333,
+        "enemy": "hardJelly"
+      },
+      {
+        "sec": 357,
+        "enemy": "gateJelly"
+      }
+    ],
+    "casts": {
+      "gateJelly/windup": 2,
+      "gateJelly/cast": 2
+    },
+    "executedCommands": 7,
+    "shifts": [],
+    "pending": []
+  },
+  {
+    "file": "stage-3-clear.json",
+    "expect": {
+      "result": "won",
+      "minLife": 3
+    },
+    "phase": "won",
+    "life": 3,
+    "killed": 378,
+    "total": 378,
+    "seconds": 486.46666666666664,
+    "rejected": [],
+    "leaks": [],
+    "casts": {
+      "splitCaptain/windup": 2,
+      "splitCaptain/cast": 2
+    },
+    "executedCommands": 59,
+    "shifts": [],
+    "pending": []
+  },
+  {
+    "file": "stage-3-idle.json",
+    "expect": {
+      "result": "lost"
+    },
+    "phase": "lost",
+    "life": 0,
+    "killed": 0,
+    "total": 218,
+    "seconds": 30.133333333333333,
+    "rejected": [],
+    "leaks": [
+      {
+        "sec": 24.133333333333333,
+        "enemy": "jelly"
+      },
+      {
+        "sec": 27.133333333333333,
+        "enemy": "jelly"
+      },
+      {
+        "sec": 30.133333333333333,
+        "enemy": "jelly"
+      }
+    ],
+    "casts": {},
+    "executedCommands": 0,
+    "shifts": [],
+    "pending": []
+  },
+  {
+    "file": "stage-3-no-skills.json",
+    "expect": {
+      "result": "lost"
+    },
+    "phase": "lost",
+    "life": 0,
+    "killed": 324,
+    "total": 353,
+    "seconds": 448.8333333333333,
+    "rejected": [],
+    "leaks": [
+      {
+        "sec": 446.8333333333333,
+        "enemy": "miniJelly"
+      },
+      {
+        "sec": 448.76666666666665,
+        "enemy": "miniJelly"
+      },
+      {
+        "sec": 448.8333333333333,
+        "enemy": "hardJelly"
+      }
+    ],
+    "casts": {
+      "splitCaptain/windup": 1,
+      "splitCaptain/cast": 1
+    },
+    "executedCommands": 7,
+    "shifts": [],
+    "pending": []
+  },
+  {
+    "file": "stage-3-skills-stop.json",
+    "expect": {
+      "result": "lost"
+    },
+    "phase": "lost",
+    "life": 0,
+    "killed": 324,
+    "total": 353,
+    "seconds": 448.8333333333333,
+    "rejected": [],
+    "leaks": [
+      {
+        "sec": 446.8333333333333,
+        "enemy": "miniJelly"
+      },
+      {
+        "sec": 448.76666666666665,
+        "enemy": "miniJelly"
+      },
+      {
+        "sec": 448.8333333333333,
+        "enemy": "hardJelly"
+      }
+    ],
+    "casts": {
+      "splitCaptain/windup": 1,
+      "splitCaptain/cast": 1
+    },
+    "executedCommands": 13,
+    "shifts": [],
+    "pending": []
+  },
+  {
+    "file": "stage-4-clear.json",
+    "expect": {
+      "result": "won",
+      "minLife": 3
+    },
+    "phase": "won",
+    "life": 3,
+    "killed": 443,
+    "total": 443,
+    "seconds": 1079.0333333333333,
+    "rejected": [],
+    "leaks": [],
+    "casts": {
+      "greenhouseKeeper/windup": 4,
+      "greenhouseKeeper/cast": 3,
+      "greenhouseKeeper/cancel": 1
+    },
+    "executedCommands": 100,
+    "shifts": [],
+    "pending": []
+  },
+  {
+    "file": "stage-4-idle.json",
+    "expect": {
+      "result": "lost"
+    },
+    "phase": "lost",
+    "life": 0,
+    "killed": 0,
+    "total": 377,
+    "seconds": 21.233333333333334,
+    "rejected": [],
+    "leaks": [
+      {
+        "sec": 15.233333333333333,
+        "enemy": "jelly"
+      },
+      {
+        "sec": 18.233333333333334,
+        "enemy": "jelly"
+      },
+      {
+        "sec": 21.233333333333334,
+        "enemy": "jelly"
+      }
+    ],
+    "casts": {},
+    "executedCommands": 0,
+    "shifts": [],
+    "pending": []
+  },
+  {
+    "file": "stage-4-no-skills.json",
+    "expect": {
+      "result": "lost"
+    },
+    "phase": "lost",
+    "life": -1,
+    "killed": 303,
+    "total": 423,
+    "seconds": 834.6666666666666,
+    "rejected": [],
+    "leaks": [
+      {
+        "sec": 727.6666666666666,
+        "enemy": "captainJelly"
+      },
+      {
+        "sec": 834.6666666666666,
+        "enemy": "captainJelly"
+      }
+    ],
+    "casts": {},
+    "executedCommands": 7,
+    "shifts": [],
+    "pending": []
+  },
+  {
+    "file": "stage-4-skills-stop.json",
+    "expect": {
+      "result": "lost"
+    },
+    "phase": "lost",
+    "life": -1,
+    "killed": 303,
+    "total": 423,
+    "seconds": 834.6666666666666,
+    "rejected": [],
+    "leaks": [
+      {
+        "sec": 727.6666666666666,
+        "enemy": "captainJelly"
+      },
+      {
+        "sec": 834.6666666666666,
+        "enemy": "captainJelly"
+      }
+    ],
+    "casts": {},
+    "executedCommands": 17,
+    "shifts": [],
+    "pending": []
+  },
+  {
+    "file": "stage-5-clear.json",
+    "expect": {
+      "result": "won",
+      "minLife": 3
+    },
+    "phase": "won",
+    "life": 3,
+    "killed": 474,
+    "total": 474,
+    "seconds": 1053.1666666666667,
+    "rejected": [],
+    "leaks": [],
+    "casts": {
+      "stormCrow/windup": 4,
+      "stormCrow/cast": 4
+    },
+    "executedCommands": 98,
+    "shifts": [],
+    "pending": []
+  },
+  {
+    "file": "stage-5-idle.json",
+    "expect": {
+      "result": "lost"
+    },
+    "phase": "lost",
+    "life": 0,
+    "killed": 0,
+    "total": 334,
+    "seconds": 25.733333333333334,
+    "rejected": [],
+    "leaks": [
+      {
+        "sec": 21.9,
+        "enemy": "jelly"
+      },
+      {
+        "sec": 24.9,
+        "enemy": "jelly"
+      },
+      {
+        "sec": 25.733333333333334,
+        "enemy": "crow"
+      }
+    ],
+    "casts": {},
+    "executedCommands": 0,
+    "shifts": [],
+    "pending": []
+  },
+  {
+    "file": "stage-5-no-skills.json",
+    "expect": {
+      "result": "lost"
+    },
+    "phase": "lost",
+    "life": 0,
+    "killed": 355,
+    "total": 440,
+    "seconds": 830.8666666666667,
+    "rejected": [],
+    "leaks": [
+      {
+        "sec": 621.4666666666667,
+        "enemy": "hardJelly"
+      },
+      {
+        "sec": 726.1666666666666,
+        "enemy": "hardJelly"
+      },
+      {
+        "sec": 830.8666666666667,
+        "enemy": "hardJelly"
+      }
+    ],
+    "casts": {},
+    "executedCommands": 7,
+    "shifts": [],
+    "pending": []
+  },
+  {
+    "file": "stage-5-skills-stop.json",
+    "expect": {
+      "result": "lost"
+    },
+    "phase": "lost",
+    "life": 0,
+    "killed": 355,
+    "total": 440,
+    "seconds": 830.8666666666667,
+    "rejected": [],
+    "leaks": [
+      {
+        "sec": 621.4666666666667,
+        "enemy": "hardJelly"
+      },
+      {
+        "sec": 726.1666666666666,
+        "enemy": "hardJelly"
+      },
+      {
+        "sec": 830.8666666666667,
+        "enemy": "hardJelly"
+      }
+    ],
+    "casts": {},
+    "executedCommands": 18,
+    "shifts": [],
+    "pending": []
+  },
+  {
+    "file": "stage-6-clear.json",
+    "expect": {
+      "result": "won",
+      "minLife": 3
+    },
+    "phase": "won",
+    "life": 3,
+    "killed": 435,
+    "total": 435,
+    "seconds": 1438.7,
+    "rejected": [],
+    "leaks": [],
+    "casts": {
+      "kingJelly/windup": 41,
+      "kingJelly/cast": 32,
+      "kingJelly/cancel": 9
+    },
+    "executedCommands": 87,
+    "shifts": [],
+    "pending": []
+  },
+  {
+    "file": "stage-6-idle.json",
+    "expect": {
+      "result": "lost"
+    },
+    "phase": "lost",
+    "life": 0,
+    "killed": 0,
+    "total": 321,
+    "seconds": 29.033333333333335,
+    "rejected": [],
+    "leaks": [
+      {
+        "sec": 23.033333333333335,
+        "enemy": "jelly"
+      },
+      {
+        "sec": 26.033333333333335,
+        "enemy": "jelly"
+      },
+      {
+        "sec": 29.033333333333335,
+        "enemy": "jelly"
+      }
+    ],
+    "casts": {},
+    "executedCommands": 0,
+    "shifts": [],
+    "pending": []
+  },
+  {
+    "file": "stage-6-skills-stop.json",
+    "expect": {
+      "result": "lost"
+    },
+    "phase": "lost",
+    "life": 0,
+    "killed": 83,
+    "total": 343,
+    "seconds": 283,
+    "rejected": [],
+    "leaks": [
+      {
+        "sec": 283,
+        "enemy": "kingJelly"
+      }
+    ],
+    "casts": {
+      "kingJelly/windup": 11,
+      "kingJelly/cast": 11
+    },
+    "executedCommands": 21,
+    "shifts": [],
+    "pending": []
+  },
+  {
+    "file": "stage-7-clear.json",
+    "expect": {
+      "result": "won",
+      "minLife": 3
+    },
+    "phase": "won",
+    "life": 3,
+    "killed": 498,
+    "total": 498,
+    "seconds": 1741.1333333333334,
+    "rejected": [],
+    "leaks": [],
+    "casts": {
+      "kingJelly/windup": 54,
+      "kingJelly/cast": 53,
+      "kingJelly/cancel": 1,
+      "gardenKing/windup": 3,
+      "gardenKing/cast": 3
+    },
+    "executedCommands": 143,
+    "shifts": [],
+    "pending": []
+  },
+  {
+    "file": "stage-7-idle.json",
+    "expect": {
+      "result": "lost"
+    },
+    "phase": "lost",
+    "life": 0,
+    "killed": 0,
+    "total": 368,
+    "seconds": 42.666666666666664,
+    "rejected": [],
+    "leaks": [
+      {
+        "sec": 30.633333333333333,
+        "enemy": "dashJelly"
+      },
+      {
+        "sec": 39.666666666666664,
+        "enemy": "jelly"
+      },
+      {
+        "sec": 42.666666666666664,
+        "enemy": "jelly"
+      }
+    ],
+    "casts": {},
+    "executedCommands": 0,
+    "shifts": [],
+    "pending": []
+  },
+  {
+    "file": "stage-7-line-clear.json",
+    "expect": {
+      "result": "won",
+      "minLife": 3
+    },
+    "phase": "won",
+    "life": 3,
+    "killed": 508,
+    "total": 508,
+    "seconds": 1737.4,
+    "rejected": [],
+    "leaks": [],
+    "casts": {
+      "kingJelly/windup": 45,
+      "kingJelly/cast": 37,
+      "kingJelly/cancel": 8,
+      "gardenKing/windup": 3,
+      "gardenKing/cast": 3
+    },
+    "executedCommands": 133,
+    "shifts": [],
+    "pending": []
+  },
+  {
+    "file": "stage-7-rear-clear.json",
+    "expect": {
+      "result": "won",
+      "minLife": 3
+    },
+    "phase": "won",
+    "life": 3,
+    "killed": 508,
+    "total": 508,
+    "seconds": 1741.2666666666667,
+    "rejected": [],
+    "leaks": [],
+    "casts": {
+      "kingJelly/windup": 36,
+      "kingJelly/cast": 36,
+      "gardenKing/windup": 3,
+      "gardenKing/cast": 3
+    },
+    "executedCommands": 113,
+    "shifts": [],
+    "pending": []
+  },
+  {
+    "file": "stage-7-skills-stop.json",
+    "expect": {
+      "result": "lost"
+    },
+    "phase": "lost",
+    "life": 0,
+    "killed": 90,
+    "total": 392,
+    "seconds": 300.03333333333336,
+    "rejected": [],
+    "leaks": [
+      {
+        "sec": 286.26666666666665,
+        "enemy": "crow"
+      },
+      {
+        "sec": 290.26666666666665,
+        "enemy": "crow"
+      },
+      {
+        "sec": 300.03333333333336,
+        "enemy": "hardJelly"
+      }
+    ],
+    "casts": {
+      "kingJelly/windup": 8,
+      "kingJelly/cast": 7,
+      "kingJelly/cancel": 1
+    },
+    "executedCommands": 25,
+    "shifts": [],
+    "pending": []
+  },
+  {
+    "file": "stage-7-wide-clear.json",
+    "expect": {
+      "result": "won",
+      "minLife": 3
+    },
+    "phase": "won",
+    "life": 3,
+    "killed": 508,
+    "total": 508,
+    "seconds": 1737.4,
+    "rejected": [],
+    "leaks": [],
+    "casts": {
+      "kingJelly/windup": 45,
+      "kingJelly/cast": 37,
+      "kingJelly/cancel": 8,
+      "gardenKing/windup": 3,
+      "gardenKing/cast": 3
+    },
+    "executedCommands": 132,
+    "shifts": [],
+    "pending": []
+  }
+]

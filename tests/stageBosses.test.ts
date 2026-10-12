@@ -3,9 +3,9 @@ import { CRITTER_IDS, critterSvg } from '../src/art/critters';
 import { content } from '../src/data';
 import { validateContent } from '../src/data/validate';
 import { createBattle } from '../src/sim/battle';
+import { updateBossSkills } from '../src/sim/systems/bossSkills';
 import { damageEnemy } from '../src/sim/systems/damage';
 import { removeDead } from '../src/sim/systems/death';
-import { updateEnemySupport } from '../src/sim/systems/enemySupport';
 import { moveEnemies } from '../src/sim/systems/movement';
 import { checkOutcome } from '../src/sim/systems/outcome';
 import type { BattleState, SimEvent } from '../src/sim/types';
@@ -122,45 +122,52 @@ describe('스테이지별 보스', () => {
     ]);
   });
 
-  it('온실지기의 재생은 기절 중 멈추며 최대 체력을 넘기지 않는다', () => {
+  it('온실지기의 개화 준비는 기절 중 멈추며 최대 체력을 넘기지 않는다', () => {
     const f = enemyRosterFixture(['greenhouseKeeper']);
     const enemy = f.state.enemies[0];
     const def = content.enemies.get('greenhouseKeeper');
     if (!enemy || !def) throw new Error('재생 보스 없음');
     enemy.hp = def.hp - 70;
-    enemy.regenCooldown = 1;
+    enemy.abilityCooldown = 1;
     enemy.stunUntilTick = f.state.tick + 1;
     const events: SimEvent[] = [];
-    updateEnemySupport(f.content, f.stage, f.state, events);
+    updateBossSkills(f.content, f.stage, f.state, events);
     expect(enemy.hp).toBe(def.hp - 70);
-    expect(enemy.regenCooldown).toBe(1);
+    expect(enemy.abilityCooldown).toBe(1);
     f.state.tick++;
-    updateEnemySupport(f.content, f.stage, f.state, events);
+    updateBossSkills(f.content, f.stage, f.state, events);
+    expect(enemy.hp).toBe(def.hp - 70);
+    f.state.tick = enemy.bossCastUntilTick;
+    updateBossSkills(f.content, f.stage, f.state, events);
     expect(enemy.hp).toBe(def.hp);
     expect(events).toContainEqual({ type: 'enemyHeal', src: enemy.uid, uid: enemy.uid, amount: 70 });
   });
 
-  it('정원군주는 최대 셋만 소환하고 처치 후에도 자식이 남으면 전투가 이어진다', () => {
+  it('정원군주는 최대 세 번에 여섯을 소환하고 처치 후에도 자식이 남으면 전투가 이어진다', () => {
     const { battle, state } = bossBattle('stage-7');
     const boss = state.enemies[0];
     if (!boss) throw new Error('보스 없음');
     const events: SimEvent[] = [];
     for (let i = 0; i < 4; i++) {
-      boss.summonCooldown = 1;
-      updateEnemySupport(battle.content, battle.stage, state, events);
+      boss.abilityCooldown = 1;
+      updateBossSkills(battle.content, battle.stage, state, events);
+      if (boss.bossCastUntilTick > 0) {
+        state.tick = boss.bossCastUntilTick;
+        updateBossSkills(battle.content, battle.stage, state, events);
+      }
     }
     expect(boss.summonsRemaining).toBe(0);
-    expect(state).toMatchObject({ totalEnemies: 4 });
-    expect(state.enemies.filter((enemy) => enemy.enemyId === 'miniJelly')).toHaveLength(3);
+    expect(state).toMatchObject({ totalEnemies: 7 });
+    expect(state.enemies.filter((enemy) => enemy.enemyId === 'miniJelly')).toHaveLength(6);
     boss.hp = 0;
     removeDead(battle.content, battle.stage, state, events);
     checkOutcome(battle.stage, state, events);
     expect(state.phase).toBe('running');
-    expect(state.enemies).toHaveLength(3);
+    expect(state.enemies).toHaveLength(6);
     for (const child of state.enemies) child.hp = 0;
     removeDead(battle.content, battle.stage, state, events);
     checkOutcome(battle.stage, state, events);
-    expect(state).toMatchObject({ phase: 'won', killed: 4, life: 3 });
+    expect(state).toMatchObject({ phase: 'won', killed: 7, life: 3 });
   });
 
   it.each(BOSSES)('%s가 골에 도착하면 해당 누수 피해를 적용하고 보상을 주지 않는다', (id) => {

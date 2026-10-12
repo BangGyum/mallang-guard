@@ -5,6 +5,7 @@ import type { ContentDb } from '../data/types';
 import type { Board } from '../sim/board';
 import { TICK_RATE } from '../sim/constants';
 import type { BattleState, SimEvent } from '../sim/types';
+import { bossSkillTheme } from './bossSkillTheme';
 import { createCombatText } from './combatText';
 import { tileHeight } from './coords';
 import { impactDelays } from './eventTiming';
@@ -112,6 +113,23 @@ export function createOverlay(canvas: HTMLCanvasElement, board: Board, content: 
       }
       for (const enemy of state.enemies) {
         if (births.has(enemy.uid)) continue;
+        const def = content.enemies.get(enemy.enemyId);
+        const skill = def?.bossSkill;
+        if (skill && def && enemy.bossCastUntilTick > 0) {
+          const p = position(enemy.x, enemy.y, def.flying ? 1.25 : 0.55, camera);
+          const progress = 1 - (enemy.bossCastUntilTick - state.tick) / (skill.windupSec * TICK_RATE);
+          ctx.strokeStyle = bossSkillTheme(def).color;
+          ctx.lineWidth = 3;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, height <= 500 ? 17 : 25, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * progress);
+          ctx.stroke();
+          ctx.font = `bold ${height <= 500 ? 10 : 12}px sans-serif`;
+          ctx.textAlign = 'center';
+          ctx.fillStyle = '#fffdf5';
+          ctx.fillRect(p.x - 47, p.y - 40, 94, 17);
+          ctx.fillStyle = bossSkillTheme(def).color;
+          ctx.fillText(skill.name, p.x, p.y - 27);
+        }
         if (enemy.shield > 0) {
           const p = position(lerp(enemy.px, enemy.x, alpha), lerp(enemy.py, enemy.y, alpha), 0, camera);
           const max = content.enemies.get(enemy.enemyId)?.shieldHp ?? enemy.shield;

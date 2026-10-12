@@ -1,7 +1,8 @@
 import type { SimEvent } from '../sim/types';
+import { type BossSound, bossSkillSound, createBossBuffers } from './bossSounds';
 import { type AttackSound, createCombatBuffers } from './combatSounds';
 
-export type Sound = AttackSound | 'deploy' | 'hit' | 'pop' | 'skill' | 'leak' | 'win' | 'lose';
+export type Sound = AttackSound | BossSound | 'deploy' | 'hit' | 'pop' | 'skill' | 'leak' | 'win' | 'lose';
 
 export function createSfxLimiter(context: BaseAudioContext): DynamicsCompressorNode {
   const limiter = context.createDynamicsCompressor();
@@ -35,7 +36,10 @@ export function createSfx(initialVolume: number) {
       noise = context.createBuffer(1, Math.ceil(context.sampleRate * 0.06), context.sampleRate);
       const samples = noise.getChannelData(0);
       for (let i = 0; i < samples.length; i++) samples[i] = Math.random() * 2 - 1;
-      combatBuffers = createCombatBuffers(context);
+      combatBuffers = new Map<Sound, AudioBuffer>([
+        ...createCombatBuffers(context),
+        ...createBossBuffers(context),
+      ]);
     }
     if (context.state === 'suspended') void context.resume().catch(() => {});
   }
@@ -166,6 +170,9 @@ export function createSfx(initialVolume: number) {
       attackSound?: (uid: number) => AttackSound | undefined,
     ) {
       const fired = new Set<number>();
+      const bossCasts = new Set(
+        events.flatMap((event) => (event.type === 'bossSkill' && event.phase === 'cast' ? [event.uid] : [])),
+      );
       for (const event of events) {
         const delay = delays.get(event) ?? 0;
         if (event.type === 'unitDeploy') play('deploy');
@@ -173,7 +180,11 @@ export function createSfx(initialVolume: number) {
           fired.add(event.src.uid);
           play(attackSound?.(event.src.uid) ?? (event.damageType === 'magic' ? 'magic' : 'shoot'));
         }
-        if (event.type === 'unitDisrupt' && !fired.has(event.src)) {
+        if (event.type === 'bossSkill') {
+          const sound = bossSkillSound(event.enemyId, event.phase);
+          if (sound) play(sound);
+        }
+        if (event.type === 'unitDisrupt' && !bossCasts.has(event.src) && !fired.has(event.src)) {
           fired.add(event.src);
           play('goo');
         }

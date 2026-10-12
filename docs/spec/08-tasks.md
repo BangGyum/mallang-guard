@@ -525,6 +525,14 @@
 - 검증: 66개 파일 1,166개 자동 테스트와 check/lint/build를 통과했습니다. 5개 화면 크기에서 10종씩 총 50회 상세/키보드/스크롤/배치를 검사했고 PC·740×360의 자연 충전 뒤 펼친 상태의 랑랑 발동·현재 관통력 160을 확인했습니다. 기존 네 화면의 40개 카드·스킬/후퇴/리사이즈와 여섯 화면의 보스 첫 등장 6회·팝업 36회(상세 펼침·끝까지 스크롤 포함)도 통과했습니다. 740×360 준비 중 능력치 잘림과 세로 카드창이 고지대 탭 배치를 막는 문제를 수정했으며 60px 발동·44px 조작 영역을 유지합니다. 브라우저 오류/경고·거부 명령은 0건입니다. 단독 맵·느린 적·가상 시간·터치 에뮬레이션을 사용하며 실제 기기 성능 측정은 아닙니다.
   결과: [종합](../verification/t4.22-summary.json), [상세 50회](../verification/t4.22-skill-details.json), [선택/스킬 회귀](../verification/t4.22-unit-selection.json), [보스 동시 표시](../verification/t4.22-boss-popups.json). 화면: [PC 카드 상세](../verification/t4.22-1920x1080-owl-card-details.png), [PC 스킬 상세](../verification/t4.22-1920x1080-wolf-skill-details.png), [좁은 가로](../verification/t4.22-740x360-wolf-skill-details.png), [세로 카드 높이](../verification/t4.22-touch-390x844-card-info.png).
 
+### [x] T4.23 보스 고유 스킬·효과음
+- 사용자 요청 (2026-10-13): 보스 스킬과 사운드를 특색 있게 만들며 먼저 목록을 제시한 뒤 구현합니다.
+- 읽을 문서: 01·02·03·04·05·06·07·09·10의 결정론·콘텐츠/상태/이벤트·보스 HUD·합성 음성·공략 계약.
+- 구현: 일곱 보스의 돌진·방벽 재구축·분신·회복·활강·먹물·집결을 JSON에 정의합니다. 첫 충전·제자리 예고·기절 중단·유한 소환을 처리하고 스킬 이름/남은 시간·준비 자세·효과별 작은 파티클을 표시합니다. 7종의 예고/발동 효과음 14개를 합성하고 세 대상 방해의 중복 소리를 제거합니다.
+- 완료 조건: 경계/결정론·데이터/참조·기존 일반 능력·29개 합법 공략·PC/터치 1→7 완주·예고/선택/일시정지/나가기·실제 WebAudio 파형/음소거/정리와 check/lint/test/build를 통과하고 화면·검증 기록을 남깁니다.
+- 검증: 70개 파일 1,217개 자동 테스트와 check/lint/build를 통과했습니다. 29개 명시적 공략은 클리어 10개가 푸딩 3개, 대조 19개가 기존 기대 패배이며 거부/미실행 명령은 0건입니다. PC·844×390 터치 입력의 실제 앱 1→7 총 14회가 푸딩 3개·누수/잘못된 처치 보상/거부 명령 0건으로 완주했고 별 21개 저장·순차 해금·새로고침·패배 후 기록 유지도 확인했습니다. 보스별 예고/발동 35회, 기존 HUD 28회, 여섯 화면의 첫 등장 6회·상세/스킬창 동시 표시 36회가 통과했습니다. 보스 효과음 14개의 파형·시작/끝·연속성·차이를 검사했고 기존 무기음과 23개를 섞은 최대 출력 피크는 0.728입니다. 예고/발동은 두 소리만 재생하고 세 대상 분사음 중복·음소거·reset/dispose·기존 10종 무기음 20회와 배포용 경로 검사를 통과했습니다. 브라우저 오류/경고는 0건이며 가상 시계·터치 에뮬레이션 검증으로 실기기 FPS나 청감 평가를 대신하지 않습니다.
+  결과: [종합](../verification/t4.23-summary.json), [공략 29개](../verification/t4.23-balance-strict.json), [PC/터치 완주](../verification/t4.23-campaign.json), [보스 스킬 35회](../verification/t4.23-boss-skills.json), [동시 표시](../verification/t4.23-boss-popups.json), [효과음](../verification/t4.23-boss-audio.json), [무기음 회귀](../verification/t4.23-audio-weapons.json), [배포용 경로](../verification/t4.23-production.json). 화면: [PC 재구축](../verification/t4.23-1920x1080-gateJelly-windup.png), [좁은 가로 집결](../verification/t4.23-740x360-gardenKing-windup.png), [터치 7번 완주](../verification/t4.23-mobile-stage-7-clear.png). [예고/발동 미리듣기](../verification/t4.23-boss-sounds.wav).
+
 ## M5 확장 (방향만 정해 둠)
 
 - 모바일 성능 최적화, PWA(오프라인 실행)

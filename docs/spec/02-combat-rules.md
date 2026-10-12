@@ -150,7 +150,7 @@ M4 분열젤리는 처치 시 같은 경로에 작은 젤리를 생성하고 `to
 
 ## 14. 틱 순서
 
-명령 → 재배치 대기 → 스폰 → 예약 펄스·스킬 만료·상태이상/아군 방해 만료·둔화 오라 → 적 돌진/가속 → 적 이동·누수 → 적 방해 능력 → 재생/치유/소환 → SP 충전·자동 스킬 → 아군 자동 공격 → 적 처치·도토리 보상·분열 → 승리 확인 → tick 증가.
+명령 → 재배치 대기 → 스폰 → 예약 펄스·스킬 만료·상태이상/아군 방해 만료·둔화 오라 → 보스 스킬 충전·예고·발동/취소 → 적 돌진/가속 → 적 이동·누수 → 일반 적 방해 능력 → 재생/치유/소환 → SP 충전·자동 스킬 → 아군 자동 공격 → 적 처치·도토리 보상·분열 → 승리 확인 → tick 증가.
 
 flush는 명령만 처리합니다. 수동 스킬의 즉시 효과·첫 펄스도 flush 안에서 발생하므로 일시정지 중 사용이 가능합니다.
 
@@ -178,13 +178,22 @@ seed는 uint32로 정규화해 rngState에 보관하며 0도 유효합니다. si
 
 - Command: deploy(unitId/tile/dir), retreat(uid), activateSkill(uid).
 - UnitEntity: uid/unitId/tile/dir, 공격 쿨다운, SP/스킬 상태/종료 틱/공격 횟수/펄스 일정/buffs, `disruptedUntilTick`(기본 0), `disruptionMul`(기본 1). 체력 필드는 없습니다.
-- EnemyEntity: 경로·현재/이전 위치·거리·HP·둔화/기절 일정, `abilityCooldown`(정수 틱), 보호막·현재 이동 배율·돌진/재생/치유/소환 일정과 남은 소환 횟수. 기본값과 세부 능력은 [10-enemy-roster.md](10-enemy-roster.md)입니다.
-- 이벤트: commandRejected, unitDeploy/unitRetreat/unitDisrupt, enemySpawn/enemyLeak/enemyDie/enemyHeal, attack/damage, status, skillReady/skillStart/skillPulse/skillEnd, dpGain, battleEnd.
+- EnemyEntity: 경로·현재/이전 위치·거리·HP·둔화/기절 일정, `abilityCooldown`(정수 틱), `bossCastUntilTick`(예고 종료 틱, 기본 0), 보호막·현재 이동 배율·돌진/재생/치유/소환 일정과 남은 소환 횟수. 보스는 기존 abilityCooldown·rushUntilTick·summonsRemaining을 재사용합니다. 기본값과 세부 능력은 [10-enemy-roster.md](10-enemy-roster.md)입니다.
+- 이벤트: commandRejected, unitDeploy/unitRetreat/unitDisrupt, enemySpawn/enemyLeak/enemyDie/enemyHeal, bossSkill, attack/damage, status, skillReady/skillStart/skillPulse/skillEnd, dpGain, battleEnd.
 - `enemySpawn`은 `uid`, `enemyId`, 생성 위치의 `x`, `y`를 담습니다. 분열·소환 자식은 선택 필드 `parentUid`를 가지며 분열의 원거리 부모 처치 연출과 등장 시점을 맞추는 데 사용합니다. 같은 틱에 처치되어 최종 상태에서 빠져도 등장·투사체·사망 연출의 위치를 복원할 수 있어야 합니다.
 - `damage.amount`는 보호막과 HP에 준 전체 피해이며 선택 필드 `shieldDamage`는 흡수한 양입니다. `src: Ref | null`은 유지합니다. `enemyHeal`은 `{ src: 적 uid, uid: 회복 대상 적 uid, amount: 실제 회복량 }`입니다.
 - `unitDisrupt`는 `{ src: 적 uid, uid: 아군 uid, untilTick }`입니다. 이벤트 생성·뷰·오버레이·오디오가 같은 계약을 사용합니다.
+- `bossSkill`은 `{ uid: 보스 uid, enemyId, phase: 'windup' | 'cast' | 'cancel' }`입니다. 예고·발동·중단마다 한 번 발생하며 발동 이벤트 뒤에 회복·소환·방해 이벤트가 이어집니다. 중단 이벤트에는 효과음을 재생하지 않습니다.
 - unitDie/block/unblock/heal 이벤트는 제거했습니다. view/ui는 읽기만 하며 명령 enqueue로만 상태를 바꿉니다.
 
 ## 18. M4 공격 방해
 
-끈적젤리와 왕젤리는 사거리 안의 가까운 친구부터 `targets`명까지 공격 간격을 늘립니다. 동점은 uid 순입니다. 등장 후 한 주기 충전하며 기절 중에는 충전·발사가 멈춥니다. 대상이 없으면 준비 상태를 유지합니다. 방해는 강한 배율과 긴 종료 시점을 유지하고 중첩 곱하지 않습니다. 만료·후퇴 때 제거되며 진행 중인 공격 쿨다운은 소급 변경하지 않습니다. 데이터와 별 평가 규칙은 [09-content-expansion.md](09-content-expansion.md)를 따릅니다.
+끈적젤리와 대장젤리의 일반 방해 능력은 등장 후 한 주기 충전하며 기절 중에는 충전·발사가 멈춥니다. 왕젤리는 아래의 보스 예고를 거쳐 같은 방해 효과를 적용합니다. 사거리 안의 가까운 친구부터 `targets`명까지 고르고 동점은 uid 순입니다. 대상이 없으면 준비 상태를 유지합니다. 방해는 강한 배율과 긴 종료 시점을 유지하고 중첩 곱하지 않습니다. 만료·후퇴 때 제거되며 진행 중인 공격 쿨다운은 소급 변경하지 않습니다. 데이터와 별 평가 규칙은 [09-content-expansion.md](09-content-expansion.md)를 따릅니다.
+
+## 19. 보스 스킬 (T4.23)
+
+일곱 보스는 선택 필드 `bossSkill`에 첫 충전·재충전·예고 시간과 단일 효과를 정의합니다. 첫 충전 완료 후 대상 조건을 만족하면 제자리에서 예고합니다. 예고 종료 틱에 발동하고 그때부터 다음 주기를 충전합니다. 대상이 없거나 보호막/체력이 가득 차면 준비 상태를 유지합니다. 모든 시간은 30Hz 정수 틱이며 일시정지 중에는 진행하지 않습니다.
+
+예고 중 이동은 0이고 일반 둔화·피해를 받습니다. 기절을 받으면 다음 보스 갱신에서 예고를 한 번 취소하고 재충전을 전체 주기로 돌립니다. 기절 중에는 충전도 멈추며, 사망한 보스는 발동하지 않습니다. 돌진 중에도 둔화·기절은 그대로 적용하고 돌진 종료 틱은 연장하지 않습니다.
+
+회복은 범위 안의 살아 있는 손상된 적을 HP 비율·uid 순으로 고르며 온실지기 자신도 대상이 될 수 있습니다. 보호막 회복은 초기 보호막 상한까지입니다. 소환은 부모 경로 뒤쪽에 기본 상태의 자식을 만들고 `totalEnemies`만 늘리며 도토리를 지급하지 않습니다. 보스 소환은 이동 갱신 전이므로 새 자식도 생성 틱에 이동합니다. 일반 적의 기존 소환은 이동 뒤에 처리합니다. 수치·횟수·공략은 [10 문서](10-enemy-roster.md)를 따릅니다.

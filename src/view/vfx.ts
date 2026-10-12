@@ -3,6 +3,7 @@ import type { ContentDb } from '../data/types';
 import type { Board } from '../sim/board';
 import { rangeTilesFor } from '../sim/queries';
 import type { BattleState, SimEvent } from '../sim/types';
+import { bossSkillTheme } from './bossSkillTheme';
 import { tileHeight } from './coords';
 import { PROJECTILE_SEC } from './eventTiming';
 import { createParticlePool } from './particlePool';
@@ -74,6 +75,15 @@ export function createVfx(
     ) {
       const flashed = new Set<number>();
       for (const event of events) {
+        if (event.type === 'bossSkill' && event.phase === 'cast') {
+          const at = position(event.uid);
+          const def = content.enemies.get(event.enemyId);
+          if (at && def) {
+            const theme = bossSkillTheme(def);
+            pool.emit(theme.effect, at, at, 0.35, reduced || low ? 0.6 : 1.15, 0, false, false, 0.5);
+            burst(theme.effect === 'signal' ? 'signal' : 'spark', at, 4);
+          }
+        }
         if (event.type === 'enemyHeal') {
           const at = position(event.uid);
           if (at) burst('signal', at, 2);

@@ -104,6 +104,6 @@
     { "type": "skill", "unitId": "bear", "atSec": 1043.7666666666667 },
     { "type": "skill", "unitId": "cat", "atSec": 1052.8333333333333 },
     { "type": "skill", "unitId": "snail", "atSec": 1055.3666666666666 },
-    { "type": "skill", "unitId": "sheep", "atSec": 1075.9333333333334 }
+    { "type": "skill", "unitId": "sheep", "atSec": 1078 }
   ]
 }
