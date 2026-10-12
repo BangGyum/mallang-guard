@@ -16,6 +16,7 @@ describe('battle core', () => {
     expect(battle.stage.spawns.map((group) => group.atTick)).toEqual(
       [
         3, 14, 26, 30, 40, 44, 54, 58, 74, 82, 94, 98, 118, 122, 140, 146, 161, 165, 184, 188, 209, 212, 217,
+        209,
       ].map(secToTicks),
     );
     expect(battle.state).toMatchObject({
@@ -26,8 +27,8 @@ describe('battle core', () => {
       maxLife: 3,
       units: [],
       enemies: [],
-      spawnCursor: Array.from({ length: 23 }, () => 0),
-      totalEnemies: 119,
+      spawnCursor: Array.from({ length: 24 }, () => 0),
+      totalEnemies: 120,
       killed: 0,
       leaked: 0,
       currentWave: 0,

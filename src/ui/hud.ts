@@ -1,5 +1,6 @@
 import type { Battle } from '../sim/battle';
 import { battleIcon } from './battleIcon';
+import { createBossHud } from './bossHud';
 import { button, element } from './dom';
 import { playFeedback } from './feedback';
 
@@ -50,6 +51,7 @@ export function createHud(
   pause.dataset.action = 'pause';
   speed.setAttribute('aria-label', '전투 배속 변경');
   top.append(title, preparation, stats, controls, waveNotice);
+  const bossHud = createBossHud(top, battle);
   const hint = element(
     'p',
     'battle-hint',
@@ -95,6 +97,8 @@ export function createHud(
         clearTimeout(waveTimeoutId);
         waveNotice.hidden = true;
       }
+      top.classList.toggle('has-wave-notice', !waveNotice.hidden);
+      const bossVisible = bossHud.update();
       previousLife = state.life;
       previousWave = state.currentWave;
       life.classList.toggle('is-critical', state.life <= 1);
@@ -106,11 +110,12 @@ export function createHud(
       speedLabel.textContent = `×${controls.speed}`;
       pause.disabled = state.phase !== 'running';
       speed.disabled = state.phase !== 'running';
-      hint.hidden = state.tick > 150 || state.units.length > 0 || !waveNotice.hidden;
+      hint.hidden = state.tick > 150 || state.units.length > 0 || !waveNotice.hidden || bossVisible;
     },
     dispose() {
       clearTimeout(timeoutId);
       clearTimeout(waveTimeoutId);
+      bossHud.dispose();
       top.remove();
       hint.remove();
       toast.remove();

@@ -106,7 +106,8 @@
       "atkIntervalMul": 1.5,
       "targets": 3
     },
-    "bounty": 20
+    "bounty": 20,
+    "boss": true
   },
   {
     "id": "dashJelly",
@@ -257,5 +258,124 @@
       "atkIntervalMul": 1.25,
       "targets": 1
     }
+  },
+  {
+    "id": "bigJelly",
+    "name": "덩치젤리",
+    "art": "bigJelly",
+    "hp": 3500,
+    "def": 60,
+    "res": 0,
+    "speed": 0.42,
+    "flying": false,
+    "lifeDamage": 2,
+    "bounty": 12,
+    "boss": true,
+    "description": "앞마당의 보스예요. 체력이 많고 천천히 이동해요. 화력 스킬을 모아 집중 공격해요. 놓치면 푸딩 둘을 잃어요."
+  },
+  {
+    "id": "gateJelly",
+    "name": "성문젤리",
+    "art": "gateJelly",
+    "hp": 6000,
+    "def": 180,
+    "res": 5,
+    "speed": 0.4,
+    "flying": false,
+    "lifeDamage": 2,
+    "bounty": 16,
+    "boss": true,
+    "shieldHp": 900,
+    "description": "산책길의 보스예요. 보호막 900과 높은 방어력을 두르고 와요. 마법과 관통 사격으로 막아요. 놓치면 푸딩 둘을 잃어요."
+  },
+  {
+    "id": "splitCaptain",
+    "name": "분열대장",
+    "art": "splitCaptain",
+    "hp": 5500,
+    "def": 80,
+    "res": 10,
+    "speed": 0.38,
+    "flying": false,
+    "lifeDamage": 2,
+    "bounty": 18,
+    "boss": true,
+    "split": {
+      "enemy": "miniJelly",
+      "count": 6
+    },
+    "description": "방울 정원의 보스예요. 처치되면 작은 젤리 여섯으로 나뉘어요. 보스를 잡은 뒤에도 범위 공격으로 막아요. 놓치면 푸딩 둘을 잃어요."
+  },
+  {
+    "id": "greenhouseKeeper",
+    "name": "온실지기",
+    "art": "greenhouseKeeper",
+    "hp": 7500,
+    "def": 140,
+    "res": 20,
+    "speed": 0.3,
+    "flying": false,
+    "lifeDamage": 2,
+    "bounty": 20,
+    "boss": true,
+    "regenerate": {
+      "intervalSec": 4,
+      "amount": 200
+    },
+    "disrupt": {
+      "range": 2.7,
+      "intervalSec": 8,
+      "durationSec": 2,
+      "atkIntervalMul": 1.3,
+      "targets": 2
+    },
+    "description": "온실의 보스예요. 4초마다 체력을 200 회복하고 가까운 친구 둘의 공격을 방해해요. 기절과 집중 화력으로 상대해요. 놓치면 푸딩 둘을 잃어요."
+  },
+  {
+    "id": "stormCrow",
+    "name": "폭풍까악",
+    "art": "stormCrow",
+    "hp": 7500,
+    "def": 80,
+    "res": 10,
+    "speed": 0.32,
+    "flying": true,
+    "lifeDamage": 2,
+    "bounty": 20,
+    "boss": true,
+    "rush": {
+      "intervalSec": 8,
+      "durationSec": 1,
+      "speedMul": 1.45
+    },
+    "description": "연못의 비행 보스예요. 8초마다 1초 동안 빠르게 날아요. 대공 사격과 둔화 스킬로 막아요. 놓치면 푸딩 둘을 잃어요."
+  },
+  {
+    "id": "gardenKing",
+    "name": "정원군주",
+    "art": "gardenKing",
+    "hp": 14500,
+    "def": 160,
+    "res": 15,
+    "speed": 0.38,
+    "flying": false,
+    "lifeDamage": 3,
+    "bounty": 25,
+    "boss": true,
+    "shieldHp": 800,
+    "summon": {
+      "intervalSec": 12,
+      "enemy": "miniJelly",
+      "count": 1,
+      "maxCasts": 3
+    },
+    "disrupt": {
+      "range": 3.3,
+      "intervalSec": 8,
+      "durationSec": 2.5,
+      "atkIntervalMul": 1.5,
+      "targets": 3
+    },
+    "description": "드넓은 정원의 최종 보스예요. 보호막 800으로 버티고 작은 젤리를 최대 셋 소환하며 친구 셋을 방해해요. 범위 공격과 보스 집중 화력을 함께 준비해요. 놓치면 푸딩 셋을 잃어요."
   }
 ]

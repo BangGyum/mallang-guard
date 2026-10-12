@@ -507,6 +507,16 @@
 - 화면 검증/수정: PC·터치 1→5 총 10회가 모두 푸딩 3개·119/192/369/442/473 처치·전체 웨이브·누수/거부 명령/잘못된 보상 0으로 끝났습니다. 별 15개 저장/복원·6번 해금·패배 시 기록 보존도 통과했습니다. 10개 카드와 배치된 스킬 창을 PC·844×390·740×360·390×844에서 확인했고, 740×360의 능력치 잘림을 재현해 높이 380px 이하에서 보조 설명·그림을 줄여 두 줄을 모두 보여 줍니다. 60px 발동·44px 터치 영역을 유지하며 리사이즈 회귀도 통과했습니다. 랑랑의 PC·터치 3명/1명 총 4회는 관통 120→160→120·발수 3/1·자연 SP·실제 피해를 확인했습니다. 검증 스크립트는 개발 서버가 실제로 불러온 Battle 모듈을 관찰합니다. 프로덕션 경로의 WebGL·초상화 10개·12웨이브·처치 수입·나가기와 브라우저 오류/경고 0건을 확인했습니다. 가상 시계·터치 에뮬레이션이며 FPS·실제 기기·실시간 재미 검증은 아닙니다.
   결과: [종합 기록](../verification/t4.20-armor-penetration.json), [도입 전](../verification/t4.20-before-balance.json), [도입 후](../verification/t4.20-after-balance.json), [PC 캠페인](../verification/t4.20-campaign-desktop.json), [터치 캠페인](../verification/t4.20-campaign-mobile.json), [정보창](../verification/t4.20-unit-selection.json), [랑랑](../verification/t4.20-line-sniper.json). 화면: [PC 기본 관통](../verification/t4.20-mouse-1920x1080-card-info.png), [터치 활성 관통](../verification/t4.20-mobile-line-3-volley.png), [좁은 화면 수정 전](../verification/t4.20-before-touch-740-popup.png), [수정 후](../verification/t4.20-touch-740x360-deployed-charging.png).
 
+### [x] T4.21 스테이지별 보스 도입
+- 사용자 요청 (2026-10-12): 모든 스테이지에 보스를 도입합니다.
+- 읽을 문서: 01·03·05·06·07·09·10의 레이어·공용 콘텐츠 타입·기존 적 능력·스테이지 공략·UI 계약.
+- 구현: 마지막 웨이브마다 덩치젤리·성문젤리·분열대장·온실지기·폭풍까악·왕젤리·정원군주 한 마리를 배치합니다. 왕젤리를 유지하고 여섯 종류의 JSON/SVG를 추가해 적 22종·그림 52종이 됩니다. 선택 불리언 `boss`는 표시용이며 기존 전투 능력을 사용합니다. 보스 이름/체력/보호막 HUD, 겹치지 않는 웨이브 알림, 스테이지 선택의 보스 표시를 연결합니다.
+- 완료 조건: 마지막 웨이브·보호막·재생·분열/소환 종료·누수/보상 검사, 기존 29개 양성/음성 공략, PC·터치 1→7 완주/별 저장, 네 화면 크기의 UI·나가기, check/lint/test/build와 화면 기록.
+- 검증: 65개 파일 1,148개 자동 테스트와 check/lint/build가 통과했습니다. 기존 29개 공략의 승패를 유지하며 클리어 10개는 모두 푸딩 3개입니다. 실제 앱의 PC·844×390 터치 1→7 총 14회가 모두 푸딩 3개·누수/거부 명령/잘못된 처치 보상 0으로 끝났습니다. 별 21개 저장/복원·순차 해금·패배 후 최고 기록 보존도 확인했습니다. 네 화면 크기의 보스 표시 28회, 배포용 경로의 WebGL/초상화/처치 수입/나가기, 적 22종 그림과 큰 맵의 17종 소개가 통과했으며 브라우저 오류/경고는 0건입니다. 가상 시간·터치 에뮬레이션 검사로 실제 기기의 FPS·실시간 재미 측정은 아닙니다.
+  결과: [종합 기록](../verification/t4.21-stage-bosses.json), [공략](../verification/t4.21-balance.json), [PC 완주](../verification/t4.21-campaign-desktop.json), [터치 완주](../verification/t4.21-campaign-mobile.json), [보스 UI](../verification/t4.21-boss-ui.json), [전체 적](../verification/t4.21-enemy-roster.json), [배포용 경로](../verification/t4.21-production.json). 화면: [터치 보스](../verification/t4.21-844x390-boss-2.png), [좁은 화면](../verification/t4.21-compact-boss.png), [PC 7번 완주](../verification/t4.21-desktop-stage-7-clear.png), [터치 별 21개](../verification/t4.21-mobile-all-stars.png).
+
+  재점검 보완: 작은 창의 스킬·카드 정보창과 보스/웨이브 겹침, 스킬 발동 알림의 보스 가림, 이미 선택한 상태로 보스가 등장하는 첫 프레임 배치를 수정했습니다. 여섯 화면 크기의 선택/스킬/정보창/리사이즈 회귀 검사와 동시 보스 전환·종료/재시작 검사를 추가했습니다. [재검사 기록](../verification/t4.21-recheck-summary.json).
+
 ## M5 확장 (방향만 정해 둠)
 
 - 모바일 성능 최적화, PWA(오프라인 실행)

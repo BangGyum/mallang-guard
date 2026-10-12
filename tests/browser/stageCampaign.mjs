@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFile, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
-import { installCampaignAudit, skillRetryMs } from './campaignAudit.mjs';
+import { captureCampaignFailure, installCampaignAudit, skillRetryMs } from './campaignAudit.mjs';
 import { deploy, frame, pause, resume, tilePoint } from './helpers.mjs';
 
 const earlyOnly = process.argv.includes('--early');
@@ -44,7 +44,7 @@ try {
     await page.clock.install({ time });
     await page.clock.pauseAt(new Date(time.getTime() + 1000));
     await page.addInitScript(() => {
-      window.requestAnimationFrame = (callback) => setTimeout(() => callback(performance.now()), 33);
+      window.requestAnimationFrame = (callback) => setTimeout(() => callback(performance.now()), 100);
       window.cancelAnimationFrame = (id) => clearTimeout(id);
     });
     await page.goto('http://127.0.0.1:43195/');
@@ -234,7 +234,7 @@ try {
     const completed = await page.evaluate(() => JSON.parse(localStorage.getItem('mallang-guard:v1')).stages);
     assert.equal(
       await page.evaluate(() => window.campaign.seen.size),
-      firstFive ? 14 : earlyOnly ? 10 : 16,
+      firstFive ? 19 : earlyOnly ? 13 : 22,
       '실제 적 종류',
     );
     if (!earlyOnly) {
@@ -288,6 +288,9 @@ try {
   }
   const run = modes.length === 1 ? (modes[0] ? '-mobile' : '-desktop') : '';
   await writeFile(`docs/verification/${prefix}-campaign${run}.json`, `${JSON.stringify(report, null, 2)}\n`);
+} catch (error) {
+  await captureCampaignFailure(browser, prefix);
+  throw error;
 } finally {
   await browser.close();
 }

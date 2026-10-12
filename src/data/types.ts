@@ -37,6 +37,12 @@ export type ArtId =
   | 'nestJelly'
   | 'armoredCrow'
   | 'captainJelly'
+  | 'bigJelly'
+  | 'gateJelly'
+  | 'splitCaptain'
+  | 'greenhouseKeeper'
+  | 'stormCrow'
+  | 'gardenKing'
   | 'pudding';
 
 export interface RangeDef {
@@ -75,6 +81,7 @@ export interface EnemyDef {
   lifeDamage: number; // 누수 시 깎는 푸딩 수
   bounty?: number; // 처치 도토리, 없으면 0
   description?: string;
+  boss?: boolean; // 보스 표시용, 생략하면 일반 적
   shieldHp?: number;
   rush?: { intervalSec: number; durationSec: number; speedMul: number };
   regenerate?: { intervalSec: number; amount: number };

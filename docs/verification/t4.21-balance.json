@@ -1,0 +1,849 @@
+[
+  {
+    "file": "stage-1-clear.json",
+    "phase": "won",
+    "expected": "won",
+    "life": 3,
+    "killed": 120,
+    "total": 120,
+    "leaked": 0,
+    "seconds": 234.83333333333334,
+    "unrun": 0,
+    "rejected": [],
+    "bosses": [
+      {
+        "uid": 108,
+        "id": "bigJelly",
+        "atSec": 209.03333333333333,
+        "lastHp": 75,
+        "result": "enemyDie",
+        "endSec": 231.03333333333333
+      }
+    ],
+    "finalSkills": [
+      {
+        "atSec": 211.8,
+        "unitId": "squirrel",
+        "type": "skill"
+      },
+      {
+        "atSec": 215.66666666666666,
+        "unitId": "penguin",
+        "type": "skill"
+      },
+      {
+        "atSec": 221.03333333333333,
+        "unitId": "bear",
+        "type": "skill"
+      }
+    ]
+  },
+  {
+    "file": "stage-1-four-idle.json",
+    "phase": "lost",
+    "expected": "lost",
+    "life": 0,
+    "killed": 88,
+    "total": 120,
+    "leaked": 3,
+    "seconds": 193.7,
+    "unrun": 0,
+    "rejected": [],
+    "bosses": [],
+    "finalSkills": []
+  },
+  {
+    "file": "stage-1-idle.json",
+    "phase": "lost",
+    "expected": "lost",
+    "life": 0,
+    "killed": 0,
+    "total": 120,
+    "leaked": 3,
+    "seconds": 25.8,
+    "unrun": 0,
+    "rejected": [],
+    "bosses": [],
+    "finalSkills": []
+  },
+  {
+    "file": "stage-1-no-skills.json",
+    "phase": "lost",
+    "expected": "lost",
+    "life": 0,
+    "killed": 115,
+    "total": 120,
+    "leaked": 3,
+    "seconds": 239.43333333333334,
+    "unrun": 0,
+    "rejected": [],
+    "bosses": [
+      {
+        "uid": 108,
+        "id": "bigJelly",
+        "atSec": 209.03333333333333,
+        "lastHp": 685
+      }
+    ],
+    "finalSkills": []
+  },
+  {
+    "file": "stage-2-clear.json",
+    "phase": "won",
+    "expected": "won",
+    "life": 3,
+    "killed": 193,
+    "total": 193,
+    "leaked": 0,
+    "seconds": 355.6666666666667,
+    "unrun": 0,
+    "rejected": [],
+    "bosses": [
+      {
+        "uid": 188,
+        "id": "gateJelly",
+        "atSec": 325.03333333333336,
+        "lastHp": 97,
+        "result": "enemyDie",
+        "endSec": 355.6666666666667
+      }
+    ],
+    "finalSkills": [
+      {
+        "atSec": 333.9,
+        "unitId": "sheep",
+        "type": "skill"
+      },
+      {
+        "atSec": 336.23333333333335,
+        "unitId": "bunny",
+        "type": "skill"
+      },
+      {
+        "atSec": 338.26666666666665,
+        "unitId": "bear",
+        "type": "skill"
+      },
+      {
+        "atSec": 345.73333333333335,
+        "unitId": "cat",
+        "type": "skill"
+      },
+      {
+        "atSec": 348.3333333333333,
+        "unitId": "penguin",
+        "type": "skill"
+      }
+    ]
+  },
+  {
+    "file": "stage-2-four-idle.json",
+    "phase": "lost",
+    "expected": "lost",
+    "life": 0,
+    "killed": 91,
+    "total": 193,
+    "leaked": 3,
+    "seconds": 222.6,
+    "unrun": 0,
+    "rejected": [],
+    "bosses": [],
+    "finalSkills": []
+  },
+  {
+    "file": "stage-2-idle.json",
+    "phase": "lost",
+    "expected": "lost",
+    "life": 0,
+    "killed": 0,
+    "total": 193,
+    "leaked": 3,
+    "seconds": 24.366666666666667,
+    "unrun": 0,
+    "rejected": [],
+    "bosses": [],
+    "finalSkills": []
+  },
+  {
+    "file": "stage-2-no-skills.json",
+    "phase": "lost",
+    "expected": "lost",
+    "life": -1,
+    "killed": 190,
+    "total": 193,
+    "leaked": 3,
+    "seconds": 355,
+    "unrun": 0,
+    "rejected": [],
+    "bosses": [
+      {
+        "uid": 188,
+        "id": "gateJelly",
+        "atSec": 325.03333333333336,
+        "lastHp": 3470,
+        "result": "enemyLeak",
+        "endSec": 355
+      }
+    ],
+    "finalSkills": [
+      {
+        "atSec": 336.23333333333335,
+        "unitId": "bunny",
+        "type": "skill"
+      }
+    ]
+  },
+  {
+    "file": "stage-3-clear.json",
+    "phase": "won",
+    "expected": "won",
+    "life": 3,
+    "killed": 376,
+    "total": 376,
+    "leaked": 0,
+    "seconds": 485.3333333333333,
+    "unrun": 0,
+    "rejected": [],
+    "bosses": [
+      {
+        "uid": 343,
+        "id": "splitCaptain",
+        "atSec": 445.03333333333336,
+        "lastHp": 65,
+        "result": "enemyDie",
+        "endSec": 479.8333333333333
+      }
+    ],
+    "finalSkills": [
+      {
+        "atSec": 449.8333333333333,
+        "unitId": "bear",
+        "type": "skill"
+      },
+      {
+        "atSec": 457.06666666666666,
+        "unitId": "sheep",
+        "type": "skill"
+      },
+      {
+        "atSec": 464.56666666666666,
+        "unitId": "bunny",
+        "type": "skill"
+      },
+      {
+        "atSec": 465,
+        "unitId": "squirrel",
+        "type": "skill"
+      },
+      {
+        "atSec": 466.56666666666666,
+        "unitId": "cat",
+        "type": "skill"
+      },
+      {
+        "atSec": 475.8666666666667,
+        "unitId": "bear",
+        "type": "skill"
+      }
+    ]
+  },
+  {
+    "file": "stage-3-idle.json",
+    "phase": "lost",
+    "expected": "lost",
+    "life": 0,
+    "killed": 0,
+    "total": 218,
+    "leaked": 3,
+    "seconds": 30.133333333333333,
+    "unrun": 0,
+    "rejected": [],
+    "bosses": [],
+    "finalSkills": []
+  },
+  {
+    "file": "stage-3-no-skills.json",
+    "phase": "lost",
+    "expected": "lost",
+    "life": 0,
+    "killed": 324,
+    "total": 352,
+    "leaked": 3,
+    "seconds": 448.8333333333333,
+    "unrun": 0,
+    "rejected": [],
+    "bosses": [
+      {
+        "uid": 339,
+        "id": "splitCaptain",
+        "atSec": 445.03333333333336,
+        "lastHp": 4885
+      }
+    ],
+    "finalSkills": []
+  },
+  {
+    "file": "stage-3-skills-stop.json",
+    "phase": "lost",
+    "expected": "lost",
+    "life": 0,
+    "killed": 324,
+    "total": 352,
+    "leaked": 3,
+    "seconds": 448.8333333333333,
+    "unrun": 0,
+    "rejected": [],
+    "bosses": [
+      {
+        "uid": 339,
+        "id": "splitCaptain",
+        "atSec": 445.03333333333336,
+        "lastHp": 4885
+      }
+    ],
+    "finalSkills": []
+  },
+  {
+    "file": "stage-4-clear.json",
+    "phase": "won",
+    "expected": "won",
+    "life": 3,
+    "killed": 443,
+    "total": 443,
+    "leaked": 0,
+    "seconds": 1080.6,
+    "unrun": 0,
+    "rejected": [],
+    "bosses": [
+      {
+        "uid": 436,
+        "id": "greenhouseKeeper",
+        "atSec": 1040.0333333333333,
+        "lastHp": -159,
+        "result": "enemyDie",
+        "endSec": 1075.9666666666667
+      }
+    ],
+    "finalSkills": [
+      {
+        "atSec": 1043.7333333333333,
+        "unitId": "bear",
+        "type": "skill"
+      },
+      {
+        "atSec": 1052.8,
+        "unitId": "cat",
+        "type": "skill"
+      },
+      {
+        "atSec": 1055.3333333333333,
+        "unitId": "snail",
+        "type": "skill"
+      },
+      {
+        "atSec": 1062.2333333333333,
+        "unitId": "bunny",
+        "type": "skill"
+      },
+      {
+        "atSec": 1075.9,
+        "unitId": "sheep",
+        "type": "skill"
+      }
+    ]
+  },
+  {
+    "file": "stage-4-idle.json",
+    "phase": "lost",
+    "expected": "lost",
+    "life": 0,
+    "killed": 0,
+    "total": 377,
+    "leaked": 3,
+    "seconds": 21.233333333333334,
+    "unrun": 0,
+    "rejected": [],
+    "bosses": [],
+    "finalSkills": []
+  },
+  {
+    "file": "stage-4-no-skills.json",
+    "phase": "lost",
+    "expected": "lost",
+    "life": -1,
+    "killed": 303,
+    "total": 423,
+    "leaked": 2,
+    "seconds": 834.6666666666666,
+    "unrun": 0,
+    "rejected": [],
+    "bosses": [],
+    "finalSkills": []
+  },
+  {
+    "file": "stage-4-skills-stop.json",
+    "phase": "lost",
+    "expected": "lost",
+    "life": -1,
+    "killed": 303,
+    "total": 423,
+    "leaked": 2,
+    "seconds": 834.6666666666666,
+    "unrun": 0,
+    "rejected": [],
+    "bosses": [],
+    "finalSkills": []
+  },
+  {
+    "file": "stage-5-clear.json",
+    "phase": "won",
+    "expected": "won",
+    "life": 3,
+    "killed": 474,
+    "total": 474,
+    "leaked": 0,
+    "seconds": 1054.1666666666667,
+    "unrun": 0,
+    "rejected": [],
+    "bosses": [
+      {
+        "uid": 466,
+        "id": "stormCrow",
+        "atSec": 1023.0333333333333,
+        "lastHp": 282,
+        "result": "enemyDie",
+        "endSec": 1054.1666666666667
+      }
+    ],
+    "finalSkills": [
+      {
+        "atSec": 1024.5333333333333,
+        "unitId": "bear",
+        "type": "skill"
+      },
+      {
+        "atSec": 1030.6333333333334,
+        "unitId": "penguin",
+        "type": "skill"
+      },
+      {
+        "atSec": 1030.8,
+        "unitId": "cat",
+        "type": "skill"
+      }
+    ]
+  },
+  {
+    "file": "stage-5-idle.json",
+    "phase": "lost",
+    "expected": "lost",
+    "life": 0,
+    "killed": 0,
+    "total": 334,
+    "leaked": 3,
+    "seconds": 25.733333333333334,
+    "unrun": 0,
+    "rejected": [],
+    "bosses": [],
+    "finalSkills": []
+  },
+  {
+    "file": "stage-5-no-skills.json",
+    "phase": "lost",
+    "expected": "lost",
+    "life": 0,
+    "killed": 355,
+    "total": 440,
+    "leaked": 3,
+    "seconds": 830.8666666666667,
+    "unrun": 0,
+    "rejected": [],
+    "bosses": [],
+    "finalSkills": []
+  },
+  {
+    "file": "stage-5-skills-stop.json",
+    "phase": "lost",
+    "expected": "lost",
+    "life": 0,
+    "killed": 355,
+    "total": 440,
+    "leaked": 3,
+    "seconds": 830.8666666666667,
+    "unrun": 0,
+    "rejected": [],
+    "bosses": [],
+    "finalSkills": []
+  },
+  {
+    "file": "stage-6-clear.json",
+    "phase": "won",
+    "expected": "won",
+    "life": 3,
+    "killed": 435,
+    "total": 435,
+    "leaked": 0,
+    "seconds": 1435.7666666666667,
+    "unrun": 0,
+    "rejected": [],
+    "bosses": [
+      {
+        "uid": 433,
+        "id": "kingJelly",
+        "atSec": 1397.0333333333333,
+        "lastHp": 152,
+        "result": "enemyDie",
+        "endSec": 1435.7666666666667
+      }
+    ],
+    "finalSkills": [
+      {
+        "atSec": 1407.1666666666667,
+        "unitId": "penguin",
+        "type": "skill"
+      },
+      {
+        "atSec": 1408.6666666666667,
+        "unitId": "cat",
+        "type": "skill"
+      },
+      {
+        "atSec": 1410.1333333333334,
+        "unitId": "sheep",
+        "type": "skill"
+      },
+      {
+        "atSec": 1412.9333333333334,
+        "unitId": "bear",
+        "type": "skill"
+      },
+      {
+        "atSec": 1418.7666666666667,
+        "unitId": "bunny",
+        "type": "skill"
+      },
+      {
+        "atSec": 1423.2,
+        "unitId": "snail",
+        "type": "skill"
+      }
+    ]
+  },
+  {
+    "file": "stage-6-idle.json",
+    "phase": "lost",
+    "expected": "lost",
+    "life": 0,
+    "killed": 0,
+    "total": 321,
+    "leaked": 3,
+    "seconds": 29.033333333333335,
+    "unrun": 0,
+    "rejected": [],
+    "bosses": [],
+    "finalSkills": []
+  },
+  {
+    "file": "stage-6-skills-stop.json",
+    "phase": "lost",
+    "expected": "lost",
+    "life": 0,
+    "killed": 83,
+    "total": 343,
+    "leaked": 1,
+    "seconds": 277,
+    "unrun": 0,
+    "rejected": [],
+    "bosses": [],
+    "finalSkills": []
+  },
+  {
+    "file": "stage-7-clear.json",
+    "phase": "won",
+    "expected": "won",
+    "life": 3,
+    "killed": 495,
+    "total": 495,
+    "leaked": 0,
+    "seconds": 1738.9666666666667,
+    "unrun": 0,
+    "rejected": [],
+    "bosses": [
+      {
+        "uid": 491,
+        "id": "gardenKing",
+        "atSec": 1658.0333333333333,
+        "lastHp": 187,
+        "result": "enemyDie",
+        "endSec": 1738.9666666666667
+      }
+    ],
+    "finalSkills": [
+      {
+        "atSec": 1662.9666666666667,
+        "unitId": "bear",
+        "type": "skill"
+      },
+      {
+        "atSec": 1675.1666666666667,
+        "unitId": "penguin",
+        "type": "skill"
+      },
+      {
+        "atSec": 1676.4,
+        "unitId": "snail",
+        "type": "skill"
+      },
+      {
+        "atSec": 1679.5666666666666,
+        "unitId": "cat",
+        "type": "skill"
+      },
+      {
+        "atSec": 1686.7666666666667,
+        "unitId": "sheep",
+        "type": "skill"
+      },
+      {
+        "atSec": 1689,
+        "unitId": "bear",
+        "type": "skill"
+      },
+      {
+        "atSec": 1715.0333333333333,
+        "unitId": "bear",
+        "type": "skill"
+      },
+      {
+        "atSec": 1721.2,
+        "unitId": "penguin",
+        "type": "skill"
+      },
+      {
+        "atSec": 1726.7333333333333,
+        "unitId": "sheep",
+        "type": "skill"
+      }
+    ]
+  },
+  {
+    "file": "stage-7-idle.json",
+    "phase": "lost",
+    "expected": "lost",
+    "life": 0,
+    "killed": 0,
+    "total": 368,
+    "leaked": 3,
+    "seconds": 42.666666666666664,
+    "unrun": 0,
+    "rejected": [],
+    "bosses": [],
+    "finalSkills": []
+  },
+  {
+    "file": "stage-7-line-clear.json",
+    "phase": "won",
+    "expected": "won",
+    "life": 3,
+    "killed": 505,
+    "total": 505,
+    "leaked": 0,
+    "seconds": 1736.4,
+    "unrun": 0,
+    "rejected": [],
+    "bosses": [
+      {
+        "uid": 500,
+        "id": "gardenKing",
+        "atSec": 1658.0333333333333,
+        "lastHp": 53,
+        "result": "enemyDie",
+        "endSec": 1736.4
+      }
+    ],
+    "finalSkills": [
+      {
+        "atSec": 1673.5,
+        "unitId": "bear",
+        "type": "skill"
+      },
+      {
+        "atSec": 1673.5,
+        "unitId": "wolf",
+        "type": "skill"
+      },
+      {
+        "atSec": 1679.5666666666666,
+        "unitId": "cat",
+        "type": "skill"
+      },
+      {
+        "atSec": 1685.0666666666666,
+        "unitId": "penguin",
+        "type": "skill"
+      },
+      {
+        "atSec": 1688,
+        "unitId": "owl",
+        "type": "skill"
+      },
+      {
+        "atSec": 1710.3,
+        "unitId": "bear",
+        "type": "skill"
+      },
+      {
+        "atSec": 1716.5333333333333,
+        "unitId": "wolf",
+        "type": "skill"
+      },
+      {
+        "atSec": 1725.3666666666666,
+        "unitId": "sheep",
+        "type": "skill"
+      }
+    ]
+  },
+  {
+    "file": "stage-7-rear-clear.json",
+    "phase": "won",
+    "expected": "won",
+    "life": 3,
+    "killed": 505,
+    "total": 505,
+    "leaked": 0,
+    "seconds": 1738.9666666666667,
+    "unrun": 0,
+    "rejected": [],
+    "bosses": [
+      {
+        "uid": 498,
+        "id": "gardenKing",
+        "atSec": 1658.0333333333333,
+        "lastHp": 187,
+        "result": "enemyDie",
+        "endSec": 1738.9666666666667
+      }
+    ],
+    "finalSkills": [
+      {
+        "atSec": 1672.6333333333334,
+        "unitId": "bunny",
+        "type": "skill"
+      },
+      {
+        "atSec": 1675.1666666666667,
+        "unitId": "penguin",
+        "type": "skill"
+      },
+      {
+        "atSec": 1682.2333333333333,
+        "unitId": "snail",
+        "type": "skill"
+      },
+      {
+        "atSec": 1686.7,
+        "unitId": "sheep",
+        "type": "skill"
+      },
+      {
+        "atSec": 1688,
+        "unitId": "bear",
+        "type": "skill"
+      },
+      {
+        "atSec": 1708.3666666666666,
+        "unitId": "bunny",
+        "type": "skill"
+      },
+      {
+        "atSec": 1714.0333333333333,
+        "unitId": "bear",
+        "type": "skill"
+      },
+      {
+        "atSec": 1721.2,
+        "unitId": "penguin",
+        "type": "skill"
+      },
+      {
+        "atSec": 1726.7333333333333,
+        "unitId": "sheep",
+        "type": "skill"
+      }
+    ]
+  },
+  {
+    "file": "stage-7-skills-stop.json",
+    "phase": "lost",
+    "expected": "lost",
+    "life": 0,
+    "killed": 90,
+    "total": 392,
+    "leaked": 3,
+    "seconds": 300.03333333333336,
+    "unrun": 0,
+    "rejected": [],
+    "bosses": [],
+    "finalSkills": []
+  },
+  {
+    "file": "stage-7-wide-clear.json",
+    "phase": "won",
+    "expected": "won",
+    "life": 3,
+    "killed": 505,
+    "total": 505,
+    "leaked": 0,
+    "seconds": 1736.4,
+    "unrun": 0,
+    "rejected": [],
+    "bosses": [
+      {
+        "uid": 500,
+        "id": "gardenKing",
+        "atSec": 1658.0333333333333,
+        "lastHp": 53,
+        "result": "enemyDie",
+        "endSec": 1736.4
+      }
+    ],
+    "finalSkills": [
+      {
+        "atSec": 1673.5,
+        "unitId": "bear",
+        "type": "skill"
+      },
+      {
+        "atSec": 1674.2,
+        "unitId": "wolf",
+        "type": "skill"
+      },
+      {
+        "atSec": 1679.5666666666666,
+        "unitId": "cat",
+        "type": "skill"
+      },
+      {
+        "atSec": 1684.7666666666667,
+        "unitId": "penguin",
+        "type": "skill"
+      },
+      {
+        "atSec": 1688,
+        "unitId": "owl",
+        "type": "skill"
+      },
+      {
+        "atSec": 1710.3,
+        "unitId": "bear",
+        "type": "skill"
+      },
+      {
+        "atSec": 1725.3666666666666,
+        "unitId": "sheep",
+        "type": "skill"
+      }
+    ]
+  }
+]

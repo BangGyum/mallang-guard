@@ -1,6 +1,7 @@
 @import "./battle.css";
 @import "./battleMobile.css";
 @import "./waveNotice.css";
+@import "./bossHud.css";
 @import "./unitPopover.css";
 @import "./unitPopoverMobile.css";
 @import "./skillNotices.css";

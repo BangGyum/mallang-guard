@@ -7,6 +7,22 @@ export async function skillRetryMs(page, unitId) {
   }, unitId);
 }
 
+export async function captureCampaignFailure(browser, prefix) {
+  for (const context of browser.contexts()) {
+    for (const page of context.pages()) {
+      const failure = await page.evaluate(() => ({
+        screen: document.querySelector('#app')?.dataset.screen,
+        text: document.body.innerText.slice(0, 2000),
+        stage: window.campaign?.battle?.stage.definition.id,
+        tick: window.campaign?.battle?.state.tick,
+        phase: window.campaign?.battle?.state.phase,
+      }));
+      console.error(JSON.stringify(failure));
+      await page.screenshot({ path: `docs/verification/${prefix}-campaign-failure.png` });
+    }
+  }
+}
+
 export async function installCampaignAudit(page, moduleUrl) {
   await page.evaluate(async (url) => {
     const { Battle } = await import(url);

@@ -1,0 +1,286 @@
+{
+  "ticket": "T4.21 재점검",
+  "date": "2026-10-12",
+  "reviewedBase": "217cf2da82dd30701b71d8a4bc36f3c22a64a300",
+  "fixes": [
+    "스킬·카드 정보창이 보스 체력창과 중앙 웨이브 알림을 가리던 배치 수정",
+    "스킬 발동 알림이 보스 체력창을 가리던 위치 선택 수정",
+    "이미 유닛을 선택한 상태에서 보스가 등장하는 첫 프레임의 웨이브 배치 반영"
+  ],
+  "checks": {
+    "typecheck": "passed",
+    "lint": "passed",
+    "testFiles": 65,
+    "tests": 1148,
+    "build": "passed",
+    "scenarioFiles": 29,
+    "clearScenarios": 10,
+    "bossUiCases": 28,
+    "popupCases": 36,
+    "arrivalFrames": 6,
+    "unitSelectionScreens": 4,
+    "lifecycle": "passed",
+    "campaignClears": 14,
+    "production": {
+      "productionBase": "/mallang-guard/",
+      "portraits": 10,
+      "webgl": true,
+      "waves": 12,
+      "killOnlyIncome": true,
+      "exit": true,
+      "errors": []
+    }
+  },
+  "campaign": [
+    {
+      "viewport": "desktop",
+      "stage": "stage-1",
+      "phase": "won",
+      "life": 3,
+      "killed": 120,
+      "leaked": 0,
+      "totalEnemies": 120,
+      "wave": 12,
+      "totalWaves": 12,
+      "seconds": 234.83333333333334
+    },
+    {
+      "viewport": "desktop",
+      "stage": "stage-2",
+      "phase": "won",
+      "life": 3,
+      "killed": 193,
+      "leaked": 0,
+      "totalEnemies": 193,
+      "wave": 20,
+      "totalWaves": 20,
+      "seconds": 355.6666666666667
+    },
+    {
+      "viewport": "desktop",
+      "stage": "stage-3",
+      "phase": "won",
+      "life": 3,
+      "killed": 376,
+      "leaked": 0,
+      "totalEnemies": 376,
+      "wave": 25,
+      "totalWaves": 25,
+      "seconds": 485.3666666666667
+    },
+    {
+      "viewport": "desktop",
+      "stage": "stage-4",
+      "phase": "won",
+      "life": 3,
+      "killed": 443,
+      "leaked": 0,
+      "totalEnemies": 443,
+      "wave": 50,
+      "totalWaves": 50,
+      "seconds": 1080.6
+    },
+    {
+      "viewport": "desktop",
+      "stage": "stage-5",
+      "phase": "won",
+      "life": 3,
+      "killed": 474,
+      "leaked": 0,
+      "totalEnemies": 474,
+      "wave": 50,
+      "totalWaves": 50,
+      "seconds": 1053.6
+    },
+    {
+      "viewport": "desktop",
+      "stage": "stage-6",
+      "phase": "won",
+      "life": 3,
+      "killed": 435,
+      "leaked": 0,
+      "totalEnemies": 435,
+      "wave": 60,
+      "totalWaves": 60,
+      "seconds": 1435.7666666666667
+    },
+    {
+      "viewport": "desktop",
+      "stage": "stage-7",
+      "phase": "won",
+      "life": 3,
+      "killed": 495,
+      "leaked": 0,
+      "totalEnemies": 495,
+      "wave": 60,
+      "totalWaves": 60,
+      "seconds": 1738.9666666666667
+    },
+    {
+      "viewport": "mobile",
+      "stage": "stage-1",
+      "phase": "won",
+      "life": 3,
+      "killed": 120,
+      "leaked": 0,
+      "totalEnemies": 120,
+      "wave": 12,
+      "totalWaves": 12,
+      "seconds": 234.83333333333334
+    },
+    {
+      "viewport": "mobile",
+      "stage": "stage-2",
+      "phase": "won",
+      "life": 3,
+      "killed": 193,
+      "leaked": 0,
+      "totalEnemies": 193,
+      "wave": 20,
+      "totalWaves": 20,
+      "seconds": 355.6666666666667
+    },
+    {
+      "viewport": "mobile",
+      "stage": "stage-3",
+      "phase": "won",
+      "life": 3,
+      "killed": 376,
+      "leaked": 0,
+      "totalEnemies": 376,
+      "wave": 25,
+      "totalWaves": 25,
+      "seconds": 485.3666666666667
+    },
+    {
+      "viewport": "mobile",
+      "stage": "stage-4",
+      "phase": "won",
+      "life": 3,
+      "killed": 443,
+      "leaked": 0,
+      "totalEnemies": 443,
+      "wave": 50,
+      "totalWaves": 50,
+      "seconds": 1080.6
+    },
+    {
+      "viewport": "mobile",
+      "stage": "stage-5",
+      "phase": "won",
+      "life": 3,
+      "killed": 474,
+      "leaked": 0,
+      "totalEnemies": 474,
+      "wave": 50,
+      "totalWaves": 50,
+      "seconds": 1053.6
+    },
+    {
+      "viewport": "mobile",
+      "stage": "stage-6",
+      "phase": "won",
+      "life": 3,
+      "killed": 435,
+      "leaked": 0,
+      "totalEnemies": 435,
+      "wave": 60,
+      "totalWaves": 60,
+      "seconds": 1435.7666666666667
+    },
+    {
+      "viewport": "mobile",
+      "stage": "stage-7",
+      "phase": "won",
+      "life": 3,
+      "killed": 495,
+      "leaked": 0,
+      "totalEnemies": 495,
+      "wave": 60,
+      "totalWaves": 60,
+      "seconds": 1738.9666666666667
+    }
+  ],
+  "ui": [
+    {
+      "width": 740,
+      "height": 360,
+      "touch": true,
+      "cases": 6,
+      "arrivalClear": true,
+      "errors": []
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "touch": true,
+      "cases": 6,
+      "arrivalClear": true,
+      "errors": []
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "touch": false,
+      "cases": 6,
+      "arrivalClear": true,
+      "errors": []
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "touch": true,
+      "cases": 6,
+      "arrivalClear": true,
+      "errors": []
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "touch": true,
+      "cases": 6,
+      "arrivalClear": true,
+      "errors": []
+    },
+    {
+      "width": 600,
+      "height": 400,
+      "touch": true,
+      "cases": 6,
+      "arrivalClear": true,
+      "errors": []
+    }
+  ],
+  "progress": {
+    "sequentialUnlock": true,
+    "stars": 21,
+    "reload": true,
+    "defeatPreservesBest": true
+  },
+  "sources": [
+    {
+      "path": "src/ui/bossHud.ts",
+      "sha256": "eda633ec0e285723227cafdb167bc7f67816bbd5792bf0571ddcf9c5807c2735"
+    },
+    {
+      "path": "src/ui/hud.ts",
+      "sha256": "8684bfa7d95cc59e057648197463a2c072b67d8d2660bc74a1bb82f2e57d92c7"
+    },
+    {
+      "path": "src/ui/skillNotices.ts",
+      "sha256": "f3c06ece78216694ec731249c899a30e0455ec7c927624712d17102c5ded4082"
+    }
+  ],
+  "limits": [
+    "Edge 헤드리스의 가상 시간·터치 에뮬레이션 검사이며 실제 기기 FPS와 실시간 재미 측정은 아님",
+    "보스 UI 조작 장면은 stage-7의 마지막 보스만 분리하고 전체 전투는 캠페인 검사로 확인"
+  ],
+  "records": [
+    "t4.21-recheck-boss-popups.json",
+    "t4.21-recheck-boss-lifecycle.json",
+    "t4.21-recheck-boss-ui.json",
+    "t4.21-recheck-unit-selection.json",
+    "t4.21-recheck-campaign.json",
+    "t4.21-recheck-production.json"
+  ]
+}

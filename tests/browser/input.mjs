@@ -126,7 +126,7 @@ try {
     await finishBattle(page);
     assert.equal(await page.locator('.battle-result').getAttribute('data-result'), 'lost');
     const result = await page.locator('.result-detail').textContent();
-    assert.match(result, /^푸딩 0개 · 처치 \d+\/119$/);
+    assert.match(result, /^푸딩 0개 · 처치 \d+\/120$/);
     await page.screenshot({
       path: `docs/verification/${screenshotPrefix}-${mobile ? 'mobile' : 'desktop'}-failed.png`,
     });

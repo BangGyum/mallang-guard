@@ -38,7 +38,9 @@ describe('3~7 정원 중후반 압박', () => {
         1,
       ]);
       if (baseline.id === 'stage-6' || baseline.id === 'stage-7') {
-        expect(block.filter((group) => group.enemy === 'kingJelly').map((group) => group.count)).toEqual([1]);
+        expect(
+          block.filter((group) => content.enemies.get(group.enemy)?.boss).map((group) => group.count),
+        ).toEqual([1]);
       }
     }
     for (const [index, group] of (blocks.at(-1) ?? []).entries()) {

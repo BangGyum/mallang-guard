@@ -1,0 +1,193 @@
+{
+  "ticket": "T4.21",
+  "date": "2026-10-12",
+  "checks": {
+    "typecheck": "passed",
+    "lint": "passed",
+    "testFiles": 65,
+    "tests": 1148,
+    "build": "passed",
+    "scenarios": 29,
+    "clearScenarios": 10,
+    "browserClears": 14,
+    "uiCases": 28,
+    "production": {
+      "productionBase": "/mallang-guard/",
+      "portraits": 10,
+      "webgl": true,
+      "waves": 12,
+      "killOnlyIncome": true,
+      "exit": true,
+      "errors": []
+    }
+  },
+  "bosses": [
+    {
+      "id": "kingJelly",
+      "name": "왕젤리",
+      "hp": 14000,
+      "def": 160,
+      "res": 15,
+      "lifeDamage": 3,
+      "bounty": 20
+    },
+    {
+      "id": "bigJelly",
+      "name": "덩치젤리",
+      "hp": 3500,
+      "def": 60,
+      "res": 0,
+      "lifeDamage": 2,
+      "bounty": 12
+    },
+    {
+      "id": "gateJelly",
+      "name": "성문젤리",
+      "hp": 6000,
+      "def": 180,
+      "res": 5,
+      "lifeDamage": 2,
+      "bounty": 16
+    },
+    {
+      "id": "splitCaptain",
+      "name": "분열대장",
+      "hp": 5500,
+      "def": 80,
+      "res": 10,
+      "lifeDamage": 2,
+      "bounty": 18
+    },
+    {
+      "id": "greenhouseKeeper",
+      "name": "온실지기",
+      "hp": 7500,
+      "def": 140,
+      "res": 20,
+      "lifeDamage": 2,
+      "bounty": 20
+    },
+    {
+      "id": "stormCrow",
+      "name": "폭풍까악",
+      "hp": 7500,
+      "def": 80,
+      "res": 10,
+      "lifeDamage": 2,
+      "bounty": 20
+    },
+    {
+      "id": "gardenKing",
+      "name": "정원군주",
+      "hp": 14500,
+      "def": 160,
+      "res": 15,
+      "lifeDamage": 3,
+      "bounty": 25
+    }
+  ],
+  "campaign": [
+    {
+      "viewport": "desktop",
+      "stage": "stage-1",
+      "life": 3,
+      "killed": 120,
+      "seconds": 234.83333333333334
+    },
+    {
+      "viewport": "desktop",
+      "stage": "stage-2",
+      "life": 3,
+      "killed": 193,
+      "seconds": 355.6666666666667
+    },
+    {
+      "viewport": "desktop",
+      "stage": "stage-3",
+      "life": 3,
+      "killed": 376,
+      "seconds": 485.3333333333333
+    },
+    {
+      "viewport": "desktop",
+      "stage": "stage-4",
+      "life": 3,
+      "killed": 443,
+      "seconds": 1080.6
+    },
+    {
+      "viewport": "desktop",
+      "stage": "stage-5",
+      "life": 3,
+      "killed": 474,
+      "seconds": 1053.6
+    },
+    {
+      "viewport": "desktop",
+      "stage": "stage-6",
+      "life": 3,
+      "killed": 435,
+      "seconds": 1435.7666666666667
+    },
+    {
+      "viewport": "desktop",
+      "stage": "stage-7",
+      "life": 3,
+      "killed": 495,
+      "seconds": 1738.9666666666667
+    },
+    {
+      "viewport": "mobile",
+      "stage": "stage-1",
+      "life": 3,
+      "killed": 120,
+      "seconds": 234.83333333333334
+    },
+    {
+      "viewport": "mobile",
+      "stage": "stage-2",
+      "life": 3,
+      "killed": 193,
+      "seconds": 355.6666666666667
+    },
+    {
+      "viewport": "mobile",
+      "stage": "stage-3",
+      "life": 3,
+      "killed": 376,
+      "seconds": 485.3666666666667
+    },
+    {
+      "viewport": "mobile",
+      "stage": "stage-4",
+      "life": 3,
+      "killed": 443,
+      "seconds": 1080.6
+    },
+    {
+      "viewport": "mobile",
+      "stage": "stage-5",
+      "life": 3,
+      "killed": 474,
+      "seconds": 1053.6
+    },
+    {
+      "viewport": "mobile",
+      "stage": "stage-6",
+      "life": 3,
+      "killed": 435,
+      "seconds": 1435.7666666666667
+    },
+    {
+      "viewport": "mobile",
+      "stage": "stage-7",
+      "life": 3,
+      "killed": 495,
+      "seconds": 1738.9666666666667
+    }
+  ],
+  "limitations": [
+    "가상 시계로 긴 전투를 진행한 실제 UI 입력 검사이며 실시간 재미와 FPS 측정은 아님",
+    "터치는 에뮬레이션으로 실제 휴대폰 검사를 대신하지 않음"
+  ]
+}

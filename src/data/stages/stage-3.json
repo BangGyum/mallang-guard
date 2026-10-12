@@ -1,7 +1,7 @@
 {
   "id": "stage-3",
   "name": "1-3 방울 정원",
-  "description": "25웨이브의 분열·방해 방어전. 두 입구의 무리와 대장젤리를 차례로 막아요.",
+  "description": "25웨이브의 분열·방해 방어전. 두 입구의 무리와 대장젤리를 차례로 막아요. 마지막 웨이브에 분열대장 보스가 등장해요.",
   "startDp": 16,
   "routes": {
     "ground": { "from": [0, 1], "via": [[4, 1], [4, 4], [7, 4], [7, 1], [9, 1], [9, 4]], "to": [10, 4] },
@@ -66,6 +66,7 @@
     { "wave": 25, "atSec": 449, "enemy": "hardJelly", "count": 6, "intervalSec": 3.5, "route": "ground" },
     { "wave": 22, "atSec": 391, "enemy": "sproutJelly", "count": 1, "intervalSec": 0, "route": "ground" },
     { "wave": 23, "atSec": 408, "enemy": "shieldJelly", "count": 1, "intervalSec": 0, "route": "ground" },
-    { "wave": 24, "atSec": 430, "enemy": "captainJelly", "count": 1, "intervalSec": 0, "route": "ground" }
+    { "wave": 24, "atSec": 430, "enemy": "captainJelly", "count": 1, "intervalSec": 0, "route": "ground" },
+    { "wave": 25, "atSec": 445, "enemy": "splitCaptain", "count": 1, "intervalSec": 0, "route": "ground" }
   ]
 }
