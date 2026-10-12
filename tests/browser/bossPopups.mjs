@@ -135,6 +135,24 @@ try {
         afterWave.separated && afterWave.fits && afterWave.labelsFit && afterWave.buttonsFit,
         JSON.stringify({ width, height, tile, afterWave }),
       );
+      await click(page.locator('.unit-panel .skill-info-label'));
+      assert.equal(await page.locator('.unit-panel .skill-details').evaluate((node) => node.open), true);
+      const expanded = await inspect();
+      assert(
+        expanded.separated && expanded.fits && expanded.labelsFit && expanded.buttonsFit,
+        `스킬 상세와 보스 ${JSON.stringify({ width, height, tile, expanded })}`,
+      );
+      await page.locator('.unit-info-details').evaluate((node) => {
+        node.scrollTop = node.scrollHeight;
+      });
+      const readable = await page.locator('.unit-panel .skill-info-note').evaluate((node) => {
+        const note = node.getBoundingClientRect();
+        const scroller = node.closest('.unit-info-details').getBoundingClientRect();
+        return note.bottom <= scroller.bottom && note.bottom > scroller.top;
+      });
+      assert(readable, '보스가 있어도 상세 끝까지 스크롤');
+      if (tile.x === 9 && tile.y === 5 && [740, 320].includes(width))
+        await page.screenshot({ path: `docs/verification/${prefix}-${width}x${height}-boss-details.png` });
       await page.evaluate(() => window.bossPopupScene.step(900));
       assert.equal(await page.locator('.skill-button').isDisabled(), false);
       await click(page.locator('.skill-button'));
@@ -180,7 +198,17 @@ try {
       assert.deepEqual(await page.evaluate(() => window.bossPopupScene.rejected), []);
       await click(page.locator('[data-action="exit"]'));
       assert.equal(await page.locator('.boss-hud, .unit-panel, .roster-panel, .skill-notice').count(), 0);
-      checks.push({ tile, duringWave, afterWave, roster, resized, skill: true, exit: true });
+      checks.push({
+        tile,
+        duringWave,
+        afterWave,
+        expanded,
+        readable,
+        roster,
+        resized,
+        skill: true,
+        exit: true,
+      });
     }
     assert.deepEqual(errors, []);
     report.push({ width, height, touch, arrival, checks, errors });

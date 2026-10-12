@@ -4,6 +4,7 @@ import { button, element } from './dom';
 import { cardDeployReason } from './inputState';
 import { placeRosterPopup } from './popupPosition';
 import { portrait } from './portrait';
+import { createSkillDetails } from './skillDetails';
 import { REJECTION_MESSAGES } from './toast';
 
 export function createRosterPanel(root: HTMLDivElement, battle: Battle, close: () => void) {
@@ -24,7 +25,12 @@ export function createRosterPanel(root: HTMLDivElement, battle: Battle, close: (
   const skillName = element('strong', 'roster-skill-name');
   const skill = element('p', 'roster-skill-description');
   const charge = element('small', 'roster-charge');
-  details.append(stats, skillName, skill, charge);
+  const summary = element('summary', '');
+  const identitySkill = element('div', 'skill-identity');
+  identitySkill.append(skillName, charge);
+  summary.append(identitySkill);
+  const skillDetails = createSkillDetails(battle.content, summary, skill, true);
+  details.append(skillDetails.element, stats);
   const hint = element('p', 'roster-deploy-hint');
   panel.append(header, details, hint);
   root.append(panel);
@@ -51,7 +57,7 @@ export function createRosterPanel(root: HTMLDivElement, battle: Battle, close: (
         const damageType = def.damageType === 'magic' ? '마법' : `물리 · 관통력 ${def.armorPen ?? 0}`;
         stats.textContent = `배치 도토리 ${def.cost} · 재배치 ${def.redeploySec}초\n공격력 ${def.atk} · ${damageType}\n공격 간격 ${def.atkIntervalSec.toFixed(2)}초 · ${def.canHitAir ? '대공 가능' : '지상 공격'}\n기본 사거리 ${range?.tiles.length ?? 0}칸 · 보라색 고지대`;
         skillName.textContent = ability.name;
-        skill.textContent = ability.description;
+        skillDetails.update(def, ability);
         charge.textContent = `${ability.charge === 'auto' ? '시간 충전' : '공격 충전'} · ${ability.trigger === 'manual' ? '수동 발동' : '자동 발동'} · 시작 SP ${ability.spStart}/${ability.spCost}${ability.condition === 'enemyInRange' ? ' · 범위 내 적 필요' : ''}`;
       }
       const reason = cardDeployReason(battle, def.id);

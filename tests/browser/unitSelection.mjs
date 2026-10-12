@@ -197,7 +197,10 @@ try {
         await page.setViewportSize(size);
         await frame(page, 300);
         const resized = await inspect(await tilePoint(page, { x: 8, y: 2 }));
-        assert(resized.fits && resized.buttons && resized.statsVisible, '리사이즈 후 능력치·버튼 잘림 없음');
+        assert(
+          resized.fits && resized.buttons && resized.statsVisible,
+          `리사이즈 후 능력치·버튼 잘림 없음 ${JSON.stringify({ size, resized })}`,
+        );
       }
       await page.setViewportSize(viewport);
       await frame(page, 300);

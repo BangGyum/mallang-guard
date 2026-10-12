@@ -8,6 +8,7 @@ import { battleIcon } from './battleIcon';
 import { button, element } from './dom';
 import { reducedMotion } from './motion';
 import { placeUnitPopup, type ScreenPoint } from './popupPosition';
+import { createSkillDetails } from './skillDetails';
 
 export function createUnitPanel(
   root: HTMLDivElement,
@@ -28,7 +29,7 @@ export function createUnitPanel(
   close.setAttribute('aria-label', '유닛 선택 닫기');
   identity.append(name, description);
   header.append(avatar, identity, close);
-  const skillHeading = element('div', 'skill-heading');
+  const skillHeading = element('summary', 'skill-heading');
   const skillIcon = element('span', 'skill-icon');
   const skillIdentity = element('div', 'skill-identity');
   const skillName = element('b', 'skill-name');
@@ -38,6 +39,7 @@ export function createUnitPanel(
   const details = element('div', 'unit-info-details');
   const stats = element('p', 'unit-stats');
   const skillDescription = element('p', 'skill-description');
+  const skillDetails = createSkillDetails(battle.content, skillHeading, skillDescription);
   const disruption = element('p', 'unit-disruption');
   const gauge = element('progress', 'skill-gauge');
   gauge.setAttribute('aria-label', '스킬 충전');
@@ -60,8 +62,8 @@ export function createUnitPanel(
   retreat.setAttribute('aria-label', '후퇴, 도토리 환급 없음');
   const buttons = element('div', 'unit-popup-actions');
   buttons.append(retreat, activate, automatic);
-  details.append(skillDescription, stats, disruption);
-  card.append(header, skillHeading, details, meter, buttons);
+  details.append(skillDetails.element, stats, disruption);
+  card.append(header, details, meter, buttons);
   panel.append(card);
   const marker = element('div', 'unit-popup-anchor');
   marker.hidden = true;
@@ -76,6 +78,7 @@ export function createUnitPanel(
       panel.hidden = marker.hidden = !unit || !def || !skill || !point;
       if (!unit || !def || !skill || !point) {
         selectedUid = null;
+        skillDetails.element.open = false;
         return;
       }
       if (selectedUid !== uid) {
@@ -97,7 +100,7 @@ export function createUnitPanel(
       stats.textContent = `공격력 ${Math.round(current.atk)} · ${damageType}\n공격 간격 ${(current.atkIntervalTicks / TICK_RATE).toFixed(2)}초 · ${def.canHitAir ? '대공 가능' : '지상 공격'}`;
       skillName.textContent = skill.name;
       skillMeta.textContent = `${skill.charge === 'attack' ? '공격 충전' : '시간 충전'} · ${skill.trigger === 'auto' ? '자동 발동' : '수동 발동'}${skill.condition === 'enemyInRange' ? ' · 범위 내 적 필요' : ''}`;
-      skillDescription.textContent = skill.description;
+      skillDetails.update(def, skill);
       disruption.hidden = unit.disruptedUntilTick <= battle.state.tick;
       disruption.textContent = `끈적함 · 공격 느림 ${Math.max(0, (unit.disruptedUntilTick - battle.state.tick) / TICK_RATE).toFixed(1)}초`;
       const active = unit.skillState === 'active';

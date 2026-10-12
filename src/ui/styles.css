@@ -11,6 +11,7 @@
 @import "./settings.css";
 @import "./stages.css";
 @import "./unitSelection.css";
+@import "./skillDetails.css";
 
 :root {
   font-family: "IBM Plex Sans KR", "Malgun Gothic", system-ui, sans-serif;
