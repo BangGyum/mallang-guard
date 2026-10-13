@@ -1,3 +1,30 @@
+import assert from 'node:assert/strict';
+
+export async function wallet(page, completed) {
+  const wallet = await page.evaluate(async (count) => {
+    const { recruitment } = await import('/src/data/recruitment.ts');
+    const { collection } = JSON.parse(localStorage.getItem('mallang-guard:v1'));
+    const expected =
+      recruitment.startMoney +
+      Array.from(
+        { length: count },
+        (_, i) =>
+          recruitment.clearRewards[`stage-${i + 1}`] +
+          recruitment.firstClearBonus +
+          3 * recruitment.starBonus,
+      ).reduce((sum, money) => sum + money, 0);
+    return {
+      money: collection.money,
+      expected,
+      ownedUnits: collection.ownedUnits,
+      starters: recruitment.starterUnits,
+    };
+  }, completed);
+  assert.equal(wallet.money, wallet.expected, '첫 클리어·별 머니를 각 전투마다 한 번 지급');
+  assert.deepEqual(wallet.ownedUnits, wallet.starters, '기본 8종만으로 캠페인 진행');
+  return { money: wallet.money, ownedUnits: wallet.ownedUnits.length };
+}
+
 export async function skillRetryMs(page, unitId) {
   return page.evaluate((unitId) => {
     const { state, content } = window.campaign.battle;

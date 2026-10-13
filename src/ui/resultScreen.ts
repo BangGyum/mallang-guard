@@ -1,5 +1,7 @@
+import type { MoneyReward } from '../data/recruitment';
 import { mountDialog } from './dialog';
 import { button, element } from './dom';
+import { moneyIcon } from './moneyIcon';
 
 export function createResultScreen(
   root: HTMLElement,
@@ -10,8 +12,9 @@ export function createResultScreen(
     totalEnemies: number;
     bestLife: number;
     stars: number;
+    reward?: MoneyReward;
   },
-  actions: { restart(): void; exit(): void; stages(): void; next?: () => void },
+  actions: { restart(): void; exit(): void; stages(): void; next?: () => void; shop?: () => void },
 ) {
   const dialog = element('dialog', 'game-dialog battle-result');
   dialog.dataset.result = result.won ? 'won' : 'lost';
@@ -38,9 +41,24 @@ export function createResultScreen(
   if (actions.next) buttons.append(button('다음 스테이지', actions.next, 'primary-button'));
   buttons.append(button('다시 하기', actions.restart, 'primary-button'), button('타이틀로', actions.exit));
   buttons.append(button('스테이지 선택', actions.stages));
+  if (actions.shop) buttons.append(button('상점 · 모집', actions.shop));
   const stars = element('div', 'result-stars', '★'.repeat(result.stars) + '☆'.repeat(3 - result.stars));
   stars.setAttribute('aria-label', `별 ${result.stars}개`);
   stars.hidden = !result.won;
   dialog.append(icon, heading, stars, detail, encouragement, best, buttons);
+  if (result.reward) {
+    const reward = element('div', 'result-money');
+    reward.append(moneyIcon(), element('strong', '', `+${result.reward.amount.toLocaleString()}머니`));
+    reward.append(
+      element(
+        'small',
+        '',
+        `잔액 ${result.reward.balance.toLocaleString()}머니${result.reward.firstClear ? ' · 첫 클리어 보너스 포함' : ''}`,
+      ),
+    );
+    if (!result.reward.saved)
+      reward.append(element('small', 'reward-unsaved', '저장하지 못했어요. 현재 세션에서만 유지됩니다.'));
+    buttons.before(reward);
+  }
   return mountDialog(root, dialog, () => {});
 }

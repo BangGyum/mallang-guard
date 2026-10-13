@@ -24,7 +24,7 @@ try {
   assert.equal(await page.locator('.stage-card[data-stage-id="stage-7"] .stage-enemy').count(), 17);
   await page.locator('.stage-card[data-stage-id="stage-1"]').click();
   await page.locator('.deploy-card').first().waitFor();
-  assert.equal(await page.locator('.card-portrait svg').count(), 10);
+  assert.equal(await page.locator('.card-portrait svg').count(), 8);
   assert.equal(await page.locator('.battle-wave').textContent(), 'WAVE 0/12');
   assert.equal(await page.locator('.dp-source').textContent(), '처치 보상');
   assert.equal(await page.locator('.dp-panel progress').count(), 0);
@@ -42,7 +42,7 @@ try {
   console.log(
     JSON.stringify({
       productionBase: '/mallang-guard/',
-      portraits: 10,
+      portraits: 8,
       webgl: true,
       waves: 12,
       killOnlyIncome: true,

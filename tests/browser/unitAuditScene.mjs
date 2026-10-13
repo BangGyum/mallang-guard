@@ -9,6 +9,10 @@ export async function createUnitAuditGame({ dir, spawnAtSec = 0 }) {
   if (!battleModule) throw new Error('전투 모듈 주소 없음');
   const { Battle } = await import(battleModule);
   if (!window.unitAudit) {
+    // 전체 캐릭터 검사는 이전 v1 계정의 10종 보유를 사용합니다.
+    const legacy = JSON.parse(localStorage.getItem('mallang-guard:v1') ?? '{"version":1}');
+    delete legacy.collection;
+    localStorage.setItem('mallang-guard:v1', JSON.stringify(legacy));
     for (const method of ['step', 'flush']) {
       const original = Battle.prototype[method];
       Battle.prototype[method] = function (...args) {

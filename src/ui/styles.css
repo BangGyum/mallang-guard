@@ -12,6 +12,9 @@
 @import "./stages.css";
 @import "./unitSelection.css";
 @import "./skillDetails.css";
+@import "./shop.css";
+@import "./recruitResult.css";
+@import "./shopMobile.css";
 
 :root {
   font-family: "IBM Plex Sans KR", "Malgun Gothic", system-ui, sans-serif;

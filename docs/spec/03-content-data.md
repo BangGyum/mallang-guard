@@ -5,6 +5,12 @@
 
 ## 1. 타입 (src/data/types.ts)
 
+### 상점 데이터 (T4.24)
+
+`recruitment.json`은 시작/최대 머니, 모집 비용/중복 환급/미보유 보장 횟수, 직접 영입 가격, 기본/기존/모집 친구 ID, 스테이지별 클리어 보상, 별·첫 클리어·패배 보상을 정의합니다. `data/recruitment.ts`가 파싱하고 `data/index.ts`에서 실제 유닛·스테이지 참조와 모든 스테이지의 보상 존재를 검사합니다. 비용과 보장은 양의 정수, 보상은 0 이상의 정수이며 환급은 모집 가격보다 작고 시작 머니·10회 비용·직접 가격은 저장 상한을 넘지 않습니다. 풀은 중복 없는 ID 목록이고 기본/기존 ID는 풀의 부분집합입니다.
+
+`CollectionState`는 `{ money, ownedUnits, pullsSinceNew, rngState }`입니다. 머니는 안전한 정수와 상한을, 보유 ID는 실제 콘텐츠 참조·중복 제거·기본 친구 포함을, 보장 횟수는 0~9를, 난수는 0도 유효한 uint32를 사용합니다. `ShopResult`는 성공 시 결과 목록/총 비용/총 환급, 실패 시 잔액 부족·기보유·없는 친구·저장 실패 이유를 반환합니다. 실제 전투 필드와는 공유하지 않습니다. 가격과 보상표는 [09 문서](09-content-expansion.md)의 T4.24 계약을 따릅니다.
+
 ```ts
 export type { Dir, Tile } from '../core/grid'; // Dir, Tile은 core/grid.ts에 한 번만 정의
 export type DamageType = 'physical' | 'magic' | 'true';

@@ -1,0 +1,239 @@
+{
+  "ticket": "T4.24",
+  "date": "2026-10-13",
+  "baseCommit": "50a104d1c2a481522c2e424194e9e11a6104f08e",
+  "checks": {
+    "typecheck": "passed",
+    "lint": "passed",
+    "unitTests": {
+      "files": 73,
+      "tests": 1258,
+      "status": "passed"
+    },
+    "build": "passed"
+  },
+  "economy": {
+    "startMoney": 300,
+    "maxMoney": 999999,
+    "pullCost": 100,
+    "duplicateRefund": 30,
+    "guaranteeAfter": 10,
+    "unitPrice": 600,
+    "starterUnits": [
+      "squirrel",
+      "cat",
+      "bear",
+      "penguin",
+      "sheep",
+      "bunny",
+      "mole",
+      "snail"
+    ],
+    "legacyUnits": [
+      "squirrel",
+      "cat",
+      "bear",
+      "penguin",
+      "sheep",
+      "bunny",
+      "mole",
+      "snail",
+      "owl",
+      "wolf"
+    ],
+    "pool": [
+      "squirrel",
+      "cat",
+      "bear",
+      "penguin",
+      "sheep",
+      "bunny",
+      "mole",
+      "snail",
+      "owl",
+      "wolf"
+    ],
+    "firstClearBonus": 400,
+    "starBonus": 40,
+    "defeatPerKill": 2,
+    "defeatMax": 80,
+    "clearRewards": {
+      "stage-1": 200,
+      "stage-2": 350,
+      "stage-3": 500,
+      "stage-4": 1200,
+      "stage-5": 1200,
+      "stage-6": 1800,
+      "stage-7": 2400
+    }
+  },
+  "scope": {
+    "currentCharacters": 10,
+    "newPlayerCharacters": 8,
+    "legacyPlayerCharacters": 10,
+    "lockedCharacters": [
+      "owl",
+      "wolf"
+    ],
+    "twentyCharacterExpansion": "later",
+    "combatAndStageDataChanged": false
+  },
+  "browser": {
+    "shopViewports": [
+      "1920x1080",
+      "844x390",
+      "740x360",
+      "390x844",
+      "320x568"
+    ],
+    "titleViewports": [
+      "1920x1080",
+      "844x390",
+      "740x360",
+      "390x844",
+      "320x568"
+    ],
+    "shop": [
+      {
+        "viewport": "1920x1080",
+        "firstClear": 720,
+        "repeatClear": 320,
+        "defeatReward": 2,
+        "purchase": 2,
+        "unlockedDeployment": true,
+        "storageRollback": true,
+        "duplicateRefund": 30,
+        "guaranteedBatch": true,
+        "legacy": true,
+        "reload": true,
+        "dialog": {
+          "fits": true,
+          "confirm": true,
+          "scroll": true
+        },
+        "errors": []
+      },
+      {
+        "viewport": "844x390",
+        "firstClear": 720,
+        "repeatClear": 320,
+        "defeatReward": 2,
+        "purchase": 2,
+        "unlockedDeployment": true,
+        "storageRollback": true,
+        "duplicateRefund": 30,
+        "guaranteedBatch": true,
+        "legacy": true,
+        "reload": true,
+        "dialog": {
+          "fits": true,
+          "confirm": true,
+          "scroll": true
+        },
+        "errors": []
+      },
+      {
+        "viewport": "740x360",
+        "firstClear": 720,
+        "repeatClear": 320,
+        "defeatReward": 2,
+        "purchase": 2,
+        "unlockedDeployment": true,
+        "storageRollback": true,
+        "duplicateRefund": 30,
+        "guaranteedBatch": true,
+        "legacy": true,
+        "reload": true,
+        "dialog": {
+          "fits": true,
+          "confirm": true,
+          "scroll": true
+        },
+        "errors": []
+      },
+      {
+        "viewport": "390x844",
+        "firstClear": 720,
+        "repeatClear": 320,
+        "defeatReward": 2,
+        "purchase": 2,
+        "unlockedDeployment": true,
+        "storageRollback": true,
+        "duplicateRefund": 30,
+        "guaranteedBatch": true,
+        "legacy": true,
+        "reload": true,
+        "dialog": {
+          "fits": true,
+          "confirm": true,
+          "scroll": true
+        },
+        "errors": []
+      },
+      {
+        "viewport": "320x568",
+        "firstClear": 720,
+        "repeatClear": 320,
+        "defeatReward": 2,
+        "purchase": 2,
+        "unlockedDeployment": true,
+        "storageRollback": true,
+        "duplicateRefund": 30,
+        "guaranteedBatch": true,
+        "legacy": true,
+        "reload": true,
+        "dialog": {
+          "fits": true,
+          "confirm": true,
+          "scroll": true
+        },
+        "errors": []
+      }
+    ],
+    "characterCards": 40,
+    "skillDetails": 50,
+    "campaignClears": 14,
+    "basicEightCampaign": true,
+    "allLife3": true,
+    "allLeaks0": true,
+    "finalMoney": [
+      {
+        "viewport": "desktop",
+        "money": 11590
+      },
+      {
+        "viewport": "mobile",
+        "money": 11590
+      }
+    ],
+    "starsPerCampaign": 21,
+    "production": {
+      "productionBase": "/mallang-guard/",
+      "portraits": 8,
+      "webgl": true,
+      "waves": 12,
+      "killOnlyIncome": true,
+      "exit": true,
+      "errors": []
+    }
+  },
+  "limits": [
+    "Headless Edge; virtual time and emulated touch, not physical device FPS or real-time fun assessment.",
+    "Shop integration uses a short fixture map with HP 1 / speed 0.1 jelly; full campaigns use original stages, unit stats, DP and SP.",
+    "Collection persists in browser localStorage; account/server and cross-tab transaction synchronization are outside this task."
+  ],
+  "sourceHashes": {
+    "src/app/app.ts": "ba4b2dbace04b44a6fbee60fdfad8fddc0e19fd79c1213b00d688faa414376d1",
+    "src/app/collection.ts": "7c4fbb9383ac041829d3810e5e716cb17416de36628c091de0b9ac4f801749ff",
+    "src/app/save.ts": "9c22d9059dbac790364384613148340cb8ab9b12c8e9e8aa2611f9ae48a0a7be",
+    "src/data/recruitment.ts": "c10ce965b34023113b2a11282bc267b39b6f76fa492ac00b12f5a7afb64e3aa6",
+    "src/data/recruitment.json": "5969844b23c33b7aed0a1a155fe3221bb910164a8517eeea4215510a31285ff1",
+    "src/ui/shopScreen.ts": "38707ab83d4a5280e841c400880e29ad61c00c6f76047a87df92614ce4663fbd",
+    "src/ui/shop.css": "a72dc5c3165f1947721643b44430d009fa4f12f290def50eef4c7fa99831a907",
+    "src/ui/recruitResult.ts": "d487b5783929af0cd6349931a6768080c342e4da5e847a539b5db8b5dcb5ee92",
+    "src/ui/recruitResult.css": "563dc6f32703b417b16bf8113ac0977db3b804062cddcb4273fb6f16023969fc",
+    "src/ui/shopMobile.css": "a3eb0198bce6a4d1d653bef346e9ec53cc71bb4eee4fe9fe7c445fb5c76edfd3",
+    "src/ui/titleScreen.ts": "f7bb7c489aa79a91f2e9ee017b38e251450357ebfbeda3ad1b4006c88ab424dd",
+    "src/ui/resultScreen.ts": "7563c8a3989aa4f44339c35683fc06c8baf73d7c774cc3a8e13c62d9c061d226"
+  }
+}

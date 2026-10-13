@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { loadSave, SAVE_KEY, storeSave } from '../../src/app/save';
+import { initialCollection } from '../../src/data/recruitment';
 
 let value: string | null;
 beforeEach(() => {
@@ -20,6 +21,7 @@ describe('설정과 클리어 기록 저장', () => {
       version: 1,
       settings: { speed: 1, quality: 'high', sfxVolume: 0.7, reducedMotion: null },
       stages: {},
+      collection: initialCollection(),
     });
     first.settings.speed = 2;
     expect(loadSave().settings.speed).toBe(1);
@@ -55,6 +57,7 @@ describe('설정과 클리어 기록 저장', () => {
       version: 1,
       settings: { speed: 1, quality: 'high', sfxVolume: 1, reducedMotion: null },
       stages: { good: { cleared: true, bestLife: 3 } },
+      collection: initialCollection(undefined, 1, true),
     });
   });
   it('다른 설정이나 기존 클리어 기록을 잃지 않고 배속을 변경한다', () => {

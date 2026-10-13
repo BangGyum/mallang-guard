@@ -1,0 +1,42 @@
+[
+  {
+    "viewport": "1920x1080",
+    "top": 235.5,
+    "width": 1920,
+    "wallet": "300머니보유 8/10",
+    "startAccessible": true,
+    "errors": []
+  },
+  {
+    "viewport": "844x390",
+    "top": 14,
+    "width": 844,
+    "wallet": "300머니보유 8/10",
+    "startAccessible": true,
+    "errors": []
+  },
+  {
+    "viewport": "740x360",
+    "top": 14,
+    "width": 740,
+    "wallet": "300머니보유 8/10",
+    "startAccessible": true,
+    "errors": []
+  },
+  {
+    "viewport": "390x844",
+    "top": 24,
+    "width": 390,
+    "wallet": "300머니보유 8/10",
+    "startAccessible": true,
+    "errors": []
+  },
+  {
+    "viewport": "320x568",
+    "top": 24,
+    "width": 320,
+    "wallet": "300머니보유 8/10",
+    "startAccessible": true,
+    "errors": []
+  }
+]

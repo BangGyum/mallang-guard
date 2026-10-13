@@ -1,5 +1,6 @@
 import enemies from './enemies.json';
 import ranges from './ranges.json';
+import { recruitment, validateRecruitmentReferences } from './recruitment';
 import skills from './skills.json';
 import stage1 from './stages/stage-1.json';
 import stage2 from './stages/stage-2.json';
@@ -19,3 +20,4 @@ export const rawContent = {
   stages: [stage1, stage2, stage3, stage4, stage5, stage6, stage7],
 };
 export const content = validateContent(rawContent);
+validateRecruitmentReferences(recruitment, content);

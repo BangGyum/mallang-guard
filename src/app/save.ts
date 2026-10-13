@@ -1,5 +1,6 @@
 import { clamp } from '../core/math';
 import type { StageRecord } from '../data/progression';
+import { type CollectionState, initialCollection, readCollection, recruitment } from '../data/recruitment';
 
 export const SAVE_KEY = 'mallang-guard:v1';
 
@@ -12,13 +13,15 @@ export interface SaveData {
     reducedMotion: boolean | null;
   };
   stages: Record<string, StageRecord>;
+  collection: CollectionState;
 }
 
-function defaults(): SaveData {
+function defaults(unitIds: readonly string[], seed: number): SaveData {
   return {
     version: 1,
     settings: { speed: 1, quality: 'high', sfxVolume: 0.7, reducedMotion: null },
     stages: {},
+    collection: initialCollection(unitIds, seed),
   };
 }
 
@@ -26,11 +29,15 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
 
-export function loadSave(): SaveData {
-  const save = defaults();
+export function loadSave(unitIds: readonly string[] = recruitment.pool, seed = 1): SaveData {
+  const save = defaults(unitIds, seed);
   try {
     const raw: unknown = JSON.parse(localStorage.getItem(SAVE_KEY) ?? 'null');
     if (!isRecord(raw) || raw.version !== 1) return save;
+    save.collection =
+      raw.collection === undefined
+        ? initialCollection(unitIds, seed, true)
+        : readCollection(raw.collection, unitIds, seed);
     if (isRecord(raw.settings)) {
       const settings = raw.settings;
       save.settings.speed = settings.speed === 2 ? 2 : 1;
@@ -55,10 +62,12 @@ export function loadSave(): SaveData {
   return save;
 }
 
-export function storeSave(save: SaveData): void {
+export function storeSave(save: SaveData): boolean {
   try {
     localStorage.setItem(SAVE_KEY, JSON.stringify(save));
+    return true;
   } catch {
     // 저장 실패는 현재 전투를 중단하지 않습니다.
+    return false;
   }
 }
