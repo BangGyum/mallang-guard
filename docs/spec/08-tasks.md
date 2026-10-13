@@ -542,6 +542,16 @@
 - 화면/회귀: 작은 창 타이틀의 접근할 수 없는 상단 잘림을 수정했고 5개 타이틀·모집 버튼/10회 결과 확인 버튼·스크롤·스킬 수치를 검사했습니다. 기존 계정 10종의 카드 40회·상세 50회·자연 충전/발동/후퇴/리사이즈와 프로덕션 경로의 기본 8종·WebGL·12웨이브·처치 수입·나가기가 통과했습니다. 브라우저 오류/경고는 0건입니다. 상점의 단독 맵 검사는 HP 1/속도 0.1 젤리를 사용하며 전체 캠페인은 원본 수치·비용·SP를 사용합니다. 가상 시계·터치 에뮬레이션으로 실제 기기 FPS나 실시간 재미 측정은 아닙니다.
   결과: [종합](../verification/t4.24-summary.json), [상점/보상](../verification/t4.24-shop.json), [기본 8종 완주](../verification/t4.24-campaign.json), [타이틀](../verification/t4.24-title-layout.json), [캐릭터 창](../verification/t4.24-unit-selection.json), [상세](../verification/t4.24-skill-details.json), [프로덕션](../verification/t4.24-production.json). 화면: [PC 상점](../verification/t4.24-1920x1080-shop.png), [터치 상점](../verification/t4.24-844x390-shop.png), [작은 10회 결과](../verification/t4.24-320x568-ten-recruit.png), [터치 7번 보상](../verification/t4.24-mobile-stage-7-clear.png).
 
+### [x] T4.25 UI·진행 흐름 재점검
+- 사용자 요청 (2026-10-13): 실제 조작에서 UI·진행·컴포넌트 문제를 나열하고 수정·재검증합니다.
+- 읽을 문서: 01·05·07·09의 화면 전환·종료 세션·결과/상점·보상/저장·검증 계약.
+- 재현: 작은 결과창에서 상점/나가기 버튼이 가려짐, 결과에서 상점을 다녀오면 다음 스테이지 동선 소실, 모집/구매 후 펼친 설명과 읽던 위치 소실.
+- 구현: 결과 설명과 조작 영역 분리·좁은 창 배치, 종료 세션/보상 가드를 유지하는 상점 복귀와 크기 갱신·현재 잔액/저장 안내, 상세 펼침·구매한 친구 포커스 복원.
+- 완료 조건: 8개 화면의 실제 영입·다음 배치·승리/패배 복귀·회전·머니/전체 전투 상태/프레임 보존·재시작/나가기, 결과 21개 경우·기존 캐릭터/보스/자원 회귀·원본 1→3 PC/터치 완주, 프로덕션과 check/lint/test/build·화면 기록.
+- 검증: check/lint/test/build와 73개 파일 1,258개 자동 테스트가 통과했습니다. 8개 화면의 왕복·실제 영입/다음 배치·설명/포커스·현재 잔액·승리/패배 유지·종료 전투 동일 상태/프레임 0·회전·보상 중복 없음·재시작/나가기 0·저장 복원을 확인했습니다. 7개 화면의 승리/패배/저장 실패 21가지에서 44px 버튼·보상 노출·결과창 전체 스크롤 없음을 확인했습니다. 540×360 보상과 320×568 저장 실패 안내가 가려지는 경계도 수정했습니다.
+- 회귀: 기존 10종 카드 40회·자연 스킬/후퇴/리사이즈, 보스/정보창 36회·첫 등장, 세션 10회 생성/해제 후 geometry/texture 0과 원본 1→3 PC/터치 6회 무손실 완주·머니/별/해금/복원이 통과했습니다. 배포용 경로에서도 자연 패배 → 상점 모집 → 같은 결과/현재 잔액 복귀·종료를 확인했습니다. 브라우저 오류/경고 0건이며 단독 흐름은 짧은 검사 맵, 캠페인은 원본 수치·비용/SP를 사용했습니다. 가상 시계·터치 에뮬레이션 검증입니다.
+  결과: [종합/문제 목록](../verification/t4.25-summary.json), [수정 전](../verification/t4.25-before-screen-review.json), [흐름 8개](../verification/t4.25-screen-flow.json), [결과 21개](../verification/t4.25-result-layout.json), [원본 6회](../verification/t4.25-campaign.json), [캐릭터](../verification/t4.25-unit-selection.json), [보스](../verification/t4.25-boss-popups.json), [프로덕션](../verification/t4.25-production.json). 화면: [잘림 전](../verification/t4.25-before-740x360-result.png), [잘림 수정](../verification/t4.25-740x360-result.png), [구매한 친구 상세 복귀](../verification/t4.25-320x568-shop-detail.png), [저장 실패 표시](../verification/t4.25-320x568-unsaved-result-layout.png).
+
 ## M5 확장 (방향만 정해 둠)
 
 - 모바일 성능 최적화, PWA(오프라인 실행)

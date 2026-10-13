@@ -89,7 +89,8 @@ try {
       );
     };
     const start = async () => {
-      await click(page.getByRole('button', { name: '시작', exact: true }));
+      const fromResult = await page.locator('.battle-result').isVisible();
+      await click(page.getByRole('button', { name: fromResult ? '다시 하기' : '시작', exact: true }));
       await pause(page);
     };
     const win = async () => {

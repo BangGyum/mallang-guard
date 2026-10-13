@@ -1,4 +1,4 @@
-export async function createShopAuditGame({ defeat = false } = {}) {
+export async function createShopAuditGame({ defeat = false, nextStage = false } = {}) {
   const { createApp } = await import('/src/app/app.ts');
   const { loadArtAssets } = await import('/src/app/artAssets.ts');
   const { rawContent } = await import('/src/data/index.ts');
@@ -40,6 +40,7 @@ export async function createShopAuditGame({ defeat = false } = {}) {
       ],
     },
   ];
+  if (nextStage) raw.stages.push({ ...raw.stages[0], id: 'stage-2', name: '다음 정원 이동 검사' });
   raw.enemies = raw.enemies.map((enemy) =>
     enemy.id === 'jelly' ? { ...enemy, hp: 1, speed: 0.1, def: 0 } : enemy,
   );

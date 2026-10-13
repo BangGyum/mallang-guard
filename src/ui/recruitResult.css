@@ -88,6 +88,17 @@
 .result-money .reward-unsaved {
   color: #a46041;
 }
+.battle-result[open] {
+  display: flex;
+  flex-direction: column;
+}
+.result-content {
+  min-height: 0;
+  overflow-y: auto;
+}
+.battle-result .screen-actions {
+  flex-shrink: 0;
+}
 @keyframes recruit-reveal {
   from {
     opacity: 0;

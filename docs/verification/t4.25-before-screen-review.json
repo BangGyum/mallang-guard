@@ -1,0 +1,352 @@
+[
+  {
+    "viewport": "1920x1080",
+    "title": {
+      "wallet": "300머니보유 8/10",
+      "friends": 10,
+      "lockedLabels": 0,
+      "buttons": [
+        {
+          "name": "시작",
+          "bottom": 678.578125,
+          "visible": true
+        },
+        {
+          "name": "상점 · 모집",
+          "bottom": 730.578125,
+          "visible": true
+        },
+        {
+          "name": "스테이지 선택",
+          "bottom": 730.578125,
+          "visible": true
+        },
+        {
+          "name": "설정",
+          "bottom": 730.578125,
+          "visible": true
+        }
+      ]
+    },
+    "detailsPreserved": false,
+    "result": {
+      "client": 601,
+      "scroll": 601,
+      "buttons": [
+        {
+          "name": "다음 스테이지",
+          "top": 658.59375,
+          "bottom": 702.59375,
+          "visible": true
+        },
+        {
+          "name": "다시 하기",
+          "top": 658.59375,
+          "bottom": 702.59375,
+          "visible": true
+        },
+        {
+          "name": "타이틀로",
+          "top": 712.59375,
+          "bottom": 756.59375,
+          "visible": true
+        },
+        {
+          "name": "스테이지 선택",
+          "top": 712.59375,
+          "bottom": 756.59375,
+          "visible": true
+        },
+        {
+          "name": "상점 · 모집",
+          "top": 766.59375,
+          "bottom": 810.59375,
+          "visible": true
+        }
+      ]
+    },
+    "returnScreen": "title",
+    "next": 0,
+    "errors": []
+  },
+  {
+    "viewport": "844x390",
+    "title": {
+      "wallet": "300머니보유 8/10",
+      "friends": 10,
+      "lockedLabels": 0,
+      "buttons": [
+        {
+          "name": "시작",
+          "bottom": 305.78125,
+          "visible": true
+        },
+        {
+          "name": "상점 · 모집",
+          "bottom": 357.78125,
+          "visible": true
+        },
+        {
+          "name": "스테이지 선택",
+          "bottom": 357.78125,
+          "visible": true
+        },
+        {
+          "name": "설정",
+          "bottom": 357.78125,
+          "visible": true
+        }
+      ]
+    },
+    "detailsPreserved": false,
+    "result": {
+      "client": 354,
+      "scroll": 420,
+      "buttons": [
+        {
+          "name": "다음 스테이지",
+          "top": 272.375,
+          "bottom": 316.375,
+          "visible": true
+        },
+        {
+          "name": "다시 하기",
+          "top": 272.375,
+          "bottom": 316.375,
+          "visible": true
+        },
+        {
+          "name": "타이틀로",
+          "top": 324.375,
+          "bottom": 368.375,
+          "visible": true
+        },
+        {
+          "name": "스테이지 선택",
+          "top": 324.375,
+          "bottom": 368.375,
+          "visible": true
+        },
+        {
+          "name": "상점 · 모집",
+          "top": 376.375,
+          "bottom": 420.375,
+          "visible": false
+        }
+      ]
+    },
+    "returnScreen": "title",
+    "next": 0,
+    "errors": []
+  },
+  {
+    "viewport": "740x360",
+    "title": {
+      "wallet": "300머니보유 8/10",
+      "friends": 10,
+      "lockedLabels": 0,
+      "buttons": [
+        {
+          "name": "시작",
+          "bottom": 305.78125,
+          "visible": true
+        },
+        {
+          "name": "상점 · 모집",
+          "bottom": 357.78125,
+          "visible": true
+        },
+        {
+          "name": "스테이지 선택",
+          "bottom": 357.78125,
+          "visible": true
+        },
+        {
+          "name": "설정",
+          "bottom": 357.78125,
+          "visible": true
+        }
+      ]
+    },
+    "detailsPreserved": false,
+    "result": {
+      "client": 324,
+      "scroll": 420,
+      "buttons": [
+        {
+          "name": "다음 스테이지",
+          "top": 272.375,
+          "bottom": 316.375,
+          "visible": true
+        },
+        {
+          "name": "다시 하기",
+          "top": 272.375,
+          "bottom": 316.375,
+          "visible": true
+        },
+        {
+          "name": "타이틀로",
+          "top": 324.375,
+          "bottom": 368.375,
+          "visible": false
+        },
+        {
+          "name": "스테이지 선택",
+          "top": 324.375,
+          "bottom": 368.375,
+          "visible": false
+        },
+        {
+          "name": "상점 · 모집",
+          "top": 376.375,
+          "bottom": 420.375,
+          "visible": false
+        }
+      ]
+    },
+    "returnScreen": "title",
+    "next": 0,
+    "errors": []
+  },
+  {
+    "viewport": "390x844",
+    "title": {
+      "wallet": "300머니보유 8/10",
+      "friends": 10,
+      "lockedLabels": 0,
+      "buttons": [
+        {
+          "name": "시작",
+          "bottom": 422.96875,
+          "visible": true
+        },
+        {
+          "name": "상점 · 모집",
+          "bottom": 474.96875,
+          "visible": true
+        },
+        {
+          "name": "스테이지 선택",
+          "bottom": 474.96875,
+          "visible": true
+        },
+        {
+          "name": "설정",
+          "bottom": 474.96875,
+          "visible": true
+        }
+      ]
+    },
+    "detailsPreserved": false,
+    "result": {
+      "client": 587,
+      "scroll": 587,
+      "buttons": [
+        {
+          "name": "다음 스테이지",
+          "top": 533.59375,
+          "bottom": 577.59375,
+          "visible": true
+        },
+        {
+          "name": "다시 하기",
+          "top": 533.59375,
+          "bottom": 577.59375,
+          "visible": true
+        },
+        {
+          "name": "타이틀로",
+          "top": 587.59375,
+          "bottom": 631.59375,
+          "visible": true
+        },
+        {
+          "name": "스테이지 선택",
+          "top": 587.59375,
+          "bottom": 631.59375,
+          "visible": true
+        },
+        {
+          "name": "상점 · 모집",
+          "top": 641.59375,
+          "bottom": 685.59375,
+          "visible": true
+        }
+      ]
+    },
+    "returnScreen": "title",
+    "next": 0,
+    "errors": []
+  },
+  {
+    "viewport": "320x568",
+    "title": {
+      "wallet": "300머니보유 8/10",
+      "friends": 10,
+      "lockedLabels": 0,
+      "buttons": [
+        {
+          "name": "시작",
+          "bottom": 422.96875,
+          "visible": true
+        },
+        {
+          "name": "상점 · 모집",
+          "bottom": 474.96875,
+          "visible": true
+        },
+        {
+          "name": "스테이지 선택",
+          "bottom": 474.96875,
+          "visible": true
+        },
+        {
+          "name": "설정",
+          "bottom": 474.96875,
+          "visible": true
+        }
+      ]
+    },
+    "detailsPreserved": false,
+    "result": {
+      "client": 532,
+      "scroll": 635,
+      "buttons": [
+        {
+          "name": "다음 스테이지",
+          "top": 423.1875,
+          "bottom": 483.1875,
+          "visible": true
+        },
+        {
+          "name": "다시 하기",
+          "top": 423.1875,
+          "bottom": 483.1875,
+          "visible": true
+        },
+        {
+          "name": "타이틀로",
+          "top": 493.1875,
+          "bottom": 553.1875,
+          "visible": true
+        },
+        {
+          "name": "스테이지 선택",
+          "top": 493.1875,
+          "bottom": 553.1875,
+          "visible": true
+        },
+        {
+          "name": "상점 · 모집",
+          "top": 563.1875,
+          "bottom": 623.1875,
+          "visible": false
+        }
+      ]
+    },
+    "returnScreen": "title",
+    "next": 0,
+    "errors": []
+  }
+]

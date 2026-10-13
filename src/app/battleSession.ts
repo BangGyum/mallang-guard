@@ -95,14 +95,15 @@ export function createBattleSession(
     },
   });
   const deployBar = createDeployBar(hudRoot, battle, controller.selectCard);
-  const observer = new ResizeObserver(() => {
+  function refresh() {
     view.resize();
     overlay.resize();
     if (battle.state.phase !== 'running') {
       view.render(battle.state, 1, 0);
       overlay.render(battle.state, view.camera, 1);
     }
-  });
+  }
+  const observer = new ResizeObserver(refresh);
   observer.observe(app);
   view.resize();
   overlay.resize();
@@ -155,6 +156,7 @@ export function createBattleSession(
     battle,
     view,
     controls,
+    refresh,
     setOptions,
     setSpeed,
     setPaused,
