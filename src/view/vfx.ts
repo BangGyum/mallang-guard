@@ -29,6 +29,9 @@ const SHOTS: Record<
   snail: { art: 'stickyDrop', size: 0.32, arc: 0.12, muzzle: 0.24 },
   owl: { art: 'fireball', size: 0.78, arc: 0.18, muzzle: 0.36, impact: 'fireBurst', power: 1.4 },
   wolf: { art: 'railRound', size: 0.9, arc: 0, muzzle: 0.42, impact: 'impact', power: 1.5 },
+  fox: { art: 'mintRailRound', size: 0.95, arc: 0, muzzle: 0.3, impact: 'plasmaImpact', power: 1.2 },
+  redPanda: { art: 'shellRound', size: 0.5, arc: 0.65, muzzle: 0.3, impact: 'impact', power: 1.7 },
+  deer: { art: 'arcBolt', size: 0.35, arc: 0, muzzle: 0, impact: 'plasmaImpact', power: 0.65 },
 };
 
 export function createVfx(
@@ -47,6 +50,7 @@ export function createVfx(
     count: number;
     impact?: string;
     power?: number;
+    linkFrom?: Vector3;
   }[] = [];
   let reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let low = false;
@@ -94,9 +98,14 @@ export function createVfx(
           if (from && to) pool.emit('stickyDrop', from, to, PROJECTILE_SEC, 0.25, 0.3);
         }
         if (event.type === 'attack') {
-          const from = attackOrigin(event.src.uid);
+          const from =
+            event.chainFrom === undefined ? attackOrigin(event.src.uid) : position(event.chainFrom);
           const to = position(event.dst.uid);
           if (from && to) {
+            if (event.chainFrom !== undefined) {
+              pending.push({ seconds: PROJECTILE_SEC, at: to, id: 'spark', count: 2, linkFrom: from });
+              continue;
+            }
             const unit = state.units.find((unit) => unit.uid === event.src.uid);
             const shot = unit && SHOTS[unit.unitId];
             if (event.ranged && shot) {
@@ -179,6 +188,19 @@ export function createVfx(
         effect.seconds -= dt;
         if (effect.seconds <= 0) {
           burst(effect.id, effect.at, effect.count);
+          if (effect.linkFrom)
+            pool.emit(
+              'lightningLink',
+              effect.linkFrom,
+              effect.at,
+              0.14,
+              0.38,
+              0,
+              false,
+              true,
+              reduced || low ? 0.45 : 0.75,
+              true,
+            );
           if (effect.impact && !reduced && !low)
             pool.emit(
               effect.impact,

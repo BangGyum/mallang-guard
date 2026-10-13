@@ -17,6 +17,9 @@ export interface RecruitmentRules {
   duplicateRefund: number;
   guaranteeAfter: number;
   unitPrice: number;
+  rareUnitPrice: number;
+  rarePullPercent: number;
+  rareUnits: string[];
   starterUnits: string[];
   legacyUnits: string[];
   pool: string[];
@@ -54,6 +57,9 @@ export function validateRecruitment(value: unknown): RecruitmentRules {
     duplicateRefund: integer(entry.duplicateRefund, 'recruitment.duplicateRefund'),
     guaranteeAfter: integer(entry.guaranteeAfter, 'recruitment.guaranteeAfter', 1),
     unitPrice: integer(entry.unitPrice, 'recruitment.unitPrice', 1),
+    rareUnitPrice: integer(entry.rareUnitPrice, 'recruitment.rareUnitPrice', 1),
+    rarePullPercent: integer(entry.rarePullPercent, 'recruitment.rarePullPercent', 1),
+    rareUnits: list(entry.rareUnits, 'recruitment.rareUnits', text),
     starterUnits: list(entry.starterUnits, 'recruitment.starterUnits', text),
     legacyUnits: list(entry.legacyUnits, 'recruitment.legacyUnits', text),
     pool: list(entry.pool, 'recruitment.pool', text),
@@ -64,13 +70,23 @@ export function validateRecruitment(value: unknown): RecruitmentRules {
     clearRewards: {},
   };
   assert(rules.pool.length > 0, 'recruitment.pool: must not be empty');
-  for (const field of ['starterUnits', 'legacyUnits', 'pool'] as const)
+  for (const field of ['starterUnits', 'legacyUnits', 'pool', 'rareUnits'] as const)
     assert(new Set(rules[field]).size === rules[field].length, `recruitment.${field}: duplicate unit`);
-  for (const id of [...rules.starterUnits, ...rules.legacyUnits])
+  for (const id of [...rules.starterUnits, ...rules.legacyUnits, ...rules.rareUnits])
     assert(rules.pool.includes(id), `recruitment: unknown unit ${id}`);
   assert(rules.startMoney <= rules.maxMoney, 'recruitment.startMoney: exceeds maxMoney');
   assert(rules.pullCost * 10 <= rules.maxMoney, 'recruitment.pullCost: ten pulls exceed maxMoney');
   assert(rules.unitPrice <= rules.maxMoney, 'recruitment.unitPrice: exceeds maxMoney');
+  assert(rules.rareUnitPrice <= rules.maxMoney, 'recruitment.rareUnitPrice: exceeds maxMoney');
+  assert(rules.rarePullPercent < 100, 'recruitment.rarePullPercent: must be below 100');
+  assert(
+    rules.rareUnits.length > 0 && rules.rareUnits.length < rules.pool.length,
+    'recruitment.rareUnits: requires both rarities',
+  );
+  assert(
+    ![...rules.starterUnits, ...rules.legacyUnits].some((id) => rules.rareUnits.includes(id)),
+    'recruitment.rareUnits: cannot be granted by initial or legacy migration',
+  );
   assert(rules.maxMoney <= Number.MAX_SAFE_INTEGER, 'recruitment.maxMoney: exceeds safe integer');
   assert(rules.duplicateRefund < rules.pullCost, 'recruitment.duplicateRefund: must be below pullCost');
   const rewards = object(entry.clearRewards, 'recruitment.clearRewards');
@@ -80,6 +96,36 @@ export function validateRecruitment(value: unknown): RecruitmentRules {
 }
 
 export const recruitment = validateRecruitment(raw);
+
+export function isRareUnit(id: string): boolean {
+  return recruitment.rareUnits.includes(id);
+}
+
+export function unitPriceFor(id: string): number {
+  return isRareUnit(id) ? recruitment.rareUnitPrice : recruitment.unitPrice;
+}
+
+export function recruitRate(id: string, pool: readonly string[] = recruitment.pool): number {
+  if (!pool.includes(id)) return 0;
+  const rareCount = pool.filter(isRareUnit).length;
+  const commonCount = pool.length - rareCount;
+  const share =
+    rareCount === 0 || commonCount === 0
+      ? 100
+      : isRareUnit(id)
+        ? recruitment.rarePullPercent
+        : 100 - recruitment.rarePullPercent;
+  return share / (isRareUnit(id) ? rareCount : commonCount);
+}
+
+export function recruitUnitForRoll(pool: readonly string[], value: number): string | undefined {
+  let cumulative = 0;
+  for (const id of pool) {
+    cumulative += recruitRate(id, pool) / 100;
+    if (value < cumulative) return id;
+  }
+  return pool[pool.length - 1];
+}
 
 export function validateRecruitmentReferences(rules: RecruitmentRules, content: ContentDb): void {
   for (const id of rules.pool) assert(content.units.has(id), `recruitment.pool: unknown unit ${id}`);

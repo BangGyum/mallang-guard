@@ -1,5 +1,6 @@
 import { critterSvg } from '../art/critters';
 import { ROLE_COLORS, ROLE_NAMES } from '../art/palette';
+import { isRareUnit } from '../data/recruitment';
 import type { Battle } from '../sim/battle';
 import { TICK_RATE } from '../sim/constants';
 import { unitStats } from '../sim/stats';
@@ -94,7 +95,7 @@ export function createUnitPanel(
       panel.setAttribute('aria-label', `${def.name} 스킬 조작`);
       name.textContent = def.name;
       for (const node of [panel, marker]) node.style.setProperty('--unit-color', ROLE_COLORS[def.role]);
-      description.textContent = `${def.animal} · ${ROLE_NAMES[def.role]}`;
+      description.textContent = `${isRareUnit(def.id) ? '희귀 · ' : ''}${def.animal} · ${ROLE_NAMES[def.role]}`;
       const current = unitStats(battle.content, battle.stage, battle.state, unit);
       const damageType = def.damageType === 'magic' ? '마법' : `물리 · 관통력 ${current.armorPen}`;
       stats.textContent = `공격력 ${Math.round(current.atk)} · ${damageType}\n공격 간격 ${(current.atkIntervalTicks / TICK_RATE).toFixed(2)}초 · ${def.canHitAir ? '대공 가능' : '지상 공격'}`;

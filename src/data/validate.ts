@@ -31,6 +31,12 @@ export function validateContent(value: unknown): ContentDb {
   for (const [index, unit] of units.entries()) {
     assert(content.skills.has(unit.skill), `content/units[${index}].skill: unknown skill "${unit.skill}"`);
     assert(content.ranges.has(unit.range), `content/units[${index}].range: unknown range "${unit.range}"`);
+    const effects = [...(unit.traits ?? []), ...(content.skills.get(unit.skill)?.effects ?? [])];
+    if (effects.some((effect) => effect.type === 'chain'))
+      assert(
+        !effects.some((effect) => effect.type === 'splash' || effect.type === 'multiTarget'),
+        `content/units[${index}].traits: chain cannot combine with splash or multiTarget`,
+      );
   }
   for (const [index, skill] of skills.entries())
     for (const [effectIndex, effect] of skill.effects.entries())

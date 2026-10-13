@@ -111,7 +111,7 @@ try {
     rendered.correlations.every((pair) => pair.value < 0.9),
     '7종 발동음 파형이 서로 구분됨',
   );
-  assert(rendered.mixedPeak < 0.95, '무기·보스 23종 동시 재생에 클리핑 없음');
+  assert(rendered.mixedPeak < 0.95, '무기·보스 26종 동시 재생에 클리핑 없음');
   const wav = Buffer.alloc(44 + rendered.samples.length * 2);
   wav.write('RIFF', 0);
   wav.writeUInt32LE(wav.length - 8, 4);

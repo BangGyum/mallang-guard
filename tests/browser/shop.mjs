@@ -106,7 +106,7 @@ try {
     const titleBounds = await page.locator('.title-card').evaluate((n) => n.getBoundingClientRect().top);
     assert(titleBounds >= 0, '타이틀 상단 접근 가능');
     await openShop();
-    assert.equal(await page.locator('.shop-owned-count').textContent(), '보유 8/10');
+    assert.equal(await page.locator('.shop-owned-count').textContent(), '보유 8/13');
     assert(await page.locator('.recruit-ten').isDisabled());
     assert(await page.locator('.shop-unit[data-unit-id="owl"] .shop-buy').isDisabled());
     await click(page.locator('.shop-unit[data-unit-id="owl"] summary'));
@@ -175,7 +175,7 @@ try {
     await page.evaluate(createShopAuditGame);
     assert.deepEqual(await read(), restored);
     await openShop();
-    assert.equal(await page.locator('.shop-owned-count').textContent(), '보유 10/10');
+    assert.equal(await page.locator('.shop-owned-count').textContent(), '보유 10/13');
     await page.evaluate(unluckyProfile);
     await page.evaluate(createShopAuditGame);
     await win();

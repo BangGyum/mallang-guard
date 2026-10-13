@@ -48,17 +48,18 @@ try {
         const unit = battle.state.units[Math.floor(frame / 8) % battle.state.units.length];
         const damageType = battle.content.units.get(unit.unitId).damageType;
         const targets = Array.from(
-          { length: unit.unitId === 'wolf' ? 3 : 1 },
+          { length: unit.unitId === 'deer' ? 5 : unit.unitId === 'wolf' ? 3 : 1 },
           (_, i) => battle.state.enemies[(frame + i) % 60],
         );
         deliver(
-          targets.flatMap((enemy) => [
+          targets.flatMap((enemy, index) => [
             {
               type: 'attack',
               src: { kind: 'unit', uid: unit.uid },
               dst: { kind: 'enemy', uid: enemy.uid },
               ranged: true,
               damageType,
+              ...(unit.unitId === 'deer' && index > 0 ? { chainFrom: targets[index - 1].uid } : {}),
             },
             {
               type: 'damage',

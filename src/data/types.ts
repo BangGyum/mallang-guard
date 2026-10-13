@@ -21,6 +21,9 @@ export type ArtId =
   | 'snail'
   | 'owl'
   | 'wolf'
+  | 'fox'
+  | 'redPanda'
+  | 'deer'
   | 'jelly'
   | 'hardJelly'
   | 'crow'
@@ -65,6 +68,7 @@ export interface UnitDef {
   range: string; // RangeDef.id
   damageType: DamageType; // 'true'는 유닛에 쓰지 않음
   canHitAir: boolean;
+  targetPriority?: 'boss';
   traits?: Effect[];
   skill: string; // SkillDef.id
 }
@@ -131,6 +135,7 @@ export type Effect =
   | { type: 'armorPenAdd'; value: number }
   | { type: 'rangeOverride'; range: string }
   | { type: 'multiTarget'; count: number }
+  | { type: 'chain'; radius: number; damageMuls: number[] }
   | { type: 'splash'; radius: number }
   | { type: 'onHitSlow'; amount: number; sec: number }
   | { type: 'stunEveryNthHit'; n: number; sec: number }

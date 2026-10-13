@@ -14,6 +14,9 @@ describe('무장에 맞는 발사음', () => {
     ['snail', 'launcher'],
     ['owl', 'fire'],
     ['wolf', 'sniper'],
+    ['fox', 'railgun'],
+    ['redPanda', 'mortar'],
+    ['deer', 'lightning'],
   ])('%s의 현재 그림과 무기에 맞게 %s를 재생한다', (unitId, sound) => {
     const unit = content.units.get(unitId);
     expect(unit).toBeDefined();
@@ -21,7 +24,7 @@ describe('무장에 맞는 발사음', () => {
   });
 
   it('모든 현재 캐릭터에 전용 공격음을 지정한다', () => {
-    expect(content.units.size).toBe(10);
+    expect(content.units.size).toBe(13);
     for (const unit of content.units.values()) expect(unitAttackSound(unit.art)).toBeDefined();
     expect(unitAttackSound('jelly')).toBeUndefined();
   });

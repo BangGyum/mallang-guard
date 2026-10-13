@@ -8,6 +8,9 @@ export const COMBAT_SOUNDS = [
   'fire',
   'launcher',
   'goo',
+  'railgun',
+  'mortar',
+  'lightning',
 ] as const;
 export type AttackSound = (typeof COMBAT_SOUNDS)[number];
 
@@ -22,6 +25,9 @@ const UNIT_SOUNDS: Readonly<Record<string, AttackSound>> = {
   snail: 'launcher',
   owl: 'fire',
   wolf: 'sniper',
+  fox: 'railgun',
+  redPanda: 'mortar',
+  deer: 'lightning',
 };
 
 export function unitAttackSound(art: string): AttackSound | undefined {
@@ -44,6 +50,9 @@ const DURATIONS: Readonly<Record<AttackSound, number>> = {
   fire: 0.28,
   launcher: 0.22,
   goo: 0.14,
+  railgun: 0.32,
+  mortar: 0.3,
+  lightning: 0.16,
 };
 
 export function createCombatBuffers(context: BaseAudioContext): ReadonlyMap<AttackSound, AudioBuffer> {
@@ -80,6 +89,23 @@ export function createCombatBuffers(context: BaseAudioContext): ReadonlyMap<Atta
           0.23 * Math.sin(phase) * Math.exp(-t / gun.body) +
           0.09 * mid * Math.exp(-t / gun.tail);
         if (boltTime >= 0) sample += 0.045 * (white - low) * Math.exp(-boltTime / 0.008);
+      } else if (sound === 'railgun') {
+        phase += (2 * Math.PI * (65 + 240 * Math.exp(-t / 0.022))) / context.sampleRate;
+        sample =
+          (0.3 * Math.sin(phase) + 0.35 * low) * Math.exp(-t / 0.055) +
+          0.1 * (white - mid) * Math.exp(-t / 0.005) +
+          0.045 * mid * Math.exp(-t / 0.09);
+      } else if (sound === 'mortar') {
+        phase += (2 * Math.PI * (60 + 160 * Math.exp(-t / 0.018))) / context.sampleRate;
+        sample =
+          (0.38 * Math.sin(phase) + 0.45 * low) * Math.exp(-t / 0.06) +
+          0.07 * (mid - low) * Math.exp(-t / 0.02);
+      } else if (sound === 'lightning') {
+        phase += (2 * Math.PI * (430 + 250 * Math.exp(-t / 0.035))) / context.sampleRate;
+        sample =
+          (0.12 * Math.sin(phase) + 0.2 * (mid - low) + 0.06 * low) *
+          (1 - Math.exp(-t / 0.002)) *
+          Math.exp(-t / 0.035);
       } else if (sound === 'slash') {
         blade += slashStep * (white - blade);
         sample = 0.16 * (blade - low) * Math.sin((Math.PI * t) / sec) ** 2;

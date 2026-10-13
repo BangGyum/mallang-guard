@@ -46,7 +46,7 @@ describe('머니·친구 모집', () => {
     expect(recruitUnits(state, 10)).toEqual({ ok: false, reason: 'noMoney' });
   });
   it('중복은 한 번에 30머니를 환급하고 보유 목록을 중복 추가하지 않는다', () => {
-    const state = initialCollection(undefined, 1, true);
+    const state = { ...initialCollection(undefined, 1, true), ownedUnits: [...recruitment.pool] };
     const result = recruitUnits(state, 1);
     if (!result.ok) throw new Error('모집 실패');
     expect(result.results[0]).toMatchObject({ isNew: false, refund: 30, guaranteed: false });

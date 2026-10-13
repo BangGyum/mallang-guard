@@ -1,5 +1,6 @@
 import { ROLE_COLORS, ROLE_NAMES } from '../art/palette';
 import { assert } from '../core/assert';
+import { isRareUnit } from '../data/recruitment';
 import type { Battle } from '../sim/battle';
 import { acornIcon } from './acornIcon';
 import { element } from './dom';
@@ -35,6 +36,7 @@ export function createDeployBar(
     const card = element('button', 'deploy-card');
     card.type = 'button';
     card.dataset.unitId = def.id;
+    card.dataset.rarity = isRareUnit(def.id) ? 'rare' : 'common';
     card.setAttribute('aria-label', `${def.name} 정보와 배치, 도토리 ${def.cost}`);
     card.style.setProperty('--role-color', ROLE_COLORS[def.role]);
     const status = element('span', 'card-status');
@@ -44,7 +46,7 @@ export function createDeployBar(
       cost,
       portrait(def.art, 'card-portrait'),
       element('strong', 'card-name', def.name),
-      element('span', 'card-role', ROLE_NAMES[def.role]),
+      element('span', 'card-role', `${isRareUnit(def.id) ? '희귀 · ' : ''}${ROLE_NAMES[def.role]}`),
       status,
     );
     const select = (event?: PointerEvent) => {

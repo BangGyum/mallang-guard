@@ -47,7 +47,7 @@ export type SimEvent =
   | { type: 'enemyDie'; uid: number }
   | { type: 'enemyHeal'; src: number; uid: number; amount: number }
   | { type: 'bossSkill'; uid: number; enemyId: string; phase: 'windup' | 'cast' | 'cancel' }
-  | { type: 'attack'; src: Ref; dst: Ref; damageType: DamageType; ranged: boolean }
+  | { type: 'attack'; src: Ref; dst: Ref; damageType: DamageType; ranged: boolean; chainFrom?: number }
   | {
       type: 'damage';
       dst: Ref;

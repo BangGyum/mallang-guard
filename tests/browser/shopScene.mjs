@@ -66,13 +66,15 @@ export async function shopPoint() {
 export async function unluckyProfile() {
   const { mulberry32 } = await import('/src/core/rng.ts');
   const { initialCollection } = await import('/src/data/recruitment.ts');
+  const { recruitUnitForRoll, recruitment } = await import('/src/data/recruitment.ts');
   for (let seed = 0; seed < 1000; seed++) {
     let state = seed,
       duplicates = true;
     for (let i = 0; i < 9; i++) {
       const next = mulberry32(state);
       state = next.state;
-      if (next.value >= 0.8) duplicates = false;
+      if (!recruitment.starterUnits.includes(recruitUnitForRoll(recruitment.pool, next.value)))
+        duplicates = false;
     }
     if (duplicates) {
       localStorage.setItem(

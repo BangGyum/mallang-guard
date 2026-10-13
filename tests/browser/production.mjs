@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 
 const browser = await chromium.launch({ channel: 'msedge', headless: true });
@@ -52,6 +53,14 @@ try {
   assert.equal(await page.locator('.battle-result').getAttribute('data-result'), 'lost');
   await page.getByRole('button', { name: '상점 · 모집', exact: true }).click();
   assert.equal(await page.locator('.shop-back').textContent(), '전투 결과로');
+  assert.equal(await page.locator('.shop-unit').count(), 13);
+  assert.equal(await page.locator('.shop-unit[data-rarity="rare"]').count(), 3);
+  for (const id of ['fox', 'redPanda', 'deer']) {
+    const card = page.locator(`.shop-unit[data-unit-id="${id}"]`);
+    assert.match(await card.locator('.shop-buy').textContent(), /1,800/);
+    assert(await card.locator('.shop-buy').isDisabled());
+  }
+  assert.equal(await page.locator('.shop-rate-list li').filter({ hasText: '1.67%' }).count(), 3);
   await page.locator('.recruit-single').click();
   await page.locator('.recruit-confirm').click();
   const money = await page.evaluate(
@@ -65,20 +74,50 @@ try {
   await page.screenshot({ path: `docs/verification/${prefix}-production-result.png` });
   await page.getByRole('button', { name: '타이틀로', exact: true }).click();
   assert.equal(await page.locator('#hud').evaluate((node) => node.children.length), 0);
-  assert.deepEqual(errors, []);
-  console.log(
-    JSON.stringify({
-      productionBase: '/mallang-guard/',
-      portraits: 8,
-      webgl: true,
-      waves: 12,
-      killOnlyIncome: true,
-      exit: true,
-      shopReturnToResult: true,
-      currentBalanceAfterRecruit: true,
-      errors,
-    }),
+  const collection = await page.evaluate(() => {
+    const profile = JSON.parse(localStorage.getItem('mallang-guard:v1'));
+    profile.collection.money = 6000;
+    localStorage.setItem('mallang-guard:v1', JSON.stringify(profile));
+    return profile.collection;
+  });
+  await page.reload();
+  await page.getByRole('button', { name: '상점 · 모집', exact: true }).click();
+  for (const id of ['fox', 'redPanda', 'deer']) {
+    await page.locator(`.shop-unit[data-unit-id="${id}"] .shop-buy`).click();
+    assert.equal(await page.locator('.recruit-result').getAttribute('data-unit-id'), id);
+    assert.equal(await page.locator('.recruit-result').getAttribute('data-rarity'), 'rare');
+    await page.locator('.recruit-confirm').click();
+  }
+  const purchased = await page.evaluate(
+    () => JSON.parse(localStorage.getItem('mallang-guard:v1')).collection,
   );
+  assert.equal(purchased.money, 600);
+  assert.equal(purchased.rngState, collection.rngState);
+  assert.equal(purchased.pullsSinceNew, collection.pullsSinceNew);
+  await page.reload();
+  await page.getByRole('button', { name: '시작', exact: true }).click();
+  await page.clock.runFor(120);
+  for (const id of ['fox', 'redPanda', 'deer'])
+    assert.equal(await page.locator(`.deploy-card[data-unit-id="${id}"] .card-portrait svg`).count(), 1);
+  await page.screenshot({ path: `docs/verification/${prefix}-production-rares.png` });
+  assert.deepEqual(errors, []);
+  const result = {
+    productionBase: '/mallang-guard/',
+    portraits: 8,
+    webgl: true,
+    waves: 12,
+    killOnlyIncome: true,
+    exit: true,
+    shopReturnToResult: true,
+    currentBalanceAfterRecruit: true,
+    rareShopUnits: 3,
+    rarePurchasesAndReload: true,
+    rareRates: '5% aggregate, 1.67% rounded per unit',
+    productionPurchaseFixtureMoney: 6000,
+    errors,
+  };
+  await writeFile(`docs/verification/${prefix}-production.json`, `${JSON.stringify(result, null, 2)}\n`);
+  console.log(JSON.stringify(result));
 } finally {
   await browser.close();
 }

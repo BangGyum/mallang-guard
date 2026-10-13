@@ -33,6 +33,9 @@ const IMAGES = [
   'goo',
   'stunStar',
   'ring',
+  'mintRailRound',
+  'shellRound',
+  'lightningLink',
 ];
 
 export function createParticlePool(textures: ReadonlyMap<string, Texture>) {
@@ -50,6 +53,7 @@ export function createParticlePool(textures: ReadonlyMap<string, Texture>) {
     arc: 0,
     wave: false,
     aimed: false,
+    beam: false,
     opacity: 1,
     from: new Vector3(),
     to: new Vector3(),
@@ -85,13 +89,14 @@ export function createParticlePool(textures: ReadonlyMap<string, Texture>) {
     camera: PerspectiveCamera,
     flat = false,
     angle = 0,
+    length = size,
   ) {
     if (drawn >= CAPACITY) return;
     const mesh = meshes.get(id);
     if (!mesh) return;
     const index = mesh.count++;
     transform.position.copy(at);
-    transform.scale.setScalar(size);
+    transform.scale.set(length, size, size);
     transform.quaternion.copy(flat ? flatRotation : camera.quaternion);
     if (!flat && angle !== 0) transform.rotateZ(angle);
     transform.updateMatrix();
@@ -114,10 +119,11 @@ export function createParticlePool(textures: ReadonlyMap<string, Texture>) {
       wave = false,
       aimed = false,
       opacity = 1,
+      beam = false,
     ) {
       const particle = particles.find((particle) => !particle.active);
       if (!particle) return;
-      Object.assign(particle, { active: true, id, age: 0, duration, size, arc, wave, aimed, opacity });
+      Object.assign(particle, { active: true, id, age: 0, duration, size, arc, wave, aimed, opacity, beam });
       particle.from.copy(from);
       particle.to.copy(to);
     },
@@ -132,15 +138,19 @@ export function createParticlePool(textures: ReadonlyMap<string, Texture>) {
           continue;
         }
         const t = particle.age / particle.duration;
-        point.lerpVectors(particle.from, particle.to, t);
+        point.lerpVectors(particle.from, particle.to, particle.beam ? 0.5 : t);
         point.y += Math.sin(t * Math.PI) * particle.arc;
         let angle = 0;
+        let length = particle.size * (particle.wave ? 1 + 3 * t : 1 - 0.4 * t);
         if (particle.aimed) {
           const dx = particle.to.x - particle.from.x;
           const dy = particle.to.y - particle.from.y;
           const dz = particle.to.z - particle.from.z;
           const m = camera.matrixWorldInverse.elements;
-          angle = Math.atan2(m[1] * dx + m[5] * dy + m[9] * dz, m[0] * dx + m[4] * dy + m[8] * dz);
+          const screenX = m[0] * dx + m[4] * dy + m[8] * dz;
+          const screenY = m[1] * dx + m[5] * dy + m[9] * dz;
+          angle = Math.atan2(screenY, screenX);
+          if (particle.beam) length = Math.hypot(screenX, screenY);
         }
         draw(
           particle.id,
@@ -150,6 +160,7 @@ export function createParticlePool(textures: ReadonlyMap<string, Texture>) {
           camera,
           particle.wave,
           angle,
+          length,
         );
       }
     },

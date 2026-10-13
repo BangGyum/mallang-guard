@@ -62,6 +62,9 @@ try {
       'slash',
       'hammer',
       'sniper',
+      'railgun',
+      'mortar',
+      'lightning',
       'magic',
       'shoot',
       'pistol',
@@ -101,7 +104,7 @@ try {
       assert(metric.earlyRms > metric.lateRms * 5, `${metric.sound}: 총성의 파열과 감쇠`);
     }
   }
-  assert(rendered.mixedPeak < 0.95, '10종이 같은 순간에 쏴도 최대 볼륨에서 클리핑하지 않음');
+  assert(rendered.mixedPeak < 0.95, '13종이 같은 순간에 쏴도 최대 볼륨에서 클리핑하지 않음');
   const wav = Buffer.alloc(44 + rendered.samples.length * 2);
   wav.write('RIFF', 0);
   wav.writeUInt32LE(wav.length - 8, 4);

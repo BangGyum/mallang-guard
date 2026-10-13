@@ -552,6 +552,16 @@
 - 회귀: 기존 10종 카드 40회·자연 스킬/후퇴/리사이즈, 보스/정보창 36회·첫 등장, 세션 10회 생성/해제 후 geometry/texture 0과 원본 1→3 PC/터치 6회 무손실 완주·머니/별/해금/복원이 통과했습니다. 배포용 경로에서도 자연 패배 → 상점 모집 → 같은 결과/현재 잔액 복귀·종료를 확인했습니다. 브라우저 오류/경고 0건이며 단독 흐름은 짧은 검사 맵, 캠페인은 원본 수치·비용/SP를 사용했습니다. 가상 시계·터치 에뮬레이션 검증입니다.
   결과: [종합/문제 목록](../verification/t4.25-summary.json), [수정 전](../verification/t4.25-before-screen-review.json), [흐름 8개](../verification/t4.25-screen-flow.json), [결과 21개](../verification/t4.25-result-layout.json), [원본 6회](../verification/t4.25-campaign.json), [캐릭터](../verification/t4.25-unit-selection.json), [보스](../verification/t4.25-boss-popups.json), [프로덕션](../verification/t4.25-production.json). 화면: [잘림 전](../verification/t4.25-before-740x360-result.png), [잘림 수정](../verification/t4.25-740x360-result.png), [구매한 친구 상세 복귀](../verification/t4.25-320x568-shop-detail.png), [저장 실패 표시](../verification/t4.25-320x568-unsaved-result-layout.png).
 
+### [x] T4.26 희귀 동물 특무대 3종
+- 사용자 요청 (2026-10-13): 제안한 루아·로크·세라를 구현합니다. 희귀 합산 5%/각 5/3%, 직접 영입 1,800머니와 기존 미보유 보장·중복 환급을 승인했습니다.
+- 읽을 문서: 01·02·03·04·05·06·07·09의 공용 타입·목표 선택·피해/연쇄·모집/저장·연출·사운드 계약.
+- 구현: 보스 우선 단일 고관통, 상시 지상 폭발, 3→5명 연쇄 마법. 선택한 약 2등신 특무대 SVG·전용 탄/발사음·희귀 표시/가격/확률·스킬 상세를 연결합니다.
+- 완료 조건: 네 방향/사거리/대공/보호막/관통/중복 없는 연쇄/충전/만료/후퇴/재배치, 추첨 구간/분포/10회 보장/가격/저장 이관·롤백, PC/터치 5개 화면의 실제 구매/배치/자연 스킬, 원본 1→7 완주와 전투 보상으로 희귀 구매·원본 배치, 전체 회귀/성능/해제·프로덕션·check/lint/test/build·화면 기록.
+- 검증 (2026-10-14): check/lint/test/build와 77개 파일 1,399개 자동 테스트가 통과했습니다. 기존 10종·스킬·사거리의 기존 항목과 스테이지/적/보상 데이터를 보존했습니다. 5개 화면의 희귀 구매/자연 스킬, 전체 13종 카드 52회·상세 65회·PC/터치 생명주기 26회와 정지 중 화면 고정, 기존 상점 5개·왕복 흐름 8개·보스창 36회·결과창 21가지가 통과했습니다.
+- 캠페인: 원본 기본 8종으로 PC/터치 1→7 총 14회를 푸딩 3개·누수/거부/잘못된 보상 0건으로 완주했습니다. 별 21개·해금·복원·패배 후 최고 기록을 유지하고, 양쪽 모두 보상 11,590머니에서 희귀 3종 영입으로 5,400을 차감한 뒤 처치 수입으로 원본 7번에 세라를 배치했습니다. 구매 전후 난수·보장·기록은 동일합니다.
+- 연출/배포: 13종 실제 무기음 26회·정지/종료, 12개 무기 버퍼와 보스 14개 동시 혼합 피크 0.743, 세션 10회 종료 후 geometry/texture 0을 확인했습니다. 13유닛/60적 합성 부하에서 표시 주기 60fps·렌더 p95 4.8ms, 제한 없는 처리량 428.57fps·렌더 p95 5.9ms·최대 83드로우콜/137파티클입니다. 배포 경로에서도 기본 8종·희귀 확률/가격/영입/복원을 통과했으며 브라우저 오류/경고는 0건입니다. 가상 시계·터치 에뮬레이션·검사 맵/계정·합성 부하 검사로 실기기 FPS나 재미/청감 평가를 대신하지 않습니다.
+  결과: [종합/검사 조건](../verification/t4.26-summary.json), [희귀 5화면](../verification/t4.26-rare-operatives.json), [원본 14회](../verification/t4.26-campaign.json), [실제 보상 영입](../verification/t4.26-mobile-earned-rares.json), [13종 생명주기](../verification/t4.26-characters.json), [성능](../verification/t4.26-performance.json), [프로덕션](../verification/t4.26-production.json). 화면: [PC 영입](../verification/t4.26-desktop-earned-rares.png), [터치 원본 배치](../verification/t4.26-mobile-earned-rare-deploy.png), [작은 화면 세라 스킬](../verification/t4.26-320x568-deer-skill.png).
+
 ## M5 확장 (방향만 정해 둠)
 
 - 모바일 성능 최적화, PWA(오프라인 실행)

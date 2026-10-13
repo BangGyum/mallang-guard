@@ -44,6 +44,9 @@ describe('고정 관통력 데이터', () => {
       ['snail', 0],
       ['owl', 0],
       ['wolf', 120],
+      ['fox', 220],
+      ['redPanda', 60],
+      ['deer', 0],
     ]);
     expect(content.skills.get('tripleAim')?.effects).toContainEqual({ type: 'armorPenAdd', value: 40 });
   });

@@ -1,0 +1,2452 @@
+[
+  {
+    "viewport": "1920x1080",
+    "input": "mouse",
+    "checks": [
+      {
+        "unit": "squirrel",
+        "skill": "전리품 수거",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "12초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 20 · 배치 시 8",
+          "준비": "최초 12초 · 재충전 20초",
+          "조건": "SP가 준비되면 사용 가능"
+        },
+        "effects": [
+          "자신의 사거리 안에서 아군이 처치한 적의 도토리 보상 +2"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "cat",
+        "skill": "연속 참격",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "8초",
+          "충전": "공격할 때마다 SP +1",
+          "SP": "필요 12 · 배치 시 0",
+          "준비": "최초 12회 공격 · 재충전 12회 공격",
+          "조건": "SP가 준비되면 사용 가능"
+        },
+        "effects": [
+          "공격 속도 2배 · 공격 간격 1.2초 → 0.6초",
+          "3번째 공격마다 명중한 적 0.5초 기절"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "bear",
+        "skill": "충격 제압",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "10초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 15 · 배치 시 5",
+          "준비": "최초 10초 · 재충전 15초",
+          "조건": "SP가 준비되면 사용 가능"
+        },
+        "effects": [
+          "공격력 80% 증가 (220 → 396)",
+          "공격마다 명중한 적 0.6초 기절"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "penguin",
+        "skill": "냉각탄 포화",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "15초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 30 · 배치 시 10",
+          "준비": "최초 20초 · 재충전 30초",
+          "조건": "SP가 준비되면 사용 가능"
+        },
+        "effects": [
+          "명중 지점 반경 1칸에 범위 피해",
+          "맞은 적 이동 속도 30% 감소 · 1.5초"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "sheep",
+        "skill": "아크 폭격",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "1.5초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 35 · 배치 시 15",
+          "준비": "최초 20초 · 재충전 35초",
+          "조건": "사거리 안 공격 가능한 적 필요"
+        },
+        "effects": [
+          "사거리 안 모든 공격 가능한 적에게 공격력 130% 마법 피해 · 3회 · 0.5초 간격"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "bunny",
+        "skill": "전술 가속",
+        "facts": {
+          "발동": "조건 충족 시 자동 발동",
+          "지속": "8초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 25 · 배치 시 10",
+          "준비": "최초 15초 · 재충전 25초",
+          "조건": "사거리 안 공격 가능한 적 필요"
+        },
+        "effects": [
+          "사거리 안 친구(자신 포함)의 공격 간격 30% 감소"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "mole",
+        "skill": "돌파 사격",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "즉시 처리",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 10 · 배치 시 5",
+          "준비": "최초 5초 · 재충전 10초",
+          "조건": "사거리 안 공격 가능한 적 필요"
+        },
+        "effects": [
+          "사거리 안 목표 적 1명을 경로 뒤로 2칸 밀어냄"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "snail",
+        "skill": "점착탄 지대",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "12초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 25 · 배치 시 8",
+          "준비": "최초 17초 · 재충전 25초",
+          "조건": "SP가 준비되면 사용 가능"
+        },
+        "effects": [
+          "사거리 안 적 이동 속도 60% 감소"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "owl",
+        "skill": "화염 개방",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "12초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 35 · 배치 시 10",
+          "준비": "최초 25초 · 재충전 35초",
+          "조건": "SP가 준비되면 사용 가능"
+        },
+        "effects": [
+          "사거리 주변 5×5칸 → 주변 10×10칸",
+          "공격력 50% 증가 (320 → 480)",
+          "공격 속도 2배 · 공격 간격 1.8초 → 0.9초"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "wolf",
+        "skill": "삼중 조준",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "12초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 30 · 배치 시 10",
+          "준비": "최초 20초 · 재충전 30초",
+          "조건": "SP가 준비되면 사용 가능"
+        },
+        "effects": [
+          "사거리 정면 5×1칸 → 정면 5×3칸",
+          "서로 다른 적 최대 3명 동시 사격 · 적 한 명당 한 발",
+          "관통력 +40 (120 → 160)",
+          "공격력 10% 감소 (650 → 585)"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": true
+      },
+      {
+        "unit": "fox",
+        "skill": "극점 조준",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "12초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 45 · 배치 시 10",
+          "준비": "최초 35초 · 재충전 45초",
+          "조건": "SP가 준비되면 사용 가능",
+          "조준": "보스 우선 · 같은 우선순위에서는 골에 가까운 적"
+        },
+        "effects": [
+          "공격력 60% 증가 (900 → 1440)",
+          "관통력 +180 (220 → 400)"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "redPanda",
+        "skill": "집중 포격",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "10초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 40 · 배치 시 10",
+          "준비": "최초 30초 · 재충전 40초",
+          "조건": "SP가 준비되면 사용 가능",
+          "기본 공격": "명중 지점 반경 1.2칸에 범위 피해"
+        },
+        "effects": [
+          "공격력 40% 증가 (560 → 784)",
+          "공격 속도 1.6배 · 공격 간격 2.4초 → 1.5초",
+          "명중 지점 반경 1.8칸에 범위 피해"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "deer",
+        "skill": "청뢰 개방",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "12초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 40 · 배치 시 10",
+          "준비": "최초 30초 · 재충전 40초",
+          "조건": "SP가 준비되면 사용 가능",
+          "기본 공격": "최대 3명 연쇄 · 공격력 비율 100% → 70% → 50% · 사거리 안 이전 적의 1.5칸 이내 · 중복 타격 없음"
+        },
+        "effects": [
+          "공격 속도 1.5배 · 공격 간격 1.5초 → 1초",
+          "최대 5명 연쇄 · 공격력 비율 100% → 80% → 60% → 40% → 30% · 사거리 안 이전 적의 1.5칸 이내 · 중복 타격 없음"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      }
+    ],
+    "errors": []
+  },
+  {
+    "viewport": "844x390",
+    "input": "touch",
+    "checks": [
+      {
+        "unit": "squirrel",
+        "skill": "전리품 수거",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "12초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 20 · 배치 시 8",
+          "준비": "최초 12초 · 재충전 20초",
+          "조건": "SP가 준비되면 사용 가능"
+        },
+        "effects": [
+          "자신의 사거리 안에서 아군이 처치한 적의 도토리 보상 +2"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "cat",
+        "skill": "연속 참격",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "8초",
+          "충전": "공격할 때마다 SP +1",
+          "SP": "필요 12 · 배치 시 0",
+          "준비": "최초 12회 공격 · 재충전 12회 공격",
+          "조건": "SP가 준비되면 사용 가능"
+        },
+        "effects": [
+          "공격 속도 2배 · 공격 간격 1.2초 → 0.6초",
+          "3번째 공격마다 명중한 적 0.5초 기절"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "bear",
+        "skill": "충격 제압",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "10초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 15 · 배치 시 5",
+          "준비": "최초 10초 · 재충전 15초",
+          "조건": "SP가 준비되면 사용 가능"
+        },
+        "effects": [
+          "공격력 80% 증가 (220 → 396)",
+          "공격마다 명중한 적 0.6초 기절"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "penguin",
+        "skill": "냉각탄 포화",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "15초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 30 · 배치 시 10",
+          "준비": "최초 20초 · 재충전 30초",
+          "조건": "SP가 준비되면 사용 가능"
+        },
+        "effects": [
+          "명중 지점 반경 1칸에 범위 피해",
+          "맞은 적 이동 속도 30% 감소 · 1.5초"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "sheep",
+        "skill": "아크 폭격",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "1.5초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 35 · 배치 시 15",
+          "준비": "최초 20초 · 재충전 35초",
+          "조건": "사거리 안 공격 가능한 적 필요"
+        },
+        "effects": [
+          "사거리 안 모든 공격 가능한 적에게 공격력 130% 마법 피해 · 3회 · 0.5초 간격"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "bunny",
+        "skill": "전술 가속",
+        "facts": {
+          "발동": "조건 충족 시 자동 발동",
+          "지속": "8초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 25 · 배치 시 10",
+          "준비": "최초 15초 · 재충전 25초",
+          "조건": "사거리 안 공격 가능한 적 필요"
+        },
+        "effects": [
+          "사거리 안 친구(자신 포함)의 공격 간격 30% 감소"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "mole",
+        "skill": "돌파 사격",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "즉시 처리",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 10 · 배치 시 5",
+          "준비": "최초 5초 · 재충전 10초",
+          "조건": "사거리 안 공격 가능한 적 필요"
+        },
+        "effects": [
+          "사거리 안 목표 적 1명을 경로 뒤로 2칸 밀어냄"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "snail",
+        "skill": "점착탄 지대",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "12초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 25 · 배치 시 8",
+          "준비": "최초 17초 · 재충전 25초",
+          "조건": "SP가 준비되면 사용 가능"
+        },
+        "effects": [
+          "사거리 안 적 이동 속도 60% 감소"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "owl",
+        "skill": "화염 개방",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "12초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 35 · 배치 시 10",
+          "준비": "최초 25초 · 재충전 35초",
+          "조건": "SP가 준비되면 사용 가능"
+        },
+        "effects": [
+          "사거리 주변 5×5칸 → 주변 10×10칸",
+          "공격력 50% 증가 (320 → 480)",
+          "공격 속도 2배 · 공격 간격 1.8초 → 0.9초"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "wolf",
+        "skill": "삼중 조준",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "12초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 30 · 배치 시 10",
+          "준비": "최초 20초 · 재충전 30초",
+          "조건": "SP가 준비되면 사용 가능"
+        },
+        "effects": [
+          "사거리 정면 5×1칸 → 정면 5×3칸",
+          "서로 다른 적 최대 3명 동시 사격 · 적 한 명당 한 발",
+          "관통력 +40 (120 → 160)",
+          "공격력 10% 감소 (650 → 585)"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "fox",
+        "skill": "극점 조준",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "12초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 45 · 배치 시 10",
+          "준비": "최초 35초 · 재충전 45초",
+          "조건": "SP가 준비되면 사용 가능",
+          "조준": "보스 우선 · 같은 우선순위에서는 골에 가까운 적"
+        },
+        "effects": [
+          "공격력 60% 증가 (900 → 1440)",
+          "관통력 +180 (220 → 400)"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "redPanda",
+        "skill": "집중 포격",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "10초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 40 · 배치 시 10",
+          "준비": "최초 30초 · 재충전 40초",
+          "조건": "SP가 준비되면 사용 가능",
+          "기본 공격": "명중 지점 반경 1.2칸에 범위 피해"
+        },
+        "effects": [
+          "공격력 40% 증가 (560 → 784)",
+          "공격 속도 1.6배 · 공격 간격 2.4초 → 1.5초",
+          "명중 지점 반경 1.8칸에 범위 피해"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "deer",
+        "skill": "청뢰 개방",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "12초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 40 · 배치 시 10",
+          "준비": "최초 30초 · 재충전 40초",
+          "조건": "SP가 준비되면 사용 가능",
+          "기본 공격": "최대 3명 연쇄 · 공격력 비율 100% → 70% → 50% · 사거리 안 이전 적의 1.5칸 이내 · 중복 타격 없음"
+        },
+        "effects": [
+          "공격 속도 1.5배 · 공격 간격 1.5초 → 1초",
+          "최대 5명 연쇄 · 공격력 비율 100% → 80% → 60% → 40% → 30% · 사거리 안 이전 적의 1.5칸 이내 · 중복 타격 없음"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      }
+    ],
+    "errors": []
+  },
+  {
+    "viewport": "740x360",
+    "input": "touch",
+    "checks": [
+      {
+        "unit": "squirrel",
+        "skill": "전리품 수거",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "12초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 20 · 배치 시 8",
+          "준비": "최초 12초 · 재충전 20초",
+          "조건": "SP가 준비되면 사용 가능"
+        },
+        "effects": [
+          "자신의 사거리 안에서 아군이 처치한 적의 도토리 보상 +2"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "cat",
+        "skill": "연속 참격",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "8초",
+          "충전": "공격할 때마다 SP +1",
+          "SP": "필요 12 · 배치 시 0",
+          "준비": "최초 12회 공격 · 재충전 12회 공격",
+          "조건": "SP가 준비되면 사용 가능"
+        },
+        "effects": [
+          "공격 속도 2배 · 공격 간격 1.2초 → 0.6초",
+          "3번째 공격마다 명중한 적 0.5초 기절"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "bear",
+        "skill": "충격 제압",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "10초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 15 · 배치 시 5",
+          "준비": "최초 10초 · 재충전 15초",
+          "조건": "SP가 준비되면 사용 가능"
+        },
+        "effects": [
+          "공격력 80% 증가 (220 → 396)",
+          "공격마다 명중한 적 0.6초 기절"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "penguin",
+        "skill": "냉각탄 포화",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "15초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 30 · 배치 시 10",
+          "준비": "최초 20초 · 재충전 30초",
+          "조건": "SP가 준비되면 사용 가능"
+        },
+        "effects": [
+          "명중 지점 반경 1칸에 범위 피해",
+          "맞은 적 이동 속도 30% 감소 · 1.5초"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "sheep",
+        "skill": "아크 폭격",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "1.5초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 35 · 배치 시 15",
+          "준비": "최초 20초 · 재충전 35초",
+          "조건": "사거리 안 공격 가능한 적 필요"
+        },
+        "effects": [
+          "사거리 안 모든 공격 가능한 적에게 공격력 130% 마법 피해 · 3회 · 0.5초 간격"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "bunny",
+        "skill": "전술 가속",
+        "facts": {
+          "발동": "조건 충족 시 자동 발동",
+          "지속": "8초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 25 · 배치 시 10",
+          "준비": "최초 15초 · 재충전 25초",
+          "조건": "사거리 안 공격 가능한 적 필요"
+        },
+        "effects": [
+          "사거리 안 친구(자신 포함)의 공격 간격 30% 감소"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "mole",
+        "skill": "돌파 사격",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "즉시 처리",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 10 · 배치 시 5",
+          "준비": "최초 5초 · 재충전 10초",
+          "조건": "사거리 안 공격 가능한 적 필요"
+        },
+        "effects": [
+          "사거리 안 목표 적 1명을 경로 뒤로 2칸 밀어냄"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "snail",
+        "skill": "점착탄 지대",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "12초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 25 · 배치 시 8",
+          "준비": "최초 17초 · 재충전 25초",
+          "조건": "SP가 준비되면 사용 가능"
+        },
+        "effects": [
+          "사거리 안 적 이동 속도 60% 감소"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "owl",
+        "skill": "화염 개방",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "12초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 35 · 배치 시 10",
+          "준비": "최초 25초 · 재충전 35초",
+          "조건": "SP가 준비되면 사용 가능"
+        },
+        "effects": [
+          "사거리 주변 5×5칸 → 주변 10×10칸",
+          "공격력 50% 증가 (320 → 480)",
+          "공격 속도 2배 · 공격 간격 1.8초 → 0.9초"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "wolf",
+        "skill": "삼중 조준",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "12초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 30 · 배치 시 10",
+          "준비": "최초 20초 · 재충전 30초",
+          "조건": "SP가 준비되면 사용 가능"
+        },
+        "effects": [
+          "사거리 정면 5×1칸 → 정면 5×3칸",
+          "서로 다른 적 최대 3명 동시 사격 · 적 한 명당 한 발",
+          "관통력 +40 (120 → 160)",
+          "공격력 10% 감소 (650 → 585)"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": true
+      },
+      {
+        "unit": "fox",
+        "skill": "극점 조준",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "12초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 45 · 배치 시 10",
+          "준비": "최초 35초 · 재충전 45초",
+          "조건": "SP가 준비되면 사용 가능",
+          "조준": "보스 우선 · 같은 우선순위에서는 골에 가까운 적"
+        },
+        "effects": [
+          "공격력 60% 증가 (900 → 1440)",
+          "관통력 +180 (220 → 400)"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "redPanda",
+        "skill": "집중 포격",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "10초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 40 · 배치 시 10",
+          "준비": "최초 30초 · 재충전 40초",
+          "조건": "SP가 준비되면 사용 가능",
+          "기본 공격": "명중 지점 반경 1.2칸에 범위 피해"
+        },
+        "effects": [
+          "공격력 40% 증가 (560 → 784)",
+          "공격 속도 1.6배 · 공격 간격 2.4초 → 1.5초",
+          "명중 지점 반경 1.8칸에 범위 피해"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "deer",
+        "skill": "청뢰 개방",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "12초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 40 · 배치 시 10",
+          "준비": "최초 30초 · 재충전 40초",
+          "조건": "SP가 준비되면 사용 가능",
+          "기본 공격": "최대 3명 연쇄 · 공격력 비율 100% → 70% → 50% · 사거리 안 이전 적의 1.5칸 이내 · 중복 타격 없음"
+        },
+        "effects": [
+          "공격 속도 1.5배 · 공격 간격 1.5초 → 1초",
+          "최대 5명 연쇄 · 공격력 비율 100% → 80% → 60% → 40% → 30% · 사거리 안 이전 적의 1.5칸 이내 · 중복 타격 없음"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      }
+    ],
+    "errors": []
+  },
+  {
+    "viewport": "390x844",
+    "input": "touch",
+    "checks": [
+      {
+        "unit": "squirrel",
+        "skill": "전리품 수거",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "12초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 20 · 배치 시 8",
+          "준비": "최초 12초 · 재충전 20초",
+          "조건": "SP가 준비되면 사용 가능"
+        },
+        "effects": [
+          "자신의 사거리 안에서 아군이 처치한 적의 도토리 보상 +2"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "cat",
+        "skill": "연속 참격",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "8초",
+          "충전": "공격할 때마다 SP +1",
+          "SP": "필요 12 · 배치 시 0",
+          "준비": "최초 12회 공격 · 재충전 12회 공격",
+          "조건": "SP가 준비되면 사용 가능"
+        },
+        "effects": [
+          "공격 속도 2배 · 공격 간격 1.2초 → 0.6초",
+          "3번째 공격마다 명중한 적 0.5초 기절"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "bear",
+        "skill": "충격 제압",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "10초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 15 · 배치 시 5",
+          "준비": "최초 10초 · 재충전 15초",
+          "조건": "SP가 준비되면 사용 가능"
+        },
+        "effects": [
+          "공격력 80% 증가 (220 → 396)",
+          "공격마다 명중한 적 0.6초 기절"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "penguin",
+        "skill": "냉각탄 포화",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "15초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 30 · 배치 시 10",
+          "준비": "최초 20초 · 재충전 30초",
+          "조건": "SP가 준비되면 사용 가능"
+        },
+        "effects": [
+          "명중 지점 반경 1칸에 범위 피해",
+          "맞은 적 이동 속도 30% 감소 · 1.5초"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "sheep",
+        "skill": "아크 폭격",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "1.5초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 35 · 배치 시 15",
+          "준비": "최초 20초 · 재충전 35초",
+          "조건": "사거리 안 공격 가능한 적 필요"
+        },
+        "effects": [
+          "사거리 안 모든 공격 가능한 적에게 공격력 130% 마법 피해 · 3회 · 0.5초 간격"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "bunny",
+        "skill": "전술 가속",
+        "facts": {
+          "발동": "조건 충족 시 자동 발동",
+          "지속": "8초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 25 · 배치 시 10",
+          "준비": "최초 15초 · 재충전 25초",
+          "조건": "사거리 안 공격 가능한 적 필요"
+        },
+        "effects": [
+          "사거리 안 친구(자신 포함)의 공격 간격 30% 감소"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "mole",
+        "skill": "돌파 사격",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "즉시 처리",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 10 · 배치 시 5",
+          "준비": "최초 5초 · 재충전 10초",
+          "조건": "사거리 안 공격 가능한 적 필요"
+        },
+        "effects": [
+          "사거리 안 목표 적 1명을 경로 뒤로 2칸 밀어냄"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "snail",
+        "skill": "점착탄 지대",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "12초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 25 · 배치 시 8",
+          "준비": "최초 17초 · 재충전 25초",
+          "조건": "SP가 준비되면 사용 가능"
+        },
+        "effects": [
+          "사거리 안 적 이동 속도 60% 감소"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "owl",
+        "skill": "화염 개방",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "12초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 35 · 배치 시 10",
+          "준비": "최초 25초 · 재충전 35초",
+          "조건": "SP가 준비되면 사용 가능"
+        },
+        "effects": [
+          "사거리 주변 5×5칸 → 주변 10×10칸",
+          "공격력 50% 증가 (320 → 480)",
+          "공격 속도 2배 · 공격 간격 1.8초 → 0.9초"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "wolf",
+        "skill": "삼중 조준",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "12초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 30 · 배치 시 10",
+          "준비": "최초 20초 · 재충전 30초",
+          "조건": "SP가 준비되면 사용 가능"
+        },
+        "effects": [
+          "사거리 정면 5×1칸 → 정면 5×3칸",
+          "서로 다른 적 최대 3명 동시 사격 · 적 한 명당 한 발",
+          "관통력 +40 (120 → 160)",
+          "공격력 10% 감소 (650 → 585)"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "fox",
+        "skill": "극점 조준",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "12초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 45 · 배치 시 10",
+          "준비": "최초 35초 · 재충전 45초",
+          "조건": "SP가 준비되면 사용 가능",
+          "조준": "보스 우선 · 같은 우선순위에서는 골에 가까운 적"
+        },
+        "effects": [
+          "공격력 60% 증가 (900 → 1440)",
+          "관통력 +180 (220 → 400)"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "redPanda",
+        "skill": "집중 포격",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "10초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 40 · 배치 시 10",
+          "준비": "최초 30초 · 재충전 40초",
+          "조건": "SP가 준비되면 사용 가능",
+          "기본 공격": "명중 지점 반경 1.2칸에 범위 피해"
+        },
+        "effects": [
+          "공격력 40% 증가 (560 → 784)",
+          "공격 속도 1.6배 · 공격 간격 2.4초 → 1.5초",
+          "명중 지점 반경 1.8칸에 범위 피해"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "deer",
+        "skill": "청뢰 개방",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "12초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 40 · 배치 시 10",
+          "준비": "최초 30초 · 재충전 40초",
+          "조건": "SP가 준비되면 사용 가능",
+          "기본 공격": "최대 3명 연쇄 · 공격력 비율 100% → 70% → 50% · 사거리 안 이전 적의 1.5칸 이내 · 중복 타격 없음"
+        },
+        "effects": [
+          "공격 속도 1.5배 · 공격 간격 1.5초 → 1초",
+          "최대 5명 연쇄 · 공격력 비율 100% → 80% → 60% → 40% → 30% · 사거리 안 이전 적의 1.5칸 이내 · 중복 타격 없음"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      }
+    ],
+    "errors": []
+  },
+  {
+    "viewport": "320x568",
+    "input": "touch",
+    "checks": [
+      {
+        "unit": "squirrel",
+        "skill": "전리품 수거",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "12초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 20 · 배치 시 8",
+          "준비": "최초 12초 · 재충전 20초",
+          "조건": "SP가 준비되면 사용 가능"
+        },
+        "effects": [
+          "자신의 사거리 안에서 아군이 처치한 적의 도토리 보상 +2"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "cat",
+        "skill": "연속 참격",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "8초",
+          "충전": "공격할 때마다 SP +1",
+          "SP": "필요 12 · 배치 시 0",
+          "준비": "최초 12회 공격 · 재충전 12회 공격",
+          "조건": "SP가 준비되면 사용 가능"
+        },
+        "effects": [
+          "공격 속도 2배 · 공격 간격 1.2초 → 0.6초",
+          "3번째 공격마다 명중한 적 0.5초 기절"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "bear",
+        "skill": "충격 제압",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "10초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 15 · 배치 시 5",
+          "준비": "최초 10초 · 재충전 15초",
+          "조건": "SP가 준비되면 사용 가능"
+        },
+        "effects": [
+          "공격력 80% 증가 (220 → 396)",
+          "공격마다 명중한 적 0.6초 기절"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "penguin",
+        "skill": "냉각탄 포화",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "15초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 30 · 배치 시 10",
+          "준비": "최초 20초 · 재충전 30초",
+          "조건": "SP가 준비되면 사용 가능"
+        },
+        "effects": [
+          "명중 지점 반경 1칸에 범위 피해",
+          "맞은 적 이동 속도 30% 감소 · 1.5초"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "sheep",
+        "skill": "아크 폭격",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "1.5초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 35 · 배치 시 15",
+          "준비": "최초 20초 · 재충전 35초",
+          "조건": "사거리 안 공격 가능한 적 필요"
+        },
+        "effects": [
+          "사거리 안 모든 공격 가능한 적에게 공격력 130% 마법 피해 · 3회 · 0.5초 간격"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "bunny",
+        "skill": "전술 가속",
+        "facts": {
+          "발동": "조건 충족 시 자동 발동",
+          "지속": "8초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 25 · 배치 시 10",
+          "준비": "최초 15초 · 재충전 25초",
+          "조건": "사거리 안 공격 가능한 적 필요"
+        },
+        "effects": [
+          "사거리 안 친구(자신 포함)의 공격 간격 30% 감소"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "mole",
+        "skill": "돌파 사격",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "즉시 처리",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 10 · 배치 시 5",
+          "준비": "최초 5초 · 재충전 10초",
+          "조건": "사거리 안 공격 가능한 적 필요"
+        },
+        "effects": [
+          "사거리 안 목표 적 1명을 경로 뒤로 2칸 밀어냄"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "snail",
+        "skill": "점착탄 지대",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "12초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 25 · 배치 시 8",
+          "준비": "최초 17초 · 재충전 25초",
+          "조건": "SP가 준비되면 사용 가능"
+        },
+        "effects": [
+          "사거리 안 적 이동 속도 60% 감소"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "owl",
+        "skill": "화염 개방",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "12초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 35 · 배치 시 10",
+          "준비": "최초 25초 · 재충전 35초",
+          "조건": "SP가 준비되면 사용 가능"
+        },
+        "effects": [
+          "사거리 주변 5×5칸 → 주변 10×10칸",
+          "공격력 50% 증가 (320 → 480)",
+          "공격 속도 2배 · 공격 간격 1.8초 → 0.9초"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "wolf",
+        "skill": "삼중 조준",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "12초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 30 · 배치 시 10",
+          "준비": "최초 20초 · 재충전 30초",
+          "조건": "SP가 준비되면 사용 가능"
+        },
+        "effects": [
+          "사거리 정면 5×1칸 → 정면 5×3칸",
+          "서로 다른 적 최대 3명 동시 사격 · 적 한 명당 한 발",
+          "관통력 +40 (120 → 160)",
+          "공격력 10% 감소 (650 → 585)"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "fox",
+        "skill": "극점 조준",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "12초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 45 · 배치 시 10",
+          "준비": "최초 35초 · 재충전 45초",
+          "조건": "SP가 준비되면 사용 가능",
+          "조준": "보스 우선 · 같은 우선순위에서는 골에 가까운 적"
+        },
+        "effects": [
+          "공격력 60% 증가 (900 → 1440)",
+          "관통력 +180 (220 → 400)"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "redPanda",
+        "skill": "집중 포격",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "10초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 40 · 배치 시 10",
+          "준비": "최초 30초 · 재충전 40초",
+          "조건": "SP가 준비되면 사용 가능",
+          "기본 공격": "명중 지점 반경 1.2칸에 범위 피해"
+        },
+        "effects": [
+          "공격력 40% 증가 (560 → 784)",
+          "공격 속도 1.6배 · 공격 간격 2.4초 → 1.5초",
+          "명중 지점 반경 1.8칸에 범위 피해"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      },
+      {
+        "unit": "deer",
+        "skill": "청뢰 개방",
+        "facts": {
+          "발동": "수동 발동",
+          "지속": "12초",
+          "충전": "전투 시간 1초마다 SP +1",
+          "SP": "필요 40 · 배치 시 10",
+          "준비": "최초 30초 · 재충전 40초",
+          "조건": "SP가 준비되면 사용 가능",
+          "기본 공격": "최대 3명 연쇄 · 공격력 비율 100% → 70% → 50% · 사거리 안 이전 적의 1.5칸 이내 · 중복 타격 없음"
+        },
+        "effects": [
+          "공격 속도 1.5배 · 공격 간격 1.5초 → 1초",
+          "최대 5명 연쇄 · 공격력 비율 100% → 80% → 60% → 40% → 30% · 사거리 안 이전 적의 1.5칸 이내 · 중복 타격 없음"
+        ],
+        "cardBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "unitBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "openBounds": {
+          "fits": true,
+          "toggleFits": true,
+          "toggleClickable": true,
+          "buttonsFit": true
+        },
+        "keyboard": true,
+        "scroll": true,
+        "activation": false
+      }
+    ],
+    "errors": []
+  }
+]

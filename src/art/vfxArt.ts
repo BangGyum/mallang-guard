@@ -2,6 +2,12 @@ import { ART_COLORS } from './palette';
 
 const star = '<path d="M32 5L39 23L59 24L43 37L48 57L32 46L16 57L21 37L5 24L25 23Z"';
 const drawings = {
+  mintRailRound:
+    '<path d="M0 29H48L64 32L48 35H0Z" fill="#A2DDD1"/><path d="M13 31H54L62 32L54 33H13Z" fill="#F6FFF6"/>',
+  shellRound:
+    '<path d="M7 21H41L58 32L41 43H7Z" fill="#D1BC88"/><path d="M12 23H25V41H12Z" fill="#778E82"/><path d="M32 25L49 32L32 39Z" fill="#F8E6AF"/>',
+  lightningLink:
+    '<path d="M0 32L14 25L26 36L39 27L51 35L64 32" fill="none" stroke="#B7A5E5" stroke-width="5" stroke-linejoin="round"/><path d="M0 32L14 25L26 36L39 27L51 35L64 32" fill="none" stroke="#FAF5FF" stroke-width="2" stroke-linejoin="round"/>',
   bullet:
     '<path d="M6 26H43L60 32L43 38H6Z" fill="#FFE2A0"/><path d="M15 32H49" stroke="#fff" stroke-width="4"/>',
   iceRound:

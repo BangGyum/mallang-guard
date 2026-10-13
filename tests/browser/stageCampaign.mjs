@@ -3,6 +3,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 import { captureCampaignFailure, installCampaignAudit, skillRetryMs, wallet } from './campaignAudit.mjs';
 import { deploy, frame, pause, resume, tilePoint } from './helpers.mjs';
+import { verifyEarnedRarePurchases } from './rareCampaignPurchases.mjs';
 
 const earlyOnly = process.argv.includes('--early');
 const firstFive = process.argv.includes('--first-five');
@@ -255,6 +256,7 @@ try {
     );
     await page.reload();
     await page.locator('.title-screen').waitFor();
+    await installCampaignAudit(page, moduleUrl);
     await click(page.getByRole('button', { name: '스테이지 선택', exact: true }));
     assert.equal(await page.locator('.stage-card:disabled').count(), firstFive ? 1 : earlyOnly ? 3 : 0);
     assert(
@@ -285,6 +287,7 @@ try {
         errors,
       }),
     );
+    if (process.argv.includes('--rare')) await verifyEarnedRarePurchases(page, mobile, prefix, label);
     await context.close();
   }
   const run = modes.length === 1 ? (modes[0] ? '-mobile' : '-desktop') : '';
