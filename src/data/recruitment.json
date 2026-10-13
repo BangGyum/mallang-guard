@@ -1,0 +1,24 @@
+{
+  "startMoney": 300,
+  "maxMoney": 999999,
+  "pullCost": 100,
+  "duplicateRefund": 30,
+  "guaranteeAfter": 10,
+  "unitPrice": 600,
+  "starterUnits": ["squirrel", "cat", "bear", "penguin", "sheep", "bunny", "mole", "snail"],
+  "legacyUnits": ["squirrel", "cat", "bear", "penguin", "sheep", "bunny", "mole", "snail", "owl", "wolf"],
+  "pool": ["squirrel", "cat", "bear", "penguin", "sheep", "bunny", "mole", "snail", "owl", "wolf"],
+  "firstClearBonus": 400,
+  "starBonus": 40,
+  "defeatPerKill": 2,
+  "defeatMax": 80,
+  "clearRewards": {
+    "stage-1": 200,
+    "stage-2": 350,
+    "stage-3": 500,
+    "stage-4": 1200,
+    "stage-5": 1200,
+    "stage-6": 1800,
+    "stage-7": 2400
+  }
+}

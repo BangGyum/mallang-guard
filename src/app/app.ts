@@ -2,14 +2,17 @@ import { unitAttackSound } from '../audio/combatSounds';
 import { createSfx } from '../audio/sfx';
 import { assert } from '../core/assert';
 import { starCount } from '../data/progression';
+import { type MoneyReward, recruitment } from '../data/recruitment';
 import type { ContentDb } from '../data/types';
 import { createPauseMenu } from '../ui/pauseMenu';
 import { createResultScreen } from '../ui/resultScreen';
 import { createSettings } from '../ui/settings';
+import { createShopScreen } from '../ui/shopScreen';
 import { createStageSelect } from '../ui/stageSelect';
 import { createTitleScreen } from '../ui/titleScreen';
 import { impactDelays } from '../view/eventTiming';
 import { createBattleSession } from './battleSession';
+import { battleMoney, buyUnit, commitCollection, ownedBattleContent, recruitUnits } from './collection';
 import { loadSave, storeSave } from './save';
 
 export function createApp(
@@ -23,12 +26,14 @@ export function createApp(
   const root = screenRoot;
   let stage = stageDef;
   const stages = [...content.stages.values()];
-  const save = loadSave();
+  const save = loadSave(content.unitOrder, crypto.getRandomValues(new Uint32Array(1))[0]);
+  storeSave(save);
   const sound = createSfx(save.settings.sfxVolume);
   const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
   let automaticQuality = true;
   let session: ReturnType<typeof createBattleSession> | undefined;
   let screen: { dispose(): void } | undefined;
+  let moneyReward: MoneyReward | undefined;
   function viewOptions() {
     return {
       quality: save.settings.quality,
@@ -89,7 +94,29 @@ export function createApp(
       startBattle,
       showSettings,
       showStages,
+      { money: save.collection.money, ownedUnits: save.collection.ownedUnits, shop: showShop },
     );
+  }
+  function showShop() {
+    sound.reset();
+    clearScreen();
+    session?.dispose();
+    session = undefined;
+    setBattleVisible(false);
+    app.dataset.screen = 'shop';
+    screen = createShopScreen(root, content, () => save.collection, {
+      back: showTitle,
+      draw(count) {
+        const result = commitCollection(save, recruitUnits(save.collection, count, content.unitOrder));
+        if (result.ok) sound.play('deploy');
+        return result;
+      },
+      buy(id) {
+        const result = commitCollection(save, buyUnit(save.collection, id, content.unitOrder));
+        if (result.ok) sound.play('deploy');
+        return result;
+      },
+    });
   }
   function showStages() {
     sound.reset();
@@ -131,13 +158,25 @@ export function createApp(
   function showResult() {
     if (!session) return;
     const state = session.battle.state;
+    if (state.phase === 'running') return;
     const won = state.phase === 'won';
-    if (won) {
-      save.stages[stage.id] = {
-        cleared: true,
-        bestLife: Math.max(save.stages[stage.id]?.bestLife ?? 0, state.life),
-      };
-      storeSave(save);
+    if (!moneyReward) {
+      const firstClear = won && !save.stages[stage.id]?.cleared;
+      const reward = battleMoney(
+        stage.id,
+        won,
+        state.killed,
+        starCount({ cleared: won, bestLife: state.life }),
+        firstClear,
+      );
+      const amount = Math.min(reward, recruitment.maxMoney - save.collection.money);
+      save.collection.money += amount;
+      if (won)
+        save.stages[stage.id] = {
+          cleared: true,
+          bestLife: Math.max(save.stages[stage.id]?.bestLife ?? 0, state.life),
+        };
+      moneyReward = { amount, balance: save.collection.money, firstClear, saved: storeSave(save) };
     }
     clearScreen();
     session.setMenuOpen(true);
@@ -152,11 +191,13 @@ export function createApp(
         totalEnemies: state.totalEnemies,
         bestLife: save.stages[stage.id]?.bestLife ?? 0,
         stars: starCount({ cleared: won, bestLife: state.life }),
+        reward: moneyReward,
       },
       {
         restart: startBattle,
         exit: showTitle,
         stages: showStages,
+        shop: showShop,
         ...(next
           ? {
               next() {
@@ -172,11 +213,12 @@ export function createApp(
     sound.reset();
     clearScreen();
     session?.dispose();
+    moneyReward = undefined;
     setBattleVisible(true);
     app.dataset.screen = 'battle';
     app.dataset.stageId = stage.id;
     session = createBattleSession(
-      content,
+      ownedBattleContent(content, stage.id, save.collection.ownedUnits),
       app,
       {
         speed: save.settings.speed,

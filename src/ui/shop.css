@@ -1,0 +1,273 @@
+.money-icon {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+  vertical-align: middle;
+}
+.title-wallet {
+  margin: 0 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #99702a;
+  font-size: 14px;
+}
+.title-wallet small {
+  margin-left: auto;
+  color: #708068;
+  font-size: 12px;
+}
+.title-meta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+.title-meta-actions .title-settings {
+  flex: 1;
+  margin: 0;
+  min-height: 44px;
+  white-space: nowrap;
+}
+.title-screen {
+  justify-content: safe center;
+}
+.title-meta-actions .title-shop {
+  border-color: #d5b166;
+  background: #fff0c9;
+  color: #886225;
+}
+.shop-screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: clamp(16px, 3vw, 36px);
+  box-sizing: border-box;
+  pointer-events: auto;
+  background: linear-gradient(135deg, #d8f1ed, #f5f2de);
+}
+.shop-header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  width: min(1120px, 100%);
+  margin: 0 auto;
+}
+.shop-identity {
+  flex: 1;
+  min-width: 0;
+}
+.shop-identity .screen-eyebrow {
+  display: block;
+  margin-bottom: 4px;
+}
+.shop-header h1 {
+  margin: 0;
+  font:
+    400 30px "Jua",
+    "Malgun Gothic",
+    sans-serif;
+  color: #41674d;
+}
+.shop-wallet {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border: 1px solid #dfc58d;
+  border-radius: 16px;
+  background: #fff8de;
+  color: #8d6729;
+  white-space: nowrap;
+}
+.shop-money {
+  font:
+    400 24px "Jua",
+    "Malgun Gothic",
+    sans-serif;
+}
+.shop-wallet > span {
+  font-size: 12px;
+}
+.shop-screen button,
+.recruit-dialog button {
+  min-height: 44px;
+}
+.shop-body {
+  width: min(1120px, 100%);
+  margin: 0 auto;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+  padding-bottom: 8px;
+}
+.recruit-booth,
+.shop-collection {
+  padding: 24px;
+  border: 1px solid #fff;
+  border-radius: 24px;
+  background: #fffdf3e8;
+  box-shadow: 0 8px 30px #375c4210;
+}
+.recruit-booth-art {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  gap: 4px;
+  padding: 14px 0;
+  margin-bottom: 20px;
+  border-radius: 18px;
+  background: linear-gradient(#d8eeec, #edf3d5);
+}
+.recruit-booth-art > span {
+  width: 94px;
+  height: 112px;
+}
+.recruit-booth-art svg {
+  width: 100%;
+  height: 100%;
+}
+.shop-body h2 {
+  font:
+    400 21px "Jua",
+    "Malgun Gothic",
+    sans-serif;
+  color: #41674d;
+  margin: 0 0 12px;
+}
+.shop-copy {
+  color: #6a7e64;
+  font-size: 13px;
+  line-height: 1.75;
+  margin: 0 0 14px;
+}
+.recruit-guarantee {
+  padding: 12px;
+  border-radius: 12px;
+  background: #edf3da;
+  color: #64804e;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.recruit-single,
+.recruit-ten {
+  width: 100%;
+  margin-top: 8px;
+  font-size: 13px;
+}
+.recruit-ten {
+  border-color: #bbccae;
+  color: #476a47;
+  background: #edf4e5;
+}
+.shop-status {
+  color: #8d6138;
+  font-size: 12px;
+  line-height: 1.65;
+  min-height: 20px;
+}
+.shop-rates,
+.shop-earnings {
+  margin-top: 12px;
+  border-top: 1px solid #e3e9d8;
+  padding-top: 12px;
+  font-size: 12px;
+  color: #6b7e63;
+}
+.shop-rates > summary,
+.shop-earnings > summary {
+  cursor: pointer;
+  min-height: 44px;
+  display: list-item;
+  align-content: center;
+}
+.shop-rates p,
+.shop-earnings p {
+  line-height: 1.8;
+}
+.shop-rate-list {
+  padding-left: 18px;
+  line-height: 1.9;
+}
+.shop-collection-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: space-between;
+}
+.shop-owned-count {
+  color: #71845e;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.shop-unit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+}
+.shop-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+  padding: 12px;
+  box-sizing: border-box;
+  border: 1px solid #d9e2cf;
+  border-top: 3px solid var(--role-color);
+  border-radius: 16px;
+  background: #fffdf7;
+  text-align: center;
+}
+.shop-unit[data-owned="false"] {
+  background: #fbf3df;
+  border-bottom-color: #d9bc7b;
+}
+.shop-unit-portrait {
+  display: block;
+  width: 70px;
+  height: 70px;
+}
+.shop-unit-portrait svg {
+  width: 100%;
+  height: 100%;
+}
+.shop-unit > strong {
+  font-size: 15px;
+  color: #41674d;
+}
+.shop-unit > small {
+  color: #7a886d;
+  font-size: 11px;
+}
+.shop-unit-detail {
+  width: 100%;
+  color: #6d7e68;
+  font-size: 11px;
+  text-align: left;
+}
+.shop-unit-detail summary {
+  font-size: 12px;
+  word-break: keep-all;
+}
+.shop-unit-detail p {
+  line-height: 1.75;
+  margin: 4px 0 10px;
+  word-break: keep-all;
+}
+.shop-buy {
+  width: 100%;
+  margin-top: auto;
+  padding: 6px;
+  font-size: 11px;
+  white-space: nowrap;
+}
+.shop-buy:disabled {
+  color: #8b947e;
+}

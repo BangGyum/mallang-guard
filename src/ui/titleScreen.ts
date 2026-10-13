@@ -1,6 +1,7 @@
 import { ROLE_COLORS } from '../art/palette';
 import type { ContentDb } from '../data/types';
 import { button, element } from './dom';
+import { moneyIcon } from './moneyIcon';
 import { portrait } from './portrait';
 
 export function createTitleScreen(
@@ -11,6 +12,7 @@ export function createTitleScreen(
   onStart: () => void,
   onSettings: () => void,
   onStages: () => void,
+  collection?: { money: number; ownedUnits: readonly string[]; shop(): void },
 ) {
   const screen = element('section', 'title-screen');
   screen.setAttribute('aria-label', '말랑방위대 시작 화면');
@@ -37,10 +39,22 @@ export function createTitleScreen(
   );
   const start = button('시작', onStart, 'primary-button start-button');
   intro.append(stage, start, element('p', 'title-controls', '드래그로 배치 · 친구를 눌러 스킬 사용'));
-  start.after(
+  const links = element('div', 'title-meta-actions');
+  links.append(
     button('스테이지 선택', onStages, 'title-settings'),
     button('설정', onSettings, 'title-settings'),
   );
+  if (collection) {
+    links.prepend(button('상점 · 모집', collection.shop, 'title-settings title-shop'));
+    const wallet = element('p', 'title-wallet');
+    wallet.append(
+      moneyIcon(),
+      element('strong', '', `${collection.money.toLocaleString()}머니`),
+      element('small', '', `보유 ${collection.ownedUnits.length}/${content.units.size}`),
+    );
+    stage.before(wallet);
+  }
+  start.after(links);
   const garden = element('div', 'title-garden');
   const pudding = portrait('pudding', 'title-pudding');
   pudding.setAttribute('aria-hidden', 'true');

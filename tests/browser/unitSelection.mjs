@@ -31,6 +31,9 @@ try {
     await page.clock.install({ time });
     await page.clock.pauseAt(new Date(time.getTime() + 1000));
     await page.addInitScript(() => {
+      // 기존 계정의 10종 보유로 전체 캐릭터 정보창을 검사합니다.
+      if (!localStorage.getItem('mallang-guard:v1'))
+        localStorage.setItem('mallang-guard:v1', JSON.stringify({ version: 1 }));
       window.requestAnimationFrame = (cb) => setTimeout(() => cb(performance.now()), 100);
       window.cancelAnimationFrame = (id) => clearTimeout(id);
     });

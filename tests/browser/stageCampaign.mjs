@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFile, writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
-import { captureCampaignFailure, installCampaignAudit, skillRetryMs } from './campaignAudit.mjs';
+import { captureCampaignFailure, installCampaignAudit, skillRetryMs, wallet } from './campaignAudit.mjs';
 import { deploy, frame, pause, resume, tilePoint } from './helpers.mjs';
 
 const earlyOnly = process.argv.includes('--early');
@@ -183,6 +183,7 @@ try {
       await frame(page, 1000);
       assert.equal(await page.locator('.battle-result h2').textContent(), '방어 성공!');
       assert.equal(await page.locator('.result-stars').textContent(), '★★★');
+      const collection = await wallet(page, index + 1);
       const result = await page.evaluate(() => {
         const { state } = window.campaign.battle;
         return {
@@ -219,7 +220,7 @@ try {
       for (let i = 1; i <= index + 1; i++)
         assert.deepEqual(records[`stage-${i}`], { cleared: true, bestLife: 3 });
       await page.screenshot({ path: `docs/verification/${prefix}-${label}-${stage.id}-clear.png` });
-      report.push({ viewport: label, stage: stage.id, ...result });
+      report.push({ viewport: label, stage: stage.id, ...result, ...collection });
       console.log(JSON.stringify(report.at(-1)));
       if (index < scenarios.length - 1) {
         await click(page.getByRole('button', { name: '다음 스테이지', exact: true }));
