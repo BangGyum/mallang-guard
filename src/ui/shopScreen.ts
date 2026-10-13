@@ -18,7 +18,7 @@ export function createShopScreen(
   root: HTMLElement,
   content: ContentDb,
   state: () => Readonly<CollectionState>,
-  actions: { back(): void; draw(count: 1 | 10): ShopResult; buy(id: string): ShopResult },
+  actions: { back(): void; backLabel?: string; draw(count: 1 | 10): ShopResult; buy(id: string): ShopResult },
 ) {
   const screen = element('section', 'shop-screen');
   screen.setAttribute('aria-label', '상점과 친구 모집');
@@ -31,7 +31,7 @@ export function createShopScreen(
   const wallet = element('div', 'shop-wallet');
   const balance = element('strong', 'shop-money');
   wallet.append(moneyIcon(), balance, element('span', '', '머니'));
-  const back = button('타이틀로', actions.back, 'shop-back');
+  const back = button(actions.backLabel ?? '타이틀로', actions.back, 'shop-back');
   header.append(identity, wallet, back);
   const body = element('div', 'shop-body');
   const booth = element('section', 'recruit-booth');
@@ -111,16 +111,25 @@ export function createShopScreen(
       return;
     }
     status.textContent = `사용 ${result.cost.toLocaleString()}머니 · 중복 환급 ${result.refund.toLocaleString()}머니`;
+    const unitId = trigger.closest<HTMLElement>('.shop-unit')?.dataset.unitId;
     update();
     resultScreen?.dispose();
     resultScreen = createRecruitResult(root, content, result.results, result.cost, result.refund, () => {
       resultScreen?.dispose();
       resultScreen = undefined;
-      const focus = trigger.isConnected && !trigger.disabled ? trigger : !single.disabled ? single : back;
+      const detail = unitId ? cards.querySelector<HTMLElement>(`[data-unit-id="${unitId}"] summary`) : null;
+      const focus =
+        trigger.isConnected && !trigger.disabled ? trigger : (detail ?? (!single.disabled ? single : back));
       focus.focus({ preventScroll: true });
+      if (focus === detail) focus.scrollIntoView({ block: 'nearest' });
     });
   }
   function update() {
+    const expanded = new Set(
+      [...cards.querySelectorAll<HTMLElement>('.shop-unit:has(details[open])')].map(
+        (card) => card.dataset.unitId,
+      ),
+    );
     const value = state();
     balance.textContent = value.money.toLocaleString();
     single.disabled = value.money < recruitment.pullCost;
@@ -149,6 +158,7 @@ export function createShopScreen(
       );
       details.element.classList.add('shop-unit-detail');
       if (skill) details.update(unit, skill);
+      details.element.open = expanded.has(unit.id);
       const buy = button(
         have ? '보유 중' : `${recruitment.unitPrice}머니 · 영입`,
         () => finish(actions.buy(unit.id), buy),

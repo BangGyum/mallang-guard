@@ -45,7 +45,9 @@ export function createResultScreen(
   const stars = element('div', 'result-stars', '★'.repeat(result.stars) + '☆'.repeat(3 - result.stars));
   stars.setAttribute('aria-label', `별 ${result.stars}개`);
   stars.hidden = !result.won;
-  dialog.append(icon, heading, stars, detail, encouragement, best, buttons);
+  const content = element('div', 'result-content');
+  content.append(icon, heading, stars, detail, encouragement, best);
+  dialog.append(content, buttons);
   if (result.reward) {
     const reward = element('div', 'result-money');
     reward.append(moneyIcon(), element('strong', '', `+${result.reward.amount.toLocaleString()}머니`));
@@ -57,8 +59,10 @@ export function createResultScreen(
       ),
     );
     if (!result.reward.saved)
-      reward.append(element('small', 'reward-unsaved', '저장하지 못했어요. 현재 세션에서만 유지됩니다.'));
-    buttons.before(reward);
+      reward.append(
+        element('small', 'reward-unsaved', '보상을 저장하지 못했어요. 새로고침하면 사라질 수 있어요.'),
+      );
+    stars.after(reward);
   }
   return mountDialog(root, dialog, () => {});
 }

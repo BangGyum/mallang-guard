@@ -98,21 +98,33 @@ export function createApp(
     );
   }
   function showShop() {
+    const fromResult = !!session && session.battle.state.phase !== 'running';
     sound.reset();
     clearScreen();
-    session?.dispose();
-    session = undefined;
+    if (!fromResult) {
+      session?.dispose();
+      session = undefined;
+    }
     setBattleVisible(false);
     app.dataset.screen = 'shop';
     screen = createShopScreen(root, content, () => save.collection, {
-      back: showTitle,
+      backLabel: fromResult ? '전투 결과로' : '타이틀로',
+      back() {
+        if (fromResult) {
+          setBattleVisible(true);
+          session?.refresh();
+          showResult();
+        } else showTitle();
+      },
       draw(count) {
         const result = commitCollection(save, recruitUnits(save.collection, count, content.unitOrder));
+        if (result.ok && moneyReward) moneyReward.saved = true;
         if (result.ok) sound.play('deploy');
         return result;
       },
       buy(id) {
         const result = commitCollection(save, buyUnit(save.collection, id, content.unitOrder));
+        if (result.ok && moneyReward) moneyReward.saved = true;
         if (result.ok) sound.play('deploy');
         return result;
       },
@@ -191,7 +203,7 @@ export function createApp(
         totalEnemies: state.totalEnemies,
         bestLife: save.stages[stage.id]?.bestLife ?? 0,
         stars: starCount({ cleared: won, bestLife: state.life }),
-        reward: moneyReward,
+        reward: { ...moneyReward, balance: save.collection.money },
       },
       {
         restart: startBattle,
