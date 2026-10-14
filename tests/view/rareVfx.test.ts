@@ -109,6 +109,39 @@ describe('희귀 무장과 연쇄 연결선', () => {
       }
     },
   );
+  it.each([
+    { label: '300ms', steps: [0.3] },
+    { label: '150ms', steps: [0.15, 0.15] },
+    { label: '100ms', steps: [0.1, 0.1, 0.1] },
+    { label: '10ms', steps: Array.from({ length: 30 }, () => 0.01) },
+  ])('$label 프레임에서도 도착 전 시간을 연쇄 수명에서 차감하지 않는다', ({ steps }) => {
+    const f = fixture('deer');
+    try {
+      f.vfx.onEvents(f.events, f.state, impactDelays(f.events));
+      for (const dt of steps) f.vfx.update(f.state, f.camera, dt);
+      const mesh = f.mesh('lightningLink');
+      expect(mesh.count).toBe(4);
+      expect(mesh.geometry.getAttribute('aOpacity').getX(0)).toBeCloseTo(0.75 * (1 - 0.05 / 0.14), 5);
+      f.vfx.update(f.state, f.camera, 0.08);
+      expect(mesh.count).toBe(4);
+      f.vfx.update(f.state, f.camera, 0.02);
+      expect(mesh.count).toBe(0);
+    } finally {
+      f.dispose();
+    }
+  });
+  it.each(['fox', 'redPanda'])('%s의 명중 효과도 긴 프레임에서 생략되지 않는다', (id) => {
+    const f = fixture(id);
+    try {
+      f.vfx.onEvents(f.events, f.state, impactDelays(f.events));
+      f.vfx.update(f.state, f.camera, 0.3);
+      const mesh = f.mesh(id === 'fox' ? 'plasmaImpact' : 'impact');
+      expect(mesh.count).toBe(1);
+      expect(mesh.geometry.getAttribute('aOpacity').getX(0)).toBeCloseTo(0.85 * (1 - 0.05 / 0.18), 5);
+    } finally {
+      f.dispose();
+    }
+  });
   it('연결선도 200개 풀 상한을 공유하고 재사용한 슬롯은 일반 투사체로 복원한다', () => {
     const texture = new Texture();
     const pool = createParticlePool(new Map(VFX_IDS.map((id) => [id, texture])));

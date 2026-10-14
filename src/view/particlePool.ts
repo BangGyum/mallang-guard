@@ -120,10 +120,22 @@ export function createParticlePool(textures: ReadonlyMap<string, Texture>) {
       aimed = false,
       opacity = 1,
       beam = false,
+      delay = 0,
     ) {
       const particle = particles.find((particle) => !particle.active);
       if (!particle) return;
-      Object.assign(particle, { active: true, id, age: 0, duration, size, arc, wave, aimed, opacity, beam });
+      Object.assign(particle, {
+        active: true,
+        id,
+        age: -delay,
+        duration,
+        size,
+        arc,
+        wave,
+        aimed,
+        opacity,
+        beam,
+      });
       particle.from.copy(from);
       particle.to.copy(to);
     },
@@ -133,6 +145,7 @@ export function createParticlePool(textures: ReadonlyMap<string, Texture>) {
       for (const particle of particles) {
         if (!particle.active) continue;
         particle.age += dt;
+        if (particle.age < 0) continue;
         if (particle.age >= particle.duration) {
           particle.active = false;
           continue;

@@ -245,7 +245,7 @@ export function createEntityViews(content: ContentDb, board: Board, textures: Re
         for (let i = view.hitDelays.length - 1; i >= 0; i--) {
           const remaining = (view.hitDelays[i] ?? 0) - dt;
           if (remaining <= 0) {
-            motion.hit = 0.08;
+            motion.hit = Math.max(motion.hit, 0.08 + remaining);
             view.hitStop = Math.max(view.hitStop, HIT_STOP_SEC + remaining);
             view.hitDelays.splice(i, 1);
           } else view.hitDelays[i] = remaining;

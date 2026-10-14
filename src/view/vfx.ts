@@ -55,12 +55,12 @@ export function createVfx(
   let reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let low = false;
   let time = 0;
-  function burst(id: string, at: Vector3, count: number) {
+  function burst(id: string, at: Vector3, count: number, delay = 0) {
     const total = reduced || low ? Math.ceil(count / 2) : count;
     for (let i = 0; i < total; i++) {
       const angle = (i / total) * Math.PI * 2;
       point.copy(at).add(new Vector3(Math.cos(angle) * 0.28, 0.12 + (i % 3) * 0.06, Math.sin(angle) * 0.22));
-      pool.emit(id, at, point, 0.3, id === 'droplet' ? 0.14 : 0.11, 0.12, false, false, 0.65);
+      pool.emit(id, at, point, 0.3, id === 'droplet' ? 0.14 : 0.11, 0.12, false, false, 0.65, false, delay);
     }
   }
   return {
@@ -187,7 +187,9 @@ export function createVfx(
         if (!effect) continue;
         effect.seconds -= dt;
         if (effect.seconds <= 0) {
-          burst(effect.id, effect.at, effect.count);
+          // 이번 프레임에서 탄이 도착하기 전 시간은 새 이펙트의 수명에 포함하지 않습니다.
+          const delay = dt + effect.seconds;
+          burst(effect.id, effect.at, effect.count, delay);
           if (effect.linkFrom)
             pool.emit(
               'lightningLink',
@@ -200,6 +202,7 @@ export function createVfx(
               true,
               reduced || low ? 0.45 : 0.75,
               true,
+              delay,
             );
           if (effect.impact && !reduced && !low)
             pool.emit(
@@ -212,9 +215,23 @@ export function createVfx(
               false,
               false,
               0.85,
+              false,
+              delay,
             );
           if (effect.id === 'spark' && !reduced && !low)
-            pool.emit('ring', effect.at, effect.at, 0.2, 0.28 * (effect.power ?? 1), 0, true, false, 0.25);
+            pool.emit(
+              'ring',
+              effect.at,
+              effect.at,
+              0.2,
+              0.28 * (effect.power ?? 1),
+              0,
+              true,
+              false,
+              0.25,
+              false,
+              delay,
+            );
           pending.splice(i, 1);
         }
       }

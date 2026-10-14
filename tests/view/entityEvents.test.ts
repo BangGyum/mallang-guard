@@ -234,4 +234,29 @@ describe('이벤트 경계의 캐릭터 연출', () => {
       f.dispose();
     }
   });
+  it.each([0.26, 0.3, 0.4])('%s초 프레임에서 도착 후 지난 만큼 피격 섬광이 줄어든다', (dt) => {
+    const f = fixture();
+    try {
+      f.deliver(f.battle.step());
+      f.attack(10, f.battle.state.enemies[0]?.uid ?? -1);
+      f.render(dt);
+      expect(f.flash()).toBeCloseTo(Math.max(0, (0.08 - (dt - 0.25)) / 0.08), 5);
+    } finally {
+      f.dispose();
+    }
+  });
+  it('한 프레임에 지난 두 피격은 나중에 도착한 섬광을 유지한다', () => {
+    const f = fixture();
+    try {
+      f.deliver(f.battle.step());
+      const uid = f.battle.state.enemies[0]?.uid ?? -1;
+      f.attack(10, uid);
+      f.render(0.1);
+      f.attack(11, uid);
+      f.render(0.27);
+      expect(f.flash()).toBeCloseTo(0.75, 5);
+    } finally {
+      f.dispose();
+    }
+  });
 });

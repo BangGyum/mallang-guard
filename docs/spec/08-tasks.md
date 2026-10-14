@@ -562,6 +562,8 @@
 - 연출/배포: 13종 실제 무기음 26회·정지/종료, 12개 무기 버퍼와 보스 14개 동시 혼합 피크 0.743, 세션 10회 종료 후 geometry/texture 0을 확인했습니다. 13유닛/60적 합성 부하에서 표시 주기 60fps·렌더 p95 4.8ms, 제한 없는 처리량 428.57fps·렌더 p95 5.9ms·최대 83드로우콜/137파티클입니다. 배포 경로에서도 기본 8종·희귀 확률/가격/영입/복원을 통과했으며 브라우저 오류/경고는 0건입니다. 가상 시계·터치 에뮬레이션·검사 맵/계정·합성 부하 검사로 실기기 FPS나 재미/청감 평가를 대신하지 않습니다.
   결과: [종합/검사 조건](../verification/t4.26-summary.json), [희귀 5화면](../verification/t4.26-rare-operatives.json), [원본 14회](../verification/t4.26-campaign.json), [실제 보상 영입](../verification/t4.26-mobile-earned-rares.json), [13종 생명주기](../verification/t4.26-characters.json), [성능](../verification/t4.26-performance.json), [프로덕션](../verification/t4.26-production.json). 화면: [PC 영입](../verification/t4.26-desktop-earned-rares.png), [터치 원본 배치](../verification/t4.26-mobile-earned-rare-deploy.png), [작은 화면 세라 스킬](../verification/t4.26-320x568-deer-skill.png).
 
+- 후속 검수 (2026-10-14): 긴 프레임에서 새 연쇄/명중 효과가 즉시 소멸하던 문제와 피격 섬광이 다시 최대 밝기로 남던 문제를 수정했습니다. 먼저 실패를 재현한 회귀 10개를 포함해 77개 파일 1,409개 테스트와 check/lint/build를 통과했습니다. 희귀 5개 화면의 영입/저장/자연 스킬/후퇴, 13종 무기음 26회, 실제 WebGL의 3종×2화면×5프레임 간격 30개 조건을 확인했습니다. 배포 검사의 일반 결과 가정을 제거하고 시드 1/36으로 일반/희귀 첫 모집 이후 구매·복원을 모두 통과했습니다. 상세 조건과 한계: [검수 결과](../verification/t4.26-review-summary.json), [프레임 검사](../verification/t4.26-review-vfx-timing.json), [희귀 첫 모집 배포 검사](../verification/t4.26-review-rare-first-production.json).
+
 ## M5 확장 (방향만 정해 둠)
 
 - 모바일 성능 최적화, PWA(오프라인 실행)
