@@ -70,7 +70,10 @@ describe('모든 아군의 실제 충전·스킬·후퇴·재배치', () => {
     const attacks: number[] = [];
     let starts = 0;
     let ends = 0;
-    for (let tick = 0; tick < secToTicks(100) && ends < 2; tick++) {
+    const chargeSec =
+      (2 * skill.spCost - skill.spStart) * (skill.charge === 'attack' ? def.atkIntervalSec : 1);
+    const deadline = secToTicks(Math.max(100, chargeSec + 2 * skill.durationSec + 2));
+    for (let tick = 0; tick < deadline && ends < 2; tick++) {
       if (unit.skillState === 'ready' && skill.trigger === 'manual') {
         battle.enqueue({ type: 'activateSkill', uid: unit.uid });
         events.push(...battle.flush());
@@ -143,7 +146,7 @@ describe('모든 아군의 실제 충전·스킬·후퇴·재배치', () => {
 
   it.each(CASES)('$unitId / $dir 사거리 뒤의 적은 공격하지 않는다', ({ unitId, dir }) => {
     const { battle, def, skill, unit, events } = fixture(unitId, dir, true);
-    events.push(...run(battle, secToTicks(25)));
+    events.push(...run(battle, secToTicks(Math.max(25, skill.spCost - skill.spStart)) + 1));
     expect(events.some((e) => e.type === 'attack' || e.type === 'damage')).toBe(false);
     expect(unit.sp).toBe(skill.charge === 'attack' ? skill.spStart : skill.spCost);
     if (skill.condition === 'enemyInRange' && skill.trigger === 'manual') {

@@ -1,0 +1,12 @@
+.shop-unit[data-rarity="rare"],
+.recruit-result[data-rarity="rare"] {
+  border-color: #d8b773;
+  background: linear-gradient(145deg, #fffdf3, #eef8f1);
+}
+.shop-unit[data-rarity="rare"] > strong,
+.recruit-result[data-rarity="rare"] > strong {
+  color: #785421;
+}
+.deploy-card[data-rarity="rare"] {
+  border-color: #cba95d;
+}

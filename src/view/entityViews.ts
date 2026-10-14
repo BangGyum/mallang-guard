@@ -25,6 +25,7 @@ interface EntityView {
 }
 
 const HIT_STOP_SEC = 0.045;
+const RARE_WEAPON_TIPS: Record<string, number> = { fox: 0.36, redPanda: 0.3, deer: 0.6 };
 
 export function createEntityViews(content: ContentDb, board: Board, textures: ReadonlyMap<string, Texture>) {
   const group = new Group();
@@ -125,7 +126,8 @@ export function createEntityViews(content: ContentDb, board: Board, textures: Re
       if (!view) return undefined;
       // 오른쪽 무기 끝을 빌보드의 실제 변환으로 월드 좌표에 맞춥니다.
       const tipY =
-        view.art === 'owl'
+        RARE_WEAPON_TIPS[view.art] ??
+        (view.art === 'owl'
           ? 0.67
           : view.art === 'sheep'
             ? 0.49
@@ -135,7 +137,7 @@ export function createEntityViews(content: ContentDb, board: Board, textures: Re
                 ? 0.36
                 : view.art === 'squirrel' || view.art === 'mole'
                   ? 0.23
-                  : 0.18;
+                  : 0.18);
       const tip = new Vector3(view.art === 'owl' ? 0.38 : 0.4, tipY, 0);
       view.visual.group.updateMatrixWorld(true);
       return view.visual.sprite.localToWorld(tip);
@@ -243,7 +245,7 @@ export function createEntityViews(content: ContentDb, board: Board, textures: Re
         for (let i = view.hitDelays.length - 1; i >= 0; i--) {
           const remaining = (view.hitDelays[i] ?? 0) - dt;
           if (remaining <= 0) {
-            motion.hit = 0.08;
+            motion.hit = Math.max(motion.hit, 0.08 + remaining);
             view.hitStop = Math.max(view.hitStop, HIT_STOP_SEC + remaining);
             view.hitDelays.splice(i, 1);
           } else view.hitDelays[i] = remaining;

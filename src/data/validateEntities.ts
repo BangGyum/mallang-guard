@@ -16,6 +16,9 @@ const ART_IDS = [
   'snail',
   'owl',
   'wolf',
+  'fox',
+  'redPanda',
+  'deer',
   'jelly',
   'hardJelly',
   'crow',
@@ -74,14 +77,20 @@ export function parseUnit(value: unknown, path: string): UnitDef {
     canHitAir: bool(raw.canHitAir, `${path}.canHitAir`),
     skill: text(raw.skill, `${path}.skill`),
   };
+  if (raw.targetPriority !== undefined)
+    unit.targetPriority = oneOf(raw.targetPriority, `${path}.targetPriority`, ['boss']);
   if (raw.traits !== undefined) {
     unit.traits = list(raw.traits, `${path}.traits`, parseEffect);
     for (const [index, trait] of unit.traits.entries()) {
       assert(
-        ['statMul', 'splash', 'onHitSlow'].includes(trait.type),
+        ['statMul', 'splash', 'onHitSlow', 'chain'].includes(trait.type),
         `${path}.traits[${index}].type: effect not allowed as trait`,
       );
     }
+    assert(
+      unit.traits.filter((effect) => effect.type === 'chain').length <= 1,
+      `${path}.traits: only one chain`,
+    );
   }
   return unit;
 }
@@ -172,6 +181,10 @@ export function parseSkill(value: unknown, path: string): SkillDef {
   assert(
     skill.effects.filter((effect) => effect.type === 'multiTarget').length <= 1,
     `${path}.effects: only one target count per skill`,
+  );
+  assert(
+    skill.effects.filter((effect) => effect.type === 'chain').length <= 1,
+    `${path}.effects: only one chain`,
   );
   return skill;
 }

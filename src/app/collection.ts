@@ -1,5 +1,12 @@
 import { mulberry32 } from '../core/rng';
-import { type CollectionState, type RecruitResult, recruitment, type ShopResult } from '../data/recruitment';
+import {
+  type CollectionState,
+  type RecruitResult,
+  recruitment,
+  recruitUnitForRoll,
+  type ShopResult,
+  unitPriceFor,
+} from '../data/recruitment';
 import type { ContentDb } from '../data/types';
 import { type SaveData, storeSave } from './save';
 
@@ -25,7 +32,9 @@ export function recruitUnits(
     const candidates = guaranteed ? missing : pool;
     const random = mulberry32(next.rngState);
     next.rngState = random.state;
-    const unitId = candidates[Math.floor(random.value * candidates.length)];
+    const unitId = guaranteed
+      ? candidates[Math.floor(random.value * candidates.length)]
+      : recruitUnitForRoll(candidates, random.value);
     if (!unitId) return { ok: false, reason: 'unknownUnit' };
     const isNew = !next.ownedUnits.includes(unitId);
     const back = isNew ? 0 : recruitment.duplicateRefund;
@@ -46,12 +55,13 @@ export function buyUnit(
   if (!recruitment.pool.includes(unitId) || !available.includes(unitId))
     return { ok: false, reason: 'unknownUnit' };
   if (state.ownedUnits.includes(unitId)) return { ok: false, reason: 'owned' };
-  if (state.money < recruitment.unitPrice) return { ok: false, reason: 'noMoney' };
+  const price = unitPriceFor(unitId);
+  if (state.money < price) return { ok: false, reason: 'noMoney' };
   return {
     ok: true,
-    next: { ...state, money: state.money - recruitment.unitPrice, ownedUnits: [...state.ownedUnits, unitId] },
+    next: { ...state, money: state.money - price, ownedUnits: [...state.ownedUnits, unitId] },
     results: [{ unitId, isNew: true, guaranteed: false, refund: 0 }],
-    cost: recruitment.unitPrice,
+    cost: price,
     refund: 0,
   };
 }

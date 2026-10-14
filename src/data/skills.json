@@ -187,5 +187,48 @@
       { "type": "armorPenAdd", "value": 40 },
       { "type": "statMul", "stat": "atk", "value": 0.9 }
     ]
+  },
+  {
+    "id": "polarAim",
+    "name": "극점 조준",
+    "description": "보스 우선 단일 사격. 12초 동안 공격력 +60%, 관통력 +180. 사거리와 공격 간격은 유지합니다.",
+    "charge": "auto",
+    "spCost": 45,
+    "spStart": 10,
+    "trigger": "manual",
+    "condition": "always",
+    "durationSec": 12,
+    "effects": [{ "type": "statMul", "stat": "atk", "value": 1.6 }, { "type": "armorPenAdd", "value": 180 }]
+  },
+  {
+    "id": "siegeBarrage",
+    "name": "집중 포격",
+    "description": "기본 명중 지점 반경 1.2칸 폭발. 10초 동안 공격력 +40%, 공격 간격 2.4초 → 1.5초, 폭발 반경 1.8칸. 비행 적은 공격하지 못해요.",
+    "charge": "auto",
+    "spCost": 40,
+    "spStart": 10,
+    "trigger": "manual",
+    "condition": "always",
+    "durationSec": 10,
+    "effects": [
+      { "type": "statMul", "stat": "atk", "value": 1.4 },
+      { "type": "statMul", "stat": "atkInterval", "value": 0.625 },
+      { "type": "splash", "radius": 1.8 }
+    ]
+  },
+  {
+    "id": "stormChain",
+    "name": "청뢰 개방",
+    "description": "기본 최대 3명 연쇄 번개(100%·70%·50%). 12초 동안 공격 간격 1.5초 → 1초, 최대 5명(100%·80%·60%·40%·30%). 사거리 안 이전 적의 1.5칸 이내로 연결하며 같은 적을 두 번 맞히지 않아요.",
+    "charge": "auto",
+    "spCost": 40,
+    "spStart": 10,
+    "trigger": "manual",
+    "condition": "always",
+    "durationSec": 12,
+    "effects": [
+      { "type": "statMul", "stat": "atkInterval", "value": 0.6666666666666666 },
+      { "type": "chain", "radius": 1.5, "damageMuls": [1, 0.8, 0.6, 0.4, 0.3] }
+    ]
   }
 ]

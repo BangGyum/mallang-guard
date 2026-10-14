@@ -1,6 +1,7 @@
 import { createBossArt } from './bossArt';
 import { COMBAT_GEAR, combatEyes } from './combatGear';
 import { ART_COLORS } from './palette';
+import { RARE_CRITTERS } from './rareCritters';
 
 const OUT = ART_COLORS.outline;
 const S = (w: number) => `stroke="${OUT}" stroke-width="${w}" stroke-linejoin="round" stroke-linecap="round"`;
@@ -192,7 +193,7 @@ const C = {
     eyes(75, 10, 0.75) +
     blush(82),
 };
-const CRITTERS = { ...C, ...createBossArt(C.jelly, C.crow) };
+const CRITTERS = { ...C, ...RARE_CRITTERS, ...createBossArt(C.jelly, C.crow) };
 export type CritterId = keyof typeof CRITTERS;
 export const CRITTER_IDS = Object.keys(CRITTERS) as CritterId[];
 export const CRITTER_ANCHOR = { x: 50, y: 93 };

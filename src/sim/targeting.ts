@@ -45,7 +45,15 @@ export function pickEnemies(
   unit: Readonly<UnitEntity>,
   count: number,
 ): EnemyEntity[] {
+  const bossFirst = content.units.get(unit.unitId)?.targetPriority === 'boss';
   return enemiesInRange(content, stage, state, unit)
-    .sort((a, b) => remaining(stage, a) - remaining(stage, b) || a.uid - b.uid)
+    .sort(
+      (a, b) =>
+        (bossFirst
+          ? Number(!!content.enemies.get(b.enemyId)?.boss) - Number(!!content.enemies.get(a.enemyId)?.boss)
+          : 0) ||
+        remaining(stage, a) - remaining(stage, b) ||
+        a.uid - b.uid,
+    )
     .slice(0, count);
 }

@@ -7,6 +7,8 @@
 
 ### 상점 데이터 (T4.24)
 
+T4.26의 `rareUnits`는 희귀 3종의 유일한 등급 기준이며 중복 없는 모집 풀 부분집합입니다. `rarePullPercent`는 1~99 정수(현재 5), `rareUnitPrice`는 양의 정수와 지갑 상한 이내(현재 1,800)입니다. 기본/기존 지급에 희귀 ID를 넣을 수 없습니다. 일반 추첨은 현재 유효 풀의 일반/희귀 그룹에 95%/5%를 배분하고 그룹 안에서 균등 추첨합니다. 한 등급만 있는 검사 풀에서는 그 그룹을 100%로 정규화합니다. 10회 미보유 보장은 기존처럼 미보유 ID를 균등 추첨하므로 일반 추첨 확률과 다릅니다. 상태/거래 결과 형태와 저장 버전은 유지합니다.
+
 `recruitment.json`은 시작/최대 머니, 모집 비용/중복 환급/미보유 보장 횟수, 직접 영입 가격, 기본/기존/모집 친구 ID, 스테이지별 클리어 보상, 별·첫 클리어·패배 보상을 정의합니다. `data/recruitment.ts`가 파싱하고 `data/index.ts`에서 실제 유닛·스테이지 참조와 모든 스테이지의 보상 존재를 검사합니다. 비용과 보장은 양의 정수, 보상은 0 이상의 정수이며 환급은 모집 가격보다 작고 시작 머니·10회 비용·직접 가격은 저장 상한을 넘지 않습니다. 풀은 중복 없는 ID 목록이고 기본/기존 ID는 풀의 부분집합입니다.
 
 `CollectionState`는 `{ money, ownedUnits, pullsSinceNew, rngState }`입니다. 머니는 안전한 정수와 상한을, 보유 ID는 실제 콘텐츠 참조·중복 제거·기본 친구 포함을, 보장 횟수는 0~9를, 난수는 0도 유효한 uint32를 사용합니다. `ShopResult`는 성공 시 결과 목록/총 비용/총 환급, 실패 시 잔액 부족·기보유·없는 친구·저장 실패 이유를 반환합니다. 실제 전투 필드와는 공유하지 않습니다. 가격과 보상표는 [09 문서](09-content-expansion.md)의 T4.24 계약을 따릅니다.
@@ -35,6 +37,9 @@ export type ArtId =
   | 'snail'
   | 'owl'
   | 'wolf'
+  | 'fox'
+  | 'redPanda'
+  | 'deer'
   | 'jelly'
   | 'hardJelly'
   | 'crow'
@@ -73,6 +78,7 @@ export interface UnitDef {
   range: string; // RangeDef.id
   damageType: DamageType; // 'true'는 유닛에 쓰지 않음
   canHitAir: boolean;
+  targetPriority?: 'boss'; // 생략하면 기존 remaining/uid 우선순위
   traits?: Effect[];
   skill: string; // SkillDef.id
 }
@@ -103,7 +109,7 @@ export interface EnemyDef {
   lifeDamage: number; // 누수 시 깎는 푸딩 수
   bounty?: number; // 실제 처치 보상, 생략하면 0
   description?: string;
-  boss?: boolean; // 보스 표시, 생략하면 일반 적
+  boss?: boolean; // 보스 표시·우선 조준, 생략하면 일반 적
   bossSkill?: BossSkillDef; // boss === true일 때만 허용
   shieldHp?: number;
   rush?: { intervalSec: number; durationSec: number; speedMul: number };
@@ -139,6 +145,7 @@ export type Effect =
   | { type: 'armorPenAdd'; value: number }
   | { type: 'rangeOverride'; range: string }
   | { type: 'multiTarget'; count: number }
+  | { type: 'chain'; radius: number; damageMuls: number[] }
   | { type: 'splash'; radius: number }
   | { type: 'onHitSlow'; amount: number; sec: number }
   | { type: 'stunEveryNthHit'; n: number; sec: number }
@@ -219,6 +226,7 @@ export interface RawContent {
 - 참조가 모두 존재해야 합니다: unit.skill, unit.range, spawn.enemy, spawn.route, stage.roster의 유닛.
 - `rangeOverride.range`도 존재하는 사거리 ID여야 하며 지속 스킬 하나당 최대 한 개입니다. 즉시 스킬과 상시 특성에는 사용할 수 없습니다.
 - `multiTarget.count`는 1 이상의 정수이며 지속 스킬 하나당 최대 한 개입니다. 즉시 스킬과 상시 특성에는 사용할 수 없습니다.
+- `chain.radius`는 양수, `damageMuls`는 1~5개이며 첫 값은 1, 이후는 0 초과 1 이하의 유한 값과 비증가 순서입니다. 특성/스킬당 연쇄 한 개만 허용하고 즉시형, splash/multiTarget 혼합을 거부합니다. 루아의 선택 `targetPriority`는 'boss'만 허용합니다.
 - `UnitDef.armorPen`과 `armorPenAdd.value`는 0 이상의 유한 정수입니다. 생략한 기본 관통력은 검증 결과에서 0으로 정규화하며 원본 JSON은 수정하지 않습니다. 관통 증가는 지속형 스킬에만 허용하며 여러 효과의 값을 합산합니다. 기존 입력과 마법 캐릭터는 필드 생략으로 호환됩니다.
 - 숫자 범위
   - hp, atkIntervalSec, speed, spCost는 0보다 커야 합니다.
@@ -229,7 +237,7 @@ export interface RawContent {
 - 유닛
   - `deployOn`은 "high"만 허용합니다. 아군에는 hp/def/res/block이 없고, 적에는 atk/atkIntervalSec/blockCost/damageType이 없습니다.
   - 유닛의 `damageType`은 physical/magic만 허용합니다.
-  - `traits`의 타입은 `statMul`, `splash`, `onHitSlow`만 허용합니다.
+  - `traits`의 타입은 `statMul`, `splash`, `onHitSlow`, `chain`을 허용합니다.
 - 스킬
   - 효과 타입과 필수 필드도 검사합니다. 배율·효과 시간·pulse 간격은 양수, 느려짐은 0~1, hasteAura 배율은 0 초과 1 이하, radius/tiles/DP는 0 이상, 횟수는 정수입니다.
   - pulseDamage는 스킬당 최대 하나이며, 있으면 `durationSec ≥ (count − 1) × intervalSec`이어야 합니다.

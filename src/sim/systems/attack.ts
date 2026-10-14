@@ -1,6 +1,7 @@
 import { assert } from '../../core/assert';
 import { dist } from '../../core/math';
 import type { ContentDb } from '../../data/types';
+import { chainTargets } from '../chainTargets';
 import { secToTicks } from '../constants';
 import { unitStats } from '../stats';
 import { pickEnemies } from '../targeting';
@@ -20,6 +21,9 @@ export function attackEnemies(
     const def = content.units.get(unit.unitId);
     assert(def, 'battle.units: missing definition');
     const effects = [...(def.traits ?? []), ...unit.buffs];
+    const chain =
+      unit.buffs.find((effect) => effect.type === 'chain') ??
+      def.traits?.find((effect) => effect.type === 'chain');
     const count = effects.find((effect) => effect.type === 'multiTarget')?.count ?? 1;
     const enemies = pickEnemies(content, stage, state, unit, count);
     if (enemies.length === 0) continue;
@@ -28,14 +32,16 @@ export function attackEnemies(
     if (unit.skillState === 'active') unit.skillHitCount += 1;
     for (const enemy of enemies) {
       if (enemy.hp <= 0) continue;
-      const targets = state.enemies.filter(
-        (target) =>
-          target.hp > 0 &&
-          (target.uid === enemy.uid ||
-            (radius > 0 &&
-              dist(target.x, target.y, enemy.x, enemy.y) <= radius &&
-              (def.canHitAir || !content.enemies.get(target.enemyId)?.flying))),
-      );
+      const targets = chain
+        ? chainTargets(content, stage, state, unit, enemy, chain)
+        : state.enemies.filter(
+            (target) =>
+              target.hp > 0 &&
+              (target.uid === enemy.uid ||
+                (radius > 0 &&
+                  dist(target.x, target.y, enemy.x, enemy.y) <= radius &&
+                  (def.canHitAir || !content.enemies.get(target.enemyId)?.flying))),
+          );
       events.push({
         type: 'attack',
         src: { kind: 'unit', uid: unit.uid },
@@ -43,8 +49,26 @@ export function attackEnemies(
         damageType: def.damageType,
         ranged: true,
       });
-      for (const target of targets) {
-        damageEnemy(content, unit, target, stats.atk, def.damageType, events, stats.armorPen);
+      for (const [index, target] of targets.entries()) {
+        const previous = targets[index - 1];
+        if (chain && previous)
+          events.push({
+            type: 'attack',
+            src: { kind: 'unit', uid: unit.uid },
+            dst: { kind: 'enemy', uid: target.uid },
+            damageType: def.damageType,
+            ranged: true,
+            chainFrom: previous.uid,
+          });
+        damageEnemy(
+          content,
+          unit,
+          target,
+          stats.atk * (chain?.damageMuls[index] ?? 1),
+          def.damageType,
+          events,
+          stats.armorPen,
+        );
         for (const effect of effects) {
           if (effect.type === 'onHitSlow')
             slowEnemy(target, effect.amount, state.tick + secToTicks(effect.sec), state.tick, events);

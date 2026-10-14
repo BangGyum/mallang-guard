@@ -1,0 +1,191 @@
+{
+  "date": "2026-10-14",
+  "task": "T4.26 희귀 특무대 후속 검수",
+  "baseline": "2da37280e547e1cde1745c267ab991ad9173d99c",
+  "findings": [
+    {
+      "problem": "도착 지연 중인 연쇄·명중 효과가 긴 프레임에서 즉시 소멸",
+      "before": "300ms 갱신에서 세라 연결선 0개, 루아·로크 명중 효과 0개",
+      "fix": "도착 전 시간을 파티클 시작 지연으로 보존해 실제 발생 이후의 시간만 차감",
+      "regressions": 6
+    },
+    {
+      "problem": "지연 피격 섬광이 긴 프레임 뒤에도 최대 밝기로 시작",
+      "before": "도착 후 150ms가 지나도 섬광 밝기 1",
+      "fix": "실제 남은 섬광 시간만 반영하고 겹친 피격 중 최신 효과를 유지",
+      "regressions": 4
+    },
+    {
+      "problem": "배포 검사가 첫 모집에서 이미 얻은 루아를 다시 구매하려고 대기",
+      "category": "테스트의 잘못된 가정",
+      "fix": "기존 보유와 신규 구매를 각각 확인하고 실제 구매 수만큼 잔액 검증. 일반/희귀 시드 1/36으로 재현"
+    }
+  ],
+  "checks": {
+    "typecheck": "passed",
+    "lint": "passed",
+    "build": "passed",
+    "testFiles": 77,
+    "tests": 1409,
+    "newRegressions": 10,
+    "diffCheck": "passed"
+  },
+  "browser": {
+    "rareFlows": [
+      {
+        "width": 1920,
+        "height": 1080,
+        "balance": 600,
+        "errors": []
+      },
+      {
+        "width": 844,
+        "height": 390,
+        "balance": 600,
+        "errors": []
+      },
+      {
+        "width": 740,
+        "height": 360,
+        "balance": 600,
+        "errors": []
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "balance": 600,
+        "errors": []
+      },
+      {
+        "width": 320,
+        "height": 568,
+        "balance": 600,
+        "errors": []
+      }
+    ],
+    "frameTimingCases": 30,
+    "frameTimingStatePreserved": true,
+    "maxTimingParticles": 24,
+    "audioCases": 26,
+    "production": [
+      {
+        "productionBase": "/mallang-guard/",
+        "portraits": 8,
+        "webgl": true,
+        "waves": 12,
+        "killOnlyIncome": true,
+        "exit": true,
+        "shopReturnToResult": true,
+        "currentBalanceAfterRecruit": true,
+        "rareShopUnits": 3,
+        "rarePurchasesAndReload": true,
+        "rarePurchases": [
+          "fox",
+          "redPanda",
+          "deer"
+        ],
+        "alreadyRecruitedRareUnits": [],
+        "rareRates": "5% aggregate, 1.67% rounded per unit",
+        "productionPurchaseFixtureMoney": 6000,
+        "productionFirstDrawSeed": 1,
+        "errors": []
+      },
+      {
+        "productionBase": "/mallang-guard/",
+        "portraits": 8,
+        "webgl": true,
+        "waves": 12,
+        "killOnlyIncome": true,
+        "exit": true,
+        "shopReturnToResult": true,
+        "currentBalanceAfterRecruit": true,
+        "rareShopUnits": 3,
+        "rarePurchasesAndReload": true,
+        "rarePurchases": [
+          "redPanda",
+          "deer"
+        ],
+        "alreadyRecruitedRareUnits": [
+          "fox"
+        ],
+        "rareRates": "5% aggregate, 1.67% rounded per unit",
+        "productionPurchaseFixtureMoney": 6000,
+        "productionFirstDrawSeed": 36,
+        "errors": []
+      }
+    ]
+  },
+  "sourceHashes": {
+    "src/view/entityViews.ts": "a5ce1013439e02ebac0026e19796f68ee729de7fac17fa9d8d67b15667cdff8a",
+    "src/view/particlePool.ts": "a17a0725ca2aea93777bccb7ae71f83c489c702c146ac1161b8000103c2812dc",
+    "src/view/vfx.ts": "d806c57be995fe9b2a0175a26a797467cc42b132b7e6734b4b954cfbbc3aa0f4"
+  },
+  "evidence": [
+    "docs/verification/t4.26-review-rare-operatives.json",
+    "docs/verification/t4.26-review-vfx-timing.json",
+    "docs/verification/t4.26-review-audio-weapons.json",
+    "docs/verification/t4.26-review-production.json",
+    "docs/verification/t4.26-review-rare-first-production.json"
+  ],
+  "screenshots": [
+    "t4.26-review-1280-deer-long-frame.png",
+    "t4.26-review-1280-fox-long-frame.png",
+    "t4.26-review-1280-redPanda-long-frame.png",
+    "t4.26-review-1920x1080-deer-recruit.png",
+    "t4.26-review-1920x1080-deer-skill.png",
+    "t4.26-review-1920x1080-fox-recruit.png",
+    "t4.26-review-1920x1080-fox-skill.png",
+    "t4.26-review-1920x1080-rare-battle.png",
+    "t4.26-review-1920x1080-rare-shop.png",
+    "t4.26-review-1920x1080-redPanda-recruit.png",
+    "t4.26-review-1920x1080-redPanda-skill.png",
+    "t4.26-review-320x568-deer-recruit.png",
+    "t4.26-review-320x568-deer-skill.png",
+    "t4.26-review-320x568-fox-recruit.png",
+    "t4.26-review-320x568-fox-skill.png",
+    "t4.26-review-320x568-rare-battle.png",
+    "t4.26-review-320x568-rare-shop.png",
+    "t4.26-review-320x568-redPanda-recruit.png",
+    "t4.26-review-320x568-redPanda-skill.png",
+    "t4.26-review-390x844-deer-recruit.png",
+    "t4.26-review-390x844-deer-skill.png",
+    "t4.26-review-390x844-fox-recruit.png",
+    "t4.26-review-390x844-fox-skill.png",
+    "t4.26-review-390x844-rare-battle.png",
+    "t4.26-review-390x844-rare-shop.png",
+    "t4.26-review-390x844-redPanda-recruit.png",
+    "t4.26-review-390x844-redPanda-skill.png",
+    "t4.26-review-740x360-deer-recruit.png",
+    "t4.26-review-740x360-deer-skill.png",
+    "t4.26-review-740x360-fox-recruit.png",
+    "t4.26-review-740x360-fox-skill.png",
+    "t4.26-review-740x360-rare-battle.png",
+    "t4.26-review-740x360-rare-shop.png",
+    "t4.26-review-740x360-redPanda-recruit.png",
+    "t4.26-review-740x360-redPanda-skill.png",
+    "t4.26-review-844-deer-long-frame.png",
+    "t4.26-review-844-fox-long-frame.png",
+    "t4.26-review-844-redPanda-long-frame.png",
+    "t4.26-review-844x390-deer-recruit.png",
+    "t4.26-review-844x390-deer-skill.png",
+    "t4.26-review-844x390-fox-recruit.png",
+    "t4.26-review-844x390-fox-skill.png",
+    "t4.26-review-844x390-rare-battle.png",
+    "t4.26-review-844x390-rare-shop.png",
+    "t4.26-review-844x390-redPanda-recruit.png",
+    "t4.26-review-844x390-redPanda-skill.png",
+    "t4.26-review-production-rares.png",
+    "t4.26-review-production-result.png",
+    "t4.26-review-production.png",
+    "t4.26-review-rare-first-production-rares.png",
+    "t4.26-review-rare-first-production-result.png",
+    "t4.26-review-rare-first-production.png"
+  ],
+  "limits": [
+    "Edge headless, PC/터치 에뮬레이션. UI 흐름은 기존 명시적 검사 맵·계정과 가상 시계를 사용.",
+    "WebGL 30건은 시간 간격을 직접 공급한 연출 검사이며 실기기 FPS 측정이 아님.",
+    "이번 제품 수정은 view 3개 파일. 전투 계산·콘텐츠·가격·추첨·저장 로직은 변경하지 않음.",
+    "원본 1~7 캠페인 14회와 성능·세션 해제의 기존 검증은 t4.26-summary.json을 참조. 이번에는 전체 캠페인을 반복하지 않음.",
+    "효과음은 버퍼/발사/정지/종료 연결 검사이며 스피커 청감 평가가 아님."
+  ]
+}

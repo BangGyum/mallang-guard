@@ -1,6 +1,9 @@
 import assert from 'node:assert/strict';
+import { writeFile } from 'node:fs/promises';
 import { chromium } from 'playwright';
 
+const prefix = process.env.MALLANG_SCREENSHOT_PREFIX ?? 't3.2';
+const report = [];
 const browser = await chromium.launch({
   channel: 'msedge',
   headless: true,
@@ -35,7 +38,8 @@ try {
       raw.units.forEach((unit) => {
         unit.cost = 1;
       });
-      raw.stages[0].deployLimit = 8;
+      raw.stages[0].deployLimit = raw.units.length;
+      raw.stages[0].startDp = raw.units.length;
       raw.stages[0].spawns = raw.enemies.map((enemy) => ({
         wave: 1,
         atSec: 0,
@@ -62,6 +66,10 @@ try {
         [5, 2],
         [8, 3],
       ];
+      for (let y = 0; y < battle.stage.board.height && tiles.length < raw.units.length; y++)
+        for (let x = 0; x < battle.stage.board.width && tiles.length < raw.units.length; x++)
+          if (battle.stage.board.kindAt(x, y) === 'high' && !tiles.some(([tx, ty]) => tx === x && ty === y))
+            tiles.push([x, y]);
       raw.units.forEach((unit, i) => {
         battle.enqueue({
           type: 'deploy',
@@ -81,7 +89,9 @@ try {
       view.render(battle.state, 1, 0.1);
     });
     const label = mobile ? 'mobile' : 'desktop';
-    await page.screenshot({ path: `docs/verification/t3.2-${label}-deploy.png` });
+    const units = await page.evaluate(() => window.animationCheck.battle.state.units.length);
+    assert.equal(units, 13, '검사 로스터 13종 모두 배치');
+    await page.screenshot({ path: `docs/verification/${prefix}-${label}-deploy.png` });
     await page.evaluate(() => {
       const { battle, view } = window.animationCheck;
       battle.state.units[3].skillState = 'active';
@@ -109,7 +119,7 @@ try {
       );
       view.render(battle.state, 1, 0.02);
     });
-    await page.screenshot({ path: `docs/verification/t3.2-${label}-active.png` });
+    await page.screenshot({ path: `docs/verification/${prefix}-${label}-active.png` });
     const paused = await page.locator('#board').screenshot();
     await page.evaluate(() => {
       const { battle, view } = window.animationCheck;
@@ -127,12 +137,14 @@ try {
       battle.state.enemies = [];
       view.render(battle.state, 1, 0.12);
     });
-    await page.screenshot({ path: `docs/verification/t3.2-${label}-exit.png` });
+    await page.screenshot({ path: `docs/verification/${prefix}-${label}-exit.png` });
     await page.evaluate(() => window.animationCheck.view.dispose());
     assert.deepEqual(errors, []);
-    console.log(JSON.stringify({ viewport: label, errors }));
+    report.push({ viewport: label, units, pausePixelEquality: true, errors });
+    console.log(JSON.stringify(report.at(-1)));
     await context.close();
   }
+  await writeFile(`docs/verification/${prefix}-animations.json`, `${JSON.stringify(report, null, 2)}\n`);
 } finally {
   await browser.close();
 }

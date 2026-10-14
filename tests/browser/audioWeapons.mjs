@@ -16,6 +16,9 @@ const expected = {
   snail: 0.22,
   owl: 0.28,
   wolf: 0.26,
+  fox: 0.32,
+  redPanda: 0.3,
+  deer: 0.16,
 };
 const report = [];
 const prefix = process.env.MALLANG_SCREENSHOT_PREFIX ?? 't4.12';

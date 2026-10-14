@@ -15,6 +15,7 @@
 @import "./shop.css";
 @import "./recruitResult.css";
 @import "./shopMobile.css";
+@import "./rareUnits.css";
 
 :root {
   font-family: "IBM Plex Sans KR", "Malgun Gothic", system-ui, sans-serif;

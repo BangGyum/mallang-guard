@@ -16,7 +16,8 @@ function info(id: string) {
 describe('스킬 상세 정보', () => {
   it.each([...content.units.keys()])('%s의 실제 스킬 수치와 효과를 제공한다', (id) => {
     const result = info(id);
-    expect(Object.keys(result.facts)).toEqual(['발동', '지속', '충전', 'SP', '준비', '조건']);
+    const extra = id === 'fox' ? ['조준'] : ['redPanda', 'deer'].includes(id) ? ['기본 공격'] : [];
+    expect(Object.keys(result.facts)).toEqual(['발동', '지속', '충전', 'SP', '준비', '조건', ...extra]);
     expect(result.effects.length).toBeGreaterThan(0);
     expect(result.effects).not.toMatch(/undefined|NaN|\[object Object\]/);
   });

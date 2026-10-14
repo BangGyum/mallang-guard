@@ -27,6 +27,8 @@ function effectText(content: ContentDb, unit: UnitDef, effect: Effect): string {
       return `사거리 ${rangeText(content, unit.range)} → ${rangeText(content, effect.range)}`;
     case 'multiTarget':
       return `서로 다른 적 최대 ${effect.count}명 동시 사격 · 적 한 명당 한 발`;
+    case 'chain':
+      return `최대 ${effect.damageMuls.length}명 연쇄 · 공격력 비율 ${effect.damageMuls.map((value) => `${number(value * 100)}%`).join(' → ')} · 사거리 안 이전 적의 ${effect.radius}칸 이내 · 중복 타격 없음`;
     case 'splash':
       return `명중 지점 반경 ${effect.radius}칸에 범위 피해`;
     case 'onHitSlow':
@@ -56,6 +58,9 @@ export function skillDetailsInfo(content: ContentDb, unit: UnitDef, skill: Skill
     ['준비', `최초 ${skill.spCost - skill.spStart}${suffix} · 재충전 ${skill.spCost}${suffix}`],
     ['조건', skill.condition === 'always' ? 'SP가 준비되면 사용 가능' : '사거리 안 공격 가능한 적 필요'],
   ];
+  if (unit.targetPriority === 'boss') facts.push(['조준', '보스 우선 · 같은 우선순위에서는 골에 가까운 적']);
+  const trait = unit.traits?.find((effect) => effect.type === 'chain' || effect.type === 'splash');
+  if (trait) facts.push(['기본 공격', effectText(content, unit, trait)]);
   return { facts, effects: skill.effects.map((effect) => effectText(content, unit, effect)) };
 }
 
