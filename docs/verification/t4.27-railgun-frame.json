@@ -1,0 +1,231 @@
+[
+  {
+    "viewport": {
+      "width": 1920,
+      "height": 1080
+    },
+    "mode": "normal",
+    "edgeChanges": 244944,
+    "centerChanges": 0,
+    "centerRgbDelta": 1,
+    "stateUnchanged": true,
+    "firing": {
+      "drawCalls": 70,
+      "particles": 42,
+      "stateUnchanged": true
+    },
+    "paused": true,
+    "expired": true,
+    "disposed": {
+      "geometries": 0,
+      "textures": 0
+    },
+    "errors": []
+  },
+  {
+    "viewport": {
+      "width": 1920,
+      "height": 1080
+    },
+    "mode": "reduced",
+    "edgeChanges": 5592,
+    "centerChanges": 0,
+    "centerRgbDelta": 1,
+    "stateUnchanged": true,
+    "firing": {
+      "drawCalls": 70,
+      "particles": 28,
+      "stateUnchanged": true
+    },
+    "paused": true,
+    "expired": true,
+    "disposed": {
+      "geometries": 0,
+      "textures": 0
+    },
+    "errors": []
+  },
+  {
+    "viewport": {
+      "width": 1920,
+      "height": 1080
+    },
+    "mode": "low",
+    "edgeChanges": 5592,
+    "centerChanges": 0,
+    "centerRgbDelta": 1,
+    "stateUnchanged": true,
+    "firing": {
+      "drawCalls": 70,
+      "particles": 28,
+      "stateUnchanged": true
+    },
+    "paused": true,
+    "expired": true,
+    "disposed": {
+      "geometries": 0,
+      "textures": 0
+    },
+    "errors": []
+  },
+  {
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "mode": "normal",
+    "edgeChanges": 38704,
+    "centerChanges": 0,
+    "centerRgbDelta": 1,
+    "stateUnchanged": true,
+    "firing": {
+      "drawCalls": 70,
+      "particles": 42,
+      "stateUnchanged": true
+    },
+    "paused": true,
+    "expired": true,
+    "disposed": {
+      "geometries": 0,
+      "textures": 0
+    },
+    "errors": []
+  },
+  {
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "mode": "reduced",
+    "edgeChanges": 1864,
+    "centerChanges": 0,
+    "centerRgbDelta": 1,
+    "stateUnchanged": true,
+    "firing": {
+      "drawCalls": 70,
+      "particles": 28,
+      "stateUnchanged": true
+    },
+    "paused": true,
+    "expired": true,
+    "disposed": {
+      "geometries": 0,
+      "textures": 0
+    },
+    "errors": []
+  },
+  {
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "mode": "low",
+    "edgeChanges": 1864,
+    "centerChanges": 0,
+    "centerRgbDelta": 1,
+    "stateUnchanged": true,
+    "firing": {
+      "drawCalls": 70,
+      "particles": 28,
+      "stateUnchanged": true
+    },
+    "paused": true,
+    "expired": true,
+    "disposed": {
+      "geometries": 0,
+      "textures": 0
+    },
+    "errors": []
+  },
+  {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "mode": "normal",
+    "edgeChanges": 77073,
+    "centerChanges": 0,
+    "centerRgbDelta": 1,
+    "stateUnchanged": true,
+    "firing": {
+      "drawCalls": 70,
+      "particles": 42,
+      "stateUnchanged": true
+    },
+    "paused": true,
+    "expired": true,
+    "disposed": {
+      "geometries": 0,
+      "textures": 0
+    },
+    "errors": []
+  },
+  {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "mode": "reduced",
+    "edgeChanges": 4897,
+    "centerChanges": 0,
+    "centerRgbDelta": 1,
+    "stateUnchanged": true,
+    "firing": {
+      "drawCalls": 70,
+      "particles": 28,
+      "stateUnchanged": true
+    },
+    "paused": true,
+    "expired": true,
+    "disposed": {
+      "geometries": 0,
+      "textures": 0
+    },
+    "errors": []
+  },
+  {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "mode": "low",
+    "edgeChanges": 4897,
+    "centerChanges": 0,
+    "centerRgbDelta": 1,
+    "stateUnchanged": true,
+    "firing": {
+      "drawCalls": 70,
+      "particles": 28,
+      "stateUnchanged": true
+    },
+    "paused": true,
+    "expired": true,
+    "disposed": {
+      "geometries": 0,
+      "textures": 0
+    },
+    "errors": []
+  },
+  {
+    "viewport": {
+      "width": 1920,
+      "height": 1080
+    },
+    "mode": "natural-skill-ui",
+    "starts": 1,
+    "ends": 1,
+    "rejected": [],
+    "errors": []
+  },
+  {
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "mode": "natural-skill-ui",
+    "starts": 1,
+    "ends": 1,
+    "rejected": [],
+    "errors": []
+  }
+]

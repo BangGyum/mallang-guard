@@ -1,0 +1,44 @@
+[
+  {
+    "viewport": "desktop",
+    "cardsFit": true,
+    "baseRange": 25,
+    "activeRange": 100,
+    "restoredRange": 25,
+    "attack": [
+      320,
+      480,
+      320
+    ],
+    "intervalSec": [
+      1.8,
+      0.9,
+      1.8
+    ],
+    "buttonsFit": true,
+    "naturalCharge": true,
+    "rejected": [],
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "cardsFit": true,
+    "baseRange": 25,
+    "activeRange": 100,
+    "restoredRange": 25,
+    "attack": [
+      320,
+      480,
+      320
+    ],
+    "intervalSec": [
+      1.8,
+      0.9,
+      1.8
+    ],
+    "buttonsFit": true,
+    "naturalCharge": true,
+    "rejected": [],
+    "errors": []
+  }
+]

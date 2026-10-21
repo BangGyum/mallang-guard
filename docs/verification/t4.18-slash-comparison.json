@@ -1,0 +1,26 @@
+{
+  "before": {
+    "sound": "slash",
+    "seconds": 0.18,
+    "finite": true,
+    "peak": 0.16355101764202118,
+    "bodyRms": 0.00797537938747254,
+    "earlyRms": 0.00679633962584931,
+    "lateRms": 0.0015416702969580083,
+    "first": 0,
+    "last": -3.898968465660324e-15
+  },
+  "after": {
+    "sound": "slash",
+    "seconds": 0.12,
+    "finite": true,
+    "peak": 0.03559068962931633,
+    "bodyRms": 0.0023608914125385332,
+    "earlyRms": 0.004845193124575214,
+    "lateRms": 0.0016927989571021472,
+    "first": 0,
+    "last": 2.538881648320168e-12
+  },
+  "peakReductionPercent": 78.23878436072047,
+  "unchanged": true
+}

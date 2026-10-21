@@ -1,0 +1,47 @@
+{
+  "size": [
+    22,
+    12
+  ],
+  "highTiles": 38,
+  "ineffectiveMidRangeTiles": [],
+  "sharedGroundTiles": [
+    "21,6"
+  ],
+  "clearFormation": [
+    [
+      18,
+      3
+    ],
+    [
+      18,
+      5
+    ],
+    [
+      4,
+      8
+    ],
+    [
+      20,
+      3
+    ],
+    [
+      10,
+      6
+    ],
+    [
+      11,
+      8
+    ],
+    [
+      16,
+      3
+    ]
+  ],
+  "formationBounds": {
+    "minX": 4,
+    "maxX": 20,
+    "minY": 3,
+    "maxY": 8
+  }
+}

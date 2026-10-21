@@ -1,0 +1,562 @@
+[
+  {
+    "width": 1280,
+    "height": 720,
+    "id": "squirrel",
+    "active": false,
+    "quiet": false,
+    "dir": "right",
+    "drawCalls": 29,
+    "particles": 3
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "id": "squirrel",
+    "active": true,
+    "quiet": false,
+    "dir": "left",
+    "drawCalls": 31,
+    "particles": 5
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "id": "cat",
+    "active": false,
+    "quiet": false,
+    "dir": "right",
+    "drawCalls": 29,
+    "particles": 4
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "id": "cat",
+    "active": true,
+    "quiet": false,
+    "dir": "left",
+    "drawCalls": 31,
+    "particles": 6
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "id": "bear",
+    "active": false,
+    "quiet": false,
+    "dir": "right",
+    "drawCalls": 30,
+    "particles": 6
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "id": "bear",
+    "active": true,
+    "quiet": false,
+    "dir": "left",
+    "drawCalls": 32,
+    "particles": 8
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "id": "penguin",
+    "active": false,
+    "quiet": false,
+    "dir": "right",
+    "drawCalls": 30,
+    "particles": 4
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "id": "penguin",
+    "active": true,
+    "quiet": false,
+    "dir": "left",
+    "drawCalls": 32,
+    "particles": 6
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "id": "sheep",
+    "active": false,
+    "quiet": false,
+    "dir": "right",
+    "drawCalls": 30,
+    "particles": 6
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "id": "sheep",
+    "active": true,
+    "quiet": false,
+    "dir": "left",
+    "drawCalls": 32,
+    "particles": 8
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "id": "bunny",
+    "active": false,
+    "quiet": false,
+    "dir": "right",
+    "drawCalls": 30,
+    "particles": 4
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "id": "bunny",
+    "active": true,
+    "quiet": false,
+    "dir": "left",
+    "drawCalls": 32,
+    "particles": 6
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "id": "mole",
+    "active": false,
+    "quiet": false,
+    "dir": "right",
+    "drawCalls": 29,
+    "particles": 3
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "id": "mole",
+    "active": true,
+    "quiet": false,
+    "dir": "left",
+    "drawCalls": 31,
+    "particles": 5
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "id": "snail",
+    "active": false,
+    "quiet": false,
+    "dir": "right",
+    "drawCalls": 30,
+    "particles": 4
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "id": "snail",
+    "active": true,
+    "quiet": false,
+    "dir": "left",
+    "drawCalls": 32,
+    "particles": 6
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "id": "owl",
+    "active": false,
+    "quiet": false,
+    "dir": "right",
+    "drawCalls": 30,
+    "particles": 6
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "id": "owl",
+    "active": true,
+    "quiet": false,
+    "dir": "left",
+    "drawCalls": 32,
+    "particles": 8
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "id": "wolf",
+    "active": false,
+    "quiet": false,
+    "dir": "right",
+    "drawCalls": 30,
+    "particles": 6
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "id": "wolf",
+    "active": true,
+    "quiet": false,
+    "dir": "left",
+    "drawCalls": 32,
+    "particles": 8
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "id": "fox",
+    "active": false,
+    "quiet": false,
+    "dir": "right",
+    "drawCalls": 30,
+    "particles": 6
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "id": "fox",
+    "active": true,
+    "quiet": false,
+    "dir": "left",
+    "drawCalls": 32,
+    "particles": 8
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "id": "redPanda",
+    "active": false,
+    "quiet": false,
+    "dir": "right",
+    "drawCalls": 30,
+    "particles": 6
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "id": "redPanda",
+    "active": true,
+    "quiet": false,
+    "dir": "left",
+    "drawCalls": 32,
+    "particles": 8
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "id": "deer",
+    "active": false,
+    "quiet": false,
+    "dir": "right",
+    "drawCalls": 30,
+    "particles": 6
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "id": "deer",
+    "active": true,
+    "quiet": false,
+    "dir": "left",
+    "drawCalls": 32,
+    "particles": 8
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "id": "snowLeopard",
+    "active": false,
+    "quiet": false,
+    "dir": "right",
+    "drawCalls": 30,
+    "particles": 6
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "id": "snowLeopard",
+    "active": true,
+    "quiet": false,
+    "dir": "left",
+    "drawCalls": 33,
+    "particles": 10
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "id": "squirrel",
+    "active": false,
+    "quiet": false,
+    "dir": "right",
+    "drawCalls": 29,
+    "particles": 3
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "id": "squirrel",
+    "active": true,
+    "quiet": false,
+    "dir": "left",
+    "drawCalls": 31,
+    "particles": 5
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "id": "cat",
+    "active": false,
+    "quiet": false,
+    "dir": "right",
+    "drawCalls": 29,
+    "particles": 4
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "id": "cat",
+    "active": true,
+    "quiet": false,
+    "dir": "left",
+    "drawCalls": 31,
+    "particles": 6
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "id": "bear",
+    "active": false,
+    "quiet": false,
+    "dir": "right",
+    "drawCalls": 30,
+    "particles": 6
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "id": "bear",
+    "active": true,
+    "quiet": false,
+    "dir": "left",
+    "drawCalls": 32,
+    "particles": 8
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "id": "penguin",
+    "active": false,
+    "quiet": false,
+    "dir": "right",
+    "drawCalls": 30,
+    "particles": 4
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "id": "penguin",
+    "active": true,
+    "quiet": false,
+    "dir": "left",
+    "drawCalls": 32,
+    "particles": 6
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "id": "sheep",
+    "active": false,
+    "quiet": false,
+    "dir": "right",
+    "drawCalls": 30,
+    "particles": 6
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "id": "sheep",
+    "active": true,
+    "quiet": false,
+    "dir": "left",
+    "drawCalls": 32,
+    "particles": 8
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "id": "bunny",
+    "active": false,
+    "quiet": false,
+    "dir": "right",
+    "drawCalls": 30,
+    "particles": 4
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "id": "bunny",
+    "active": true,
+    "quiet": false,
+    "dir": "left",
+    "drawCalls": 32,
+    "particles": 6
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "id": "mole",
+    "active": false,
+    "quiet": false,
+    "dir": "right",
+    "drawCalls": 29,
+    "particles": 3
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "id": "mole",
+    "active": true,
+    "quiet": false,
+    "dir": "left",
+    "drawCalls": 31,
+    "particles": 5
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "id": "snail",
+    "active": false,
+    "quiet": false,
+    "dir": "right",
+    "drawCalls": 30,
+    "particles": 4
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "id": "snail",
+    "active": true,
+    "quiet": false,
+    "dir": "left",
+    "drawCalls": 32,
+    "particles": 6
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "id": "owl",
+    "active": false,
+    "quiet": false,
+    "dir": "right",
+    "drawCalls": 30,
+    "particles": 6
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "id": "owl",
+    "active": true,
+    "quiet": false,
+    "dir": "left",
+    "drawCalls": 32,
+    "particles": 8
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "id": "wolf",
+    "active": false,
+    "quiet": false,
+    "dir": "right",
+    "drawCalls": 30,
+    "particles": 6
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "id": "wolf",
+    "active": true,
+    "quiet": false,
+    "dir": "left",
+    "drawCalls": 32,
+    "particles": 8
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "id": "fox",
+    "active": false,
+    "quiet": false,
+    "dir": "right",
+    "drawCalls": 30,
+    "particles": 6
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "id": "fox",
+    "active": true,
+    "quiet": false,
+    "dir": "left",
+    "drawCalls": 32,
+    "particles": 8
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "id": "redPanda",
+    "active": false,
+    "quiet": false,
+    "dir": "right",
+    "drawCalls": 30,
+    "particles": 6
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "id": "redPanda",
+    "active": true,
+    "quiet": false,
+    "dir": "left",
+    "drawCalls": 32,
+    "particles": 8
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "id": "deer",
+    "active": false,
+    "quiet": false,
+    "dir": "right",
+    "drawCalls": 30,
+    "particles": 6
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "id": "deer",
+    "active": true,
+    "quiet": false,
+    "dir": "left",
+    "drawCalls": 32,
+    "particles": 8
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "id": "snowLeopard",
+    "active": false,
+    "quiet": false,
+    "dir": "right",
+    "drawCalls": 30,
+    "particles": 6
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "id": "snowLeopard",
+    "active": true,
+    "quiet": false,
+    "dir": "left",
+    "drawCalls": 33,
+    "particles": 10
+  }
+]

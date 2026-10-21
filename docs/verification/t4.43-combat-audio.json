@@ -1,0 +1,600 @@
+{
+  "rate": 48000,
+  "rows": [
+    {
+      "id": "squirrel",
+      "name": "토리",
+      "sound": "pistol",
+      "impact": "impact-kinetic",
+      "attack": {
+        "sec": 0.12,
+        "peak": 0.4143044948577881,
+        "rms": 0.05952676771107501,
+        "finite": true,
+        "first": 0,
+        "last": 9.899412134473096e-7
+      },
+      "hit": {
+        "sec": 0.07002083333333334,
+        "peak": 0.048485733568668365,
+        "rms": 0.007537467838019467,
+        "finite": true,
+        "first": 0,
+        "last": 0
+      }
+    },
+    {
+      "id": "cat",
+      "name": "냥기사",
+      "sound": "slash",
+      "impact": "impact-blade",
+      "attack": {
+        "sec": 0.12,
+        "peak": 0.03559068962931633,
+        "rms": 0.007499288649721257,
+        "finite": true,
+        "first": 0,
+        "last": 2.538881648320168e-12
+      },
+      "hit": {
+        "sec": 0.09,
+        "peak": 0.01894133724272251,
+        "rms": 0.0030095593224953006,
+        "finite": true,
+        "first": 0,
+        "last": 6.884819470087677e-8
+      }
+    },
+    {
+      "id": "bear",
+      "name": "뚜껑곰",
+      "sound": "hammer",
+      "impact": "impact-blunt",
+      "attack": {
+        "sec": 0.24,
+        "peak": 0.3135272264480591,
+        "rms": 0.05946126284225396,
+        "finite": true,
+        "first": 0,
+        "last": 9.634032238636792e-8
+      },
+      "hit": {
+        "sec": 0.16,
+        "peak": 0.09641209989786148,
+        "rms": 0.019216835302681947,
+        "finite": true,
+        "first": 0,
+        "last": 0.0000011779565056713182
+      }
+    },
+    {
+      "id": "penguin",
+      "name": "펭펭",
+      "sound": "frostShot",
+      "impact": "impact-ice",
+      "attack": {
+        "sec": 0.23,
+        "peak": 0.35132870078086853,
+        "rms": 0.0455033547290703,
+        "finite": true,
+        "first": 0,
+        "last": 2.7990409989797627e-7
+      },
+      "hit": {
+        "sec": 0.13,
+        "peak": 0.06935926526784897,
+        "rms": 0.009591112522401819,
+        "finite": true,
+        "first": 0,
+        "last": -5.839335059931727e-8
+      }
+    },
+    {
+      "id": "sheep",
+      "name": "몽실",
+      "sound": "magic",
+      "impact": "impact-arc",
+      "attack": {
+        "sec": 0.2,
+        "peak": 0.2103806734085083,
+        "rms": 0.03561738637050926,
+        "finite": true,
+        "first": 0,
+        "last": -0.0000010244789336866233
+      },
+      "hit": {
+        "sec": 0.11,
+        "peak": 0.05447298288345337,
+        "rms": 0.008848737803671855,
+        "finite": true,
+        "first": 0,
+        "last": -2.1052338183835673e-7
+      }
+    },
+    {
+      "id": "bunny",
+      "name": "토실",
+      "sound": "energyShot",
+      "impact": "impact-arc",
+      "attack": {
+        "sec": 0.145,
+        "peak": 0.1778905987739563,
+        "rms": 0.03553164132501931,
+        "finite": true,
+        "first": 0,
+        "last": 1.058407406162587e-7
+      },
+      "hit": {
+        "sec": 0.11,
+        "peak": 0.05447298288345337,
+        "rms": 0.008848737803671855,
+        "finite": true,
+        "first": 0,
+        "last": -2.1052338183835673e-7
+      }
+    },
+    {
+      "id": "mole",
+      "name": "굴굴",
+      "sound": "compactPistol",
+      "impact": "impact-kinetic",
+      "attack": {
+        "sec": 0.095,
+        "peak": 0.2581326365470886,
+        "rms": 0.04808000480433209,
+        "finite": true,
+        "first": 0,
+        "last": 2.6793117058332427e-8
+      },
+      "hit": {
+        "sec": 0.07002083333333334,
+        "peak": 0.048485733568668365,
+        "rms": 0.007537467838019467,
+        "finite": true,
+        "first": 0,
+        "last": 0
+      }
+    },
+    {
+      "id": "snail",
+      "name": "끈끈",
+      "sound": "launcher",
+      "impact": "impact-goo",
+      "attack": {
+        "sec": 0.22,
+        "peak": 0.27559641003608704,
+        "rms": 0.03918308890647452,
+        "finite": true,
+        "first": 0,
+        "last": -2.907140661534413e-8
+      },
+      "hit": {
+        "sec": 0.15,
+        "peak": 0.061166148632764816,
+        "rms": 0.011078152499322093,
+        "finite": true,
+        "first": 0,
+        "last": -1.2131181392760482e-7
+      }
+    },
+    {
+      "id": "owl",
+      "name": "밤밤",
+      "sound": "fire",
+      "impact": "impact-fire",
+      "attack": {
+        "sec": 0.28002083333333333,
+        "peak": 0.21089865267276764,
+        "rms": 0.03087268689471033,
+        "finite": true,
+        "first": 0,
+        "last": 0
+      },
+      "hit": {
+        "sec": 0.21,
+        "peak": 0.08745643496513367,
+        "rms": 0.012620983197206342,
+        "finite": true,
+        "first": 0,
+        "last": -2.2565366464277758e-7
+      }
+    },
+    {
+      "id": "wolf",
+      "name": "랑랑",
+      "sound": "sniper",
+      "impact": "impact-kinetic",
+      "attack": {
+        "sec": 0.26,
+        "peak": 0.4038570523262024,
+        "rms": 0.057216452205431596,
+        "finite": true,
+        "first": 0,
+        "last": -8.883683335625392e-7
+      },
+      "hit": {
+        "sec": 0.07002083333333334,
+        "peak": 0.048485733568668365,
+        "rms": 0.007537467838019467,
+        "finite": true,
+        "first": 0,
+        "last": 0
+      }
+    },
+    {
+      "id": "fox",
+      "name": "루아",
+      "sound": "railgun",
+      "impact": "impact-rail",
+      "attack": {
+        "sec": 0.32,
+        "peak": 0.40483057498931885,
+        "rms": 0.06409550758597213,
+        "finite": true,
+        "first": 0,
+        "last": 4.7154710358654484e-8
+      },
+      "hit": {
+        "sec": 0.14002083333333334,
+        "peak": 0.0694652572274208,
+        "rms": 0.01133354432491577,
+        "finite": true,
+        "first": 0,
+        "last": 0
+      }
+    },
+    {
+      "id": "redPanda",
+      "name": "로크",
+      "sound": "mortar",
+      "impact": "impact-blast",
+      "attack": {
+        "sec": 0.3,
+        "peak": 0.47395139932632446,
+        "rms": 0.08634508016118184,
+        "finite": true,
+        "first": 0,
+        "last": -0.0000017812353689805605
+      },
+      "hit": {
+        "sec": 0.26,
+        "peak": 0.18284127116203308,
+        "rms": 0.02634090938922708,
+        "finite": true,
+        "first": 0,
+        "last": -0.0000010749793091235915
+      }
+    },
+    {
+      "id": "deer",
+      "name": "세라",
+      "sound": "emberJet",
+      "impact": "impact-fire",
+      "attack": {
+        "sec": 0.24,
+        "peak": 0.14367014169692993,
+        "rms": 0.018366438783132145,
+        "finite": true,
+        "first": 0,
+        "last": -5.408196557254996e-7
+      },
+      "hit": {
+        "sec": 0.21,
+        "peak": 0.08745643496513367,
+        "rms": 0.012620983197206342,
+        "finite": true,
+        "first": 0,
+        "last": -2.2565366464277758e-7
+      }
+    },
+    {
+      "id": "snowLeopard",
+      "name": "노바",
+      "sound": "gravity",
+      "impact": "impact-gravity",
+      "attack": {
+        "sec": 0.36,
+        "peak": 0.2229195088148117,
+        "rms": 0.047482321982163886,
+        "finite": true,
+        "first": 0,
+        "last": 9.954081860996666e-7
+      },
+      "hit": {
+        "sec": 0.3,
+        "peak": 0.07248367369174957,
+        "rms": 0.017656813156143886,
+        "finite": true,
+        "first": 0,
+        "last": -6.947354336261924e-7
+      }
+    }
+  ],
+  "correlation": 0.7617710569222353,
+  "routing": {
+    "results": [
+      {
+        "id": "squirrel",
+        "start": [
+          {
+            "duration": 0.12,
+            "rate": 0.9980767965316772
+          }
+        ],
+        "before": 1,
+        "arrived": [
+          {
+            "duration": 0.12,
+            "rate": 0.9980767965316772
+          },
+          {
+            "duration": 0.07002083333333334,
+            "rate": 1.0024055242538452
+          }
+        ]
+      },
+      {
+        "id": "cat",
+        "start": [
+          {
+            "duration": 0.12,
+            "rate": 1.0029393434524536
+          }
+        ],
+        "before": 1,
+        "arrived": [
+          {
+            "duration": 0.12,
+            "rate": 1.0029393434524536
+          },
+          {
+            "duration": 0.09,
+            "rate": 1.0158870220184326
+          }
+        ]
+      },
+      {
+        "id": "bear",
+        "start": [
+          {
+            "duration": 0.24,
+            "rate": 0.9854701161384583
+          }
+        ],
+        "before": 1,
+        "arrived": [
+          {
+            "duration": 0.24,
+            "rate": 0.9854701161384583
+          },
+          {
+            "duration": 0.16,
+            "rate": 1.019545078277588
+          }
+        ]
+      },
+      {
+        "id": "penguin",
+        "start": [
+          {
+            "duration": 0.23,
+            "rate": 0.9863117933273315
+          }
+        ],
+        "before": 1,
+        "arrived": [
+          {
+            "duration": 0.23,
+            "rate": 0.9863117933273315
+          },
+          {
+            "duration": 0.13,
+            "rate": 0.9913567900657654
+          }
+        ]
+      },
+      {
+        "id": "sheep",
+        "start": [
+          {
+            "duration": 0.2,
+            "rate": 1.0032240152359009
+          }
+        ],
+        "before": 1,
+        "arrived": [
+          {
+            "duration": 0.2,
+            "rate": 1.0032240152359009
+          },
+          {
+            "duration": 0.11,
+            "rate": 0.9997361898422241
+          }
+        ]
+      },
+      {
+        "id": "bunny",
+        "start": [
+          {
+            "duration": 0.145,
+            "rate": 0.9991030097007751
+          }
+        ],
+        "before": 1,
+        "arrived": [
+          {
+            "duration": 0.145,
+            "rate": 0.9991030097007751
+          },
+          {
+            "duration": 0.11,
+            "rate": 1.000657081604004
+          }
+        ]
+      },
+      {
+        "id": "mole",
+        "start": [
+          {
+            "duration": 0.095,
+            "rate": 1.0032685995101929
+          }
+        ],
+        "before": 1,
+        "arrived": [
+          {
+            "duration": 0.095,
+            "rate": 1.0032685995101929
+          },
+          {
+            "duration": 0.07002083333333334,
+            "rate": 1.0190423727035522
+          }
+        ]
+      },
+      {
+        "id": "snail",
+        "start": [
+          {
+            "duration": 0.22,
+            "rate": 0.9863541126251221
+          }
+        ],
+        "before": 1,
+        "arrived": [
+          {
+            "duration": 0.22,
+            "rate": 0.9863541126251221
+          },
+          {
+            "duration": 0.15,
+            "rate": 0.9981828927993774
+          }
+        ]
+      },
+      {
+        "id": "owl",
+        "start": [
+          {
+            "duration": 0.28002083333333333,
+            "rate": 0.9880263805389404
+          }
+        ],
+        "before": 1,
+        "arrived": [
+          {
+            "duration": 0.28002083333333333,
+            "rate": 0.9880263805389404
+          },
+          {
+            "duration": 0.21,
+            "rate": 1.0158836841583252
+          }
+        ]
+      },
+      {
+        "id": "wolf",
+        "start": [
+          {
+            "duration": 0.26,
+            "rate": 1.0034778118133545
+          }
+        ],
+        "before": 1,
+        "arrived": [
+          {
+            "duration": 0.26,
+            "rate": 1.0034778118133545
+          },
+          {
+            "duration": 0.07002083333333334,
+            "rate": 1.0072685480117798
+          }
+        ]
+      },
+      {
+        "id": "fox",
+        "start": [
+          {
+            "duration": 0.32,
+            "rate": 0.9954059720039368
+          }
+        ],
+        "before": 1,
+        "arrived": [
+          {
+            "duration": 0.32,
+            "rate": 0.9954059720039368
+          },
+          {
+            "duration": 0.14002083333333334,
+            "rate": 1.0192012786865234
+          }
+        ]
+      },
+      {
+        "id": "redPanda",
+        "start": [
+          {
+            "duration": 0.3,
+            "rate": 0.9845196008682251
+          }
+        ],
+        "before": 1,
+        "arrived": [
+          {
+            "duration": 0.3,
+            "rate": 0.9845196008682251
+          },
+          {
+            "duration": 0.26,
+            "rate": 1.0024386644363403
+          }
+        ]
+      },
+      {
+        "id": "deer",
+        "start": [
+          {
+            "duration": 0.24,
+            "rate": 0.9983230233192444
+          }
+        ],
+        "before": 1,
+        "arrived": [
+          {
+            "duration": 0.24,
+            "rate": 0.9983230233192444
+          },
+          {
+            "duration": 0.21,
+            "rate": 0.9992327690124512
+          }
+        ]
+      },
+      {
+        "id": "snowLeopard",
+        "start": [
+          {
+            "duration": 0.36,
+            "rate": 0.9900766611099243
+          }
+        ],
+        "before": 1,
+        "arrived": [
+          {
+            "duration": 0.36,
+            "rate": 0.9900766611099243
+          },
+          {
+            "duration": 0.3,
+            "rate": 0.985367476940155
+          }
+        ]
+      }
+    ],
+    "simultaneousHits": 3
+  },
+  "errors": []
+}

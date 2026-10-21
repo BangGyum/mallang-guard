@@ -1,0 +1,473 @@
+{
+  "date": "2026-10-16",
+  "scope": "T4.30 전원 보유·비용/처치 수입 재검수",
+  "gameplayIssuesFound": [],
+  "fixedVerificationIssues": [
+    "캠페인 희귀 영입 검사의 전원 미보유 가정을 제거하고 이미 보유한 구매 버튼을 검사",
+    "세라 배치 비용의 이전 고정값 27을 현재 데이터 비용 참조로 수정"
+  ],
+  "checks": {
+    "tests": 1545,
+    "files": 87,
+    "failed": 0,
+    "typecheck": "passed",
+    "lint": "passed",
+    "build": "passed",
+    "buildWarning": "기존 500kB 번들 경고(711.41kB)"
+  },
+  "ui": [
+    {
+      "width": 1280,
+      "height": 720,
+      "owned": 14,
+      "selected": 14,
+      "costs": {
+        "squirrel": 6,
+        "cat": 9,
+        "bear": 12,
+        "penguin": 8,
+        "sheep": 11,
+        "bunny": 10,
+        "mole": 5,
+        "snail": 9,
+        "owl": 16,
+        "wolf": 15,
+        "fox": 18,
+        "redPanda": 20,
+        "deer": 18,
+        "snowLeopard": 23
+      },
+      "earned": 10,
+      "errors": []
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "owned": 14,
+      "selected": 14,
+      "costs": {
+        "squirrel": 6,
+        "cat": 9,
+        "bear": 12,
+        "penguin": 8,
+        "sheep": 11,
+        "bunny": 10,
+        "mole": 5,
+        "snail": 9,
+        "owl": 16,
+        "wolf": 15,
+        "fox": 18,
+        "redPanda": 20,
+        "deer": 18,
+        "snowLeopard": 23
+      },
+      "earned": 10,
+      "errors": []
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "owned": 14,
+      "selected": 14,
+      "costs": {
+        "squirrel": 6,
+        "cat": 9,
+        "bear": 12,
+        "penguin": 8,
+        "sheep": 11,
+        "bunny": 10,
+        "mole": 5,
+        "snail": 9,
+        "owl": 16,
+        "wolf": 15,
+        "fox": 18,
+        "redPanda": 20,
+        "deer": 18,
+        "snowLeopard": 23
+      },
+      "earned": 10,
+      "errors": []
+    }
+  ],
+  "campaign": [
+    {
+      "stage": "stage-1",
+      "cap": 50,
+      "phase": "won",
+      "life": 3,
+      "killed": 120,
+      "seconds": 232.16666666666666,
+      "gained": 105,
+      "spent": 65,
+      "remaining": 50,
+      "firstCapSec": 79.36666666666666,
+      "capPercent": 58.16223977027997,
+      "completedDeploySec": 85,
+      "checkpoints": [
+        {
+          "second": 30,
+          "dp": 10,
+          "units": 3
+        },
+        {
+          "second": 60,
+          "dp": 26,
+          "units": 5
+        },
+        {
+          "second": 120,
+          "dp": 50,
+          "units": 7
+        },
+        {
+          "second": 180,
+          "dp": 50,
+          "units": 7
+        }
+      ],
+      "rejected": [],
+      "pending": 0
+    },
+    {
+      "stage": "stage-2",
+      "cap": 50,
+      "phase": "won",
+      "life": 3,
+      "killed": 193,
+      "seconds": 356.53333333333336,
+      "gained": 97,
+      "spent": 65,
+      "remaining": 50,
+      "firstCapSec": 97.66666666666667,
+      "capPercent": 72.61593118922963,
+      "completedDeploySec": 54.6,
+      "checkpoints": [
+        {
+          "second": 30,
+          "dp": 9,
+          "units": 3
+        },
+        {
+          "second": 60,
+          "dp": 14,
+          "units": 7
+        },
+        {
+          "second": 120,
+          "dp": 50,
+          "units": 7
+        },
+        {
+          "second": 180,
+          "dp": 50,
+          "units": 7
+        },
+        {
+          "second": 300,
+          "dp": 50,
+          "units": 7
+        }
+      ],
+      "rejected": [],
+      "pending": 0
+    },
+    {
+      "stage": "stage-3",
+      "cap": 50,
+      "phase": "won",
+      "life": 3,
+      "killed": 378,
+      "seconds": 486.46666666666664,
+      "gained": 99,
+      "spent": 65,
+      "remaining": 50,
+      "firstCapSec": 98.63333333333334,
+      "capPercent": 79.7313964643004,
+      "completedDeploySec": 63.13333333333333,
+      "checkpoints": [
+        {
+          "second": 30,
+          "dp": 15,
+          "units": 2
+        },
+        {
+          "second": 60,
+          "dp": 8,
+          "units": 6
+        },
+        {
+          "second": 120,
+          "dp": 50,
+          "units": 7
+        },
+        {
+          "second": 180,
+          "dp": 50,
+          "units": 7
+        },
+        {
+          "second": 300,
+          "dp": 50,
+          "units": 7
+        }
+      ],
+      "rejected": [],
+      "pending": 0
+    },
+    {
+      "stage": "stage-4",
+      "cap": 50,
+      "phase": "won",
+      "life": 3,
+      "killed": 443,
+      "seconds": 1079.0333333333333,
+      "gained": 91,
+      "spent": 65,
+      "remaining": 50,
+      "firstCapSec": 114.16666666666667,
+      "capPercent": 89.4226313675821,
+      "completedDeploySec": 52.166666666666664,
+      "checkpoints": [
+        {
+          "second": 30,
+          "dp": 8,
+          "units": 4
+        },
+        {
+          "second": 60,
+          "dp": 6,
+          "units": 7
+        },
+        {
+          "second": 120,
+          "dp": 50,
+          "units": 7
+        },
+        {
+          "second": 180,
+          "dp": 50,
+          "units": 7
+        },
+        {
+          "second": 300,
+          "dp": 50,
+          "units": 7
+        }
+      ],
+      "rejected": [],
+      "pending": 0
+    },
+    {
+      "stage": "stage-5",
+      "cap": 50,
+      "phase": "won",
+      "life": 3,
+      "killed": 474,
+      "seconds": 1053.1666666666667,
+      "gained": 93,
+      "spent": 65,
+      "remaining": 50,
+      "firstCapSec": 90.96666666666667,
+      "capPercent": 91.36572242443425,
+      "completedDeploySec": 54.4,
+      "checkpoints": [
+        {
+          "second": 30,
+          "dp": 13,
+          "units": 3
+        },
+        {
+          "second": 60,
+          "dp": 10,
+          "units": 7
+        },
+        {
+          "second": 120,
+          "dp": 50,
+          "units": 7
+        },
+        {
+          "second": 180,
+          "dp": 50,
+          "units": 7
+        },
+        {
+          "second": 300,
+          "dp": 50,
+          "units": 7
+        }
+      ],
+      "rejected": [],
+      "pending": 0
+    },
+    {
+      "stage": "stage-6",
+      "cap": 50,
+      "phase": "won",
+      "life": 3,
+      "killed": 435,
+      "seconds": 1438.7,
+      "gained": 90,
+      "spent": 65,
+      "remaining": 50,
+      "firstCapSec": 78.2,
+      "capPercent": 94.56685433609046,
+      "completedDeploySec": 54.63333333333333,
+      "checkpoints": [
+        {
+          "second": 30,
+          "dp": 11,
+          "units": 4
+        },
+        {
+          "second": 60,
+          "dp": 12,
+          "units": 7
+        },
+        {
+          "second": 120,
+          "dp": 50,
+          "units": 7
+        },
+        {
+          "second": 180,
+          "dp": 50,
+          "units": 7
+        },
+        {
+          "second": 300,
+          "dp": 50,
+          "units": 7
+        }
+      ],
+      "rejected": [],
+      "pending": 0
+    },
+    {
+      "stage": "stage-7",
+      "cap": 50,
+      "phase": "won",
+      "life": 3,
+      "killed": 498,
+      "seconds": 1741.1333333333334,
+      "gained": 104,
+      "spent": 79,
+      "remaining": 50,
+      "firstCapSec": 109.93333333333334,
+      "capPercent": 93.6880192977754,
+      "completedDeploySec": 80,
+      "checkpoints": [
+        {
+          "second": 30,
+          "dp": 16,
+          "units": 4
+        },
+        {
+          "second": 60,
+          "dp": 15,
+          "units": 4
+        },
+        {
+          "second": 120,
+          "dp": 50,
+          "units": 7
+        },
+        {
+          "second": 180,
+          "dp": 50,
+          "units": 7
+        },
+        {
+          "second": 300,
+          "dp": 50,
+          "units": 7
+        }
+      ],
+      "rejected": [],
+      "pending": 0
+    }
+  ],
+  "existingProfile": {
+    "viewport": "existing-profile",
+    "before": {
+      "money": 9000,
+      "ownedUnits": [
+        "squirrel",
+        "cat",
+        "bear",
+        "penguin",
+        "sheep",
+        "bunny",
+        "mole",
+        "snail",
+        "owl",
+        "wolf",
+        "fox",
+        "redPanda",
+        "deer",
+        "snowLeopard"
+      ],
+      "pullsSinceNew": 7,
+      "rngState": 99
+    },
+    "after": {
+      "money": 9000,
+      "ownedUnits": [
+        "squirrel",
+        "cat",
+        "bear",
+        "penguin",
+        "sheep",
+        "bunny",
+        "mole",
+        "snail",
+        "owl",
+        "wolf",
+        "fox",
+        "redPanda",
+        "deer",
+        "snowLeopard"
+      ],
+      "pullsSinceNew": 7,
+      "rngState": 99
+    },
+    "originalStagesPreserved": true,
+    "deployedOnOriginalStage7": true,
+    "tile": {
+      "x": 10,
+      "y": 6
+    },
+    "dpBefore": 20,
+    "deployCost": 18,
+    "purchaseCost": 0,
+    "purchased": [],
+    "injectedMoney": true
+  },
+  "production": {
+    "productionBase": "/mallang-guard/",
+    "portraits": 14,
+    "webgl": true,
+    "waves": 12,
+    "killOnlyIncome": true,
+    "exit": true,
+    "shopReturnToResult": true,
+    "currentBalanceAfterRecruit": true,
+    "rareShopUnits": 3,
+    "allOwnedByDefault": true,
+    "existingProfileGrant": true,
+    "collectionReload": true,
+    "duplicateRefund": 30,
+    "rareRates": "5% aggregate, 1.67% rounded per unit",
+    "productionFirstDrawSeed": 1,
+    "errors": []
+  },
+  "environment": {
+    "devServerRestarted": true,
+    "devUrl": "http://127.0.0.1:43195/",
+    "browser": "Edge headless",
+    "clock": "virtual",
+    "touch": "emulation",
+    "profileFixtureMoney": 9000
+  },
+  "remaining": "배치 후 반복 소비처가 없어서 고정 공략의 78~114초에 도토리 50 도달. 누적 구조 자체는 남아 있습니다."
+}

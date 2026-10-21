@@ -1,0 +1,11 @@
+export const TICK_RATE = 30;
+export const DEFAULT_SEED = 1;
+export const DP_MAX = 50;
+export const MIN_DAMAGE_RATIO = 0.05;
+export const SLOW_CAP = 0.8;
+export const SP_EPSILON = 1e-6;
+export const SPLIT_SPACING = 0.28;
+
+export function secToTicks(seconds: number): number {
+  return seconds > 0 ? Math.max(1, Math.round(seconds * TICK_RATE)) : 0;
+}

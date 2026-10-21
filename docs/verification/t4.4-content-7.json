@@ -1,0 +1,28 @@
+[
+  {
+    "viewport": "desktop-7",
+    "result": "푸딩 3개 · 처치 37/37",
+    "disruptions": 16,
+    "children": 10,
+    "rejected": [],
+    "killed": 37,
+    "leaked": 0,
+    "life": 3,
+    "disruptionShown": true,
+    "saved": true,
+    "errors": []
+  },
+  {
+    "viewport": "mobile-7",
+    "result": "푸딩 3개 · 처치 37/37",
+    "disruptions": 16,
+    "children": 10,
+    "rejected": [],
+    "killed": 37,
+    "leaked": 0,
+    "life": 3,
+    "disruptionShown": true,
+    "saved": true,
+    "errors": []
+  }
+]

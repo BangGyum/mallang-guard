@@ -1,0 +1,39 @@
+{
+  "id": "stage-1",
+  "name": "1-1 푸딩 창고 앞마당",
+  "description": "12웨이브의 짧은 방어전! 권총으로 첫 무리를 막고 대공·마법 친구와 마지막 혼성 공세를 맞아요. 마지막 웨이브에 덩치젤리 보스가 등장해요.",
+  "map": ["##HH###HH##", "S....H....#", "#HH#.H.#H.#", "#HH#...#H.G", "####HHH#..#", "###########"],
+  "startDp": 10,
+  "life": 3,
+  "deployLimit": 7,
+  "routes": {
+    "ground": { "from": [0, 1], "to": [10, 3] },
+    "air": { "from": [0, 1], "to": [10, 3], "flying": true }
+  },
+  "spawns": [
+    { "wave": 1, "atSec": 3, "enemy": "jelly", "count": 3, "intervalSec": 2.5, "route": "ground" },
+    { "wave": 2, "atSec": 14, "enemy": "jelly", "count": 4, "intervalSec": 2, "route": "ground" },
+    { "wave": 3, "atSec": 26, "enemy": "crow", "count": 2, "intervalSec": 3, "route": "air" },
+    { "wave": 3, "atSec": 30, "enemy": "hardJelly", "count": 1, "intervalSec": 0, "route": "ground" },
+    { "wave": 4, "atSec": 40, "enemy": "jelly", "count": 6, "intervalSec": 1.7, "route": "ground" },
+    { "wave": 4, "atSec": 44, "enemy": "crow", "count": 2, "intervalSec": 2, "route": "air" },
+    { "wave": 5, "atSec": 54, "enemy": "hardJelly", "count": 2, "intervalSec": 3, "route": "ground" },
+    { "wave": 5, "atSec": 58, "enemy": "jelly", "count": 6, "intervalSec": 1.5, "route": "ground" },
+    { "wave": 6, "atSec": 74, "enemy": "jelly", "count": 7, "intervalSec": 1.4, "route": "ground" },
+    { "wave": 6, "atSec": 82, "enemy": "crow", "count": 3, "intervalSec": 1.4, "route": "air" },
+    { "wave": 7, "atSec": 94, "enemy": "hardJelly", "count": 3, "intervalSec": 3, "route": "ground" },
+    { "wave": 7, "atSec": 98, "enemy": "jelly", "count": 8, "intervalSec": 1.25, "route": "ground" },
+    { "wave": 8, "atSec": 118, "enemy": "crow", "count": 4, "intervalSec": 1.2, "route": "air" },
+    { "wave": 8, "atSec": 122, "enemy": "hardJelly", "count": 3, "intervalSec": 2.5, "route": "ground" },
+    { "wave": 9, "atSec": 140, "enemy": "jelly", "count": 11, "intervalSec": 0.9, "route": "ground" },
+    { "wave": 9, "atSec": 146, "enemy": "crow", "count": 3, "intervalSec": 1, "route": "air" },
+    { "wave": 10, "atSec": 161, "enemy": "hardJelly", "count": 4, "intervalSec": 2, "route": "ground" },
+    { "wave": 10, "atSec": 165, "enemy": "jelly", "count": 10, "intervalSec": 1, "route": "ground" },
+    { "wave": 11, "atSec": 184, "enemy": "jelly", "count": 12, "intervalSec": 0.8, "route": "ground" },
+    { "wave": 11, "atSec": 188, "enemy": "crow", "count": 5, "intervalSec": 0.9, "route": "air" },
+    { "wave": 12, "atSec": 209, "enemy": "hardJelly", "count": 4, "intervalSec": 1.8, "route": "ground" },
+    { "wave": 12, "atSec": 212, "enemy": "jelly", "count": 12, "intervalSec": 0.8, "route": "ground" },
+    { "wave": 12, "atSec": 217, "enemy": "crow", "count": 4, "intervalSec": 1, "route": "air" },
+    { "wave": 12, "atSec": 209, "enemy": "bigJelly", "count": 1, "intervalSec": 0, "route": "ground" }
+  ]
+}

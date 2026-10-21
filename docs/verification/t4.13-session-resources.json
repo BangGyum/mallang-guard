@@ -1,0 +1,8 @@
+{
+  "cycles": 10,
+  "memory": {
+    "active": { "geometries": 70, "textures": 43 },
+    "disposed": { "geometries": 0, "textures": 0 }
+  },
+  "errors": []
+}

@@ -1,0 +1,537 @@
+{
+  "date": "2026-10-11",
+  "baseCommit": "14ec8e909e9b7755f4e6b96116307a422011e41e",
+  "convention": {
+    "field": "armorPen",
+    "missingValue": 0,
+    "nonnegativeInteger": true,
+    "effectiveDefense": "max(0, DEF - armorPen)",
+    "physicalDamage": "max(ATK - effectiveDefense, ATK * 0.05)",
+    "magicAndTrueUnchanged": true,
+    "shieldAbsorbsCalculatedDamageFirst": true,
+    "internalFractionalDamagePreserved": true,
+    "targetDefenseUnchanged": true,
+    "samePenetrationForEachSplashOrVolleyTarget": true,
+    "skillAdditionIndependentOfAttackMultiplier": true,
+    "restoredOnExpiryRetreatRedeploy": true
+  },
+  "unitValues": [
+    {
+      "id": "squirrel",
+      "name": "토리",
+      "damageType": "physical",
+      "baseArmorPen": 5,
+      "skillArmorPen": 5
+    },
+    {
+      "id": "cat",
+      "name": "냥기사",
+      "damageType": "physical",
+      "baseArmorPen": 10,
+      "skillArmorPen": 10
+    },
+    {
+      "id": "bear",
+      "name": "뚜껑곰",
+      "damageType": "physical",
+      "baseArmorPen": 5,
+      "skillArmorPen": 5
+    },
+    {
+      "id": "penguin",
+      "name": "펭펭",
+      "damageType": "physical",
+      "baseArmorPen": 15,
+      "skillArmorPen": 15
+    },
+    {
+      "id": "sheep",
+      "name": "몽실",
+      "damageType": "magic",
+      "baseArmorPen": 0,
+      "skillArmorPen": 0
+    },
+    {
+      "id": "bunny",
+      "name": "토실",
+      "damageType": "magic",
+      "baseArmorPen": 0,
+      "skillArmorPen": 0
+    },
+    {
+      "id": "mole",
+      "name": "굴굴",
+      "damageType": "physical",
+      "baseArmorPen": 10,
+      "skillArmorPen": 10
+    },
+    {
+      "id": "snail",
+      "name": "끈끈",
+      "damageType": "magic",
+      "baseArmorPen": 0,
+      "skillArmorPen": 0
+    },
+    {
+      "id": "owl",
+      "name": "밤밤",
+      "damageType": "magic",
+      "baseArmorPen": 0,
+      "skillArmorPen": 0
+    },
+    {
+      "id": "wolf",
+      "name": "랑랑",
+      "damageType": "physical",
+      "baseArmorPen": 120,
+      "skillArmorPen": 160
+    }
+  ],
+  "simulation": {
+    "scenarios": 29,
+    "clearsWithLife3": 10,
+    "expectedDefeats": 19,
+    "allExpectedResultsPreserved": true,
+    "rejectedCommands": 0,
+    "baseline": "t4.20-before-balance.json",
+    "final": "t4.20-after-balance.json",
+    "tuning": [
+      "t4.20-candidate-balance.json",
+      "t4.20-refined-balance.json"
+    ],
+    "tuningNote": "높은 일반 무기 후보는 1~4번 수동 스킬 미사용 공략도 승리시켜 최종 배분을 낮춤. 굴굴은 최종 10이며 정밀 후보 기록의 20과 다름.",
+    "scheduleNote": "자연 충전·대상 유무가 달라져 2/4/6번 일부 발동 시각을 보정하고 4번 대상 없는 펄스·7번 종료 뒤 입력을 제거. 기대 승패·엄격한 명령 거부 검사 유지."
+  },
+  "checks": {
+    "typecheck": "passed",
+    "lint": "passed",
+    "build": "passed",
+    "tests": {
+      "files": 64,
+      "passed": 1123,
+      "failed": 0
+    },
+    "reorderedScenarioAndDeterminism": {
+      "files": 2,
+      "passed": 91,
+      "failed": 0
+    },
+    "changedSourceAndTestFileLineLimit": 300
+  },
+  "browser": {
+    "campaign": {
+      "desktop": [
+        {
+          "viewport": "desktop",
+          "stage": "stage-1",
+          "phase": "won",
+          "life": 3,
+          "killed": 119,
+          "leaked": 0,
+          "totalEnemies": 119,
+          "wave": 12,
+          "totalWaves": 12,
+          "enemies": 0,
+          "seconds": 231.06666666666666,
+          "rejected": [],
+          "seenEnemies": [
+            "crow",
+            "hardJelly",
+            "jelly"
+          ],
+          "heals": 0,
+          "shieldHits": 0,
+          "rewards": 35,
+          "invalidRewards": [],
+          "latePressure": {
+            "ticks": 2296,
+            "empty": 696,
+            "peak": 12
+          }
+        },
+        {
+          "viewport": "desktop",
+          "stage": "stage-2",
+          "phase": "won",
+          "life": 3,
+          "killed": 192,
+          "leaked": 0,
+          "totalEnemies": 192,
+          "wave": 20,
+          "totalWaves": 20,
+          "enemies": 0,
+          "seconds": 351.53333333333336,
+          "rejected": [],
+          "seenEnemies": [
+            "crow",
+            "crystalJelly",
+            "dashJelly",
+            "hardJelly",
+            "jelly"
+          ],
+          "heals": 0,
+          "shieldHits": 0,
+          "rewards": 67,
+          "invalidRewards": [],
+          "latePressure": {
+            "ticks": 3554,
+            "empty": 75,
+            "peak": 17
+          }
+        },
+        {
+          "viewport": "desktop",
+          "stage": "stage-3",
+          "phase": "won",
+          "life": 3,
+          "killed": 369,
+          "leaked": 0,
+          "totalEnemies": 369,
+          "wave": 25,
+          "totalWaves": 25,
+          "enemies": 0,
+          "seconds": 479.4,
+          "rejected": [],
+          "seenEnemies": [
+            "captainJelly",
+            "crow",
+            "crystalJelly",
+            "dashJelly",
+            "hardJelly",
+            "jelly",
+            "miniJelly",
+            "shieldJelly",
+            "splitJelly",
+            "sproutJelly"
+          ],
+          "heals": 8,
+          "shieldHits": 33,
+          "rewards": 111,
+          "invalidRewards": [],
+          "latePressure": {
+            "ticks": 4586,
+            "empty": 1,
+            "peak": 16
+          }
+        },
+        {
+          "viewport": "desktop",
+          "stage": "stage-4",
+          "phase": "won",
+          "life": 3,
+          "killed": 442,
+          "leaked": 0,
+          "totalEnemies": 442,
+          "wave": 50,
+          "totalWaves": 50,
+          "enemies": 0,
+          "seconds": 1077.7333333333333,
+          "rejected": [],
+          "seenEnemies": [
+            "captainJelly",
+            "crow",
+            "crystalJelly",
+            "dashJelly",
+            "flowerJelly",
+            "hardJelly",
+            "jelly",
+            "miniJelly",
+            "shieldJelly",
+            "spitter",
+            "splitJelly",
+            "sproutJelly"
+          ],
+          "heals": 19,
+          "shieldHits": 87,
+          "rewards": 143,
+          "invalidRewards": [],
+          "latePressure": {
+            "ticks": 10022,
+            "empty": 62,
+            "peak": 10
+          }
+        },
+        {
+          "viewport": "desktop",
+          "stage": "stage-5",
+          "phase": "won",
+          "life": 3,
+          "killed": 473,
+          "leaked": 0,
+          "totalEnemies": 473,
+          "wave": 50,
+          "totalWaves": 50,
+          "enemies": 0,
+          "seconds": 1043.7,
+          "rejected": [],
+          "seenEnemies": [
+            "armoredCrow",
+            "captainJelly",
+            "crow",
+            "crystalJelly",
+            "dashJelly",
+            "drummerJelly",
+            "flowerJelly",
+            "hardJelly",
+            "jelly",
+            "miniJelly",
+            "shieldJelly",
+            "spitter",
+            "splitJelly",
+            "sproutJelly"
+          ],
+          "heals": 19,
+          "shieldHits": 127,
+          "rewards": 182,
+          "invalidRewards": [],
+          "latePressure": {
+            "ticks": 9509,
+            "empty": 834,
+            "peak": 9
+          }
+        }
+      ],
+      "touch": [
+        {
+          "viewport": "mobile",
+          "stage": "stage-1",
+          "phase": "won",
+          "life": 3,
+          "killed": 119,
+          "leaked": 0,
+          "totalEnemies": 119,
+          "wave": 12,
+          "totalWaves": 12,
+          "enemies": 0,
+          "seconds": 231.06666666666666,
+          "rejected": [],
+          "seenEnemies": [
+            "crow",
+            "hardJelly",
+            "jelly"
+          ],
+          "heals": 0,
+          "shieldHits": 0,
+          "rewards": 35,
+          "invalidRewards": [],
+          "latePressure": {
+            "ticks": 2296,
+            "empty": 696,
+            "peak": 12
+          }
+        },
+        {
+          "viewport": "mobile",
+          "stage": "stage-2",
+          "phase": "won",
+          "life": 3,
+          "killed": 192,
+          "leaked": 0,
+          "totalEnemies": 192,
+          "wave": 20,
+          "totalWaves": 20,
+          "enemies": 0,
+          "seconds": 351.53333333333336,
+          "rejected": [],
+          "seenEnemies": [
+            "crow",
+            "crystalJelly",
+            "dashJelly",
+            "hardJelly",
+            "jelly"
+          ],
+          "heals": 0,
+          "shieldHits": 0,
+          "rewards": 67,
+          "invalidRewards": [],
+          "latePressure": {
+            "ticks": 3554,
+            "empty": 75,
+            "peak": 17
+          }
+        },
+        {
+          "viewport": "mobile",
+          "stage": "stage-3",
+          "phase": "won",
+          "life": 3,
+          "killed": 369,
+          "leaked": 0,
+          "totalEnemies": 369,
+          "wave": 25,
+          "totalWaves": 25,
+          "enemies": 0,
+          "seconds": 479.4,
+          "rejected": [],
+          "seenEnemies": [
+            "captainJelly",
+            "crow",
+            "crystalJelly",
+            "dashJelly",
+            "hardJelly",
+            "jelly",
+            "miniJelly",
+            "shieldJelly",
+            "splitJelly",
+            "sproutJelly"
+          ],
+          "heals": 8,
+          "shieldHits": 33,
+          "rewards": 111,
+          "invalidRewards": [],
+          "latePressure": {
+            "ticks": 4586,
+            "empty": 1,
+            "peak": 16
+          }
+        },
+        {
+          "viewport": "mobile",
+          "stage": "stage-4",
+          "phase": "won",
+          "life": 3,
+          "killed": 442,
+          "leaked": 0,
+          "totalEnemies": 442,
+          "wave": 50,
+          "totalWaves": 50,
+          "enemies": 0,
+          "seconds": 1077.7333333333333,
+          "rejected": [],
+          "seenEnemies": [
+            "captainJelly",
+            "crow",
+            "crystalJelly",
+            "dashJelly",
+            "flowerJelly",
+            "hardJelly",
+            "jelly",
+            "miniJelly",
+            "shieldJelly",
+            "spitter",
+            "splitJelly",
+            "sproutJelly"
+          ],
+          "heals": 19,
+          "shieldHits": 87,
+          "rewards": 143,
+          "invalidRewards": [],
+          "latePressure": {
+            "ticks": 10022,
+            "empty": 62,
+            "peak": 10
+          }
+        },
+        {
+          "viewport": "mobile",
+          "stage": "stage-5",
+          "phase": "won",
+          "life": 3,
+          "killed": 473,
+          "leaked": 0,
+          "totalEnemies": 473,
+          "wave": 50,
+          "totalWaves": 50,
+          "enemies": 0,
+          "seconds": 1043.7,
+          "rejected": [],
+          "seenEnemies": [
+            "armoredCrow",
+            "captainJelly",
+            "crow",
+            "crystalJelly",
+            "dashJelly",
+            "drummerJelly",
+            "flowerJelly",
+            "hardJelly",
+            "jelly",
+            "miniJelly",
+            "shieldJelly",
+            "spitter",
+            "splitJelly",
+            "sproutJelly"
+          ],
+          "heals": 19,
+          "shieldHits": 127,
+          "rewards": 182,
+          "invalidRewards": [],
+          "latePressure": {
+            "ticks": 9509,
+            "empty": 834,
+            "peak": 9
+          }
+        }
+      ],
+      "reportFiles": [
+        "t4.20-campaign-desktop.json",
+        "t4.20-campaign-mobile.json"
+      ],
+      "sequentialUnlock": true,
+      "savedStarsPerMode": 15,
+      "reload": true,
+      "stage6Unlocked": true,
+      "stage7Locked": true,
+      "defeatPreservesBest": true,
+      "errors": []
+    },
+    "cardAndDeployedSelection": {
+      "cases": 4,
+      "report": "t4.20-unit-selection.json",
+      "all10Cards": true,
+      "physicalBaseAndCurrentPenShown": true,
+      "magicPenLabelOmitted": true,
+      "popupButtonsFit": true,
+      "statsFullyVisible": true,
+      "clippingReproducedBeforeFix": true,
+      "compactHeightThreshold": 380,
+      "mouseTouchKeyboardDeploymentAndRetreat": true,
+      "errors": []
+    },
+    "lineSniper": {
+      "cases": 4,
+      "report": "t4.20-line-sniper.json",
+      "armorPen": [
+        120,
+        160,
+        120
+      ],
+      "attack": [
+        650,
+        585,
+        650
+      ],
+      "rangeTiles": [
+        5,
+        15,
+        5
+      ],
+      "skillShotsWhenThreeEnemies": 3,
+      "skillShotsWhenOneEnemy": 1,
+      "naturalSp": true,
+      "errors": []
+    },
+    "production": {
+      "base": "/mallang-guard/",
+      "portraits": 10,
+      "webgl": true,
+      "waves": 12,
+      "killOnlyIncome": true,
+      "exit": true,
+      "errors": []
+    },
+    "limitations": "Edge headless·가상 시계·터치 에뮬레이션. 캠페인은 실제 콘텐츠와 UI 입력을 사용하며 DP/SP를 부여하지 않음. 저격 검사는 원본 아군 수치·자연 SP와 전용 맵/예산·느리고 체력이 큰 적을 사용함. FPS·실제 모바일 기기·실시간 재미 측정은 아님."
+  },
+  "screenshots": [
+    "t4.20-before-touch-740-popup.png",
+    "t4.20-mouse-1920x1080-card-info.png",
+    "t4.20-touch-844x390-card-info.png",
+    "t4.20-touch-390x844-card-info.png",
+    "t4.20-touch-740x360-deployed-charging.png",
+    "t4.20-desktop-line-3-volley.png",
+    "t4.20-mobile-line-3-volley.png",
+    "t4.20-desktop-line-3-restored.png",
+    "t4.20-mobile-line-3-restored.png",
+    "t4.20-desktop-stage-5-pressure.png",
+    "t4.20-mobile-all-stars.png"
+  ]
+}

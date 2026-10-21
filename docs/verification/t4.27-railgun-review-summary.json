@@ -1,0 +1,517 @@
+{
+  "date": "2026-10-15",
+  "status": "passed",
+  "ticket": "T4.27",
+  "scope": "Railgun border review and motion/lifecycle fixes",
+  "reproducedBeforeFix": [
+    {
+      "issue": "Paused retreat leaves a visible frame",
+      "originalAlpha": 0.65,
+      "regressionCases": 1
+    },
+    {
+      "issue": "New shot pulse consumed before first draw on long frames",
+      "frameSeconds": [
+        0.25,
+        0.5
+      ],
+      "steadyAndShotAlpha": 0.65,
+      "regressionCases": 2
+    },
+    {
+      "issue": "Visible current packet jumps at loop boundary",
+      "originalPacketAlphaAtBoundary": 0.65,
+      "regressionCases": 1
+    }
+  ],
+  "changes": [
+    "Last active railgun unit retreat clears the frame immediately, including paused play.",
+    "Pending shot feedback starts at the first rendered frame and then expires in 0.2 visual seconds.",
+    "Current packets fade at both loop ends and stay within the rail length.",
+    "Initial brightness rises over 0.12 seconds; ignition, shot and expiry use smooth transitions."
+  ],
+  "mandatory": {
+    "check": "passed",
+    "lint": "passed",
+    "tests": {
+      "files": 80,
+      "tests": 1450,
+      "addedThisReview": 6,
+      "status": "passed"
+    },
+    "build": "passed",
+    "diffCheck": "passed"
+  },
+  "visualAndLifecycle": [
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "mode": "normal",
+      "edgeChanges": 233600,
+      "centerChanges": 0,
+      "centerRgbDelta": 1,
+      "stateUnchanged": true,
+      "firing": {
+        "drawCalls": 70,
+        "particles": 42,
+        "stateUnchanged": true
+      },
+      "longFrame": {
+        "steady": 59,
+        "pulse": 77,
+        "ended": 59
+      },
+      "paused": true,
+      "expired": true,
+      "disposed": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "errors": []
+    },
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "mode": "reduced",
+      "edgeChanges": 5592,
+      "centerChanges": 0,
+      "centerRgbDelta": 1,
+      "stateUnchanged": true,
+      "firing": {
+        "drawCalls": 70,
+        "particles": 28,
+        "stateUnchanged": true
+      },
+      "longFrame": {
+        "steady": 0,
+        "pulse": 0,
+        "ended": 0
+      },
+      "paused": true,
+      "expired": true,
+      "disposed": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "errors": []
+    },
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "mode": "low",
+      "edgeChanges": 5592,
+      "centerChanges": 0,
+      "centerRgbDelta": 1,
+      "stateUnchanged": true,
+      "firing": {
+        "drawCalls": 70,
+        "particles": 28,
+        "stateUnchanged": true
+      },
+      "longFrame": {
+        "steady": 0,
+        "pulse": 0,
+        "ended": 0
+      },
+      "paused": true,
+      "expired": true,
+      "disposed": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "errors": []
+    },
+    {
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "mode": "normal",
+      "edgeChanges": 36452,
+      "centerChanges": 0,
+      "centerRgbDelta": 1,
+      "stateUnchanged": true,
+      "firing": {
+        "drawCalls": 70,
+        "particles": 42,
+        "stateUnchanged": true
+      },
+      "longFrame": {
+        "steady": 52,
+        "pulse": 67,
+        "ended": 52
+      },
+      "paused": true,
+      "expired": true,
+      "disposed": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "errors": []
+    },
+    {
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "mode": "reduced",
+      "edgeChanges": 1864,
+      "centerChanges": 0,
+      "centerRgbDelta": 1,
+      "stateUnchanged": true,
+      "firing": {
+        "drawCalls": 70,
+        "particles": 28,
+        "stateUnchanged": true
+      },
+      "longFrame": {
+        "steady": 0,
+        "pulse": 0,
+        "ended": 0
+      },
+      "paused": true,
+      "expired": true,
+      "disposed": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "errors": []
+    },
+    {
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "mode": "low",
+      "edgeChanges": 1864,
+      "centerChanges": 0,
+      "centerRgbDelta": 1,
+      "stateUnchanged": true,
+      "firing": {
+        "drawCalls": 70,
+        "particles": 28,
+        "stateUnchanged": true
+      },
+      "longFrame": {
+        "steady": 0,
+        "pulse": 0,
+        "ended": 0
+      },
+      "paused": true,
+      "expired": true,
+      "disposed": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "errors": []
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "mode": "normal",
+      "edgeChanges": 74845,
+      "centerChanges": 0,
+      "centerRgbDelta": 1,
+      "stateUnchanged": true,
+      "firing": {
+        "drawCalls": 70,
+        "particles": 42,
+        "stateUnchanged": true
+      },
+      "longFrame": {
+        "steady": 58,
+        "pulse": 75,
+        "ended": 58
+      },
+      "paused": true,
+      "expired": true,
+      "disposed": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "errors": []
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "mode": "reduced",
+      "edgeChanges": 4897,
+      "centerChanges": 0,
+      "centerRgbDelta": 1,
+      "stateUnchanged": true,
+      "firing": {
+        "drawCalls": 70,
+        "particles": 28,
+        "stateUnchanged": true
+      },
+      "longFrame": {
+        "steady": 0,
+        "pulse": 0,
+        "ended": 0
+      },
+      "paused": true,
+      "expired": true,
+      "disposed": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "errors": []
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "mode": "low",
+      "edgeChanges": 4897,
+      "centerChanges": 0,
+      "centerRgbDelta": 1,
+      "stateUnchanged": true,
+      "firing": {
+        "drawCalls": 70,
+        "particles": 28,
+        "stateUnchanged": true
+      },
+      "longFrame": {
+        "steady": 0,
+        "pulse": 0,
+        "ended": 0
+      },
+      "paused": true,
+      "expired": true,
+      "disposed": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "errors": []
+    },
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "mode": "natural-skill-ui",
+      "quality": "high",
+      "starts": 1,
+      "ends": 1,
+      "rejected": [],
+      "secondActivation": true,
+      "pausedRetreat": true,
+      "errors": []
+    },
+    {
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "mode": "natural-skill-ui",
+      "quality": "high",
+      "starts": 1,
+      "ends": 1,
+      "rejected": [],
+      "secondActivation": true,
+      "pausedRetreat": true,
+      "errors": []
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "mode": "natural-skill-ui",
+      "quality": "high",
+      "starts": 1,
+      "ends": 1,
+      "rejected": [],
+      "secondActivation": true,
+      "pausedRetreat": true,
+      "errors": []
+    }
+  ],
+  "scaleAndQuality": [
+    {
+      "from": 1,
+      "to": 2,
+      "qualityToggle": false,
+      "changed": 0,
+      "maxAlphaDelta": 0,
+      "pixels": [
+        1688,
+        780
+      ],
+      "errors": []
+    },
+    {
+      "from": 2,
+      "to": 1,
+      "qualityToggle": false,
+      "changed": 0,
+      "maxAlphaDelta": 0,
+      "pixels": [
+        844,
+        390
+      ],
+      "errors": []
+    },
+    {
+      "from": 2,
+      "to": 2,
+      "qualityToggle": true,
+      "changed": 0,
+      "maxAlphaDelta": 0,
+      "pixels": [
+        1688,
+        780
+      ],
+      "errors": []
+    }
+  ],
+  "performance": {
+    "displayPaced": [
+      {
+        "mode": "display-paced",
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 130V GPU (8GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "board": "22x12",
+        "units": 13,
+        "enemies": 60,
+        "frames": 481,
+        "fps": 60.00049896464836,
+        "frameP95Ms": 16.900000000000546,
+        "frameP99Ms": 17.199999999999818,
+        "callbackP95Ms": 5.100000001490116,
+        "callbackP99Ms": 6.5,
+        "framesOver17_7Ms": 3,
+        "framesOver8_33Ms": 481,
+        "attacks": 110,
+        "skills": 13,
+        "rejected": 0,
+        "peakCalls": 108,
+        "peakParticles": 96,
+        "disposed": {
+          "geometries": 0,
+          "textures": 0
+        },
+        "errors": []
+      },
+      {
+        "mode": "display-paced",
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 130V GPU (8GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "board": "22x12",
+        "units": 13,
+        "enemies": 60,
+        "frames": 480,
+        "fps": 60.00000000000001,
+        "frameP95Ms": 16.899999999999636,
+        "frameP99Ms": 17,
+        "callbackP95Ms": 6.299999997019768,
+        "callbackP99Ms": 7.200000002980232,
+        "framesOver17_7Ms": 3,
+        "framesOver8_33Ms": 480,
+        "attacks": 113,
+        "skills": 13,
+        "rejected": 0,
+        "peakCalls": 110,
+        "peakParticles": 102,
+        "disposed": {
+          "geometries": 0,
+          "textures": 0
+        },
+        "errors": []
+      }
+    ],
+    "uncappedThroughput": [
+      {
+        "mode": "uncapped-throughput",
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 130V GPU (8GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "board": "22x12",
+        "units": 13,
+        "enemies": 60,
+        "frames": 2879,
+        "fps": 359.3315110894772,
+        "frameP95Ms": 4,
+        "frameP99Ms": 5.400000000000091,
+        "callbackP95Ms": 3,
+        "callbackP99Ms": 3.7999999970197678,
+        "framesOver17_7Ms": 0,
+        "framesOver8_33Ms": 4,
+        "attacks": 110,
+        "skills": 13,
+        "rejected": 0,
+        "peakCalls": 108,
+        "peakParticles": 97,
+        "disposed": {
+          "geometries": 0,
+          "textures": 0
+        },
+        "errors": []
+      },
+      {
+        "mode": "uncapped-throughput",
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 130V GPU (8GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "board": "22x12",
+        "units": 13,
+        "enemies": 60,
+        "frames": 3424,
+        "fps": 427.2949633105376,
+        "frameP95Ms": 3.2000000000007276,
+        "frameP99Ms": 4.199999999999818,
+        "callbackP95Ms": 2.3000000044703484,
+        "callbackP99Ms": 2.899999998509884,
+        "framesOver17_7Ms": 0,
+        "framesOver8_33Ms": 1,
+        "attacks": 113,
+        "skills": 13,
+        "rejected": 0,
+        "peakCalls": 110,
+        "peakParticles": 102,
+        "disposed": {
+          "geometries": 0,
+          "textures": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "limits": [
+    "Edge headless on Intel Arc 130V; small screens and touch are emulated on the same PC GPU.",
+    "Nine presentation fixtures inject events. Three actual-app checks use the original unit/skill data and natural SP on the existing audit map/account; high quality/full motion are selected via settings UI.",
+    "Performance uses the existing 22x12, 13-unit/60-enemy test fixture, 2s warmup and 8s capture. Uncapped throughput does not measure a physical 120Hz display.",
+    "DPR/quality transitions passed before and after review; no speculative gradient cache change was needed.",
+    "Canvas readback retains central alpha exactly; RGB rounding can differ by 1/255.",
+    "No combat/balance changes; the entire campaign was not replayed for these display-only fixes.",
+    "The pre-existing production chunk-size warning remains."
+  ],
+  "sourceSha256": {
+    "src/view/railgunFrame.ts": "c270713059f07aec6e46b749575654355950d23dbf3f574af1b124cc8a4603bb",
+    "src/view/overlay.ts": "3d681aa72c4e4bf5ba1abdfc02cd0383d39fe37a39618b7207b9a5186e66b575",
+    "tests/view/railgunFrame.test.ts": "713cad54537eda4a14037faf93724c70ffc89ae5c338283869e5d03df121f0d8",
+    "tests/browser/railgunFrame.mjs": "a32ccd04c24ad8c9998123fa0f42067e538dad4a52b035e2e795c65b0ddc02f0",
+    "tests/browser/railgunFrameScale.mjs": "f194cd2a0f6bb872ce82381edf13efc2e47946961ef8ca0563a2556f71136c6a"
+  }
+}

@@ -1,0 +1,398 @@
+[
+  {
+    "width": 1280,
+    "height": 720,
+    "mode": "normal",
+    "delays": [
+      {
+        "type": "damage",
+        "delay": 0.4
+      },
+      {
+        "type": "enemyDie",
+        "delay": 0.4
+      },
+      {
+        "type": "enemySpawn",
+        "delay": 0.4
+      },
+      {
+        "type": "enemySpawn",
+        "delay": 0.4
+      }
+    ],
+    "falling": {
+      "drawCalls": 28,
+      "particles": 8,
+      "sources": 1,
+      "stateUnchanged": true,
+      "parentVisible": true
+    },
+    "impact": {
+      "drawCalls": 29,
+      "particles": 15,
+      "sources": 3,
+      "stateUnchanged": true,
+      "parentVisible": true
+    },
+    "done": {
+      "drawCalls": 28,
+      "particles": 9,
+      "sources": 3,
+      "stateUnchanged": true,
+      "parentVisible": false
+    }
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "mode": "reduced",
+    "delays": [
+      {
+        "type": "damage",
+        "delay": 0.4
+      },
+      {
+        "type": "enemyDie",
+        "delay": 0.4
+      },
+      {
+        "type": "enemySpawn",
+        "delay": 0.4
+      },
+      {
+        "type": "enemySpawn",
+        "delay": 0.4
+      }
+    ],
+    "falling": {
+      "drawCalls": 28,
+      "particles": 5,
+      "sources": 1,
+      "stateUnchanged": true,
+      "parentVisible": true
+    },
+    "impact": {
+      "drawCalls": 29,
+      "particles": 5,
+      "sources": 3,
+      "stateUnchanged": true,
+      "parentVisible": true
+    },
+    "done": {
+      "drawCalls": 28,
+      "particles": 5,
+      "sources": 3,
+      "stateUnchanged": true,
+      "parentVisible": false
+    }
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "mode": "low",
+    "delays": [
+      {
+        "type": "damage",
+        "delay": 0.4
+      },
+      {
+        "type": "enemyDie",
+        "delay": 0.4
+      },
+      {
+        "type": "enemySpawn",
+        "delay": 0.4
+      },
+      {
+        "type": "enemySpawn",
+        "delay": 0.4
+      }
+    ],
+    "falling": {
+      "drawCalls": 28,
+      "particles": 5,
+      "sources": 1,
+      "stateUnchanged": true,
+      "parentVisible": true
+    },
+    "impact": {
+      "drawCalls": 29,
+      "particles": 5,
+      "sources": 3,
+      "stateUnchanged": true,
+      "parentVisible": true
+    },
+    "done": {
+      "drawCalls": 28,
+      "particles": 5,
+      "sources": 3,
+      "stateUnchanged": true,
+      "parentVisible": false
+    }
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "mode": "normal",
+    "delays": [
+      {
+        "type": "damage",
+        "delay": 0.4
+      },
+      {
+        "type": "enemyDie",
+        "delay": 0.4
+      },
+      {
+        "type": "enemySpawn",
+        "delay": 0.4
+      },
+      {
+        "type": "enemySpawn",
+        "delay": 0.4
+      }
+    ],
+    "falling": {
+      "drawCalls": 28,
+      "particles": 8,
+      "sources": 1,
+      "stateUnchanged": true,
+      "parentVisible": true
+    },
+    "impact": {
+      "drawCalls": 29,
+      "particles": 15,
+      "sources": 3,
+      "stateUnchanged": true,
+      "parentVisible": true
+    },
+    "done": {
+      "drawCalls": 28,
+      "particles": 9,
+      "sources": 3,
+      "stateUnchanged": true,
+      "parentVisible": false
+    }
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "mode": "reduced",
+    "delays": [
+      {
+        "type": "damage",
+        "delay": 0.4
+      },
+      {
+        "type": "enemyDie",
+        "delay": 0.4
+      },
+      {
+        "type": "enemySpawn",
+        "delay": 0.4
+      },
+      {
+        "type": "enemySpawn",
+        "delay": 0.4
+      }
+    ],
+    "falling": {
+      "drawCalls": 28,
+      "particles": 5,
+      "sources": 1,
+      "stateUnchanged": true,
+      "parentVisible": true
+    },
+    "impact": {
+      "drawCalls": 29,
+      "particles": 5,
+      "sources": 3,
+      "stateUnchanged": true,
+      "parentVisible": true
+    },
+    "done": {
+      "drawCalls": 28,
+      "particles": 5,
+      "sources": 3,
+      "stateUnchanged": true,
+      "parentVisible": false
+    }
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "mode": "low",
+    "delays": [
+      {
+        "type": "damage",
+        "delay": 0.4
+      },
+      {
+        "type": "enemyDie",
+        "delay": 0.4
+      },
+      {
+        "type": "enemySpawn",
+        "delay": 0.4
+      },
+      {
+        "type": "enemySpawn",
+        "delay": 0.4
+      }
+    ],
+    "falling": {
+      "drawCalls": 28,
+      "particles": 5,
+      "sources": 1,
+      "stateUnchanged": true,
+      "parentVisible": true
+    },
+    "impact": {
+      "drawCalls": 29,
+      "particles": 5,
+      "sources": 3,
+      "stateUnchanged": true,
+      "parentVisible": true
+    },
+    "done": {
+      "drawCalls": 28,
+      "particles": 5,
+      "sources": 3,
+      "stateUnchanged": true,
+      "parentVisible": false
+    }
+  },
+  {
+    "width": 320,
+    "height": 568,
+    "mode": "normal",
+    "delays": [
+      {
+        "type": "damage",
+        "delay": 0.4
+      },
+      {
+        "type": "enemyDie",
+        "delay": 0.4
+      },
+      {
+        "type": "enemySpawn",
+        "delay": 0.4
+      },
+      {
+        "type": "enemySpawn",
+        "delay": 0.4
+      }
+    ],
+    "falling": {
+      "drawCalls": 28,
+      "particles": 8,
+      "sources": 1,
+      "stateUnchanged": true,
+      "parentVisible": true
+    },
+    "impact": {
+      "drawCalls": 29,
+      "particles": 15,
+      "sources": 3,
+      "stateUnchanged": true,
+      "parentVisible": true
+    },
+    "done": {
+      "drawCalls": 28,
+      "particles": 9,
+      "sources": 3,
+      "stateUnchanged": true,
+      "parentVisible": false
+    }
+  },
+  {
+    "width": 320,
+    "height": 568,
+    "mode": "reduced",
+    "delays": [
+      {
+        "type": "damage",
+        "delay": 0.4
+      },
+      {
+        "type": "enemyDie",
+        "delay": 0.4
+      },
+      {
+        "type": "enemySpawn",
+        "delay": 0.4
+      },
+      {
+        "type": "enemySpawn",
+        "delay": 0.4
+      }
+    ],
+    "falling": {
+      "drawCalls": 28,
+      "particles": 5,
+      "sources": 1,
+      "stateUnchanged": true,
+      "parentVisible": true
+    },
+    "impact": {
+      "drawCalls": 29,
+      "particles": 5,
+      "sources": 3,
+      "stateUnchanged": true,
+      "parentVisible": true
+    },
+    "done": {
+      "drawCalls": 28,
+      "particles": 5,
+      "sources": 3,
+      "stateUnchanged": true,
+      "parentVisible": false
+    }
+  },
+  {
+    "width": 320,
+    "height": 568,
+    "mode": "low",
+    "delays": [
+      {
+        "type": "damage",
+        "delay": 0.4
+      },
+      {
+        "type": "enemyDie",
+        "delay": 0.4
+      },
+      {
+        "type": "enemySpawn",
+        "delay": 0.4
+      },
+      {
+        "type": "enemySpawn",
+        "delay": 0.4
+      }
+    ],
+    "falling": {
+      "drawCalls": 28,
+      "particles": 5,
+      "sources": 1,
+      "stateUnchanged": true,
+      "parentVisible": true
+    },
+    "impact": {
+      "drawCalls": 29,
+      "particles": 5,
+      "sources": 3,
+      "stateUnchanged": true,
+      "parentVisible": true
+    },
+    "done": {
+      "drawCalls": 28,
+      "particles": 5,
+      "sources": 3,
+      "stateUnchanged": true,
+      "parentVisible": false
+    }
+  }
+]

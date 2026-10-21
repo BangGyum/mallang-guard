@@ -1,0 +1,78 @@
+[
+  {
+    "width": 1920,
+    "height": 1080,
+    "touch": false,
+    "cycles": 10,
+    "modes": [
+      "preparing",
+      "running",
+      "paused",
+      "preview",
+      "aiming"
+    ],
+    "minButton": 44,
+    "listeners": 1,
+    "pendingFrames": 0,
+    "activeAudio": 0,
+    "savesUnchanged": true,
+    "errors": []
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "touch": true,
+    "cycles": 10,
+    "modes": [
+      "preparing",
+      "running",
+      "paused",
+      "preview",
+      "aiming"
+    ],
+    "minButton": 44,
+    "listeners": 1,
+    "pendingFrames": 0,
+    "activeAudio": 0,
+    "savesUnchanged": true,
+    "errors": []
+  },
+  {
+    "width": 740,
+    "height": 360,
+    "touch": true,
+    "cycles": 10,
+    "modes": [
+      "preparing",
+      "running",
+      "paused",
+      "preview",
+      "aiming"
+    ],
+    "minButton": 44,
+    "listeners": 1,
+    "pendingFrames": 0,
+    "activeAudio": 0,
+    "savesUnchanged": true,
+    "errors": []
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "touch": true,
+    "cycles": 10,
+    "modes": [
+      "preparing",
+      "running",
+      "paused",
+      "preview",
+      "aiming"
+    ],
+    "minButton": 44,
+    "listeners": 1,
+    "pendingFrames": 0,
+    "activeAudio": 0,
+    "savesUnchanged": true,
+    "errors": []
+  }
+]

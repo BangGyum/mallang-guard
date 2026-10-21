@@ -1,0 +1,17 @@
+{
+  "mode": "display-paced",
+  "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 130V GPU (8GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "baselineFps": 60.00100842030959,
+  "enemies": 60,
+  "units": 8,
+  "viewport": "1920x1080",
+  "fps": 60.00500041670139,
+  "renderP95Ms": 1.7999999523162842,
+  "peakCalls": 54,
+  "peakParticles": 104,
+  "memory": {
+    "geometries": 65,
+    "textures": 33
+  },
+  "errors": []
+}

@@ -1,79 +1,168 @@
 # 03. 콘텐츠 데이터
 
 캐릭터, 적, 스킬, 사거리, 스테이지는 전부 `src/data`의 JSON입니다. 코드에 밸런스 숫자를 쓰지 않습니다.
-아래 수치는 **1차 값**입니다. 밸런스를 조정해도 되지만, 골든 시나리오 테스트(07 문서)를 통과해야 하고 PR 설명에 바꾼 이유를 적습니다.
+아래 초기 JSON은 **v0.1의 1차 값**입니다. M4는 이를 유지하고 스테이지 2~6과 새 적 4종을 추가하며, 2026-10-09 요청으로 22×12칸 스테이지 7을 추가했습니다. 현재 수치는 `src/data` JSON, 확장 규칙은 [09-content-expansion.md](09-content-expansion.md)를 따릅니다. 밸런스를 조정해도 되지만, 골든 시나리오 테스트(07 문서)를 통과해야 하고 PR 설명에 바꾼 이유를 적습니다.
 
 ## 1. 타입 (src/data/types.ts)
 
+### 상점 데이터 (T4.24)
+
+T4.30의 `unlockAllForTesting: boolean`은 테스트 전원 지급 설정이며 현재 true입니다. 생략하면 false로 파싱합니다. `initialCollection`/`readCollection`은 일반 모드의 기본 8종·기존 10종 규칙을 유지하고, 앱의 `loadSave`에서 현재 콘텐츠에 있는 모집 풀 전체를 기존 보유 목록에 중복 없이 더합니다. 머니·설정·별·보장·난수는 그대로 복원하며 저장 버전/필드는 늘리지 않습니다. 앱 시작 시 기존 저장 흐름으로 기록합니다. 설정을 끄더라도 이미 지급한 친구는 회수하지 않습니다.
+
+T4.28의 `rarities: { id, pullPercent, unitPrice, units }[]`가 유일한 등급 기준입니다. R/SR/SSR/UR이 각각 한 번 있어야 하고 확률은 양의 정수·합계 100, 가격은 양의 정수·지갑 상한 이내입니다. 각 등급은 비어 있지 않으며 모든 ID가 중복 없이 모집 풀을 정확히 나눕니다. SSR/UR은 일반 모드의 기본/기존 지급 목록에 넣을 수 없습니다. 테스트 전원 지급은 앞의 별도 설정을 따릅니다. 현재 합산 확률은 59/35/5/1%, 등급 안에서는 균등합니다. 축소 검사 풀에서는 남아 있는 등급 비중을 정규화합니다. 추첨은 한 번의 결정론적 난수를 사용하며 분수 확률 누적의 부동소수 경계 오차를 보정합니다. 10회 미보유 보장은 UR을 포함해 미보유 ID를 균등 추첨하므로 일반 추첨 확률과 다릅니다. 상태/거래 결과 형태와 저장 버전은 유지합니다. 기존 일반/희귀 전용 가격·확률 필드는 등급 배열로 대체했습니다.
+
+`recruitment.json`은 시작/최대 머니, 모집 비용/중복 환급/미보유 보장 횟수, 직접 영입 가격, 기본/기존/모집 친구 ID, 스테이지별 클리어 보상, 별·첫 클리어·패배 보상을 정의합니다. `data/recruitment.ts`가 파싱하고 `data/index.ts`에서 실제 유닛·스테이지 참조와 모든 스테이지의 보상 존재를 검사합니다. 비용과 보장은 양의 정수, 보상은 0 이상의 정수이며 환급은 모집 가격보다 작고 시작 머니·10회 비용·직접 가격은 저장 상한을 넘지 않습니다. 풀은 중복 없는 ID 목록이고 기본/기존 ID는 풀의 부분집합입니다.
+
+`CollectionState`는 `{ money, ownedUnits, pullsSinceNew, rngState }`입니다. 머니는 안전한 정수와 상한을, 보유 ID는 실제 콘텐츠 참조·중복 제거·기본 친구 포함을, 보장 횟수는 0~9를, 난수는 0도 유효한 uint32를 사용합니다. `ShopResult`는 성공 시 결과 목록/총 비용/총 환급, 실패 시 잔액 부족·기보유·없는 친구·저장 실패 이유를 반환합니다. 실제 전투 필드와는 공유하지 않습니다. 가격과 보상표는 [09 문서](09-content-expansion.md)의 T4.24 계약을 따릅니다.
+
 ```ts
-export type { Dir, Tile } from '../core/grid';   // Dir, Tile은 core/grid.ts에 한 번만 정의
-export type DamageType = 'physical' | 'magic' | 'true' | 'heal';
-export type DeployOn = 'ground' | 'high';
-export type Role = 'vanguard' | 'guard' | 'defender' | 'sniper' | 'caster' | 'medic' | 'specialist' | 'supporter';
+export type { Dir, Tile } from '../core/grid'; // Dir, Tile은 core/grid.ts에 한 번만 정의
+export type DamageType = 'physical' | 'magic' | 'true';
+export type DeployOn = 'high';
+export type Role =
+  | 'vanguard'
+  | 'guard'
+  | 'defender'
+  | 'sniper'
+  | 'caster'
+  | 'medic'
+  | 'specialist'
+  | 'supporter';
 export type ArtId =
-  | 'squirrel' | 'cat' | 'bear' | 'penguin' | 'sheep' | 'bunny' | 'mole' | 'snail'
-  | 'jelly' | 'hardJelly' | 'crow' | 'pudding';
+  | 'squirrel'
+  | 'cat'
+  | 'bear'
+  | 'penguin'
+  | 'sheep'
+  | 'bunny'
+  | 'mole'
+  | 'snail'
+  | 'owl'
+  | 'wolf'
+  | 'fox'
+  | 'redPanda'
+  | 'deer'
+  | 'snowLeopard'
+  | 'jelly'
+  | 'hardJelly'
+  | 'crow'
+  | 'splitJelly'
+  | 'miniJelly'
+  | 'spitter'
+  | 'kingJelly'
+  | 'dashJelly'
+  | 'crystalJelly'
+  | 'shieldJelly'
+  | 'sproutJelly'
+  | 'flowerJelly'
+  | 'drummerJelly'
+  | 'nestJelly'
+  | 'armoredCrow'
+  | 'captainJelly'
+  | 'pudding';
 
 export interface RangeDef {
   id: string;
-  tiles: [number, number][];      // 오른쪽을 볼 때 [dx, dy]. [0,0]은 자기 칸
+  tiles: [number, number][]; // 오른쪽을 볼 때 [dx, dy]. [0,0]은 자기 칸
 }
 
 export interface UnitDef {
   id: string;
-  name: string;                   // 표시 이름 (한국어)
-  animal: string;                 // 표시용 동물 이름
+  name: string; // 표시 이름 (한국어)
+  animal: string; // 표시용 동물 이름
   role: Role;
   art: ArtId;
   cost: number;
   deployOn: DeployOn;
   redeploySec: number;
-  hp: number; atk: number; def: number; res: number;   // res: 0~100
+  atk: number;
+  armorPen?: number; // 물리 관통력, 생략하면 0
   atkIntervalSec: number;
-  block: number;                  // 고지대 유닛은 0
-  range: string;                  // RangeDef.id
-  damageType: DamageType;         // 'true'는 유닛에 쓰지 않음
+  range: string; // RangeDef.id
+  damageType: DamageType; // 'true'는 유닛에 쓰지 않음
   canHitAir: boolean;
+  targetPriority?: 'boss'; // 생략하면 기존 remaining/uid 우선순위
   traits?: Effect[];
-  skill: string;                  // SkillDef.id
+  skill: string; // SkillDef.id
+}
+
+export interface BossSkillDef {
+  name: string;
+  description: string;
+  firstCastSec: number;
+  intervalSec: number;
+  windupSec: number;
+  effect:
+    | { type: 'rush'; durationSec: number; speedMul: number }
+    | { type: 'shield'; amount: number }
+    | { type: 'heal'; amount: number; range: number; targets: number }
+    | { type: 'summon'; enemy: string; count: number; maxCasts: number }
+    | { type: 'disrupt'; range: number; durationSec: number; atkIntervalMul: number; targets: number };
 }
 
 export interface EnemyDef {
   id: string;
   name: string;
   art: ArtId;
-  hp: number; atk: number; def: number; res: number;
-  atkIntervalSec: number;
-  speed: number;                  // 초당 타일
+  hp: number;
+  def: number;
+  res: number;
+  speed: number; // 초당 타일
   flying: boolean;
-  blockCost: number;              // 저지 수를 몇 칸 차지하는지 (기본 1)
-  lifeDamage: number;             // 누수 시 깎는 푸딩 수
-  damageType: 'physical' | 'magic';
+  lifeDamage: number; // 누수 시 깎는 푸딩 수
+  bounty?: number; // 실제 처치 보상, 생략하면 0
+  description?: string;
+  boss?: boolean; // 보스 표시·우선 조준, 생략하면 일반 적
+  bossSkill?: BossSkillDef; // boss === true일 때만 허용
+  shieldHp?: number;
+  rush?: { intervalSec: number; durationSec: number; speedMul: number };
+  regenerate?: { intervalSec: number; amount: number };
+  heal?: { intervalSec: number; amount: number; range: number };
+  haste?: { range: number; speedMul: number };
+  summon?: { intervalSec: number; enemy: string; count: number; maxCasts: number };
+  split?: { enemy: string; count: number };
+  disrupt?: {
+    range: number;
+    intervalSec: number;
+    durationSec: number;
+    atkIntervalMul: number;
+    targets: number;
+  };
 }
 
 export interface SkillDef {
   id: string;
   name: string;
-  description: string;            // UI에 그대로 표시
-  charge: 'auto' | 'attack' | 'hit';
+  description: string; // UI에 그대로 표시
+  charge: 'auto' | 'attack';
   spCost: number;
   spStart: number;
   trigger: 'manual' | 'auto';
-  condition: 'always' | 'enemyInRange' | 'allyDamagedInRange';
-  durationSec: number;            // 0이면 즉시형
+  condition: 'always' | 'enemyInRange';
+  durationSec: number; // 0이면 즉시형
   effects: Effect[];
 }
 
 export type Effect =
-  | { type: 'statMul'; stat: 'atk' | 'def' | 'res' | 'atkInterval'; value: number }
-  | { type: 'blockAdd'; value: number }
+  | { type: 'statMul'; stat: 'atk' | 'atkInterval'; value: number }
+  | { type: 'armorPenAdd'; value: number }
+  | { type: 'rangeOverride'; range: string }
+  | { type: 'multiTarget'; count: number }
+  | { type: 'chain'; radius: number; damageMuls: number[] }
   | { type: 'splash'; radius: number }
   | { type: 'onHitSlow'; amount: number; sec: number }
   | { type: 'stunEveryNthHit'; n: number; sec: number }
-  | { type: 'gainDp'; value: number }
-  | { type: 'healAllies'; ratioOfMaxHp: number }
-  | { type: 'pulseDamage'; count: number; intervalSec: number; atkMul: number; damageType: 'physical' | 'magic' }
+  | { type: 'killBounty'; value: number }
+  | { type: 'hasteAura'; value: number }
+  | {
+      type: 'pulseDamage';
+      count: number;
+      intervalSec: number;
+      atkMul: number;
+      damageType: 'physical' | 'magic';
+    }
   | { type: 'slowAura'; amount: number }
+  | { type: 'gravityField'; radius: number; slowAmount: number; bossSlowAmount: number; atkMul: number }
   | { type: 'pushback'; tiles: number };
 
 export interface RouteDef {
@@ -84,23 +173,23 @@ export interface RouteDef {
 }
 
 export interface SpawnGroup {
-  wave: number;                   // HUD 표시용 웨이브 번호 (1부터)
+  wave: number; // HUD 표시용 웨이브 번호 (1부터)
   atSec: number;
-  enemy: string;                  // EnemyDef.id
+  enemy: string; // EnemyDef.id
   count: number;
-  intervalSec: number;            // count가 1이면 0
-  route: string;                  // routes의 키
+  intervalSec: number; // count가 1이면 0
+  route: string; // routes의 키
 }
 
 export interface StageDef {
   id: string;
   name: string;
-  map: string[];                  // 02 문서 2절의 문자
+  description?: string;
+  map: string[]; // 02 문서 2절의 문자
   startDp: number;
-  dpPerSec?: number;              // 기본 1
   life: number;
   deployLimit: number;
-  roster?: string[];              // 없으면 모든 유닛
+  roster?: string[]; // 없으면 모든 유닛
   routes: Record<string, RouteDef>;
   spawns: SpawnGroup[];
 }
@@ -111,34 +200,68 @@ export interface ContentDb {
   skills: ReadonlyMap<string, SkillDef>;
   ranges: ReadonlyMap<string, RangeDef>;
   stages: ReadonlyMap<string, StageDef>;
-  unitOrder: readonly string[];   // units.json 순서 (UI 정렬 동점 처리용)
+  unitOrder: readonly string[]; // units.json 순서 (UI 정렬 동점 처리용)
+}
+
+export interface RawStageDef extends StageDef {
+  waveRepeat?: { count: number; periodSec: number };
+}
+
+export interface RawContent {
+  units: UnitDef[];
+  enemies: EnemyDef[];
+  skills: SkillDef[];
+  ranges: RangeDef[];
+  stages: RawStageDef[];
 }
 ```
 
+
+`RawContent`는 `units`, `enemies`, `skills`, `ranges`, `stages`의 배열을 가진 테스트·입력 구성용 타입입니다. `validateContent(raw: unknown): ContentDb`는 외부 JSON을 각 필드의 타입부터 검사해 새 객체로 구성합니다. 반환 Map은 타입 수준에서 읽기 전용이며, `unitOrder`는 원본 유닛 순서를 유지합니다.
+
+원본 스테이지의 선택 필드 `waveRepeat`는 기본 `spawns` 패턴을 `count`회 확장합니다. `count`는 1 이상의 정수, `periodSec`는 패턴의 마지막 예약 스폰 시각보다 큰 유한 양수여야 합니다. 반복마다 시각에 `periodSec × 반복 번호`, 웨이브에 `기본 최대 웨이브 × 반복 번호`를 더하며 적 종류·수·경로·개별 스폰 간격은 유지합니다. 검증 결과는 확장된 `StageDef.spawns`만 가지며 반복 설정을 남기지 않습니다. 따라서 sim·지도·HUD의 기존 타입을 유지하고, 검증된 콘텐츠를 다시 검증해도 중복 확장하지 않습니다. 설정이 없는 입력은 기존처럼 처리합니다. 실제 정원은 1~3번 12/20/25웨이브, 4~5번 50웨이브, 6~7번 60웨이브 전체를 직접 작성해 수·간격·지원 무리를 단계적으로 바꾸므로 `waveRepeat`를 사용하지 않습니다. 기존 반복 입력은 테스트 원본에서 계속 검증합니다. `StageDef`, sim·HUD·지도·세이브 계약은 동일합니다.
+
 ## 2. 검증 규칙 (src/data/validate.ts)
 
-외부 라이브러리 없이 직접 씁니다. 실패하면 `content/units[3].range: unknown range "longg"` 처럼 **경로가 들어간 메시지**로 throw합니다. 가능하면 에러를 모아서 한 번에 보여 줍니다.
+외부 라이브러리 없이 직접 씁니다. 실패하면 `content/units[3].range: unknown range "longg"` 처럼 **경로가 들어간 메시지**로 throw합니다. T1.1에서는 첫 오류를 표시하고 시작을 중단합니다. `main.ts`는 데이터 모듈을 동적으로 불러와 모듈 초기화 중의 검증 오류도 화면에 표시합니다.
 
+- 원시 객체·배열·문자열·불리언·열거형·좌표 튜플의 형태부터 검사합니다. 숫자는 유한해야 합니다.
 - 모든 id는 종류별로 유일해야 합니다.
 - 참조가 모두 존재해야 합니다: unit.skill, unit.range, spawn.enemy, spawn.route, stage.roster의 유닛.
+- `rangeOverride.range`도 존재하는 사거리 ID여야 하며 지속 스킬 하나당 최대 한 개입니다. 즉시 스킬과 상시 특성에는 사용할 수 없습니다.
+- `multiTarget.count`는 1 이상의 정수이며 지속 스킬 하나당 최대 한 개입니다. 즉시 스킬과 상시 특성에는 사용할 수 없습니다.
+- `chain.radius`는 양수, `damageMuls`는 1~5개이며 첫 값은 1, 이후는 0 초과 1 이하의 유한 값과 비증가 순서입니다. 특성/스킬당 연쇄 한 개만 허용하고 즉시형, splash/multiTarget 혼합을 거부합니다. 루아의 선택 `targetPriority`는 'boss'만 허용합니다.
+- `UnitDef.armorPen`과 `armorPenAdd.value`는 0 이상의 유한 정수입니다. 생략한 기본 관통력은 검증 결과에서 0으로 정규화하며 원본 JSON은 수정하지 않습니다. 관통 증가는 지속형 스킬에만 허용하며 여러 효과의 값을 합산합니다. 기존 입력과 마법 캐릭터는 필드 생략으로 호환됩니다.
 - 숫자 범위
   - hp, atkIntervalSec, speed, spCost는 0보다 커야 합니다.
-  - atk, def, cost, block, spStart는 0 이상이고, res는 0~100입니다.
+  - atk, def, cost, spStart는 0 이상이고, res는 0~100입니다.
   - `spStart ≤ spCost`
+  - 타일·사거리 좌표, wave, count, lifeDamage, life, deployLimit는 정수입니다. wave/count/lifeDamage/life/deployLimit는 1 이상입니다.
+  - redeploySec, durationSec, atSec, intervalSec, startDp는 0 이상입니다. 선택 `bounty`와 `killBounty.value`는 0 이상의 정수입니다.
 - 유닛
-  - `deployOn: "high"`면 `block === 0`입니다.
-  - `damageType`은 `"true"`가 될 수 없습니다.
-  - `traits`의 타입은 `statMul`, `splash`, `onHitSlow`만 허용합니다.
+  - `deployOn`은 "high"만 허용합니다. 아군에는 hp/def/res/block이 없고, 적에는 atk/atkIntervalSec/blockCost/damageType이 없습니다.
+  - 유닛의 `damageType`은 physical/magic만 허용합니다.
+  - `traits`의 타입은 `statMul`, `splash`, `onHitSlow`, `chain`을 허용합니다.
 - 스킬
-  - `pulseDamage`가 있으면 `durationSec ≥ (count − 1) × intervalSec`이어야 합니다.
-  - 즉시형(`durationSec === 0`) 스킬에는 `gainDp`, `healAllies`, `pushback`만 있어야 합니다.
-  - 지속형 스킬에는 이 세 가지가 없어야 합니다.
+  - 효과 타입과 필수 필드도 검사합니다. 배율·효과 시간·pulse 간격은 양수, 느려짐은 0~1, hasteAura 배율은 0 초과 1 이하, radius/tiles/DP는 0 이상, 횟수는 정수입니다.
+  - pulseDamage는 스킬당 최대 하나이며, 있으면 `durationSec ≥ (count − 1) × intervalSec`이어야 합니다.
+  - 즉시형(`durationSec === 0`) 스킬에는 `pushback`만 있어야 합니다.
+  - 지속형 스킬에는 `pushback`이 없어야 하며 `killBounty`는 지속형만 허용합니다.
 - 스테이지
   - 모든 줄의 길이가 같아야 합니다.
   - `from`, `to`, `via`가 맵 안에 있어야 하고, 지상 경로의 `from`은 `S`, `to`는 `G`여야 합니다.
-  - 지상 경로는 실제로 경로가 있어야 합니다 (검증 테스트에서 `createBattle`로 확인).
+  - 지상 경로는 실제로 경로가 있어야 합니다. 모든 스테이지의 `createBattle` 성공으로 확인합니다 (T1.3). data는 sim을 import하지 않으며, 구조 검증 후 전투 생성 단계에서 경로를 계산합니다.
   - 적이 `flying`이면 그 스폰 그룹의 route는 `flying: true`여야 하고, 반대도 마찬가지입니다.
   - `count ≥ 1`이고, `count > 1`이면 `intervalSec > 0`입니다.
+- M4 적 능력
+  - `bossSkill`은 `boss === true`에서만 허용합니다. 양수 첫 충전/재충전/예고·효과 수치와 예고 < 재충전을 검사합니다. 기존 능동 능력과의 중복·초기 보호막 없는 재구축·누락/비행 불일치/재소환·재분열 자식을 거부합니다. 구체적인 스킬 계약은 [10 문서](10-enemy-roster.md)를 따릅니다.
+  - 15종 확장의 `shieldHp`·돌진·재생·치유·가속·소환 선택 필드와 참조 검증은 [10-enemy-roster.md](10-enemy-roster.md)를 따릅니다. 모든 생성 경로의 상태 기본값과 선택 피해 필드·회복 이벤트도 같은 문서에서 정의합니다.
+  - 분열 자식은 존재해야 하고 부모와 비행 종류가 같아야 하며 다시 분열할 수 없습니다. `split.count`는 1 이상의 정수입니다.
+  - 방해 사거리·주기·지속 시간은 양수, 공격 간격 배율은 1 이상, 대상 수는 1 이상의 정수입니다.
+
+### 중력장 효과 (T4.28)
+
+`gravityField`는 `radius`, `slowAmount`, `bossSlowAmount`, `atkMul`을 가집니다. 반경/피해 배율은 양수, 둔화는 0~0.8의 유한 수입니다. 대상 조건 `enemyInRange`인 양수 지속 스킬의 단독 효과로만 허용하고 상시 특성·즉시형·중복 효과를 거부합니다. 엔티티에 활성 동안만 선택 필드 `gravityCenter: {x,y}`를 두며 기본 생성·재배치는 필드를 갖지 않습니다. 저장 컬렉션과는 별개이고 전체 상태 해시에 포함됩니다. 규칙은 02 문서를 따릅니다.
 
 ## 3. 초기 데이터
 
@@ -154,53 +277,154 @@ export interface ContentDb {
 
 ### units.json
 
-| id | 이름 | 역할 | 비용 | 배치 | HP | 공격 | 방어 | 마저 | 간격 | 저지 | 사거리 | 피해 | 대공 | 스킬 |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| squirrel | 토리 | 선봉 | 9 | 지상 | 1100 | 280 | 150 | 0 | 1.0 | 1 | melee | 물리 | X | acornPickup |
-| cat | 냥기사 | 가드 | 14 | 지상 | 1600 | 420 | 220 | 0 | 1.2 | 2 | melee | 물리 | X | nyangCombo |
-| bear | 뚜껑곰 | 디펜더 | 18 | 지상 | 2600 | 220 | 300 | 10 | 1.2 | 3 | melee | 물리 | X | potLidGuard |
-| penguin | 펭펭 | 스나이퍼 | 12 | 고지대 | 800 | 380 | 60 | 0 | 1.0 | 0 | long | 물리 | O | snowballBarrage |
-| sheep | 몽실 | 캐스터 | 17 | 고지대 | 800 | 420 | 50 | 15 | 1.6 | 0 | mid | 마법 | O | stardustShower |
-| bunny | 토실 | 메딕 | 15 | 고지대 | 750 | 260 | 40 | 10 | 2.85 | 0 | long | 회복 | X | carrotSoup |
-| mole | 굴굴 | 특수 | 8 | 지상 | 900 | 300 | 120 | 0 | 1.0 | 1 | melee | 물리 | X | tunnelAmbush |
-| snail | 끈끈 | 서포터 | 13 | 고지대 | 850 | 200 | 50 | 20 | 1.9 | 0 | mid | 마법 | O | stickyRoad |
+| id | 이름 | 비용 | 배치 | 공격 | 간격 | 사거리 | 피해 | 대공 | 스킬 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| squirrel | 토리 | 6 | 고지대 | 280 | 1 | mid | physical | X | acornPickup |
+| cat | 냥기사 | 9 | 고지대 | 420 | 1.2 | mid | physical | X | nyangCombo |
+| bear | 뚜껑곰 | 12 | 고지대 | 220 | 1.2 | mid | physical | X | potLidGuard |
+| penguin | 펭펭 | 8 | 고지대 | 380 | 1 | long | physical | O | snowballBarrage |
+| sheep | 몽실 | 11 | 고지대 | 420 | 1.6 | mid | magic | O | stardustShower |
+| bunny | 토실 | 10 | 고지대 | 260 | 2.85 | long | magic | X | carrotSoup |
+| mole | 굴굴 | 5 | 고지대 | 300 | 1 | mid | physical | X | tunnelAmbush |
+| snail | 끈끈 | 9 | 고지대 | 200 | 1.9 | mid | magic | O | stickyRoad |
 
 ```json
 [
-  { "id": "squirrel", "name": "토리", "animal": "다람쥐", "role": "vanguard", "art": "squirrel",
-    "cost": 9, "deployOn": "ground", "redeploySec": 30,
-    "hp": 1100, "atk": 280, "def": 150, "res": 0, "atkIntervalSec": 1.0,
-    "block": 1, "range": "melee", "damageType": "physical", "canHitAir": false, "skill": "acornPickup" },
-  { "id": "cat", "name": "냥기사", "animal": "고양이", "role": "guard", "art": "cat",
-    "cost": 14, "deployOn": "ground", "redeploySec": 40,
-    "hp": 1600, "atk": 420, "def": 220, "res": 0, "atkIntervalSec": 1.2,
-    "block": 2, "range": "melee", "damageType": "physical", "canHitAir": false, "skill": "nyangCombo" },
-  { "id": "bear", "name": "뚜껑곰", "animal": "곰", "role": "defender", "art": "bear",
-    "cost": 18, "deployOn": "ground", "redeploySec": 50,
-    "hp": 2600, "atk": 220, "def": 300, "res": 10, "atkIntervalSec": 1.2,
-    "block": 3, "range": "melee", "damageType": "physical", "canHitAir": false, "skill": "potLidGuard" },
-  { "id": "penguin", "name": "펭펭", "animal": "펭귄", "role": "sniper", "art": "penguin",
-    "cost": 12, "deployOn": "high", "redeploySec": 40,
-    "hp": 800, "atk": 380, "def": 60, "res": 0, "atkIntervalSec": 1.0,
-    "block": 0, "range": "long", "damageType": "physical", "canHitAir": true, "skill": "snowballBarrage" },
-  { "id": "sheep", "name": "몽실", "animal": "양", "role": "caster", "art": "sheep",
-    "cost": 17, "deployOn": "high", "redeploySec": 45,
-    "hp": 800, "atk": 420, "def": 50, "res": 15, "atkIntervalSec": 1.6,
-    "block": 0, "range": "mid", "damageType": "magic", "canHitAir": true, "skill": "stardustShower" },
-  { "id": "bunny", "name": "토실", "animal": "토끼", "role": "medic", "art": "bunny",
-    "cost": 15, "deployOn": "high", "redeploySec": 45,
-    "hp": 750, "atk": 260, "def": 40, "res": 10, "atkIntervalSec": 2.85,
-    "block": 0, "range": "long", "damageType": "heal", "canHitAir": false, "skill": "carrotSoup" },
-  { "id": "mole", "name": "굴굴", "animal": "두더지", "role": "specialist", "art": "mole",
-    "cost": 8, "deployOn": "ground", "redeploySec": 8,
-    "hp": 900, "atk": 300, "def": 120, "res": 0, "atkIntervalSec": 1.0,
-    "block": 1, "range": "melee", "damageType": "physical", "canHitAir": false, "skill": "tunnelAmbush" },
-  { "id": "snail", "name": "끈끈", "animal": "달팽이", "role": "supporter", "art": "snail",
-    "cost": 13, "deployOn": "high", "redeploySec": 45,
-    "hp": 850, "atk": 200, "def": 50, "res": 20, "atkIntervalSec": 1.9,
-    "block": 0, "range": "mid", "damageType": "magic", "canHitAir": true,
-    "traits": [{ "type": "onHitSlow", "amount": 0.2, "sec": 0.8 }],
-    "skill": "stickyRoad" }
+  {
+    "id": "squirrel",
+    "name": "토리",
+    "animal": "다람쥐",
+    "role": "vanguard",
+    "art": "squirrel",
+    "cost": 6,
+    "deployOn": "high",
+    "redeploySec": 30,
+    "atk": 280,
+    "atkIntervalSec": 1,
+    "range": "mid",
+    "damageType": "physical",
+    "canHitAir": false,
+    "skill": "acornPickup"
+  },
+  {
+    "id": "cat",
+    "name": "냥기사",
+    "animal": "고양이",
+    "role": "guard",
+    "art": "cat",
+    "cost": 9,
+    "deployOn": "high",
+    "redeploySec": 40,
+    "atk": 420,
+    "atkIntervalSec": 1.2,
+    "range": "mid",
+    "damageType": "physical",
+    "canHitAir": false,
+    "skill": "nyangCombo"
+  },
+  {
+    "id": "bear",
+    "name": "뚜껑곰",
+    "animal": "곰",
+    "role": "defender",
+    "art": "bear",
+    "cost": 12,
+    "deployOn": "high",
+    "redeploySec": 50,
+    "atk": 220,
+    "atkIntervalSec": 1.2,
+    "range": "mid",
+    "damageType": "physical",
+    "canHitAir": false,
+    "skill": "potLidGuard"
+  },
+  {
+    "id": "penguin",
+    "name": "펭펭",
+    "animal": "펭귄",
+    "role": "sniper",
+    "art": "penguin",
+    "cost": 8,
+    "deployOn": "high",
+    "redeploySec": 40,
+    "atk": 380,
+    "atkIntervalSec": 1,
+    "range": "long",
+    "damageType": "physical",
+    "canHitAir": true,
+    "skill": "snowballBarrage"
+  },
+  {
+    "id": "sheep",
+    "name": "몽실",
+    "animal": "양",
+    "role": "caster",
+    "art": "sheep",
+    "cost": 11,
+    "deployOn": "high",
+    "redeploySec": 45,
+    "atk": 420,
+    "atkIntervalSec": 1.6,
+    "range": "mid",
+    "damageType": "magic",
+    "canHitAir": true,
+    "skill": "stardustShower"
+  },
+  {
+    "id": "bunny",
+    "name": "토실",
+    "animal": "토끼",
+    "role": "medic",
+    "art": "bunny",
+    "cost": 10,
+    "deployOn": "high",
+    "redeploySec": 45,
+    "atk": 260,
+    "atkIntervalSec": 2.85,
+    "range": "long",
+    "damageType": "magic",
+    "canHitAir": false,
+    "skill": "carrotSoup"
+  },
+  {
+    "id": "mole",
+    "name": "굴굴",
+    "animal": "두더지",
+    "role": "specialist",
+    "art": "mole",
+    "cost": 5,
+    "deployOn": "high",
+    "redeploySec": 8,
+    "atk": 300,
+    "atkIntervalSec": 1,
+    "range": "mid",
+    "damageType": "physical",
+    "canHitAir": false,
+    "skill": "tunnelAmbush"
+  },
+  {
+    "id": "snail",
+    "name": "끈끈",
+    "animal": "달팽이",
+    "role": "supporter",
+    "art": "snail",
+    "cost": 9,
+    "deployOn": "high",
+    "redeploySec": 45,
+    "atk": 200,
+    "atkIntervalSec": 1.9,
+    "range": "mid",
+    "damageType": "magic",
+    "canHitAir": true,
+    "traits": [
+      {
+        "type": "onHitSlow",
+        "amount": 0.2,
+        "sec": 0.8
+      }
+    ],
+    "skill": "stickyRoad"
+  }
 ]
 ```
 
@@ -208,37 +432,162 @@ export interface ContentDb {
 
 ```json
 [
-  { "id": "acornPickup", "name": "도토리 줍줍", "description": "즉시 도토리 +12",
-    "charge": "auto", "spCost": 20, "spStart": 8, "trigger": "manual", "condition": "always",
-    "durationSec": 0, "effects": [{ "type": "gainDp", "value": 12 }] },
-  { "id": "nyangCombo", "name": "냥냥 연타", "description": "8초 동안 공격 속도 2배, 세 번째 공격마다 0.5초 기절",
-    "charge": "attack", "spCost": 12, "spStart": 0, "trigger": "manual", "condition": "always",
-    "durationSec": 8, "effects": [
-      { "type": "statMul", "stat": "atkInterval", "value": 0.5 },
-      { "type": "stunEveryNthHit", "n": 3, "sec": 0.5 } ] },
-  { "id": "potLidGuard", "name": "냄비뚜껑 방어", "description": "10초 동안 방어력 +80%, 저지 +1",
-    "charge": "hit", "spCost": 15, "spStart": 5, "trigger": "manual", "condition": "always",
-    "durationSec": 10, "effects": [
-      { "type": "statMul", "stat": "def", "value": 1.8 },
-      { "type": "blockAdd", "value": 1 } ] },
-  { "id": "snowballBarrage", "name": "눈덩이 폭격", "description": "15초 동안 공격이 반경 1칸 범위 피해, 맞은 적은 1.5초간 30% 둔화",
-    "charge": "auto", "spCost": 30, "spStart": 10, "trigger": "manual", "condition": "always",
-    "durationSec": 15, "effects": [
-      { "type": "splash", "radius": 1 },
-      { "type": "onHitSlow", "amount": 0.3, "sec": 1.5 } ] },
-  { "id": "stardustShower", "name": "별가루 샤워", "description": "사거리 안 모든 적에게 공격력 130% 마법 피해 3회",
-    "charge": "auto", "spCost": 35, "spStart": 15, "trigger": "manual", "condition": "enemyInRange",
-    "durationSec": 1.5, "effects": [
-      { "type": "pulseDamage", "count": 3, "intervalSec": 0.5, "atkMul": 1.3, "damageType": "magic" } ] },
-  { "id": "carrotSoup", "name": "당근 수프", "description": "사거리 안 아군 전원 최대 HP의 30% 회복 (자동 발동)",
-    "charge": "auto", "spCost": 25, "spStart": 10, "trigger": "auto", "condition": "allyDamagedInRange",
-    "durationSec": 0, "effects": [{ "type": "healAllies", "ratioOfMaxHp": 0.3 }] },
-  { "id": "tunnelAmbush", "name": "땅굴 기습", "description": "앞의 적 하나를 경로 뒤쪽으로 2칸 밀어냄",
-    "charge": "auto", "spCost": 10, "spStart": 5, "trigger": "manual", "condition": "enemyInRange",
-    "durationSec": 0, "effects": [{ "type": "pushback", "tiles": 2 }] },
-  { "id": "stickyRoad", "name": "끈적끈적 길", "description": "12초 동안 사거리 안 적 이동 속도 60% 감소",
-    "charge": "auto", "spCost": 25, "spStart": 8, "trigger": "manual", "condition": "always",
-    "durationSec": 12, "effects": [{ "type": "slowAura", "amount": 0.6 }] }
+  {
+    "id": "acornPickup",
+    "name": "전리품 수거",
+    "description": "12초 동안 토리의 사거리 안에서 처치된 적의 도토리 보상 +1. 발동만으로 도토리를 얻지는 않아요.",
+    "charge": "auto",
+    "spCost": 20,
+    "spStart": 8,
+    "trigger": "manual",
+    "condition": "always",
+    "durationSec": 12,
+    "effects": [
+      {
+        "type": "killBounty",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "id": "nyangCombo",
+    "name": "연속 참격",
+    "description": "8초 동안 공격 속도 2배, 세 번째 공격마다 0.5초 기절",
+    "charge": "attack",
+    "spCost": 12,
+    "spStart": 0,
+    "trigger": "manual",
+    "condition": "always",
+    "durationSec": 8,
+    "effects": [
+      {
+        "type": "statMul",
+        "stat": "atkInterval",
+        "value": 0.5
+      },
+      {
+        "type": "stunEveryNthHit",
+        "n": 3,
+        "sec": 0.5
+      }
+    ]
+  },
+  {
+    "id": "potLidGuard",
+    "name": "충격 제압",
+    "description": "10초 동안 공격력 +80%, 공격할 때마다 0.6초 기절",
+    "charge": "auto",
+    "spCost": 15,
+    "spStart": 5,
+    "trigger": "manual",
+    "condition": "always",
+    "durationSec": 10,
+    "effects": [
+      {
+        "type": "statMul",
+        "stat": "atk",
+        "value": 1.8
+      },
+      {
+        "type": "stunEveryNthHit",
+        "n": 1,
+        "sec": 0.6
+      }
+    ]
+  },
+  {
+    "id": "snowballBarrage",
+    "name": "냉각탄 포화",
+    "description": "15초 동안 공격이 반경 1칸 범위 피해, 맞은 적은 1.5초간 30% 둔화",
+    "charge": "auto",
+    "spCost": 30,
+    "spStart": 10,
+    "trigger": "manual",
+    "condition": "always",
+    "durationSec": 15,
+    "effects": [
+      {
+        "type": "splash",
+        "radius": 1
+      },
+      {
+        "type": "onHitSlow",
+        "amount": 0.3,
+        "sec": 1.5
+      }
+    ]
+  },
+  {
+    "id": "stardustShower",
+    "name": "아크 폭격",
+    "description": "사거리 안 모든 적에게 공격력 130% 마법 피해 3회",
+    "charge": "auto",
+    "spCost": 35,
+    "spStart": 15,
+    "trigger": "manual",
+    "condition": "enemyInRange",
+    "durationSec": 1.5,
+    "effects": [
+      {
+        "type": "pulseDamage",
+        "count": 3,
+        "intervalSec": 0.5,
+        "atkMul": 1.3,
+        "damageType": "magic"
+      }
+    ]
+  },
+  {
+    "id": "carrotSoup",
+    "name": "전술 가속",
+    "description": "8초 동안 사거리 안 친구들의 공격 간격 30% 감소 (자동 발동)",
+    "charge": "auto",
+    "spCost": 25,
+    "spStart": 10,
+    "trigger": "auto",
+    "condition": "enemyInRange",
+    "durationSec": 8,
+    "effects": [
+      {
+        "type": "hasteAura",
+        "value": 0.7
+      }
+    ]
+  },
+  {
+    "id": "tunnelAmbush",
+    "name": "돌파 사격",
+    "description": "앞의 적 하나를 경로 뒤쪽으로 2칸 밀어냄",
+    "charge": "auto",
+    "spCost": 10,
+    "spStart": 5,
+    "trigger": "manual",
+    "condition": "enemyInRange",
+    "durationSec": 0,
+    "effects": [
+      {
+        "type": "pushback",
+        "tiles": 2
+      }
+    ]
+  },
+  {
+    "id": "stickyRoad",
+    "name": "점착탄 지대",
+    "description": "12초 동안 사거리 안 적 이동 속도 60% 감소",
+    "charge": "auto",
+    "spCost": 25,
+    "spStart": 8,
+    "trigger": "manual",
+    "condition": "always",
+    "durationSec": 12,
+    "effects": [
+      {
+        "type": "slowAura",
+        "amount": 0.6
+      }
+    ]
+  }
 ]
 ```
 
@@ -248,26 +597,51 @@ export interface ContentDb {
 
 ```json
 [
-  { "id": "jelly", "name": "말썽젤리", "art": "jelly",
-    "hp": 600, "atk": 260, "def": 50, "res": 0, "atkIntervalSec": 1.7,
-    "speed": 0.9, "flying": false, "blockCost": 1, "lifeDamage": 1, "damageType": "physical" },
-  { "id": "hardJelly", "name": "단단젤리", "art": "hardJelly",
-    "hp": 1500, "atk": 400, "def": 300, "res": 0, "atkIntervalSec": 2.0,
-    "speed": 0.6, "flying": false, "blockCost": 1, "lifeDamage": 1, "damageType": "physical" },
-  { "id": "crow", "name": "까악", "art": "crow",
-    "hp": 450, "atk": 0, "def": 30, "res": 0, "atkIntervalSec": 1.0,
-    "speed": 1.2, "flying": true, "blockCost": 1, "lifeDamage": 1, "damageType": "physical" }
+  {
+    "id": "jelly",
+    "name": "말썽젤리",
+    "art": "jelly",
+    "hp": 600,
+    "def": 50,
+    "res": 0,
+    "speed": 0.9,
+    "flying": false,
+    "lifeDamage": 1
+  },
+  {
+    "id": "hardJelly",
+    "name": "단단젤리",
+    "art": "hardJelly",
+    "hp": 1500,
+    "def": 300,
+    "res": 0,
+    "speed": 0.6,
+    "flying": false,
+    "lifeDamage": 1
+  },
+  {
+    "id": "crow",
+    "name": "까악",
+    "art": "crow",
+    "hp": 450,
+    "def": 30,
+    "res": 0,
+    "speed": 1.2,
+    "flying": true,
+    "lifeDamage": 1
+  }
 ]
 ```
 
-설계 의도는 이렇습니다. 단단젤리는 방어력이 높아서 물리 공격이 거의 안 들어가므로 몽실(마법)이 필요합니다. 까악은 저지할 수 없으므로 대공이 되는 고지대 유닛이 필요합니다.
+설계 의도는 이렇습니다. 단단젤리는 방어력이 높아서 물리 공격이 거의 안 들어가므로 몽실(마법)이 필요합니다. 까악은 비행하므로 대공이 되는 친구가 필요합니다.
 
-### stages/stage-1.json
+### stages/stage-1.json — 첫 5웨이브 발췌
 
 ```json
 {
   "id": "stage-1",
   "name": "1-1 푸딩 창고 앞마당",
+  "description": "12웨이브의 짧은 방어전! 권총으로 첫 무리를 막고 대공·마법 친구와 마지막 혼성 공세를 맞아요.",
   "map": [
     "##HH###HH##",
     "S....H....#",
@@ -277,26 +651,100 @@ export interface ContentDb {
     "###########"
   ],
   "startDp": 10,
-  "dpPerSec": 1,
   "life": 3,
   "deployLimit": 7,
   "routes": {
-    "ground": { "from": [0, 1], "to": [10, 3] },
-    "air":    { "from": [0, 1], "to": [10, 3], "flying": true }
+    "ground": {
+      "from": [
+        0,
+        1
+      ],
+      "to": [
+        10,
+        3
+      ]
+    },
+    "air": {
+      "from": [
+        0,
+        1
+      ],
+      "to": [
+        10,
+        3
+      ],
+      "flying": true
+    }
   },
   "spawns": [
-    { "wave": 1, "atSec": 3,  "enemy": "jelly",     "count": 3, "intervalSec": 3,   "route": "ground" },
-    { "wave": 2, "atSec": 20, "enemy": "jelly",     "count": 4, "intervalSec": 2.5, "route": "ground" },
-    { "wave": 3, "atSec": 36, "enemy": "crow",      "count": 2, "intervalSec": 4,   "route": "air" },
-    { "wave": 3, "atSec": 45, "enemy": "hardJelly", "count": 1, "intervalSec": 0,   "route": "ground" },
-    { "wave": 4, "atSec": 56, "enemy": "jelly",     "count": 5, "intervalSec": 2,   "route": "ground" },
-    { "wave": 4, "atSec": 62, "enemy": "crow",      "count": 1, "intervalSec": 0,   "route": "air" },
-    { "wave": 5, "atSec": 76, "enemy": "hardJelly", "count": 2, "intervalSec": 5,   "route": "ground" },
-    { "wave": 5, "atSec": 80, "enemy": "jelly",     "count": 3, "intervalSec": 2,   "route": "ground" }
+    {
+      "wave": 1,
+      "atSec": 3,
+      "enemy": "jelly",
+      "count": 3,
+      "intervalSec": 2.5,
+      "route": "ground"
+    },
+    {
+      "wave": 2,
+      "atSec": 14,
+      "enemy": "jelly",
+      "count": 4,
+      "intervalSec": 2,
+      "route": "ground"
+    },
+    {
+      "wave": 3,
+      "atSec": 26,
+      "enemy": "crow",
+      "count": 2,
+      "intervalSec": 3,
+      "route": "air"
+    },
+    {
+      "wave": 3,
+      "atSec": 30,
+      "enemy": "hardJelly",
+      "count": 1,
+      "intervalSec": 0,
+      "route": "ground"
+    },
+    {
+      "wave": 4,
+      "atSec": 40,
+      "enemy": "jelly",
+      "count": 6,
+      "intervalSec": 1.7,
+      "route": "ground"
+    },
+    {
+      "wave": 4,
+      "atSec": 44,
+      "enemy": "crow",
+      "count": 2,
+      "intervalSec": 2,
+      "route": "air"
+    },
+    {
+      "wave": 5,
+      "atSec": 54,
+      "enemy": "hardJelly",
+      "count": 2,
+      "intervalSec": 3,
+      "route": "ground"
+    },
+    {
+      "wave": 5,
+      "atSec": 58,
+      "enemy": "jelly",
+      "count": 6,
+      "intervalSec": 1.5,
+      "route": "ground"
+    }
   ]
 }
 ```
 
-- 적은 모두 21마리입니다.
+- 위 예시는 현재 첫 5웨이브·26마리의 발췌입니다. 전체 1번은 12웨이브·119마리, 2번은 20웨이브·192마리, 3번은 25웨이브입니다. 편성과 검증 시간은 [09 문서](09-content-expansion.md)를 따릅니다.
 - 지상 경로는 하나로 정해집니다. 꺾이는 점은 (0,1) → (4,1) → (4,3) → (6,3) → (6,1) → (9,1) → (9,3) → (10,3)이고, 길이는 16타일입니다 (07 문서의 경로 테스트 기대값).
 - 이 맵은 기획 노트 목업과 같은 지형입니다.

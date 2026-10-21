@@ -1,0 +1,62 @@
+[
+  {
+    "mode": "uncapped-throughput",
+    "viewport": {
+      "width": 1920,
+      "height": 1080
+    },
+    "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 130V GPU (8GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "board": "22x12",
+    "units": 14,
+    "enemies": 60,
+    "frames": 2702,
+    "fps": 337.49687734199347,
+    "frameP95Ms": 4.300000000000182,
+    "frameP99Ms": 5.300000000000182,
+    "callbackP95Ms": 2.9000000059604645,
+    "callbackP99Ms": 3.4000000059604645,
+    "framesOver17_7Ms": 0,
+    "framesOver8_33Ms": 4,
+    "attacks": 114,
+    "skills": 14,
+    "gravityBursts": 1,
+    "rejected": 0,
+    "peakCalls": 113,
+    "peakParticles": 109,
+    "disposed": {
+      "geometries": 0,
+      "textures": 0
+    },
+    "errors": []
+  },
+  {
+    "mode": "uncapped-throughput",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 130V GPU (8GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "board": "22x12",
+    "units": 14,
+    "enemies": 60,
+    "frames": 2963,
+    "fps": 370.20378075140246,
+    "frameP95Ms": 3.800000000000182,
+    "frameP99Ms": 4.599999999999909,
+    "callbackP95Ms": 2.600000001490116,
+    "callbackP99Ms": 3,
+    "framesOver17_7Ms": 3,
+    "framesOver8_33Ms": 9,
+    "attacks": 117,
+    "skills": 14,
+    "gravityBursts": 1,
+    "rejected": 0,
+    "peakCalls": 115,
+    "peakParticles": 126,
+    "disposed": {
+      "geometries": 0,
+      "textures": 0
+    },
+    "errors": []
+  }
+]

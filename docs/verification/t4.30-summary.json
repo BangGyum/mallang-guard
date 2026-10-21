@@ -1,0 +1,553 @@
+{
+  "date": "2026-10-16",
+  "task": "T4.30 테스트 전원 지급·도토리 비용/수입 축소",
+  "testingGrant": {
+    "all": 14,
+    "enabled": true,
+    "existingSavePreserved": [
+      "money",
+      "stages",
+      "settings",
+      "pullsSinceNew",
+      "rngState"
+    ],
+    "disableDoesNotRevoke": true
+  },
+  "costs": [
+    {
+      "id": "squirrel",
+      "name": "토리",
+      "before": 9,
+      "after": 6
+    },
+    {
+      "id": "cat",
+      "name": "냥기사",
+      "before": 14,
+      "after": 9
+    },
+    {
+      "id": "bear",
+      "name": "뚜껑곰",
+      "before": 18,
+      "after": 12
+    },
+    {
+      "id": "penguin",
+      "name": "펭펭",
+      "before": 12,
+      "after": 8
+    },
+    {
+      "id": "sheep",
+      "name": "몽실",
+      "before": 17,
+      "after": 11
+    },
+    {
+      "id": "bunny",
+      "name": "토실",
+      "before": 15,
+      "after": 10
+    },
+    {
+      "id": "mole",
+      "name": "굴굴",
+      "before": 8,
+      "after": 5
+    },
+    {
+      "id": "snail",
+      "name": "끈끈",
+      "before": 13,
+      "after": 9
+    },
+    {
+      "id": "owl",
+      "name": "밤밤",
+      "before": 24,
+      "after": 16
+    },
+    {
+      "id": "wolf",
+      "name": "랑랑",
+      "before": 22,
+      "after": 15
+    },
+    {
+      "id": "fox",
+      "name": "루아",
+      "before": 28,
+      "after": 18
+    },
+    {
+      "id": "redPanda",
+      "name": "로크",
+      "before": 30,
+      "after": 20
+    },
+    {
+      "id": "deer",
+      "name": "세라",
+      "before": 27,
+      "after": 18
+    },
+    {
+      "id": "snowLeopard",
+      "name": "노바",
+      "before": 34,
+      "after": 23
+    }
+  ],
+  "bounties": [
+    {
+      "id": "jelly",
+      "before": 5,
+      "after": 3
+    },
+    {
+      "id": "hardJelly",
+      "before": 6,
+      "after": 3
+    },
+    {
+      "id": "crow",
+      "before": 5,
+      "after": 3
+    },
+    {
+      "id": "splitJelly",
+      "before": 5,
+      "after": 3
+    },
+    {
+      "id": "miniJelly",
+      "before": 1,
+      "after": 1
+    },
+    {
+      "id": "spitter",
+      "before": 7,
+      "after": 4
+    },
+    {
+      "id": "kingJelly",
+      "before": 20,
+      "after": 12
+    },
+    {
+      "id": "dashJelly",
+      "before": 5,
+      "after": 3
+    },
+    {
+      "id": "crystalJelly",
+      "before": 6,
+      "after": 3
+    },
+    {
+      "id": "shieldJelly",
+      "before": 6,
+      "after": 3
+    },
+    {
+      "id": "sproutJelly",
+      "before": 6,
+      "after": 3
+    },
+    {
+      "id": "flowerJelly",
+      "before": 7,
+      "after": 4
+    },
+    {
+      "id": "drummerJelly",
+      "before": 7,
+      "after": 4
+    },
+    {
+      "id": "nestJelly",
+      "before": 8,
+      "after": 4
+    },
+    {
+      "id": "armoredCrow",
+      "before": 7,
+      "after": 4
+    },
+    {
+      "id": "captainJelly",
+      "before": 12,
+      "after": 7
+    },
+    {
+      "id": "bigJelly",
+      "before": 12,
+      "after": 7
+    },
+    {
+      "id": "gateJelly",
+      "before": 16,
+      "after": 9
+    },
+    {
+      "id": "splitCaptain",
+      "before": 18,
+      "after": 10
+    },
+    {
+      "id": "greenhouseKeeper",
+      "before": 20,
+      "after": 12
+    },
+    {
+      "id": "stormCrow",
+      "before": 20,
+      "after": 12
+    },
+    {
+      "id": "gardenKing",
+      "before": 25,
+      "after": 15
+    }
+  ],
+  "toriBonus": {
+    "before": 2,
+    "after": 1
+  },
+  "cap": {
+    "before": 99,
+    "after": 50
+  },
+  "preserved": {
+    "unitCombatStats": true,
+    "enemyCombatStats": true,
+    "allStagesAndWaves": true,
+    "skillsExceptToriBounty": true,
+    "shopEconomyAndProbabilities": true
+  },
+  "checks": {
+    "typecheck": "passed",
+    "lint": "passed",
+    "build": "passed",
+    "diffWhitespace": "passed",
+    "testFiles": 87,
+    "tests": 1545,
+    "failures": 0,
+    "finalDescriptionRegression": {
+      "files": 3,
+      "tests": 135,
+      "failures": 0
+    },
+    "buildWarning": "기존 500kB 초과 번들 안내(711.41kB), 빌드는 성공"
+  },
+  "campaign": [
+    {
+      "stage": "stage-1",
+      "life": 3,
+      "seconds": 232.16666666666666,
+      "rejected": [],
+      "pending": 0,
+      "spentBefore": 98,
+      "spentAfter": 65,
+      "finalDp": 50,
+      "firstCapSec": 79.36666666666666,
+      "capPercent": 58.16223977027997
+    },
+    {
+      "stage": "stage-2",
+      "life": 3,
+      "seconds": 356.53333333333336,
+      "rejected": [],
+      "pending": 0,
+      "spentBefore": 98,
+      "spentAfter": 65,
+      "finalDp": 50,
+      "firstCapSec": 97.66666666666667,
+      "capPercent": 72.61593118922963
+    },
+    {
+      "stage": "stage-3",
+      "life": 3,
+      "seconds": 486.46666666666664,
+      "rejected": [],
+      "pending": 0,
+      "spentBefore": 98,
+      "spentAfter": 65,
+      "finalDp": 50,
+      "firstCapSec": 98.63333333333334,
+      "capPercent": 79.7313964643004
+    },
+    {
+      "stage": "stage-4",
+      "life": 3,
+      "seconds": 1079.0333333333333,
+      "rejected": [],
+      "pending": 0,
+      "spentBefore": 98,
+      "spentAfter": 65,
+      "finalDp": 50,
+      "firstCapSec": 114.16666666666667,
+      "capPercent": 89.4226313675821
+    },
+    {
+      "stage": "stage-5",
+      "life": 3,
+      "seconds": 1053.1666666666667,
+      "rejected": [],
+      "pending": 0,
+      "spentBefore": 98,
+      "spentAfter": 65,
+      "finalDp": 50,
+      "firstCapSec": 90.96666666666667,
+      "capPercent": 91.36572242443425
+    },
+    {
+      "stage": "stage-6",
+      "life": 3,
+      "seconds": 1438.7,
+      "rejected": [],
+      "pending": 0,
+      "spentBefore": 98,
+      "spentAfter": 65,
+      "finalDp": 50,
+      "firstCapSec": 78.2,
+      "capPercent": 94.56685433609046
+    },
+    {
+      "stage": "stage-7",
+      "life": 3,
+      "seconds": 1741.1333333333334,
+      "rejected": [],
+      "pending": 0,
+      "spentBefore": 119,
+      "spentAfter": 79,
+      "finalDp": 50,
+      "firstCapSec": 109.93333333333334,
+      "capPercent": 93.6880192977754
+    }
+  ],
+  "ui": [
+    {
+      "width": 1280,
+      "height": 720,
+      "owned": 14,
+      "selected": 14,
+      "costs": {
+        "squirrel": 6,
+        "cat": 9,
+        "bear": 12,
+        "penguin": 8,
+        "sheep": 11,
+        "bunny": 10,
+        "mole": 5,
+        "snail": 9,
+        "owl": 16,
+        "wolf": 15,
+        "fox": 18,
+        "redPanda": 20,
+        "deer": 18,
+        "snowLeopard": 23
+      },
+      "earned": 10,
+      "errors": []
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "owned": 14,
+      "selected": 14,
+      "costs": {
+        "squirrel": 6,
+        "cat": 9,
+        "bear": 12,
+        "penguin": 8,
+        "sheep": 11,
+        "bunny": 10,
+        "mole": 5,
+        "snail": 9,
+        "owl": 16,
+        "wolf": 15,
+        "fox": 18,
+        "redPanda": 20,
+        "deer": 18,
+        "snowLeopard": 23
+      },
+      "earned": 10,
+      "errors": []
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "owned": 14,
+      "selected": 14,
+      "costs": {
+        "squirrel": 6,
+        "cat": 9,
+        "bear": 12,
+        "penguin": 8,
+        "sheep": 11,
+        "bunny": 10,
+        "mole": 5,
+        "snail": 9,
+        "owl": 16,
+        "wolf": 15,
+        "fox": 18,
+        "redPanda": 20,
+        "deer": 18,
+        "snowLeopard": 23
+      },
+      "earned": 10,
+      "errors": []
+    }
+  ],
+  "shop": [
+    {
+      "viewport": "1920x1080",
+      "firstClear": 720,
+      "repeatClear": 320,
+      "defeatReward": 2,
+      "purchase": 2,
+      "unlockedDeployment": true,
+      "storageRollback": true,
+      "duplicateRefund": 30,
+      "guaranteedBatch": true,
+      "legacy": true,
+      "reload": true,
+      "dialog": {
+        "fits": true,
+        "confirm": true,
+        "scroll": true
+      },
+      "errors": []
+    },
+    {
+      "viewport": "844x390",
+      "firstClear": 720,
+      "repeatClear": 320,
+      "defeatReward": 2,
+      "purchase": 2,
+      "unlockedDeployment": true,
+      "storageRollback": true,
+      "duplicateRefund": 30,
+      "guaranteedBatch": true,
+      "legacy": true,
+      "reload": true,
+      "dialog": {
+        "fits": true,
+        "confirm": true,
+        "scroll": true
+      },
+      "errors": []
+    },
+    {
+      "viewport": "740x360",
+      "firstClear": 720,
+      "repeatClear": 320,
+      "defeatReward": 2,
+      "purchase": 2,
+      "unlockedDeployment": true,
+      "storageRollback": true,
+      "duplicateRefund": 30,
+      "guaranteedBatch": true,
+      "legacy": true,
+      "reload": true,
+      "dialog": {
+        "fits": true,
+        "confirm": true,
+        "scroll": true
+      },
+      "errors": []
+    },
+    {
+      "viewport": "390x844",
+      "firstClear": 720,
+      "repeatClear": 320,
+      "defeatReward": 2,
+      "purchase": 2,
+      "unlockedDeployment": true,
+      "storageRollback": true,
+      "duplicateRefund": 30,
+      "guaranteedBatch": true,
+      "legacy": true,
+      "reload": true,
+      "dialog": {
+        "fits": true,
+        "confirm": true,
+        "scroll": true
+      },
+      "errors": []
+    },
+    {
+      "viewport": "320x568",
+      "firstClear": 720,
+      "repeatClear": 320,
+      "defeatReward": 2,
+      "purchase": 2,
+      "unlockedDeployment": true,
+      "storageRollback": true,
+      "duplicateRefund": 30,
+      "guaranteedBatch": true,
+      "legacy": true,
+      "reload": true,
+      "dialog": {
+        "fits": true,
+        "confirm": true,
+        "scroll": true
+      },
+      "errors": []
+    }
+  ],
+  "production": {
+    "productionBase": "/mallang-guard/",
+    "portraits": 14,
+    "webgl": true,
+    "waves": 12,
+    "killOnlyIncome": true,
+    "exit": true,
+    "shopReturnToResult": true,
+    "currentBalanceAfterRecruit": true,
+    "rareShopUnits": 3,
+    "allOwnedByDefault": true,
+    "existingProfileGrant": true,
+    "collectionReload": true,
+    "duplicateRefund": 30,
+    "rareRates": "5% aggregate, 1.67% rounded per unit",
+    "productionFirstDrawSeed": 1,
+    "errors": []
+  },
+  "productionRare": {
+    "productionBase": "/mallang-guard/",
+    "portraits": 14,
+    "webgl": true,
+    "waves": 12,
+    "killOnlyIncome": true,
+    "exit": true,
+    "shopReturnToResult": true,
+    "currentBalanceAfterRecruit": true,
+    "rareShopUnits": 3,
+    "allOwnedByDefault": true,
+    "existingProfileGrant": true,
+    "collectionReload": true,
+    "duplicateRefund": 30,
+    "rareRates": "5% aggregate, 1.67% rounded per unit",
+    "productionFirstDrawSeed": 36,
+    "errors": []
+  },
+  "limits": [
+    "기존 고정 입력의 1~7 공략과 29개 승패 시나리오 회귀 검증이며 모든 조합의 난이도/재미를 보장하지 않습니다.",
+    "실제 앱 화면은 Edge headless의 가상 시계/터치 에뮬레이션 검사입니다.",
+    "배치 후 반복 소비처가 없어 도토리 50도 후반에 쌓입니다. 소비 콘텐츠는 미구현 후속 항목입니다."
+  ],
+  "evidence": [
+    "t4.30-tests.json",
+    "t4.30-economy-baseline.json",
+    "t4.30-economy-candidates.json",
+    "t4.30-economy-final.json",
+    "t4.30-testing-economy-ui.json",
+    "t4.30-shop.json",
+    "t4.30-production.json",
+    "t4.30-rare-production.json"
+  ],
+  "descriptionSync": "중간보스 안내도 실제 처치 보상 7개와 일치하도록 수정하고 회귀 검증"
+}

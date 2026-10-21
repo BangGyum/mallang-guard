@@ -1,0 +1,410 @@
+[
+  {
+    "viewport": "mouse-1920x1080",
+    "cards": 14,
+    "armorPen": [
+      {
+        "id": "squirrel",
+        "damageType": "physical",
+        "value": 5
+      },
+      {
+        "id": "cat",
+        "damageType": "physical",
+        "value": 10
+      },
+      {
+        "id": "bear",
+        "damageType": "physical",
+        "value": 5
+      },
+      {
+        "id": "penguin",
+        "damageType": "physical",
+        "value": 15
+      },
+      {
+        "id": "sheep",
+        "damageType": "magic",
+        "value": 0
+      },
+      {
+        "id": "bunny",
+        "damageType": "magic",
+        "value": 0
+      },
+      {
+        "id": "mole",
+        "damageType": "physical",
+        "value": 10
+      },
+      {
+        "id": "snail",
+        "damageType": "magic",
+        "value": 0
+      },
+      {
+        "id": "owl",
+        "damageType": "magic",
+        "value": 0
+      },
+      {
+        "id": "wolf",
+        "damageType": "physical",
+        "value": 120
+      },
+      {
+        "id": "fox",
+        "damageType": "physical",
+        "value": 220
+      },
+      {
+        "id": "redPanda",
+        "damageType": "physical",
+        "value": 60
+      },
+      {
+        "id": "deer",
+        "damageType": "magic",
+        "value": 0
+      },
+      {
+        "id": "snowLeopard",
+        "damageType": "magic",
+        "value": 0
+      }
+    ],
+    "preview": {
+      "right": 8,
+      "bottom": 8.25,
+      "topClear": true
+    },
+    "charging": {
+      "fits": true,
+      "avoidsUnit": true,
+      "buttons": true,
+      "skillHeight": 65,
+      "statsVisible": true
+    },
+    "edge": {
+      "fits": true,
+      "avoidsUnit": true,
+      "buttons": true,
+      "skillHeight": 65,
+      "statsVisible": true
+    },
+    "tapDeploy": true,
+    "dragDeploy": true,
+    "manualSkill": true,
+    "retreat": true,
+    "unavailableInfo": true,
+    "rejected": [],
+    "errors": []
+  },
+  {
+    "viewport": "touch-844x390",
+    "cards": 14,
+    "armorPen": [
+      {
+        "id": "squirrel",
+        "damageType": "physical",
+        "value": 5
+      },
+      {
+        "id": "cat",
+        "damageType": "physical",
+        "value": 10
+      },
+      {
+        "id": "bear",
+        "damageType": "physical",
+        "value": 5
+      },
+      {
+        "id": "penguin",
+        "damageType": "physical",
+        "value": 15
+      },
+      {
+        "id": "sheep",
+        "damageType": "magic",
+        "value": 0
+      },
+      {
+        "id": "bunny",
+        "damageType": "magic",
+        "value": 0
+      },
+      {
+        "id": "mole",
+        "damageType": "physical",
+        "value": 10
+      },
+      {
+        "id": "snail",
+        "damageType": "magic",
+        "value": 0
+      },
+      {
+        "id": "owl",
+        "damageType": "magic",
+        "value": 0
+      },
+      {
+        "id": "wolf",
+        "damageType": "physical",
+        "value": 120
+      },
+      {
+        "id": "fox",
+        "damageType": "physical",
+        "value": 220
+      },
+      {
+        "id": "redPanda",
+        "damageType": "physical",
+        "value": 60
+      },
+      {
+        "id": "deer",
+        "damageType": "magic",
+        "value": 0
+      },
+      {
+        "id": "snowLeopard",
+        "damageType": "magic",
+        "value": 0
+      }
+    ],
+    "preview": {
+      "right": 8,
+      "bottom": 8,
+      "topClear": true
+    },
+    "charging": {
+      "fits": true,
+      "avoidsUnit": true,
+      "buttons": true,
+      "skillHeight": 65,
+      "statsVisible": true
+    },
+    "edge": {
+      "fits": true,
+      "avoidsUnit": true,
+      "buttons": true,
+      "skillHeight": 65,
+      "statsVisible": true
+    },
+    "tapDeploy": true,
+    "dragDeploy": true,
+    "manualSkill": true,
+    "retreat": true,
+    "unavailableInfo": true,
+    "rejected": [],
+    "errors": []
+  },
+  {
+    "viewport": "touch-740x360",
+    "cards": 14,
+    "armorPen": [
+      {
+        "id": "squirrel",
+        "damageType": "physical",
+        "value": 5
+      },
+      {
+        "id": "cat",
+        "damageType": "physical",
+        "value": 10
+      },
+      {
+        "id": "bear",
+        "damageType": "physical",
+        "value": 5
+      },
+      {
+        "id": "penguin",
+        "damageType": "physical",
+        "value": 15
+      },
+      {
+        "id": "sheep",
+        "damageType": "magic",
+        "value": 0
+      },
+      {
+        "id": "bunny",
+        "damageType": "magic",
+        "value": 0
+      },
+      {
+        "id": "mole",
+        "damageType": "physical",
+        "value": 10
+      },
+      {
+        "id": "snail",
+        "damageType": "magic",
+        "value": 0
+      },
+      {
+        "id": "owl",
+        "damageType": "magic",
+        "value": 0
+      },
+      {
+        "id": "wolf",
+        "damageType": "physical",
+        "value": 120
+      },
+      {
+        "id": "fox",
+        "damageType": "physical",
+        "value": 220
+      },
+      {
+        "id": "redPanda",
+        "damageType": "physical",
+        "value": 60
+      },
+      {
+        "id": "deer",
+        "damageType": "magic",
+        "value": 0
+      },
+      {
+        "id": "snowLeopard",
+        "damageType": "magic",
+        "value": 0
+      }
+    ],
+    "preview": {
+      "right": 8,
+      "bottom": 8,
+      "topClear": true
+    },
+    "charging": {
+      "fits": true,
+      "avoidsUnit": true,
+      "buttons": true,
+      "skillHeight": 65,
+      "statsVisible": true
+    },
+    "edge": {
+      "fits": true,
+      "avoidsUnit": true,
+      "buttons": true,
+      "skillHeight": 65,
+      "statsVisible": true
+    },
+    "tapDeploy": true,
+    "dragDeploy": true,
+    "manualSkill": true,
+    "retreat": true,
+    "unavailableInfo": true,
+    "rejected": [],
+    "errors": []
+  },
+  {
+    "viewport": "touch-390x844",
+    "cards": 14,
+    "armorPen": [
+      {
+        "id": "squirrel",
+        "damageType": "physical",
+        "value": 5
+      },
+      {
+        "id": "cat",
+        "damageType": "physical",
+        "value": 10
+      },
+      {
+        "id": "bear",
+        "damageType": "physical",
+        "value": 5
+      },
+      {
+        "id": "penguin",
+        "damageType": "physical",
+        "value": 15
+      },
+      {
+        "id": "sheep",
+        "damageType": "magic",
+        "value": 0
+      },
+      {
+        "id": "bunny",
+        "damageType": "magic",
+        "value": 0
+      },
+      {
+        "id": "mole",
+        "damageType": "physical",
+        "value": 10
+      },
+      {
+        "id": "snail",
+        "damageType": "magic",
+        "value": 0
+      },
+      {
+        "id": "owl",
+        "damageType": "magic",
+        "value": 0
+      },
+      {
+        "id": "wolf",
+        "damageType": "physical",
+        "value": 120
+      },
+      {
+        "id": "fox",
+        "damageType": "physical",
+        "value": 220
+      },
+      {
+        "id": "redPanda",
+        "damageType": "physical",
+        "value": 60
+      },
+      {
+        "id": "deer",
+        "damageType": "magic",
+        "value": 0
+      },
+      {
+        "id": "snowLeopard",
+        "damageType": "magic",
+        "value": 0
+      }
+    ],
+    "preview": {
+      "right": 8,
+      "bottom": 8,
+      "topClear": true
+    },
+    "charging": {
+      "fits": true,
+      "avoidsUnit": true,
+      "buttons": true,
+      "skillHeight": 65,
+      "statsVisible": true
+    },
+    "edge": {
+      "fits": true,
+      "avoidsUnit": true,
+      "buttons": true,
+      "skillHeight": 65,
+      "statsVisible": true
+    },
+    "tapDeploy": true,
+    "dragDeploy": true,
+    "manualSkill": true,
+    "retreat": true,
+    "unavailableInfo": true,
+    "rejected": [],
+    "errors": []
+  }
+]

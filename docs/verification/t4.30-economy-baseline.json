@@ -1,0 +1,305 @@
+[
+  {
+    "rewardScale": 1,
+    "stage": "stage-1",
+    "cap": 99,
+    "phase": "won",
+    "life": 3,
+    "killed": 120,
+    "seconds": 232.16666666666666,
+    "gained": 187,
+    "spent": 98,
+    "remaining": 99,
+    "firstCapSec": 82.66666666666667,
+    "capPercent": 57.4300071787509,
+    "completedDeploySec": 85,
+    "checkpoints": [
+      {
+        "second": 30,
+        "dp": 14,
+        "units": 3
+      },
+      {
+        "second": 60,
+        "dp": 46,
+        "units": 5
+      },
+      {
+        "second": 120,
+        "dp": 99,
+        "units": 7
+      },
+      {
+        "second": 180,
+        "dp": 99,
+        "units": 7
+      }
+    ],
+    "rejected": [],
+    "pending": 0
+  },
+  {
+    "rewardScale": 1,
+    "stage": "stage-2",
+    "cap": 99,
+    "phase": "won",
+    "life": 3,
+    "killed": 193,
+    "seconds": 356.53333333333336,
+    "gained": 179,
+    "spent": 98,
+    "remaining": 99,
+    "firstCapSec": 103.66666666666667,
+    "capPercent": 70.93305908750935,
+    "completedDeploySec": 54.6,
+    "checkpoints": [
+      {
+        "second": 30,
+        "dp": 7,
+        "units": 3
+      },
+      {
+        "second": 60,
+        "dp": 26,
+        "units": 7
+      },
+      {
+        "second": 120,
+        "dp": 99,
+        "units": 7
+      },
+      {
+        "second": 180,
+        "dp": 99,
+        "units": 7
+      },
+      {
+        "second": 300,
+        "dp": 99,
+        "units": 7
+      }
+    ],
+    "rejected": [],
+    "pending": 0
+  },
+  {
+    "rewardScale": 1,
+    "stage": "stage-3",
+    "cap": 99,
+    "phase": "won",
+    "life": 3,
+    "killed": 378,
+    "seconds": 486.46666666666664,
+    "gained": 181,
+    "spent": 98,
+    "remaining": 99,
+    "firstCapSec": 105.6,
+    "capPercent": 78.2993010826367,
+    "completedDeploySec": 63.13333333333333,
+    "checkpoints": [
+      {
+        "second": 30,
+        "dp": 17,
+        "units": 2
+      },
+      {
+        "second": 60,
+        "dp": 13,
+        "units": 6
+      },
+      {
+        "second": 120,
+        "dp": 99,
+        "units": 7
+      },
+      {
+        "second": 180,
+        "dp": 99,
+        "units": 7
+      },
+      {
+        "second": 300,
+        "dp": 99,
+        "units": 7
+      }
+    ],
+    "rejected": [],
+    "pending": 0
+  },
+  {
+    "rewardScale": 1,
+    "stage": "stage-4",
+    "cap": 99,
+    "phase": "won",
+    "life": 3,
+    "killed": 443,
+    "seconds": 1079.0333333333333,
+    "gained": 173,
+    "spent": 98,
+    "remaining": 99,
+    "firstCapSec": 125.96666666666667,
+    "capPercent": 88.32905996107627,
+    "completedDeploySec": 52.166666666666664,
+    "checkpoints": [
+      {
+        "second": 30,
+        "dp": 3,
+        "units": 4
+      },
+      {
+        "second": 60,
+        "dp": 10,
+        "units": 7
+      },
+      {
+        "second": 120,
+        "dp": 98,
+        "units": 7
+      },
+      {
+        "second": 180,
+        "dp": 99,
+        "units": 7
+      },
+      {
+        "second": 300,
+        "dp": 99,
+        "units": 7
+      }
+    ],
+    "rejected": [],
+    "pending": 0
+  },
+  {
+    "rewardScale": 1,
+    "stage": "stage-5",
+    "cap": 99,
+    "phase": "won",
+    "life": 3,
+    "killed": 474,
+    "seconds": 1053.1666666666667,
+    "gained": 175,
+    "spent": 98,
+    "remaining": 99,
+    "firstCapSec": 96.1,
+    "capPercent": 90.8783035290394,
+    "completedDeploySec": 54.4,
+    "checkpoints": [
+      {
+        "second": 30,
+        "dp": 11,
+        "units": 3
+      },
+      {
+        "second": 60,
+        "dp": 12,
+        "units": 7
+      },
+      {
+        "second": 120,
+        "dp": 99,
+        "units": 7
+      },
+      {
+        "second": 180,
+        "dp": 99,
+        "units": 7
+      },
+      {
+        "second": 300,
+        "dp": 99,
+        "units": 7
+      }
+    ],
+    "rejected": [],
+    "pending": 0
+  },
+  {
+    "rewardScale": 1,
+    "stage": "stage-6",
+    "cap": 99,
+    "phase": "won",
+    "life": 3,
+    "killed": 435,
+    "seconds": 1438.7,
+    "gained": 172,
+    "spent": 98,
+    "remaining": 99,
+    "firstCapSec": 95.06666666666666,
+    "capPercent": 93.39449966404855,
+    "completedDeploySec": 54.63333333333333,
+    "checkpoints": [
+      {
+        "second": 30,
+        "dp": 8,
+        "units": 4
+      },
+      {
+        "second": 60,
+        "dp": 16,
+        "units": 7
+      },
+      {
+        "second": 120,
+        "dp": 99,
+        "units": 7
+      },
+      {
+        "second": 180,
+        "dp": 99,
+        "units": 7
+      },
+      {
+        "second": 300,
+        "dp": 99,
+        "units": 7
+      }
+    ],
+    "rejected": [],
+    "pending": 0
+  },
+  {
+    "rewardScale": 1,
+    "stage": "stage-7",
+    "cap": 99,
+    "phase": "won",
+    "life": 3,
+    "killed": 498,
+    "seconds": 1741.1333333333334,
+    "gained": 193,
+    "spent": 119,
+    "remaining": 99,
+    "firstCapSec": 111.96666666666667,
+    "capPercent": 93.5712371252441,
+    "completedDeploySec": 80,
+    "checkpoints": [
+      {
+        "second": 30,
+        "dp": 16,
+        "units": 4
+      },
+      {
+        "second": 60,
+        "dp": 17,
+        "units": 4
+      },
+      {
+        "second": 120,
+        "dp": 99,
+        "units": 7
+      },
+      {
+        "second": 180,
+        "dp": 99,
+        "units": 7
+      },
+      {
+        "second": 300,
+        "dp": 99,
+        "units": 7
+      }
+    ],
+    "rejected": [],
+    "pending": 0
+  }
+]

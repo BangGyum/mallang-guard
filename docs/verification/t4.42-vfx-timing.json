@@ -1,0 +1,236 @@
+[
+  {
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "unit": "fox",
+    "samples": [
+      {
+        "frameMs": 8.333333333333334,
+        "drawCalls": 29,
+        "particles": 8,
+        "stateUnchanged": true
+      },
+      {
+        "frameMs": 16.666666666666668,
+        "drawCalls": 29,
+        "particles": 8,
+        "stateUnchanged": true
+      },
+      {
+        "frameMs": 33.333333333333336,
+        "drawCalls": 29,
+        "particles": 8,
+        "stateUnchanged": true
+      },
+      {
+        "frameMs": 150,
+        "drawCalls": 29,
+        "particles": 8,
+        "stateUnchanged": true
+      },
+      {
+        "frameMs": 300,
+        "drawCalls": 29,
+        "particles": 8,
+        "stateUnchanged": true
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "unit": "redPanda",
+    "samples": [
+      {
+        "frameMs": 8.333333333333334,
+        "drawCalls": 29,
+        "particles": 8,
+        "stateUnchanged": true
+      },
+      {
+        "frameMs": 16.666666666666668,
+        "drawCalls": 29,
+        "particles": 8,
+        "stateUnchanged": true
+      },
+      {
+        "frameMs": 33.333333333333336,
+        "drawCalls": 29,
+        "particles": 8,
+        "stateUnchanged": true
+      },
+      {
+        "frameMs": 150,
+        "drawCalls": 29,
+        "particles": 8,
+        "stateUnchanged": true
+      },
+      {
+        "frameMs": 300,
+        "drawCalls": 29,
+        "particles": 8,
+        "stateUnchanged": true
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "unit": "deer",
+    "samples": [
+      {
+        "frameMs": 8.333333333333334,
+        "drawCalls": 30,
+        "particles": 24,
+        "stateUnchanged": true
+      },
+      {
+        "frameMs": 16.666666666666668,
+        "drawCalls": 30,
+        "particles": 24,
+        "stateUnchanged": true
+      },
+      {
+        "frameMs": 33.333333333333336,
+        "drawCalls": 30,
+        "particles": 24,
+        "stateUnchanged": true
+      },
+      {
+        "frameMs": 150,
+        "drawCalls": 30,
+        "particles": 24,
+        "stateUnchanged": true
+      },
+      {
+        "frameMs": 300,
+        "drawCalls": 30,
+        "particles": 24,
+        "stateUnchanged": true
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "unit": "fox",
+    "samples": [
+      {
+        "frameMs": 8.333333333333334,
+        "drawCalls": 29,
+        "particles": 8,
+        "stateUnchanged": true
+      },
+      {
+        "frameMs": 16.666666666666668,
+        "drawCalls": 29,
+        "particles": 8,
+        "stateUnchanged": true
+      },
+      {
+        "frameMs": 33.333333333333336,
+        "drawCalls": 29,
+        "particles": 8,
+        "stateUnchanged": true
+      },
+      {
+        "frameMs": 150,
+        "drawCalls": 29,
+        "particles": 8,
+        "stateUnchanged": true
+      },
+      {
+        "frameMs": 300,
+        "drawCalls": 29,
+        "particles": 8,
+        "stateUnchanged": true
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "unit": "redPanda",
+    "samples": [
+      {
+        "frameMs": 8.333333333333334,
+        "drawCalls": 29,
+        "particles": 8,
+        "stateUnchanged": true
+      },
+      {
+        "frameMs": 16.666666666666668,
+        "drawCalls": 29,
+        "particles": 8,
+        "stateUnchanged": true
+      },
+      {
+        "frameMs": 33.333333333333336,
+        "drawCalls": 29,
+        "particles": 8,
+        "stateUnchanged": true
+      },
+      {
+        "frameMs": 150,
+        "drawCalls": 29,
+        "particles": 8,
+        "stateUnchanged": true
+      },
+      {
+        "frameMs": 300,
+        "drawCalls": 29,
+        "particles": 8,
+        "stateUnchanged": true
+      }
+    ]
+  },
+  {
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "unit": "deer",
+    "samples": [
+      {
+        "frameMs": 8.333333333333334,
+        "drawCalls": 30,
+        "particles": 24,
+        "stateUnchanged": true
+      },
+      {
+        "frameMs": 16.666666666666668,
+        "drawCalls": 30,
+        "particles": 24,
+        "stateUnchanged": true
+      },
+      {
+        "frameMs": 33.333333333333336,
+        "drawCalls": 30,
+        "particles": 24,
+        "stateUnchanged": true
+      },
+      {
+        "frameMs": 150,
+        "drawCalls": 30,
+        "particles": 24,
+        "stateUnchanged": true
+      },
+      {
+        "frameMs": 300,
+        "drawCalls": 30,
+        "particles": 24,
+        "stateUnchanged": true
+      }
+    ]
+  }
+]

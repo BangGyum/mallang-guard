@@ -1,0 +1,25 @@
+{
+  "legacyUnlock": true,
+  "previewTiles": 264,
+  "portrait": true,
+  "compactSelection": true,
+  "units": [
+    {
+      "unitId": "squirrel",
+      "tile": {
+        "x": 20,
+        "y": 8
+      },
+      "dir": "left"
+    },
+    {
+      "unitId": "penguin",
+      "tile": {
+        "x": 2,
+        "y": 1
+      },
+      "dir": "down"
+    }
+  ],
+  "errors": []
+}

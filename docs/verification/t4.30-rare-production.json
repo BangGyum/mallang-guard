@@ -1,0 +1,18 @@
+{
+  "productionBase": "/mallang-guard/",
+  "portraits": 14,
+  "webgl": true,
+  "waves": 12,
+  "killOnlyIncome": true,
+  "exit": true,
+  "shopReturnToResult": true,
+  "currentBalanceAfterRecruit": true,
+  "rareShopUnits": 3,
+  "allOwnedByDefault": true,
+  "existingProfileGrant": true,
+  "collectionReload": true,
+  "duplicateRefund": 30,
+  "rareRates": "5% aggregate, 1.67% rounded per unit",
+  "productionFirstDrawSeed": 36,
+  "errors": []
+}

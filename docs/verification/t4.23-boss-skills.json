@@ -1,0 +1,557 @@
+[
+  {
+    "viewport": "1920x1080",
+    "checks": [
+      {
+        "id": "bigJelly",
+        "name": "덩치젤리",
+        "skill": "웅크린 돌진",
+        "layout": {
+          "fits": true,
+          "separated": true,
+          "buttons": true,
+          "skillVisible": true
+        },
+        "windupSound": true,
+        "castSound": true,
+        "windups": 1,
+        "casts": 1
+      },
+      {
+        "id": "gateJelly",
+        "name": "성문젤리",
+        "skill": "방벽 재구축",
+        "layout": {
+          "fits": true,
+          "separated": true,
+          "buttons": true,
+          "skillVisible": true
+        },
+        "windupSound": true,
+        "castSound": true,
+        "windups": 1,
+        "casts": 1
+      },
+      {
+        "id": "splitCaptain",
+        "name": "분열대장",
+        "skill": "분신 증식",
+        "layout": {
+          "fits": true,
+          "separated": true,
+          "buttons": true,
+          "skillVisible": true
+        },
+        "windupSound": true,
+        "castSound": true,
+        "windups": 1,
+        "casts": 1
+      },
+      {
+        "id": "greenhouseKeeper",
+        "name": "온실지기",
+        "skill": "생명의 개화",
+        "layout": {
+          "fits": true,
+          "separated": true,
+          "buttons": true,
+          "skillVisible": true
+        },
+        "windupSound": true,
+        "castSound": true,
+        "windups": 1,
+        "casts": 1
+      },
+      {
+        "id": "stormCrow",
+        "name": "폭풍까악",
+        "skill": "폭풍 활강",
+        "layout": {
+          "fits": true,
+          "separated": true,
+          "buttons": true,
+          "skillVisible": true
+        },
+        "windupSound": true,
+        "castSound": true,
+        "windups": 1,
+        "casts": 1
+      },
+      {
+        "id": "kingJelly",
+        "name": "왕젤리",
+        "skill": "먹물 봉인",
+        "layout": {
+          "fits": true,
+          "separated": true,
+          "buttons": true,
+          "skillVisible": true
+        },
+        "windupSound": true,
+        "castSound": true,
+        "windups": 1,
+        "casts": 1
+      },
+      {
+        "id": "gardenKing",
+        "name": "정원군주",
+        "skill": "왕실 집결",
+        "layout": {
+          "fits": true,
+          "separated": true,
+          "buttons": true,
+          "skillVisible": true
+        },
+        "windupSound": true,
+        "castSound": true,
+        "windups": 1,
+        "casts": 1
+      }
+    ],
+    "errors": []
+  },
+  {
+    "viewport": "844x390",
+    "checks": [
+      {
+        "id": "bigJelly",
+        "name": "덩치젤리",
+        "skill": "웅크린 돌진",
+        "layout": {
+          "fits": true,
+          "separated": true,
+          "buttons": true,
+          "skillVisible": true
+        },
+        "windupSound": true,
+        "castSound": true,
+        "windups": 1,
+        "casts": 1
+      },
+      {
+        "id": "gateJelly",
+        "name": "성문젤리",
+        "skill": "방벽 재구축",
+        "layout": {
+          "fits": true,
+          "separated": true,
+          "buttons": true,
+          "skillVisible": true
+        },
+        "windupSound": true,
+        "castSound": true,
+        "windups": 1,
+        "casts": 1
+      },
+      {
+        "id": "splitCaptain",
+        "name": "분열대장",
+        "skill": "분신 증식",
+        "layout": {
+          "fits": true,
+          "separated": true,
+          "buttons": true,
+          "skillVisible": true
+        },
+        "windupSound": true,
+        "castSound": true,
+        "windups": 1,
+        "casts": 1
+      },
+      {
+        "id": "greenhouseKeeper",
+        "name": "온실지기",
+        "skill": "생명의 개화",
+        "layout": {
+          "fits": true,
+          "separated": true,
+          "buttons": true,
+          "skillVisible": true
+        },
+        "windupSound": true,
+        "castSound": true,
+        "windups": 1,
+        "casts": 1
+      },
+      {
+        "id": "stormCrow",
+        "name": "폭풍까악",
+        "skill": "폭풍 활강",
+        "layout": {
+          "fits": true,
+          "separated": true,
+          "buttons": true,
+          "skillVisible": true
+        },
+        "windupSound": true,
+        "castSound": true,
+        "windups": 1,
+        "casts": 1
+      },
+      {
+        "id": "kingJelly",
+        "name": "왕젤리",
+        "skill": "먹물 봉인",
+        "layout": {
+          "fits": true,
+          "separated": true,
+          "buttons": true,
+          "skillVisible": true
+        },
+        "windupSound": true,
+        "castSound": true,
+        "windups": 1,
+        "casts": 1
+      },
+      {
+        "id": "gardenKing",
+        "name": "정원군주",
+        "skill": "왕실 집결",
+        "layout": {
+          "fits": true,
+          "separated": true,
+          "buttons": true,
+          "skillVisible": true
+        },
+        "windupSound": true,
+        "castSound": true,
+        "windups": 1,
+        "casts": 1
+      }
+    ],
+    "errors": []
+  },
+  {
+    "viewport": "740x360",
+    "checks": [
+      {
+        "id": "bigJelly",
+        "name": "덩치젤리",
+        "skill": "웅크린 돌진",
+        "layout": {
+          "fits": true,
+          "separated": true,
+          "buttons": true,
+          "skillVisible": true
+        },
+        "windupSound": true,
+        "castSound": true,
+        "windups": 1,
+        "casts": 1
+      },
+      {
+        "id": "gateJelly",
+        "name": "성문젤리",
+        "skill": "방벽 재구축",
+        "layout": {
+          "fits": true,
+          "separated": true,
+          "buttons": true,
+          "skillVisible": true
+        },
+        "windupSound": true,
+        "castSound": true,
+        "windups": 1,
+        "casts": 1
+      },
+      {
+        "id": "splitCaptain",
+        "name": "분열대장",
+        "skill": "분신 증식",
+        "layout": {
+          "fits": true,
+          "separated": true,
+          "buttons": true,
+          "skillVisible": true
+        },
+        "windupSound": true,
+        "castSound": true,
+        "windups": 1,
+        "casts": 1
+      },
+      {
+        "id": "greenhouseKeeper",
+        "name": "온실지기",
+        "skill": "생명의 개화",
+        "layout": {
+          "fits": true,
+          "separated": true,
+          "buttons": true,
+          "skillVisible": true
+        },
+        "windupSound": true,
+        "castSound": true,
+        "windups": 1,
+        "casts": 1
+      },
+      {
+        "id": "stormCrow",
+        "name": "폭풍까악",
+        "skill": "폭풍 활강",
+        "layout": {
+          "fits": true,
+          "separated": true,
+          "buttons": true,
+          "skillVisible": true
+        },
+        "windupSound": true,
+        "castSound": true,
+        "windups": 1,
+        "casts": 1
+      },
+      {
+        "id": "kingJelly",
+        "name": "왕젤리",
+        "skill": "먹물 봉인",
+        "layout": {
+          "fits": true,
+          "separated": true,
+          "buttons": true,
+          "skillVisible": true
+        },
+        "windupSound": true,
+        "castSound": true,
+        "windups": 1,
+        "casts": 1
+      },
+      {
+        "id": "gardenKing",
+        "name": "정원군주",
+        "skill": "왕실 집결",
+        "layout": {
+          "fits": true,
+          "separated": true,
+          "buttons": true,
+          "skillVisible": true
+        },
+        "windupSound": true,
+        "castSound": true,
+        "windups": 1,
+        "casts": 1
+      }
+    ],
+    "errors": []
+  },
+  {
+    "viewport": "390x844",
+    "checks": [
+      {
+        "id": "bigJelly",
+        "name": "덩치젤리",
+        "skill": "웅크린 돌진",
+        "layout": {
+          "fits": true,
+          "separated": true,
+          "buttons": true,
+          "skillVisible": true
+        },
+        "windupSound": true,
+        "castSound": true,
+        "windups": 1,
+        "casts": 1
+      },
+      {
+        "id": "gateJelly",
+        "name": "성문젤리",
+        "skill": "방벽 재구축",
+        "layout": {
+          "fits": true,
+          "separated": true,
+          "buttons": true,
+          "skillVisible": true
+        },
+        "windupSound": true,
+        "castSound": true,
+        "windups": 1,
+        "casts": 1
+      },
+      {
+        "id": "splitCaptain",
+        "name": "분열대장",
+        "skill": "분신 증식",
+        "layout": {
+          "fits": true,
+          "separated": true,
+          "buttons": true,
+          "skillVisible": true
+        },
+        "windupSound": true,
+        "castSound": true,
+        "windups": 1,
+        "casts": 1
+      },
+      {
+        "id": "greenhouseKeeper",
+        "name": "온실지기",
+        "skill": "생명의 개화",
+        "layout": {
+          "fits": true,
+          "separated": true,
+          "buttons": true,
+          "skillVisible": true
+        },
+        "windupSound": true,
+        "castSound": true,
+        "windups": 1,
+        "casts": 1
+      },
+      {
+        "id": "stormCrow",
+        "name": "폭풍까악",
+        "skill": "폭풍 활강",
+        "layout": {
+          "fits": true,
+          "separated": true,
+          "buttons": true,
+          "skillVisible": true
+        },
+        "windupSound": true,
+        "castSound": true,
+        "windups": 1,
+        "casts": 1
+      },
+      {
+        "id": "kingJelly",
+        "name": "왕젤리",
+        "skill": "먹물 봉인",
+        "layout": {
+          "fits": true,
+          "separated": true,
+          "buttons": true,
+          "skillVisible": true
+        },
+        "windupSound": true,
+        "castSound": true,
+        "windups": 1,
+        "casts": 1
+      },
+      {
+        "id": "gardenKing",
+        "name": "정원군주",
+        "skill": "왕실 집결",
+        "layout": {
+          "fits": true,
+          "separated": true,
+          "buttons": true,
+          "skillVisible": true
+        },
+        "windupSound": true,
+        "castSound": true,
+        "windups": 1,
+        "casts": 1
+      }
+    ],
+    "errors": []
+  },
+  {
+    "viewport": "320x568",
+    "checks": [
+      {
+        "id": "bigJelly",
+        "name": "덩치젤리",
+        "skill": "웅크린 돌진",
+        "layout": {
+          "fits": true,
+          "separated": true,
+          "buttons": true,
+          "skillVisible": true
+        },
+        "windupSound": true,
+        "castSound": true,
+        "windups": 1,
+        "casts": 1
+      },
+      {
+        "id": "gateJelly",
+        "name": "성문젤리",
+        "skill": "방벽 재구축",
+        "layout": {
+          "fits": true,
+          "separated": true,
+          "buttons": true,
+          "skillVisible": true
+        },
+        "windupSound": true,
+        "castSound": true,
+        "windups": 1,
+        "casts": 1
+      },
+      {
+        "id": "splitCaptain",
+        "name": "분열대장",
+        "skill": "분신 증식",
+        "layout": {
+          "fits": true,
+          "separated": true,
+          "buttons": true,
+          "skillVisible": true
+        },
+        "windupSound": true,
+        "castSound": true,
+        "windups": 1,
+        "casts": 1
+      },
+      {
+        "id": "greenhouseKeeper",
+        "name": "온실지기",
+        "skill": "생명의 개화",
+        "layout": {
+          "fits": true,
+          "separated": true,
+          "buttons": true,
+          "skillVisible": true
+        },
+        "windupSound": true,
+        "castSound": true,
+        "windups": 1,
+        "casts": 1
+      },
+      {
+        "id": "stormCrow",
+        "name": "폭풍까악",
+        "skill": "폭풍 활강",
+        "layout": {
+          "fits": true,
+          "separated": true,
+          "buttons": true,
+          "skillVisible": true
+        },
+        "windupSound": true,
+        "castSound": true,
+        "windups": 1,
+        "casts": 1
+      },
+      {
+        "id": "kingJelly",
+        "name": "왕젤리",
+        "skill": "먹물 봉인",
+        "layout": {
+          "fits": true,
+          "separated": true,
+          "buttons": true,
+          "skillVisible": true
+        },
+        "windupSound": true,
+        "castSound": true,
+        "windups": 1,
+        "casts": 1
+      },
+      {
+        "id": "gardenKing",
+        "name": "정원군주",
+        "skill": "왕실 집결",
+        "layout": {
+          "fits": true,
+          "separated": true,
+          "buttons": true,
+          "skillVisible": true
+        },
+        "windupSound": true,
+        "castSound": true,
+        "windups": 1,
+        "casts": 1
+      }
+    ],
+    "errors": []
+  }
+]

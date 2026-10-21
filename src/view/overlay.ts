@@ -1,0 +1,166 @@
+import { type PerspectiveCamera, Vector3 } from 'three';
+import { assert } from '../core/assert';
+import { lerp } from '../core/math';
+import type { ContentDb } from '../data/types';
+import type { Board } from '../sim/board';
+import { TICK_RATE } from '../sim/constants';
+import type { BattleState, SimEvent } from '../sim/types';
+import { bossSkillTheme } from './bossSkillTheme';
+import { createCombatText } from './combatText';
+import { tileHeight } from './coords';
+import { impactDelays } from './eventTiming';
+import { createRailgunFrame } from './railgunFrame';
+
+export function createOverlay(canvas: HTMLCanvasElement, board: Board, content: ContentDb) {
+  const context = canvas.getContext('2d');
+  assert(context, '게이지 표시 화면을 만들 수 없습니다');
+  const ctx = context;
+  const point = new Vector3();
+  const combatText = createCombatText(ctx);
+  const railgunFrame = createRailgunFrame(ctx);
+  const births = new Map<number, number>();
+  let reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let low = false;
+  let time = 0;
+  let width = 1;
+  let height = 1;
+  function bar(x: number, y: number, hp: number, maxHp: number, color: string, size = 40) {
+    ctx.fillStyle = 'rgba(36,28,48,.65)';
+    ctx.beginPath();
+    ctx.roundRect(x - size / 2, y + 6, size, 5, 2.5);
+    ctx.fill();
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.roundRect(x - size / 2 + 1, y + 7, (size - 2) * Math.max(0, hp / maxHp), 3, 1.5);
+    ctx.fill();
+  }
+  function position(x: number, y: number, elevation: number, camera: PerspectiveCamera) {
+    point.set(x - board.width / 2, elevation, y - board.height / 2).project(camera);
+    return { x: ((point.x + 1) / 2) * width, y: ((1 - point.y) / 2) * height };
+  }
+  return {
+    setOptions(options: { quality: 'high' | 'low'; reducedMotion: boolean }) {
+      reduced = options.reducedMotion;
+      low = options.quality === 'low';
+    },
+    onEvents(events: readonly SimEvent[], entityPosition: (uid: number) => Vector3 | undefined) {
+      railgunFrame.onEvents(events);
+      const delays = impactDelays(events);
+      for (const event of events)
+        if (event.type === 'enemySpawn' && (delays.get(event) ?? 0) > 0)
+          births.set(event.uid, delays.get(event) ?? 0);
+      combatText.onEvents(events, entityPosition, delays);
+    },
+    resize() {
+      width = Math.max(1, canvas.clientWidth);
+      height = Math.max(1, canvas.clientHeight);
+      const dpr = low ? 1 : Math.min(window.devicePixelRatio, 2);
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    },
+    render(state: Readonly<BattleState>, camera: PerspectiveCamera, alpha: number, dt = 0) {
+      time += dt;
+      for (const [uid, delay] of births) {
+        if (delay <= dt) births.delete(uid);
+        else births.set(uid, delay - dt);
+      }
+      ctx.clearRect(0, 0, width, height);
+      railgunFrame.render(state, width, height, dt, reduced || low);
+      for (const unit of state.units) {
+        const p = position(
+          unit.tile.x + 0.5,
+          unit.tile.y + 0.5,
+          tileHeight(board.kindAt(unit.tile.x, unit.tile.y) ?? 'ground'),
+          camera,
+        );
+        const def = content.units.get(unit.unitId);
+        const skill = def && content.skills.get(def.skill);
+        assert(skill, '스킬 정보가 없습니다');
+        const active = unit.skillState === 'active';
+        const ready = unit.skillState === 'ready';
+        const cellWidth = Math.abs(position(unit.tile.x + 1.5, unit.tile.y + 0.5, 0.5, camera).x - p.x);
+        const compact = cellWidth < 36;
+        const gaugeWidth = compact ? Math.max(14, cellWidth * 0.9) : 40;
+        bar(
+          p.x,
+          p.y,
+          active ? Math.max(0, unit.skillEndTick - state.tick) / TICK_RATE : unit.sp,
+          active ? skill.durationSec : skill.spCost,
+          active ? '#eea54b' : ready ? '#f1c743' : '#759bdb',
+          gaugeWidth,
+        );
+        ctx.font = 'bold 12px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#446052';
+        ctx.fillText(
+          `${{ right: '→', down: '↓', left: '←', up: '↑' }[unit.dir]}${compact ? '' : ` ${active ? '스킬 중' : ready ? '준비!' : 'SP'}`}`,
+          p.x,
+          p.y + 26,
+        );
+        if (unit.disruptedUntilTick > state.tick && !compact) {
+          ctx.fillStyle = '#8363a5';
+          ctx.fillText('끈적 · 공격 느림', p.x, p.y + 40);
+        }
+        if (ready && skill.trigger === 'manual') {
+          const head = position(unit.tile.x + 0.5, unit.tile.y + 0.5, 1.3, camera);
+          const y = head.y - (reduced ? 0 : Math.sin(time * 3 + unit.uid) * 2);
+          ctx.fillStyle = '#ffe494';
+          ctx.beginPath();
+          const badgeWidth = compact ? Math.max(14, Math.min(22, cellWidth * 0.9)) : 44;
+          ctx.roundRect(head.x - badgeWidth / 2, y - 13, badgeWidth, 19, 7);
+          ctx.fill();
+          ctx.fillStyle = '#70522d';
+          ctx.font = '12px Jua, sans-serif';
+          ctx.fillText(compact ? '!' : '스킬!', head.x, y + 1);
+        }
+      }
+      for (const enemy of state.enemies) {
+        if (births.has(enemy.uid)) continue;
+        const def = content.enemies.get(enemy.enemyId);
+        const skill = def?.bossSkill;
+        if (skill && def && enemy.bossCastUntilTick > 0) {
+          const p = position(enemy.x, enemy.y, def.flying ? 1.25 : 0.55, camera);
+          const progress = 1 - (enemy.bossCastUntilTick - state.tick) / (skill.windupSec * TICK_RATE);
+          ctx.strokeStyle = bossSkillTheme(def).color;
+          ctx.lineWidth = 3;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, height <= 500 ? 17 : 25, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * progress);
+          ctx.stroke();
+          ctx.font = `bold ${height <= 500 ? 10 : 12}px sans-serif`;
+          ctx.textAlign = 'center';
+          ctx.fillStyle = '#fffdf5';
+          ctx.fillRect(p.x - 47, p.y - 40, 94, 17);
+          ctx.fillStyle = bossSkillTheme(def).color;
+          ctx.fillText(skill.name, p.x, p.y - 27);
+        }
+        if (enemy.shield > 0) {
+          const p = position(lerp(enemy.px, enemy.x, alpha), lerp(enemy.py, enemy.y, alpha), 0, camera);
+          const max = content.enemies.get(enemy.enemyId)?.shieldHp ?? enemy.shield;
+          bar(p.x, p.y - 5, enemy.shield, max, '#78BDDA');
+        }
+        if (enemy.hp < enemy.maxHp) {
+          const p = position(lerp(enemy.px, enemy.x, alpha), lerp(enemy.py, enemy.y, alpha), 0, camera);
+          bar(p.x, p.y, enemy.hp, enemy.maxHp, '#FF5A6E');
+        }
+        if (enemy.slowAmount > 0 || enemy.stunUntilTick > state.tick || enemy.speedMul > 1) {
+          const p = position(enemy.x, enemy.y, 0, camera);
+          ctx.font = '11px Jua, sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillStyle = '#725096';
+          ctx.fillText(
+            enemy.stunUntilTick > state.tick ? '기절' : enemy.slowAmount > 0 ? '느림' : '가속',
+            p.x,
+            p.y + 24,
+          );
+        }
+      }
+      combatText.render(camera, width, height, dt, reduced);
+    },
+    dispose() {
+      railgunFrame.dispose();
+      births.clear();
+      ctx.clearRect(0, 0, width, height);
+    },
+  };
+}

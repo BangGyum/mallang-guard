@@ -1,0 +1,242 @@
+{
+  "ticket": "T4.26",
+  "date": "2026-10-14",
+  "baseCommit": "07389a9b07f4ea7f5a6a4af6115edc916b699a2d",
+  "characters": [
+    {
+      "id": "fox",
+      "name": "루아",
+      "role": "보스 우선 단일 고관통 저격",
+      "cost": 28,
+      "skill": "12초 공격력 +60%, 관통 220→400"
+    },
+    {
+      "id": "redPanda",
+      "name": "로크",
+      "role": "지상 범위 포격",
+      "cost": 30,
+      "skill": "10초 공격력 +40%, 간격 2.4→1.5초, 반경 1.2→1.8칸"
+    },
+    {
+      "id": "deer",
+      "name": "세라",
+      "role": "대공 연쇄 마법",
+      "cost": 27,
+      "skill": "12초 간격 1.5→1초, 최대 3→5명"
+    }
+  ],
+  "acquisition": {
+    "pool": 13,
+    "ordinaryCommonAggregatePercent": 95,
+    "ordinaryRareAggregatePercent": 5,
+    "eachRarePercent": "5/3",
+    "displayedEachRarePercent": 1.67,
+    "rareDirectPrice": 1800,
+    "duplicateRefund": 30,
+    "guarantee": "신규 없이 9회 후 미보유 균등 추첨, 등급 가중치와 별도",
+    "directPurchasePreservesPityAndRng": true,
+    "freshStarterUnits": 8,
+    "legacyUnits": 10
+  },
+  "contracts": {
+    "saveVersion": 1,
+    "collectionAndShopResultShapePreserved": true,
+    "unitTargetPriority": "optional boss",
+    "attackChainFrom": "optional previous enemy uid; src remains attacking unit",
+    "existingUnitsSkillsRangesPreserved": true,
+    "existingStagesEnemiesRewardsPreserved": true,
+    "architectureTestsUnchanged": true,
+    "sourceAndTestLineLimit": 300
+  },
+  "checks": {
+    "typecheck": "passed",
+    "lint": "passed",
+    "unitTests": {
+      "files": 77,
+      "tests": 1399,
+      "status": "passed"
+    },
+    "build": "passed",
+    "diffWhitespace": "passed"
+  },
+  "browser": {
+    "rareFlowViewports": 5,
+    "rarePurchasesPerViewport": 3,
+    "shopFlowViewports": 5,
+    "unitCardChecks": 52,
+    "skillDetailsChecks": 65,
+    "characterLifecycleCases": 26,
+    "animationViewports": 2,
+    "screenFlowViewports": 8,
+    "bossPopupCases": 36,
+    "resultLayoutCases": 21,
+    "weaponAudioCases": 26,
+    "campaign": {
+      "runs": 14,
+      "stages": 7,
+      "lifeEach": 3,
+      "totalKills": 5082,
+      "leaks": 0,
+      "rejectedCommands": 0,
+      "invalidRewards": 0,
+      "sequentialUnlockStarsReloadAndDefeatPreservation": true
+    },
+    "earnedRarePurchases": [
+      {
+        "viewport": "desktop",
+        "moneyBefore": 11590,
+        "moneyAfter": 6190,
+        "originalStage7Deploy": true,
+        "dpBefore": 31,
+        "injectedMoney": false
+      },
+      {
+        "viewport": "mobile",
+        "moneyBefore": 11590,
+        "moneyAfter": 6190,
+        "originalStage7Deploy": true,
+        "dpBefore": 31,
+        "injectedMoney": false
+      }
+    ],
+    "production": {
+      "productionBase": "/mallang-guard/",
+      "portraits": 8,
+      "webgl": true,
+      "waves": 12,
+      "killOnlyIncome": true,
+      "exit": true,
+      "shopReturnToResult": true,
+      "currentBalanceAfterRecruit": true,
+      "rareShopUnits": 3,
+      "rarePurchasesAndReload": true,
+      "rareRates": "5% aggregate, 1.67% rounded per unit",
+      "productionPurchaseFixtureMoney": 6000,
+      "errors": []
+    },
+    "errorsAndWarnings": 0
+  },
+  "performance": {
+    "performance": {
+      "mode": "display-paced",
+      "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 130V GPU (8GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "units": 13,
+      "enemies": 60,
+      "fps": 59.99999999999999,
+      "renderP95Ms": 4.800000011920929,
+      "frameP95Ms": 17,
+      "peakCalls": 83,
+      "peakParticles": 137,
+      "memory": {
+        "geometries": 106,
+        "textures": 61
+      }
+    },
+    "performance-uncapped": {
+      "mode": "uncapped-throughput",
+      "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 130V GPU (8GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "units": 13,
+      "enemies": 60,
+      "fps": 428.5714285714288,
+      "renderP95Ms": 5.9000000059604645,
+      "frameP95Ms": 7,
+      "peakCalls": 83,
+      "peakParticles": 137,
+      "memory": {
+        "geometries": 106,
+        "textures": 61
+      }
+    }
+  },
+  "resources": {
+    "cycles": 10,
+    "memory": {
+      "active": {
+        "geometries": 96,
+        "textures": 61
+      },
+      "disposed": {
+        "geometries": 0,
+        "textures": 0
+      }
+    },
+    "errors": []
+  },
+  "audio": {
+    "combatBuffers": 12,
+    "bossBuffers": 14,
+    "weaponMixedPeak": 0.5497891902923584,
+    "combatAndBossMixedPeak": 0.7426273226737976,
+    "bossVoices": 2,
+    "mutedVoices": {
+      "before": 2,
+      "after": 2
+    }
+  },
+  "harnessRepairs": [
+    "새로고침 후 Battle 관찰 재연결",
+    "전체 13종의 검사 계정·배치 슬롯·충전 대기·발사음 표와 보고 개수 반영",
+    "배포 카드에서 초상화 SVG만 검사하여 도토리 아이콘과 구분"
+  ],
+  "limitations": [
+    "Edge headless·가상 시계·터치 에뮬레이션이며 실제 휴대폰이나 실제 120Hz 화면 FPS 검증은 아니다.",
+    "원본 캠페인은 기본 8종·원본 수치/맵/적/비용/SP와 명시적 공략을 사용하며 재미나 임의 공략의 난이도 평가는 아니다.",
+    "희귀 단독 UI 검사는 기존 10종/6000머니 계정, 9×9/99도토리 맵과 HP 1000000/속도 0.06/보스 능력 비활성 적을 사용한다. 아군/스킬 수치·전투 상태는 주입하지 않는다.",
+    "생명주기/애니메이션/성능은 검사 맵·계정을 사용한다. 성능은 비용 1/배치 제한 13·활성 스킬·60개 적 위치와 공격 이벤트를 주입한 합성 렌더 부하다.",
+    "배포 경로는 신규 기본 8종·자연 패배/모집/복귀를 검사한 뒤 직접 영입을 위해 검사 계정의 머니를 6000으로 설정한다.",
+    "파형·실제 재생/중복·클리핑·정리 검증이며 실제 스피커의 청감 평가는 별도다."
+  ],
+  "evidence": {
+    "rare-operatives": "t4.26-rare-operatives.json",
+    "shop": "t4.26-shop.json",
+    "unit-selection": "t4.26-unit-selection.json",
+    "skill-details": "t4.26-skill-details.json",
+    "screen-flow": "t4.26-screen-flow.json",
+    "campaign": "t4.26-campaign.json",
+    "desktop-earned-rares": "t4.26-desktop-earned-rares.json",
+    "mobile-earned-rares": "t4.26-mobile-earned-rares.json",
+    "characters": "t4.26-characters.json",
+    "animations": "t4.26-animations.json",
+    "audio-samples": "t4.26-audio-samples.json",
+    "audio-weapons": "t4.26-audio-weapons.json",
+    "boss-audio": "t4.26-boss-audio.json",
+    "boss-popups": "t4.26-boss-popups.json",
+    "result-layout": "t4.26-result-layout.json",
+    "session-resources": "t4.26-session-resources.json",
+    "performance": "t4.26-performance.json",
+    "performance-uncapped": "t4.26-performance-uncapped.json",
+    "production": "t4.26-production.json"
+  },
+  "sourceSha256": {
+    "src/app/collection.ts": "c6c9ff9d43f9578ddbfb687c7d07fb10d4ad082e8f9ba35fabd21151be54f4ec",
+    "src/art/critters.ts": "6507a447586acaa618dabe8c84ff1134198ed6af09ee49becce4d73b6f3df930",
+    "src/art/rareCritters.ts": "86b45b3e9bd781e6dc83b9d18af88d423ea5263de5dafaaa92c9b2167b7eeb8d",
+    "src/art/vfxArt.ts": "a736324af51108b9312478890a0bbb302968f9fc28dcd3053fd3b3c9804899fe",
+    "src/audio/combatSounds.ts": "cc628535933e0a16428b20e9aac6c48b30cc1f10af9519cba4392fcf493e3442",
+    "src/data/ranges.json": "1992695e8fc26597a5f81fe4ac32a4c9209b6aff8054d6714bc42c8673c3905a",
+    "src/data/recruitment.json": "113cd1d7fee4c47e0ed4aa51399f351837f0769baf2f3bd8007ff051f155573a",
+    "src/data/recruitment.ts": "ee57b3820f1e3b1e5166e4b55cae63d9f9af98ead9345af26216c1a65a6ce68f",
+    "src/data/skills.json": "c9f96482f43ebe84f13888e4267660a259559ff56370cf8b71eb152f3263cdbd",
+    "src/data/types.ts": "db425b3cbeb92203146d6526b1860288a8ab3e21ce9715a7db635e15f8c63bab",
+    "src/data/units.json": "ecb5cb8926ec57fe8a575081c0080c5fd39dc7a9cdf0e0710400bdfc1c2185d9",
+    "src/data/validate.ts": "76329ac200f38e78d8cd4816f1d2588338441293e79d1e0f03352d27f7c69a12",
+    "src/data/validateEffects.ts": "9253fab3e471f04d0da1d61f98249865cf5ffb32c9ace02af502544b37ebed19",
+    "src/data/validateEntities.ts": "8bc735428e16ba3373aa4cbf5aa0036cecfdb5556ee08a9bd3479edd4a9b48bc",
+    "src/sim/chainTargets.ts": "d664a59d61e280d31cc49443f2ef263a695813c77c004f1fe371b0cad5c72199",
+    "src/sim/systems/attack.ts": "6f97b6bb6b5140bae9890bd2cf75a6b3d44a6054956471c179deaa593adc8cda",
+    "src/sim/targeting.ts": "21b16e2639ad2825cf4cbca6241002b71fb15849e8811fd20724a4a3cb06a5a1",
+    "src/sim/types.ts": "1c28dd64291985e17f3ae0ea551add1295e3604cf117fa9095356d01f370e141",
+    "src/ui/deployBar.ts": "7ecffa5bb416b863e8e60604cd44ef4f8b088c968b21569c417611b0bc183bb8",
+    "src/ui/rareUnits.css": "38863815fb7141face01ffa643fb0553ad3e4da8f6438f3955b53aadb32a5d5e",
+    "src/ui/recruitResult.ts": "ab375d7b4193168b831c3d27cb33476da4f04c32bd358b98e447038f0a094fe8",
+    "src/ui/rosterPanel.ts": "bdc1cef7bd6c211270e1f1909bf06d5a7f23c071ddcf79567053c1e893c29f57",
+    "src/ui/shopScreen.ts": "facf582b11dcdac964752894e88e07d13ad0f897c1f673d9e4140273c76b69b4",
+    "src/ui/skillDetails.ts": "e0b272ef4ff883a8b920db4d2df55d657052ecedbb49d346cbdc0e924f926e06",
+    "src/ui/styles.css": "e3024023da4a10276a2603e90bf59796a2bd8277a76d0116346841fe7df22ce9",
+    "src/ui/unitPanel.ts": "c1bb41a58a5da823a935f9ec6351df540e7a60a061e87788378df87ca801c15f",
+    "src/view/animation.ts": "80b0b21729ea9c37f825585b3f76255d0ea859e8284cfe26b5d739f58ac8b83c",
+    "src/view/entityViews.ts": "6bf7cbc4571417126c7d9322a81985b0c5e1745bdcaa6d7f127eabdac018fc6a",
+    "src/view/particlePool.ts": "c7eefda8a5c1c4c3f7e189f9e64c46af484bd13359f4d0bf518cc9c74bbce507",
+    "src/view/vfx.ts": "1d6009433a5569ef1d8c05f072a36d32f6a436acee78c1cc93abfda0a716d483"
+  }
+}

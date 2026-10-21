@@ -1,0 +1,22 @@
+{
+  "productionBase": "/mallang-guard/",
+  "portraits": 8,
+  "webgl": true,
+  "waves": 12,
+  "killOnlyIncome": true,
+  "exit": true,
+  "shopReturnToResult": true,
+  "currentBalanceAfterRecruit": true,
+  "rareShopUnits": 3,
+  "rarePurchasesAndReload": true,
+  "rarePurchases": [
+    "fox",
+    "redPanda",
+    "deer"
+  ],
+  "alreadyRecruitedRareUnits": [],
+  "rareRates": "5% aggregate, 1.67% rounded per unit",
+  "productionPurchaseFixtureMoney": 6000,
+  "productionFirstDrawSeed": 1,
+  "errors": []
+}

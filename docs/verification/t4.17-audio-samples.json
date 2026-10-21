@@ -1,0 +1,118 @@
+{
+  "order": [
+    "shoot",
+    "sniper",
+    "pistol",
+    "slash",
+    "hammer",
+    "magic",
+    "energy",
+    "launcher",
+    "goo"
+  ],
+  "sampleRate": 48000,
+  "mixedPeak": 0.5592707991600037,
+  "rawMixedPeak": 1.5677248239517212,
+  "metrics": [
+    {
+      "sound": "shoot",
+      "seconds": 0.16,
+      "finite": true,
+      "peak": 0.40804803371429443,
+      "bodyRms": 0.04494567034122358,
+      "earlyRms": 0.10455577165396697,
+      "lateRms": 0.0017166038146092123,
+      "first": 0,
+      "last": 3.666610837171902e-7
+    },
+    {
+      "sound": "sniper",
+      "seconds": 0.26,
+      "finite": true,
+      "peak": 0.4038570523262024,
+      "bodyRms": 0.048776312727427766,
+      "earlyRms": 0.13031516615606364,
+      "lateRms": 0.0012536945750388356,
+      "first": 0,
+      "last": -8.883683335625392e-7
+    },
+    {
+      "sound": "pistol",
+      "seconds": 0.12,
+      "finite": true,
+      "peak": 0.4143044948577881,
+      "bodyRms": 0.04827912401148904,
+      "earlyRms": 0.10125602653039428,
+      "lateRms": 0.00174643089701624,
+      "first": 0,
+      "last": 9.899412134473096e-7
+    },
+    {
+      "sound": "slash",
+      "seconds": 0.18,
+      "finite": true,
+      "peak": 0.16355101764202118,
+      "bodyRms": 0.00797537938747254,
+      "earlyRms": 0.00679633962584931,
+      "lateRms": 0.0015416702969580083,
+      "first": 0,
+      "last": -3.898968465660324e-15
+    },
+    {
+      "sound": "hammer",
+      "seconds": 0.24,
+      "finite": true,
+      "peak": 0.3135272264480591,
+      "bodyRms": 0.056684613930866865,
+      "earlyRms": 0.13413443704967226,
+      "lateRms": 0.0008713233690418547,
+      "first": 0,
+      "last": 9.634032238636792e-8
+    },
+    {
+      "sound": "magic",
+      "seconds": 0.2,
+      "finite": true,
+      "peak": 0.2103806734085083,
+      "bodyRms": 0.014999979380155126,
+      "earlyRms": 0.07350655577877782,
+      "lateRms": 0.0009312519776263442,
+      "first": 0,
+      "last": -0.0000010244789336866233
+    },
+    {
+      "sound": "energy",
+      "seconds": 0.28002083333333333,
+      "finite": true,
+      "peak": 0.22184181213378906,
+      "bodyRms": 0.029491073755539044,
+      "earlyRms": 0.07929101693296046,
+      "lateRms": 0.0010834963737038324,
+      "first": 0,
+      "last": 0
+    },
+    {
+      "sound": "launcher",
+      "seconds": 0.22,
+      "finite": true,
+      "peak": 0.27559641003608704,
+      "bodyRms": 0.03438868820057512,
+      "earlyRms": 0.08624334411608818,
+      "lateRms": 0.0002877464571827032,
+      "first": 0,
+      "last": -2.907140661534413e-8
+    },
+    {
+      "sound": "goo",
+      "seconds": 0.14002083333333334,
+      "finite": true,
+      "peak": 0.16055896878242493,
+      "bodyRms": 0.024960720011199252,
+      "earlyRms": 0.05022355727461647,
+      "lateRms": 0.0014901298395063798,
+      "first": 0,
+      "last": 0
+    }
+  ],
+  "errors": []
+}

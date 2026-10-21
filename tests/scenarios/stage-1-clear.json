@@ -1,0 +1,26 @@
+{
+  "stage": "stage-1",
+  "expect": { "result": "won", "minLife": 3 },
+  "commands": [
+    { "atSec": 0, "type": "deploy", "unitId": "squirrel", "tile": [2, 0], "dir": "down" },
+    { "atSec": 12, "type": "deploy", "unitId": "penguin", "tile": [5, 2], "dir": "left" },
+    { "atSec": 27, "type": "deploy", "unitId": "bunny", "tile": [3, 0], "dir": "down" },
+    { "type": "skill", "unitId": "squirrel", "atSec": 32.833333333333336 },
+    { "atSec": 44, "type": "deploy", "unitId": "sheep", "tile": [2, 2], "dir": "up" },
+    { "atSec": 58.56666666666667, "type": "deploy", "unitId": "cat", "tile": [6, 4], "dir": "up" },
+    { "type": "skill", "unitId": "penguin", "atSec": 61.666666666666664 },
+    { "type": "skill", "unitId": "sheep", "atSec": 66 },
+    { "atSec": 70, "type": "deploy", "unitId": "snail", "tile": [5, 1], "dir": "right" },
+    { "atSec": 85, "type": "deploy", "unitId": "bear", "tile": [5, 4], "dir": "up" },
+    { "type": "skill", "unitId": "squirrel", "atSec": 96.83333333333333 },
+    { "type": "skill", "unitId": "sheep", "atSec": 104.53333333333333 },
+    { "type": "skill", "unitId": "squirrel", "atSec": 130.86666666666667 },
+    { "type": "skill", "unitId": "sheep", "atSec": 146.16666666666666 },
+    { "type": "skill", "unitId": "squirrel", "atSec": 164.9 },
+    { "type": "skill", "unitId": "penguin", "atSec": 168.66666666666666 },
+    { "type": "skill", "unitId": "sheep", "atSec": 187.36666666666667 },
+    { "type": "skill", "unitId": "squirrel", "atSec": 211.83333333333334 },
+    { "type": "skill", "unitId": "penguin", "atSec": 215.7 },
+    { "type": "skill", "unitId": "bear", "atSec": 221.06666666666666 }
+  ]
+}

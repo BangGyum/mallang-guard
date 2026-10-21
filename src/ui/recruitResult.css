@@ -1,0 +1,114 @@
+.recruit-dialog {
+  width: min(760px, calc(100vw - 32px));
+}
+.recruit-dialog[open] {
+  display: flex;
+  flex-direction: column;
+}
+.recruit-summary {
+  margin: 0 0 16px;
+  flex-shrink: 0;
+}
+.recruit-results {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 2px;
+}
+.recruit-results:has(.recruit-result:only-child) {
+  grid-template-columns: minmax(0, 220px);
+  justify-content: center;
+}
+.recruit-result {
+  padding: 14px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #e3d7bf;
+  border-top: 3px solid var(--role-color);
+  border-radius: 16px;
+  background: #f8f2e6;
+  animation: recruit-reveal 0.25s both;
+  animation-delay: var(--reveal-delay);
+}
+.recruit-result[data-new="true"] {
+  background: #edf6df;
+  border-color: #bed49d;
+}
+.recruit-result-badge {
+  color: #8c774f;
+  font-size: 11px;
+}
+.recruit-result[data-new="true"] .recruit-result-badge {
+  color: #54833f;
+  font-weight: 700;
+}
+.recruit-result-portrait {
+  width: 64px;
+  height: 64px;
+  display: block;
+}
+.recruit-result-portrait svg {
+  width: 100%;
+  height: 100%;
+}
+.recruit-result strong {
+  font-size: 14px;
+}
+.recruit-result small,
+.recruit-result-note {
+  font-size: 10px;
+  line-height: 1.5;
+  color: #748167;
+}
+.recruit-guaranteed {
+  color: #598044;
+}
+.recruit-confirm {
+  flex-shrink: 0;
+  margin-top: 18px;
+}
+.result-money {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  color: #97702a;
+}
+.result-money small {
+  width: 100%;
+  font-size: 11px;
+  line-height: 1.6;
+}
+.result-money .reward-unsaved {
+  color: #a46041;
+}
+.battle-result[open] {
+  display: flex;
+  flex-direction: column;
+}
+.result-content {
+  min-height: 0;
+  overflow-y: auto;
+}
+.battle-result .screen-actions {
+  flex-shrink: 0;
+}
+@keyframes recruit-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+#app[data-reduced-motion="true"] .recruit-result {
+  animation: none;
+}

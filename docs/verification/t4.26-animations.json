@@ -1,0 +1,14 @@
+[
+  {
+    "viewport": "desktop",
+    "units": 13,
+    "pausePixelEquality": true,
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "units": 13,
+    "pausePixelEquality": true,
+    "errors": []
+  }
+]

@@ -1,0 +1,85 @@
+@import "./battle.css";
+@import "./battleMobile.css";
+@import "./waveNotice.css";
+@import "./bossHud.css";
+@import "./unitPopover.css";
+@import "./unitPopoverMobile.css";
+@import "./skillNotices.css";
+@import "./screens.css";
+@import "./screensMobile.css";
+@import "./portraits.css";
+@import "./settings.css";
+@import "./stages.css";
+@import "./unitSelection.css";
+@import "./skillDetails.css";
+@import "./shop.css";
+@import "./recruitResult.css";
+@import "./shopMobile.css";
+@import "./rareUnits.css";
+
+:root {
+  font-family: "IBM Plex Sans KR", "Malgun Gothic", system-ui, sans-serif;
+  color: #1e2923;
+  background: #e9f6ea;
+}
+.stage-title,
+.card-name,
+.dp-panel strong {
+  font-family: "Jua", "Malgun Gothic", sans-serif;
+  font-weight: 400;
+}
+
+body {
+  margin: 0;
+}
+
+#app {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  overflow: hidden;
+  background: linear-gradient(#bfe6ee, #e9f6ea);
+}
+
+#board,
+#overlay,
+#hud,
+#screens {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#board {
+  display: block;
+  z-index: 0;
+  touch-action: none;
+}
+
+#overlay {
+  z-index: 1;
+  pointer-events: none;
+}
+
+#hud {
+  z-index: 2;
+  pointer-events: none;
+}
+
+#screens {
+  z-index: 3;
+  pointer-events: none;
+}
+
+.load-error {
+  max-width: min(640px, calc(100% - 48px));
+  margin: 48px auto;
+  padding: 24px;
+  border: 1px solid #e3abb6;
+  border-radius: 16px;
+  background: #fff8f9;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  pointer-events: auto;
+}

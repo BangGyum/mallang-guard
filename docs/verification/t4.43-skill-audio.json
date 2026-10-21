@@ -1,0 +1,340 @@
+{
+  "rate": 48000,
+  "metrics": [
+    {
+      "sound": "skill-acornPickup",
+      "seconds": 0.32,
+      "peak": 0.10395154356956482,
+      "rms": 0.022869188995172905,
+      "jump": 0.022098147310316563,
+      "first": 0,
+      "last": 0,
+      "finite": true
+    },
+    {
+      "sound": "skill-nyangCombo",
+      "seconds": 0.28002083333333333,
+      "peak": 0.0654103234410286,
+      "rms": 0.01078291792522478,
+      "jump": 0.0338278328999877,
+      "first": 0,
+      "last": 0,
+      "finite": true
+    },
+    {
+      "sound": "skill-potLidGuard",
+      "seconds": 0.42,
+      "peak": 0.2560558319091797,
+      "rms": 0.06957531072134938,
+      "jump": 0.014442458748817444,
+      "first": 0,
+      "last": 4.21130819105997e-9,
+      "finite": true
+    },
+    {
+      "sound": "skill-snowballBarrage",
+      "seconds": 0.38,
+      "peak": 0.09435636550188065,
+      "rms": 0.017825314309435236,
+      "jump": 0.03506876900792122,
+      "first": 0,
+      "last": 0,
+      "finite": true
+    },
+    {
+      "sound": "skill-stardustShower",
+      "seconds": 0.48,
+      "peak": 0.18505355715751648,
+      "rms": 0.04094503842127725,
+      "jump": 0.0404135761782527,
+      "first": 0,
+      "last": 8.658639361058817e-10,
+      "finite": true
+    },
+    {
+      "sound": "skill-carrotSoup",
+      "seconds": 0.3400208333333333,
+      "peak": 0.08152905851602554,
+      "rms": 0.0205262524992259,
+      "jump": 0.013469788536895066,
+      "first": 0,
+      "last": 0,
+      "finite": true
+    },
+    {
+      "sound": "skill-tunnelAmbush",
+      "seconds": 0.24,
+      "peak": 0.21701253950595856,
+      "rms": 0.03394735771419957,
+      "jump": 0.06738902255892754,
+      "first": 0,
+      "last": 0,
+      "finite": true
+    },
+    {
+      "sound": "skill-stickyRoad",
+      "seconds": 0.4,
+      "peak": 0.1754426211118698,
+      "rms": 0.043837871062161526,
+      "jump": 0.014378175139427185,
+      "first": 0,
+      "last": 7.266575119402319e-10,
+      "finite": true
+    },
+    {
+      "sound": "skill-wideBarrage",
+      "seconds": 0.52,
+      "peak": 0.22845742106437683,
+      "rms": 0.049263611761588416,
+      "jump": 0.08642437309026718,
+      "first": 0,
+      "last": 1.4151163964595814e-13,
+      "finite": true
+    },
+    {
+      "sound": "skill-tripleAim",
+      "seconds": 0.36,
+      "peak": 0.08778262138366699,
+      "rms": 0.012748534264062073,
+      "jump": 0.029345903545618057,
+      "first": 0,
+      "last": 0,
+      "finite": true
+    },
+    {
+      "sound": "skill-polarAim",
+      "seconds": 0.5,
+      "peak": 0.2703690826892853,
+      "rms": 0.0576494996255753,
+      "jump": 0.014100451022386551,
+      "first": 0,
+      "last": 3.829789675495465e-14,
+      "finite": true
+    },
+    {
+      "sound": "skill-siegeBarrage",
+      "seconds": 0.46,
+      "peak": 0.31860125064849854,
+      "rms": 0.07371095528676286,
+      "jump": 0.0244253515265882,
+      "first": 0,
+      "last": 0,
+      "finite": true
+    },
+    {
+      "sound": "skill-stormChain",
+      "seconds": 0.44,
+      "peak": 0.174923837184906,
+      "rms": 0.0278746814371463,
+      "jump": 0.07443462684750557,
+      "first": 0,
+      "last": 0,
+      "finite": true
+    },
+    {
+      "sound": "skill-arcPulse",
+      "seconds": 0.2,
+      "peak": 0.15080371499061584,
+      "rms": 0.03533482456549407,
+      "jump": 0.044481595687102526,
+      "first": 0,
+      "last": 1.725537823737966e-9,
+      "finite": true
+    },
+    {
+      "sound": "skill-eventHorizon",
+      "seconds": 0.62,
+      "peak": 0.19771996140480042,
+      "rms": 0.05700510254029028,
+      "jump": 0.014813726942520589,
+      "first": 0,
+      "last": 4.765588423015499e-13,
+      "finite": true
+    },
+    {
+      "sound": "skill-gravityBurst",
+      "seconds": 0.5,
+      "peak": 0.26479771733283997,
+      "rms": 0.06607894897095845,
+      "jump": 0.03557131066918373,
+      "first": 0,
+      "last": 4.384867136053572e-9,
+      "finite": true
+    }
+  ],
+  "maxCorrelation": 0.5022658098729934,
+  "closestPair": {
+    "a": "skill-potLidGuard",
+    "b": "skill-wideBarrage",
+    "value": 0.5022658098729934
+  },
+  "mixedCount": 60,
+  "mixedPeak": 0.8524712920188904,
+  "routing": [
+    {
+      "skill": "acornPickup",
+      "voices": [
+        {
+          "duration": 0.32,
+          "rate": 0.9844975471496582
+        }
+      ]
+    },
+    {
+      "skill": "nyangCombo",
+      "voices": [
+        {
+          "duration": 0.28002083333333333,
+          "rate": 0.9871636629104614
+        }
+      ]
+    },
+    {
+      "skill": "potLidGuard",
+      "voices": [
+        {
+          "duration": 0.42,
+          "rate": 1.0063798427581787
+        }
+      ]
+    },
+    {
+      "skill": "snowballBarrage",
+      "voices": [
+        {
+          "duration": 0.38,
+          "rate": 1.0012876987457275
+        }
+      ]
+    },
+    {
+      "skill": "stardustShower",
+      "voices": [
+        {
+          "duration": 0.48,
+          "rate": 1.0183746814727783
+        }
+      ]
+    },
+    {
+      "skill": "carrotSoup",
+      "voices": [
+        {
+          "duration": 0.3400208333333333,
+          "rate": 0.9896953105926514
+        }
+      ]
+    },
+    {
+      "skill": "tunnelAmbush",
+      "voices": [
+        {
+          "duration": 0.24,
+          "rate": 1.0080840587615967
+        }
+      ]
+    },
+    {
+      "skill": "stickyRoad",
+      "voices": [
+        {
+          "duration": 0.4,
+          "rate": 0.9868056178092957
+        }
+      ]
+    },
+    {
+      "skill": "wideBarrage",
+      "voices": [
+        {
+          "duration": 0.52,
+          "rate": 0.9894163608551025
+        }
+      ]
+    },
+    {
+      "skill": "tripleAim",
+      "voices": [
+        {
+          "duration": 0.36,
+          "rate": 1.0035045146942139
+        }
+      ]
+    },
+    {
+      "skill": "polarAim",
+      "voices": [
+        {
+          "duration": 0.5,
+          "rate": 0.9824645519256592
+        }
+      ]
+    },
+    {
+      "skill": "siegeBarrage",
+      "voices": [
+        {
+          "duration": 0.46,
+          "rate": 1.010141134262085
+        }
+      ]
+    },
+    {
+      "skill": "stormChain",
+      "voices": [
+        {
+          "duration": 0.44,
+          "rate": 1.01380455493927
+        }
+      ]
+    },
+    {
+      "skill": "eventHorizon",
+      "voices": [
+        {
+          "duration": 0.62,
+          "rate": 1.0047754049301147
+        }
+      ]
+    }
+  ],
+  "gravity": [
+    {
+      "duration": 0.5,
+      "rate": 0.9937115907669067
+    }
+  ],
+  "recruitment": [
+    {
+      "sound": "recruitSR",
+      "voices": [
+        {
+          "duration": 0.3400208333333333,
+          "rate": 0.9863585829734802
+        }
+      ]
+    },
+    {
+      "sound": "recruitSSR",
+      "voices": [
+        {
+          "duration": 0.49,
+          "rate": 0.9994253516197205
+        }
+      ]
+    },
+    {
+      "sound": "recruitUR",
+      "voices": [
+        {
+          "duration": 0.64,
+          "rate": 0.9885545372962952
+        }
+      ]
+    }
+  ],
+  "mute": true,
+  "reset": true,
+  "dispose": true,
+  "errors": []
+}

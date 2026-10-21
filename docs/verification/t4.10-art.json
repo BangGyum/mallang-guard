@@ -1,0 +1,12 @@
+[
+  {
+    "viewport": "desktop",
+    "images": 40,
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "images": 40,
+    "errors": []
+  }
+]

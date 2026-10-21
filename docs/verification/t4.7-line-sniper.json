@@ -1,0 +1,110 @@
+[
+  {
+    "viewport": "desktop",
+    "enemies": 3,
+    "cardsFit": true,
+    "baseRange": 5,
+    "activeRange": 15,
+    "restoredRange": 5,
+    "baseShots": 1,
+    "skillShots": 3,
+    "targets": [
+      2,
+      3,
+      4
+    ],
+    "damage": [
+      535,
+      535,
+      535
+    ],
+    "attack": [
+      650,
+      585,
+      650
+    ],
+    "intervalSec": 2.4,
+    "naturalCharge": true,
+    "rejected": [],
+    "errors": []
+  },
+  {
+    "viewport": "desktop",
+    "enemies": 1,
+    "cardsFit": true,
+    "baseRange": 5,
+    "activeRange": 15,
+    "restoredRange": 5,
+    "baseShots": 1,
+    "skillShots": 1,
+    "targets": [
+      2
+    ],
+    "damage": [
+      535
+    ],
+    "attack": [
+      650,
+      585,
+      650
+    ],
+    "intervalSec": 2.4,
+    "naturalCharge": true,
+    "rejected": [],
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "enemies": 3,
+    "cardsFit": true,
+    "baseRange": 5,
+    "activeRange": 15,
+    "restoredRange": 5,
+    "baseShots": 1,
+    "skillShots": 3,
+    "targets": [
+      2,
+      3,
+      4
+    ],
+    "damage": [
+      535,
+      535,
+      535
+    ],
+    "attack": [
+      650,
+      585,
+      650
+    ],
+    "intervalSec": 2.4,
+    "naturalCharge": true,
+    "rejected": [],
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "enemies": 1,
+    "cardsFit": true,
+    "baseRange": 5,
+    "activeRange": 15,
+    "restoredRange": 5,
+    "baseShots": 1,
+    "skillShots": 1,
+    "targets": [
+      2
+    ],
+    "damage": [
+      535
+    ],
+    "attack": [
+      650,
+      585,
+      650
+    ],
+    "intervalSec": 2.4,
+    "naturalCharge": true,
+    "rejected": [],
+    "errors": []
+  }
+]

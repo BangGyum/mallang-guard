@@ -1,0 +1,71 @@
+import type { Battle } from '../sim/battle';
+import { TICK_RATE } from '../sim/constants';
+import type { SimEvent } from '../sim/types';
+
+export const MAX_STEPS_PER_FRAME = 8;
+export const BULLET_TIME_SCALE = 0.25;
+export const PREPARATION_SEC = 10;
+export const QUICK_START_SEC = 3;
+
+export interface LoopControls {
+  paused: boolean;
+  speed: 1 | 2;
+  bulletTime: boolean;
+  startInSec: number;
+}
+
+export function startLoop(
+  battle: Battle,
+  controls: LoopControls,
+  onEvents: (events: SimEvent[]) => void,
+  render: (alpha: number, dt: number, wallDt: number) => void,
+) {
+  const tickSec = 1 / TICK_RATE;
+  let acc = 0;
+  let last = performance.now();
+  let frameId = 0;
+  function frame(now: number) {
+    const elapsed = Math.max(0, (now - last) / 1000);
+    const dt = Math.min(elapsed, 0.25);
+    last = now;
+    const preparing = controls.startInSec > 0;
+    const wait = controls.paused ? 0 : Math.min(elapsed, controls.startInSec);
+    controls.startInSec = Math.max(0, controls.startInSec - wait);
+    const scale =
+      controls.paused || battle.state.phase !== 'running'
+        ? 0
+        : controls.speed * (controls.bulletTime ? BULLET_TIME_SCALE : 1);
+    acc += Math.min(elapsed - wait, 0.25) * scale;
+    let visualDt = dt * scale;
+    let steps = 0;
+    while (acc >= tickSec && steps < MAX_STEPS_PER_FRAME) {
+      onEvents(battle.step());
+      acc -= tickSec;
+      steps++;
+    }
+    if (steps === MAX_STEPS_PER_FRAME) {
+      // 밀린 전투 시간을 버릴 때 투사체·예약 효과음만 먼저 진행하지 않게 합니다.
+      visualDt = Math.max(0, visualDt - acc);
+      acc = 0;
+    }
+    if (controls.paused || preparing) onEvents(battle.flush());
+    render(
+      controls.paused || controls.startInSec > 0 || battle.state.phase !== 'running' ? 1 : acc / tickSec,
+      visualDt,
+      dt,
+    );
+    frameId = requestAnimationFrame(frame);
+  }
+  function onVisibility() {
+    if (document.hidden) controls.paused = true;
+    last = performance.now();
+  }
+  document.addEventListener('visibilitychange', onVisibility);
+  frameId = requestAnimationFrame(frame);
+  return {
+    dispose() {
+      cancelAnimationFrame(frameId);
+      document.removeEventListener('visibilitychange', onVisibility);
+    },
+  };
+}

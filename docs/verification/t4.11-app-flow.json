@@ -1,0 +1,16 @@
+[
+  {
+    "input": "mouse",
+    "cycles": 10,
+    "storedSpeed": 1,
+    "listeners": 1,
+    "errors": []
+  },
+  {
+    "input": "touch",
+    "cycles": 10,
+    "storedSpeed": 1,
+    "listeners": 1,
+    "errors": []
+  }
+]

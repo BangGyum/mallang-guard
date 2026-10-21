@@ -1,0 +1,624 @@
+[
+  {
+    "scale": 0,
+    "units": [
+      {
+        "id": "squirrel",
+        "armorPen": 0
+      },
+      {
+        "id": "cat",
+        "armorPen": 0
+      },
+      {
+        "id": "bear",
+        "armorPen": 0
+      },
+      {
+        "id": "penguin",
+        "armorPen": 0
+      },
+      {
+        "id": "sheep",
+        "armorPen": 0
+      },
+      {
+        "id": "bunny",
+        "armorPen": 0
+      },
+      {
+        "id": "mole",
+        "armorPen": 0
+      },
+      {
+        "id": "snail",
+        "armorPen": 0
+      },
+      {
+        "id": "owl",
+        "armorPen": 0
+      },
+      {
+        "id": "wolf",
+        "armorPen": 120
+      }
+    ],
+    "results": [
+      {
+        "name": "stage-1-no-skills",
+        "phase": "lost",
+        "life": 0,
+        "seconds": 241.23333333333332
+      },
+      {
+        "name": "stage-2-no-skills",
+        "phase": "lost",
+        "life": 0,
+        "seconds": 349.1666666666667
+      },
+      {
+        "name": "stage-3-no-skills",
+        "phase": "lost",
+        "life": 0,
+        "seconds": 449
+      },
+      {
+        "name": "stage-4-no-skills",
+        "phase": "lost",
+        "life": -1,
+        "seconds": 834.6666666666666
+      },
+      {
+        "name": "stage-5-no-skills",
+        "phase": "lost",
+        "life": 0,
+        "seconds": 830.8666666666667
+      },
+      {
+        "name": "stage-3-skills-stop",
+        "phase": "lost",
+        "life": 0,
+        "seconds": 449
+      },
+      {
+        "name": "stage-4-skills-stop",
+        "phase": "lost",
+        "life": -1,
+        "seconds": 834.6666666666666
+      },
+      {
+        "name": "stage-5-skills-stop",
+        "phase": "lost",
+        "life": 0,
+        "seconds": 830.8666666666667
+      },
+      {
+        "name": "stage-6-skills-stop",
+        "phase": "lost",
+        "life": 0,
+        "seconds": 277
+      },
+      {
+        "name": "stage-7-skills-stop",
+        "phase": "lost",
+        "life": 0,
+        "seconds": 300.03333333333336
+      }
+    ]
+  },
+  {
+    "scale": 0.1,
+    "units": [
+      {
+        "id": "squirrel",
+        "armorPen": 2
+      },
+      {
+        "id": "cat",
+        "armorPen": 4
+      },
+      {
+        "id": "bear",
+        "armorPen": 2
+      },
+      {
+        "id": "penguin",
+        "armorPen": 6
+      },
+      {
+        "id": "sheep",
+        "armorPen": 0
+      },
+      {
+        "id": "bunny",
+        "armorPen": 0
+      },
+      {
+        "id": "mole",
+        "armorPen": 2
+      },
+      {
+        "id": "snail",
+        "armorPen": 0
+      },
+      {
+        "id": "owl",
+        "armorPen": 0
+      },
+      {
+        "id": "wolf",
+        "armorPen": 120
+      }
+    ],
+    "results": [
+      {
+        "name": "stage-1-no-skills",
+        "phase": "lost",
+        "life": 0,
+        "seconds": 241.23333333333332
+      },
+      {
+        "name": "stage-2-no-skills",
+        "phase": "lost",
+        "life": 0,
+        "seconds": 349.1666666666667
+      },
+      {
+        "name": "stage-3-no-skills",
+        "phase": "lost",
+        "life": 0,
+        "seconds": 448.8333333333333
+      },
+      {
+        "name": "stage-4-no-skills",
+        "phase": "lost",
+        "life": -1,
+        "seconds": 834.6666666666666
+      },
+      {
+        "name": "stage-5-no-skills",
+        "phase": "lost",
+        "life": 0,
+        "seconds": 830.8666666666667
+      },
+      {
+        "name": "stage-3-skills-stop",
+        "phase": "lost",
+        "life": 0,
+        "seconds": 448.8333333333333
+      },
+      {
+        "name": "stage-4-skills-stop",
+        "phase": "lost",
+        "life": -1,
+        "seconds": 834.6666666666666
+      },
+      {
+        "name": "stage-5-skills-stop",
+        "phase": "lost",
+        "life": 0,
+        "seconds": 830.8666666666667
+      },
+      {
+        "name": "stage-6-skills-stop",
+        "phase": "lost",
+        "life": 0,
+        "seconds": 277
+      },
+      {
+        "name": "stage-7-skills-stop",
+        "phase": "lost",
+        "life": 0,
+        "seconds": 300.03333333333336
+      }
+    ]
+  },
+  {
+    "scale": 0.2,
+    "units": [
+      {
+        "id": "squirrel",
+        "armorPen": 3
+      },
+      {
+        "id": "cat",
+        "armorPen": 8
+      },
+      {
+        "id": "bear",
+        "armorPen": 4
+      },
+      {
+        "id": "penguin",
+        "armorPen": 12
+      },
+      {
+        "id": "sheep",
+        "armorPen": 0
+      },
+      {
+        "id": "bunny",
+        "armorPen": 0
+      },
+      {
+        "id": "mole",
+        "armorPen": 4
+      },
+      {
+        "id": "snail",
+        "armorPen": 0
+      },
+      {
+        "id": "owl",
+        "armorPen": 0
+      },
+      {
+        "id": "wolf",
+        "armorPen": 120
+      }
+    ],
+    "results": [
+      {
+        "name": "stage-1-no-skills",
+        "phase": "lost",
+        "life": 0,
+        "seconds": 241.23333333333332
+      },
+      {
+        "name": "stage-2-no-skills",
+        "phase": "lost",
+        "life": 0,
+        "seconds": 349.1666666666667
+      },
+      {
+        "name": "stage-3-no-skills",
+        "phase": "lost",
+        "life": 0,
+        "seconds": 448.8333333333333
+      },
+      {
+        "name": "stage-4-no-skills",
+        "phase": "lost",
+        "life": -1,
+        "seconds": 834.6666666666666
+      },
+      {
+        "name": "stage-5-no-skills",
+        "phase": "lost",
+        "life": 0,
+        "seconds": 830.8666666666667
+      },
+      {
+        "name": "stage-3-skills-stop",
+        "phase": "lost",
+        "life": 0,
+        "seconds": 448.8333333333333
+      },
+      {
+        "name": "stage-4-skills-stop",
+        "phase": "lost",
+        "life": -1,
+        "seconds": 834.6666666666666
+      },
+      {
+        "name": "stage-5-skills-stop",
+        "phase": "lost",
+        "life": 0,
+        "seconds": 830.8666666666667
+      },
+      {
+        "name": "stage-6-skills-stop",
+        "phase": "lost",
+        "life": 0,
+        "seconds": 277
+      },
+      {
+        "name": "stage-7-skills-stop",
+        "phase": "lost",
+        "life": 0,
+        "seconds": 300.03333333333336
+      }
+    ]
+  },
+  {
+    "scale": 0.3,
+    "units": [
+      {
+        "id": "squirrel",
+        "armorPen": 5
+      },
+      {
+        "id": "cat",
+        "armorPen": 12
+      },
+      {
+        "id": "bear",
+        "armorPen": 6
+      },
+      {
+        "id": "penguin",
+        "armorPen": 18
+      },
+      {
+        "id": "sheep",
+        "armorPen": 0
+      },
+      {
+        "id": "bunny",
+        "armorPen": 0
+      },
+      {
+        "id": "mole",
+        "armorPen": 6
+      },
+      {
+        "id": "snail",
+        "armorPen": 0
+      },
+      {
+        "id": "owl",
+        "armorPen": 0
+      },
+      {
+        "id": "wolf",
+        "armorPen": 120
+      }
+    ],
+    "results": [
+      {
+        "name": "stage-1-no-skills",
+        "phase": "lost",
+        "life": 0,
+        "seconds": 241.23333333333332
+      },
+      {
+        "name": "stage-2-no-skills",
+        "phase": "lost",
+        "life": 0,
+        "seconds": 349.1666666666667
+      },
+      {
+        "name": "stage-3-no-skills",
+        "phase": "lost",
+        "life": 0,
+        "seconds": 448.8333333333333
+      },
+      {
+        "name": "stage-4-no-skills",
+        "error": "scenario stage-4 tick 32307: expected lost, got won"
+      },
+      {
+        "name": "stage-5-no-skills",
+        "phase": "lost",
+        "life": 0,
+        "seconds": 830.8666666666667
+      },
+      {
+        "name": "stage-3-skills-stop",
+        "phase": "lost",
+        "life": 0,
+        "seconds": 448.8333333333333
+      },
+      {
+        "name": "stage-4-skills-stop",
+        "error": "scenario stage-4 tick 32307: expected lost, got won"
+      },
+      {
+        "name": "stage-5-skills-stop",
+        "phase": "lost",
+        "life": 0,
+        "seconds": 830.8666666666667
+      },
+      {
+        "name": "stage-6-skills-stop",
+        "phase": "lost",
+        "life": 0,
+        "seconds": 277
+      },
+      {
+        "name": "stage-7-skills-stop",
+        "phase": "lost",
+        "life": 0,
+        "seconds": 300.03333333333336
+      }
+    ]
+  },
+  {
+    "scale": 0.5,
+    "units": [
+      {
+        "id": "squirrel",
+        "armorPen": 8
+      },
+      {
+        "id": "cat",
+        "armorPen": 20
+      },
+      {
+        "id": "bear",
+        "armorPen": 10
+      },
+      {
+        "id": "penguin",
+        "armorPen": 30
+      },
+      {
+        "id": "sheep",
+        "armorPen": 0
+      },
+      {
+        "id": "bunny",
+        "armorPen": 0
+      },
+      {
+        "id": "mole",
+        "armorPen": 10
+      },
+      {
+        "id": "snail",
+        "armorPen": 0
+      },
+      {
+        "id": "owl",
+        "armorPen": 0
+      },
+      {
+        "id": "wolf",
+        "armorPen": 120
+      }
+    ],
+    "results": [
+      {
+        "name": "stage-1-no-skills",
+        "phase": "lost",
+        "life": 0,
+        "seconds": 241.23333333333332
+      },
+      {
+        "name": "stage-2-no-skills",
+        "phase": "lost",
+        "life": 0,
+        "seconds": 349.1666666666667
+      },
+      {
+        "name": "stage-3-no-skills",
+        "phase": "lost",
+        "life": 0,
+        "seconds": 449
+      },
+      {
+        "name": "stage-4-no-skills",
+        "error": "scenario stage-4 tick 32307: expected lost, got won"
+      },
+      {
+        "name": "stage-5-no-skills",
+        "phase": "lost",
+        "life": 0,
+        "seconds": 830.8666666666667
+      },
+      {
+        "name": "stage-3-skills-stop",
+        "phase": "lost",
+        "life": 0,
+        "seconds": 449
+      },
+      {
+        "name": "stage-4-skills-stop",
+        "error": "scenario stage-4 tick 32307: expected lost, got won"
+      },
+      {
+        "name": "stage-5-skills-stop",
+        "phase": "lost",
+        "life": 0,
+        "seconds": 830.8666666666667
+      },
+      {
+        "name": "stage-6-skills-stop",
+        "phase": "lost",
+        "life": 0,
+        "seconds": 277
+      },
+      {
+        "name": "stage-7-skills-stop",
+        "phase": "lost",
+        "life": 0,
+        "seconds": 300.03333333333336
+      }
+    ]
+  },
+  {
+    "scale": 1,
+    "units": [
+      {
+        "id": "squirrel",
+        "armorPen": 15
+      },
+      {
+        "id": "cat",
+        "armorPen": 40
+      },
+      {
+        "id": "bear",
+        "armorPen": 20
+      },
+      {
+        "id": "penguin",
+        "armorPen": 60
+      },
+      {
+        "id": "sheep",
+        "armorPen": 0
+      },
+      {
+        "id": "bunny",
+        "armorPen": 0
+      },
+      {
+        "id": "mole",
+        "armorPen": 20
+      },
+      {
+        "id": "snail",
+        "armorPen": 0
+      },
+      {
+        "id": "owl",
+        "armorPen": 0
+      },
+      {
+        "id": "wolf",
+        "armorPen": 120
+      }
+    ],
+    "results": [
+      {
+        "name": "stage-1-no-skills",
+        "error": "scenario stage-1 tick 7233: expected lost, got won"
+      },
+      {
+        "name": "stage-2-no-skills",
+        "error": "scenario stage-2 tick 10595: expected lost, got won"
+      },
+      {
+        "name": "stage-3-no-skills",
+        "error": "scenario stage-3 tick 14418: expected lost, got won"
+      },
+      {
+        "name": "stage-4-no-skills",
+        "error": "scenario stage-4 tick 32298: expected lost, got won"
+      },
+      {
+        "name": "stage-5-no-skills",
+        "phase": "lost",
+        "life": 0,
+        "seconds": 1040.5666666666666
+      },
+      {
+        "name": "stage-3-skills-stop",
+        "error": "scenario stage-3 tick 14418: expected lost, got won"
+      },
+      {
+        "name": "stage-4-skills-stop",
+        "error": "scenario stage-4 tick 32298: expected lost, got won"
+      },
+      {
+        "name": "stage-5-skills-stop",
+        "phase": "lost",
+        "life": 0,
+        "seconds": 1040.5666666666666
+      },
+      {
+        "name": "stage-6-skills-stop",
+        "phase": "lost",
+        "life": 0,
+        "seconds": 277
+      },
+      {
+        "name": "stage-7-skills-stop",
+        "phase": "lost",
+        "life": 0,
+        "seconds": 300.03333333333336
+      }
+    ]
+  }
+]

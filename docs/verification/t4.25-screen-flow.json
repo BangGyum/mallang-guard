@@ -1,0 +1,373 @@
+{
+  "screens": [
+    {
+      "viewport": "1920x1080",
+      "initialResult": {
+        "fits": true,
+        "noDialogScroll": true,
+        "moneyVisible": true,
+        "buttons": [
+          {
+            "name": "다음 스테이지",
+            "visible": true,
+            "size": true
+          },
+          {
+            "name": "다시 하기",
+            "visible": true,
+            "size": true
+          },
+          {
+            "name": "타이틀로",
+            "visible": true,
+            "size": true
+          },
+          {
+            "name": "스테이지 선택",
+            "visible": true,
+            "size": true
+          },
+          {
+            "name": "상점 · 모집",
+            "visible": true,
+            "size": true
+          }
+        ]
+      },
+      "detailsPreserved": true,
+      "purchaseFocus": "owl",
+      "returnToWonResult": true,
+      "returnToLostResult": true,
+      "resize": true,
+      "rewardOnce": true,
+      "nextStageWithPurchasedUnit": true,
+      "restartAndExitRewardZero": true,
+      "stoppedFrames": true,
+      "reload": true,
+      "errors": []
+    },
+    {
+      "viewport": "1280x720",
+      "initialResult": {
+        "fits": true,
+        "noDialogScroll": true,
+        "moneyVisible": true,
+        "buttons": [
+          {
+            "name": "다음 스테이지",
+            "visible": true,
+            "size": true
+          },
+          {
+            "name": "다시 하기",
+            "visible": true,
+            "size": true
+          },
+          {
+            "name": "타이틀로",
+            "visible": true,
+            "size": true
+          },
+          {
+            "name": "스테이지 선택",
+            "visible": true,
+            "size": true
+          },
+          {
+            "name": "상점 · 모집",
+            "visible": true,
+            "size": true
+          }
+        ]
+      },
+      "detailsPreserved": true,
+      "purchaseFocus": "owl",
+      "returnToWonResult": true,
+      "returnToLostResult": true,
+      "resize": true,
+      "rewardOnce": true,
+      "nextStageWithPurchasedUnit": true,
+      "restartAndExitRewardZero": true,
+      "stoppedFrames": true,
+      "reload": true,
+      "errors": []
+    },
+    {
+      "viewport": "844x390",
+      "initialResult": {
+        "fits": true,
+        "noDialogScroll": true,
+        "moneyVisible": true,
+        "buttons": [
+          {
+            "name": "다음 스테이지",
+            "visible": true,
+            "size": true
+          },
+          {
+            "name": "다시 하기",
+            "visible": true,
+            "size": true
+          },
+          {
+            "name": "타이틀로",
+            "visible": true,
+            "size": true
+          },
+          {
+            "name": "스테이지 선택",
+            "visible": true,
+            "size": true
+          },
+          {
+            "name": "상점 · 모집",
+            "visible": true,
+            "size": true
+          }
+        ]
+      },
+      "detailsPreserved": true,
+      "purchaseFocus": "owl",
+      "returnToWonResult": true,
+      "returnToLostResult": true,
+      "resize": true,
+      "rewardOnce": true,
+      "nextStageWithPurchasedUnit": true,
+      "restartAndExitRewardZero": true,
+      "stoppedFrames": true,
+      "reload": true,
+      "errors": []
+    },
+    {
+      "viewport": "740x360",
+      "initialResult": {
+        "fits": true,
+        "noDialogScroll": true,
+        "moneyVisible": true,
+        "buttons": [
+          {
+            "name": "다음 스테이지",
+            "visible": true,
+            "size": true
+          },
+          {
+            "name": "다시 하기",
+            "visible": true,
+            "size": true
+          },
+          {
+            "name": "타이틀로",
+            "visible": true,
+            "size": true
+          },
+          {
+            "name": "스테이지 선택",
+            "visible": true,
+            "size": true
+          },
+          {
+            "name": "상점 · 모집",
+            "visible": true,
+            "size": true
+          }
+        ]
+      },
+      "detailsPreserved": true,
+      "purchaseFocus": "owl",
+      "returnToWonResult": true,
+      "returnToLostResult": true,
+      "resize": true,
+      "rewardOnce": true,
+      "nextStageWithPurchasedUnit": true,
+      "restartAndExitRewardZero": true,
+      "stoppedFrames": true,
+      "reload": true,
+      "errors": []
+    },
+    {
+      "viewport": "600x400",
+      "initialResult": {
+        "fits": true,
+        "noDialogScroll": true,
+        "moneyVisible": true,
+        "buttons": [
+          {
+            "name": "다음 스테이지",
+            "visible": true,
+            "size": true
+          },
+          {
+            "name": "다시 하기",
+            "visible": true,
+            "size": true
+          },
+          {
+            "name": "타이틀로",
+            "visible": true,
+            "size": true
+          },
+          {
+            "name": "스테이지 선택",
+            "visible": true,
+            "size": true
+          },
+          {
+            "name": "상점 · 모집",
+            "visible": true,
+            "size": true
+          }
+        ]
+      },
+      "detailsPreserved": true,
+      "purchaseFocus": "owl",
+      "returnToWonResult": true,
+      "returnToLostResult": true,
+      "resize": true,
+      "rewardOnce": true,
+      "nextStageWithPurchasedUnit": true,
+      "restartAndExitRewardZero": true,
+      "stoppedFrames": true,
+      "reload": true,
+      "errors": []
+    },
+    {
+      "viewport": "540x360",
+      "initialResult": {
+        "fits": true,
+        "noDialogScroll": true,
+        "moneyVisible": true,
+        "buttons": [
+          {
+            "name": "다음 스테이지",
+            "visible": true,
+            "size": true
+          },
+          {
+            "name": "다시 하기",
+            "visible": true,
+            "size": true
+          },
+          {
+            "name": "타이틀로",
+            "visible": true,
+            "size": true
+          },
+          {
+            "name": "스테이지 선택",
+            "visible": true,
+            "size": true
+          },
+          {
+            "name": "상점 · 모집",
+            "visible": true,
+            "size": true
+          }
+        ]
+      },
+      "detailsPreserved": true,
+      "purchaseFocus": "owl",
+      "returnToWonResult": true,
+      "returnToLostResult": true,
+      "resize": true,
+      "rewardOnce": true,
+      "nextStageWithPurchasedUnit": true,
+      "restartAndExitRewardZero": true,
+      "stoppedFrames": true,
+      "reload": true,
+      "errors": []
+    },
+    {
+      "viewport": "390x844",
+      "initialResult": {
+        "fits": true,
+        "noDialogScroll": true,
+        "moneyVisible": true,
+        "buttons": [
+          {
+            "name": "다음 스테이지",
+            "visible": true,
+            "size": true
+          },
+          {
+            "name": "다시 하기",
+            "visible": true,
+            "size": true
+          },
+          {
+            "name": "타이틀로",
+            "visible": true,
+            "size": true
+          },
+          {
+            "name": "스테이지 선택",
+            "visible": true,
+            "size": true
+          },
+          {
+            "name": "상점 · 모집",
+            "visible": true,
+            "size": true
+          }
+        ]
+      },
+      "detailsPreserved": true,
+      "purchaseFocus": "wolf",
+      "returnToWonResult": true,
+      "returnToLostResult": true,
+      "resize": true,
+      "rewardOnce": true,
+      "nextStageWithPurchasedUnit": true,
+      "restartAndExitRewardZero": true,
+      "stoppedFrames": true,
+      "reload": true,
+      "errors": []
+    },
+    {
+      "viewport": "320x568",
+      "initialResult": {
+        "fits": true,
+        "noDialogScroll": true,
+        "moneyVisible": true,
+        "buttons": [
+          {
+            "name": "다음 스테이지",
+            "visible": true,
+            "size": true
+          },
+          {
+            "name": "다시 하기",
+            "visible": true,
+            "size": true
+          },
+          {
+            "name": "타이틀로",
+            "visible": true,
+            "size": true
+          },
+          {
+            "name": "스테이지 선택",
+            "visible": true,
+            "size": true
+          },
+          {
+            "name": "상점 · 모집",
+            "visible": true,
+            "size": true
+          }
+        ]
+      },
+      "detailsPreserved": true,
+      "purchaseFocus": "owl",
+      "returnToWonResult": true,
+      "returnToLostResult": true,
+      "resize": true,
+      "rewardOnce": true,
+      "nextStageWithPurchasedUnit": true,
+      "restartAndExitRewardZero": true,
+      "stoppedFrames": true,
+      "reload": true,
+      "errors": []
+    }
+  ],
+  "rewardSaveRecovery": true
+}

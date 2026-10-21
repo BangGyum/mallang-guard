@@ -1,0 +1,260 @@
+[
+  {
+    "viewport": "desktop",
+    "checks": [
+      {
+        "id": "squirrel",
+        "expected": "bullet",
+        "active": [
+          "bullet",
+          "muzzle",
+          "goo",
+          "stunStar",
+          "ring"
+        ],
+        "facing": true
+      },
+      {
+        "id": "cat",
+        "expected": "slash",
+        "active": [
+          "slash",
+          "goo",
+          "stunStar",
+          "ring"
+        ],
+        "facing": true
+      },
+      {
+        "id": "bear",
+        "expected": "shockwave",
+        "active": [
+          "shockwave",
+          "goo",
+          "stunStar",
+          "ring"
+        ],
+        "facing": true
+      },
+      {
+        "id": "penguin",
+        "expected": "iceRound",
+        "active": [
+          "iceRound",
+          "muzzle",
+          "goo",
+          "stunStar",
+          "ring"
+        ],
+        "facing": true
+      },
+      {
+        "id": "sheep",
+        "expected": "arcBolt",
+        "active": [
+          "arcBolt",
+          "goo",
+          "stunStar",
+          "ring"
+        ],
+        "facing": true
+      },
+      {
+        "id": "bunny",
+        "expected": "arcBolt",
+        "active": [
+          "arcBolt",
+          "muzzle",
+          "goo",
+          "stunStar",
+          "ring"
+        ],
+        "facing": true
+      },
+      {
+        "id": "mole",
+        "expected": "bullet",
+        "active": [
+          "bullet",
+          "muzzle",
+          "goo",
+          "stunStar",
+          "ring"
+        ],
+        "facing": true
+      },
+      {
+        "id": "snail",
+        "expected": "stickyDrop",
+        "active": [
+          "muzzle",
+          "stickyDrop",
+          "goo",
+          "stunStar",
+          "ring"
+        ],
+        "facing": true
+      },
+      {
+        "id": "owl",
+        "expected": "plasma",
+        "active": [
+          "plasma",
+          "muzzle",
+          "goo",
+          "stunStar",
+          "ring"
+        ],
+        "facing": true
+      },
+      {
+        "id": "wolf",
+        "expected": "railRound",
+        "active": [
+          "railRound",
+          "muzzle",
+          "goo",
+          "stunStar",
+          "ring"
+        ],
+        "facing": true
+      }
+    ],
+    "unchanged": true,
+    "metrics": {
+      "drawCalls": 54,
+      "particles": 88
+    },
+    "paused": true,
+    "errors": []
+  },
+  {
+    "viewport": "mobile",
+    "checks": [
+      {
+        "id": "squirrel",
+        "expected": "bullet",
+        "active": [
+          "bullet",
+          "muzzle",
+          "goo",
+          "stunStar",
+          "ring"
+        ],
+        "facing": true
+      },
+      {
+        "id": "cat",
+        "expected": "slash",
+        "active": [
+          "slash",
+          "goo",
+          "stunStar",
+          "ring"
+        ],
+        "facing": true
+      },
+      {
+        "id": "bear",
+        "expected": "shockwave",
+        "active": [
+          "shockwave",
+          "goo",
+          "stunStar",
+          "ring"
+        ],
+        "facing": true
+      },
+      {
+        "id": "penguin",
+        "expected": "iceRound",
+        "active": [
+          "iceRound",
+          "muzzle",
+          "goo",
+          "stunStar",
+          "ring"
+        ],
+        "facing": true
+      },
+      {
+        "id": "sheep",
+        "expected": "arcBolt",
+        "active": [
+          "arcBolt",
+          "goo",
+          "stunStar",
+          "ring"
+        ],
+        "facing": true
+      },
+      {
+        "id": "bunny",
+        "expected": "arcBolt",
+        "active": [
+          "arcBolt",
+          "muzzle",
+          "goo",
+          "stunStar",
+          "ring"
+        ],
+        "facing": true
+      },
+      {
+        "id": "mole",
+        "expected": "bullet",
+        "active": [
+          "bullet",
+          "muzzle",
+          "goo",
+          "stunStar",
+          "ring"
+        ],
+        "facing": true
+      },
+      {
+        "id": "snail",
+        "expected": "stickyDrop",
+        "active": [
+          "muzzle",
+          "stickyDrop",
+          "goo",
+          "stunStar",
+          "ring"
+        ],
+        "facing": true
+      },
+      {
+        "id": "owl",
+        "expected": "plasma",
+        "active": [
+          "plasma",
+          "muzzle",
+          "goo",
+          "stunStar",
+          "ring"
+        ],
+        "facing": true
+      },
+      {
+        "id": "wolf",
+        "expected": "railRound",
+        "active": [
+          "railRound",
+          "muzzle",
+          "goo",
+          "stunStar",
+          "ring"
+        ],
+        "facing": true
+      }
+    ],
+    "unchanged": true,
+    "metrics": {
+      "drawCalls": 54,
+      "particles": 88
+    },
+    "paused": true,
+    "errors": []
+  }
+]

@@ -1,0 +1,307 @@
+[
+  {
+    "id": "acornPickup",
+    "name": "전리품 수거",
+    "description": "12초 동안 토리의 사거리 안에서 처치된 적의 도토리 보상 +1. 발동만으로 도토리를 얻지는 않아요.",
+    "charge": "auto",
+    "spCost": 20,
+    "spStart": 8,
+    "trigger": "manual",
+    "condition": "always",
+    "durationSec": 12,
+    "effects": [
+      {
+        "type": "killBounty",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "id": "nyangCombo",
+    "name": "연속 참격",
+    "description": "8초 동안 공격 속도 2배, 세 번째 공격마다 0.5초 기절",
+    "charge": "attack",
+    "spCost": 12,
+    "spStart": 0,
+    "trigger": "manual",
+    "condition": "always",
+    "durationSec": 8,
+    "effects": [
+      {
+        "type": "statMul",
+        "stat": "atkInterval",
+        "value": 0.5
+      },
+      {
+        "type": "stunEveryNthHit",
+        "n": 3,
+        "sec": 0.5
+      }
+    ]
+  },
+  {
+    "id": "potLidGuard",
+    "name": "충격 제압",
+    "description": "10초 동안 공격력 +80%, 공격할 때마다 0.6초 기절",
+    "charge": "auto",
+    "spCost": 15,
+    "spStart": 5,
+    "trigger": "manual",
+    "condition": "always",
+    "durationSec": 10,
+    "effects": [
+      {
+        "type": "statMul",
+        "stat": "atk",
+        "value": 1.8
+      },
+      {
+        "type": "stunEveryNthHit",
+        "n": 1,
+        "sec": 0.6
+      }
+    ]
+  },
+  {
+    "id": "snowballBarrage",
+    "name": "냉각탄 포화",
+    "description": "15초 동안 공격이 반경 1칸 범위 피해, 맞은 적은 1.5초간 30% 둔화",
+    "charge": "auto",
+    "spCost": 30,
+    "spStart": 10,
+    "trigger": "manual",
+    "condition": "always",
+    "durationSec": 15,
+    "effects": [
+      {
+        "type": "splash",
+        "radius": 1
+      },
+      {
+        "type": "onHitSlow",
+        "amount": 0.3,
+        "sec": 1.5
+      }
+    ]
+  },
+  {
+    "id": "stardustShower",
+    "name": "아크 폭격",
+    "description": "사거리 안 모든 적에게 공격력 130% 마법 피해 3회",
+    "charge": "auto",
+    "spCost": 35,
+    "spStart": 15,
+    "trigger": "manual",
+    "condition": "enemyInRange",
+    "durationSec": 1.5,
+    "effects": [
+      {
+        "type": "pulseDamage",
+        "count": 3,
+        "intervalSec": 0.5,
+        "atkMul": 1.3,
+        "damageType": "magic"
+      }
+    ]
+  },
+  {
+    "id": "carrotSoup",
+    "name": "전술 가속",
+    "description": "8초 동안 사거리 안 친구들의 공격 간격 30% 감소 (자동 발동)",
+    "charge": "auto",
+    "spCost": 25,
+    "spStart": 10,
+    "trigger": "auto",
+    "condition": "enemyInRange",
+    "durationSec": 8,
+    "effects": [
+      {
+        "type": "hasteAura",
+        "value": 0.7
+      }
+    ]
+  },
+  {
+    "id": "tunnelAmbush",
+    "name": "돌파 사격",
+    "description": "앞의 적 하나를 경로 뒤쪽으로 2칸 밀어냄",
+    "charge": "auto",
+    "spCost": 10,
+    "spStart": 5,
+    "trigger": "manual",
+    "condition": "enemyInRange",
+    "durationSec": 0,
+    "effects": [
+      {
+        "type": "pushback",
+        "tiles": 2
+      }
+    ]
+  },
+  {
+    "id": "stickyRoad",
+    "name": "점착탄 지대",
+    "description": "12초 동안 사거리 안 적 이동 속도 60% 감소",
+    "charge": "auto",
+    "spCost": 25,
+    "spStart": 8,
+    "trigger": "manual",
+    "condition": "always",
+    "durationSec": 12,
+    "effects": [
+      {
+        "type": "slowAura",
+        "amount": 0.6
+      }
+    ]
+  },
+  {
+    "id": "wideBarrage",
+    "name": "화염 개방",
+    "description": "기본 사거리 주변 5×5칸에 불꽃 마법 발사. 12초 동안 10×10칸으로 확대, 공격력 +50%, 공격 속도 2배",
+    "charge": "auto",
+    "spCost": 35,
+    "spStart": 10,
+    "trigger": "manual",
+    "condition": "always",
+    "durationSec": 12,
+    "effects": [
+      {
+        "type": "rangeOverride",
+        "range": "square10"
+      },
+      {
+        "type": "statMul",
+        "stat": "atk",
+        "value": 1.5
+      },
+      {
+        "type": "statMul",
+        "stat": "atkInterval",
+        "value": 0.5
+      }
+    ]
+  },
+  {
+    "id": "tripleAim",
+    "name": "삼중 조준",
+    "description": "12초 동안 정면 5×3칸에서 최대 3명 동시 사격. 적 한 명당 한 발, 공격력 10% 감소·관통력 +40",
+    "charge": "auto",
+    "spCost": 30,
+    "spStart": 10,
+    "trigger": "manual",
+    "condition": "always",
+    "durationSec": 12,
+    "effects": [
+      {
+        "type": "rangeOverride",
+        "range": "line5Wide"
+      },
+      {
+        "type": "multiTarget",
+        "count": 3
+      },
+      {
+        "type": "armorPenAdd",
+        "value": 40
+      },
+      {
+        "type": "statMul",
+        "stat": "atk",
+        "value": 0.9
+      }
+    ]
+  },
+  {
+    "id": "polarAim",
+    "name": "극점 조준",
+    "description": "보스 우선 단일 사격. 12초 동안 공격력 +60%, 관통력 +180. 사거리와 공격 간격은 유지합니다.",
+    "charge": "auto",
+    "spCost": 45,
+    "spStart": 10,
+    "trigger": "manual",
+    "condition": "always",
+    "durationSec": 12,
+    "effects": [
+      {
+        "type": "statMul",
+        "stat": "atk",
+        "value": 1.6
+      },
+      {
+        "type": "armorPenAdd",
+        "value": 180
+      }
+    ]
+  },
+  {
+    "id": "siegeBarrage",
+    "name": "집중 포격",
+    "description": "기본 명중 지점 반경 1.2칸 폭발. 10초 동안 공격력 +40%, 공격 간격 2.4초 → 1.5초, 폭발 반경 1.8칸. 비행 적은 공격하지 못해요.",
+    "charge": "auto",
+    "spCost": 40,
+    "spStart": 10,
+    "trigger": "manual",
+    "condition": "always",
+    "durationSec": 10,
+    "effects": [
+      {
+        "type": "statMul",
+        "stat": "atk",
+        "value": 1.4
+      },
+      {
+        "type": "statMul",
+        "stat": "atkInterval",
+        "value": 0.625
+      },
+      {
+        "type": "splash",
+        "radius": 1.8
+      }
+    ]
+  },
+  {
+    "id": "stormChain",
+    "name": "청뢰 개방",
+    "description": "기본 최대 3명 연쇄 번개(100%·70%·50%). 12초 동안 공격 간격 1.5초 → 1초, 최대 5명(100%·80%·60%·40%·30%). 사거리 안 이전 적의 1.5칸 이내로 연결하며 같은 적을 두 번 맞히지 않아요.",
+    "charge": "auto",
+    "spCost": 40,
+    "spStart": 10,
+    "trigger": "manual",
+    "condition": "always",
+    "durationSec": 12,
+    "effects": [
+      {
+        "type": "statMul",
+        "stat": "atkInterval",
+        "value": 0.6666666666666666
+      },
+      {
+        "type": "chain",
+        "radius": 1.5,
+        "damageMuls": [1, 0.8, 0.6, 0.4, 0.3]
+      }
+    ]
+  },
+  {
+    "id": "eventHorizon",
+    "name": "사건의 지평선",
+    "description": "목표의 현재 위치에 4초간 고정 중력장을 생성. 반경 1.8칸의 지상·공중 적을 70%, 보스를 25% 둔화시키고 끝날 때 공격력 300% 마법 피해. 목표가 사라져도 유지하며 후퇴하면 취소됩니다.",
+    "charge": "auto",
+    "spCost": 55,
+    "spStart": 15,
+    "trigger": "manual",
+    "condition": "enemyInRange",
+    "durationSec": 4,
+    "effects": [
+      {
+        "type": "gravityField",
+        "radius": 1.8,
+        "slowAmount": 0.7,
+        "bossSlowAmount": 0.25,
+        "atkMul": 3
+      }
+    ]
+  }
+]

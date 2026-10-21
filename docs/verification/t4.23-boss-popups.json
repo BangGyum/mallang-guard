@@ -1,0 +1,5396 @@
+[
+  {
+    "width": 740,
+    "height": 360,
+    "touch": true,
+    "arrival": {
+      "boss": {
+        "x": 149.203125,
+        "y": 106,
+        "width": 332,
+        "height": 64,
+        "top": 106,
+        "right": 481.203125,
+        "bottom": 170,
+        "left": 149.203125
+      },
+      "popup": {
+        "x": 489.203125,
+        "y": 58,
+        "width": 240,
+        "height": 181.390625,
+        "top": 58,
+        "right": 729.203125,
+        "bottom": 239.390625,
+        "left": 489.203125
+      },
+      "separated": true,
+      "fits": true,
+      "labelsFit": true,
+      "waveClear": true,
+      "buttonsFit": true
+    },
+    "checks": [
+      {
+        "tile": {
+          "x": 9,
+          "y": 5
+        },
+        "duringWave": {
+          "boss": {
+            "x": 149.203125,
+            "y": 106,
+            "width": 332,
+            "height": 64,
+            "top": 106,
+            "right": 481.203125,
+            "bottom": 170,
+            "left": 149.203125
+          },
+          "popup": {
+            "x": 489.203125,
+            "y": 58,
+            "width": 240,
+            "height": 181.390625,
+            "top": 58,
+            "right": 729.203125,
+            "bottom": 239.390625,
+            "left": 489.203125
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "afterWave": {
+          "boss": {
+            "x": 29.9375,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 361.9375,
+            "bottom": 124,
+            "left": 29.9375
+          },
+          "popup": {
+            "x": 369.9375,
+            "y": 58,
+            "width": 240,
+            "height": 181.390625,
+            "top": 58,
+            "right": 609.9375,
+            "bottom": 239.390625,
+            "left": 369.9375
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "expanded": {
+          "boss": {
+            "x": 29.9375,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 361.9375,
+            "bottom": 124,
+            "left": 29.9375
+          },
+          "popup": {
+            "x": 369.9375,
+            "y": 58,
+            "width": 240,
+            "height": 193,
+            "top": 58,
+            "right": 609.9375,
+            "bottom": 251,
+            "left": 369.9375
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "readable": true,
+        "roster": {
+          "boss": {
+            "x": 128,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 460,
+            "bottom": 124,
+            "left": 128
+          },
+          "popup": {
+            "x": 468,
+            "y": 58,
+            "width": 264,
+            "height": 193,
+            "top": 58,
+            "right": 732,
+            "bottom": 251,
+            "left": 468
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "resized": {
+          "boss": {
+            "x": 128,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 460,
+            "bottom": 124,
+            "left": 128
+          },
+          "popup": {
+            "x": 468,
+            "y": 58,
+            "width": 264,
+            "height": 193,
+            "top": 58,
+            "right": 732,
+            "bottom": 251,
+            "left": 468
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "skill": true,
+        "exit": true
+      },
+      {
+        "tile": {
+          "x": 10,
+          "y": 6
+        },
+        "duringWave": {
+          "boss": {
+            "x": 149.203125,
+            "y": 106,
+            "width": 332,
+            "height": 64,
+            "top": 106,
+            "right": 481.203125,
+            "bottom": 170,
+            "left": 149.203125
+          },
+          "popup": {
+            "x": 489.203125,
+            "y": 65,
+            "width": 240,
+            "height": 181.390625,
+            "top": 65,
+            "right": 729.203125,
+            "bottom": 246.390625,
+            "left": 489.203125
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "afterWave": {
+          "boss": {
+            "x": 48.484375,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 380.484375,
+            "bottom": 124,
+            "left": 48.484375
+          },
+          "popup": {
+            "x": 388.484375,
+            "y": 65,
+            "width": 240,
+            "height": 181.390625,
+            "top": 65,
+            "right": 628.484375,
+            "bottom": 246.390625,
+            "left": 388.484375
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "expanded": {
+          "boss": {
+            "x": 48.484375,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 380.484375,
+            "bottom": 124,
+            "left": 48.484375
+          },
+          "popup": {
+            "x": 388.484375,
+            "y": 58,
+            "width": 240,
+            "height": 193,
+            "top": 58,
+            "right": 628.484375,
+            "bottom": 251,
+            "left": 388.484375
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "readable": true,
+        "roster": {
+          "boss": {
+            "x": 128,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 460,
+            "bottom": 124,
+            "left": 128
+          },
+          "popup": {
+            "x": 468,
+            "y": 58,
+            "width": 264,
+            "height": 193,
+            "top": 58,
+            "right": 732,
+            "bottom": 251,
+            "left": 468
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "resized": {
+          "boss": {
+            "x": 128,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 460,
+            "bottom": 124,
+            "left": 128
+          },
+          "popup": {
+            "x": 468,
+            "y": 58,
+            "width": 264,
+            "height": 193,
+            "top": 58,
+            "right": 732,
+            "bottom": 251,
+            "left": 468
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "skill": true,
+        "exit": true
+      },
+      {
+        "tile": {
+          "x": 18,
+          "y": 5
+        },
+        "duringWave": {
+          "boss": {
+            "x": 258.796875,
+            "y": 106,
+            "width": 332,
+            "height": 64,
+            "top": 106,
+            "right": 590.796875,
+            "bottom": 170,
+            "left": 258.796875
+          },
+          "popup": {
+            "x": 10.796875,
+            "y": 58,
+            "width": 240,
+            "height": 181.390625,
+            "top": 58,
+            "right": 250.796875,
+            "bottom": 239.390625,
+            "left": 10.796875
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "afterWave": {
+          "boss": {
+            "x": 490.265625,
+            "y": 60,
+            "width": 241.734375,
+            "height": 64,
+            "top": 60,
+            "right": 732,
+            "bottom": 124,
+            "left": 490.265625
+          },
+          "popup": {
+            "x": 242.265625,
+            "y": 58,
+            "width": 240,
+            "height": 181.390625,
+            "top": 58,
+            "right": 482.265625,
+            "bottom": 239.390625,
+            "left": 242.265625
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "expanded": {
+          "boss": {
+            "x": 490.265625,
+            "y": 60,
+            "width": 241.734375,
+            "height": 64,
+            "top": 60,
+            "right": 732,
+            "bottom": 124,
+            "left": 490.265625
+          },
+          "popup": {
+            "x": 242.265625,
+            "y": 58,
+            "width": 240,
+            "height": 193,
+            "top": 58,
+            "right": 482.265625,
+            "bottom": 251,
+            "left": 242.265625
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "readable": true,
+        "roster": {
+          "boss": {
+            "x": 128,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 460,
+            "bottom": 124,
+            "left": 128
+          },
+          "popup": {
+            "x": 468,
+            "y": 58,
+            "width": 264,
+            "height": 193,
+            "top": 58,
+            "right": 732,
+            "bottom": 251,
+            "left": 468
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "resized": {
+          "boss": {
+            "x": 128,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 460,
+            "bottom": 124,
+            "left": 128
+          },
+          "popup": {
+            "x": 468,
+            "y": 58,
+            "width": 264,
+            "height": 193,
+            "top": 58,
+            "right": 732,
+            "bottom": 251,
+            "left": 468
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "skill": true,
+        "exit": true
+      },
+      {
+        "tile": {
+          "x": 6,
+          "y": 5
+        },
+        "duringWave": {
+          "boss": {
+            "x": 149.203125,
+            "y": 106,
+            "width": 332,
+            "height": 64,
+            "top": 106,
+            "right": 481.203125,
+            "bottom": 170,
+            "left": 149.203125
+          },
+          "popup": {
+            "x": 489.203125,
+            "y": 58,
+            "width": 240,
+            "height": 181.390625,
+            "top": 58,
+            "right": 729.203125,
+            "bottom": 239.390625,
+            "left": 489.203125
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "afterWave": {
+          "boss": {
+            "x": 8,
+            "y": 60,
+            "width": 297.828125,
+            "height": 64,
+            "top": 60,
+            "right": 305.828125,
+            "bottom": 124,
+            "left": 8
+          },
+          "popup": {
+            "x": 313.828125,
+            "y": 58,
+            "width": 240,
+            "height": 181.390625,
+            "top": 58,
+            "right": 553.828125,
+            "bottom": 239.390625,
+            "left": 313.828125
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "expanded": {
+          "boss": {
+            "x": 8,
+            "y": 60,
+            "width": 297.828125,
+            "height": 64,
+            "top": 60,
+            "right": 305.828125,
+            "bottom": 124,
+            "left": 8
+          },
+          "popup": {
+            "x": 313.828125,
+            "y": 58,
+            "width": 240,
+            "height": 193,
+            "top": 58,
+            "right": 553.828125,
+            "bottom": 251,
+            "left": 313.828125
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "readable": true,
+        "roster": {
+          "boss": {
+            "x": 128,
+            "y": 60,
+            "width": 332,
+            "height": 44,
+            "top": 60,
+            "right": 460,
+            "bottom": 104,
+            "left": 128
+          },
+          "popup": {
+            "x": 468,
+            "y": 58,
+            "width": 264,
+            "height": 193,
+            "top": 58,
+            "right": 732,
+            "bottom": 251,
+            "left": 468
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "resized": {
+          "boss": {
+            "x": 128,
+            "y": 60,
+            "width": 332,
+            "height": 44,
+            "top": 60,
+            "right": 460,
+            "bottom": 104,
+            "left": 128
+          },
+          "popup": {
+            "x": 468,
+            "y": 58,
+            "width": 264,
+            "height": 193,
+            "top": 58,
+            "right": 732,
+            "bottom": 251,
+            "left": 468
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "skill": true,
+        "exit": true
+      },
+      {
+        "tile": {
+          "x": 4,
+          "y": 8
+        },
+        "duringWave": {
+          "boss": {
+            "x": 149.203125,
+            "y": 106,
+            "width": 332,
+            "height": 64,
+            "top": 106,
+            "right": 481.203125,
+            "bottom": 170,
+            "left": 149.203125
+          },
+          "popup": {
+            "x": 489.203125,
+            "y": 70,
+            "width": 240,
+            "height": 181.390625,
+            "top": 70,
+            "right": 729.203125,
+            "bottom": 251.390625,
+            "left": 489.203125
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "afterWave": {
+          "boss": {
+            "x": 8,
+            "y": 60,
+            "width": 254.3125,
+            "height": 64,
+            "top": 60,
+            "right": 262.3125,
+            "bottom": 124,
+            "left": 8
+          },
+          "popup": {
+            "x": 270.3125,
+            "y": 70,
+            "width": 240,
+            "height": 181.390625,
+            "top": 70,
+            "right": 510.3125,
+            "bottom": 251.390625,
+            "left": 270.3125
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "expanded": {
+          "boss": {
+            "x": 8,
+            "y": 60,
+            "width": 254.3125,
+            "height": 64,
+            "top": 60,
+            "right": 262.3125,
+            "bottom": 124,
+            "left": 8
+          },
+          "popup": {
+            "x": 270.3125,
+            "y": 58,
+            "width": 240,
+            "height": 193,
+            "top": 58,
+            "right": 510.3125,
+            "bottom": 251,
+            "left": 270.3125
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "readable": true,
+        "roster": {
+          "boss": {
+            "x": 128,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 460,
+            "bottom": 124,
+            "left": 128
+          },
+          "popup": {
+            "x": 468,
+            "y": 58,
+            "width": 264,
+            "height": 193,
+            "top": 58,
+            "right": 732,
+            "bottom": 251,
+            "left": 468
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "resized": {
+          "boss": {
+            "x": 128,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 460,
+            "bottom": 124,
+            "left": 128
+          },
+          "popup": {
+            "x": 468,
+            "y": 58,
+            "width": 264,
+            "height": 193,
+            "top": 58,
+            "right": 732,
+            "bottom": 251,
+            "left": 468
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "skill": true,
+        "exit": true
+      },
+      {
+        "tile": {
+          "x": 19,
+          "y": 8
+        },
+        "duringWave": {
+          "boss": {
+            "x": 258.796875,
+            "y": 106,
+            "width": 332,
+            "height": 64,
+            "top": 106,
+            "right": 590.796875,
+            "bottom": 170,
+            "left": 258.796875
+          },
+          "popup": {
+            "x": 10.796875,
+            "y": 70,
+            "width": 240,
+            "height": 181.390625,
+            "top": 70,
+            "right": 250.796875,
+            "bottom": 251.390625,
+            "left": 10.796875
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "afterWave": {
+          "boss": {
+            "x": 8,
+            "y": 60,
+            "width": 252.96875,
+            "height": 64,
+            "top": 60,
+            "right": 260.96875,
+            "bottom": 124,
+            "left": 8
+          },
+          "popup": {
+            "x": 268.96875,
+            "y": 70,
+            "width": 240,
+            "height": 181.390625,
+            "top": 70,
+            "right": 508.96875,
+            "bottom": 251.390625,
+            "left": 268.96875
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "expanded": {
+          "boss": {
+            "x": 8,
+            "y": 60,
+            "width": 252.96875,
+            "height": 64,
+            "top": 60,
+            "right": 260.96875,
+            "bottom": 124,
+            "left": 8
+          },
+          "popup": {
+            "x": 268.96875,
+            "y": 58,
+            "width": 240,
+            "height": 193,
+            "top": 58,
+            "right": 508.96875,
+            "bottom": 251,
+            "left": 268.96875
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "readable": true,
+        "roster": {
+          "boss": {
+            "x": 128,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 460,
+            "bottom": 124,
+            "left": 128
+          },
+          "popup": {
+            "x": 468,
+            "y": 58,
+            "width": 264,
+            "height": 193,
+            "top": 58,
+            "right": 732,
+            "bottom": 251,
+            "left": 468
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "resized": {
+          "boss": {
+            "x": 128,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 460,
+            "bottom": 124,
+            "left": 128
+          },
+          "popup": {
+            "x": 468,
+            "y": 58,
+            "width": 264,
+            "height": 193,
+            "top": 58,
+            "right": 732,
+            "bottom": 251,
+            "left": 468
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "skill": true,
+        "exit": true
+      }
+    ],
+    "errors": []
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "touch": true,
+    "arrival": {
+      "boss": {
+        "x": 201.203125,
+        "y": 106,
+        "width": 332,
+        "height": 64,
+        "top": 106,
+        "right": 533.203125,
+        "bottom": 170,
+        "left": 201.203125
+      },
+      "popup": {
+        "x": 541.203125,
+        "y": 58,
+        "width": 240,
+        "height": 213,
+        "top": 58,
+        "right": 781.203125,
+        "bottom": 271,
+        "left": 541.203125
+      },
+      "separated": true,
+      "fits": true,
+      "labelsFit": true,
+      "waveClear": true,
+      "buttonsFit": true
+    },
+    "checks": [
+      {
+        "tile": {
+          "x": 9,
+          "y": 5
+        },
+        "duringWave": {
+          "boss": {
+            "x": 201.203125,
+            "y": 106,
+            "width": 332,
+            "height": 64,
+            "top": 106,
+            "right": 533.203125,
+            "bottom": 170,
+            "left": 201.203125
+          },
+          "popup": {
+            "x": 541.203125,
+            "y": 58,
+            "width": 240,
+            "height": 213,
+            "top": 58,
+            "right": 781.203125,
+            "bottom": 271,
+            "left": 541.203125
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "afterWave": {
+          "boss": {
+            "x": 79.59375,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 411.59375,
+            "bottom": 124,
+            "left": 79.59375
+          },
+          "popup": {
+            "x": 419.59375,
+            "y": 58,
+            "width": 240,
+            "height": 213,
+            "top": 58,
+            "right": 659.59375,
+            "bottom": 271,
+            "left": 419.59375
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "expanded": {
+          "boss": {
+            "x": 79.59375,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 411.59375,
+            "bottom": 124,
+            "left": 79.59375
+          },
+          "popup": {
+            "x": 419.59375,
+            "y": 58,
+            "width": 240,
+            "height": 223,
+            "top": 58,
+            "right": 659.59375,
+            "bottom": 281,
+            "left": 419.59375
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "readable": true,
+        "roster": {
+          "boss": {
+            "x": 232,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 564,
+            "bottom": 124,
+            "left": 232
+          },
+          "popup": {
+            "x": 572,
+            "y": 58,
+            "width": 264,
+            "height": 223,
+            "top": 58,
+            "right": 836,
+            "bottom": 281,
+            "left": 572
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "resized": {
+          "boss": {
+            "x": 128,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 460,
+            "bottom": 124,
+            "left": 128
+          },
+          "popup": {
+            "x": 468,
+            "y": 58,
+            "width": 264,
+            "height": 193,
+            "top": 58,
+            "right": 732,
+            "bottom": 251,
+            "left": 468
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "skill": true,
+        "exit": true
+      },
+      {
+        "tile": {
+          "x": 10,
+          "y": 6
+        },
+        "duringWave": {
+          "boss": {
+            "x": 201.203125,
+            "y": 106,
+            "width": 332,
+            "height": 64,
+            "top": 106,
+            "right": 533.203125,
+            "bottom": 170,
+            "left": 201.203125
+          },
+          "popup": {
+            "x": 541.203125,
+            "y": 61.953125,
+            "width": 240,
+            "height": 213,
+            "top": 61.953125,
+            "right": 781.203125,
+            "bottom": 274.953125,
+            "left": 541.203125
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "afterWave": {
+          "boss": {
+            "x": 99.703125,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 431.703125,
+            "bottom": 124,
+            "left": 99.703125
+          },
+          "popup": {
+            "x": 439.703125,
+            "y": 61.953125,
+            "width": 240,
+            "height": 213,
+            "top": 61.953125,
+            "right": 679.703125,
+            "bottom": 274.953125,
+            "left": 439.703125
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "expanded": {
+          "boss": {
+            "x": 99.703125,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 431.703125,
+            "bottom": 124,
+            "left": 99.703125
+          },
+          "popup": {
+            "x": 439.703125,
+            "y": 58,
+            "width": 240,
+            "height": 223,
+            "top": 58,
+            "right": 679.703125,
+            "bottom": 281,
+            "left": 439.703125
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "readable": true,
+        "roster": {
+          "boss": {
+            "x": 232,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 564,
+            "bottom": 124,
+            "left": 232
+          },
+          "popup": {
+            "x": 572,
+            "y": 58,
+            "width": 264,
+            "height": 223,
+            "top": 58,
+            "right": 836,
+            "bottom": 281,
+            "left": 572
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "resized": {
+          "boss": {
+            "x": 128,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 460,
+            "bottom": 124,
+            "left": 128
+          },
+          "popup": {
+            "x": 468,
+            "y": 58,
+            "width": 264,
+            "height": 193,
+            "top": 58,
+            "right": 732,
+            "bottom": 251,
+            "left": 468
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "skill": true,
+        "exit": true
+      },
+      {
+        "tile": {
+          "x": 18,
+          "y": 5
+        },
+        "duringWave": {
+          "boss": {
+            "x": 310.796875,
+            "y": 106,
+            "width": 332,
+            "height": 64,
+            "top": 106,
+            "right": 642.796875,
+            "bottom": 170,
+            "left": 310.796875
+          },
+          "popup": {
+            "x": 62.796875,
+            "y": 58,
+            "width": 240,
+            "height": 213,
+            "top": 58,
+            "right": 302.796875,
+            "bottom": 271,
+            "left": 62.796875
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "afterWave": {
+          "boss": {
+            "x": 8,
+            "y": 60,
+            "width": 289.953125,
+            "height": 64,
+            "top": 60,
+            "right": 297.953125,
+            "bottom": 124,
+            "left": 8
+          },
+          "popup": {
+            "x": 305.953125,
+            "y": 58,
+            "width": 240,
+            "height": 213,
+            "top": 58,
+            "right": 545.953125,
+            "bottom": 271,
+            "left": 305.953125
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "expanded": {
+          "boss": {
+            "x": 8,
+            "y": 60,
+            "width": 289.953125,
+            "height": 64,
+            "top": 60,
+            "right": 297.953125,
+            "bottom": 124,
+            "left": 8
+          },
+          "popup": {
+            "x": 305.953125,
+            "y": 58,
+            "width": 240,
+            "height": 223,
+            "top": 58,
+            "right": 545.953125,
+            "bottom": 281,
+            "left": 305.953125
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "readable": true,
+        "roster": {
+          "boss": {
+            "x": 232,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 564,
+            "bottom": 124,
+            "left": 232
+          },
+          "popup": {
+            "x": 572,
+            "y": 58,
+            "width": 264,
+            "height": 223,
+            "top": 58,
+            "right": 836,
+            "bottom": 281,
+            "left": 572
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "resized": {
+          "boss": {
+            "x": 128,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 460,
+            "bottom": 124,
+            "left": 128
+          },
+          "popup": {
+            "x": 468,
+            "y": 58,
+            "width": 264,
+            "height": 193,
+            "top": 58,
+            "right": 732,
+            "bottom": 251,
+            "left": 468
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "skill": true,
+        "exit": true
+      },
+      {
+        "tile": {
+          "x": 6,
+          "y": 5
+        },
+        "duringWave": {
+          "boss": {
+            "x": 201.203125,
+            "y": 106,
+            "width": 332,
+            "height": 64,
+            "top": 106,
+            "right": 533.203125,
+            "bottom": 170,
+            "left": 201.203125
+          },
+          "popup": {
+            "x": 541.203125,
+            "y": 58,
+            "width": 240,
+            "height": 213,
+            "top": 58,
+            "right": 781.203125,
+            "bottom": 271,
+            "left": 541.203125
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "afterWave": {
+          "boss": {
+            "x": 18.8125,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 350.8125,
+            "bottom": 124,
+            "left": 18.8125
+          },
+          "popup": {
+            "x": 358.8125,
+            "y": 58,
+            "width": 240,
+            "height": 213,
+            "top": 58,
+            "right": 598.8125,
+            "bottom": 271,
+            "left": 358.8125
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "expanded": {
+          "boss": {
+            "x": 18.8125,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 350.8125,
+            "bottom": 124,
+            "left": 18.8125
+          },
+          "popup": {
+            "x": 358.8125,
+            "y": 58,
+            "width": 240,
+            "height": 223,
+            "top": 58,
+            "right": 598.8125,
+            "bottom": 281,
+            "left": 358.8125
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "readable": true,
+        "roster": {
+          "boss": {
+            "x": 232,
+            "y": 60,
+            "width": 332,
+            "height": 44,
+            "top": 60,
+            "right": 564,
+            "bottom": 104,
+            "left": 232
+          },
+          "popup": {
+            "x": 572,
+            "y": 58,
+            "width": 264,
+            "height": 223,
+            "top": 58,
+            "right": 836,
+            "bottom": 281,
+            "left": 572
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "resized": {
+          "boss": {
+            "x": 128,
+            "y": 60,
+            "width": 332,
+            "height": 44,
+            "top": 60,
+            "right": 460,
+            "bottom": 104,
+            "left": 128
+          },
+          "popup": {
+            "x": 468,
+            "y": 58,
+            "width": 264,
+            "height": 193,
+            "top": 58,
+            "right": 732,
+            "bottom": 251,
+            "left": 468
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "skill": true,
+        "exit": true
+      },
+      {
+        "tile": {
+          "x": 4,
+          "y": 8
+        },
+        "duringWave": {
+          "boss": {
+            "x": 201.203125,
+            "y": 106,
+            "width": 332,
+            "height": 64,
+            "top": 106,
+            "right": 533.203125,
+            "bottom": 170,
+            "left": 201.203125
+          },
+          "popup": {
+            "x": 541.203125,
+            "y": 68,
+            "width": 240,
+            "height": 213,
+            "top": 68,
+            "right": 781.203125,
+            "bottom": 281,
+            "left": 541.203125
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "afterWave": {
+          "boss": {
+            "x": 8,
+            "y": 60,
+            "width": 295.671875,
+            "height": 64,
+            "top": 60,
+            "right": 303.671875,
+            "bottom": 124,
+            "left": 8
+          },
+          "popup": {
+            "x": 311.671875,
+            "y": 68,
+            "width": 240,
+            "height": 213,
+            "top": 68,
+            "right": 551.671875,
+            "bottom": 281,
+            "left": 311.671875
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "expanded": {
+          "boss": {
+            "x": 8,
+            "y": 60,
+            "width": 295.671875,
+            "height": 64,
+            "top": 60,
+            "right": 303.671875,
+            "bottom": 124,
+            "left": 8
+          },
+          "popup": {
+            "x": 311.671875,
+            "y": 58,
+            "width": 240,
+            "height": 223,
+            "top": 58,
+            "right": 551.671875,
+            "bottom": 281,
+            "left": 311.671875
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "readable": true,
+        "roster": {
+          "boss": {
+            "x": 232,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 564,
+            "bottom": 124,
+            "left": 232
+          },
+          "popup": {
+            "x": 572,
+            "y": 58,
+            "width": 264,
+            "height": 223,
+            "top": 58,
+            "right": 836,
+            "bottom": 281,
+            "left": 572
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "resized": {
+          "boss": {
+            "x": 128,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 460,
+            "bottom": 124,
+            "left": 128
+          },
+          "popup": {
+            "x": 468,
+            "y": 58,
+            "width": 264,
+            "height": 193,
+            "top": 58,
+            "right": 732,
+            "bottom": 251,
+            "left": 468
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "skill": true,
+        "exit": true
+      },
+      {
+        "tile": {
+          "x": 19,
+          "y": 8
+        },
+        "duringWave": {
+          "boss": {
+            "x": 310.796875,
+            "y": 106,
+            "width": 332,
+            "height": 64,
+            "top": 106,
+            "right": 642.796875,
+            "bottom": 170,
+            "left": 310.796875
+          },
+          "popup": {
+            "x": 62.796875,
+            "y": 68,
+            "width": 240,
+            "height": 213,
+            "top": 68,
+            "right": 302.796875,
+            "bottom": 281,
+            "left": 62.796875
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "afterWave": {
+          "boss": {
+            "x": 8,
+            "y": 60,
+            "width": 318.875,
+            "height": 64,
+            "top": 60,
+            "right": 326.875,
+            "bottom": 124,
+            "left": 8
+          },
+          "popup": {
+            "x": 334.875,
+            "y": 68,
+            "width": 240,
+            "height": 213,
+            "top": 68,
+            "right": 574.875,
+            "bottom": 281,
+            "left": 334.875
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "expanded": {
+          "boss": {
+            "x": 8,
+            "y": 60,
+            "width": 318.875,
+            "height": 64,
+            "top": 60,
+            "right": 326.875,
+            "bottom": 124,
+            "left": 8
+          },
+          "popup": {
+            "x": 334.875,
+            "y": 58,
+            "width": 240,
+            "height": 223,
+            "top": 58,
+            "right": 574.875,
+            "bottom": 281,
+            "left": 334.875
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "readable": true,
+        "roster": {
+          "boss": {
+            "x": 232,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 564,
+            "bottom": 124,
+            "left": 232
+          },
+          "popup": {
+            "x": 572,
+            "y": 58,
+            "width": 264,
+            "height": 223,
+            "top": 58,
+            "right": 836,
+            "bottom": 281,
+            "left": 572
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "resized": {
+          "boss": {
+            "x": 128,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 460,
+            "bottom": 124,
+            "left": 128
+          },
+          "popup": {
+            "x": 468,
+            "y": 58,
+            "width": 264,
+            "height": 193,
+            "top": 58,
+            "right": 732,
+            "bottom": 251,
+            "left": 468
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "skill": true,
+        "exit": true
+      }
+    ],
+    "errors": []
+  },
+  {
+    "width": 1920,
+    "height": 1080,
+    "touch": false,
+    "arrival": {
+      "boss": {
+        "x": 756,
+        "y": 138,
+        "width": 408,
+        "height": 72,
+        "top": 138,
+        "right": 1164,
+        "bottom": 210,
+        "left": 756
+      },
+      "popup": {
+        "x": 911.28125,
+        "y": 278.671875,
+        "width": 240,
+        "height": 240,
+        "top": 278.671875,
+        "right": 1151.28125,
+        "bottom": 518.671875,
+        "left": 911.28125
+      },
+      "separated": true,
+      "fits": true,
+      "labelsFit": true,
+      "waveClear": true,
+      "buttonsFit": true
+    },
+    "checks": [
+      {
+        "tile": {
+          "x": 9,
+          "y": 5
+        },
+        "duringWave": {
+          "boss": {
+            "x": 756,
+            "y": 138,
+            "width": 408,
+            "height": 72,
+            "top": 138,
+            "right": 1164,
+            "bottom": 210,
+            "left": 756
+          },
+          "popup": {
+            "x": 911.28125,
+            "y": 278.671875,
+            "width": 240,
+            "height": 240,
+            "top": 278.671875,
+            "right": 1151.28125,
+            "bottom": 518.671875,
+            "left": 911.28125
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "afterWave": {
+          "boss": {
+            "x": 756,
+            "y": 84,
+            "width": 408,
+            "height": 72,
+            "top": 84,
+            "right": 1164,
+            "bottom": 156,
+            "left": 756
+          },
+          "popup": {
+            "x": 911.28125,
+            "y": 278.671875,
+            "width": 240,
+            "height": 240,
+            "top": 278.671875,
+            "right": 1151.28125,
+            "bottom": 518.671875,
+            "left": 911.28125
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "expanded": {
+          "boss": {
+            "x": 495.28125,
+            "y": 84,
+            "width": 408,
+            "height": 72,
+            "top": 84,
+            "right": 903.28125,
+            "bottom": 156,
+            "left": 495.28125
+          },
+          "popup": {
+            "x": 911.28125,
+            "y": 139.671875,
+            "width": 240,
+            "height": 517.75,
+            "top": 139.671875,
+            "right": 1151.28125,
+            "bottom": 657.421875,
+            "left": 911.28125
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "readable": true,
+        "roster": {
+          "boss": {
+            "x": 756,
+            "y": 84,
+            "width": 408,
+            "height": 72,
+            "top": 84,
+            "right": 1164,
+            "bottom": 156,
+            "left": 756
+          },
+          "popup": {
+            "x": 1600,
+            "y": 390,
+            "width": 312,
+            "height": 536.15625,
+            "top": 390,
+            "right": 1912,
+            "bottom": 926.15625,
+            "left": 1600
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "resized": {
+          "boss": {
+            "x": 128,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 460,
+            "bottom": 124,
+            "left": 128
+          },
+          "popup": {
+            "x": 468,
+            "y": 58,
+            "width": 264,
+            "height": 193,
+            "top": 58,
+            "right": 732,
+            "bottom": 251,
+            "left": 468
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "skill": true,
+        "exit": true
+      },
+      {
+        "tile": {
+          "x": 10,
+          "y": 6
+        },
+        "duringWave": {
+          "boss": {
+            "x": 756,
+            "y": 138,
+            "width": 408,
+            "height": 72,
+            "top": 138,
+            "right": 1164,
+            "bottom": 210,
+            "left": 756
+          },
+          "popup": {
+            "x": 980.375,
+            "y": 334.140625,
+            "width": 240,
+            "height": 240,
+            "top": 334.140625,
+            "right": 1220.375,
+            "bottom": 574.140625,
+            "left": 980.375
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "afterWave": {
+          "boss": {
+            "x": 756,
+            "y": 84,
+            "width": 408,
+            "height": 72,
+            "top": 84,
+            "right": 1164,
+            "bottom": 156,
+            "left": 756
+          },
+          "popup": {
+            "x": 980.375,
+            "y": 334.140625,
+            "width": 240,
+            "height": 240,
+            "top": 334.140625,
+            "right": 1220.375,
+            "bottom": 574.140625,
+            "left": 980.375
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "expanded": {
+          "boss": {
+            "x": 756,
+            "y": 84,
+            "width": 408,
+            "height": 72,
+            "top": 84,
+            "right": 1164,
+            "bottom": 156,
+            "left": 756
+          },
+          "popup": {
+            "x": 980.375,
+            "y": 195.140625,
+            "width": 240,
+            "height": 517.75,
+            "top": 195.140625,
+            "right": 1220.375,
+            "bottom": 712.890625,
+            "left": 980.375
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "readable": true,
+        "roster": {
+          "boss": {
+            "x": 756,
+            "y": 84,
+            "width": 408,
+            "height": 72,
+            "top": 84,
+            "right": 1164,
+            "bottom": 156,
+            "left": 756
+          },
+          "popup": {
+            "x": 1600,
+            "y": 390,
+            "width": 312,
+            "height": 536.15625,
+            "top": 390,
+            "right": 1912,
+            "bottom": 926.15625,
+            "left": 1600
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "resized": {
+          "boss": {
+            "x": 128,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 460,
+            "bottom": 124,
+            "left": 128
+          },
+          "popup": {
+            "x": 468,
+            "y": 58,
+            "width": 264,
+            "height": 193,
+            "top": 58,
+            "right": 732,
+            "bottom": 251,
+            "left": 468
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "skill": true,
+        "exit": true
+      },
+      {
+        "tile": {
+          "x": 18,
+          "y": 5
+        },
+        "duringWave": {
+          "boss": {
+            "x": 756,
+            "y": 138,
+            "width": 408,
+            "height": 72,
+            "top": 138,
+            "right": 1164,
+            "bottom": 210,
+            "left": 756
+          },
+          "popup": {
+            "x": 1539.578125,
+            "y": 278.671875,
+            "width": 240,
+            "height": 240,
+            "top": 278.671875,
+            "right": 1779.578125,
+            "bottom": 518.671875,
+            "left": 1539.578125
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "afterWave": {
+          "boss": {
+            "x": 756,
+            "y": 84,
+            "width": 408,
+            "height": 72,
+            "top": 84,
+            "right": 1164,
+            "bottom": 156,
+            "left": 756
+          },
+          "popup": {
+            "x": 1539.578125,
+            "y": 278.671875,
+            "width": 240,
+            "height": 240,
+            "top": 278.671875,
+            "right": 1779.578125,
+            "bottom": 518.671875,
+            "left": 1539.578125
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "expanded": {
+          "boss": {
+            "x": 756,
+            "y": 84,
+            "width": 408,
+            "height": 72,
+            "top": 84,
+            "right": 1164,
+            "bottom": 156,
+            "left": 756
+          },
+          "popup": {
+            "x": 1539.578125,
+            "y": 139.671875,
+            "width": 240,
+            "height": 517.75,
+            "top": 139.671875,
+            "right": 1779.578125,
+            "bottom": 657.421875,
+            "left": 1539.578125
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "readable": true,
+        "roster": {
+          "boss": {
+            "x": 756,
+            "y": 84,
+            "width": 408,
+            "height": 72,
+            "top": 84,
+            "right": 1164,
+            "bottom": 156,
+            "left": 756
+          },
+          "popup": {
+            "x": 1600,
+            "y": 390,
+            "width": 312,
+            "height": 536.15625,
+            "top": 390,
+            "right": 1912,
+            "bottom": 926.15625,
+            "left": 1600
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "resized": {
+          "boss": {
+            "x": 128,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 460,
+            "bottom": 124,
+            "left": 128
+          },
+          "popup": {
+            "x": 468,
+            "y": 58,
+            "width": 264,
+            "height": 193,
+            "top": 58,
+            "right": 732,
+            "bottom": 251,
+            "left": 468
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "skill": true,
+        "exit": true
+      },
+      {
+        "tile": {
+          "x": 6,
+          "y": 5
+        },
+        "duringWave": {
+          "boss": {
+            "x": 756,
+            "y": 138,
+            "width": 408,
+            "height": 72,
+            "top": 138,
+            "right": 1164,
+            "bottom": 210,
+            "left": 756
+          },
+          "popup": {
+            "x": 701.84375,
+            "y": 278.671875,
+            "width": 240,
+            "height": 240,
+            "top": 278.671875,
+            "right": 941.84375,
+            "bottom": 518.671875,
+            "left": 701.84375
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "afterWave": {
+          "boss": {
+            "x": 756,
+            "y": 84,
+            "width": 408,
+            "height": 72,
+            "top": 84,
+            "right": 1164,
+            "bottom": 156,
+            "left": 756
+          },
+          "popup": {
+            "x": 701.84375,
+            "y": 278.671875,
+            "width": 240,
+            "height": 240,
+            "top": 278.671875,
+            "right": 941.84375,
+            "bottom": 518.671875,
+            "left": 701.84375
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "expanded": {
+          "boss": {
+            "x": 949.84375,
+            "y": 84,
+            "width": 408,
+            "height": 72,
+            "top": 84,
+            "right": 1357.84375,
+            "bottom": 156,
+            "left": 949.84375
+          },
+          "popup": {
+            "x": 701.84375,
+            "y": 139.671875,
+            "width": 240,
+            "height": 517.75,
+            "top": 139.671875,
+            "right": 941.84375,
+            "bottom": 657.421875,
+            "left": 701.84375
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "readable": true,
+        "roster": {
+          "boss": {
+            "x": 756,
+            "y": 84,
+            "width": 408,
+            "height": 58,
+            "top": 84,
+            "right": 1164,
+            "bottom": 142,
+            "left": 756
+          },
+          "popup": {
+            "x": 1600,
+            "y": 390,
+            "width": 312,
+            "height": 536.15625,
+            "top": 390,
+            "right": 1912,
+            "bottom": 926.15625,
+            "left": 1600
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "resized": {
+          "boss": {
+            "x": 128,
+            "y": 60,
+            "width": 332,
+            "height": 44,
+            "top": 60,
+            "right": 460,
+            "bottom": 104,
+            "left": 128
+          },
+          "popup": {
+            "x": 468,
+            "y": 58,
+            "width": 264,
+            "height": 193,
+            "top": 58,
+            "right": 732,
+            "bottom": 251,
+            "left": 468
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "skill": true,
+        "exit": true
+      },
+      {
+        "tile": {
+          "x": 4,
+          "y": 8
+        },
+        "duringWave": {
+          "boss": {
+            "x": 756,
+            "y": 138,
+            "width": 408,
+            "height": 72,
+            "top": 138,
+            "right": 1164,
+            "bottom": 210,
+            "left": 756
+          },
+          "popup": {
+            "x": 533.453125,
+            "y": 452.140625,
+            "width": 240,
+            "height": 240,
+            "top": 452.140625,
+            "right": 773.453125,
+            "bottom": 692.140625,
+            "left": 533.453125
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "afterWave": {
+          "boss": {
+            "x": 756,
+            "y": 84,
+            "width": 408,
+            "height": 72,
+            "top": 84,
+            "right": 1164,
+            "bottom": 156,
+            "left": 756
+          },
+          "popup": {
+            "x": 533.453125,
+            "y": 452.140625,
+            "width": 240,
+            "height": 240,
+            "top": 452.140625,
+            "right": 773.453125,
+            "bottom": 692.140625,
+            "left": 533.453125
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "expanded": {
+          "boss": {
+            "x": 756,
+            "y": 84,
+            "width": 408,
+            "height": 72,
+            "top": 84,
+            "right": 1164,
+            "bottom": 156,
+            "left": 756
+          },
+          "popup": {
+            "x": 533.453125,
+            "y": 313.140625,
+            "width": 240,
+            "height": 517.75,
+            "top": 313.140625,
+            "right": 773.453125,
+            "bottom": 830.890625,
+            "left": 533.453125
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "readable": true,
+        "roster": {
+          "boss": {
+            "x": 756,
+            "y": 84,
+            "width": 408,
+            "height": 72,
+            "top": 84,
+            "right": 1164,
+            "bottom": 156,
+            "left": 756
+          },
+          "popup": {
+            "x": 1600,
+            "y": 390,
+            "width": 312,
+            "height": 536.15625,
+            "top": 390,
+            "right": 1912,
+            "bottom": 926.15625,
+            "left": 1600
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "resized": {
+          "boss": {
+            "x": 128,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 460,
+            "bottom": 124,
+            "left": 128
+          },
+          "popup": {
+            "x": 468,
+            "y": 58,
+            "width": 264,
+            "height": 193,
+            "top": 58,
+            "right": 732,
+            "bottom": 251,
+            "left": 468
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "skill": true,
+        "exit": true
+      },
+      {
+        "tile": {
+          "x": 19,
+          "y": 8
+        },
+        "duringWave": {
+          "boss": {
+            "x": 756,
+            "y": 138,
+            "width": 408,
+            "height": 72,
+            "top": 138,
+            "right": 1164,
+            "bottom": 210,
+            "left": 756
+          },
+          "popup": {
+            "x": 1647,
+            "y": 452.140625,
+            "width": 240,
+            "height": 240,
+            "top": 452.140625,
+            "right": 1887,
+            "bottom": 692.140625,
+            "left": 1647
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "afterWave": {
+          "boss": {
+            "x": 756,
+            "y": 84,
+            "width": 408,
+            "height": 72,
+            "top": 84,
+            "right": 1164,
+            "bottom": 156,
+            "left": 756
+          },
+          "popup": {
+            "x": 1647,
+            "y": 452.140625,
+            "width": 240,
+            "height": 240,
+            "top": 452.140625,
+            "right": 1887,
+            "bottom": 692.140625,
+            "left": 1647
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "expanded": {
+          "boss": {
+            "x": 756,
+            "y": 84,
+            "width": 408,
+            "height": 72,
+            "top": 84,
+            "right": 1164,
+            "bottom": 156,
+            "left": 756
+          },
+          "popup": {
+            "x": 1647,
+            "y": 313.140625,
+            "width": 240,
+            "height": 517.75,
+            "top": 313.140625,
+            "right": 1887,
+            "bottom": 830.890625,
+            "left": 1647
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "readable": true,
+        "roster": {
+          "boss": {
+            "x": 756,
+            "y": 84,
+            "width": 408,
+            "height": 72,
+            "top": 84,
+            "right": 1164,
+            "bottom": 156,
+            "left": 756
+          },
+          "popup": {
+            "x": 1600,
+            "y": 390,
+            "width": 312,
+            "height": 536.15625,
+            "top": 390,
+            "right": 1912,
+            "bottom": 926.15625,
+            "left": 1600
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "resized": {
+          "boss": {
+            "x": 128,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 460,
+            "bottom": 124,
+            "left": 128
+          },
+          "popup": {
+            "x": 468,
+            "y": 58,
+            "width": 264,
+            "height": 193,
+            "top": 58,
+            "right": 732,
+            "bottom": 251,
+            "left": 468
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "skill": true,
+        "exit": true
+      }
+    ],
+    "errors": []
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "touch": true,
+    "arrival": {
+      "boss": {
+        "x": 29,
+        "y": 151,
+        "width": 332,
+        "height": 64,
+        "top": 151,
+        "right": 361,
+        "bottom": 215,
+        "left": 29
+      },
+      "popup": {
+        "x": 51.078125,
+        "y": 415.359375,
+        "width": 240,
+        "height": 240,
+        "top": 415.359375,
+        "right": 291.078125,
+        "bottom": 655.359375,
+        "left": 51.078125
+      },
+      "separated": true,
+      "fits": true,
+      "labelsFit": true,
+      "waveClear": true,
+      "buttonsFit": true
+    },
+    "checks": [
+      {
+        "tile": {
+          "x": 9,
+          "y": 5
+        },
+        "duringWave": {
+          "boss": {
+            "x": 29,
+            "y": 151,
+            "width": 332,
+            "height": 64,
+            "top": 151,
+            "right": 361,
+            "bottom": 215,
+            "left": 29
+          },
+          "popup": {
+            "x": 51.078125,
+            "y": 415.359375,
+            "width": 240,
+            "height": 240,
+            "top": 415.359375,
+            "right": 291.078125,
+            "bottom": 655.359375,
+            "left": 51.078125
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "afterWave": {
+          "boss": {
+            "x": 29,
+            "y": 105,
+            "width": 332,
+            "height": 64,
+            "top": 105,
+            "right": 361,
+            "bottom": 169,
+            "left": 29
+          },
+          "popup": {
+            "x": 51.078125,
+            "y": 415.359375,
+            "width": 240,
+            "height": 240,
+            "top": 415.359375,
+            "right": 291.078125,
+            "bottom": 655.359375,
+            "left": 51.078125
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "expanded": {
+          "boss": {
+            "x": 29,
+            "y": 105,
+            "width": 332,
+            "height": 64,
+            "top": 105,
+            "right": 361,
+            "bottom": 169,
+            "left": 29
+          },
+          "popup": {
+            "x": 51.078125,
+            "y": 217,
+            "width": 240,
+            "height": 517.75,
+            "top": 217,
+            "right": 291.078125,
+            "bottom": 734.75,
+            "left": 51.078125
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "readable": true,
+        "roster": {
+          "boss": {
+            "x": 29,
+            "y": 105,
+            "width": 332,
+            "height": 64,
+            "top": 105,
+            "right": 361,
+            "bottom": 169,
+            "left": 29
+          },
+          "popup": {
+            "x": 70,
+            "y": 415,
+            "width": 312,
+            "height": 320,
+            "top": 415,
+            "right": 382,
+            "bottom": 735,
+            "left": 70
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "resized": {
+          "boss": {
+            "x": 128,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 460,
+            "bottom": 124,
+            "left": 128
+          },
+          "popup": {
+            "x": 468,
+            "y": 58,
+            "width": 264,
+            "height": 193,
+            "top": 58,
+            "right": 732,
+            "bottom": 251,
+            "left": 468
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "skill": true,
+        "exit": true
+      },
+      {
+        "tile": {
+          "x": 10,
+          "y": 6
+        },
+        "duringWave": {
+          "boss": {
+            "x": 29,
+            "y": 151,
+            "width": 332,
+            "height": 64,
+            "top": 151,
+            "right": 361,
+            "bottom": 215,
+            "left": 29
+          },
+          "popup": {
+            "x": 66.96875,
+            "y": 428.125,
+            "width": 240,
+            "height": 240,
+            "top": 428.125,
+            "right": 306.96875,
+            "bottom": 668.125,
+            "left": 66.96875
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "afterWave": {
+          "boss": {
+            "x": 29,
+            "y": 105,
+            "width": 332,
+            "height": 64,
+            "top": 105,
+            "right": 361,
+            "bottom": 169,
+            "left": 29
+          },
+          "popup": {
+            "x": 66.96875,
+            "y": 428.125,
+            "width": 240,
+            "height": 240,
+            "top": 428.125,
+            "right": 306.96875,
+            "bottom": 668.125,
+            "left": 66.96875
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "expanded": {
+          "boss": {
+            "x": 29,
+            "y": 105,
+            "width": 332,
+            "height": 64,
+            "top": 105,
+            "right": 361,
+            "bottom": 169,
+            "left": 29
+          },
+          "popup": {
+            "x": 66.96875,
+            "y": 217,
+            "width": 240,
+            "height": 517.75,
+            "top": 217,
+            "right": 306.96875,
+            "bottom": 734.75,
+            "left": 66.96875
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "readable": true,
+        "roster": {
+          "boss": {
+            "x": 29,
+            "y": 105,
+            "width": 332,
+            "height": 64,
+            "top": 105,
+            "right": 361,
+            "bottom": 169,
+            "left": 29
+          },
+          "popup": {
+            "x": 70,
+            "y": 415,
+            "width": 312,
+            "height": 320,
+            "top": 415,
+            "right": 382,
+            "bottom": 735,
+            "left": 70
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "resized": {
+          "boss": {
+            "x": 128,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 460,
+            "bottom": 124,
+            "left": 128
+          },
+          "popup": {
+            "x": 468,
+            "y": 58,
+            "width": 264,
+            "height": 193,
+            "top": 58,
+            "right": 732,
+            "bottom": 251,
+            "left": 468
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "skill": true,
+        "exit": true
+      },
+      {
+        "tile": {
+          "x": 18,
+          "y": 5
+        },
+        "duringWave": {
+          "boss": {
+            "x": 29,
+            "y": 151,
+            "width": 332,
+            "height": 64,
+            "top": 151,
+            "right": 361,
+            "bottom": 215,
+            "left": 29
+          },
+          "popup": {
+            "x": 18.53125,
+            "y": 239.359375,
+            "width": 240,
+            "height": 240,
+            "top": 239.359375,
+            "right": 258.53125,
+            "bottom": 479.359375,
+            "left": 18.53125
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "afterWave": {
+          "boss": {
+            "x": 29,
+            "y": 105,
+            "width": 332,
+            "height": 64,
+            "top": 105,
+            "right": 361,
+            "bottom": 169,
+            "left": 29
+          },
+          "popup": {
+            "x": 18.53125,
+            "y": 239.359375,
+            "width": 240,
+            "height": 240,
+            "top": 239.359375,
+            "right": 258.53125,
+            "bottom": 479.359375,
+            "left": 18.53125
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "expanded": {
+          "boss": {
+            "x": 29,
+            "y": 105,
+            "width": 332,
+            "height": 64,
+            "top": 105,
+            "right": 361,
+            "bottom": 169,
+            "left": 29
+          },
+          "popup": {
+            "x": 18.53125,
+            "y": 177,
+            "width": 240,
+            "height": 517.75,
+            "top": 177,
+            "right": 258.53125,
+            "bottom": 694.75,
+            "left": 18.53125
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "readable": true,
+        "roster": {
+          "boss": {
+            "x": 29,
+            "y": 105,
+            "width": 332,
+            "height": 64,
+            "top": 105,
+            "right": 361,
+            "bottom": 169,
+            "left": 29
+          },
+          "popup": {
+            "x": 70,
+            "y": 415,
+            "width": 312,
+            "height": 320,
+            "top": 415,
+            "right": 382,
+            "bottom": 735,
+            "left": 70
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "resized": {
+          "boss": {
+            "x": 128,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 460,
+            "bottom": 124,
+            "left": 128
+          },
+          "popup": {
+            "x": 468,
+            "y": 58,
+            "width": 264,
+            "height": 193,
+            "top": 58,
+            "right": 732,
+            "bottom": 251,
+            "left": 468
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "skill": true,
+        "exit": true
+      },
+      {
+        "tile": {
+          "x": 6,
+          "y": 5
+        },
+        "duringWave": {
+          "boss": {
+            "x": 29,
+            "y": 151,
+            "width": 332,
+            "height": 64,
+            "top": 151,
+            "right": 361,
+            "bottom": 215,
+            "left": 29
+          },
+          "popup": {
+            "x": 8,
+            "y": 415.359375,
+            "width": 240,
+            "height": 240,
+            "top": 415.359375,
+            "right": 248,
+            "bottom": 655.359375,
+            "left": 8
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "afterWave": {
+          "boss": {
+            "x": 29,
+            "y": 105,
+            "width": 332,
+            "height": 64,
+            "top": 105,
+            "right": 361,
+            "bottom": 169,
+            "left": 29
+          },
+          "popup": {
+            "x": 8,
+            "y": 415.359375,
+            "width": 240,
+            "height": 240,
+            "top": 415.359375,
+            "right": 248,
+            "bottom": 655.359375,
+            "left": 8
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "expanded": {
+          "boss": {
+            "x": 29,
+            "y": 105,
+            "width": 332,
+            "height": 64,
+            "top": 105,
+            "right": 361,
+            "bottom": 169,
+            "left": 29
+          },
+          "popup": {
+            "x": 8,
+            "y": 217,
+            "width": 240,
+            "height": 517.75,
+            "top": 217,
+            "right": 248,
+            "bottom": 734.75,
+            "left": 8
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "readable": true,
+        "roster": {
+          "boss": {
+            "x": 29,
+            "y": 105,
+            "width": 332,
+            "height": 44,
+            "top": 105,
+            "right": 361,
+            "bottom": 149,
+            "left": 29
+          },
+          "popup": {
+            "x": 70,
+            "y": 415,
+            "width": 312,
+            "height": 320,
+            "top": 415,
+            "right": 382,
+            "bottom": 735,
+            "left": 70
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "resized": {
+          "boss": {
+            "x": 128,
+            "y": 60,
+            "width": 332,
+            "height": 44,
+            "top": 60,
+            "right": 460,
+            "bottom": 104,
+            "left": 128
+          },
+          "popup": {
+            "x": 468,
+            "y": 58,
+            "width": 264,
+            "height": 193,
+            "top": 58,
+            "right": 732,
+            "bottom": 251,
+            "left": 468
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "skill": true,
+        "exit": true
+      },
+      {
+        "tile": {
+          "x": 4,
+          "y": 8
+        },
+        "duringWave": {
+          "boss": {
+            "x": 29,
+            "y": 151,
+            "width": 332,
+            "height": 64,
+            "top": 151,
+            "right": 361,
+            "bottom": 215,
+            "left": 29
+          },
+          "popup": {
+            "x": 8,
+            "y": 454.109375,
+            "width": 240,
+            "height": 240,
+            "top": 454.109375,
+            "right": 248,
+            "bottom": 694.109375,
+            "left": 8
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "afterWave": {
+          "boss": {
+            "x": 29,
+            "y": 105,
+            "width": 332,
+            "height": 64,
+            "top": 105,
+            "right": 361,
+            "bottom": 169,
+            "left": 29
+          },
+          "popup": {
+            "x": 8,
+            "y": 454.109375,
+            "width": 240,
+            "height": 240,
+            "top": 454.109375,
+            "right": 248,
+            "bottom": 694.109375,
+            "left": 8
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "expanded": {
+          "boss": {
+            "x": 29,
+            "y": 105,
+            "width": 332,
+            "height": 64,
+            "top": 105,
+            "right": 361,
+            "bottom": 169,
+            "left": 29
+          },
+          "popup": {
+            "x": 8,
+            "y": 217,
+            "width": 240,
+            "height": 517.75,
+            "top": 217,
+            "right": 248,
+            "bottom": 734.75,
+            "left": 8
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "readable": true,
+        "roster": {
+          "boss": {
+            "x": 29,
+            "y": 105,
+            "width": 332,
+            "height": 64,
+            "top": 105,
+            "right": 361,
+            "bottom": 169,
+            "left": 29
+          },
+          "popup": {
+            "x": 70,
+            "y": 415,
+            "width": 312,
+            "height": 320,
+            "top": 415,
+            "right": 382,
+            "bottom": 735,
+            "left": 70
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "resized": {
+          "boss": {
+            "x": 128,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 460,
+            "bottom": 124,
+            "left": 128
+          },
+          "popup": {
+            "x": 468,
+            "y": 58,
+            "width": 264,
+            "height": 193,
+            "top": 58,
+            "right": 732,
+            "bottom": 251,
+            "left": 468
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "skill": true,
+        "exit": true
+      },
+      {
+        "tile": {
+          "x": 19,
+          "y": 8
+        },
+        "duringWave": {
+          "boss": {
+            "x": 29,
+            "y": 151,
+            "width": 332,
+            "height": 64,
+            "top": 151,
+            "right": 361,
+            "bottom": 215,
+            "left": 29
+          },
+          "popup": {
+            "x": 36.875,
+            "y": 278.109375,
+            "width": 240,
+            "height": 240,
+            "top": 278.109375,
+            "right": 276.875,
+            "bottom": 518.109375,
+            "left": 36.875
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "afterWave": {
+          "boss": {
+            "x": 29,
+            "y": 105,
+            "width": 332,
+            "height": 64,
+            "top": 105,
+            "right": 361,
+            "bottom": 169,
+            "left": 29
+          },
+          "popup": {
+            "x": 36.875,
+            "y": 278.109375,
+            "width": 240,
+            "height": 240,
+            "top": 278.109375,
+            "right": 276.875,
+            "bottom": 518.109375,
+            "left": 36.875
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "expanded": {
+          "boss": {
+            "x": 29,
+            "y": 105,
+            "width": 332,
+            "height": 64,
+            "top": 105,
+            "right": 361,
+            "bottom": 169,
+            "left": 29
+          },
+          "popup": {
+            "x": 36.875,
+            "y": 177,
+            "width": 240,
+            "height": 517.75,
+            "top": 177,
+            "right": 276.875,
+            "bottom": 694.75,
+            "left": 36.875
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "readable": true,
+        "roster": {
+          "boss": {
+            "x": 29,
+            "y": 105,
+            "width": 332,
+            "height": 64,
+            "top": 105,
+            "right": 361,
+            "bottom": 169,
+            "left": 29
+          },
+          "popup": {
+            "x": 70,
+            "y": 415,
+            "width": 312,
+            "height": 320,
+            "top": 415,
+            "right": 382,
+            "bottom": 735,
+            "left": 70
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "resized": {
+          "boss": {
+            "x": 128,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 460,
+            "bottom": 124,
+            "left": 128
+          },
+          "popup": {
+            "x": 468,
+            "y": 58,
+            "width": 264,
+            "height": 193,
+            "top": 58,
+            "right": 732,
+            "bottom": 251,
+            "left": 468
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "skill": true,
+        "exit": true
+      }
+    ],
+    "errors": []
+  },
+  {
+    "width": 320,
+    "height": 568,
+    "touch": true,
+    "arrival": {
+      "boss": {
+        "x": 7,
+        "y": 195,
+        "width": 306,
+        "height": 64,
+        "top": 195,
+        "right": 313,
+        "bottom": 259,
+        "left": 7
+      },
+      "popup": {
+        "x": 20.5625,
+        "y": 267,
+        "width": 240,
+        "height": 192,
+        "top": 267,
+        "right": 260.5625,
+        "bottom": 459,
+        "left": 20.5625
+      },
+      "separated": true,
+      "fits": true,
+      "labelsFit": true,
+      "waveClear": true,
+      "buttonsFit": true
+    },
+    "checks": [
+      {
+        "tile": {
+          "x": 9,
+          "y": 5
+        },
+        "duringWave": {
+          "boss": {
+            "x": 7,
+            "y": 195,
+            "width": 306,
+            "height": 64,
+            "top": 195,
+            "right": 313,
+            "bottom": 259,
+            "left": 7
+          },
+          "popup": {
+            "x": 20.5625,
+            "y": 267,
+            "width": 240,
+            "height": 192,
+            "top": 267,
+            "right": 260.5625,
+            "bottom": 459,
+            "left": 20.5625
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "afterWave": {
+          "boss": {
+            "x": 7,
+            "y": 149,
+            "width": 306,
+            "height": 64,
+            "top": 149,
+            "right": 313,
+            "bottom": 213,
+            "left": 7
+          },
+          "popup": {
+            "x": 20.5625,
+            "y": 219,
+            "width": 240,
+            "height": 240,
+            "top": 219,
+            "right": 260.5625,
+            "bottom": 459,
+            "left": 20.5625
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "expanded": {
+          "boss": {
+            "x": 7,
+            "y": 149,
+            "width": 306,
+            "height": 64,
+            "top": 149,
+            "right": 313,
+            "bottom": 213,
+            "left": 7
+          },
+          "popup": {
+            "x": 20.5625,
+            "y": 221,
+            "width": 240,
+            "height": 238,
+            "top": 221,
+            "right": 260.5625,
+            "bottom": 459,
+            "left": 20.5625
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "readable": true,
+        "roster": {
+          "boss": {
+            "x": 7,
+            "y": 149,
+            "width": 306,
+            "height": 64,
+            "top": 149,
+            "right": 313,
+            "bottom": 213,
+            "left": 7
+          },
+          "popup": {
+            "x": 8,
+            "y": 221,
+            "width": 304,
+            "height": 238,
+            "top": 221,
+            "right": 312,
+            "bottom": 459,
+            "left": 8
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "resized": {
+          "boss": {
+            "x": 128,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 460,
+            "bottom": 124,
+            "left": 128
+          },
+          "popup": {
+            "x": 468,
+            "y": 58,
+            "width": 264,
+            "height": 193,
+            "top": 58,
+            "right": 732,
+            "bottom": 251,
+            "left": 468
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "skill": true,
+        "exit": true
+      },
+      {
+        "tile": {
+          "x": 10,
+          "y": 6
+        },
+        "duringWave": {
+          "boss": {
+            "x": 7,
+            "y": 195,
+            "width": 306,
+            "height": 64,
+            "top": 195,
+            "right": 313,
+            "bottom": 259,
+            "left": 7
+          },
+          "popup": {
+            "x": 33.46875,
+            "y": 267,
+            "width": 240,
+            "height": 192,
+            "top": 267,
+            "right": 273.46875,
+            "bottom": 459,
+            "left": 33.46875
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "afterWave": {
+          "boss": {
+            "x": 7,
+            "y": 149,
+            "width": 306,
+            "height": 64,
+            "top": 149,
+            "right": 313,
+            "bottom": 213,
+            "left": 7
+          },
+          "popup": {
+            "x": 33.46875,
+            "y": 219,
+            "width": 240,
+            "height": 240,
+            "top": 219,
+            "right": 273.46875,
+            "bottom": 459,
+            "left": 33.46875
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "expanded": {
+          "boss": {
+            "x": 7,
+            "y": 149,
+            "width": 306,
+            "height": 64,
+            "top": 149,
+            "right": 313,
+            "bottom": 213,
+            "left": 7
+          },
+          "popup": {
+            "x": 33.46875,
+            "y": 221,
+            "width": 240,
+            "height": 238,
+            "top": 221,
+            "right": 273.46875,
+            "bottom": 459,
+            "left": 33.46875
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "readable": true,
+        "roster": {
+          "boss": {
+            "x": 7,
+            "y": 149,
+            "width": 306,
+            "height": 64,
+            "top": 149,
+            "right": 313,
+            "bottom": 213,
+            "left": 7
+          },
+          "popup": {
+            "x": 8,
+            "y": 221,
+            "width": 304,
+            "height": 238,
+            "top": 221,
+            "right": 312,
+            "bottom": 459,
+            "left": 8
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "resized": {
+          "boss": {
+            "x": 128,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 460,
+            "bottom": 124,
+            "left": 128
+          },
+          "popup": {
+            "x": 468,
+            "y": 58,
+            "width": 264,
+            "height": 193,
+            "top": 58,
+            "right": 732,
+            "bottom": 251,
+            "left": 468
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "skill": true,
+        "exit": true
+      },
+      {
+        "tile": {
+          "x": 18,
+          "y": 5
+        },
+        "duringWave": {
+          "boss": {
+            "x": 7,
+            "y": 195,
+            "width": 306,
+            "height": 64,
+            "top": 195,
+            "right": 313,
+            "bottom": 259,
+            "left": 7
+          },
+          "popup": {
+            "x": 72,
+            "y": 267,
+            "width": 240,
+            "height": 192,
+            "top": 267,
+            "right": 312,
+            "bottom": 459,
+            "left": 72
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "afterWave": {
+          "boss": {
+            "x": 7,
+            "y": 149,
+            "width": 306,
+            "height": 64,
+            "top": 149,
+            "right": 313,
+            "bottom": 213,
+            "left": 7
+          },
+          "popup": {
+            "x": 72,
+            "y": 219,
+            "width": 240,
+            "height": 240,
+            "top": 219,
+            "right": 312,
+            "bottom": 459,
+            "left": 72
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "expanded": {
+          "boss": {
+            "x": 7,
+            "y": 149,
+            "width": 306,
+            "height": 64,
+            "top": 149,
+            "right": 313,
+            "bottom": 213,
+            "left": 7
+          },
+          "popup": {
+            "x": 72,
+            "y": 221,
+            "width": 240,
+            "height": 238,
+            "top": 221,
+            "right": 312,
+            "bottom": 459,
+            "left": 72
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "readable": true,
+        "roster": {
+          "boss": {
+            "x": 7,
+            "y": 149,
+            "width": 306,
+            "height": 64,
+            "top": 149,
+            "right": 313,
+            "bottom": 213,
+            "left": 7
+          },
+          "popup": {
+            "x": 8,
+            "y": 221,
+            "width": 304,
+            "height": 238,
+            "top": 221,
+            "right": 312,
+            "bottom": 459,
+            "left": 8
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "resized": {
+          "boss": {
+            "x": 128,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 460,
+            "bottom": 124,
+            "left": 128
+          },
+          "popup": {
+            "x": 468,
+            "y": 58,
+            "width": 264,
+            "height": 193,
+            "top": 58,
+            "right": 732,
+            "bottom": 251,
+            "left": 468
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "skill": true,
+        "exit": true
+      },
+      {
+        "tile": {
+          "x": 6,
+          "y": 5
+        },
+        "duringWave": {
+          "boss": {
+            "x": 7,
+            "y": 195,
+            "width": 306,
+            "height": 64,
+            "top": 195,
+            "right": 313,
+            "bottom": 259,
+            "left": 7
+          },
+          "popup": {
+            "x": 8,
+            "y": 267,
+            "width": 240,
+            "height": 192,
+            "top": 267,
+            "right": 248,
+            "bottom": 459,
+            "left": 8
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "afterWave": {
+          "boss": {
+            "x": 7,
+            "y": 149,
+            "width": 306,
+            "height": 64,
+            "top": 149,
+            "right": 313,
+            "bottom": 213,
+            "left": 7
+          },
+          "popup": {
+            "x": 8,
+            "y": 219,
+            "width": 240,
+            "height": 240,
+            "top": 219,
+            "right": 248,
+            "bottom": 459,
+            "left": 8
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "expanded": {
+          "boss": {
+            "x": 7,
+            "y": 149,
+            "width": 306,
+            "height": 64,
+            "top": 149,
+            "right": 313,
+            "bottom": 213,
+            "left": 7
+          },
+          "popup": {
+            "x": 8,
+            "y": 221,
+            "width": 240,
+            "height": 238,
+            "top": 221,
+            "right": 248,
+            "bottom": 459,
+            "left": 8
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "readable": true,
+        "roster": {
+          "boss": {
+            "x": 7,
+            "y": 149,
+            "width": 306,
+            "height": 44,
+            "top": 149,
+            "right": 313,
+            "bottom": 193,
+            "left": 7
+          },
+          "popup": {
+            "x": 8,
+            "y": 201,
+            "width": 304,
+            "height": 258,
+            "top": 201,
+            "right": 312,
+            "bottom": 459,
+            "left": 8
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "resized": {
+          "boss": {
+            "x": 128,
+            "y": 60,
+            "width": 332,
+            "height": 44,
+            "top": 60,
+            "right": 460,
+            "bottom": 104,
+            "left": 128
+          },
+          "popup": {
+            "x": 468,
+            "y": 58,
+            "width": 264,
+            "height": 193,
+            "top": 58,
+            "right": 732,
+            "bottom": 251,
+            "left": 468
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "skill": true,
+        "exit": true
+      },
+      {
+        "tile": {
+          "x": 4,
+          "y": 8
+        },
+        "duringWave": {
+          "boss": {
+            "x": 7,
+            "y": 195,
+            "width": 306,
+            "height": 64,
+            "top": 195,
+            "right": 313,
+            "bottom": 259,
+            "left": 7
+          },
+          "popup": {
+            "x": 8,
+            "y": 267,
+            "width": 240,
+            "height": 192,
+            "top": 267,
+            "right": 248,
+            "bottom": 459,
+            "left": 8
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "afterWave": {
+          "boss": {
+            "x": 7,
+            "y": 149,
+            "width": 306,
+            "height": 64,
+            "top": 149,
+            "right": 313,
+            "bottom": 213,
+            "left": 7
+          },
+          "popup": {
+            "x": 8,
+            "y": 219,
+            "width": 240,
+            "height": 240,
+            "top": 219,
+            "right": 248,
+            "bottom": 459,
+            "left": 8
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "expanded": {
+          "boss": {
+            "x": 7,
+            "y": 149,
+            "width": 306,
+            "height": 64,
+            "top": 149,
+            "right": 313,
+            "bottom": 213,
+            "left": 7
+          },
+          "popup": {
+            "x": 8,
+            "y": 221,
+            "width": 240,
+            "height": 238,
+            "top": 221,
+            "right": 248,
+            "bottom": 459,
+            "left": 8
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "readable": true,
+        "roster": {
+          "boss": {
+            "x": 7,
+            "y": 149,
+            "width": 306,
+            "height": 64,
+            "top": 149,
+            "right": 313,
+            "bottom": 213,
+            "left": 7
+          },
+          "popup": {
+            "x": 8,
+            "y": 221,
+            "width": 304,
+            "height": 238,
+            "top": 221,
+            "right": 312,
+            "bottom": 459,
+            "left": 8
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "resized": {
+          "boss": {
+            "x": 128,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 460,
+            "bottom": 124,
+            "left": 128
+          },
+          "popup": {
+            "x": 468,
+            "y": 58,
+            "width": 264,
+            "height": 193,
+            "top": 58,
+            "right": 732,
+            "bottom": 251,
+            "left": 468
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "skill": true,
+        "exit": true
+      },
+      {
+        "tile": {
+          "x": 19,
+          "y": 8
+        },
+        "duringWave": {
+          "boss": {
+            "x": 7,
+            "y": 195,
+            "width": 306,
+            "height": 64,
+            "top": 195,
+            "right": 313,
+            "bottom": 259,
+            "left": 7
+          },
+          "popup": {
+            "x": 72,
+            "y": 267,
+            "width": 240,
+            "height": 192,
+            "top": 267,
+            "right": 312,
+            "bottom": 459,
+            "left": 72
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "afterWave": {
+          "boss": {
+            "x": 7,
+            "y": 149,
+            "width": 306,
+            "height": 64,
+            "top": 149,
+            "right": 313,
+            "bottom": 213,
+            "left": 7
+          },
+          "popup": {
+            "x": 72,
+            "y": 219,
+            "width": 240,
+            "height": 240,
+            "top": 219,
+            "right": 312,
+            "bottom": 459,
+            "left": 72
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "expanded": {
+          "boss": {
+            "x": 7,
+            "y": 149,
+            "width": 306,
+            "height": 64,
+            "top": 149,
+            "right": 313,
+            "bottom": 213,
+            "left": 7
+          },
+          "popup": {
+            "x": 72,
+            "y": 221,
+            "width": 240,
+            "height": 238,
+            "top": 221,
+            "right": 312,
+            "bottom": 459,
+            "left": 72
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "readable": true,
+        "roster": {
+          "boss": {
+            "x": 7,
+            "y": 149,
+            "width": 306,
+            "height": 64,
+            "top": 149,
+            "right": 313,
+            "bottom": 213,
+            "left": 7
+          },
+          "popup": {
+            "x": 8,
+            "y": 221,
+            "width": 304,
+            "height": 238,
+            "top": 221,
+            "right": 312,
+            "bottom": 459,
+            "left": 8
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "resized": {
+          "boss": {
+            "x": 128,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 460,
+            "bottom": 124,
+            "left": 128
+          },
+          "popup": {
+            "x": 468,
+            "y": 58,
+            "width": 264,
+            "height": 193,
+            "top": 58,
+            "right": 732,
+            "bottom": 251,
+            "left": 468
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "skill": true,
+        "exit": true
+      }
+    ],
+    "errors": []
+  },
+  {
+    "width": 600,
+    "height": 400,
+    "touch": true,
+    "arrival": {
+      "boss": {
+        "x": 8,
+        "y": 106,
+        "width": 280.828125,
+        "height": 64,
+        "top": 106,
+        "right": 288.828125,
+        "bottom": 170,
+        "left": 8
+      },
+      "popup": {
+        "x": 296.828125,
+        "y": 102,
+        "width": 240,
+        "height": 189,
+        "top": 102,
+        "right": 536.828125,
+        "bottom": 291,
+        "left": 296.828125
+      },
+      "separated": true,
+      "fits": true,
+      "labelsFit": true,
+      "waveClear": true,
+      "buttonsFit": true
+    },
+    "checks": [
+      {
+        "tile": {
+          "x": 9,
+          "y": 5
+        },
+        "duringWave": {
+          "boss": {
+            "x": 8,
+            "y": 106,
+            "width": 280.828125,
+            "height": 64,
+            "top": 106,
+            "right": 288.828125,
+            "bottom": 170,
+            "left": 8
+          },
+          "popup": {
+            "x": 296.828125,
+            "y": 102.59375,
+            "width": 240,
+            "height": 188.390625,
+            "top": 102.59375,
+            "right": 536.828125,
+            "bottom": 290.984375,
+            "left": 296.828125
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "afterWave": {
+          "boss": {
+            "x": 8,
+            "y": 60,
+            "width": 280.828125,
+            "height": 64,
+            "top": 60,
+            "right": 288.828125,
+            "bottom": 124,
+            "left": 8
+          },
+          "popup": {
+            "x": 296.828125,
+            "y": 58,
+            "width": 240,
+            "height": 213,
+            "top": 58,
+            "right": 536.828125,
+            "bottom": 271,
+            "left": 296.828125
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "expanded": {
+          "boss": {
+            "x": 8,
+            "y": 60,
+            "width": 280.828125,
+            "height": 64,
+            "top": 60,
+            "right": 288.828125,
+            "bottom": 124,
+            "left": 8
+          },
+          "popup": {
+            "x": 296.828125,
+            "y": 58,
+            "width": 240,
+            "height": 233,
+            "top": 58,
+            "right": 536.828125,
+            "bottom": 291,
+            "left": 296.828125
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "readable": true,
+        "roster": {
+          "boss": {
+            "x": 8,
+            "y": 60,
+            "width": 312,
+            "height": 64,
+            "top": 60,
+            "right": 320,
+            "bottom": 124,
+            "left": 8
+          },
+          "popup": {
+            "x": 328,
+            "y": 58,
+            "width": 264,
+            "height": 233,
+            "top": 58,
+            "right": 592,
+            "bottom": 291,
+            "left": 328
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "resized": {
+          "boss": {
+            "x": 128,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 460,
+            "bottom": 124,
+            "left": 128
+          },
+          "popup": {
+            "x": 468,
+            "y": 58,
+            "width": 264,
+            "height": 193,
+            "top": 58,
+            "right": 732,
+            "bottom": 251,
+            "left": 468
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "skill": true,
+        "exit": true
+      },
+      {
+        "tile": {
+          "x": 10,
+          "y": 6
+        },
+        "duringWave": {
+          "boss": {
+            "x": 8,
+            "y": 106,
+            "width": 301.4375,
+            "height": 64,
+            "top": 106,
+            "right": 309.4375,
+            "bottom": 170,
+            "left": 8
+          },
+          "popup": {
+            "x": 317.4375,
+            "y": 102.59375,
+            "width": 240,
+            "height": 188.390625,
+            "top": 102.59375,
+            "right": 557.4375,
+            "bottom": 290.984375,
+            "left": 317.4375
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "afterWave": {
+          "boss": {
+            "x": 8,
+            "y": 60,
+            "width": 301.4375,
+            "height": 64,
+            "top": 60,
+            "right": 309.4375,
+            "bottom": 124,
+            "left": 8
+          },
+          "popup": {
+            "x": 317.4375,
+            "y": 66.28125,
+            "width": 240,
+            "height": 213,
+            "top": 66.28125,
+            "right": 557.4375,
+            "bottom": 279.28125,
+            "left": 317.4375
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "expanded": {
+          "boss": {
+            "x": 8,
+            "y": 60,
+            "width": 301.4375,
+            "height": 64,
+            "top": 60,
+            "right": 309.4375,
+            "bottom": 124,
+            "left": 8
+          },
+          "popup": {
+            "x": 317.4375,
+            "y": 58,
+            "width": 240,
+            "height": 233,
+            "top": 58,
+            "right": 557.4375,
+            "bottom": 291,
+            "left": 317.4375
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "readable": true,
+        "roster": {
+          "boss": {
+            "x": 8,
+            "y": 60,
+            "width": 312,
+            "height": 64,
+            "top": 60,
+            "right": 320,
+            "bottom": 124,
+            "left": 8
+          },
+          "popup": {
+            "x": 328,
+            "y": 58,
+            "width": 264,
+            "height": 233,
+            "top": 58,
+            "right": 592,
+            "bottom": 291,
+            "left": 328
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "resized": {
+          "boss": {
+            "x": 128,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 460,
+            "bottom": 124,
+            "left": 128
+          },
+          "popup": {
+            "x": 468,
+            "y": 58,
+            "width": 264,
+            "height": 193,
+            "top": 58,
+            "right": 732,
+            "bottom": 251,
+            "left": 468
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "skill": true,
+        "exit": true
+      },
+      {
+        "tile": {
+          "x": 18,
+          "y": 5
+        },
+        "duringWave": {
+          "boss": {
+            "x": 256,
+            "y": 106,
+            "width": 332,
+            "height": 64,
+            "top": 106,
+            "right": 588,
+            "bottom": 170,
+            "left": 256
+          },
+          "popup": {
+            "x": 8,
+            "y": 102.578125,
+            "width": 240,
+            "height": 188.40625,
+            "top": 102.578125,
+            "right": 248,
+            "bottom": 290.984375,
+            "left": 8
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "afterWave": {
+          "boss": {
+            "x": 256,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 588,
+            "bottom": 124,
+            "left": 256
+          },
+          "popup": {
+            "x": 8,
+            "y": 58,
+            "width": 240,
+            "height": 213,
+            "top": 58,
+            "right": 248,
+            "bottom": 271,
+            "left": 8
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "expanded": {
+          "boss": {
+            "x": 256,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 588,
+            "bottom": 124,
+            "left": 256
+          },
+          "popup": {
+            "x": 8,
+            "y": 58,
+            "width": 240,
+            "height": 233,
+            "top": 58,
+            "right": 248,
+            "bottom": 291,
+            "left": 8
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "readable": true,
+        "roster": {
+          "boss": {
+            "x": 8,
+            "y": 60,
+            "width": 312,
+            "height": 64,
+            "top": 60,
+            "right": 320,
+            "bottom": 124,
+            "left": 8
+          },
+          "popup": {
+            "x": 328,
+            "y": 58,
+            "width": 264,
+            "height": 233,
+            "top": 58,
+            "right": 592,
+            "bottom": 291,
+            "left": 328
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "resized": {
+          "boss": {
+            "x": 128,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 460,
+            "bottom": 124,
+            "left": 128
+          },
+          "popup": {
+            "x": 468,
+            "y": 58,
+            "width": 264,
+            "height": 193,
+            "top": 58,
+            "right": 732,
+            "bottom": 251,
+            "left": 468
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "skill": true,
+        "exit": true
+      },
+      {
+        "tile": {
+          "x": 6,
+          "y": 5
+        },
+        "duringWave": {
+          "boss": {
+            "x": 8,
+            "y": 106,
+            "width": 218.484375,
+            "height": 64,
+            "top": 106,
+            "right": 226.484375,
+            "bottom": 170,
+            "left": 8
+          },
+          "popup": {
+            "x": 234.484375,
+            "y": 102.59375,
+            "width": 240,
+            "height": 188.390625,
+            "top": 102.59375,
+            "right": 474.484375,
+            "bottom": 290.984375,
+            "left": 234.484375
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "afterWave": {
+          "boss": {
+            "x": 8,
+            "y": 60,
+            "width": 218.484375,
+            "height": 64,
+            "top": 60,
+            "right": 226.484375,
+            "bottom": 124,
+            "left": 8
+          },
+          "popup": {
+            "x": 234.484375,
+            "y": 58,
+            "width": 240,
+            "height": 213,
+            "top": 58,
+            "right": 474.484375,
+            "bottom": 271,
+            "left": 234.484375
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "expanded": {
+          "boss": {
+            "x": 8,
+            "y": 60,
+            "width": 218.484375,
+            "height": 64,
+            "top": 60,
+            "right": 226.484375,
+            "bottom": 124,
+            "left": 8
+          },
+          "popup": {
+            "x": 234.484375,
+            "y": 58,
+            "width": 240,
+            "height": 233,
+            "top": 58,
+            "right": 474.484375,
+            "bottom": 291,
+            "left": 234.484375
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "readable": true,
+        "roster": {
+          "boss": {
+            "x": 8,
+            "y": 60,
+            "width": 312,
+            "height": 44,
+            "top": 60,
+            "right": 320,
+            "bottom": 104,
+            "left": 8
+          },
+          "popup": {
+            "x": 328,
+            "y": 58,
+            "width": 264,
+            "height": 233,
+            "top": 58,
+            "right": 592,
+            "bottom": 291,
+            "left": 328
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "resized": {
+          "boss": {
+            "x": 128,
+            "y": 60,
+            "width": 332,
+            "height": 44,
+            "top": 60,
+            "right": 460,
+            "bottom": 104,
+            "left": 128
+          },
+          "popup": {
+            "x": 468,
+            "y": 58,
+            "width": 264,
+            "height": 193,
+            "top": 58,
+            "right": 732,
+            "bottom": 251,
+            "left": 468
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "skill": true,
+        "exit": true
+      },
+      {
+        "tile": {
+          "x": 4,
+          "y": 8
+        },
+        "duringWave": {
+          "boss": {
+            "x": 12,
+            "y": 106,
+            "width": 332,
+            "height": 64,
+            "top": 106,
+            "right": 344,
+            "bottom": 170,
+            "left": 12
+          },
+          "popup": {
+            "x": 352,
+            "y": 102.59375,
+            "width": 240,
+            "height": 188.390625,
+            "top": 102.59375,
+            "right": 592,
+            "bottom": 290.984375,
+            "left": 352
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "afterWave": {
+          "boss": {
+            "x": 12,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 344,
+            "bottom": 124,
+            "left": 12
+          },
+          "popup": {
+            "x": 352,
+            "y": 78,
+            "width": 240,
+            "height": 213,
+            "top": 78,
+            "right": 592,
+            "bottom": 291,
+            "left": 352
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "expanded": {
+          "boss": {
+            "x": 12,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 344,
+            "bottom": 124,
+            "left": 12
+          },
+          "popup": {
+            "x": 352,
+            "y": 58,
+            "width": 240,
+            "height": 233,
+            "top": 58,
+            "right": 592,
+            "bottom": 291,
+            "left": 352
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "readable": true,
+        "roster": {
+          "boss": {
+            "x": 8,
+            "y": 60,
+            "width": 312,
+            "height": 64,
+            "top": 60,
+            "right": 320,
+            "bottom": 124,
+            "left": 8
+          },
+          "popup": {
+            "x": 328,
+            "y": 58,
+            "width": 264,
+            "height": 233,
+            "top": 58,
+            "right": 592,
+            "bottom": 291,
+            "left": 328
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "resized": {
+          "boss": {
+            "x": 128,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 460,
+            "bottom": 124,
+            "left": 128
+          },
+          "popup": {
+            "x": 468,
+            "y": 58,
+            "width": 264,
+            "height": 193,
+            "top": 58,
+            "right": 732,
+            "bottom": 251,
+            "left": 468
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "skill": true,
+        "exit": true
+      },
+      {
+        "tile": {
+          "x": 19,
+          "y": 8
+        },
+        "duringWave": {
+          "boss": {
+            "x": 256,
+            "y": 106,
+            "width": 332,
+            "height": 64,
+            "top": 106,
+            "right": 588,
+            "bottom": 170,
+            "left": 256
+          },
+          "popup": {
+            "x": 8,
+            "y": 102.59375,
+            "width": 240,
+            "height": 188.390625,
+            "top": 102.59375,
+            "right": 248,
+            "bottom": 290.984375,
+            "left": 8
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "afterWave": {
+          "boss": {
+            "x": 256,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 588,
+            "bottom": 124,
+            "left": 256
+          },
+          "popup": {
+            "x": 8,
+            "y": 78,
+            "width": 240,
+            "height": 213,
+            "top": 78,
+            "right": 248,
+            "bottom": 291,
+            "left": 8
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "expanded": {
+          "boss": {
+            "x": 256,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 588,
+            "bottom": 124,
+            "left": 256
+          },
+          "popup": {
+            "x": 8,
+            "y": 58,
+            "width": 240,
+            "height": 233,
+            "top": 58,
+            "right": 248,
+            "bottom": 291,
+            "left": 8
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "readable": true,
+        "roster": {
+          "boss": {
+            "x": 8,
+            "y": 60,
+            "width": 312,
+            "height": 64,
+            "top": 60,
+            "right": 320,
+            "bottom": 124,
+            "left": 8
+          },
+          "popup": {
+            "x": 328,
+            "y": 58,
+            "width": 264,
+            "height": 233,
+            "top": 58,
+            "right": 592,
+            "bottom": 291,
+            "left": 328
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "resized": {
+          "boss": {
+            "x": 128,
+            "y": 60,
+            "width": 332,
+            "height": 64,
+            "top": 60,
+            "right": 460,
+            "bottom": 124,
+            "left": 128
+          },
+          "popup": {
+            "x": 468,
+            "y": 58,
+            "width": 264,
+            "height": 193,
+            "top": 58,
+            "right": 732,
+            "bottom": 251,
+            "left": 468
+          },
+          "separated": true,
+          "fits": true,
+          "labelsFit": true,
+          "waveClear": true,
+          "buttonsFit": true
+        },
+        "skill": true,
+        "exit": true
+      }
+    ],
+    "errors": []
+  }
+]

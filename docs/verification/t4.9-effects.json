@@ -1,0 +1,12 @@
+{
+  "unitTests": { "files": 54, "passed": 844 },
+  "combatArt": [
+    { "viewport": "desktop", "units": 10, "projectileAndFacing": true, "stateUnchanged": true, "paused": true, "errors": [] },
+    { "viewport": "mobile", "units": 10, "projectileAndFacing": true, "stateUnchanged": true, "paused": true, "errors": [] }
+  ],
+  "effects": [
+    { "viewport": "desktop", "peak": 200, "rest": 16, "arrivalAndDeath": true, "instantKill": true, "errors": [] },
+    { "viewport": "mobile", "peak": 200, "rest": 16, "arrivalAndDeath": true, "instantKill": true, "errors": [] }
+  ],
+  "note": "Edge PC·터치 에뮬레이션의 검증 기록입니다."
+}

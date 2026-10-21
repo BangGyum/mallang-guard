@@ -1,0 +1,118 @@
+[
+  {
+    "viewport": "desktop",
+    "stage": "stage-1",
+    "phase": "won",
+    "life": 3,
+    "killed": 426,
+    "leaked": 0,
+    "totalEnemies": 426,
+    "wave": 50,
+    "totalWaves": 50,
+    "enemies": 0,
+    "seconds": 929.3,
+    "rejected": [],
+    "seenEnemies": [
+      "crow",
+      "hardJelly",
+      "jelly"
+    ],
+    "heals": 0,
+    "shieldHits": 0,
+    "rewards": 34,
+    "invalidRewards": [],
+    "latePressure": {
+      "ticks": 8770,
+      "empty": 2440,
+      "peak": 11
+    }
+  },
+  {
+    "viewport": "desktop",
+    "stage": "stage-2",
+    "phase": "won",
+    "life": 3,
+    "killed": 497,
+    "leaked": 0,
+    "totalEnemies": 497,
+    "wave": 50,
+    "totalWaves": 50,
+    "enemies": 0,
+    "seconds": 952.5333333333333,
+    "rejected": [],
+    "seenEnemies": [
+      "crow",
+      "crystalJelly",
+      "dashJelly",
+      "hardJelly",
+      "jelly"
+    ],
+    "heals": 0,
+    "shieldHits": 0,
+    "rewards": 68,
+    "invalidRewards": [],
+    "latePressure": {
+      "ticks": 8629,
+      "empty": 209,
+      "peak": 18
+    }
+  },
+  {
+    "viewport": "mobile",
+    "stage": "stage-1",
+    "phase": "won",
+    "life": 3,
+    "killed": 426,
+    "leaked": 0,
+    "totalEnemies": 426,
+    "wave": 50,
+    "totalWaves": 50,
+    "enemies": 0,
+    "seconds": 929.3,
+    "rejected": [],
+    "seenEnemies": [
+      "crow",
+      "hardJelly",
+      "jelly"
+    ],
+    "heals": 0,
+    "shieldHits": 0,
+    "rewards": 34,
+    "invalidRewards": [],
+    "latePressure": {
+      "ticks": 8770,
+      "empty": 2440,
+      "peak": 11
+    }
+  },
+  {
+    "viewport": "mobile",
+    "stage": "stage-2",
+    "phase": "won",
+    "life": 3,
+    "killed": 497,
+    "leaked": 0,
+    "totalEnemies": 497,
+    "wave": 50,
+    "totalWaves": 50,
+    "enemies": 0,
+    "seconds": 952.5333333333333,
+    "rejected": [],
+    "seenEnemies": [
+      "crow",
+      "crystalJelly",
+      "dashJelly",
+      "hardJelly",
+      "jelly"
+    ],
+    "heals": 0,
+    "shieldHits": 0,
+    "rewards": 68,
+    "invalidRewards": [],
+    "latePressure": {
+      "ticks": 8629,
+      "empty": 209,
+      "peak": 18
+    }
+  }
+]

@@ -1,0 +1,216 @@
+{
+  "cycles": 14,
+  "samples": [
+    {
+      "cycle": 0,
+      "stage": "stage-1",
+      "theme": "yard",
+      "active": {
+        "geometries": 97,
+        "textures": 82
+      },
+      "calls": 39,
+      "disposed": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "cleaned": true
+    },
+    {
+      "cycle": 0,
+      "stage": "stage-2",
+      "theme": "grove",
+      "active": {
+        "geometries": 98,
+        "textures": 82
+      },
+      "calls": 54,
+      "disposed": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "cleaned": true
+    },
+    {
+      "cycle": 0,
+      "stage": "stage-3",
+      "theme": "bubble",
+      "active": {
+        "geometries": 99,
+        "textures": 82
+      },
+      "calls": 55,
+      "disposed": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "cleaned": true
+    },
+    {
+      "cycle": 0,
+      "stage": "stage-4",
+      "theme": "greenhouse",
+      "active": {
+        "geometries": 96,
+        "textures": 82
+      },
+      "calls": 50,
+      "disposed": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "cleaned": true
+    },
+    {
+      "cycle": 0,
+      "stage": "stage-5",
+      "theme": "pond",
+      "active": {
+        "geometries": 98,
+        "textures": 82
+      },
+      "calls": 66,
+      "disposed": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "cleaned": true
+    },
+    {
+      "cycle": 0,
+      "stage": "stage-6",
+      "theme": "terrace",
+      "active": {
+        "geometries": 98,
+        "textures": 82
+      },
+      "calls": 67,
+      "disposed": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "cleaned": true
+    },
+    {
+      "cycle": 0,
+      "stage": "stage-7",
+      "theme": "royal",
+      "active": {
+        "geometries": 98,
+        "textures": 82
+      },
+      "calls": 66,
+      "disposed": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "cleaned": true
+    },
+    {
+      "cycle": 1,
+      "stage": "stage-1",
+      "theme": "yard",
+      "active": {
+        "geometries": 97,
+        "textures": 82
+      },
+      "calls": 39,
+      "disposed": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "cleaned": true
+    },
+    {
+      "cycle": 1,
+      "stage": "stage-2",
+      "theme": "grove",
+      "active": {
+        "geometries": 98,
+        "textures": 82
+      },
+      "calls": 54,
+      "disposed": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "cleaned": true
+    },
+    {
+      "cycle": 1,
+      "stage": "stage-3",
+      "theme": "bubble",
+      "active": {
+        "geometries": 99,
+        "textures": 82
+      },
+      "calls": 55,
+      "disposed": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "cleaned": true
+    },
+    {
+      "cycle": 1,
+      "stage": "stage-4",
+      "theme": "greenhouse",
+      "active": {
+        "geometries": 96,
+        "textures": 82
+      },
+      "calls": 50,
+      "disposed": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "cleaned": true
+    },
+    {
+      "cycle": 1,
+      "stage": "stage-5",
+      "theme": "pond",
+      "active": {
+        "geometries": 98,
+        "textures": 82
+      },
+      "calls": 66,
+      "disposed": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "cleaned": true
+    },
+    {
+      "cycle": 1,
+      "stage": "stage-6",
+      "theme": "terrace",
+      "active": {
+        "geometries": 98,
+        "textures": 82
+      },
+      "calls": 67,
+      "disposed": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "cleaned": true
+    },
+    {
+      "cycle": 1,
+      "stage": "stage-7",
+      "theme": "royal",
+      "active": {
+        "geometries": 98,
+        "textures": 82
+      },
+      "calls": 66,
+      "disposed": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "cleaned": true
+    }
+  ],
+  "errors": []
+}

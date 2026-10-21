@@ -1,0 +1,710 @@
+[
+  {
+    "width": 1920,
+    "height": 1080,
+    "touch": false,
+    "reduced": false,
+    "checks": [
+      {
+        "stage": 1,
+        "boss": "bigJelly",
+        "layout": {
+          "center": 960,
+          "inViewport": true,
+          "underHeader": true,
+          "underWave": true,
+          "pointerEvents": "none",
+          "overflowing": false
+        },
+        "before": {
+          "hp": 3275,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1925,
+          "shield": 0,
+          "hpValue": 1925,
+          "shieldValue": 0,
+          "label": "1925 / 3500"
+        },
+        "ended": "won"
+      },
+      {
+        "stage": 2,
+        "boss": "gateJelly",
+        "layout": {
+          "center": 960,
+          "inViewport": true,
+          "underHeader": true,
+          "underWave": true,
+          "pointerEvents": "none",
+          "overflowing": false
+        },
+        "before": {
+          "hp": 6000,
+          "shield": 685
+        },
+        "after": {
+          "hp": 5395,
+          "shield": 0,
+          "hpValue": 5395,
+          "shieldValue": 0,
+          "label": "5395 / 6000"
+        },
+        "ended": "won"
+      },
+      {
+        "stage": 3,
+        "boss": "splitCaptain",
+        "layout": {
+          "center": 960,
+          "inViewport": true,
+          "underHeader": true,
+          "underWave": true,
+          "pointerEvents": "none",
+          "overflowing": false
+        },
+        "before": {
+          "hp": 5185,
+          "shield": 0
+        },
+        "after": {
+          "hp": 3295,
+          "shield": 0,
+          "hpValue": 3295,
+          "shieldValue": 0,
+          "label": "3295 / 5500"
+        },
+        "ended": "won"
+      },
+      {
+        "stage": 4,
+        "boss": "greenhouseKeeper",
+        "layout": {
+          "center": 960,
+          "inViewport": true,
+          "underHeader": true,
+          "underWave": true,
+          "pointerEvents": "none",
+          "overflowing": false
+        },
+        "before": {
+          "hp": 7245,
+          "shield": 0
+        },
+        "after": {
+          "hp": 6115,
+          "shield": 0,
+          "hpValue": 6115,
+          "shieldValue": 0,
+          "label": "6115 / 7500"
+        },
+        "ended": "won"
+      },
+      {
+        "stage": 5,
+        "boss": "stormCrow",
+        "layout": {
+          "center": 960,
+          "inViewport": true,
+          "underHeader": true,
+          "underWave": true,
+          "pointerEvents": "none",
+          "overflowing": false
+        },
+        "before": {
+          "hp": 7185,
+          "shield": 0
+        },
+        "after": {
+          "hp": 5295,
+          "shield": 0,
+          "hpValue": 5295,
+          "shieldValue": 0,
+          "label": "5295 / 7500"
+        },
+        "ended": "won"
+      },
+      {
+        "stage": 6,
+        "boss": "kingJelly",
+        "layout": {
+          "center": 960,
+          "inViewport": true,
+          "underHeader": true,
+          "underWave": true,
+          "pointerEvents": "none",
+          "overflowing": false
+        },
+        "before": {
+          "hp": 13765,
+          "shield": 0
+        },
+        "after": {
+          "hp": 12590,
+          "shield": 0,
+          "hpValue": 12590,
+          "shieldValue": 0,
+          "label": "12590 / 14000"
+        },
+        "ended": "lost"
+      },
+      {
+        "stage": 7,
+        "boss": "gardenKing",
+        "layout": {
+          "center": 960,
+          "inViewport": true,
+          "underHeader": true,
+          "underWave": true,
+          "pointerEvents": "none",
+          "overflowing": false
+        },
+        "before": {
+          "hp": 14500,
+          "shield": 565
+        },
+        "after": {
+          "hp": 14125,
+          "shield": 0,
+          "hpValue": 14125,
+          "shieldValue": 0,
+          "label": "14125 / 14500"
+        },
+        "ended": "lost"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "touch": true,
+    "reduced": false,
+    "checks": [
+      {
+        "stage": 1,
+        "boss": "bigJelly",
+        "layout": {
+          "center": 422,
+          "inViewport": true,
+          "underHeader": true,
+          "underWave": true,
+          "pointerEvents": "none",
+          "overflowing": false
+        },
+        "before": {
+          "hp": 3275,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1925,
+          "shield": 0,
+          "hpValue": 1925,
+          "shieldValue": 0,
+          "label": "1925 / 3500"
+        },
+        "ended": "won"
+      },
+      {
+        "stage": 2,
+        "boss": "gateJelly",
+        "layout": {
+          "center": 422,
+          "inViewport": true,
+          "underHeader": true,
+          "underWave": true,
+          "pointerEvents": "none",
+          "overflowing": false
+        },
+        "before": {
+          "hp": 6000,
+          "shield": 685
+        },
+        "after": {
+          "hp": 5395,
+          "shield": 0,
+          "hpValue": 5395,
+          "shieldValue": 0,
+          "label": "5395 / 6000"
+        },
+        "ended": "won"
+      },
+      {
+        "stage": 3,
+        "boss": "splitCaptain",
+        "layout": {
+          "center": 422,
+          "inViewport": true,
+          "underHeader": true,
+          "underWave": true,
+          "pointerEvents": "none",
+          "overflowing": false
+        },
+        "before": {
+          "hp": 5185,
+          "shield": 0
+        },
+        "after": {
+          "hp": 3295,
+          "shield": 0,
+          "hpValue": 3295,
+          "shieldValue": 0,
+          "label": "3295 / 5500"
+        },
+        "ended": "won"
+      },
+      {
+        "stage": 4,
+        "boss": "greenhouseKeeper",
+        "layout": {
+          "center": 422,
+          "inViewport": true,
+          "underHeader": true,
+          "underWave": true,
+          "pointerEvents": "none",
+          "overflowing": false
+        },
+        "before": {
+          "hp": 7245,
+          "shield": 0
+        },
+        "after": {
+          "hp": 6115,
+          "shield": 0,
+          "hpValue": 6115,
+          "shieldValue": 0,
+          "label": "6115 / 7500"
+        },
+        "ended": "won"
+      },
+      {
+        "stage": 5,
+        "boss": "stormCrow",
+        "layout": {
+          "center": 422,
+          "inViewport": true,
+          "underHeader": true,
+          "underWave": true,
+          "pointerEvents": "none",
+          "overflowing": false
+        },
+        "before": {
+          "hp": 7185,
+          "shield": 0
+        },
+        "after": {
+          "hp": 5295,
+          "shield": 0,
+          "hpValue": 5295,
+          "shieldValue": 0,
+          "label": "5295 / 7500"
+        },
+        "ended": "won"
+      },
+      {
+        "stage": 6,
+        "boss": "kingJelly",
+        "layout": {
+          "center": 422,
+          "inViewport": true,
+          "underHeader": true,
+          "underWave": true,
+          "pointerEvents": "none",
+          "overflowing": false
+        },
+        "before": {
+          "hp": 13765,
+          "shield": 0
+        },
+        "after": {
+          "hp": 12590,
+          "shield": 0,
+          "hpValue": 12590,
+          "shieldValue": 0,
+          "label": "12590 / 14000"
+        },
+        "ended": "lost"
+      },
+      {
+        "stage": 7,
+        "boss": "gardenKing",
+        "layout": {
+          "center": 422,
+          "inViewport": true,
+          "underHeader": true,
+          "underWave": true,
+          "pointerEvents": "none",
+          "overflowing": false
+        },
+        "before": {
+          "hp": 14500,
+          "shield": 565
+        },
+        "after": {
+          "hp": 14125,
+          "shield": 0,
+          "hpValue": 14125,
+          "shieldValue": 0,
+          "label": "14125 / 14500"
+        },
+        "ended": "lost"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "width": 740,
+    "height": 360,
+    "touch": true,
+    "reduced": true,
+    "checks": [
+      {
+        "stage": 1,
+        "boss": "bigJelly",
+        "layout": {
+          "center": 370,
+          "inViewport": true,
+          "underHeader": true,
+          "underWave": true,
+          "pointerEvents": "none",
+          "overflowing": false
+        },
+        "before": {
+          "hp": 3275,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1925,
+          "shield": 0,
+          "hpValue": 1925,
+          "shieldValue": 0,
+          "label": "1925 / 3500"
+        },
+        "ended": "won"
+      },
+      {
+        "stage": 2,
+        "boss": "gateJelly",
+        "layout": {
+          "center": 370,
+          "inViewport": true,
+          "underHeader": true,
+          "underWave": true,
+          "pointerEvents": "none",
+          "overflowing": false
+        },
+        "before": {
+          "hp": 6000,
+          "shield": 685
+        },
+        "after": {
+          "hp": 5395,
+          "shield": 0,
+          "hpValue": 5395,
+          "shieldValue": 0,
+          "label": "5395 / 6000"
+        },
+        "ended": "won"
+      },
+      {
+        "stage": 3,
+        "boss": "splitCaptain",
+        "layout": {
+          "center": 370,
+          "inViewport": true,
+          "underHeader": true,
+          "underWave": true,
+          "pointerEvents": "none",
+          "overflowing": false
+        },
+        "before": {
+          "hp": 5185,
+          "shield": 0
+        },
+        "after": {
+          "hp": 3295,
+          "shield": 0,
+          "hpValue": 3295,
+          "shieldValue": 0,
+          "label": "3295 / 5500"
+        },
+        "ended": "won"
+      },
+      {
+        "stage": 4,
+        "boss": "greenhouseKeeper",
+        "layout": {
+          "center": 370,
+          "inViewport": true,
+          "underHeader": true,
+          "underWave": true,
+          "pointerEvents": "none",
+          "overflowing": false
+        },
+        "before": {
+          "hp": 7245,
+          "shield": 0
+        },
+        "after": {
+          "hp": 6115,
+          "shield": 0,
+          "hpValue": 6115,
+          "shieldValue": 0,
+          "label": "6115 / 7500"
+        },
+        "ended": "won"
+      },
+      {
+        "stage": 5,
+        "boss": "stormCrow",
+        "layout": {
+          "center": 370,
+          "inViewport": true,
+          "underHeader": true,
+          "underWave": true,
+          "pointerEvents": "none",
+          "overflowing": false
+        },
+        "before": {
+          "hp": 7185,
+          "shield": 0
+        },
+        "after": {
+          "hp": 5295,
+          "shield": 0,
+          "hpValue": 5295,
+          "shieldValue": 0,
+          "label": "5295 / 7500"
+        },
+        "ended": "won"
+      },
+      {
+        "stage": 6,
+        "boss": "kingJelly",
+        "layout": {
+          "center": 370,
+          "inViewport": true,
+          "underHeader": true,
+          "underWave": true,
+          "pointerEvents": "none",
+          "overflowing": false
+        },
+        "before": {
+          "hp": 13765,
+          "shield": 0
+        },
+        "after": {
+          "hp": 12590,
+          "shield": 0,
+          "hpValue": 12590,
+          "shieldValue": 0,
+          "label": "12590 / 14000"
+        },
+        "ended": "lost"
+      },
+      {
+        "stage": 7,
+        "boss": "gardenKing",
+        "layout": {
+          "center": 370,
+          "inViewport": true,
+          "underHeader": true,
+          "underWave": true,
+          "pointerEvents": "none",
+          "overflowing": false
+        },
+        "before": {
+          "hp": 14500,
+          "shield": 565
+        },
+        "after": {
+          "hp": 14125,
+          "shield": 0,
+          "hpValue": 14125,
+          "shieldValue": 0,
+          "label": "14125 / 14500"
+        },
+        "ended": "lost"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "touch": true,
+    "reduced": false,
+    "checks": [
+      {
+        "stage": 1,
+        "boss": "bigJelly",
+        "layout": {
+          "center": 195,
+          "inViewport": true,
+          "underHeader": true,
+          "underWave": true,
+          "pointerEvents": "none",
+          "overflowing": false
+        },
+        "before": {
+          "hp": 3275,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1925,
+          "shield": 0,
+          "hpValue": 1925,
+          "shieldValue": 0,
+          "label": "1925 / 3500"
+        },
+        "ended": "won"
+      },
+      {
+        "stage": 2,
+        "boss": "gateJelly",
+        "layout": {
+          "center": 195,
+          "inViewport": true,
+          "underHeader": true,
+          "underWave": true,
+          "pointerEvents": "none",
+          "overflowing": false
+        },
+        "before": {
+          "hp": 6000,
+          "shield": 685
+        },
+        "after": {
+          "hp": 5395,
+          "shield": 0,
+          "hpValue": 5395,
+          "shieldValue": 0,
+          "label": "5395 / 6000"
+        },
+        "ended": "won"
+      },
+      {
+        "stage": 3,
+        "boss": "splitCaptain",
+        "layout": {
+          "center": 195,
+          "inViewport": true,
+          "underHeader": true,
+          "underWave": true,
+          "pointerEvents": "none",
+          "overflowing": false
+        },
+        "before": {
+          "hp": 5185,
+          "shield": 0
+        },
+        "after": {
+          "hp": 3295,
+          "shield": 0,
+          "hpValue": 3295,
+          "shieldValue": 0,
+          "label": "3295 / 5500"
+        },
+        "ended": "won"
+      },
+      {
+        "stage": 4,
+        "boss": "greenhouseKeeper",
+        "layout": {
+          "center": 195,
+          "inViewport": true,
+          "underHeader": true,
+          "underWave": true,
+          "pointerEvents": "none",
+          "overflowing": false
+        },
+        "before": {
+          "hp": 7245,
+          "shield": 0
+        },
+        "after": {
+          "hp": 6115,
+          "shield": 0,
+          "hpValue": 6115,
+          "shieldValue": 0,
+          "label": "6115 / 7500"
+        },
+        "ended": "won"
+      },
+      {
+        "stage": 5,
+        "boss": "stormCrow",
+        "layout": {
+          "center": 195,
+          "inViewport": true,
+          "underHeader": true,
+          "underWave": true,
+          "pointerEvents": "none",
+          "overflowing": false
+        },
+        "before": {
+          "hp": 7185,
+          "shield": 0
+        },
+        "after": {
+          "hp": 5295,
+          "shield": 0,
+          "hpValue": 5295,
+          "shieldValue": 0,
+          "label": "5295 / 7500"
+        },
+        "ended": "won"
+      },
+      {
+        "stage": 6,
+        "boss": "kingJelly",
+        "layout": {
+          "center": 195,
+          "inViewport": true,
+          "underHeader": true,
+          "underWave": true,
+          "pointerEvents": "none",
+          "overflowing": false
+        },
+        "before": {
+          "hp": 13765,
+          "shield": 0
+        },
+        "after": {
+          "hp": 12590,
+          "shield": 0,
+          "hpValue": 12590,
+          "shieldValue": 0,
+          "label": "12590 / 14000"
+        },
+        "ended": "lost"
+      },
+      {
+        "stage": 7,
+        "boss": "gardenKing",
+        "layout": {
+          "center": 195,
+          "inViewport": true,
+          "underHeader": true,
+          "underWave": true,
+          "pointerEvents": "none",
+          "overflowing": false
+        },
+        "before": {
+          "hp": 14500,
+          "shield": 565
+        },
+        "after": {
+          "hp": 14125,
+          "shield": 0,
+          "hpValue": 14125,
+          "shieldValue": 0,
+          "label": "14125 / 14500"
+        },
+        "ended": "lost"
+      }
+    ],
+    "errors": []
+  }
+]

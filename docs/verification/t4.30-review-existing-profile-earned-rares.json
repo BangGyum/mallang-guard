@@ -1,0 +1,56 @@
+{
+  "viewport": "existing-profile",
+  "before": {
+    "money": 9000,
+    "ownedUnits": [
+      "squirrel",
+      "cat",
+      "bear",
+      "penguin",
+      "sheep",
+      "bunny",
+      "mole",
+      "snail",
+      "owl",
+      "wolf",
+      "fox",
+      "redPanda",
+      "deer",
+      "snowLeopard"
+    ],
+    "pullsSinceNew": 7,
+    "rngState": 99
+  },
+  "after": {
+    "money": 9000,
+    "ownedUnits": [
+      "squirrel",
+      "cat",
+      "bear",
+      "penguin",
+      "sheep",
+      "bunny",
+      "mole",
+      "snail",
+      "owl",
+      "wolf",
+      "fox",
+      "redPanda",
+      "deer",
+      "snowLeopard"
+    ],
+    "pullsSinceNew": 7,
+    "rngState": 99
+  },
+  "originalStagesPreserved": true,
+  "deployedOnOriginalStage7": true,
+  "tile": {
+    "x": 10,
+    "y": 6
+  },
+  "dpBefore": 20,
+  "deployCost": 18,
+  "purchaseCost": 0,
+  "purchased": [],
+  "injectedMoney": true
+}

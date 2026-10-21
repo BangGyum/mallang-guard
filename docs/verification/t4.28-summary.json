@@ -1,0 +1,354 @@
+{
+  "ticket": "T4.28",
+  "date": "2026-10-15",
+  "status": "passed",
+  "branch": "codex/t4.28-rarity-nova",
+  "implementation": {
+    "rarities": [
+      {
+        "id": "R",
+        "pullPercent": 59,
+        "unitPrice": 600,
+        "units": [
+          "squirrel",
+          "mole",
+          "penguin",
+          "cat",
+          "snail"
+        ]
+      },
+      {
+        "id": "SR",
+        "pullPercent": 35,
+        "unitPrice": 600,
+        "units": [
+          "bear",
+          "sheep",
+          "bunny",
+          "owl",
+          "wolf"
+        ]
+      },
+      {
+        "id": "SSR",
+        "pullPercent": 5,
+        "unitPrice": 1800,
+        "units": [
+          "fox",
+          "redPanda",
+          "deer"
+        ]
+      },
+      {
+        "id": "UR",
+        "pullPercent": 1,
+        "unitPrice": 3600,
+        "units": [
+          "snowLeopard"
+        ]
+      }
+    ],
+    "unit": "snowLeopard",
+    "displayName": "노바",
+    "skill": "eventHorizon",
+    "fixedFieldSeconds": 4,
+    "radiusTiles": 1.8,
+    "slowPercent": 70,
+    "bossSlowPercent": 25,
+    "burstMagicDamage": 1920,
+    "directPrice": 3600,
+    "urIncludedInMissingGuarantee": true,
+    "saveVersionChanged": false
+  },
+  "checks": {
+    "typecheck": "passed",
+    "lint": "passed",
+    "build": "passed",
+    "diffCheck": "passed",
+    "unitTestFiles": 85,
+    "unitTestsPassed": 1521,
+    "unitTestsFailed": 0,
+    "basicEightCampaignStages": 7
+  },
+  "browser": {
+    "novaCases": 5,
+    "shopCases": 5,
+    "ssrCases": 5,
+    "allCharacterInformationCases": 4,
+    "effectCases": 6,
+    "productionCommon": {
+      "productionBase": "/mallang-guard/",
+      "portraits": 8,
+      "webgl": true,
+      "waves": 12,
+      "killOnlyIncome": true,
+      "exit": true,
+      "shopReturnToResult": true,
+      "currentBalanceAfterRecruit": true,
+      "rareShopUnits": 3,
+      "rarePurchasesAndReload": true,
+      "rarePurchases": [
+        "fox",
+        "redPanda",
+        "deer",
+        "snowLeopard"
+      ],
+      "alreadyRecruitedRareUnits": [],
+      "rareRates": "5% aggregate, 1.67% rounded per unit",
+      "productionPurchaseFixtureMoney": 9000,
+      "productionFirstDrawSeed": 1,
+      "errors": []
+    },
+    "productionSsr": {
+      "productionBase": "/mallang-guard/",
+      "portraits": 8,
+      "webgl": true,
+      "waves": 12,
+      "killOnlyIncome": true,
+      "exit": true,
+      "shopReturnToResult": true,
+      "currentBalanceAfterRecruit": true,
+      "rareShopUnits": 3,
+      "rarePurchasesAndReload": true,
+      "rarePurchases": [
+        "redPanda",
+        "deer",
+        "snowLeopard"
+      ],
+      "alreadyRecruitedRareUnits": [
+        "fox"
+      ],
+      "rareRates": "5% aggregate, 1.67% rounded per unit",
+      "productionPurchaseFixtureMoney": 9000,
+      "productionFirstDrawSeed": 36,
+      "errors": []
+    },
+    "errors": []
+  },
+  "audio": {
+    "skillStartCues": 14,
+    "skillAndPulseBuffers": 16,
+    "recruitmentCues": 3,
+    "mixedBuffers": 46,
+    "mixedPeak": 0.868238627910614,
+    "maxCorrelation": 0.5022658098729934,
+    "mute": true,
+    "reset": true,
+    "dispose": true
+  },
+  "resources": {
+    "cycles": 10,
+    "active": {
+      "geometries": 96,
+      "textures": 82
+    },
+    "disposed": {
+      "geometries": 0,
+      "textures": 0
+    },
+    "errors": []
+  },
+  "performance": [
+    {
+      "mode": "display-paced",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 130V GPU (8GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "board": "22x12",
+      "units": 14,
+      "enemies": 60,
+      "frames": 479,
+      "fps": 59.87499999999999,
+      "frameP95Ms": 16.800000000000182,
+      "frameP99Ms": 17,
+      "callbackP95Ms": 3.5999999940395355,
+      "callbackP99Ms": 5,
+      "framesOver17_7Ms": 1,
+      "framesOver8_33Ms": 479,
+      "attacks": 117,
+      "skills": 14,
+      "gravityBursts": 1,
+      "rejected": 0,
+      "peakCalls": 115,
+      "peakParticles": 115,
+      "disposed": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "errors": []
+    },
+    {
+      "mode": "display-paced",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 130V GPU (8GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "board": "22x12",
+      "units": 14,
+      "enemies": 60,
+      "frames": 480,
+      "fps": 59.99999999999999,
+      "frameP95Ms": 16.899999999999636,
+      "frameP99Ms": 17,
+      "callbackP95Ms": 3.2000000029802322,
+      "callbackP99Ms": 3.7999999970197678,
+      "framesOver17_7Ms": 0,
+      "framesOver8_33Ms": 480,
+      "attacks": 117,
+      "skills": 14,
+      "gravityBursts": 1,
+      "rejected": 0,
+      "peakCalls": 115,
+      "peakParticles": 115,
+      "disposed": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "errors": []
+    }
+  ],
+  "uncappedPerformance": [
+    {
+      "mode": "uncapped-throughput",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 130V GPU (8GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "board": "22x12",
+      "units": 14,
+      "enemies": 60,
+      "frames": 2702,
+      "fps": 337.49687734199347,
+      "frameP95Ms": 4.300000000000182,
+      "frameP99Ms": 5.300000000000182,
+      "callbackP95Ms": 2.9000000059604645,
+      "callbackP99Ms": 3.4000000059604645,
+      "framesOver17_7Ms": 0,
+      "framesOver8_33Ms": 4,
+      "attacks": 114,
+      "skills": 14,
+      "gravityBursts": 1,
+      "rejected": 0,
+      "peakCalls": 113,
+      "peakParticles": 109,
+      "disposed": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "errors": []
+    },
+    {
+      "mode": "uncapped-throughput",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 130V GPU (8GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "board": "22x12",
+      "units": 14,
+      "enemies": 60,
+      "frames": 2963,
+      "fps": 370.20378075140246,
+      "frameP95Ms": 3.800000000000182,
+      "frameP99Ms": 4.599999999999909,
+      "callbackP95Ms": 2.600000001490116,
+      "callbackP99Ms": 3,
+      "framesOver17_7Ms": 3,
+      "framesOver8_33Ms": 9,
+      "attacks": 117,
+      "skills": 14,
+      "gravityBursts": 1,
+      "rejected": 0,
+      "peakCalls": 115,
+      "peakParticles": 126,
+      "disposed": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "errors": []
+    }
+  ],
+  "preserved": {
+    "src/data/units.json": true,
+    "src/data/skills.json": true,
+    "oldEconomy": true
+  },
+  "corrections": [
+    "분수 추첨 누적 오차의 99% 경계를 보정했습니다.",
+    "좁은 배치 카드에서 비용과 등급이 겹치지 않도록 정리했습니다.",
+    "중력 폭발음과 해머 스킬음의 높은 파형 상관을 낮췄습니다.",
+    "일반 사격 뒤 중력 폭발로 같은 적이 죽으면 즉시 사망 연출을 사용합니다."
+  ],
+  "evidence": [
+    "t4.28-vitest.json",
+    "t4.28-rarity-nova.json",
+    "t4.28-shop.json",
+    "t4.28-rare-operatives.json",
+    "t4.28-unit-selection.json",
+    "t4.28-skill-feedback.json",
+    "t4.28-skill-audio.json",
+    "t4.28-gameplay-performance.json",
+    "t4.28-gameplay-performance-uncapped.json",
+    "t4.28-common-production.json",
+    "t4.28-rare-production.json",
+    "t4.28-preserved-content.json"
+  ],
+  "screenshots": [
+    "t4.28-320x568-ur-recruit.png",
+    "t4.28-1920x1080-gravity-burst.png",
+    "t4.28-320x568-gravity-active.png"
+  ],
+  "conditions": [
+    "Edge headless / Intel Arc 130V에서 검사했습니다.",
+    "전투 UI는 검사 계정·가상 시계·터치 에뮬레이션과 단독 검사 맵/적을 사용했습니다.",
+    "노바의 배치 비용·공격·SP·스킬 수치는 원본 데이터를 사용했습니다.",
+    "성능 장면은 22×12 맵과 14유닛/60적, HUD와 음향을 사용하며 검사용 비용/SP/적 수치 및 초기 위치를 사용했습니다.",
+    "제한 해제 값은 처리량이며 실제 120Hz 디스플레이 FPS나 모바일 실기기 성능 측정은 아닙니다.",
+    "주관적 재미·청감 평가는 별도로 필요합니다."
+  ],
+  "sourceSha256": {
+    "src/data/recruitment.json": "b1af237f00947e841db61190caa4687a6d8979cb832eac1bea8cae6b27534434",
+    "src/data/recruitment.ts": "3f7daadb90205e066e2f478e58db4d6b08871a00fb7cccdf9142b146bbe545f1",
+    "src/data/units.json": "270dbb52c3ce4daab5294f5623ff352c0abf6faad68d241c685eaf289d8344dd",
+    "src/data/skills.json": "11abf558a66ad6422a9e34e6d7af3fcc4b608c85db9a50e8b9bc4d8634bc5a7d",
+    "src/data/types.ts": "2cd96a3e8344c2540321e403903f0887b647488f25789dfb57b0108d2ccdc1c1",
+    "src/data/validateEntities.ts": "d08300608d8a095d7186c0afd147dc180032d711a954157cfbd1bf6eb5c81397",
+    "src/data/validateEffects.ts": "fc8ba0836957b8b52d61f7ce8812f53b195a00c6a8222c4e37a7a90bcadb826e",
+    "src/sim/types.ts": "c240ec967151b278e748f93883f663a40b79faf30979b63c9ebc83e74da725cc",
+    "src/sim/gravityField.ts": "386dda2348297d6642e9872609f2545c644ee9ebf21359ae6f961ea8222662dd",
+    "src/sim/systems/skills.ts": "5e2e3bae7d7d138c7db7c49f0dec4777c6f6d463ecd265b63b119ef378b0f6cf",
+    "src/sim/systems/status.ts": "66ec7bf3b1e0c0f14816782c8012c5cb86e852c8321373223c34c9bcf88684c9",
+    "src/art/rareCritters.ts": "3da9ccedb2e9932702e62236d0f706ffa71e4ed96e9879ddf6e00d8c05ebae33",
+    "src/art/skillArt.ts": "daa5b50bd10b2fa09a88c926885b96dec9aa4c49a8813481255ef06f460fa7ef",
+    "src/art/vfxArt.ts": "cbb5e88a536d2b665a9a1ac15de046829c31ad996ae4ffdc66edb57a479a5547",
+    "src/audio/combatSounds.ts": "441ab470fe138f941222b541c88a1a8ac6f07e53f9f47f4cbd9b2b11e5a05623",
+    "src/audio/skillSounds.ts": "6c655a94c40593ea1a6bbef4b393950b0ad167d536af61fbe6933efc26677a50",
+    "src/audio/recruitSounds.ts": "67f24b73cb185d87c93bdfe163ead263f19814bd77dcc3ae025512a42e58a3ee",
+    "src/audio/sfx.ts": "840b04d0ed21d2f09cacdefcba225c48b27a2b577d2be451681d27ab83b1e7e6",
+    "src/app/app.ts": "4e7b5502adc88f0c50c50eb0f006a96177b9767d707ec61000117737ed774abb",
+    "src/view/gravityVfx.ts": "1cd7cafa5dc03b3f7422d86d74c5eaec0a354bfdb529310701e9abb9477ef22c",
+    "src/view/vfx.ts": "12648eeb05f09d3012c9b85eebb48c5afb82bcd4cf6da7bfa9151378d91e68d3",
+    "src/view/skillVfx.ts": "0096f674740036f1fd5c52ec91654fea3fa5cfc0e3a4a607093447d3dadf4b21",
+    "src/view/particlePool.ts": "c394fa3f0351e260822992e1b80ce6a9d18a328a9e583751c17c982136f5266b",
+    "src/view/animation.ts": "ccac1a29a374f1adfa7262102d495c408790d1357e9ceb30a2ba3ec51aa66a51",
+    "src/view/entityViews.ts": "3f99d02643e1fbe554333e95465a4d4626d802d4fe8f09c338814b9ff52a810c",
+    "src/view/eventTiming.ts": "99f484643d54568a096a420d3ac9b3c8162ae77d32355096b85c03a1ad9313b0",
+    "src/ui/shopScreen.ts": "4fec39d19853087507ff5818c8363f8e03b0f315175ef98a94d623a7a7fba433",
+    "src/ui/deployBar.ts": "1632fa0d90c90518142567f3fe4fbe436c43bc9d42d6bdd06e19f5c9664fa3f1",
+    "src/ui/recruitResult.ts": "627bc0fcfd4ea215cf5e73d9680ce9826370fb0f436736dbe1bbb6099e52671b",
+    "src/ui/rosterPanel.ts": "0fea4bd6e4218e27ca1cc0f082e7f35a4359bb71facb5911f6e4896eeb67a661",
+    "src/ui/unitPanel.ts": "858306dbd67adbbb46f8cebc59f2d0fb534860db709785b743123849fd692585",
+    "src/ui/skillDetails.ts": "7e8a928a5bfd25848689ae73b56dde197d68fe5e798719f046d3c74d92dbb2e3",
+    "src/ui/rareUnits.css": "86935f3c632dd5ecfb2a54c073cad8362c5f47d9e6cb68f4a80f87dc4778101a",
+    "tests/app/rarityRecruitment.test.ts": "2a9c80b66ce84ecb35656733012c619b0db723a34dda1174bdab789edb8eb517",
+    "tests/sim/gravityField.test.ts": "594d3e3140581ed1297b6cfa0791aae095944d0346d844f1d647f0d6161f791d",
+    "tests/sim/novaLifecycle.test.ts": "00f86fc1fc452fdd00e8a193d8076b47d985a5e44a835a6d012988c33b62fed5",
+    "tests/view/gravityVfx.test.ts": "8a0870867909c3df925076640b7ddd4d00aa27b1c16f0da9312c711688b78666",
+    "tests/novaData.test.ts": "c379855dd1a9601992ff14a9cf2df27630d864bd19a8ef658ede06e770402b3f",
+    "tests/browser/rarityNova.mjs": "f2c93c1be9e2caabeb62020eff1223ee391acb051b8efee7f5def0c9757169f7"
+  }
+}

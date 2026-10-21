@@ -1,0 +1,44 @@
+{
+  "viewport": "mobile",
+  "before": {
+    "money": 11590,
+    "ownedUnits": [
+      "squirrel",
+      "cat",
+      "bear",
+      "penguin",
+      "sheep",
+      "bunny",
+      "mole",
+      "snail"
+    ],
+    "pullsSinceNew": 0,
+    "rngState": 4134340211
+  },
+  "after": {
+    "money": 6190,
+    "ownedUnits": [
+      "squirrel",
+      "cat",
+      "bear",
+      "penguin",
+      "sheep",
+      "bunny",
+      "mole",
+      "snail",
+      "fox",
+      "redPanda",
+      "deer"
+    ],
+    "pullsSinceNew": 0,
+    "rngState": 4134340211
+  },
+  "originalStagesPreserved": true,
+  "deployedOnOriginalStage7": true,
+  "tile": {
+    "x": 10,
+    "y": 6
+  },
+  "dpBefore": 31,
+  "injectedMoney": false
+}
