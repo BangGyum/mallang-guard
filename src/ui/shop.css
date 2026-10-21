@@ -57,7 +57,8 @@
 }
 .shop-identity {
   flex: 1;
-  min-width: 0;
+  min-width: min-content;
+  word-break: keep-all;
 }
 .shop-identity .screen-eyebrow {
   display: block;

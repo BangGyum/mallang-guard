@@ -191,6 +191,7 @@
 }
 .battle-result .screen-actions button {
   grid-column: auto;
+  word-break: keep-all;
 }
 @keyframes friend-bob {
   0%,

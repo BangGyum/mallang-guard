@@ -36,17 +36,22 @@ export function startLoop(
         ? 0
         : controls.speed * (controls.bulletTime ? BULLET_TIME_SCALE : 1);
     acc += Math.min(elapsed - wait, 0.25) * scale;
+    let visualDt = dt * scale;
     let steps = 0;
     while (acc >= tickSec && steps < MAX_STEPS_PER_FRAME) {
       onEvents(battle.step());
       acc -= tickSec;
       steps++;
     }
-    if (steps === MAX_STEPS_PER_FRAME) acc = 0;
+    if (steps === MAX_STEPS_PER_FRAME) {
+      // 밀린 전투 시간을 버릴 때 투사체·예약 효과음만 먼저 진행하지 않게 합니다.
+      visualDt = Math.max(0, visualDt - acc);
+      acc = 0;
+    }
     if (controls.paused || preparing) onEvents(battle.flush());
     render(
       controls.paused || controls.startInSec > 0 || battle.state.phase !== 'running' ? 1 : acc / tickSec,
-      dt * scale,
+      visualDt,
       dt,
     );
     frameId = requestAnimationFrame(frame);

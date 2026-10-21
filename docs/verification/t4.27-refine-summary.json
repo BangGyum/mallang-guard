@@ -1,0 +1,796 @@
+{
+  "ticket": "T4.27 follow-up",
+  "date": "2026-10-15",
+  "request": "Further improve skill feedback and measure frame rate",
+  "status": "passed",
+  "changes": [
+    "Move smaller skill activation marks above the head; preserve active floor marks and reduced-motion behavior",
+    "Dedicated skill muzzle flashes for frost, railgun, mortar and arc weapons, once per attacking unit",
+    "Upload only visible particle matrix/opacity ranges using dynamic buffers",
+    "Remove inherited dark outline that concealed the narrow mint rail projectile"
+  ],
+  "presentationOnly": true,
+  "renderComparison": {
+    "before": {
+      "mode": "display-paced",
+      "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 130V GPU (8GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "baselineFps": 59.99798326106685,
+      "enemies": 60,
+      "units": 13,
+      "viewport": "1920x1080",
+      "fps": 59.99900001666639,
+      "renderP95Ms": 3.399999998509884,
+      "frameP95Ms": 16.899999999999636,
+      "peakCalls": 95,
+      "peakParticles": 148,
+      "memory": {
+        "geometries": 132,
+        "textures": 74
+      },
+      "errors": []
+    },
+    "beforeUncapped": {
+      "mode": "uncapped-throughput",
+      "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 130V GPU (8GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "baselineFps": 40.761800369939024,
+      "enemies": 60,
+      "units": 13,
+      "viewport": "1920x1080",
+      "fps": 377.71482530689315,
+      "renderP95Ms": 5,
+      "frameP95Ms": 5.900000000000546,
+      "peakCalls": 95,
+      "peakParticles": 148,
+      "memory": {
+        "geometries": 132,
+        "textures": 74
+      },
+      "errors": []
+    },
+    "after": {
+      "mode": "display-paced",
+      "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 130V GPU (8GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "baselineFps": 59.732958538299364,
+      "enemies": 60,
+      "units": 13,
+      "viewport": "1920x1080",
+      "fps": 60.00100001666694,
+      "renderP95Ms": 5.100000001490116,
+      "frameP95Ms": 17,
+      "peakCalls": 95,
+      "peakParticles": 148,
+      "memory": {
+        "geometries": 136,
+        "textures": 77
+      },
+      "errors": []
+    },
+    "afterUncapped": {
+      "mode": "uncapped-throughput",
+      "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 130V GPU (8GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "baselineFps": 44.06754554880758,
+      "enemies": 60,
+      "units": 13,
+      "viewport": "1920x1080",
+      "fps": 411.3345521023767,
+      "renderP95Ms": 3.100000001490116,
+      "frameP95Ms": 4.099999999999454,
+      "peakCalls": 95,
+      "peakParticles": 148,
+      "memory": {
+        "geometries": 136,
+        "textures": 77
+      },
+      "errors": []
+    }
+  },
+  "fullSession": {
+    "displayPaced": [
+      {
+        "mode": "display-paced",
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 130V GPU (8GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "board": "22x12",
+        "units": 13,
+        "enemies": 60,
+        "frames": 480,
+        "fps": 59.998500037499056,
+        "frameP95Ms": 17,
+        "frameP99Ms": 17.100000000000364,
+        "callbackP95Ms": 5.700000002980232,
+        "callbackP99Ms": 6.899999998509884,
+        "framesOver17_7Ms": 1,
+        "framesOver8_33Ms": 480,
+        "attacks": 113,
+        "skills": 13,
+        "rejected": 0,
+        "peakCalls": 110,
+        "peakParticles": 102,
+        "disposed": {
+          "geometries": 0,
+          "textures": 0
+        },
+        "errors": []
+      },
+      {
+        "mode": "display-paced",
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 130V GPU (8GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "board": "22x12",
+        "units": 13,
+        "enemies": 60,
+        "frames": 479,
+        "fps": 59.999498960342706,
+        "frameP95Ms": 17,
+        "frameP99Ms": 17.399999999999636,
+        "callbackP95Ms": 6.399999998509884,
+        "callbackP99Ms": 8.200000002980232,
+        "framesOver17_7Ms": 4,
+        "framesOver8_33Ms": 479,
+        "attacks": 113,
+        "skills": 13,
+        "rejected": 0,
+        "peakCalls": 110,
+        "peakParticles": 102,
+        "disposed": {
+          "geometries": 0,
+          "textures": 0
+        },
+        "errors": []
+      }
+    ],
+    "uncapped": [
+      {
+        "mode": "uncapped-throughput",
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 130V GPU (8GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "board": "22x12",
+        "units": 13,
+        "enemies": 60,
+        "frames": 2171,
+        "fps": 271.03620474406995,
+        "frameP95Ms": 6,
+        "frameP99Ms": 7.800000000000182,
+        "callbackP95Ms": 4.199999995529652,
+        "callbackP99Ms": 5.399999998509884,
+        "framesOver17_7Ms": 0,
+        "framesOver8_33Ms": 17,
+        "attacks": 110,
+        "skills": 13,
+        "rejected": 0,
+        "peakCalls": 108,
+        "peakParticles": 97,
+        "disposed": {
+          "geometries": 0,
+          "textures": 0
+        },
+        "errors": []
+      },
+      {
+        "mode": "uncapped-throughput",
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 130V GPU (8GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "board": "22x12",
+        "units": 13,
+        "enemies": 60,
+        "frames": 2534,
+        "fps": 316.25190325237753,
+        "frameP95Ms": 5,
+        "frameP99Ms": 7.400000000000546,
+        "callbackP95Ms": 3.5,
+        "callbackP99Ms": 5,
+        "framesOver17_7Ms": 1,
+        "framesOver8_33Ms": 10,
+        "attacks": 113,
+        "skills": 13,
+        "rejected": 0,
+        "peakCalls": 110,
+        "peakParticles": 113,
+        "disposed": {
+          "geometries": 0,
+          "textures": 0
+        },
+        "errors": []
+      }
+    ],
+    "earlierPassDisplay": [
+      {
+        "mode": "display-paced",
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 130V GPU (8GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "board": "22x12",
+        "units": 13,
+        "enemies": 60,
+        "frames": 481,
+        "fps": 59.999750520787856,
+        "frameP95Ms": 16.899999999999636,
+        "frameP99Ms": 17.100000000000364,
+        "callbackP95Ms": 6.399999998509884,
+        "callbackP99Ms": 7.100000001490116,
+        "over16ms": 0,
+        "attacks": 110,
+        "skills": 13,
+        "rejected": 0,
+        "peakCalls": 108,
+        "peakParticles": 109,
+        "disposed": {
+          "geometries": 0,
+          "textures": 0
+        },
+        "errors": []
+      },
+      {
+        "mode": "display-paced",
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 130V GPU (8GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "board": "22x12",
+        "units": 13,
+        "enemies": 60,
+        "frames": 480,
+        "fps": 59.999250009374876,
+        "frameP95Ms": 16.899999999999636,
+        "frameP99Ms": 17.099999999999454,
+        "callbackP95Ms": 5.5,
+        "callbackP99Ms": 6.199999995529652,
+        "over16ms": 0,
+        "attacks": 113,
+        "skills": 13,
+        "rejected": 0,
+        "peakCalls": 110,
+        "peakParticles": 102,
+        "disposed": {
+          "geometries": 0,
+          "textures": 0
+        },
+        "errors": []
+      }
+    ],
+    "earlierPassUncapped": [
+      {
+        "mode": "uncapped-throughput",
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 130V GPU (8GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "board": "22x12",
+        "units": 13,
+        "enemies": 60,
+        "frames": 2888,
+        "fps": 360.34237516532323,
+        "frameP95Ms": 4.100000000000364,
+        "frameP99Ms": 5.100000000000364,
+        "callbackP95Ms": 2.899999998509884,
+        "callbackP99Ms": 3.600000001490116,
+        "over16ms": 1,
+        "attacks": 113,
+        "skills": 13,
+        "rejected": 0,
+        "peakCalls": 110,
+        "peakParticles": 113,
+        "disposed": {
+          "geometries": 0,
+          "textures": 0
+        },
+        "errors": []
+      },
+      {
+        "mode": "uncapped-throughput",
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 130V GPU (8GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "board": "22x12",
+        "units": 13,
+        "enemies": 60,
+        "frames": 3681,
+        "fps": 459.768679273563,
+        "frameP95Ms": 2.900000000000091,
+        "frameP99Ms": 3.5,
+        "callbackP95Ms": 2,
+        "callbackP99Ms": 2.399999998509884,
+        "over16ms": 0,
+        "attacks": 113,
+        "skills": 13,
+        "rejected": 0,
+        "peakCalls": 110,
+        "peakParticles": 102,
+        "disposed": {
+          "geometries": 0,
+          "textures": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "visual": [
+    {
+      "viewport": "1920x1080",
+      "mode": "normal",
+      "start": {
+        "drawCalls": 80,
+        "particles": 95,
+        "skills": 13,
+        "stateUnchanged": true
+      },
+      "active": {
+        "drawCalls": 68,
+        "particles": 40
+      },
+      "firing": {
+        "drawCalls": 84,
+        "particles": 67,
+        "stateUnchanged": true
+      },
+      "attacks": {
+        "drawCalls": 74,
+        "particles": 143,
+        "stateUnchanged": true
+      },
+      "paused": true,
+      "disposed": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "errors": []
+    },
+    {
+      "viewport": "1920x1080",
+      "mode": "reduced",
+      "start": {
+        "drawCalls": 69,
+        "particles": 39,
+        "skills": 13,
+        "stateUnchanged": true
+      },
+      "active": {
+        "drawCalls": 68,
+        "particles": 26
+      },
+      "firing": {
+        "drawCalls": 84,
+        "particles": 53,
+        "stateUnchanged": true
+      },
+      "attacks": {
+        "drawCalls": 70,
+        "particles": 73,
+        "stateUnchanged": true
+      },
+      "paused": true,
+      "disposed": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "errors": []
+    },
+    {
+      "viewport": "1920x1080",
+      "mode": "low",
+      "start": {
+        "drawCalls": 69,
+        "particles": 39,
+        "skills": 13,
+        "stateUnchanged": true
+      },
+      "active": {
+        "drawCalls": 68,
+        "particles": 26
+      },
+      "firing": {
+        "drawCalls": 84,
+        "particles": 53,
+        "stateUnchanged": true
+      },
+      "attacks": {
+        "drawCalls": 70,
+        "particles": 73,
+        "stateUnchanged": true
+      },
+      "paused": true,
+      "disposed": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "errors": []
+    },
+    {
+      "viewport": "844x390",
+      "mode": "normal",
+      "start": {
+        "drawCalls": 80,
+        "particles": 95,
+        "skills": 13,
+        "stateUnchanged": true
+      },
+      "active": {
+        "drawCalls": 68,
+        "particles": 40
+      },
+      "firing": {
+        "drawCalls": 84,
+        "particles": 67,
+        "stateUnchanged": true
+      },
+      "attacks": {
+        "drawCalls": 74,
+        "particles": 143,
+        "stateUnchanged": true
+      },
+      "paused": true,
+      "disposed": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "errors": []
+    },
+    {
+      "viewport": "844x390",
+      "mode": "reduced",
+      "start": {
+        "drawCalls": 69,
+        "particles": 39,
+        "skills": 13,
+        "stateUnchanged": true
+      },
+      "active": {
+        "drawCalls": 68,
+        "particles": 26
+      },
+      "firing": {
+        "drawCalls": 84,
+        "particles": 53,
+        "stateUnchanged": true
+      },
+      "attacks": {
+        "drawCalls": 70,
+        "particles": 73,
+        "stateUnchanged": true
+      },
+      "paused": true,
+      "disposed": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "errors": []
+    },
+    {
+      "viewport": "844x390",
+      "mode": "low",
+      "start": {
+        "drawCalls": 69,
+        "particles": 39,
+        "skills": 13,
+        "stateUnchanged": true
+      },
+      "active": {
+        "drawCalls": 68,
+        "particles": 26
+      },
+      "firing": {
+        "drawCalls": 84,
+        "particles": 53,
+        "stateUnchanged": true
+      },
+      "attacks": {
+        "drawCalls": 70,
+        "particles": 73,
+        "stateUnchanged": true
+      },
+      "paused": true,
+      "disposed": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "errors": []
+    }
+  ],
+  "frameTiming": [
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "unit": "fox",
+      "samples": [
+        {
+          "frameMs": 8.333333333333334,
+          "drawCalls": 28,
+          "particles": 8,
+          "stateUnchanged": true
+        },
+        {
+          "frameMs": 16.666666666666668,
+          "drawCalls": 28,
+          "particles": 8,
+          "stateUnchanged": true
+        },
+        {
+          "frameMs": 33.333333333333336,
+          "drawCalls": 28,
+          "particles": 8,
+          "stateUnchanged": true
+        },
+        {
+          "frameMs": 150,
+          "drawCalls": 28,
+          "particles": 8,
+          "stateUnchanged": true
+        },
+        {
+          "frameMs": 300,
+          "drawCalls": 28,
+          "particles": 8,
+          "stateUnchanged": true
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "unit": "redPanda",
+      "samples": [
+        {
+          "frameMs": 8.333333333333334,
+          "drawCalls": 28,
+          "particles": 8,
+          "stateUnchanged": true
+        },
+        {
+          "frameMs": 16.666666666666668,
+          "drawCalls": 28,
+          "particles": 8,
+          "stateUnchanged": true
+        },
+        {
+          "frameMs": 33.333333333333336,
+          "drawCalls": 28,
+          "particles": 8,
+          "stateUnchanged": true
+        },
+        {
+          "frameMs": 150,
+          "drawCalls": 28,
+          "particles": 8,
+          "stateUnchanged": true
+        },
+        {
+          "frameMs": 300,
+          "drawCalls": 28,
+          "particles": 8,
+          "stateUnchanged": true
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "unit": "deer",
+      "samples": [
+        {
+          "frameMs": 8.333333333333334,
+          "drawCalls": 30,
+          "particles": 24,
+          "stateUnchanged": true
+        },
+        {
+          "frameMs": 16.666666666666668,
+          "drawCalls": 30,
+          "particles": 24,
+          "stateUnchanged": true
+        },
+        {
+          "frameMs": 33.333333333333336,
+          "drawCalls": 30,
+          "particles": 24,
+          "stateUnchanged": true
+        },
+        {
+          "frameMs": 150,
+          "drawCalls": 30,
+          "particles": 24,
+          "stateUnchanged": true
+        },
+        {
+          "frameMs": 300,
+          "drawCalls": 30,
+          "particles": 24,
+          "stateUnchanged": true
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "unit": "fox",
+      "samples": [
+        {
+          "frameMs": 8.333333333333334,
+          "drawCalls": 28,
+          "particles": 8,
+          "stateUnchanged": true
+        },
+        {
+          "frameMs": 16.666666666666668,
+          "drawCalls": 28,
+          "particles": 8,
+          "stateUnchanged": true
+        },
+        {
+          "frameMs": 33.333333333333336,
+          "drawCalls": 28,
+          "particles": 8,
+          "stateUnchanged": true
+        },
+        {
+          "frameMs": 150,
+          "drawCalls": 28,
+          "particles": 8,
+          "stateUnchanged": true
+        },
+        {
+          "frameMs": 300,
+          "drawCalls": 28,
+          "particles": 8,
+          "stateUnchanged": true
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "unit": "redPanda",
+      "samples": [
+        {
+          "frameMs": 8.333333333333334,
+          "drawCalls": 28,
+          "particles": 8,
+          "stateUnchanged": true
+        },
+        {
+          "frameMs": 16.666666666666668,
+          "drawCalls": 28,
+          "particles": 8,
+          "stateUnchanged": true
+        },
+        {
+          "frameMs": 33.333333333333336,
+          "drawCalls": 28,
+          "particles": 8,
+          "stateUnchanged": true
+        },
+        {
+          "frameMs": 150,
+          "drawCalls": 28,
+          "particles": 8,
+          "stateUnchanged": true
+        },
+        {
+          "frameMs": 300,
+          "drawCalls": 28,
+          "particles": 8,
+          "stateUnchanged": true
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "unit": "deer",
+      "samples": [
+        {
+          "frameMs": 8.333333333333334,
+          "drawCalls": 30,
+          "particles": 24,
+          "stateUnchanged": true
+        },
+        {
+          "frameMs": 16.666666666666668,
+          "drawCalls": 30,
+          "particles": 24,
+          "stateUnchanged": true
+        },
+        {
+          "frameMs": 33.333333333333336,
+          "drawCalls": 30,
+          "particles": 24,
+          "stateUnchanged": true
+        },
+        {
+          "frameMs": 150,
+          "drawCalls": 30,
+          "particles": 24,
+          "stateUnchanged": true
+        },
+        {
+          "frameMs": 300,
+          "drawCalls": 30,
+          "particles": 24,
+          "stateUnchanged": true
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Edge headless on Intel Arc 130V; 844x390 is the same PC GPU, not physical mobile hardware",
+    "Display-paced rAF is about 60Hz; uncapped mode measures throughput, not verified 120Hz display output",
+    "Render-only before/after uses 13 allies/60 enemies on an 11x6 scene; repeated uncapped results vary with system load",
+    "Full session uses the original 22x12 board and real sim/HUD/overlay/audio, with test costs/SP/enemy HP/speed and initial route distribution; 2s warmup and 8s sampling per condition",
+    "No sim or content data changes; original campaign and subjective audio listening were not repeated for these visual changes"
+  ],
+  "sourceSha256": {
+    "src/art/vfxArt.ts": "cd70281ff2e23ef9ae5109676b966faa51dd6546d111e3e531dbe0baea1fe713",
+    "src/view/skillVfx.ts": "d5a6a72bfbed5e828515c09d66b92e2ee366bad6d148d4069de00ee8cf212572",
+    "src/view/vfx.ts": "5c8bb8232c3214aa67546ed70eb3d9a0f9b28947db0efb29ab5427f8b4431120",
+    "src/view/particlePool.ts": "e2c3983646bdd2b14a1cbaeddb6d59ac53207335a13976085817c70b96c1d8c6"
+  },
+  "production": {
+    "productionBase": "/mallang-guard/",
+    "portraits": 8,
+    "webgl": true,
+    "waves": 12,
+    "killOnlyIncome": true,
+    "exit": true,
+    "shopReturnToResult": true,
+    "currentBalanceAfterRecruit": true,
+    "rareShopUnits": 3,
+    "rarePurchasesAndReload": true,
+    "rarePurchases": [
+      "fox",
+      "redPanda",
+      "deer"
+    ],
+    "alreadyRecruitedRareUnits": [],
+    "rareRates": "5% aggregate, 1.67% rounded per unit",
+    "productionPurchaseFixtureMoney": 6000,
+    "productionFirstDrawSeed": 1,
+    "errors": []
+  },
+  "mandatory": {
+    "check": "passed",
+    "lint": "passed",
+    "test": {
+      "files": 79,
+      "passed": 1433,
+      "failed": 0
+    },
+    "build": "passed",
+    "diffCheck": "passed"
+  },
+  "visualReview": [
+    "t4.27-refine-1920-normal-skill-start.png",
+    "t4.27-refine-844-normal-skill-start.png",
+    "t4.27-refine-1920-normal-skill-fire.png",
+    "t4.27-refine-1920-gameplay-performance.png",
+    "t4.27-refine-844-gameplay-performance.png"
+  ]
+}

@@ -37,7 +37,7 @@ export function createBattleSession(
   oldCanvas.replaceWith(canvas);
   hudRoot.inert = false;
   const battle = createBattle(content, actions.stageId ?? 'stage-1');
-  const view = createBoardView(canvas, battle.stage.board, content, images);
+  const view = createBoardView(canvas, battle.stage.board, content, images, battle.stage.definition.id);
   const overlay = createOverlay(overlayCanvas, battle.stage.board, content);
   const controls: LoopControls = {
     paused: false,

@@ -159,7 +159,7 @@ export interface Battle {
 ```
 
 
-고지대 디펜스 수정으로 모든 아군은 높은 칸에 배치하며 체력·반격·저지를 제거했습니다. 배치·후퇴·도토리·재배치·자동 공격과 스킬 13종·상태이상·특성을 구현했습니다. `flush`는 시간 진행 없이 명령과 스킬 즉시 효과를 적용합니다. T1.5·T1.6의 브라우저 루프·뷰·입력에 SP 표시와 스킬 버튼을 연결했습니다. `rangeTilesFor`는 같은 타일에 해당 유닛이 배치되어 있으면 현재 스킬의 변경 사거리를 반환하며 배치 미리보기는 기본 사거리를 사용합니다. 동시 사격은 대상마다 기존 형태의 `attack` 이벤트를 내므로 투사체·피해 표시는 실제 발수만큼 처리합니다. 발사음은 같은 묶음의 동일 유닛 사격을 한 번 재생하며 피격음은 각 피해의 도착 시점을 따릅니다. 스킬 공격 횟수·쿨다운·공격 SP 충전은 한 번의 사격 단위입니다.
+고지대 디펜스 수정으로 모든 아군은 높은 칸에 배치하며 체력·반격·저지를 제거했습니다. 배치·후퇴·도토리·재배치·자동 공격과 스킬 14종·상태이상·특성을 구현했습니다. `flush`는 시간 진행 없이 명령과 스킬 즉시 효과를 적용합니다. T1.5·T1.6의 브라우저 루프·뷰·입력에 SP 표시와 스킬 버튼을 연결했습니다. `rangeTilesFor`는 같은 타일에 해당 유닛이 배치되어 있으면 현재 스킬의 변경 사거리를 반환하며 배치 미리보기는 기본 사거리를 사용합니다. 동시 사격은 대상마다 기존 형태의 `attack` 이벤트를 내므로 투사체·피해 표시는 실제 발수만큼 처리합니다. 발사음은 같은 묶음의 동일 유닛 사격을 한 번 재생하며 피격음은 각 피해의 도착 시점을 따릅니다. 스킬 공격 횟수·쿨다운·공격 SP 충전은 한 번의 사격 단위입니다.
 
 `DeployCheck`는 `{ ok: true } | { ok: false, reason: RejectReason }`입니다. `RosterCardView`는 `unitId`, `state`(`ready`/`noDp`/`deployed`/`cooldown`), `cost`, `cooldownSec`(실수 초), `uid`를 반환합니다. 카드 상태는 기존 로스터 상태에서 도토리 부족만 파생하며, 배치 제한은 `stage.definition.deployLimit`과 현재 유닛 수로 표시합니다. 조회 함수와 명령 처리에서 같은 배치 판정을 재사용합니다.
 
@@ -188,6 +188,7 @@ function frame(now: number) {
 
   const scale = paused ? 0 : speed * (bulletTime ? BULLET_TIME_SCALE : 1);  // speed: 1 | 2
   acc += dt * scale;
+  let visualDt = dt * scale;
 
   let steps = 0;
   while (acc >= TICK_SEC && steps < MAX_STEPS_PER_FRAME) {
@@ -197,7 +198,10 @@ function frame(now: number) {
     acc -= TICK_SEC;
     steps++;
   }
-  if (steps === MAX_STEPS_PER_FRAME) acc = 0;   // 탭 복귀 등으로 밀린 시간은 버림
+  if (steps === MAX_STEPS_PER_FRAME) {
+    visualDt = Math.max(0, visualDt - acc);      // 버린 시간은 연출에서도 제외
+    acc = 0;
+  }
 
   if (paused) {
     const events = battle.flush();               // 일시정지 중에도 배치는 바로 반영
@@ -206,7 +210,7 @@ function frame(now: number) {
   }
 
   const alpha = acc / TICK_SEC;                  // 0..1, 이전 틱과 현재 틱 사이 보간 비율
-  view.render(battle.state, alpha, dt * scale);  // 연출 시간도 sim과 같은 배율 (일시정지면 0)
+  view.render(battle.state, alpha, visualDt);  // 연출 시간도 sim과 같은 배율 (일시정지면 0)
   ui.update(battle.state, dt);                   // HUD 애니메이션은 실제 시간
   requestAnimationFrame(frame);
 }
@@ -264,3 +268,5 @@ App은 `SaveData.collection`의 머니·보유 ID·모집 보장 횟수·별도 
 전투 시작 시 원본 콘텐츠의 현재 스테이지 사본에 보유 친구와 스테이지 로스터 제한의 교집합을 전달합니다. 실제 Battle의 배치 판정도 이 로스터를 사용하며 원본 콘텐츠는 보존합니다. 머니는 App의 전투 결과 전환에서 한 번 지급하고 새 전투에서 지급 가드를 초기화합니다. 종료·재시작은 결과 전환을 거치지 않으므로 보상이 없습니다. sim·전투 도토리·스킬 수치는 그대로 사용합니다.
 
 T4.25에서 결과 → 상점 → 결과 왕복은 이미 종료된 BattleSession 한 개를 유지합니다. 전투 루프·입력은 멈춘 상태이고 상점에서는 캔버스/HUD를 숨깁니다. 복귀 시 `session.refresh()`로 기존 resize/render 동작을 적용해 숨김 중 크기 변경을 반영합니다. 새 전투·타이틀·스테이지 선택·App 종료에서 기존 세션을 정리합니다. 거래는 저장과 보유 목록만 갱신하며 종료 상태·틱·SP·DP를 바꾸지 않습니다.
+
+T4.40: 2배속에서 긴 프레임으로 8틱 상한에 도달하면 버린 누적 시간을 연출 dt에서도 제외합니다. 이전 프레임의 보간 잔여 시간은 중복 진행하지 않습니다. 투사체·피해 표시·예약 효과음이 같은 보정된 dt를 사용하며 HUD/종료 연출의 실제 시간 및 전투 틱 상한은 유지합니다.

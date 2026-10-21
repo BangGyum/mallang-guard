@@ -53,8 +53,8 @@ try {
     await page.evaluate(seedRareShopProfile);
     await page.evaluate(createShopAuditGame);
     await click(page.getByRole('button', { name: '상점 · 모집', exact: true }));
-    assert.equal(await page.locator('.shop-unit[data-rarity="rare"]').count(), 3);
-    assert.equal(await page.locator('.shop-owned-count').textContent(), '보유 10/13');
+    assert.equal(await page.locator('.shop-unit[data-rarity="SSR"]').count(), 3);
+    assert.equal(await page.locator('.shop-owned-count').textContent(), '보유 10/14');
     const before = (await saved()).collection;
     if (!touch) {
       await page.evaluate(() => {
@@ -73,13 +73,10 @@ try {
     for (const id of Object.keys(tiles)) {
       const card = page.locator(`.shop-unit[data-unit-id="${id}"]`);
       await click(card.locator('summary'));
-      assert.match(await card.textContent(), /희귀/);
+      assert.match(await card.textContent(), /SSR/);
       assert.match(await card.locator('.shop-buy').textContent(), /1,800머니/);
       await click(card.locator('.shop-buy'));
-      assert.equal(
-        await page.locator('.recruit-result[data-rarity="rare"]').getAttribute('data-unit-id'),
-        id,
-      );
+      assert.equal(await page.locator('.recruit-result[data-rarity="SSR"]').getAttribute('data-unit-id'), id);
       await page.screenshot({ path: `docs/verification/${prefix}-${width}x${height}-${id}-recruit.png` });
       await click(page.locator('.recruit-confirm'));
       assert.equal(await card.locator('details').getAttribute('open'), '');
@@ -104,7 +101,7 @@ try {
     const cdp = touch ? await context.newCDPSession(page) : null;
     for (const [id, tile] of Object.entries(tiles)) {
       const card = page.locator(`.deploy-card[data-unit-id="${id}"]`);
-      assert.equal(await card.getAttribute('data-rarity'), 'rare');
+      assert.equal(await card.getAttribute('data-rarity'), 'SSR');
       await card.scrollIntoViewIfNeeded();
       const box = await card.boundingBox();
       assert(box);

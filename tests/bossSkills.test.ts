@@ -84,7 +84,7 @@ describe('보스 전용 스킬', () => {
     f.cast();
     expect(f.enemy.shield).toBe(900);
     expect(f.enemy.hp).toBe(hp);
-    expect(f.state.dp).toBe(90);
+    expect(f.state.dp).toBe(99 - (f.content.units.get('squirrel')?.cost ?? 0));
   });
   it('기절은 준비를 한 번 취소하고 기절 중 재충전도 멈춘다', () => {
     const f = fixture('gateJelly');

@@ -46,7 +46,7 @@ describe('시나리오 실행기', () => {
     expect(stepped.events.filter((event) => event.type === 'unitRetreat').map((event) => event.uid)).toEqual([
       1, 2,
     ]);
-    expect(stepped.state).toMatchObject({ tick: 31, phase: 'lost', units: [], dp: 22 });
+    expect(stepped.state).toMatchObject({ tick: 31, phase: 'lost', units: [], dp: 28 });
   });
 
   it('서로 다른 초가 같은 틱으로 반올림되면 파일 순서를 유지한다', () => {
@@ -83,9 +83,9 @@ describe('시나리오 실행기', () => {
   it('거부된 명령은 스테이지·틱·명령·사유와 함께 실패한다', () => {
     const scenario: Scenario = {
       ...idle,
-      commands: [{ atSec: 0, type: 'deploy', unitId: 'penguin', tile: [5, 2], dir: 'left' }],
+      commands: [{ atSec: 0, type: 'deploy', unitId: 'bear', tile: [5, 2], dir: 'left' }],
     };
-    expect(() => runScenario(content, scenario)).toThrow(/scenario stage-1 tick 0: noDp.*penguin/);
+    expect(() => runScenario(content, scenario)).toThrow(/scenario stage-1 tick 0: noDp.*bear/);
   });
 
   it('충전 전 스킬 명령을 건너뛰지 않는다', () => {

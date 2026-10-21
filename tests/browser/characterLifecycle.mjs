@@ -5,13 +5,18 @@ import { enterBattle, frame, pause, resume } from './helpers.mjs';
 import { createUnitAuditGame, unitAuditPoint } from './unitAuditScene.mjs';
 
 const report = [];
+const portrait = process.argv.includes('--portrait');
 const prefix = process.env.MALLANG_SCREENSHOT_PREFIX ?? 't3.9';
 const browser = await chromium.launch({ channel: 'msedge', headless: true });
 try {
-  for (const mobile of process.argv.includes('--mobile') ? [true] : [false, true]) {
-    const label = mobile ? 'mobile' : 'desktop';
+  for (const mobile of process.argv.includes('--mobile') || portrait ? [true] : [false, true]) {
+    const label = portrait ? 'portrait' : mobile ? 'mobile' : 'desktop';
     const context = await browser.newContext({
-      viewport: mobile ? { width: 844, height: 390 } : { width: 1920, height: 1080 },
+      viewport: portrait
+        ? { width: 320, height: 568 }
+        : mobile
+          ? { width: 844, height: 390 }
+          : { width: 1920, height: 1080 },
       hasTouch: mobile,
       isMobile: mobile,
     });
@@ -69,11 +74,13 @@ try {
       await frame(page, 220);
       assert.equal(await page.locator('.unit-panel').getAttribute('data-unit-id'), unitId);
       assert(await page.locator('.unit-panel').isVisible());
+      assert.equal(await page.locator('.unit-panel image').count(), 1, `${unitId} 새 정보창 그림`);
     };
     const deploy = async (unitId, dir) => {
       await pause(page);
       const card = page.locator(`.deploy-card[data-unit-id="${unitId}"]`);
       await card.scrollIntoViewIfNeeded();
+      assert.equal(await card.locator('image').count(), 1, `${unitId} 새 카드 그림`);
       const box = await card.boundingBox();
       const point = await page.evaluate(unitAuditPoint);
       assert(box);
@@ -190,7 +197,10 @@ try {
     assert.deepEqual(errors, []);
     await context.close();
   }
-  await writeFile(`docs/verification/${prefix}-characters.json`, `${JSON.stringify(report, null, 2)}\n`);
+  await writeFile(
+    `docs/verification/${prefix}${portrait ? '-portrait' : ''}-characters.json`,
+    `${JSON.stringify(report, null, 2)}\n`,
+  );
 } finally {
   await browser.close();
 }

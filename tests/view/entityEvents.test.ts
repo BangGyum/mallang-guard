@@ -90,6 +90,24 @@ function fixture(hp = 600, enemyId = 'jelly', startDp = 10) {
 }
 
 describe('이벤트 경계의 캐릭터 연출', () => {
+  it('스킬 발동만으로 총을 쏘는 반동이 발생하지 않는다', () => {
+    const f = fixture(600, 'jelly', 99);
+    try {
+      f.battle.enqueue({ type: 'deploy', unitId: 'wolf', tile: { x: 1, y: 1 }, dir: 'right' });
+      f.deliver(f.battle.flush());
+      f.render(1);
+      const uid = f.battle.state.units[0]?.uid ?? -1;
+      const before = f.view.attackOrigin(uid)?.clone();
+      f.deliver([{ type: 'skillStart', uid, skillId: 'tripleAim' }]);
+      f.render(0.03);
+      expect(f.view.attackOrigin(uid)).toEqual(before);
+      f.attack(uid, -1);
+      f.render(0.03);
+      expect(f.view.attackOrigin(uid)).not.toEqual(before);
+    } finally {
+      f.dispose();
+    }
+  });
   it.each(
     makeRawContent().units.flatMap((unit) =>
       (['up', 'right', 'down', 'left'] as Dir[]).map((dir) => ({ unitId: unit.id, dir })),

@@ -64,9 +64,13 @@ export async function createTestScene(enemyCount = 3) {
   });
   for (const unit of battle.state.units) {
     unit.skillState = unit.unitId === 'squirrel' ? 'ready' : 'active';
-    if (['owl', 'wolf', 'fox', 'redPanda', 'deer'].includes(unit.unitId)) {
+    if (['owl', 'wolf', 'fox', 'redPanda', 'deer', 'snowLeopard'].includes(unit.unitId)) {
       const skill = content.skills.get(content.units.get(unit.unitId).skill);
       unit.buffs = skill.effects;
+      if (unit.unitId === 'snowLeopard') {
+        unit.gravityCenter = { x: 6.5, y: 1.5 };
+        unit.skillEndTick = 120;
+      }
     }
   }
   view.resize();

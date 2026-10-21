@@ -1,0 +1,10 @@
+{
+  "productionBase": "/mallang-guard/",
+  "images": [
+    {
+      "url": "http://127.0.0.1:43205/mallang-guard/assets/wolfAimV2-Deurzo4V.png",
+      "status": 200
+    }
+  ],
+  "errors": []
+}

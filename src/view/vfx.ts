@@ -5,34 +5,11 @@ import { rangeTilesFor } from '../sim/queries';
 import type { BattleState, SimEvent } from '../sim/types';
 import { bossSkillTheme } from './bossSkillTheme';
 import { tileHeight } from './coords';
-import { PROJECTILE_SEC } from './eventTiming';
+import { PROJECTILE_SEC, PULSE_IMPACT_SEC } from './eventTiming';
+import { createGravityVfx } from './gravityVfx';
 import { createParticlePool } from './particlePool';
-
-const SHOTS: Record<
-  string,
-  {
-    art: string;
-    size: number;
-    arc: number;
-    muzzle: number;
-    impact?: string;
-    power?: number;
-  }
-> = {
-  squirrel: { art: 'bullet', size: 0.28, arc: 0, muzzle: 0.19 },
-  cat: { art: 'slash', size: 0.8, arc: 0, muzzle: 0 },
-  bear: { art: 'shockwave', size: 0.9, arc: 0, muzzle: 0, impact: 'impact', power: 1.15 },
-  penguin: { art: 'iceRound', size: 0.46, arc: 0, muzzle: 0.26 },
-  sheep: { art: 'arcBolt', size: 0.5, arc: 0, muzzle: 0, impact: 'plasmaImpact', power: 1 },
-  bunny: { art: 'arcBolt', size: 0.3, arc: 0, muzzle: 0.24 },
-  mole: { art: 'bullet', size: 0.3, arc: 0, muzzle: 0.19 },
-  snail: { art: 'stickyDrop', size: 0.32, arc: 0.12, muzzle: 0.24 },
-  owl: { art: 'fireball', size: 0.78, arc: 0.18, muzzle: 0.36, impact: 'fireBurst', power: 1.4 },
-  wolf: { art: 'railRound', size: 0.9, arc: 0, muzzle: 0.42, impact: 'impact', power: 1.5 },
-  fox: { art: 'mintRailRound', size: 0.95, arc: 0, muzzle: 0.3, impact: 'plasmaImpact', power: 1.2 },
-  redPanda: { art: 'shellRound', size: 0.5, arc: 0.65, muzzle: 0.3, impact: 'impact', power: 1.7 },
-  deer: { art: 'arcBolt', size: 0.35, arc: 0, muzzle: 0, impact: 'plasmaImpact', power: 0.65 },
-};
+import { drawSkillMarks, emitSkillMuzzle, emitSkillStart, skillMark } from './skillVfx';
+import { WEAPON_VFX } from './weaponVfx';
 
 export function createVfx(
   content: ContentDb,
@@ -42,6 +19,7 @@ export function createVfx(
   attackOrigin: (uid: number) => Vector3 | undefined,
 ) {
   const pool = createParticlePool(textures);
+  const gravity = createGravityVfx(pool, board);
   const point = new Vector3();
   const pending: {
     seconds: number;
@@ -51,6 +29,7 @@ export function createVfx(
     impact?: string;
     power?: number;
     linkFrom?: Vector3;
+    mark?: string;
   }[] = [];
   let reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let low = false;
@@ -77,6 +56,7 @@ export function createVfx(
       state: Readonly<BattleState>,
       delays: ReadonlyMap<SimEvent, number>,
     ) {
+      gravity.onEvents(events);
       const flashed = new Set<number>();
       for (const event of events) {
         if (event.type === 'bossSkill' && event.phase === 'cast') {
@@ -102,42 +82,59 @@ export function createVfx(
             event.chainFrom === undefined ? attackOrigin(event.src.uid) : position(event.chainFrom);
           const to = position(event.dst.uid);
           if (from && to) {
-            if (event.chainFrom !== undefined) {
-              pending.push({ seconds: PROJECTILE_SEC, at: to, id: 'spark', count: 2, linkFrom: from });
-              continue;
-            }
             const unit = state.units.find((unit) => unit.uid === event.src.uid);
-            const shot = unit && SHOTS[unit.unitId];
-            if (event.ranged && shot) {
-              const boost = shot.power && unit.skillState === 'active' ? 1.15 : 1;
-              pool.emit(shot.art, from, to, PROJECTILE_SEC, shot.size * boost, shot.arc, false, true);
-              if (shot.muzzle && !flashed.has(unit.uid)) {
-                pool.emit(
-                  unit.unitId === 'owl' ? 'fireBurst' : 'muzzle',
-                  from,
-                  from,
-                  0.07,
-                  shot.muzzle * (reduced ? 0.65 : boost),
-                  0,
-                  false,
-                  false,
-                  0.85,
-                );
-                flashed.add(unit.uid);
-              }
-              if (unit.unitId === 'cat') pool.emit('slash', from, from, 0.18, 0.8);
+            if (event.chainFrom !== undefined) {
               pending.push({
                 seconds: PROJECTILE_SEC,
                 at: to,
-                id: 'spark',
+                id: 'flameBolt',
+                count: 2,
+                linkFrom: from,
+                impact: 'flameBloom',
+                power: unit?.skillState === 'active' ? 1 : 0.65,
+              });
+              continue;
+            }
+            const shot = unit && WEAPON_VFX[unit.unitId];
+            if (event.ranged && shot) {
+              const grenade = unit.unitId === 'redPanda';
+              const active = unit.skillState === 'active';
+              const boost = active ? (shot.skillScale ?? 1.15) : 1;
+              const art = active ? (shot.skillArt ?? shot.art) : shot.art;
+              const arc = shot.arc * (grenade && unit.skillState === 'active' ? 1.25 : 1);
+              pool.emit(art, from, to, PROJECTILE_SEC, shot.size * boost, arc, false, true);
+              if (!flashed.has(unit.uid)) {
+                emitSkillMuzzle(
+                  pool,
+                  unit.unitId,
+                  from,
+                  shot.muzzle,
+                  unit.skillState === 'active',
+                  reduced || low,
+                );
+                flashed.add(unit.uid);
+              }
+              if (unit.unitId === 'cat') pool.emit(art, from, from, 0.18, 0.8);
+              pending.push({
+                seconds: PROJECTILE_SEC,
+                at: to,
+                id: (active && shot.skillArt) || shot.debris || 'spark',
                 count: shot.power ? 5 : 3,
-                impact: shot.impact,
+                impact: active
+                  ? (shot.skillImpact ?? (unit.unitId === 'cat' ? art : shot.impact))
+                  : shot.impact,
                 power: (shot.power ?? 1) * boost,
+                mark:
+                  unit.skillState === 'active'
+                    ? skillMark(content.units.get(unit.unitId)?.skill ?? '')
+                    : undefined,
               });
             } else burst('spark', to, 3);
           }
         }
-        if (event.type === 'unitDeploy' || event.type === 'skillStart') {
+        if (event.type === 'skillStart')
+          emitSkillStart(pool, content, board, state, event, position, reduced || low);
+        if (event.type === 'unitDeploy') {
           const unit = state.units.find((unit) => unit.uid === event.uid);
           if (!unit) continue;
           point.set(
@@ -146,12 +143,6 @@ export function createVfx(
             unit.tile.y + 0.5 - board.height / 2,
           );
           pool.emit('ring', point, point, 0.35, 0.3, 0, true, false, 0.35);
-          const at = position(unit.uid);
-          if (at && event.type === 'skillStart')
-            burst(unit.unitId === 'bunny' || unit.unitId === 'squirrel' ? 'signal' : 'spark', at, 6);
-          const impact = SHOTS[unit.unitId]?.impact;
-          if (at && impact && event.type === 'skillStart' && !reduced && !low)
-            pool.emit(impact, at, at, 0.22, 0.7, 0, false, false, 0.65);
         }
         if (event.type === 'skillPulse') {
           const unit = state.units.find((unit) => unit.uid === event.uid);
@@ -171,7 +162,30 @@ export function createVfx(
               tileHeight(board.kindAt(tile.x, tile.y) ?? 'ground') + 0.1,
               tile.y + 0.5 - board.height / 2,
             );
-            pool.emit('arcBolt', end.clone().add(new Vector3(0, 0.8, 0)), end, 0.4, 0.35, 0, false, true);
+            pool.emit(
+              'cometRound',
+              end.clone().add(new Vector3(0, 1.05, 0)),
+              end,
+              PULSE_IMPACT_SEC,
+              0.48,
+              0,
+              false,
+              true,
+            );
+            if (!reduced && !low)
+              pool.emit(
+                skillMark(def.skill),
+                end,
+                end,
+                0.22,
+                0.35,
+                0,
+                true,
+                false,
+                0.3,
+                false,
+                PULSE_IMPACT_SEC,
+              );
           }
         }
         if (event.type === 'enemyDie') {
@@ -192,11 +206,11 @@ export function createVfx(
           burst(effect.id, effect.at, effect.count, delay);
           if (effect.linkFrom)
             pool.emit(
-              'lightningLink',
+              'flameLink',
               effect.linkFrom,
               effect.at,
               0.14,
-              0.38,
+              (reduced || low ? 0.28 : 0.48) * (effect.power ?? 1),
               0,
               false,
               true,
@@ -204,13 +218,14 @@ export function createVfx(
               true,
               delay,
             );
-          if (effect.impact && !reduced && !low)
+          const grenade = effect.impact === 'shellBurst';
+          if (effect.impact && (grenade || (!reduced && !low)))
             pool.emit(
               effect.impact,
               effect.at,
               effect.at,
-              0.18,
-              0.55 * (effect.power ?? 1),
+              grenade ? 0.32 : effect.impact === 'flameBloom' ? 0.24 : 0.18,
+              0.55 * (effect.power ?? 1) * (grenade && (reduced || low) ? 0.65 : 1),
               0,
               false,
               false,
@@ -218,9 +233,9 @@ export function createVfx(
               false,
               delay,
             );
-          if (effect.id === 'spark' && !reduced && !low)
+          if (effect.mark && !reduced && !low)
             pool.emit(
-              'ring',
+              effect.mark,
               effect.at,
               effect.at,
               0.2,
@@ -236,22 +251,8 @@ export function createVfx(
         }
       }
       pool.begin(dt, camera);
-      for (const unit of state.units) {
-        if (unit.skillState !== 'active') continue;
-        point.set(
-          unit.tile.x + 0.5 - board.width / 2,
-          tileHeight(board.kindAt(unit.tile.x, unit.tile.y) ?? 'high') + 0.04,
-          unit.tile.y + 0.5 - board.height / 2,
-        );
-        pool.draw(
-          'ring',
-          point,
-          0.64 + (reduced || low ? 0 : Math.sin(time * 4) * 0.03),
-          reduced || low ? 0.14 : 0.19,
-          camera,
-          true,
-        );
-      }
+      drawSkillMarks(pool, content, board, state, camera, time, reduced || low);
+      gravity.draw(content, state, camera, dt, reduced || low);
       for (const enemy of state.enemies) {
         if (enemy.slowAmount > 0) {
           point.set(enemy.x - board.width / 2, 0.025, enemy.y - board.height / 2);
@@ -273,6 +274,7 @@ export function createVfx(
     },
     dispose() {
       pending.length = 0;
+      gravity.dispose();
       pool.dispose();
     },
   };

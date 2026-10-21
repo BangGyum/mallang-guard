@@ -4,18 +4,29 @@ import { assert } from '../core/assert';
 export async function bakeSvg(svg: string, size: number): Promise<HTMLCanvasElement> {
   const url = URL.createObjectURL(new Blob([svg], { type: 'image/svg+xml' }));
   try {
-    const image = new Image();
-    image.src = url;
-    await image.decode();
-    const canvas = document.createElement('canvas');
-    canvas.width = canvas.height = size;
-    const context = canvas.getContext('2d');
-    assert(context, '캐릭터 그림을 그릴 수 없습니다');
-    context.drawImage(image, 0, 0, size, size);
-    return canvas;
+    return await bakeImage(url, size);
   } finally {
     URL.revokeObjectURL(url);
   }
+}
+
+export async function bakeImage(
+  url: string,
+  size: number,
+  rect: readonly [number, number, number, number] = [0, 0, 100, 100],
+): Promise<HTMLCanvasElement> {
+  const image = new Image();
+  image.src = url;
+  await image.decode();
+  const canvas = document.createElement('canvas');
+  canvas.width = canvas.height = size;
+  const context = canvas.getContext('2d');
+  assert(context, '캐릭터 그림을 그릴 수 없습니다');
+  context.drawImage(
+    image,
+    ...(rect.map((value) => (value * size) / 100) as [number, number, number, number]),
+  );
+  return canvas;
 }
 
 export function createTextures(images: ReadonlyMap<string, HTMLCanvasElement>) {

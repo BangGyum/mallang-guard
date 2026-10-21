@@ -60,6 +60,10 @@
   font-family: "Jua", sans-serif;
   font-size: 18px;
 }
+.stage-theme {
+  font-size: 11px;
+  color: #586c65;
+}
 .stage-stars,
 .result-stars {
   color: #b7831f;
@@ -77,16 +81,16 @@
   aspect-ratio: 11 / 3;
   padding: 5px;
   border-radius: 10px;
-  background: #def1e5;
+  background: var(--map-edge, #def1e5);
   box-sizing: border-box;
 }
 .stage-map > span {
-  background: #94c877;
+  background: var(--map-blocked, #94c877);
   border-radius: 2px;
 }
 .stage-map [data-tile="."],
 .stage-map [data-tile=","] {
-  background: #ead29d;
+  background: var(--map-floor, #ead29d);
 }
 .stage-map [data-tile="H"] {
   background: #c6bbdf;
@@ -161,5 +165,10 @@
   }
   .stage-map {
     aspect-ratio: 11 / 2.4;
+  }
+}
+@media (max-width: 480px) {
+  .stage-grid {
+    grid-template-columns: minmax(0, 1fr);
   }
 }

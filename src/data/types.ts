@@ -24,6 +24,7 @@ export type ArtId =
   | 'fox'
   | 'redPanda'
   | 'deer'
+  | 'snowLeopard'
   | 'jelly'
   | 'hardJelly'
   | 'crow'
@@ -149,6 +150,7 @@ export type Effect =
       damageType: 'physical' | 'magic';
     }
   | { type: 'slowAura'; amount: number }
+  | { type: 'gravityField'; radius: number; slowAmount: number; bossSlowAmount: number; atkMul: number }
   | { type: 'pushback'; tiles: number };
 
 export interface RouteDef {

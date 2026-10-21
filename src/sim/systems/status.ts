@@ -1,4 +1,5 @@
 import type { ContentDb } from '../../data/types';
+import { slowGravityField } from '../gravityField';
 import { enemiesInRange } from '../targeting';
 import type { BattleState, SimEvent, StageRuntime } from '../types';
 import { slowEnemy } from './damage';
@@ -23,6 +24,7 @@ export function updateStatus(
     }
   }
   for (const unit of state.units) {
+    slowGravityField(content, state, unit, events);
     if (unit.disruptedUntilTick <= state.tick) {
       unit.disruptedUntilTick = 0;
       unit.disruptionMul = 1;

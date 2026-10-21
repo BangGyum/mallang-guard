@@ -1,0 +1,193 @@
+{
+  "date": "2026-10-15",
+  "task": "T4.26 두 번째 재검수",
+  "baseline": "8b8536b1991770b2353ef0db46108155351fe7a9",
+  "findings": [
+    {
+      "component": "전투 결과 버튼",
+      "before": "320px에서 스테이지·모집이 단어 중간에서 줄바꿈됨",
+      "fix": "결과 버튼의 줄바꿈을 단어 단위로 제한",
+      "file": "src/ui/screens.css"
+    },
+    {
+      "component": "상점 제목과 소개",
+      "before": "320px에서 제목·소개가 글자 단위로 갈라짐. 최대 잔액에서는 제목의 각 단어도 나뉨",
+      "fix": "단어 단위 줄바꿈과 최소 내용 폭을 유지하고 공간이 부족하면 헤더 항목을 다음 줄에 배치",
+      "file": "src/ui/shop.css"
+    }
+  ],
+  "codeReview": {
+    "areas": [
+      "전투 갱신·적 사망·처치 보상 순서",
+      "희귀 캐릭터 목표 선택·연쇄·스킬 만료",
+      "상점 영입·저장 실패·결과 복귀·보상 중복 방지"
+    ],
+    "additionalConfirmedFunctionalBugs": 0
+  },
+  "checks": {
+    "typecheck": "passed",
+    "lint": "passed",
+    "lintFiles": 318,
+    "testFiles": 77,
+    "tests": 1409,
+    "build": "passed",
+    "diffCheck": "passed"
+  },
+  "browser": {
+    "engine": "Edge headless",
+    "campaign": [
+      {
+        "stage": "stage-1",
+        "life": 3,
+        "killed": 120,
+        "leaked": 0,
+        "waves": 12,
+        "seconds": 232.16666666666666,
+        "money": 1020,
+        "rejected": [],
+        "invalidRewards": []
+      },
+      {
+        "stage": "stage-2",
+        "life": 3,
+        "killed": 193,
+        "leaked": 0,
+        "waves": 20,
+        "seconds": 356.56666666666666,
+        "money": 1890,
+        "rejected": [],
+        "invalidRewards": []
+      },
+      {
+        "stage": "stage-3",
+        "life": 3,
+        "killed": 378,
+        "leaked": 0,
+        "waves": 25,
+        "seconds": 486.46666666666664,
+        "money": 2910,
+        "rejected": [],
+        "invalidRewards": []
+      }
+    ],
+    "campaignSequentialUnlockAndReload": true,
+    "campaignDefeatPreservesBest": true,
+    "screenFlowViewports": [
+      "1920x1080",
+      "1280x720",
+      "844x390",
+      "740x360",
+      "600x400",
+      "540x360",
+      "390x844",
+      "320x568"
+    ],
+    "rewardSaveRecovery": true,
+    "resultLayoutCases": 21,
+    "resultButtonsMinimumPixels": 44,
+    "resources": {
+      "cycles": 10,
+      "memory": {
+        "active": {
+          "geometries": 96,
+          "textures": 61
+        },
+        "disposed": {
+          "geometries": 0,
+          "textures": 0
+        }
+      },
+      "errors": []
+    },
+    "wordWrap": {
+      "before": [
+        {
+          "screen": "result",
+          "splits": [
+            {
+              "text": "다음 스테이지",
+              "word": "스테이지"
+            },
+            {
+              "text": "상점 · 모집",
+              "word": "모집"
+            }
+          ],
+          "overflow": []
+        },
+        {
+          "screen": "shop-300",
+          "splits": [
+            {
+              "text": "전투의 보상, 새로운 동료",
+              "word": "새로운"
+            },
+            {
+              "text": "보급 상점",
+              "word": "상점"
+            }
+          ],
+          "overflow": []
+        },
+        {
+          "screen": "shop-999999",
+          "splits": [
+            {
+              "text": "전투의 보상, 새로운 동료",
+              "word": "새로운"
+            },
+            {
+              "text": "전투의 보상, 새로운 동료",
+              "word": "동료"
+            },
+            {
+              "text": "보급 상점",
+              "word": "보급"
+            },
+            {
+              "text": "보급 상점",
+              "word": "상점"
+            }
+          ],
+          "overflow": []
+        }
+      ],
+      "after": [
+        {
+          "screen": "result",
+          "splits": [],
+          "overflow": []
+        },
+        {
+          "screen": "shop-300",
+          "splits": [],
+          "overflow": []
+        },
+        {
+          "screen": "shop-999999",
+          "splits": [],
+          "overflow": []
+        }
+      ]
+    }
+  },
+  "sourceHashes": {
+    "src/ui/screens.css": "daca64ed753867a5b6fa631e31408a32f03d80431b6cfe3ce3f75812156cc06a",
+    "src/ui/shop.css": "18c19d24918a9e552a9e30f31768b07e6272abce9418a427f79685e6ba52a2d8"
+  },
+  "evidence": [
+    "docs/verification/t4.26-review2-campaign-desktop.json",
+    "docs/verification/t4.26-review2-screen-flow.json",
+    "docs/verification/t4.26-review2-result-layout.json",
+    "docs/verification/t4.26-review2-session-resources.json",
+    "docs/verification/t4.26-review2-before-word-wrap.json",
+    "docs/verification/t4.26-review2-after-word-wrap.json"
+  ],
+  "screenshotCount": 50,
+  "limits": [
+    "이번 원본 캠페인 재실행은 PC 기본 8종의 1~3스테이지 3회이며 가상 시계·자동 입력으로 검증함. 전체 1~7 PC/터치 14회는 기존 t4.26-summary.json 참조.",
+    "화면 전환은 명시적 단독 검사 맵·계정, 결과 배치는 승리/패배/저장 실패 fixture를 사용함. 모바일 화면은 터치 에뮬레이션이며 실제 기기 검사가 아님.",
+    "전투·모집·저장 로직은 변경하지 않음. 이번 제품 수정은 CSS 두 파일의 줄바꿈과 최소 폭으로 제한함.",
+    "스피커 청감·실제 디스플레이 FPS·수동 플레이의 재미는 이번 검사 범위에 포함하지 않음."
+  ]
+}

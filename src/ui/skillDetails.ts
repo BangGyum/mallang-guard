@@ -43,6 +43,8 @@ function effectText(content: ContentDb, unit: UnitDef, effect: Effect): string {
       return `사거리 안 모든 공격 가능한 적에게 공격력 ${number(effect.atkMul * 100)}% ${effect.damageType === 'magic' ? '마법' : '물리'} 피해 · ${effect.count}회 · ${effect.intervalSec}초 간격`;
     case 'slowAura':
       return `사거리 안 적 이동 속도 ${number(effect.amount * 100)}% 감소`;
+    case 'gravityField':
+      return `발동 시 목표 위치에 고정 · 반경 ${effect.radius}칸 · 일반 적 ${number(effect.slowAmount * 100)}% / 보스 ${number(effect.bossSlowAmount * 100)}% 둔화 · 종료 시 공격력 ${number(effect.atkMul * 100)}% 마법 피해 (${number(unit.atk * effect.atkMul)}) · 후퇴 시 취소`;
     case 'pushback':
       return `사거리 안 목표 적 1명을 경로 뒤로 ${effect.tiles}칸 밀어냄`;
   }

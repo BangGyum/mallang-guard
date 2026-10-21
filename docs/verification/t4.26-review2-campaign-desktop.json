@@ -1,0 +1,107 @@
+[
+  {
+    "viewport": "desktop",
+    "stage": "stage-1",
+    "phase": "won",
+    "life": 3,
+    "killed": 120,
+    "leaked": 0,
+    "totalEnemies": 120,
+    "wave": 12,
+    "totalWaves": 12,
+    "enemies": 0,
+    "seconds": 232.16666666666666,
+    "rejected": [],
+    "seenEnemies": [
+      "bigJelly",
+      "crow",
+      "hardJelly",
+      "jelly"
+    ],
+    "heals": 0,
+    "shieldHits": 0,
+    "rewards": 35,
+    "invalidRewards": [],
+    "latePressure": {
+      "ticks": 2330,
+      "empty": 697,
+      "peak": 13
+    },
+    "money": 1020,
+    "ownedUnits": 8
+  },
+  {
+    "viewport": "desktop",
+    "stage": "stage-2",
+    "phase": "won",
+    "life": 3,
+    "killed": 193,
+    "leaked": 0,
+    "totalEnemies": 193,
+    "wave": 20,
+    "totalWaves": 20,
+    "enemies": 0,
+    "seconds": 356.56666666666666,
+    "rejected": [],
+    "seenEnemies": [
+      "bigJelly",
+      "crow",
+      "crystalJelly",
+      "dashJelly",
+      "gateJelly",
+      "hardJelly",
+      "jelly"
+    ],
+    "heals": 0,
+    "shieldHits": 12,
+    "rewards": 67,
+    "invalidRewards": [],
+    "latePressure": {
+      "ticks": 3706,
+      "empty": 76,
+      "peak": 17
+    },
+    "money": 1890,
+    "ownedUnits": 8
+  },
+  {
+    "viewport": "desktop",
+    "stage": "stage-3",
+    "phase": "won",
+    "life": 3,
+    "killed": 378,
+    "leaked": 0,
+    "totalEnemies": 378,
+    "wave": 25,
+    "totalWaves": 25,
+    "enemies": 0,
+    "seconds": 486.46666666666664,
+    "rejected": [],
+    "seenEnemies": [
+      "bigJelly",
+      "captainJelly",
+      "crow",
+      "crystalJelly",
+      "dashJelly",
+      "gateJelly",
+      "hardJelly",
+      "jelly",
+      "miniJelly",
+      "shieldJelly",
+      "splitCaptain",
+      "splitJelly",
+      "sproutJelly"
+    ],
+    "heals": 8,
+    "shieldHits": 45,
+    "rewards": 111,
+    "invalidRewards": [],
+    "latePressure": {
+      "ticks": 4799,
+      "empty": 2,
+      "peak": 16
+    },
+    "money": 2910,
+    "ownedUnits": 8
+  }
+]

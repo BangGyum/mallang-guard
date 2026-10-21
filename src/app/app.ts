@@ -2,7 +2,7 @@ import { unitAttackSound } from '../audio/combatSounds';
 import { createSfx } from '../audio/sfx';
 import { assert } from '../core/assert';
 import { starCount } from '../data/progression';
-import { type MoneyReward, recruitment } from '../data/recruitment';
+import { type MoneyReward, RARITY_IDS, rarityFor, recruitment, type ShopResult } from '../data/recruitment';
 import type { ContentDb } from '../data/types';
 import { createPauseMenu } from '../ui/pauseMenu';
 import { createResultScreen } from '../ui/resultScreen';
@@ -117,18 +117,22 @@ export function createApp(
         } else showTitle();
       },
       draw(count) {
-        const result = commitCollection(save, recruitUnits(save.collection, count, content.unitOrder));
-        if (result.ok && moneyReward) moneyReward.saved = true;
-        if (result.ok) sound.play('deploy');
-        return result;
+        return purchaseFeedback(
+          commitCollection(save, recruitUnits(save.collection, count, content.unitOrder)),
+        );
       },
       buy(id) {
-        const result = commitCollection(save, buyUnit(save.collection, id, content.unitOrder));
-        if (result.ok && moneyReward) moneyReward.saved = true;
-        if (result.ok) sound.play('deploy');
-        return result;
+        return purchaseFeedback(commitCollection(save, buyUnit(save.collection, id, content.unitOrder)));
       },
     });
+  }
+  function purchaseFeedback(result: ShopResult): ShopResult {
+    if (result.ok) {
+      if (moneyReward) moneyReward.saved = true;
+      const rank = Math.max(...result.results.map((r) => RARITY_IDS.indexOf(rarityFor(r.unitId).id)));
+      sound.play((['deploy', 'recruitSR', 'recruitSSR', 'recruitUR'] as const)[rank] ?? 'deploy');
+    }
+    return result;
   }
   function showStages() {
     sound.reset();

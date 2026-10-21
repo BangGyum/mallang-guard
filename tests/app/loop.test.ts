@@ -54,13 +54,28 @@ function fixture(startInSec = PREPARATION_SEC) {
 }
 
 describe('전투 시작 준비 시간', () => {
+  it.each([0, 10, 20])('2배속 긴 프레임에서 버린 대기 시간은 연출에서도 제외한다 (잔여 %dms)', (lead) => {
+    const f = fixture(0);
+    f.controls.speed = 2;
+    if (lead) f.at(lead / 2);
+    f.at(lead / 2 + 250);
+    expect(f.battle.state.tick).toBe(8);
+    expect(f.render.mock.lastCall?.[1]).toBeCloseTo(8 / 30 - lead / 1000);
+    f.at(lead / 2 + 260);
+    const elapsed = f.render.mock.calls.reduce((sum, call) => sum + call[1], 0);
+    expect(elapsed).toBeCloseTo(8 / 30 + 0.02);
+    f.controls.paused = true;
+    f.at(lead / 2 + 360);
+    expect(f.render.mock.lastCall?.[1]).toBe(0);
+    f.loop.dispose();
+  });
   it('10초 동안 배치만 적용하고 DP·SP·적·전투 틱을 멈춘다', () => {
     const f = fixture();
     f.battle.enqueue({ type: 'deploy', unitId: 'squirrel', tile: { x: 1, y: 1 }, dir: 'up' });
     f.at(9000);
     expect(f.controls.startInSec).toBe(1);
     expect(f.battle.state.tick).toBe(0);
-    expect(f.battle.state.dp).toBe(1);
+    expect(f.battle.state.dp).toBe(4);
     expect(f.battle.state.enemies).toEqual([]);
     const unit = f.battle.state.units[0];
     assert(unit, '준비 중 배치 실패');

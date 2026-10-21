@@ -2,7 +2,7 @@
   {
     "id": "acornPickup",
     "name": "전리품 수거",
-    "description": "12초 동안 토리의 사거리 안에서 처치된 적의 도토리 보상 +2. 발동만으로 도토리를 얻지는 않아요.",
+    "description": "12초 동안 토리의 사거리 안에서 처치된 적의 도토리 보상 +1. 발동만으로 도토리를 얻지는 않아요.",
     "charge": "auto",
     "spCost": 20,
     "spStart": 8,
@@ -12,7 +12,7 @@
     "effects": [
       {
         "type": "killBounty",
-        "value": 2
+        "value": 1
       }
     ]
   },
@@ -166,9 +166,20 @@
     "condition": "always",
     "durationSec": 12,
     "effects": [
-      { "type": "rangeOverride", "range": "square10" },
-      { "type": "statMul", "stat": "atk", "value": 1.5 },
-      { "type": "statMul", "stat": "atkInterval", "value": 0.5 }
+      {
+        "type": "rangeOverride",
+        "range": "square10"
+      },
+      {
+        "type": "statMul",
+        "stat": "atk",
+        "value": 1.5
+      },
+      {
+        "type": "statMul",
+        "stat": "atkInterval",
+        "value": 0.5
+      }
     ]
   },
   {
@@ -182,10 +193,23 @@
     "condition": "always",
     "durationSec": 12,
     "effects": [
-      { "type": "rangeOverride", "range": "line5Wide" },
-      { "type": "multiTarget", "count": 3 },
-      { "type": "armorPenAdd", "value": 40 },
-      { "type": "statMul", "stat": "atk", "value": 0.9 }
+      {
+        "type": "rangeOverride",
+        "range": "line5Wide"
+      },
+      {
+        "type": "multiTarget",
+        "count": 3
+      },
+      {
+        "type": "armorPenAdd",
+        "value": 40
+      },
+      {
+        "type": "statMul",
+        "stat": "atk",
+        "value": 0.9
+      }
     ]
   },
   {
@@ -198,7 +222,17 @@
     "trigger": "manual",
     "condition": "always",
     "durationSec": 12,
-    "effects": [{ "type": "statMul", "stat": "atk", "value": 1.6 }, { "type": "armorPenAdd", "value": 180 }]
+    "effects": [
+      {
+        "type": "statMul",
+        "stat": "atk",
+        "value": 1.6
+      },
+      {
+        "type": "armorPenAdd",
+        "value": 180
+      }
+    ]
   },
   {
     "id": "siegeBarrage",
@@ -211,9 +245,20 @@
     "condition": "always",
     "durationSec": 10,
     "effects": [
-      { "type": "statMul", "stat": "atk", "value": 1.4 },
-      { "type": "statMul", "stat": "atkInterval", "value": 0.625 },
-      { "type": "splash", "radius": 1.8 }
+      {
+        "type": "statMul",
+        "stat": "atk",
+        "value": 1.4
+      },
+      {
+        "type": "statMul",
+        "stat": "atkInterval",
+        "value": 0.625
+      },
+      {
+        "type": "splash",
+        "radius": 1.8
+      }
     ]
   },
   {
@@ -227,8 +272,36 @@
     "condition": "always",
     "durationSec": 12,
     "effects": [
-      { "type": "statMul", "stat": "atkInterval", "value": 0.6666666666666666 },
-      { "type": "chain", "radius": 1.5, "damageMuls": [1, 0.8, 0.6, 0.4, 0.3] }
+      {
+        "type": "statMul",
+        "stat": "atkInterval",
+        "value": 0.6666666666666666
+      },
+      {
+        "type": "chain",
+        "radius": 1.5,
+        "damageMuls": [1, 0.8, 0.6, 0.4, 0.3]
+      }
+    ]
+  },
+  {
+    "id": "eventHorizon",
+    "name": "사건의 지평선",
+    "description": "목표의 현재 위치에 4초간 고정 중력장을 생성. 반경 1.8칸의 지상·공중 적을 70%, 보스를 25% 둔화시키고 끝날 때 공격력 300% 마법 피해. 목표가 사라져도 유지하며 후퇴하면 취소됩니다.",
+    "charge": "auto",
+    "spCost": 55,
+    "spStart": 15,
+    "trigger": "manual",
+    "condition": "enemyInRange",
+    "durationSec": 4,
+    "effects": [
+      {
+        "type": "gravityField",
+        "radius": 1.8,
+        "slowAmount": 0.7,
+        "bossSlowAmount": 0.25,
+        "atkMul": 3
+      }
     ]
   }
 ]

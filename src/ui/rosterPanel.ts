@@ -1,5 +1,5 @@
 import { ROLE_COLORS, ROLE_NAMES } from '../art/palette';
-import { isRareUnit } from '../data/recruitment';
+import { rarityFor } from '../data/recruitment';
 import type { Battle } from '../sim/battle';
 import { button, element } from './dom';
 import { cardDeployReason } from './inputState';
@@ -53,7 +53,8 @@ export function createRosterPanel(root: HTMLDivElement, battle: Battle, close: (
         panel.setAttribute('aria-label', `${def.name} 배치 카드 정보`);
         panel.style.setProperty('--unit-color', ROLE_COLORS[def.role]);
         name.textContent = def.name;
-        role.textContent = `${isRareUnit(def.id) ? '희귀 · ' : ''}${def.animal} · ${ROLE_NAMES[def.role]}`;
+        panel.dataset.rarity = rarityFor(def.id).id;
+        role.textContent = `${rarityFor(def.id).id} · ${def.animal} · ${ROLE_NAMES[def.role]}`;
         const range = battle.content.ranges.get(def.range);
         const damageType = def.damageType === 'magic' ? '마법' : `물리 · 관통력 ${def.armorPen ?? 0}`;
         stats.textContent = `배치 도토리 ${def.cost} · 재배치 ${def.redeploySec}초\n공격력 ${def.atk} · ${damageType}\n공격 간격 ${def.atkIntervalSec.toFixed(2)}초 · ${def.canHitAir ? '대공 가능' : '지상 공격'}\n기본 사거리 ${range?.tiles.length ?? 0}칸 · 보라색 고지대`;

@@ -31,7 +31,7 @@ try {
     await page.clock.install({ time });
     await page.clock.pauseAt(new Date(time.getTime() + 1000));
     await page.addInitScript(() => {
-      // 모집 검증과 별도로 전체 13종의 정보창을 검사합니다.
+      // 모집 검증과 별도로 전체 14종의 정보창을 검사합니다.
       if (!localStorage.getItem('mallang-guard:v1'))
         localStorage.setItem(
           'mallang-guard:v1',
@@ -53,6 +53,7 @@ try {
                 'fox',
                 'redPanda',
                 'deer',
+                'snowLeopard',
               ],
               pullsSinceNew: 0,
               rngState: 1,

@@ -1,0 +1,1942 @@
+[
+  {
+    "width": 1920,
+    "height": 1080,
+    "profileMoney": 6000,
+    "purchased": [
+      "fox",
+      "redPanda",
+      "deer"
+    ],
+    "balance": 600,
+    "charged": {
+      "tick": 1683,
+      "dp": 14,
+      "life": 3,
+      "units": [
+        {
+          "uid": 1,
+          "unitId": "fox",
+          "tile": {
+            "x": 3,
+            "y": 4
+          },
+          "dir": "right",
+          "atkCooldown": 82,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 45,
+          "skillState": "ready",
+          "skillEndTick": -1,
+          "skillHitCount": 0,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": []
+        },
+        {
+          "uid": 2,
+          "unitId": "redPanda",
+          "tile": {
+            "x": 3,
+            "y": 5
+          },
+          "dir": "right",
+          "atkCooldown": 8,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 40,
+          "skillState": "ready",
+          "skillEndTick": -1,
+          "skillHitCount": 0,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": []
+        },
+        {
+          "uid": 3,
+          "unitId": "deer",
+          "tile": {
+            "x": 3,
+            "y": 3
+          },
+          "dir": "right",
+          "atkCooldown": 8,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 40,
+          "skillState": "ready",
+          "skillEndTick": -1,
+          "skillHitCount": 0,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": []
+        }
+      ],
+      "starts": [],
+      "ends": [],
+      "chains": 43,
+      "bossShots": 6,
+      "rejected": []
+    },
+    "active": {
+      "tick": 1683,
+      "dp": 14,
+      "life": 3,
+      "units": [
+        {
+          "uid": 1,
+          "unitId": "fox",
+          "tile": {
+            "x": 3,
+            "y": 4
+          },
+          "dir": "right",
+          "atkCooldown": 82,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 45,
+          "skillState": "active",
+          "skillEndTick": 2043,
+          "skillHitCount": 0,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": [
+            {
+              "type": "statMul",
+              "stat": "atk",
+              "value": 1.6
+            },
+            {
+              "type": "armorPenAdd",
+              "value": 180
+            }
+          ]
+        },
+        {
+          "uid": 2,
+          "unitId": "redPanda",
+          "tile": {
+            "x": 3,
+            "y": 5
+          },
+          "dir": "right",
+          "atkCooldown": 8,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 40,
+          "skillState": "active",
+          "skillEndTick": 1983,
+          "skillHitCount": 0,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": [
+            {
+              "type": "statMul",
+              "stat": "atk",
+              "value": 1.4
+            },
+            {
+              "type": "statMul",
+              "stat": "atkInterval",
+              "value": 0.625
+            },
+            {
+              "type": "splash",
+              "radius": 1.8
+            }
+          ]
+        },
+        {
+          "uid": 3,
+          "unitId": "deer",
+          "tile": {
+            "x": 3,
+            "y": 3
+          },
+          "dir": "right",
+          "atkCooldown": 8,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 40,
+          "skillState": "active",
+          "skillEndTick": 2043,
+          "skillHitCount": 0,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": [
+            {
+              "type": "statMul",
+              "stat": "atkInterval",
+              "value": 0.6666666666666666
+            },
+            {
+              "type": "chain",
+              "radius": 1.5,
+              "damageMuls": [
+                1,
+                0.8,
+                0.6,
+                0.4,
+                0.3
+              ]
+            }
+          ]
+        }
+      ],
+      "starts": [
+        "polarAim",
+        "siegeBarrage",
+        "stormChain"
+      ],
+      "ends": [],
+      "chains": 43,
+      "bossShots": 6,
+      "rejected": []
+    },
+    "attacking": {
+      "tick": 1698,
+      "dp": 14,
+      "life": 3,
+      "units": [
+        {
+          "uid": 1,
+          "unitId": "fox",
+          "tile": {
+            "x": 3,
+            "y": 4
+          },
+          "dir": "right",
+          "atkCooldown": 67,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 45,
+          "skillState": "active",
+          "skillEndTick": 2043,
+          "skillHitCount": 0,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": [
+            {
+              "type": "statMul",
+              "stat": "atk",
+              "value": 1.6
+            },
+            {
+              "type": "armorPenAdd",
+              "value": 180
+            }
+          ]
+        },
+        {
+          "uid": 2,
+          "unitId": "redPanda",
+          "tile": {
+            "x": 3,
+            "y": 5
+          },
+          "dir": "right",
+          "atkCooldown": 38,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 40,
+          "skillState": "active",
+          "skillEndTick": 1983,
+          "skillHitCount": 1,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": [
+            {
+              "type": "statMul",
+              "stat": "atk",
+              "value": 1.4
+            },
+            {
+              "type": "statMul",
+              "stat": "atkInterval",
+              "value": 0.625
+            },
+            {
+              "type": "splash",
+              "radius": 1.8
+            }
+          ]
+        },
+        {
+          "uid": 3,
+          "unitId": "deer",
+          "tile": {
+            "x": 3,
+            "y": 3
+          },
+          "dir": "right",
+          "atkCooldown": 23,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 40,
+          "skillState": "active",
+          "skillEndTick": 2043,
+          "skillHitCount": 1,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": [
+            {
+              "type": "statMul",
+              "stat": "atkInterval",
+              "value": 0.6666666666666666
+            },
+            {
+              "type": "chain",
+              "radius": 1.5,
+              "damageMuls": [
+                1,
+                0.8,
+                0.6,
+                0.4,
+                0.3
+              ]
+            }
+          ]
+        }
+      ],
+      "starts": [
+        "polarAim",
+        "siegeBarrage",
+        "stormChain"
+      ],
+      "ends": [],
+      "chains": 47,
+      "bossShots": 6,
+      "rejected": []
+    },
+    "ended": {
+      "tick": 2091,
+      "dp": 14,
+      "life": 3,
+      "units": [
+        {
+          "uid": 1,
+          "unitId": "fox",
+          "tile": {
+            "x": 3,
+            "y": 4
+          },
+          "dir": "right",
+          "atkCooldown": 10,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 1.5666666666666682,
+          "skillState": "charging",
+          "skillEndTick": 2043,
+          "skillHitCount": 4,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": []
+        },
+        {
+          "uid": 2,
+          "unitId": "redPanda",
+          "tile": {
+            "x": 3,
+            "y": 5
+          },
+          "dir": "right",
+          "atkCooldown": 59,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 3.5666666666666638,
+          "skillState": "charging",
+          "skillEndTick": 1983,
+          "skillHitCount": 7,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": []
+        },
+        {
+          "uid": 3,
+          "unitId": "deer",
+          "tile": {
+            "x": 3,
+            "y": 3
+          },
+          "dir": "right",
+          "atkCooldown": 5,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 1.5666666666666682,
+          "skillState": "charging",
+          "skillEndTick": 2043,
+          "skillHitCount": 12,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": []
+        }
+      ],
+      "starts": [
+        "polarAim",
+        "siegeBarrage",
+        "stormChain"
+      ],
+      "ends": [
+        2,
+        1,
+        3
+      ],
+      "chains": 93,
+      "bossShots": 10,
+      "rejected": []
+    },
+    "errors": []
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "profileMoney": 6000,
+    "purchased": [
+      "fox",
+      "redPanda",
+      "deer"
+    ],
+    "balance": 600,
+    "charged": {
+      "tick": 1683,
+      "dp": 14,
+      "life": 3,
+      "units": [
+        {
+          "uid": 1,
+          "unitId": "fox",
+          "tile": {
+            "x": 3,
+            "y": 4
+          },
+          "dir": "right",
+          "atkCooldown": 82,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 45,
+          "skillState": "ready",
+          "skillEndTick": -1,
+          "skillHitCount": 0,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": []
+        },
+        {
+          "uid": 2,
+          "unitId": "redPanda",
+          "tile": {
+            "x": 3,
+            "y": 5
+          },
+          "dir": "right",
+          "atkCooldown": 8,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 40,
+          "skillState": "ready",
+          "skillEndTick": -1,
+          "skillHitCount": 0,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": []
+        },
+        {
+          "uid": 3,
+          "unitId": "deer",
+          "tile": {
+            "x": 3,
+            "y": 3
+          },
+          "dir": "right",
+          "atkCooldown": 8,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 40,
+          "skillState": "ready",
+          "skillEndTick": -1,
+          "skillHitCount": 0,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": []
+        }
+      ],
+      "starts": [],
+      "ends": [],
+      "chains": 43,
+      "bossShots": 6,
+      "rejected": []
+    },
+    "active": {
+      "tick": 1683,
+      "dp": 14,
+      "life": 3,
+      "units": [
+        {
+          "uid": 1,
+          "unitId": "fox",
+          "tile": {
+            "x": 3,
+            "y": 4
+          },
+          "dir": "right",
+          "atkCooldown": 82,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 45,
+          "skillState": "active",
+          "skillEndTick": 2043,
+          "skillHitCount": 0,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": [
+            {
+              "type": "statMul",
+              "stat": "atk",
+              "value": 1.6
+            },
+            {
+              "type": "armorPenAdd",
+              "value": 180
+            }
+          ]
+        },
+        {
+          "uid": 2,
+          "unitId": "redPanda",
+          "tile": {
+            "x": 3,
+            "y": 5
+          },
+          "dir": "right",
+          "atkCooldown": 8,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 40,
+          "skillState": "active",
+          "skillEndTick": 1983,
+          "skillHitCount": 0,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": [
+            {
+              "type": "statMul",
+              "stat": "atk",
+              "value": 1.4
+            },
+            {
+              "type": "statMul",
+              "stat": "atkInterval",
+              "value": 0.625
+            },
+            {
+              "type": "splash",
+              "radius": 1.8
+            }
+          ]
+        },
+        {
+          "uid": 3,
+          "unitId": "deer",
+          "tile": {
+            "x": 3,
+            "y": 3
+          },
+          "dir": "right",
+          "atkCooldown": 8,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 40,
+          "skillState": "active",
+          "skillEndTick": 2043,
+          "skillHitCount": 0,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": [
+            {
+              "type": "statMul",
+              "stat": "atkInterval",
+              "value": 0.6666666666666666
+            },
+            {
+              "type": "chain",
+              "radius": 1.5,
+              "damageMuls": [
+                1,
+                0.8,
+                0.6,
+                0.4,
+                0.3
+              ]
+            }
+          ]
+        }
+      ],
+      "starts": [
+        "polarAim",
+        "siegeBarrage",
+        "stormChain"
+      ],
+      "ends": [],
+      "chains": 43,
+      "bossShots": 6,
+      "rejected": []
+    },
+    "attacking": {
+      "tick": 1698,
+      "dp": 14,
+      "life": 3,
+      "units": [
+        {
+          "uid": 1,
+          "unitId": "fox",
+          "tile": {
+            "x": 3,
+            "y": 4
+          },
+          "dir": "right",
+          "atkCooldown": 67,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 45,
+          "skillState": "active",
+          "skillEndTick": 2043,
+          "skillHitCount": 0,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": [
+            {
+              "type": "statMul",
+              "stat": "atk",
+              "value": 1.6
+            },
+            {
+              "type": "armorPenAdd",
+              "value": 180
+            }
+          ]
+        },
+        {
+          "uid": 2,
+          "unitId": "redPanda",
+          "tile": {
+            "x": 3,
+            "y": 5
+          },
+          "dir": "right",
+          "atkCooldown": 38,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 40,
+          "skillState": "active",
+          "skillEndTick": 1983,
+          "skillHitCount": 1,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": [
+            {
+              "type": "statMul",
+              "stat": "atk",
+              "value": 1.4
+            },
+            {
+              "type": "statMul",
+              "stat": "atkInterval",
+              "value": 0.625
+            },
+            {
+              "type": "splash",
+              "radius": 1.8
+            }
+          ]
+        },
+        {
+          "uid": 3,
+          "unitId": "deer",
+          "tile": {
+            "x": 3,
+            "y": 3
+          },
+          "dir": "right",
+          "atkCooldown": 23,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 40,
+          "skillState": "active",
+          "skillEndTick": 2043,
+          "skillHitCount": 1,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": [
+            {
+              "type": "statMul",
+              "stat": "atkInterval",
+              "value": 0.6666666666666666
+            },
+            {
+              "type": "chain",
+              "radius": 1.5,
+              "damageMuls": [
+                1,
+                0.8,
+                0.6,
+                0.4,
+                0.3
+              ]
+            }
+          ]
+        }
+      ],
+      "starts": [
+        "polarAim",
+        "siegeBarrage",
+        "stormChain"
+      ],
+      "ends": [],
+      "chains": 47,
+      "bossShots": 6,
+      "rejected": []
+    },
+    "ended": {
+      "tick": 2091,
+      "dp": 14,
+      "life": 3,
+      "units": [
+        {
+          "uid": 1,
+          "unitId": "fox",
+          "tile": {
+            "x": 3,
+            "y": 4
+          },
+          "dir": "right",
+          "atkCooldown": 10,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 1.5666666666666682,
+          "skillState": "charging",
+          "skillEndTick": 2043,
+          "skillHitCount": 4,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": []
+        },
+        {
+          "uid": 2,
+          "unitId": "redPanda",
+          "tile": {
+            "x": 3,
+            "y": 5
+          },
+          "dir": "right",
+          "atkCooldown": 59,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 3.5666666666666638,
+          "skillState": "charging",
+          "skillEndTick": 1983,
+          "skillHitCount": 7,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": []
+        },
+        {
+          "uid": 3,
+          "unitId": "deer",
+          "tile": {
+            "x": 3,
+            "y": 3
+          },
+          "dir": "right",
+          "atkCooldown": 5,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 1.5666666666666682,
+          "skillState": "charging",
+          "skillEndTick": 2043,
+          "skillHitCount": 12,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": []
+        }
+      ],
+      "starts": [
+        "polarAim",
+        "siegeBarrage",
+        "stormChain"
+      ],
+      "ends": [
+        2,
+        1,
+        3
+      ],
+      "chains": 93,
+      "bossShots": 10,
+      "rejected": []
+    },
+    "errors": []
+  },
+  {
+    "width": 740,
+    "height": 360,
+    "profileMoney": 6000,
+    "purchased": [
+      "fox",
+      "redPanda",
+      "deer"
+    ],
+    "balance": 600,
+    "charged": {
+      "tick": 1683,
+      "dp": 14,
+      "life": 3,
+      "units": [
+        {
+          "uid": 1,
+          "unitId": "fox",
+          "tile": {
+            "x": 3,
+            "y": 4
+          },
+          "dir": "right",
+          "atkCooldown": 82,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 45,
+          "skillState": "ready",
+          "skillEndTick": -1,
+          "skillHitCount": 0,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": []
+        },
+        {
+          "uid": 2,
+          "unitId": "redPanda",
+          "tile": {
+            "x": 3,
+            "y": 5
+          },
+          "dir": "right",
+          "atkCooldown": 8,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 40,
+          "skillState": "ready",
+          "skillEndTick": -1,
+          "skillHitCount": 0,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": []
+        },
+        {
+          "uid": 3,
+          "unitId": "deer",
+          "tile": {
+            "x": 3,
+            "y": 3
+          },
+          "dir": "right",
+          "atkCooldown": 8,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 40,
+          "skillState": "ready",
+          "skillEndTick": -1,
+          "skillHitCount": 0,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": []
+        }
+      ],
+      "starts": [],
+      "ends": [],
+      "chains": 43,
+      "bossShots": 6,
+      "rejected": []
+    },
+    "active": {
+      "tick": 1683,
+      "dp": 14,
+      "life": 3,
+      "units": [
+        {
+          "uid": 1,
+          "unitId": "fox",
+          "tile": {
+            "x": 3,
+            "y": 4
+          },
+          "dir": "right",
+          "atkCooldown": 82,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 45,
+          "skillState": "active",
+          "skillEndTick": 2043,
+          "skillHitCount": 0,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": [
+            {
+              "type": "statMul",
+              "stat": "atk",
+              "value": 1.6
+            },
+            {
+              "type": "armorPenAdd",
+              "value": 180
+            }
+          ]
+        },
+        {
+          "uid": 2,
+          "unitId": "redPanda",
+          "tile": {
+            "x": 3,
+            "y": 5
+          },
+          "dir": "right",
+          "atkCooldown": 8,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 40,
+          "skillState": "active",
+          "skillEndTick": 1983,
+          "skillHitCount": 0,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": [
+            {
+              "type": "statMul",
+              "stat": "atk",
+              "value": 1.4
+            },
+            {
+              "type": "statMul",
+              "stat": "atkInterval",
+              "value": 0.625
+            },
+            {
+              "type": "splash",
+              "radius": 1.8
+            }
+          ]
+        },
+        {
+          "uid": 3,
+          "unitId": "deer",
+          "tile": {
+            "x": 3,
+            "y": 3
+          },
+          "dir": "right",
+          "atkCooldown": 8,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 40,
+          "skillState": "active",
+          "skillEndTick": 2043,
+          "skillHitCount": 0,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": [
+            {
+              "type": "statMul",
+              "stat": "atkInterval",
+              "value": 0.6666666666666666
+            },
+            {
+              "type": "chain",
+              "radius": 1.5,
+              "damageMuls": [
+                1,
+                0.8,
+                0.6,
+                0.4,
+                0.3
+              ]
+            }
+          ]
+        }
+      ],
+      "starts": [
+        "polarAim",
+        "siegeBarrage",
+        "stormChain"
+      ],
+      "ends": [],
+      "chains": 43,
+      "bossShots": 6,
+      "rejected": []
+    },
+    "attacking": {
+      "tick": 1698,
+      "dp": 14,
+      "life": 3,
+      "units": [
+        {
+          "uid": 1,
+          "unitId": "fox",
+          "tile": {
+            "x": 3,
+            "y": 4
+          },
+          "dir": "right",
+          "atkCooldown": 67,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 45,
+          "skillState": "active",
+          "skillEndTick": 2043,
+          "skillHitCount": 0,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": [
+            {
+              "type": "statMul",
+              "stat": "atk",
+              "value": 1.6
+            },
+            {
+              "type": "armorPenAdd",
+              "value": 180
+            }
+          ]
+        },
+        {
+          "uid": 2,
+          "unitId": "redPanda",
+          "tile": {
+            "x": 3,
+            "y": 5
+          },
+          "dir": "right",
+          "atkCooldown": 38,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 40,
+          "skillState": "active",
+          "skillEndTick": 1983,
+          "skillHitCount": 1,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": [
+            {
+              "type": "statMul",
+              "stat": "atk",
+              "value": 1.4
+            },
+            {
+              "type": "statMul",
+              "stat": "atkInterval",
+              "value": 0.625
+            },
+            {
+              "type": "splash",
+              "radius": 1.8
+            }
+          ]
+        },
+        {
+          "uid": 3,
+          "unitId": "deer",
+          "tile": {
+            "x": 3,
+            "y": 3
+          },
+          "dir": "right",
+          "atkCooldown": 23,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 40,
+          "skillState": "active",
+          "skillEndTick": 2043,
+          "skillHitCount": 1,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": [
+            {
+              "type": "statMul",
+              "stat": "atkInterval",
+              "value": 0.6666666666666666
+            },
+            {
+              "type": "chain",
+              "radius": 1.5,
+              "damageMuls": [
+                1,
+                0.8,
+                0.6,
+                0.4,
+                0.3
+              ]
+            }
+          ]
+        }
+      ],
+      "starts": [
+        "polarAim",
+        "siegeBarrage",
+        "stormChain"
+      ],
+      "ends": [],
+      "chains": 47,
+      "bossShots": 6,
+      "rejected": []
+    },
+    "ended": {
+      "tick": 2091,
+      "dp": 14,
+      "life": 3,
+      "units": [
+        {
+          "uid": 1,
+          "unitId": "fox",
+          "tile": {
+            "x": 3,
+            "y": 4
+          },
+          "dir": "right",
+          "atkCooldown": 10,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 1.5666666666666682,
+          "skillState": "charging",
+          "skillEndTick": 2043,
+          "skillHitCount": 4,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": []
+        },
+        {
+          "uid": 2,
+          "unitId": "redPanda",
+          "tile": {
+            "x": 3,
+            "y": 5
+          },
+          "dir": "right",
+          "atkCooldown": 59,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 3.5666666666666638,
+          "skillState": "charging",
+          "skillEndTick": 1983,
+          "skillHitCount": 7,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": []
+        },
+        {
+          "uid": 3,
+          "unitId": "deer",
+          "tile": {
+            "x": 3,
+            "y": 3
+          },
+          "dir": "right",
+          "atkCooldown": 5,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 1.5666666666666682,
+          "skillState": "charging",
+          "skillEndTick": 2043,
+          "skillHitCount": 12,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": []
+        }
+      ],
+      "starts": [
+        "polarAim",
+        "siegeBarrage",
+        "stormChain"
+      ],
+      "ends": [
+        2,
+        1,
+        3
+      ],
+      "chains": 93,
+      "bossShots": 10,
+      "rejected": []
+    },
+    "errors": []
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "profileMoney": 6000,
+    "purchased": [
+      "fox",
+      "redPanda",
+      "deer"
+    ],
+    "balance": 600,
+    "charged": {
+      "tick": 1683,
+      "dp": 14,
+      "life": 3,
+      "units": [
+        {
+          "uid": 1,
+          "unitId": "fox",
+          "tile": {
+            "x": 3,
+            "y": 4
+          },
+          "dir": "right",
+          "atkCooldown": 82,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 45,
+          "skillState": "ready",
+          "skillEndTick": -1,
+          "skillHitCount": 0,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": []
+        },
+        {
+          "uid": 2,
+          "unitId": "redPanda",
+          "tile": {
+            "x": 3,
+            "y": 5
+          },
+          "dir": "right",
+          "atkCooldown": 8,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 40,
+          "skillState": "ready",
+          "skillEndTick": -1,
+          "skillHitCount": 0,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": []
+        },
+        {
+          "uid": 3,
+          "unitId": "deer",
+          "tile": {
+            "x": 3,
+            "y": 3
+          },
+          "dir": "right",
+          "atkCooldown": 8,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 40,
+          "skillState": "ready",
+          "skillEndTick": -1,
+          "skillHitCount": 0,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": []
+        }
+      ],
+      "starts": [],
+      "ends": [],
+      "chains": 43,
+      "bossShots": 6,
+      "rejected": []
+    },
+    "active": {
+      "tick": 1683,
+      "dp": 14,
+      "life": 3,
+      "units": [
+        {
+          "uid": 1,
+          "unitId": "fox",
+          "tile": {
+            "x": 3,
+            "y": 4
+          },
+          "dir": "right",
+          "atkCooldown": 82,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 45,
+          "skillState": "active",
+          "skillEndTick": 2043,
+          "skillHitCount": 0,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": [
+            {
+              "type": "statMul",
+              "stat": "atk",
+              "value": 1.6
+            },
+            {
+              "type": "armorPenAdd",
+              "value": 180
+            }
+          ]
+        },
+        {
+          "uid": 2,
+          "unitId": "redPanda",
+          "tile": {
+            "x": 3,
+            "y": 5
+          },
+          "dir": "right",
+          "atkCooldown": 8,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 40,
+          "skillState": "active",
+          "skillEndTick": 1983,
+          "skillHitCount": 0,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": [
+            {
+              "type": "statMul",
+              "stat": "atk",
+              "value": 1.4
+            },
+            {
+              "type": "statMul",
+              "stat": "atkInterval",
+              "value": 0.625
+            },
+            {
+              "type": "splash",
+              "radius": 1.8
+            }
+          ]
+        },
+        {
+          "uid": 3,
+          "unitId": "deer",
+          "tile": {
+            "x": 3,
+            "y": 3
+          },
+          "dir": "right",
+          "atkCooldown": 8,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 40,
+          "skillState": "active",
+          "skillEndTick": 2043,
+          "skillHitCount": 0,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": [
+            {
+              "type": "statMul",
+              "stat": "atkInterval",
+              "value": 0.6666666666666666
+            },
+            {
+              "type": "chain",
+              "radius": 1.5,
+              "damageMuls": [
+                1,
+                0.8,
+                0.6,
+                0.4,
+                0.3
+              ]
+            }
+          ]
+        }
+      ],
+      "starts": [
+        "polarAim",
+        "siegeBarrage",
+        "stormChain"
+      ],
+      "ends": [],
+      "chains": 43,
+      "bossShots": 6,
+      "rejected": []
+    },
+    "attacking": {
+      "tick": 1698,
+      "dp": 14,
+      "life": 3,
+      "units": [
+        {
+          "uid": 1,
+          "unitId": "fox",
+          "tile": {
+            "x": 3,
+            "y": 4
+          },
+          "dir": "right",
+          "atkCooldown": 67,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 45,
+          "skillState": "active",
+          "skillEndTick": 2043,
+          "skillHitCount": 0,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": [
+            {
+              "type": "statMul",
+              "stat": "atk",
+              "value": 1.6
+            },
+            {
+              "type": "armorPenAdd",
+              "value": 180
+            }
+          ]
+        },
+        {
+          "uid": 2,
+          "unitId": "redPanda",
+          "tile": {
+            "x": 3,
+            "y": 5
+          },
+          "dir": "right",
+          "atkCooldown": 38,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 40,
+          "skillState": "active",
+          "skillEndTick": 1983,
+          "skillHitCount": 1,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": [
+            {
+              "type": "statMul",
+              "stat": "atk",
+              "value": 1.4
+            },
+            {
+              "type": "statMul",
+              "stat": "atkInterval",
+              "value": 0.625
+            },
+            {
+              "type": "splash",
+              "radius": 1.8
+            }
+          ]
+        },
+        {
+          "uid": 3,
+          "unitId": "deer",
+          "tile": {
+            "x": 3,
+            "y": 3
+          },
+          "dir": "right",
+          "atkCooldown": 23,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 40,
+          "skillState": "active",
+          "skillEndTick": 2043,
+          "skillHitCount": 1,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": [
+            {
+              "type": "statMul",
+              "stat": "atkInterval",
+              "value": 0.6666666666666666
+            },
+            {
+              "type": "chain",
+              "radius": 1.5,
+              "damageMuls": [
+                1,
+                0.8,
+                0.6,
+                0.4,
+                0.3
+              ]
+            }
+          ]
+        }
+      ],
+      "starts": [
+        "polarAim",
+        "siegeBarrage",
+        "stormChain"
+      ],
+      "ends": [],
+      "chains": 47,
+      "bossShots": 6,
+      "rejected": []
+    },
+    "ended": {
+      "tick": 2091,
+      "dp": 14,
+      "life": 3,
+      "units": [
+        {
+          "uid": 1,
+          "unitId": "fox",
+          "tile": {
+            "x": 3,
+            "y": 4
+          },
+          "dir": "right",
+          "atkCooldown": 10,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 1.5666666666666682,
+          "skillState": "charging",
+          "skillEndTick": 2043,
+          "skillHitCount": 4,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": []
+        },
+        {
+          "uid": 2,
+          "unitId": "redPanda",
+          "tile": {
+            "x": 3,
+            "y": 5
+          },
+          "dir": "right",
+          "atkCooldown": 59,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 3.5666666666666638,
+          "skillState": "charging",
+          "skillEndTick": 1983,
+          "skillHitCount": 7,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": []
+        },
+        {
+          "uid": 3,
+          "unitId": "deer",
+          "tile": {
+            "x": 3,
+            "y": 3
+          },
+          "dir": "right",
+          "atkCooldown": 5,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 1.5666666666666682,
+          "skillState": "charging",
+          "skillEndTick": 2043,
+          "skillHitCount": 12,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": []
+        }
+      ],
+      "starts": [
+        "polarAim",
+        "siegeBarrage",
+        "stormChain"
+      ],
+      "ends": [
+        2,
+        1,
+        3
+      ],
+      "chains": 93,
+      "bossShots": 10,
+      "rejected": []
+    },
+    "errors": []
+  },
+  {
+    "width": 320,
+    "height": 568,
+    "profileMoney": 6000,
+    "purchased": [
+      "fox",
+      "redPanda",
+      "deer"
+    ],
+    "balance": 600,
+    "charged": {
+      "tick": 1683,
+      "dp": 14,
+      "life": 3,
+      "units": [
+        {
+          "uid": 1,
+          "unitId": "fox",
+          "tile": {
+            "x": 3,
+            "y": 4
+          },
+          "dir": "right",
+          "atkCooldown": 82,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 45,
+          "skillState": "ready",
+          "skillEndTick": -1,
+          "skillHitCount": 0,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": []
+        },
+        {
+          "uid": 2,
+          "unitId": "redPanda",
+          "tile": {
+            "x": 3,
+            "y": 5
+          },
+          "dir": "right",
+          "atkCooldown": 8,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 40,
+          "skillState": "ready",
+          "skillEndTick": -1,
+          "skillHitCount": 0,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": []
+        },
+        {
+          "uid": 3,
+          "unitId": "deer",
+          "tile": {
+            "x": 3,
+            "y": 3
+          },
+          "dir": "right",
+          "atkCooldown": 8,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 40,
+          "skillState": "ready",
+          "skillEndTick": -1,
+          "skillHitCount": 0,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": []
+        }
+      ],
+      "starts": [],
+      "ends": [],
+      "chains": 43,
+      "bossShots": 6,
+      "rejected": []
+    },
+    "active": {
+      "tick": 1683,
+      "dp": 14,
+      "life": 3,
+      "units": [
+        {
+          "uid": 1,
+          "unitId": "fox",
+          "tile": {
+            "x": 3,
+            "y": 4
+          },
+          "dir": "right",
+          "atkCooldown": 82,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 45,
+          "skillState": "active",
+          "skillEndTick": 2043,
+          "skillHitCount": 0,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": [
+            {
+              "type": "statMul",
+              "stat": "atk",
+              "value": 1.6
+            },
+            {
+              "type": "armorPenAdd",
+              "value": 180
+            }
+          ]
+        },
+        {
+          "uid": 2,
+          "unitId": "redPanda",
+          "tile": {
+            "x": 3,
+            "y": 5
+          },
+          "dir": "right",
+          "atkCooldown": 8,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 40,
+          "skillState": "active",
+          "skillEndTick": 1983,
+          "skillHitCount": 0,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": [
+            {
+              "type": "statMul",
+              "stat": "atk",
+              "value": 1.4
+            },
+            {
+              "type": "statMul",
+              "stat": "atkInterval",
+              "value": 0.625
+            },
+            {
+              "type": "splash",
+              "radius": 1.8
+            }
+          ]
+        },
+        {
+          "uid": 3,
+          "unitId": "deer",
+          "tile": {
+            "x": 3,
+            "y": 3
+          },
+          "dir": "right",
+          "atkCooldown": 8,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 40,
+          "skillState": "active",
+          "skillEndTick": 2043,
+          "skillHitCount": 0,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": [
+            {
+              "type": "statMul",
+              "stat": "atkInterval",
+              "value": 0.6666666666666666
+            },
+            {
+              "type": "chain",
+              "radius": 1.5,
+              "damageMuls": [
+                1,
+                0.8,
+                0.6,
+                0.4,
+                0.3
+              ]
+            }
+          ]
+        }
+      ],
+      "starts": [
+        "polarAim",
+        "siegeBarrage",
+        "stormChain"
+      ],
+      "ends": [],
+      "chains": 43,
+      "bossShots": 6,
+      "rejected": []
+    },
+    "attacking": {
+      "tick": 1698,
+      "dp": 14,
+      "life": 3,
+      "units": [
+        {
+          "uid": 1,
+          "unitId": "fox",
+          "tile": {
+            "x": 3,
+            "y": 4
+          },
+          "dir": "right",
+          "atkCooldown": 67,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 45,
+          "skillState": "active",
+          "skillEndTick": 2043,
+          "skillHitCount": 0,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": [
+            {
+              "type": "statMul",
+              "stat": "atk",
+              "value": 1.6
+            },
+            {
+              "type": "armorPenAdd",
+              "value": 180
+            }
+          ]
+        },
+        {
+          "uid": 2,
+          "unitId": "redPanda",
+          "tile": {
+            "x": 3,
+            "y": 5
+          },
+          "dir": "right",
+          "atkCooldown": 38,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 40,
+          "skillState": "active",
+          "skillEndTick": 1983,
+          "skillHitCount": 1,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": [
+            {
+              "type": "statMul",
+              "stat": "atk",
+              "value": 1.4
+            },
+            {
+              "type": "statMul",
+              "stat": "atkInterval",
+              "value": 0.625
+            },
+            {
+              "type": "splash",
+              "radius": 1.8
+            }
+          ]
+        },
+        {
+          "uid": 3,
+          "unitId": "deer",
+          "tile": {
+            "x": 3,
+            "y": 3
+          },
+          "dir": "right",
+          "atkCooldown": 23,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 40,
+          "skillState": "active",
+          "skillEndTick": 2043,
+          "skillHitCount": 1,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": [
+            {
+              "type": "statMul",
+              "stat": "atkInterval",
+              "value": 0.6666666666666666
+            },
+            {
+              "type": "chain",
+              "radius": 1.5,
+              "damageMuls": [
+                1,
+                0.8,
+                0.6,
+                0.4,
+                0.3
+              ]
+            }
+          ]
+        }
+      ],
+      "starts": [
+        "polarAim",
+        "siegeBarrage",
+        "stormChain"
+      ],
+      "ends": [],
+      "chains": 47,
+      "bossShots": 6,
+      "rejected": []
+    },
+    "ended": {
+      "tick": 2091,
+      "dp": 14,
+      "life": 3,
+      "units": [
+        {
+          "uid": 1,
+          "unitId": "fox",
+          "tile": {
+            "x": 3,
+            "y": 4
+          },
+          "dir": "right",
+          "atkCooldown": 10,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 1.5666666666666682,
+          "skillState": "charging",
+          "skillEndTick": 2043,
+          "skillHitCount": 4,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": []
+        },
+        {
+          "uid": 2,
+          "unitId": "redPanda",
+          "tile": {
+            "x": 3,
+            "y": 5
+          },
+          "dir": "right",
+          "atkCooldown": 59,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 3.5666666666666638,
+          "skillState": "charging",
+          "skillEndTick": 1983,
+          "skillHitCount": 7,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": []
+        },
+        {
+          "uid": 3,
+          "unitId": "deer",
+          "tile": {
+            "x": 3,
+            "y": 3
+          },
+          "dir": "right",
+          "atkCooldown": 5,
+          "disruptedUntilTick": 0,
+          "disruptionMul": 1,
+          "sp": 1.5666666666666682,
+          "skillState": "charging",
+          "skillEndTick": 2043,
+          "skillHitCount": 12,
+          "pulsesLeft": 0,
+          "nextPulseTick": 0,
+          "buffs": []
+        }
+      ],
+      "starts": [
+        "polarAim",
+        "siegeBarrage",
+        "stormChain"
+      ],
+      "ends": [
+        2,
+        1,
+        3
+      ],
+      "chains": 93,
+      "bossShots": 10,
+      "rejected": []
+    },
+    "errors": []
+  }
+]

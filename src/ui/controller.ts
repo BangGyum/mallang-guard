@@ -142,7 +142,7 @@ export function createController(
       const unitId = state.unitId;
       transition({ mode: 'dragging', unitId, hover: null });
       const art = battle.content.units.get(unitId)?.art;
-      if (art) ghost.innerHTML = critterSvg(art);
+      if (art) ghost.innerHTML = characterMarkup(art);
     }
     if (state.mode === 'dragging') state = { ...state, hover: tileAt(event) };
     if (state.mode === 'aiming') {
@@ -295,4 +295,4 @@ export function createController(
   };
 }
 
-import { critterSvg } from '../art/critters';
+import { characterMarkup } from '../art/characterArt';

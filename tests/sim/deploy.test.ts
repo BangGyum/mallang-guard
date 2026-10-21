@@ -72,13 +72,13 @@ describe('배치·후퇴·조회', () => {
     expect(battle.flush()).toEqual([
       { type: 'unitDeploy', uid: 1, unitId: 'squirrel', tile: DEPLOY.tile, dir: 'left' },
     ]);
-    expect(battle.state.dp).toBe(1);
+    expect(battle.state.dp).toBe(4);
     expect(battle.unitAt(DEPLOY.tile)).toMatchObject({
       sp: 8,
       atkCooldown: 0,
       dir: 'left',
     });
-    expect(battle.rosterView()[0]).toMatchObject({ state: 'deployed', uid: 1, cost: 9 });
+    expect(battle.rosterView()[0]).toMatchObject({ state: 'deployed', uid: 1, cost: 6 });
     expect(battle.rangeTilesFor('squirrel', DEPLOY.tile, 'left')).toContainEqual({ x: 0, y: 0 });
     battle.step();
     expect(battle.state.enemies[0]?.uid).toBe(2);

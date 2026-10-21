@@ -1,7 +1,8 @@
 import { ROLE_COLORS, ROLE_NAMES } from '../art/palette';
 import { assert } from '../core/assert';
-import { isRareUnit } from '../data/recruitment';
+import { rarityFor } from '../data/recruitment';
 import type { Battle } from '../sim/battle';
+import { DP_MAX } from '../sim/constants';
 import { acornIcon } from './acornIcon';
 import { element } from './dom';
 import { portrait } from './portrait';
@@ -16,6 +17,7 @@ export function createDeployBar(
   const cards = element('div', 'deploy-cards');
   const dp = element('div', 'dp-panel');
   const amount = element('strong', '');
+  amount.title = `최대 ${DP_MAX}개`;
   const source = element('span', 'dp-source', '처치 보상');
   const dpLabel = element('span', '', '도토리');
   dpLabel.prepend(acornIcon());
@@ -36,17 +38,19 @@ export function createDeployBar(
     const card = element('button', 'deploy-card');
     card.type = 'button';
     card.dataset.unitId = def.id;
-    card.dataset.rarity = isRareUnit(def.id) ? 'rare' : 'common';
-    card.setAttribute('aria-label', `${def.name} 정보와 배치, 도토리 ${def.cost}`);
+    card.dataset.rarity = rarityFor(def.id).id;
+    card.setAttribute('aria-label', `${def.name} 정보와 배치, ${rarityFor(def.id).id}, 도토리 ${def.cost}`);
     card.style.setProperty('--role-color', ROLE_COLORS[def.role]);
     const status = element('span', 'card-status');
     const cost = element('span', 'card-cost', String(def.cost));
     cost.prepend(acornIcon());
+    const header = element('span', 'card-header');
+    header.append(cost, element('span', 'card-rarity', rarityFor(def.id).id));
     card.append(
-      cost,
+      header,
       portrait(def.art, 'card-portrait'),
       element('strong', 'card-name', def.name),
-      element('span', 'card-role', `${isRareUnit(def.id) ? '희귀 · ' : ''}${ROLE_NAMES[def.role]}`),
+      element('span', 'card-role', ROLE_NAMES[def.role]),
       status,
     );
     const select = (event?: PointerEvent) => {

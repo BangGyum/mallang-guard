@@ -33,6 +33,28 @@ function coat(main: string, accent: string) {
 }
 
 export const RARE_CRITTERS = {
+  snowLeopard: () =>
+    path('M65 80Q96 95 94 67Q92 57 83 59L76 64Q88 67 84 81L68 74Z', '#dce9ea') +
+    stroke('M86 64L91 69M86 81L81 87', '#657e8d', 4) +
+    coat('#394e66', '#dce9ea') +
+    ellipse(30, 21, 8, 9, '#dce9ea') +
+    ellipse(69, 21, 8, 9, '#dce9ea') +
+    ellipse(30, 21, 4, 5, '#8ca3b3') +
+    ellipse(69, 21, 4, 5, '#8ca3b3') +
+    path('M26 30Q28 17 49 19Q70 17 73 33L71 44Q63 57 49 56Q31 54 26 42Z', '#eaf2ee') +
+    path('M29 28L38 22L50 28L59 22L70 28L65 34L56 31L49 35L41 31L33 35Z', '#b4c7cd') +
+    stroke('M29 38L33 40M30 44L34 45M66 39L70 37M66 45L69 43', '#718c9b', 2.4) +
+    face('#437f8b') +
+    path('M32 53L49 60L66 53L62 62H36Z', '#9ed9d2') +
+    path('M48 61L43 68L49 75L55 68Z', '#e8cf8b') +
+    path('M23 68L36 63H56L66 57H87L95 66V79L84 86H58L49 79H34L24 81Z', '#435c71') +
+    rect(39, 65, 22, 13, '#d4e3df') +
+    stroke('M44 68V75M51 68V75', '#6ebbb7', 3) +
+    ellipse(82, 71, 14, 17, '#e7d9aa') +
+    ellipse(82, 71, 10, 13, '#517c8b') +
+    ellipse(82, 71, 6, 8, '#9fe5da') +
+    ellipse(83, 70, 2, 4, '#effff3') +
+    stroke('M33 73L39 77M61 80L66 84', '#eaf2ee', 5),
   fox: () =>
     path('M65 80Q87 83 91 62Q98 76 89 88Q80 96 66 89Z', '#e3e5dc') +
     path('M85 67L91 61Q96 75 89 84L82 82Z', '#a5bcbf') +

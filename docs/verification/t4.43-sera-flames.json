@@ -1,0 +1,134 @@
+[
+  {
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "active": false,
+    "mode": "normal",
+    "targets": 3,
+    "drawCalls": 28,
+    "particles": 14
+  },
+  {
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "active": false,
+    "mode": "reduced",
+    "targets": 3,
+    "drawCalls": 27,
+    "particles": 7
+  },
+  {
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "active": false,
+    "mode": "low",
+    "targets": 3,
+    "drawCalls": 27,
+    "particles": 7
+  },
+  {
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "active": true,
+    "mode": "normal",
+    "targets": 5,
+    "drawCalls": 30,
+    "particles": 24
+  },
+  {
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "active": true,
+    "mode": "reduced",
+    "targets": 5,
+    "drawCalls": 29,
+    "particles": 12
+  },
+  {
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "active": true,
+    "mode": "low",
+    "targets": 5,
+    "drawCalls": 29,
+    "particles": 12
+  },
+  {
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "active": false,
+    "mode": "normal",
+    "targets": 3,
+    "drawCalls": 28,
+    "particles": 14
+  },
+  {
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "active": false,
+    "mode": "reduced",
+    "targets": 3,
+    "drawCalls": 27,
+    "particles": 7
+  },
+  {
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "active": false,
+    "mode": "low",
+    "targets": 3,
+    "drawCalls": 27,
+    "particles": 7
+  },
+  {
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "active": true,
+    "mode": "normal",
+    "targets": 5,
+    "drawCalls": 30,
+    "particles": 24
+  },
+  {
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "active": true,
+    "mode": "reduced",
+    "targets": 5,
+    "drawCalls": 29,
+    "particles": 12
+  },
+  {
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "active": true,
+    "mode": "low",
+    "targets": 5,
+    "drawCalls": 29,
+    "particles": 12
+  }
+]

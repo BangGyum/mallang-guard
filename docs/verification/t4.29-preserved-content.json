@@ -1,0 +1,158 @@
+[
+  {
+    "path": "src/data/stages/stage-1.json",
+    "sha256": "122837e4b8134312149149f78e08394413dc9811d906874ddb06bc0691b1da89"
+  },
+  {
+    "path": "src/data/stages/stage-2.json",
+    "sha256": "d51025a15faf8d51c257d16670f6cf0f96a340d8cdfbcbba18eb36aedcb2c648"
+  },
+  {
+    "path": "src/data/stages/stage-3.json",
+    "sha256": "2408e1352b5ce93d1e40cb91572f1e2473aaef4cfa9d8fb99a66148cca6a6006"
+  },
+  {
+    "path": "src/data/stages/stage-4.json",
+    "sha256": "5183b04a194c65f77f437dd5949046770f4bea451c4262fe346e238c19299caa"
+  },
+  {
+    "path": "src/data/stages/stage-5.json",
+    "sha256": "3745135168b86a66f5fdc348d159ebf73e37b4a4938a7b78cf2ee37803746463"
+  },
+  {
+    "path": "src/data/stages/stage-6.json",
+    "sha256": "c3a0839353f61989e0f760d9e06c03b130b21675665466a5a804e205c2eff784"
+  },
+  {
+    "path": "src/data/stages/stage-7.json",
+    "sha256": "269dee4a29c1ec3f5028b3800a953a908812cd42596914c5fdcea475ae15da88"
+  },
+  {
+    "path": "src/data/enemies.json",
+    "sha256": "b53327c8ed31a18a94040c8beba237ee4cc707f866940827e83cd607c0131aa8"
+  },
+  {
+    "path": "src/data/units.json",
+    "sha256": "270dbb52c3ce4daab5294f5623ff352c0abf6faad68d241c685eaf289d8344dd"
+  },
+  {
+    "path": "src/data/skills.json",
+    "sha256": "11abf558a66ad6422a9e34e6d7af3fcc4b608c85db9a50e8b9bc4d8634bc5a7d"
+  },
+  {
+    "path": "src/data/recruitment.json",
+    "sha256": "b1af237f00947e841db61190caa4687a6d8979cb832eac1bea8cae6b27534434"
+  },
+  {
+    "path": "src/sim/battle.ts",
+    "sha256": "cdbd18f30464999a9f43b9f145da9c0a149121d9134f64ccc176a85a65048f93"
+  },
+  {
+    "path": "src/sim/board.ts",
+    "sha256": "ebd5cbb4ff378b88818678d88db2fd6e704d4f1168a38df8dd8134907f669d2f"
+  },
+  {
+    "path": "src/sim/chainTargets.ts",
+    "sha256": "d664a59d61e280d31cc49443f2ef263a695813c77c004f1fe371b0cad5c72199"
+  },
+  {
+    "path": "src/sim/constants.ts",
+    "sha256": "c198cd45728e31ef88a0860890af12efb74169b9fcb6e3a2b785120873a6aad3"
+  },
+  {
+    "path": "src/sim/formulas.ts",
+    "sha256": "b365627a67dfb5b074c7c22fe0d2235eef11ff84f88ed94d0157b328be564e73"
+  },
+  {
+    "path": "src/sim/gravityField.ts",
+    "sha256": "386dda2348297d6642e9872609f2545c644ee9ebf21359ae6f961ea8222662dd"
+  },
+  {
+    "path": "src/sim/hash.ts",
+    "sha256": "022e387325b9f695ee95ecc6f62aa4df91a6c615985a4bf3572f2355c65b1e94"
+  },
+  {
+    "path": "src/sim/path.ts",
+    "sha256": "d28e5a008152b02735e28f71eb1f1c8fd5dae8b9021ea1dcfc700ff34727aeec"
+  },
+  {
+    "path": "src/sim/queries.ts",
+    "sha256": "0cbf12b98431ab563086e2c7c6bc5516c985b1a3b381a9d4c20fc580fc230719"
+  },
+  {
+    "path": "src/sim/stage.ts",
+    "sha256": "8806c12e11c5773462fdaf131fc6e2b73310d7b4fbc07df7107bbe3dfb3f4497"
+  },
+  {
+    "path": "src/sim/stats.ts",
+    "sha256": "3c690d212d4ecf983d37ee10edd5dcd31cc86b0ea57118b162fb724f3561298e"
+  },
+  {
+    "path": "src/sim/targeting.ts",
+    "sha256": "21b16e2639ad2825cf4cbca6241002b71fb15849e8811fd20724a4a3cb06a5a1"
+  },
+  {
+    "path": "src/sim/types.ts",
+    "sha256": "c240ec967151b278e748f93883f663a40b79faf30979b63c9ebc83e74da725cc"
+  },
+  {
+    "path": "src/sim/systems/attack.ts",
+    "sha256": "6f97b6bb6b5140bae9890bd2cf75a6b3d44a6054956471c179deaa593adc8cda"
+  },
+  {
+    "path": "src/sim/systems/bossSkills.ts",
+    "sha256": "881b448f29a094276ae2a1175440664e6a052e4f8e38df0f025ca32857a4f48d"
+  },
+  {
+    "path": "src/sim/systems/commands.ts",
+    "sha256": "5d42b36f95cfc87f11789c7d07281a036a3537ba07f554cd255641d8cd043d33"
+  },
+  {
+    "path": "src/sim/systems/damage.ts",
+    "sha256": "fdc4f6faa96edaf77f7ac1014ab43e9b7340d1dada572a657904d0fe6894d4e1"
+  },
+  {
+    "path": "src/sim/systems/death.ts",
+    "sha256": "c775c2b3fa9dcc8c3ac6cade01db0e6a1ec7ba1f19049647abdbbeb18a04e56a"
+  },
+  {
+    "path": "src/sim/systems/dp.ts",
+    "sha256": "9e01d40ee094f303335c46f699f5c9b572393d4880c36799872c340de2208a74"
+  },
+  {
+    "path": "src/sim/systems/enemyAbilities.ts",
+    "sha256": "af578eeee9d95de63f030e9a79b7e2a57eeb1b0a898010bd687e0abc6173edad"
+  },
+  {
+    "path": "src/sim/systems/enemyMotion.ts",
+    "sha256": "32f1b46ebd9bb40f04a308ba7984e0bf3a8e2bd14980d7be20dc24b4892c2741"
+  },
+  {
+    "path": "src/sim/systems/enemySupport.ts",
+    "sha256": "27f43f9ce9f9e13e42f95c3d4d0d3ee56151a4e7987d3a430fa01ca7af3ab035"
+  },
+  {
+    "path": "src/sim/systems/movement.ts",
+    "sha256": "34d6a829b49305eace21f7000c80f530e94fcdb0d09db9e797dcc08a13abb753"
+  },
+  {
+    "path": "src/sim/systems/outcome.ts",
+    "sha256": "05499ae51965f933506b6b4848102935d66dec7f3a4933c3e817a10b70b2070a"
+  },
+  {
+    "path": "src/sim/systems/roster.ts",
+    "sha256": "0f9eb393dde259f15ab76466ffbc55978993d8cfb6a7b3eca86c71d7dd278103"
+  },
+  {
+    "path": "src/sim/systems/skills.ts",
+    "sha256": "5e2e3bae7d7d138c7db7c49f0dec4777c6f6d463ecd265b63b119ef378b0f6cf"
+  },
+  {
+    "path": "src/sim/systems/spawn.ts",
+    "sha256": "509d914aaaedf3fdb0e6a13d23297d0e8010e682927f53ea11d0124b5e4617e3"
+  },
+  {
+    "path": "src/sim/systems/status.ts",
+    "sha256": "66ec7bf3b1e0c0f14816782c8012c5cb86e852c8321373223c34c9bcf88684c9"
+  }
+]

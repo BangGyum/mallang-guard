@@ -19,6 +19,7 @@ const ART_IDS = [
   'fox',
   'redPanda',
   'deer',
+  'snowLeopard',
   'jelly',
   'hardJelly',
   'crow',
@@ -186,5 +187,10 @@ export function parseSkill(value: unknown, path: string): SkillDef {
     skill.effects.filter((effect) => effect.type === 'chain').length <= 1,
     `${path}.effects: only one chain`,
   );
+  if (skill.effects.some((effect) => effect.type === 'gravityField'))
+    assert(
+      skill.effects.length === 1 && skill.condition === 'enemyInRange',
+      `${path}.effects: gravityField requires one effect and enemyInRange`,
+    );
   return skill;
 }

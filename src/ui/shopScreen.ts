@@ -2,6 +2,7 @@ import { ROLE_COLORS, ROLE_NAMES } from '../art/palette';
 import {
   type CollectionState,
   isRareUnit,
+  rarityFor,
   recruitment,
   recruitRate,
   type ShopResult,
@@ -47,7 +48,10 @@ export function createShopScreen(
     const unit = content.units.get(id);
     return unit ? [unit] : [];
   });
-  for (const unit of pool.filter((unit) => isRareUnit(unit.id)).slice(0, 3))
+  for (const unit of pool
+    .filter((unit) => isRareUnit(unit.id))
+    .reverse()
+    .slice(0, 3))
     art.append(portrait(unit.art, ''));
   booth.append(
     art,
@@ -57,7 +61,7 @@ export function createShopScreen(
   const description = element(
     'p',
     'shop-copy',
-    `모집 1회 ${recruitment.pullCost}머니. 중복 친구는 ${recruitment.duplicateRefund}머니를 돌려받아요.`,
+    `${recruitment.unlockAllForTesting ? '테스트 기간에는 모든 친구를 사용할 수 있어요. ' : ''}모집 1회 ${recruitment.pullCost}머니. 중복 친구는 ${recruitment.duplicateRefund}머니를 돌려받아요.`,
   );
   const guarantee = element('p', 'recruit-guarantee');
   const single = button(
@@ -76,7 +80,7 @@ export function createShopScreen(
     element(
       'p',
       '',
-      `일반 친구 합산 ${100 - recruitment.rarePullPercent}%, 희귀 친구 합산 ${recruitment.rarePullPercent}%입니다. 개별 표시값은 반올림합니다. 모집에서 신규 영입 시 보장 횟수를 초기화하고 ${recruitment.guaranteeAfter}회째에는 등급별 확률과 별도로 미보유 친구 중 같은 확률로 한 명을 영입합니다. 모두 보유하면 중복 환급을 적용합니다.`,
+      `일반 추첨의 등급 합산 확률: ${recruitment.rarities.map((r) => `${r.id} ${r.pullPercent}%`).join(' · ')}. 개별 표시값은 반올림합니다. 모집에서 신규 영입 시 보장 횟수를 초기화하고 ${recruitment.guaranteeAfter}회째에는 일반 추첨 확률과 별도로 미보유 친구 중 같은 확률로 한 명을 영입합니다. UR도 미보유 보장에 포함되며 모두 보유하면 중복 환급을 적용합니다.`,
     ),
   );
   const rateList = element('ul', 'shop-rate-list');
@@ -85,7 +89,7 @@ export function createShopScreen(
       element(
         'li',
         '',
-        `${unit.name}${isRareUnit(unit.id) ? ' · 희귀' : ''} ${recruitRate(
+        `${unit.name} · ${rarityFor(unit.id).id} ${recruitRate(
           unit.id,
           pool.map((unit) => unit.id),
         ).toFixed(2)}%`,
@@ -118,7 +122,7 @@ export function createShopScreen(
     element(
       'p',
       'shop-copy',
-      `일반 친구 ${recruitment.unitPrice}머니 · 희귀 친구 ${recruitment.rareUnitPrice.toLocaleString()}머니로 바로 영입할 수 있어요.`,
+      `${recruitment.rarities.map((r) => `${r.id} ${r.unitPrice.toLocaleString()}머니`).join(' · ')}로 바로 영입할 수 있어요.`,
     ),
     cards,
   );
@@ -170,7 +174,7 @@ export function createShopScreen(
       const card = element('article', 'shop-unit');
       card.dataset.unitId = unit.id;
       card.dataset.owned = String(have);
-      card.dataset.rarity = isRareUnit(unit.id) ? 'rare' : 'common';
+      card.dataset.rarity = rarityFor(unit.id).id;
       card.style.setProperty('--role-color', ROLE_COLORS[unit.role]);
       const skill = content.skills.get(unit.skill);
       const details = createSkillDetails(
@@ -192,7 +196,7 @@ export function createShopScreen(
       card.append(
         portrait(unit.art, 'shop-unit-portrait'),
         element('strong', '', unit.name),
-        element('small', '', `${isRareUnit(unit.id) ? '희귀 · ' : ''}${ROLE_NAMES[unit.role]}`),
+        element('small', 'unit-rarity', `${rarityFor(unit.id).id} · ${ROLE_NAMES[unit.role]}`),
         details.element,
         buy,
       );

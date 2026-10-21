@@ -8,7 +8,7 @@ describe('content data', () => {
   it('실제 JSON과 원본 순서를 검증하고 120마리의 스폰을 유지한다', () => {
     const db = validateContent(rawContent);
     expect([db.units.size, db.enemies.size, db.skills.size, db.ranges.size, db.stages.size]).toEqual([
-      13, 22, 13, 8, 7,
+      14, 22, 14, 8, 7,
     ]);
     expect(db.unitOrder).toEqual([
       'squirrel',
@@ -24,6 +24,7 @@ describe('content data', () => {
       'fox',
       'redPanda',
       'deer',
+      'snowLeopard',
     ]);
     expect(db.stages.get('stage-1')?.spawns.reduce((sum, spawn) => sum + spawn.count, 0)).toBe(120);
     expect([...db.units]).toEqual([...content.units]);

@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { type Motion, type Pose, samplePose } from '../../src/view/animation';
+import { content } from '../../src/data';
+import { ATTACK_DURATION, attackKindFor, type Motion, type Pose, samplePose } from '../../src/view/animation';
 
 function sample(patch: Partial<Motion> = {}, reduced = false): Pose {
   const motion: Motion = {
@@ -22,6 +23,56 @@ function sample(patch: Partial<Motion> = {}, reduced = false): Pose {
 }
 
 describe('캐릭터 애니메이션', () => {
+  it('14종 공격 궤적이 서로 다르고 시작·종료 자세가 이어지며 그림이 과하게 변형되지 않는다', () => {
+    const signatures = new Set<string>();
+    for (const unit of content.units.values()) {
+      const attackKind = attackKindFor(unit.art);
+      const duration = ATTACK_DURATION[attackKind];
+      const idle = sample({ attackKind });
+      const poses = Array.from({ length: 101 }, (_, i) => {
+        const pose = sample({ attackKind, attack: duration * (1 - i / 100) });
+        for (const value of Object.values(pose)) expect(Number.isFinite(value)).toBe(true);
+        expect(Math.abs(pose.x)).toBeLessThanOrEqual(0.08);
+        expect(Math.abs(pose.y)).toBeLessThanOrEqual(0.02);
+        expect(Math.abs(pose.scaleX - 1)).toBeLessThan(0.04);
+        expect(Math.abs(pose.scaleY - 1)).toBeLessThan(0.05);
+        expect(sample({ attackKind, attack: duration * (1 - i / 100) }, true)).toEqual(
+          sample({ attackKind }, true),
+        );
+        return pose;
+      });
+      for (const key of ['x', 'y', 'rotation', 'scaleX', 'scaleY'] as const) {
+        expect(poses[0]?.[key]).toBeCloseTo(idle[key], 10);
+        expect(poses.at(-1)?.[key]).toBeCloseTo(idle[key], 10);
+      }
+      signatures.add(JSON.stringify(poses));
+    }
+    expect(signatures.size).toBe(14);
+  });
+  it.each(['wolf', 'redPanda'])('%s는 발 위치와 몸 크기를 유지하며 작은 반동 후 복귀한다', (id) => {
+    const attackKind = attackKindFor(id);
+    const idle = sample({ attackKind });
+    const duration = ATTACK_DURATION[attackKind];
+    const peak = sample({ attackKind, attack: duration * 0.85 });
+    expect(peak.rotation).toBeGreaterThan(0.03);
+    expect(peak.rotation).toBeLessThan(0.06);
+    expect(sample({ attackKind, attack: duration * 0.3 }).rotation).toBeLessThan(peak.rotation);
+    for (const active of [false, true])
+      for (const progress of [0, 0.15, 0.5, 0.9, 1]) {
+        const pose = sample({ attackKind, active, clock: progress, attack: duration * (1 - progress) });
+        expect([pose.x, pose.y, pose.scaleX, pose.scaleY]).toEqual([0, 0, 1, 1]);
+      }
+    expect(sample({ attackKind, attack: 0, clock: 1.1, active: true })).toEqual(idle);
+    expect(sample({ attackKind, attack: duration * 0.85 }, true)).toEqual(idle);
+  });
+  it('유탄 반동은 저격총보다 조금 크고 천천히 복귀한다', () => {
+    expect(ATTACK_DURATION.bracedLauncher).toBeGreaterThan(ATTACK_DURATION.bracedShot);
+    expect(
+      sample({ attackKind: 'bracedLauncher', attack: ATTACK_DURATION.bracedLauncher * 0.85 }).rotation,
+    ).toBeGreaterThan(
+      sample({ attackKind: 'bracedShot', attack: ATTACK_DURATION.bracedShot * 0.85 }).rotation,
+    );
+  });
   it('0.25초에 착지하고 0.4초 뒤 기본 숨쉬기로 돌아온다', () => {
     expect(sample({ age: 0 }).y).toBeCloseTo(1.2);
     expect(sample({ age: 0.25 }).y).toBe(0);
@@ -50,8 +101,8 @@ describe('캐릭터 애니메이션', () => {
     expect(sample({ attackKind: 'slash', attack: 0 })).toEqual(sample());
   });
   it('중화기는 권총보다 큰 반동을 보이고 끝나면 기본 자세로 돌아온다', () => {
-    const pistol = sample({ attackKind: 'pistol', attack: 0.1 });
-    const heavy = sample({ attackKind: 'heavyShot', attack: 0.22 });
+    const pistol = sample({ attackKind: 'pistol', attack: 0.085 });
+    const heavy = sample({ attackKind: 'heavyShot', attack: 0.187 });
     expect(heavy.x).toBeLessThan(pistol.x * 2);
     expect(heavy.rotation).toBeGreaterThan(pistol.rotation);
     expect(sample({ attackKind: 'heavyShot', attack: 0 })).toEqual(sample());

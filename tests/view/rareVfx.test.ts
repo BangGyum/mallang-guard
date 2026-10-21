@@ -64,17 +64,40 @@ function fixture(id: string) {
 }
 
 describe('희귀 무장과 연쇄 연결선', () => {
+  it.each(['normal', 'reduced', 'low'])(
+    '세라의 %s 불꽃은 착탄 전에 터지지 않고 연쇄 대상에서 함께 피어난다',
+    (mode) => {
+      const f = fixture('deer');
+      try {
+        f.vfx.setOptions(mode === 'reduced', mode === 'low');
+        f.vfx.onEvents(f.events, f.state, impactDelays(f.events));
+        f.vfx.update(f.state, f.camera, 0.12);
+        expect(f.mesh('flameBolt').count).toBe(1);
+        expect(f.mesh('flameBloom').count).toBe(0);
+        f.vfx.update(f.state, f.camera, 0.14);
+        expect(f.mesh('flameLink').count).toBe(4);
+        expect(f.mesh('flameBloom').count).toBe(mode === 'normal' ? 5 : 0);
+        f.vfx.update(f.state, f.camera, 0.3);
+        expect(f.mesh('flameBloom').count).toBe(0);
+        expect(f.mesh('flameLink').count).toBe(0);
+      } finally {
+        f.dispose();
+      }
+    },
+  );
+
   it.each([
-    ['fox', 'mintRailRound'],
+    ['fox', 'chargedRail'],
     ['redPanda', 'shellRound'],
-    ['deer', 'arcBolt'],
+    ['deer', 'flameBolt'],
   ])('%s는 %s를 한 발 표시한다', (id, art) => {
     const f = fixture(id);
     try {
       const before = hashState(f.state);
       f.vfx.onEvents(f.events, f.state, impactDelays(f.events));
       f.vfx.update(f.state, f.camera, 0.03);
-      expect(f.mesh(art).count).toBe(1);
+      // 강화 레일탄은 같은 메시의 짧은 총구 빛을 함께 표시합니다.
+      expect(f.mesh(art).count).toBe(id === 'fox' ? 2 : 1);
       expect(hashState(f.state)).toBe(before);
     } finally {
       f.dispose();
@@ -88,9 +111,9 @@ describe('희귀 무장과 연쇄 연결선', () => {
         f.vfx.setOptions(mode === 'reduced', mode === 'low');
         f.vfx.onEvents(f.events, f.state, impactDelays(f.events));
         f.vfx.update(f.state, f.camera, 0.24);
-        expect(f.mesh('lightningLink').count).toBe(0);
+        expect(f.mesh('flameLink').count).toBe(0);
         f.vfx.update(f.state, f.camera, 0.02);
-        const mesh = f.mesh('lightningLink');
+        const mesh = f.mesh('flameLink');
         expect(mesh.count).toBe(4);
         const matrix = new Matrix4();
         const centers = Array.from({ length: mesh.count }, (_, index) => {
@@ -119,7 +142,7 @@ describe('희귀 무장과 연쇄 연결선', () => {
     try {
       f.vfx.onEvents(f.events, f.state, impactDelays(f.events));
       for (const dt of steps) f.vfx.update(f.state, f.camera, dt);
-      const mesh = f.mesh('lightningLink');
+      const mesh = f.mesh('flameLink');
       expect(mesh.count).toBe(4);
       expect(mesh.geometry.getAttribute('aOpacity').getX(0)).toBeCloseTo(0.75 * (1 - 0.05 / 0.14), 5);
       f.vfx.update(f.state, f.camera, 0.08);
@@ -135,9 +158,12 @@ describe('희귀 무장과 연쇄 연결선', () => {
     try {
       f.vfx.onEvents(f.events, f.state, impactDelays(f.events));
       f.vfx.update(f.state, f.camera, 0.3);
-      const mesh = f.mesh(id === 'fox' ? 'plasmaImpact' : 'impact');
-      expect(mesh.count).toBe(1);
-      expect(mesh.geometry.getAttribute('aOpacity').getX(0)).toBeCloseTo(0.85 * (1 - 0.05 / 0.18), 5);
+      const mesh = f.mesh(id === 'fox' ? 'skill-polarAim' : 'shellBurst');
+      expect(mesh.count).toBe(id === 'fox' ? 3 : 1);
+      expect(mesh.geometry.getAttribute('aOpacity').getX(0)).toBeCloseTo(
+        0.85 * (1 - 0.05 / (id === 'fox' ? 0.18 : 0.32)),
+        5,
+      );
     } finally {
       f.dispose();
     }
@@ -148,7 +174,7 @@ describe('희귀 무장과 연쇄 연결선', () => {
     const camera = new PerspectiveCamera();
     try {
       for (let i = 0; i < 300; i++)
-        pool.emit('lightningLink', new Vector3(), new Vector3(2, 0, 0), 0.1, 0.3, 0, false, true, 0.75, true);
+        pool.emit('flameLink', new Vector3(), new Vector3(2, 0, 0), 0.1, 0.3, 0, false, true, 0.75, true);
       pool.begin(0.03, camera);
       expect(pool.count).toBe(200);
       pool.begin(0.1, camera);

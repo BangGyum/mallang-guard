@@ -8,7 +8,7 @@ import { ATTACK_DURATION, attackKindFor, type Motion, type Pose, samplePose } fr
 import { tileHeight } from './coords';
 import { createShadows } from './shadows';
 import { createSpriteBatch } from './spriteBatch';
-import { createSprite } from './sprites';
+import { createSprite, UNIT_PRESENTATION, unitSpriteHeight } from './sprites';
 
 interface EntityView {
   visual: ReturnType<typeof createSprite>;
@@ -25,7 +25,6 @@ interface EntityView {
 }
 
 const HIT_STOP_SEC = 0.045;
-const RARE_WEAPON_TIPS: Record<string, number> = { fox: 0.36, redPanda: 0.3, deer: 0.6 };
 
 export function createEntityViews(content: ContentDb, board: Board, textures: ReadonlyMap<string, Texture>) {
   const group = new Group();
@@ -69,7 +68,7 @@ export function createEntityViews(content: ContentDb, board: Board, textures: Re
     const texture = art && textures.get(art);
     assert(texture, `캐릭터 그림이 없습니다: ${id}`);
     const flying = enemy && !!content.enemies.get(id)?.flying;
-    const height = enemy ? (heights[id] ?? 0.75) : 0.9;
+    const height = enemy ? (heights[id] ?? 0.75) : unitSpriteHeight(art || id);
     const visual = createSprite(texture, height, flying);
     visual.shadow.visible = false;
     visual.sprite.visible = false;
@@ -125,20 +124,8 @@ export function createEntityViews(content: ContentDb, board: Board, textures: Re
       const view = views.get(uid);
       if (!view) return undefined;
       // 오른쪽 무기 끝을 빌보드의 실제 변환으로 월드 좌표에 맞춥니다.
-      const tipY =
-        RARE_WEAPON_TIPS[view.art] ??
-        (view.art === 'owl'
-          ? 0.67
-          : view.art === 'sheep'
-            ? 0.49
-            : view.art === 'cat'
-              ? 0.42
-              : view.art === 'bear'
-                ? 0.36
-                : view.art === 'squirrel' || view.art === 'mole'
-                  ? 0.23
-                  : 0.18);
-      const tip = new Vector3(view.art === 'owl' ? 0.38 : 0.4, tipY, 0);
+      const [tipX, tipY] = UNIT_PRESENTATION[view.art]?.tip ?? [0.4, 0.18];
+      const tip = new Vector3(tipX, tipY, 0);
       view.visual.group.updateMatrixWorld(true);
       return view.visual.sprite.localToWorld(tip);
     },
@@ -171,8 +158,8 @@ export function createEntityViews(content: ContentDb, board: Board, textures: Re
           view.spawnDelay = delays.get(event) ?? 0;
           place(view, enemy?.x ?? event.x, enemy?.y ?? event.y, 0);
         }
-        if (event.type === 'attack' || event.type === 'skillStart') {
-          const view = views.get(event.type === 'attack' ? event.src.uid : event.uid);
+        if (event.type === 'attack') {
+          const view = views.get(event.src.uid);
           if (view) view.motion.attack = ATTACK_DURATION[view.motion.attackKind];
         }
         if (event.type === 'damage') {

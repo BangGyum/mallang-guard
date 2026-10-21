@@ -22,9 +22,10 @@ describe('콘텐츠 검증', () => {
       'fox',
       'redPanda',
       'deer',
+      'snowLeopard',
     ]);
     expect([content.units.size, content.enemies.size, content.skills.size, content.ranges.size]).toEqual([
-      13, 22, 13, 8,
+      14, 22, 14, 8,
     ]);
     expect(first(raw.stages).spawns.reduce((total, spawn) => total + spawn.count, 0)).toBe(120);
   });

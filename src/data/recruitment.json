@@ -1,13 +1,36 @@
 {
+  "unlockAllForTesting": true,
   "startMoney": 300,
   "maxMoney": 999999,
   "pullCost": 100,
   "duplicateRefund": 30,
   "guaranteeAfter": 10,
-  "unitPrice": 600,
-  "rareUnitPrice": 1800,
-  "rarePullPercent": 5,
-  "rareUnits": ["fox", "redPanda", "deer"],
+  "rarities": [
+    {
+      "id": "R",
+      "pullPercent": 59,
+      "unitPrice": 600,
+      "units": ["squirrel", "mole", "penguin", "cat", "snail"]
+    },
+    {
+      "id": "SR",
+      "pullPercent": 35,
+      "unitPrice": 600,
+      "units": ["bear", "sheep", "bunny", "owl", "wolf"]
+    },
+    {
+      "id": "SSR",
+      "pullPercent": 5,
+      "unitPrice": 1800,
+      "units": ["fox", "redPanda", "deer"]
+    },
+    {
+      "id": "UR",
+      "pullPercent": 1,
+      "unitPrice": 3600,
+      "units": ["snowLeopard"]
+    }
+  ],
   "starterUnits": ["squirrel", "cat", "bear", "penguin", "sheep", "bunny", "mole", "snail"],
   "legacyUnits": ["squirrel", "cat", "bear", "penguin", "sheep", "bunny", "mole", "snail", "owl", "wolf"],
   "pool": [
@@ -23,7 +46,8 @@
     "wolf",
     "fox",
     "redPanda",
-    "deer"
+    "deer",
+    "snowLeopard"
   ],
   "firstClearBonus": 400,
   "starBonus": 40,

@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { writeFile } from 'node:fs/promises';
 import { deploy, frame, pause, resume, tilePoint } from './helpers.mjs';
 
-export async function verifyEarnedRarePurchases(page, mobile, prefix, label) {
+export async function verifyEarnedRarePurchases(page, mobile, prefix, label, { injectedMoney = false } = {}) {
   const click = async (locator) => {
     if (mobile) await locator.tap();
     else await locator.click();
@@ -10,16 +10,33 @@ export async function verifyEarnedRarePurchases(page, mobile, prefix, label) {
   };
   const saved = () => page.evaluate(() => JSON.parse(localStorage.getItem('mallang-guard:v1')));
   const before = await saved();
-  assert(before.collection.money >= 5400, '원본 캠페인 보상으로 희귀 3종의 비용 확보');
+  const ids = ['fox', 'redPanda', 'deer'];
+  const { prices, deployCost } = await page.evaluate(async (ids) => {
+    const { unitPriceFor } = await import('/src/data/recruitment.ts');
+    const { content } = await import('/src/data/index.ts');
+    return {
+      prices: Object.fromEntries(ids.map((id) => [id, unitPriceFor(id)])),
+      deployCost: content.units.get('deer').cost,
+    };
+  }, ids);
+  const missing = ids.filter((id) => !before.collection.ownedUnits.includes(id));
+  const purchaseCost = missing.reduce((sum, id) => sum + prices[id], 0);
+  assert(before.collection.money >= purchaseCost, '실제 미보유 친구 영입 비용 확보');
   await click(page.getByRole('button', { name: '상점 · 모집', exact: true }));
-  for (const id of ['fox', 'redPanda', 'deer']) {
-    assert(!before.collection.ownedUnits.includes(id));
-    await click(page.locator(`.shop-unit[data-unit-id="${id}"] .shop-buy`));
+  for (const id of ids) {
+    const card = page.locator(`.shop-unit[data-unit-id="${id}"]`);
+    if (!missing.includes(id)) {
+      assert.equal(await card.getAttribute('data-owned'), 'true');
+      assert(await card.locator('.shop-buy').isDisabled());
+      continue;
+    }
+    await click(card.locator('.shop-buy'));
     assert.equal(await page.locator('.recruit-result').getAttribute('data-unit-id'), id);
     await click(page.locator('.recruit-confirm'));
   }
   const after = await saved();
-  assert.equal(after.collection.money, before.collection.money - 5400);
+  assert.equal(after.collection.money, before.collection.money - purchaseCost);
+  assert.deepEqual(after.collection.ownedUnits, [...before.collection.ownedUnits, ...missing]);
   assert.equal(after.collection.rngState, before.collection.rngState);
   assert.equal(after.collection.pullsSinceNew, before.collection.pullsSinceNew);
   assert.deepEqual(after.stages, before.stages);
@@ -46,7 +63,7 @@ export async function verifyEarnedRarePurchases(page, mobile, prefix, label) {
   await click(page.locator('.unit-popup-close'));
   await resume(page);
   for (let second = 0; second < 90; second++) {
-    if (await page.evaluate(() => window.campaign.battle.state.dp >= 27)) break;
+    if (await page.evaluate((cost) => window.campaign.battle.state.dp >= cost, deployCost)) break;
     await frame(page, 1000);
   }
   await pause(page);
@@ -62,10 +79,10 @@ export async function verifyEarnedRarePurchases(page, mobile, prefix, label) {
     )[0];
   });
   const dpBefore = await page.evaluate(() => window.campaign.battle.state.dp);
-  assert(dpBefore >= 27, '처치 수입으로 실제 배치 비용 확보');
+  assert(dpBefore >= deployCost, '처치 수입으로 실제 배치 비용 확보');
   await page.locator('.deploy-card[data-unit-id="deer"]').scrollIntoViewIfNeeded();
   await deploy(page, cdp, 'deer', tile, 'right');
-  assert.equal(await page.evaluate(() => window.campaign.battle.state.dp), dpBefore - 27);
+  assert.equal(await page.evaluate(() => window.campaign.battle.state.dp), dpBefore - deployCost);
   await page.screenshot({ path: `docs/verification/${prefix}-${label}-earned-rare-deploy.png` });
   const result = {
     viewport: label,
@@ -75,7 +92,10 @@ export async function verifyEarnedRarePurchases(page, mobile, prefix, label) {
     deployedOnOriginalStage7: true,
     tile,
     dpBefore,
-    injectedMoney: false,
+    deployCost,
+    purchaseCost,
+    purchased: missing,
+    injectedMoney,
   };
   await writeFile(
     `docs/verification/${prefix}-${label}-earned-rares.json`,
@@ -84,8 +104,8 @@ export async function verifyEarnedRarePurchases(page, mobile, prefix, label) {
   console.log(
     JSON.stringify({
       viewport: label,
-      earnedMoney: before.collection.money,
-      rarePurchases: 3,
+      moneyBefore: before.collection.money,
+      rarePurchases: missing.length,
       balance: after.collection.money,
       originalStage7Deploy: true,
     }),

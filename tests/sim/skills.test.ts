@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { createBattle } from '../../src/sim/battle';
+import { DP_MAX } from '../../src/sim/constants';
 import { unitStats } from '../../src/sim/stats';
 import { attackEnemies } from '../../src/sim/systems/attack';
 import { applyCommand } from '../../src/sim/systems/commands';
@@ -73,20 +74,25 @@ describe('스킬 충전·명령', () => {
 });
 
 describe('캐릭터별 스킬', () => {
-  it.each([10, 95, 99])('토리는 발동 때 지급하지 않고 도토리 %s에서 처치 보상을 강화한다', (dp) => {
-    const f = skillFixture('squirrel');
-    f.state.dp = dp;
-    f.activate();
-    expect(f.state.dp).toBe(dp);
-    expect(f.unit.skillState).toBe('active');
-    expect(f.events.filter((e) => e.type === 'dpGain')).toEqual([]);
-    f.enemy.hp = 0;
-    removeDead(f.content, f.stage, f.state, f.events);
-    expect(f.state.dp).toBe(Math.min(99, dp + 7));
-    expect(f.events.filter((e) => e.type === 'dpGain')).toEqual(
-      dp === 99 ? [] : [{ type: 'dpGain', amount: Math.min(7, 99 - dp), source: 'kill', uid: f.enemy.uid }],
-    );
-  });
+  it.each([10, DP_MAX - 2, DP_MAX])(
+    '토리는 발동 때 지급하지 않고 도토리 %s에서 처치 보상을 강화한다',
+    (dp) => {
+      const f = skillFixture('squirrel');
+      f.state.dp = dp;
+      f.activate();
+      expect(f.state.dp).toBe(dp);
+      expect(f.unit.skillState).toBe('active');
+      expect(f.events.filter((e) => e.type === 'dpGain')).toEqual([]);
+      f.enemy.hp = 0;
+      removeDead(f.content, f.stage, f.state, f.events);
+      expect(f.state.dp).toBe(Math.min(DP_MAX, dp + 4));
+      expect(f.events.filter((e) => e.type === 'dpGain')).toEqual(
+        dp === DP_MAX
+          ? []
+          : [{ type: 'dpGain', amount: Math.min(4, DP_MAX - dp), source: 'kill', uid: f.enemy.uid }],
+      );
+    },
+  );
   it('냥기사는 2배속으로 공격하고 세 번째마다 주 대상을 기절시킨다', () => {
     const f = skillFixture('cat');
     f.activate();

@@ -24,7 +24,10 @@ export function awardKillBounty(
     )
       bonus = value;
   }
-  const amount = Math.min(DP_MAX - state.dp, (content.enemies.get(enemy.enemyId)?.bounty ?? 0) + bonus);
+  const amount = Math.min(
+    Math.max(0, DP_MAX - state.dp),
+    (content.enemies.get(enemy.enemyId)?.bounty ?? 0) + bonus,
+  );
   state.dp += amount;
   if (amount > 0) events.push({ type: 'dpGain', amount, source: 'kill', uid: enemy.uid });
 }

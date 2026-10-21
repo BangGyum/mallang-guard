@@ -1,5 +1,5 @@
 import { ROLE_COLORS, ROLE_NAMES } from '../art/palette';
-import { isRareUnit, type RecruitResult } from '../data/recruitment';
+import { type RecruitResult, rarityFor } from '../data/recruitment';
 import type { ContentDb } from '../data/types';
 import { mountDialog } from './dialog';
 import { button, element } from './dom';
@@ -28,14 +28,14 @@ export function createRecruitResult(
     const card = element('article', 'recruit-result');
     card.dataset.unitId = unit.id;
     card.dataset.new = String(result.isNew);
-    card.dataset.rarity = isRareUnit(unit.id) ? 'rare' : 'common';
+    card.dataset.rarity = rarityFor(unit.id).id;
     card.style.setProperty('--role-color', ROLE_COLORS[unit.role]);
     card.style.setProperty('--reveal-delay', `${index * 0.04}s`);
     card.append(
       element('span', 'recruit-result-badge', result.isNew ? '신규 영입' : '중복'),
       portrait(unit.art, 'recruit-result-portrait'),
       element('strong', '', unit.name),
-      element('small', '', `${isRareUnit(unit.id) ? '희귀 · ' : ''}${ROLE_NAMES[unit.role]}`),
+      element('small', 'unit-rarity', `${rarityFor(unit.id).id} · ${ROLE_NAMES[unit.role]}`),
       element(
         'span',
         'recruit-result-note',

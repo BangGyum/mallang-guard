@@ -1,4 +1,10 @@
 export async function createShopAuditGame({ defeat = false, nextStage = false } = {}) {
+  const saveSource = await (await fetch('/src/app/save.ts')).text();
+  const recruitmentModule = saveSource.match(/from ["']([^"']*\/data\/recruitment\.ts[^"']*)["']/)?.[1];
+  if (!recruitmentModule) throw new Error('모집 모듈 없음');
+  const { recruitment } = await import(recruitmentModule);
+  // 전원 지급과 별도로 정식 모집·영입 흐름을 검사합니다.
+  recruitment.unlockAllForTesting = false;
   const { createApp } = await import('/src/app/app.ts');
   const { loadArtAssets } = await import('/src/app/artAssets.ts');
   const { rawContent } = await import('/src/data/index.ts');

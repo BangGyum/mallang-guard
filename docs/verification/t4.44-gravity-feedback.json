@@ -1,0 +1,182 @@
+[
+  {
+    "width": 1280,
+    "height": 720,
+    "mode": "normal",
+    "samples": [
+      {
+        "phase": "start",
+        "drawCalls": 30,
+        "particles": 8,
+        "stateUnchanged": true
+      },
+      {
+        "phase": "charge",
+        "drawCalls": 30,
+        "particles": 6,
+        "stateUnchanged": true
+      },
+      {
+        "phase": "burst",
+        "drawCalls": 28,
+        "particles": 3,
+        "stateUnchanged": true
+      }
+    ],
+    "done": {
+      "drawCalls": 25,
+      "particles": 0,
+      "stateUnchanged": true
+    }
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "mode": "reduced",
+    "samples": [
+      {
+        "phase": "start",
+        "drawCalls": 29,
+        "particles": 4,
+        "stateUnchanged": true
+      },
+      {
+        "phase": "charge",
+        "drawCalls": 29,
+        "particles": 3,
+        "stateUnchanged": true
+      },
+      {
+        "phase": "burst",
+        "drawCalls": 27,
+        "particles": 2,
+        "stateUnchanged": true
+      }
+    ],
+    "done": {
+      "drawCalls": 25,
+      "particles": 0,
+      "stateUnchanged": true
+    }
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "mode": "low",
+    "samples": [
+      {
+        "phase": "start",
+        "drawCalls": 29,
+        "particles": 4,
+        "stateUnchanged": true
+      },
+      {
+        "phase": "charge",
+        "drawCalls": 29,
+        "particles": 3,
+        "stateUnchanged": true
+      },
+      {
+        "phase": "burst",
+        "drawCalls": 27,
+        "particles": 2,
+        "stateUnchanged": true
+      }
+    ],
+    "done": {
+      "drawCalls": 25,
+      "particles": 0,
+      "stateUnchanged": true
+    }
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "mode": "normal",
+    "samples": [
+      {
+        "phase": "start",
+        "drawCalls": 30,
+        "particles": 8,
+        "stateUnchanged": true
+      },
+      {
+        "phase": "charge",
+        "drawCalls": 30,
+        "particles": 6,
+        "stateUnchanged": true
+      },
+      {
+        "phase": "burst",
+        "drawCalls": 28,
+        "particles": 3,
+        "stateUnchanged": true
+      }
+    ],
+    "done": {
+      "drawCalls": 25,
+      "particles": 0,
+      "stateUnchanged": true
+    }
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "mode": "reduced",
+    "samples": [
+      {
+        "phase": "start",
+        "drawCalls": 29,
+        "particles": 4,
+        "stateUnchanged": true
+      },
+      {
+        "phase": "charge",
+        "drawCalls": 29,
+        "particles": 3,
+        "stateUnchanged": true
+      },
+      {
+        "phase": "burst",
+        "drawCalls": 27,
+        "particles": 2,
+        "stateUnchanged": true
+      }
+    ],
+    "done": {
+      "drawCalls": 25,
+      "particles": 0,
+      "stateUnchanged": true
+    }
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "mode": "low",
+    "samples": [
+      {
+        "phase": "start",
+        "drawCalls": 29,
+        "particles": 4,
+        "stateUnchanged": true
+      },
+      {
+        "phase": "charge",
+        "drawCalls": 29,
+        "particles": 3,
+        "stateUnchanged": true
+      },
+      {
+        "phase": "burst",
+        "drawCalls": 27,
+        "particles": 2,
+        "stateUnchanged": true
+      }
+    ],
+    "done": {
+      "drawCalls": 25,
+      "particles": 0,
+      "stateUnchanged": true
+    }
+  }
+]

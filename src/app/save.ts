@@ -30,6 +30,15 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 }
 
 export function loadSave(unitIds: readonly string[] = recruitment.pool, seed = 1): SaveData {
+  const save = readSave(unitIds, seed);
+  if (recruitment.unlockAllForTesting)
+    save.collection.ownedUnits = [
+      ...new Set([...save.collection.ownedUnits, ...recruitment.pool.filter((id) => unitIds.includes(id))]),
+    ];
+  return save;
+}
+
+function readSave(unitIds: readonly string[], seed: number): SaveData {
   const save = defaults(unitIds, seed);
   try {
     const raw: unknown = JSON.parse(localStorage.getItem(SAVE_KEY) ?? 'null');

@@ -1,0 +1,310 @@
+{
+  "ticket": "T4.29",
+  "date": "2026-10-15",
+  "status": "passed",
+  "scope": "원본 경로·배치 칸·전투 수치를 유지한 7개 스테이지 테마·정적 장식·선택 미니맵 차별화",
+  "themes": [
+    {
+      "stage": 1,
+      "theme": "yard",
+      "name": "햇살 마당"
+    },
+    {
+      "stage": 2,
+      "theme": "grove",
+      "name": "자작나무 길"
+    },
+    {
+      "stage": 3,
+      "theme": "bubble",
+      "name": "방울 정원"
+    },
+    {
+      "stage": 4,
+      "theme": "greenhouse",
+      "name": "민트 온실"
+    },
+    {
+      "stage": 5,
+      "theme": "pond",
+      "name": "푸른 연못"
+    },
+    {
+      "stage": 6,
+      "theme": "terrace",
+      "name": "연회 테라스"
+    },
+    {
+      "stage": 7,
+      "theme": "royal",
+      "name": "왕실 정원"
+    }
+  ],
+  "checks": {
+    "typecheck": "passed",
+    "lint": "passed",
+    "build": "passed",
+    "diffCheck": "passed",
+    "sourceFilesOver300Lines": 0
+  },
+  "tests": {
+    "files": 86,
+    "passed": 1537,
+    "failed": 0,
+    "report": "t4.29-vitest.json"
+  },
+  "preservedContent": {
+    "files": 39,
+    "changed": [],
+    "report": "t4.29-preserved-content.json"
+  },
+  "browser": {
+    "viewports": [
+      {
+        "width": 1920,
+        "height": 1080,
+        "touch": false
+      },
+      {
+        "width": 844,
+        "height": 390,
+        "touch": true
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "touch": true
+      },
+      {
+        "width": 320,
+        "height": 568,
+        "touch": true
+      }
+    ],
+    "stagesPerViewport": 7,
+    "deployments": 28,
+    "errors": [],
+    "report": "t4.29-stage-themes.json"
+  },
+  "correctedIssue": "480px 이하의 선택 화면을 한 열로 바꿔 좁은 카드와 긴 적 목록 때문에 테마/미니맵이 보기 어렵던 문제를 보완",
+  "resources": {
+    "cycles": 14,
+    "allDisposedToZero": true,
+    "errors": [],
+    "report": "t4.29-theme-resources.json"
+  },
+  "performance": {
+    "displayPaced": [
+      {
+        "mode": "display-paced",
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 130V GPU (8GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "board": "22x12",
+        "units": 14,
+        "enemies": 60,
+        "frames": 480,
+        "fps": 59.99999999999999,
+        "frameP95Ms": 17,
+        "frameP99Ms": 17.100000000000364,
+        "callbackP95Ms": 3,
+        "callbackP99Ms": 3.399999998509884,
+        "framesOver17_7Ms": 0,
+        "framesOver8_33Ms": 480,
+        "attacks": 117,
+        "skills": 14,
+        "gravityBursts": 1,
+        "rejected": 0,
+        "peakCalls": 117,
+        "peakParticles": 115,
+        "disposed": {
+          "geometries": 0,
+          "textures": 0
+        },
+        "errors": []
+      },
+      {
+        "mode": "display-paced",
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 130V GPU (8GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "board": "22x12",
+        "units": 14,
+        "enemies": 60,
+        "frames": 479,
+        "fps": 59.999498960342706,
+        "frameP95Ms": 17.099999999999454,
+        "frameP99Ms": 17.200000000000273,
+        "callbackP95Ms": 2.899999998509884,
+        "callbackP99Ms": 3.2000000029802322,
+        "framesOver17_7Ms": 0,
+        "framesOver8_33Ms": 479,
+        "attacks": 117,
+        "skills": 14,
+        "gravityBursts": 1,
+        "rejected": 0,
+        "peakCalls": 117,
+        "peakParticles": 115,
+        "disposed": {
+          "geometries": 0,
+          "textures": 0
+        },
+        "errors": []
+      }
+    ],
+    "uncappedThroughput": [
+      {
+        "mode": "uncapped-throughput",
+        "viewport": {
+          "width": 1920,
+          "height": 1080
+        },
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 130V GPU (8GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "board": "22x12",
+        "units": 14,
+        "enemies": 60,
+        "frames": 3328,
+        "fps": 415.2577268133212,
+        "frameP95Ms": 3.199999999999818,
+        "frameP99Ms": 3.799999999999727,
+        "callbackP95Ms": 2.2000000029802322,
+        "callbackP99Ms": 2.6999999955296516,
+        "framesOver17_7Ms": 0,
+        "framesOver8_33Ms": 1,
+        "attacks": 114,
+        "skills": 14,
+        "gravityBursts": 1,
+        "rejected": 0,
+        "peakCalls": 115,
+        "peakParticles": 110,
+        "disposed": {
+          "geometries": 0,
+          "textures": 0
+        },
+        "errors": []
+      },
+      {
+        "mode": "uncapped-throughput",
+        "viewport": {
+          "width": 844,
+          "height": 390
+        },
+        "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 130V GPU (8GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+        "board": "22x12",
+        "units": 14,
+        "enemies": 60,
+        "frames": 3616,
+        "fps": 451.36245053861415,
+        "frameP95Ms": 2.9000000000005457,
+        "frameP99Ms": 3.4000000000005457,
+        "callbackP95Ms": 2,
+        "callbackP99Ms": 2.399999998509884,
+        "framesOver17_7Ms": 0,
+        "framesOver8_33Ms": 1,
+        "attacks": 117,
+        "skills": 14,
+        "gravityBursts": 1,
+        "rejected": 0,
+        "peakCalls": 117,
+        "peakParticles": 126,
+        "disposed": {
+          "geometries": 0,
+          "textures": 0
+        },
+        "errors": []
+      }
+    ]
+  },
+  "production": {
+    "productionBase": "/mallang-guard/",
+    "portraits": 8,
+    "webgl": true,
+    "waves": 12,
+    "killOnlyIncome": true,
+    "exit": true,
+    "shopReturnToResult": true,
+    "currentBalanceAfterRecruit": true,
+    "rareShopUnits": 3,
+    "rarePurchasesAndReload": true,
+    "rarePurchases": [
+      "fox",
+      "redPanda",
+      "deer",
+      "snowLeopard"
+    ],
+    "alreadyRecruitedRareUnits": [],
+    "rareRates": "5% aggregate, 1.67% rounded per unit",
+    "productionPurchaseFixtureMoney": 9000,
+    "productionFirstDrawSeed": 1,
+    "errors": [],
+    "themePreviews": 7,
+    "boardTheme": "yard",
+    "report": "t4.29-production.json"
+  },
+  "screenshots": [
+    "t4.29-1920x1080-stage-1.png",
+    "t4.29-1920x1080-stage-2.png",
+    "t4.29-1920x1080-stage-3.png",
+    "t4.29-1920x1080-stage-4.png",
+    "t4.29-1920x1080-stage-5.png",
+    "t4.29-1920x1080-stage-6.png",
+    "t4.29-1920x1080-stage-7.png",
+    "t4.29-320x568-select-7.png"
+  ],
+  "limitations": [
+    "Edge headless·터치 에뮬레이션이며 물리 모바일/120Hz 표시 보증은 아닙니다.",
+    "28회 배치 검사는 독립 계정의 클리어 기록만 해금하고 원본 비용/보드를 사용합니다. 전체 캠페인 완주를 다시 실행한 검사는 아닙니다.",
+    "성능은 22x12 원본 보드 위 비용/SP/적 체력을 검사에 맞춘 14유닛·60적 합성 부하, 실제 루프/HUD/음향으로 측정했습니다.",
+    "기존 500kB 초과 빌드 청크 경고는 유지됩니다."
+  ],
+  "sourceHashes": [
+    {
+      "path": "src/data/stageThemes.ts",
+      "sha256": "d5f8b4c0343f0d2c4a6487a0c7463a59d9f252a2c570d04d56f99145c8d45943"
+    },
+    {
+      "path": "src/view/stageDecorations.ts",
+      "sha256": "b9a72ff9e2fafdfc3f9ff95503522dc887061ef93464eabecf1e38cb11763378"
+    },
+    {
+      "path": "src/view/tiles.ts",
+      "sha256": "d2b6a0029289888eaf33c3784982aad390c3c14fe6cffde1ce720ca8136e4fa2"
+    },
+    {
+      "path": "src/view/boardView.ts",
+      "sha256": "29fc93a31286308824f97f181c37f48db7e022e7735a1847e9e94e24639cf761"
+    },
+    {
+      "path": "src/app/battleSession.ts",
+      "sha256": "00c497fefded7ff73f1b15bc7245919fe16bf211857108b8ad560f8458c65d3f"
+    },
+    {
+      "path": "src/ui/stageSelect.ts",
+      "sha256": "579c30f0b846cd2272f71ac3cad413be42a4e6f205b99204350e87d3a9247232"
+    },
+    {
+      "path": "src/ui/stages.css",
+      "sha256": "1504ddcb283dbd671f19127900abbc0886c071794485aec2495bed319e23f343"
+    },
+    {
+      "path": "tests/view/stageThemes.test.ts",
+      "sha256": "f8163292c8ebcef71bc586c4821b580ad2044db21eae8d947d6292b95738474a"
+    },
+    {
+      "path": "tests/browser/stageThemes.mjs",
+      "sha256": "e83e4c75ce787a25a2d1c59414a1b257cf23ccf59718b38ff5ce40f998934133"
+    },
+    {
+      "path": "tests/browser/stageThemeResources.mjs",
+      "sha256": "040a258a305dec6ffb524fb0885d7faab7d8e03ba1902479d77d9db5b45aaa85"
+    },
+    {
+      "path": "tests/browser/production.mjs",
+      "sha256": "0dc1f01ef4fa8cdc9679cf01f38df68e847c0994a8217c18c2e784390f685643"
+    }
+  ]
+}

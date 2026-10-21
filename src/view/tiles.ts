@@ -3,7 +3,6 @@ import {
   type BufferGeometry,
   DataTexture,
   Group,
-  IcosahedronGeometry,
   InstancedMesh,
   type Material,
   Matrix4,
@@ -11,15 +10,14 @@ import {
   MeshBasicMaterial,
   MeshToonMaterial,
   NearestFilter,
-  Object3D,
   RedFormat,
-  SphereGeometry,
 } from 'three';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
 import type { Tile } from '../core/grid';
-import { mulberry32 } from '../core/rng';
+import { type StageTheme, stageThemeFor } from '../data/stageThemes';
 import type { Board, TileKind } from '../sim/board';
 import { tileHeight, tileToWorld } from './coords';
+import { createStageDecorations } from './stageDecorations';
 
 const TILE_COLORS: Record<TileKind, string> = {
   ground: '#F3DCA6',
@@ -45,7 +43,10 @@ function addInstances(
   return mesh;
 }
 
-export function createTiles(board: Board): { group: Group; dispose(): void } {
+export function createTiles(
+  board: Board,
+  theme: StageTheme = stageThemeFor(),
+): { group: Group; dispose(): void } {
   const group = new Group();
   const gradient = new DataTexture(new Uint8Array([90, 170, 255]), 3, 1, RedFormat);
   gradient.minFilter = NearestFilter;
@@ -65,7 +66,8 @@ export function createTiles(board: Board): { group: Group; dispose(): void } {
       if (kind !== undefined) cells[kind].push({ x, y });
     }
   }
-  for (const kind of Object.keys(TILE_COLORS) as TileKind[]) {
+  const colors = { ...TILE_COLORS, ground: theme.floor, path: theme.floor, blocked: theme.blocked };
+  for (const kind of Object.keys(colors) as TileKind[]) {
     if (cells[kind].length === 0) continue;
     const top = tileHeight(kind);
     const thickness = top + 0.25;
@@ -76,67 +78,21 @@ export function createTiles(board: Board): { group: Group; dispose(): void } {
     addInstances(
       group,
       new RoundedBoxGeometry(0.96, thickness, 0.96, 2, 0.06),
-      new MeshToonMaterial({ color: TILE_COLORS[kind], gradientMap: gradient }),
+      new MeshToonMaterial({ color: colors[kind], gradientMap: gradient }),
       matrices,
     );
   }
 
   const base = new Mesh(
     new RoundedBoxGeometry(board.width, 0.65, board.height, 2, 0.12),
-    new MeshToonMaterial({ color: '#A87F5D', gradientMap: gradient }),
+    new MeshToonMaterial({ color: theme.base, gradientMap: gradient }),
   );
   base.position.y = -0.575;
   base.castShadow = true;
   base.receiveShadow = true;
   group.add(base);
 
-  const bushes: Matrix4[] = [];
-  const flowers: Matrix4[] = [];
-  const transform = new Object3D();
-  for (const tile of cells.blocked) {
-    let seed = (Math.imul(tile.x, 73856093) ^ Math.imul(tile.y, 19349663)) >>> 0;
-    function random(): number {
-      const next = mulberry32(seed);
-      seed = next.state;
-      return next.value;
-    }
-    const count = 1 + Math.floor(random() * 2);
-    const center = tileToWorld(tile, board.width, board.height, tileHeight('blocked'));
-    for (let index = 0; index < count; index++) {
-      const radius = 0.15 + random() * 0.07;
-      transform.position.set(
-        center.x + random() * 0.5 - 0.25,
-        center.y + radius * 0.6,
-        center.z + random() * 0.5 - 0.25,
-      );
-      transform.scale.set(radius, radius * 0.8, radius);
-      transform.updateMatrix();
-      bushes.push(transform.matrix.clone());
-      if (random() < 0.3) {
-        transform.position.x += radius * 0.4;
-        transform.position.y += radius * 0.65;
-        transform.scale.setScalar(1);
-        transform.updateMatrix();
-        flowers.push(transform.matrix.clone());
-      }
-    }
-  }
-  if (bushes.length > 0) {
-    addInstances(
-      group,
-      new IcosahedronGeometry(1, 1),
-      new MeshToonMaterial({ color: '#5FB45A', gradientMap: gradient }),
-      bushes,
-    );
-  }
-  if (flowers.length > 0) {
-    addInstances(
-      group,
-      new SphereGeometry(0.055, 8, 6),
-      new MeshToonMaterial({ color: '#FF8FB1', gradientMap: gradient }),
-      flowers,
-    );
-  }
+  group.add(createStageDecorations(board, theme, gradient));
   if (cells.high.length > 0) {
     const highlights = cells.high.map((tile) => {
       const position = tileToWorld(tile, board.width, board.height, 0.51);

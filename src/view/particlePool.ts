@@ -1,4 +1,5 @@
 import {
+  DynamicDrawUsage,
   Euler,
   Group,
   InstancedBufferAttribute,
@@ -14,8 +15,23 @@ import {
 import { assert } from '../core/assert';
 
 const CAPACITY = 200;
+const EXPANDING = new Set(['shellBurst', 'flameBloom', 'fireBurst', 'frostFlash']);
 const IMAGES = [
   'bullet',
+  'compactRound',
+  'energyPulse',
+  'stormBolt',
+  'stormFlash',
+  'flameBolt',
+  'flameLink',
+  'flameBloom',
+  'crescentSlash',
+  'hammerWave',
+  'iceLance',
+  'cometRound',
+  'infernoRound',
+  'chargedRail',
+  'gravityCore',
   'iceRound',
   'arcBolt',
   'railRound',
@@ -35,7 +51,28 @@ const IMAGES = [
   'ring',
   'mintRailRound',
   'shellRound',
+  'shellBurst',
   'lightningLink',
+  'frostFlash',
+  'railFlash',
+  'shellFlash',
+  'skill-acornPickup',
+  'skill-nyangCombo',
+  'skill-potLidGuard',
+  'skill-snowballBarrage',
+  'skill-stardustShower',
+  'skill-carrotSoup',
+  'skill-tunnelAmbush',
+  'skill-stickyRoad',
+  'skill-wideBarrage',
+  'skill-tripleAim',
+  'skill-polarAim',
+  'skill-siegeBarrage',
+  'skill-stormChain',
+  'gravityOrb',
+  'gravityRing',
+  'gravityBurst',
+  'skill-eventHorizon',
 ];
 
 export function createParticlePool(textures: ReadonlyMap<string, Texture>) {
@@ -63,7 +100,10 @@ export function createParticlePool(textures: ReadonlyMap<string, Texture>) {
     const texture = textures.get(id);
     assert(texture, `이펙트 그림이 없습니다: ${id}`);
     const geometry = new PlaneGeometry(1, 1);
-    geometry.setAttribute('aOpacity', new InstancedBufferAttribute(new Float32Array(CAPACITY), 1));
+    geometry.setAttribute(
+      'aOpacity',
+      new InstancedBufferAttribute(new Float32Array(CAPACITY), 1).setUsage(DynamicDrawUsage),
+    );
     const material = new ShaderMaterial({
       uniforms: { map: { value: texture } },
       transparent: true,
@@ -76,6 +116,7 @@ export function createParticlePool(textures: ReadonlyMap<string, Texture>) {
         }`,
     });
     const mesh = new InstancedMesh(geometry, material, CAPACITY);
+    mesh.instanceMatrix.setUsage(DynamicDrawUsage);
     mesh.count = 0;
     mesh.frustumCulled = false;
     meshes.set(id, mesh);
@@ -151,13 +192,23 @@ export function createParticlePool(textures: ReadonlyMap<string, Texture>) {
           continue;
         }
         const t = particle.age / particle.duration;
+        const grenade = particle.id === 'shellRound' && particle.aimed;
+        const explosion = EXPANDING.has(particle.id);
+        const softBloom = particle.id === 'fireBurst' || particle.id === 'frostFlash';
         point.lerpVectors(particle.from, particle.to, particle.beam ? 0.5 : t);
-        point.y += Math.sin(t * Math.PI) * particle.arc;
+        point.y += (grenade ? 4 * t * (1 - t) : Math.sin(t * Math.PI)) * particle.arc;
         let angle = 0;
-        let length = particle.size * (particle.wave ? 1 + 3 * t : 1 - 0.4 * t);
+        const scale = grenade
+          ? 1
+          : explosion
+            ? (softBloom ? 0.75 : 0.65) + (softBloom ? 0.45 : 1.1) * Math.min(1, t * 3)
+            : particle.wave
+              ? 1 + 3 * t
+              : 1 - 0.4 * t;
+        let length = particle.size * scale;
         if (particle.aimed) {
           const dx = particle.to.x - particle.from.x;
-          const dy = particle.to.y - particle.from.y;
+          const dy = particle.to.y - particle.from.y + (grenade ? 4 * particle.arc * (1 - 2 * t) : 0);
           const dz = particle.to.z - particle.from.z;
           const m = camera.matrixWorldInverse.elements;
           const screenX = m[0] * dx + m[4] * dy + m[8] * dz;
@@ -168,8 +219,8 @@ export function createParticlePool(textures: ReadonlyMap<string, Texture>) {
         draw(
           particle.id,
           point,
-          particle.size * (particle.wave ? 1 + 3 * t : 1 - 0.4 * t),
-          (1 - t) * particle.opacity,
+          particle.size * scale,
+          (grenade ? 1 - t ** 8 : particle.aimed && !particle.beam ? 1 - t ** 3 : 1 - t) * particle.opacity,
           camera,
           particle.wave,
           angle,
@@ -180,8 +231,16 @@ export function createParticlePool(textures: ReadonlyMap<string, Texture>) {
     draw,
     end() {
       for (const mesh of meshes.values()) {
+        mesh.visible = mesh.count > 0;
+        if (!mesh.visible) continue;
+        // 실제 그린 인스턴스만 올려 스킬별 200칸 버퍼 전체 전송을 피합니다.
+        mesh.instanceMatrix.clearUpdateRanges();
+        mesh.instanceMatrix.addUpdateRange(0, mesh.count * 16);
         mesh.instanceMatrix.needsUpdate = true;
-        mesh.geometry.getAttribute('aOpacity').needsUpdate = true;
+        const opacity = mesh.geometry.getAttribute('aOpacity') as InstancedBufferAttribute;
+        opacity.clearUpdateRanges();
+        opacity.addUpdateRange(0, mesh.count);
+        opacity.needsUpdate = true;
       }
     },
     dispose() {

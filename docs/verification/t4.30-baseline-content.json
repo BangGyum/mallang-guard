@@ -1,0 +1,7630 @@
+{
+  "units": [
+    {
+      "id": "squirrel",
+      "name": "토리",
+      "animal": "다람쥐",
+      "role": "vanguard",
+      "art": "squirrel",
+      "cost": 9,
+      "deployOn": "high",
+      "redeploySec": 30,
+      "atk": 280,
+      "armorPen": 5,
+      "atkIntervalSec": 1,
+      "range": "mid",
+      "damageType": "physical",
+      "canHitAir": false,
+      "skill": "acornPickup"
+    },
+    {
+      "id": "cat",
+      "name": "냥기사",
+      "animal": "고양이",
+      "role": "guard",
+      "art": "cat",
+      "cost": 14,
+      "deployOn": "high",
+      "redeploySec": 40,
+      "atk": 420,
+      "armorPen": 10,
+      "atkIntervalSec": 1.2,
+      "range": "mid",
+      "damageType": "physical",
+      "canHitAir": false,
+      "skill": "nyangCombo"
+    },
+    {
+      "id": "bear",
+      "name": "뚜껑곰",
+      "animal": "곰",
+      "role": "defender",
+      "art": "bear",
+      "cost": 18,
+      "deployOn": "high",
+      "redeploySec": 50,
+      "atk": 220,
+      "armorPen": 5,
+      "atkIntervalSec": 1.2,
+      "range": "mid",
+      "damageType": "physical",
+      "canHitAir": false,
+      "skill": "potLidGuard"
+    },
+    {
+      "id": "penguin",
+      "name": "펭펭",
+      "animal": "펭귄",
+      "role": "sniper",
+      "art": "penguin",
+      "cost": 12,
+      "deployOn": "high",
+      "redeploySec": 40,
+      "atk": 380,
+      "armorPen": 15,
+      "atkIntervalSec": 1,
+      "range": "long",
+      "damageType": "physical",
+      "canHitAir": true,
+      "skill": "snowballBarrage"
+    },
+    {
+      "id": "sheep",
+      "name": "몽실",
+      "animal": "양",
+      "role": "caster",
+      "art": "sheep",
+      "cost": 17,
+      "deployOn": "high",
+      "redeploySec": 45,
+      "atk": 420,
+      "atkIntervalSec": 1.6,
+      "range": "mid",
+      "damageType": "magic",
+      "canHitAir": true,
+      "skill": "stardustShower"
+    },
+    {
+      "id": "bunny",
+      "name": "토실",
+      "animal": "토끼",
+      "role": "medic",
+      "art": "bunny",
+      "cost": 15,
+      "deployOn": "high",
+      "redeploySec": 45,
+      "atk": 260,
+      "atkIntervalSec": 2.85,
+      "range": "long",
+      "damageType": "magic",
+      "canHitAir": false,
+      "skill": "carrotSoup"
+    },
+    {
+      "id": "mole",
+      "name": "굴굴",
+      "animal": "두더지",
+      "role": "specialist",
+      "art": "mole",
+      "cost": 8,
+      "deployOn": "high",
+      "redeploySec": 8,
+      "atk": 300,
+      "armorPen": 10,
+      "atkIntervalSec": 1,
+      "range": "mid",
+      "damageType": "physical",
+      "canHitAir": false,
+      "skill": "tunnelAmbush"
+    },
+    {
+      "id": "snail",
+      "name": "끈끈",
+      "animal": "달팽이",
+      "role": "supporter",
+      "art": "snail",
+      "cost": 13,
+      "deployOn": "high",
+      "redeploySec": 45,
+      "atk": 200,
+      "atkIntervalSec": 1.9,
+      "range": "mid",
+      "damageType": "magic",
+      "canHitAir": true,
+      "traits": [
+        {
+          "type": "onHitSlow",
+          "amount": 0.2,
+          "sec": 0.8
+        }
+      ],
+      "skill": "stickyRoad"
+    },
+    {
+      "id": "owl",
+      "name": "밤밤",
+      "animal": "부엉이",
+      "role": "caster",
+      "art": "owl",
+      "cost": 24,
+      "deployOn": "high",
+      "redeploySec": 55,
+      "atk": 320,
+      "atkIntervalSec": 1.8,
+      "range": "square5",
+      "damageType": "magic",
+      "canHitAir": true,
+      "skill": "wideBarrage"
+    },
+    {
+      "id": "wolf",
+      "name": "랑랑",
+      "animal": "늑대",
+      "role": "sniper",
+      "art": "wolf",
+      "cost": 22,
+      "deployOn": "high",
+      "redeploySec": 50,
+      "atk": 650,
+      "armorPen": 120,
+      "atkIntervalSec": 2.4,
+      "range": "line5",
+      "damageType": "physical",
+      "canHitAir": true,
+      "skill": "tripleAim"
+    },
+    {
+      "id": "fox",
+      "name": "루아",
+      "animal": "은여우",
+      "role": "sniper",
+      "art": "fox",
+      "cost": 28,
+      "deployOn": "high",
+      "redeploySec": 55,
+      "atk": 900,
+      "armorPen": 220,
+      "atkIntervalSec": 2.8,
+      "range": "line5Wide",
+      "damageType": "physical",
+      "canHitAir": true,
+      "targetPriority": "boss",
+      "skill": "polarAim"
+    },
+    {
+      "id": "redPanda",
+      "name": "로크",
+      "animal": "레서판다",
+      "role": "sniper",
+      "art": "redPanda",
+      "cost": 30,
+      "deployOn": "high",
+      "redeploySec": 60,
+      "atk": 560,
+      "armorPen": 60,
+      "atkIntervalSec": 2.4,
+      "range": "front4",
+      "damageType": "physical",
+      "canHitAir": false,
+      "traits": [
+        {
+          "type": "splash",
+          "radius": 1.2
+        }
+      ],
+      "skill": "siegeBarrage"
+    },
+    {
+      "id": "deer",
+      "name": "세라",
+      "animal": "사슴",
+      "role": "caster",
+      "art": "deer",
+      "cost": 27,
+      "deployOn": "high",
+      "redeploySec": 55,
+      "atk": 360,
+      "atkIntervalSec": 1.5,
+      "range": "front4",
+      "damageType": "magic",
+      "canHitAir": true,
+      "traits": [
+        {
+          "type": "chain",
+          "radius": 1.5,
+          "damageMuls": [
+            1,
+            0.7,
+            0.5
+          ]
+        }
+      ],
+      "skill": "stormChain"
+    },
+    {
+      "id": "snowLeopard",
+      "name": "노바",
+      "animal": "설표",
+      "role": "caster",
+      "art": "snowLeopard",
+      "cost": 34,
+      "deployOn": "high",
+      "redeploySec": 70,
+      "atk": 640,
+      "atkIntervalSec": 3,
+      "range": "front4",
+      "damageType": "magic",
+      "canHitAir": true,
+      "traits": [
+        {
+          "type": "splash",
+          "radius": 1
+        }
+      ],
+      "skill": "eventHorizon"
+    }
+  ],
+  "enemies": [
+    {
+      "id": "jelly",
+      "name": "말썽젤리",
+      "art": "jelly",
+      "hp": 600,
+      "def": 50,
+      "res": 0,
+      "speed": 0.9,
+      "flying": false,
+      "lifeDamage": 1,
+      "description": "기본 지상 적이에요. 경로를 따라 푸딩으로 이동해요.",
+      "bounty": 5
+    },
+    {
+      "id": "hardJelly",
+      "name": "단단젤리",
+      "art": "hardJelly",
+      "hp": 1500,
+      "def": 300,
+      "res": 0,
+      "speed": 0.6,
+      "flying": false,
+      "lifeDamage": 1,
+      "description": "물리 방어력이 높아요. 마법 공격으로 상대해요.",
+      "bounty": 6
+    },
+    {
+      "id": "crow",
+      "name": "까악",
+      "art": "crow",
+      "hp": 450,
+      "def": 30,
+      "res": 0,
+      "speed": 1.2,
+      "flying": true,
+      "lifeDamage": 1,
+      "description": "빠르게 날아오는 비행 적이에요. 대공 가능한 친구로 막아요.",
+      "bounty": 5
+    },
+    {
+      "id": "splitJelly",
+      "name": "분열젤리",
+      "art": "splitJelly",
+      "hp": 950,
+      "def": 70,
+      "res": 10,
+      "speed": 0.7,
+      "flying": false,
+      "lifeDamage": 1,
+      "description": "처치되면 작은 젤리 둘로 나뉘어요.",
+      "split": {
+        "enemy": "miniJelly",
+        "count": 2
+      },
+      "bounty": 5
+    },
+    {
+      "id": "miniJelly",
+      "name": "작은 젤리",
+      "art": "miniJelly",
+      "hp": 200,
+      "def": 10,
+      "res": 0,
+      "speed": 1.25,
+      "flying": false,
+      "lifeDamage": 1,
+      "description": "작지만 빠르게 푸딩으로 달려가요.",
+      "bounty": 1
+    },
+    {
+      "id": "spitter",
+      "name": "끈적젤리",
+      "art": "spitter",
+      "hp": 950,
+      "def": 60,
+      "res": 10,
+      "speed": 0.65,
+      "flying": false,
+      "lifeDamage": 1,
+      "description": "가까운 친구의 공격 속도를 잠깐 낮춰요.",
+      "disrupt": {
+        "range": 2.7,
+        "intervalSec": 7,
+        "durationSec": 2.2,
+        "atkIntervalMul": 1.5,
+        "targets": 1
+      },
+      "bounty": 7
+    },
+    {
+      "id": "kingJelly",
+      "name": "왕젤리",
+      "art": "kingJelly",
+      "hp": 14000,
+      "def": 160,
+      "res": 15,
+      "speed": 0.38,
+      "flying": false,
+      "lifeDamage": 3,
+      "description": "먹물 봉인: 1초 준비 후 3.3칸 안의 가까운 친구 최대 3명의 공격 간격을 2.5초간 1.5배로 늘립니다. 기절로 끊거나 예고 중 스킬을 먼저 쓰세요. 놓치면 푸딩 3개를 잃어요.",
+      "bounty": 20,
+      "boss": true,
+      "bossSkill": {
+        "name": "먹물 봉인",
+        "description": "1초 준비 후 3.3칸 안의 가까운 친구 최대 3명의 공격 간격을 2.5초간 1.5배로 늘립니다. 기절로 끊거나 예고 중 스킬을 먼저 쓰세요.",
+        "firstCastSec": 3,
+        "intervalSec": 8,
+        "windupSec": 1,
+        "effect": {
+          "type": "disrupt",
+          "range": 3.3,
+          "durationSec": 2.5,
+          "atkIntervalMul": 1.5,
+          "targets": 3
+        }
+      }
+    },
+    {
+      "id": "dashJelly",
+      "name": "달림젤리",
+      "art": "dashJelly",
+      "hp": 440,
+      "def": 20,
+      "res": 0,
+      "speed": 1,
+      "flying": false,
+      "lifeDamage": 1,
+      "description": "6초마다 1.2초 동안 빠르게 달려요. 둔화와 기절로 막아요.",
+      "rush": {
+        "intervalSec": 6,
+        "durationSec": 1.2,
+        "speedMul": 1.8
+      },
+      "bounty": 5
+    },
+    {
+      "id": "crystalJelly",
+      "name": "수정젤리",
+      "art": "crystalJelly",
+      "hp": 950,
+      "def": 20,
+      "res": 65,
+      "speed": 0.75,
+      "flying": false,
+      "lifeDamage": 1,
+      "description": "마법 피해를 65% 줄여요. 물리 사격에 약해요.",
+      "bounty": 6
+    },
+    {
+      "id": "shieldJelly",
+      "name": "방패젤리",
+      "art": "shieldJelly",
+      "hp": 850,
+      "def": 60,
+      "res": 5,
+      "speed": 0.6,
+      "flying": false,
+      "lifeDamage": 1,
+      "description": "처음에 보호막 500으로 피해를 받아내요. 보호막은 다시 생기지 않아요.",
+      "shieldHp": 500,
+      "bounty": 6
+    },
+    {
+      "id": "sproutJelly",
+      "name": "새싹젤리",
+      "art": "sproutJelly",
+      "hp": 1000,
+      "def": 40,
+      "res": 5,
+      "speed": 0.65,
+      "flying": false,
+      "lifeDamage": 1,
+      "description": "3초마다 체력을 80 회복해요. 집중 공격과 기절로 막아요.",
+      "regenerate": {
+        "intervalSec": 3,
+        "amount": 80
+      },
+      "bounty": 6
+    },
+    {
+      "id": "flowerJelly",
+      "name": "꽃젤리",
+      "art": "flowerJelly",
+      "hp": 850,
+      "def": 30,
+      "res": 15,
+      "speed": 0.6,
+      "flying": false,
+      "lifeDamage": 1,
+      "description": "5초마다 주변에서 가장 다친 다른 적 한 명을 120 치유해요.",
+      "heal": {
+        "intervalSec": 5,
+        "amount": 120,
+        "range": 2.5
+      },
+      "bounty": 7
+    },
+    {
+      "id": "drummerJelly",
+      "name": "북젤리",
+      "art": "drummerJelly",
+      "hp": 1000,
+      "def": 60,
+      "res": 10,
+      "speed": 0.6,
+      "flying": false,
+      "lifeDamage": 1,
+      "description": "주변 다른 적의 이동 속도를 25% 올려요. 기절시키면 지원이 멈춰요.",
+      "haste": {
+        "range": 2.4,
+        "speedMul": 1.25
+      },
+      "bounty": 7
+    },
+    {
+      "id": "nestJelly",
+      "name": "둥지젤리",
+      "art": "nestJelly",
+      "hp": 1800,
+      "def": 80,
+      "res": 10,
+      "speed": 0.5,
+      "flying": false,
+      "lifeDamage": 1,
+      "description": "8초마다 작은 젤리를 한 마리 불러요. 최대 세 번 소환해요.",
+      "summon": {
+        "intervalSec": 8,
+        "enemy": "miniJelly",
+        "count": 1,
+        "maxCasts": 3
+      },
+      "bounty": 8
+    },
+    {
+      "id": "armoredCrow",
+      "name": "철갑까악",
+      "art": "armoredCrow",
+      "hp": 1400,
+      "def": 180,
+      "res": 0,
+      "speed": 0.75,
+      "flying": true,
+      "lifeDamage": 1,
+      "description": "튼튼한 비행 적이에요. 대공 마법이나 강한 사격으로 막아요.",
+      "bounty": 7
+    },
+    {
+      "id": "captainJelly",
+      "name": "대장젤리",
+      "art": "captainJelly",
+      "hp": 5000,
+      "def": 140,
+      "res": 20,
+      "speed": 0.45,
+      "flying": false,
+      "lifeDamage": 2,
+      "bounty": 12,
+      "description": "보호막 600을 두른 중간보스예요. 친구 한 명의 공격을 방해하며, 놓치면 푸딩 둘을 잃어요. 처치 보상은 도토리 12개예요.",
+      "shieldHp": 600,
+      "disrupt": {
+        "range": 2.5,
+        "intervalSec": 10,
+        "durationSec": 1.6,
+        "atkIntervalMul": 1.25,
+        "targets": 1
+      }
+    },
+    {
+      "id": "bigJelly",
+      "name": "덩치젤리",
+      "art": "bigJelly",
+      "hp": 3500,
+      "def": 60,
+      "res": 0,
+      "speed": 0.42,
+      "flying": false,
+      "lifeDamage": 2,
+      "bounty": 12,
+      "boss": true,
+      "description": "웅크린 돌진: 0.8초 동안 힘을 모은 뒤 1.5초간 1.35배로 돌진합니다. 준비 중 기절로 끊거나 둔화로 이동을 줄이세요. 놓치면 푸딩 2개를 잃어요.",
+      "bossSkill": {
+        "name": "웅크린 돌진",
+        "description": "0.8초 동안 힘을 모은 뒤 1.5초간 1.35배로 돌진합니다. 준비 중 기절로 끊거나 둔화로 이동을 줄이세요.",
+        "firstCastSec": 2,
+        "intervalSec": 10,
+        "windupSec": 0.8,
+        "effect": {
+          "type": "rush",
+          "durationSec": 1.5,
+          "speedMul": 1.35
+        }
+      }
+    },
+    {
+      "id": "gateJelly",
+      "name": "성문젤리",
+      "art": "gateJelly",
+      "hp": 6000,
+      "def": 180,
+      "res": 5,
+      "speed": 0.4,
+      "flying": false,
+      "lifeDamage": 2,
+      "bounty": 16,
+      "boss": true,
+      "shieldHp": 900,
+      "description": "방벽 재구축: 보호막이 줄면 1초 준비 후 최대 300을 재충전합니다. 보호막 상한은 900이며 준비 중 기절로 끊을 수 있습니다. 놓치면 푸딩 2개를 잃어요.",
+      "bossSkill": {
+        "name": "방벽 재구축",
+        "description": "보호막이 줄면 1초 준비 후 최대 300을 재충전합니다. 보호막 상한은 900이며 준비 중 기절로 끊을 수 있습니다.",
+        "firstCastSec": 2.5,
+        "intervalSec": 14,
+        "windupSec": 1,
+        "effect": {
+          "type": "shield",
+          "amount": 300
+        }
+      }
+    },
+    {
+      "id": "splitCaptain",
+      "name": "분열대장",
+      "art": "splitCaptain",
+      "hp": 5500,
+      "def": 80,
+      "res": 10,
+      "speed": 0.38,
+      "flying": false,
+      "lifeDamage": 2,
+      "bounty": 18,
+      "boss": true,
+      "split": {
+        "enemy": "miniJelly",
+        "count": 6
+      },
+      "description": "분신 증식: 0.8초 준비 후 작은 젤리 한 마리를 소환하며 최대 2회입니다. 사망하면 기존처럼 여섯 마리로 분열합니다. 광역 공격을 준비하세요. 놓치면 푸딩 2개를 잃어요.",
+      "bossSkill": {
+        "name": "분신 증식",
+        "description": "0.8초 준비 후 작은 젤리 한 마리를 소환하며 최대 2회입니다. 사망하면 기존처럼 여섯 마리로 분열합니다. 광역 공격을 준비하세요.",
+        "firstCastSec": 2.5,
+        "intervalSec": 12,
+        "windupSec": 0.8,
+        "effect": {
+          "type": "summon",
+          "enemy": "miniJelly",
+          "count": 1,
+          "maxCasts": 2
+        }
+      }
+    },
+    {
+      "id": "greenhouseKeeper",
+      "name": "온실지기",
+      "art": "greenhouseKeeper",
+      "hp": 7500,
+      "def": 140,
+      "res": 20,
+      "speed": 0.3,
+      "flying": false,
+      "lifeDamage": 2,
+      "bounty": 20,
+      "boss": true,
+      "description": "생명의 개화: 1초 준비 후 자신을 포함한 2.5칸 안의 다친 적 최대 3명을 각각 최대 250 회복합니다. 준비 중 기절이나 집중 공격으로 막으세요. 놓치면 푸딩 2개를 잃어요.",
+      "bossSkill": {
+        "name": "생명의 개화",
+        "description": "1초 준비 후 자신을 포함한 2.5칸 안의 다친 적 최대 3명을 각각 최대 250 회복합니다. 준비 중 기절이나 집중 공격으로 막으세요.",
+        "firstCastSec": 3,
+        "intervalSec": 8,
+        "windupSec": 1,
+        "effect": {
+          "type": "heal",
+          "amount": 250,
+          "range": 2.5,
+          "targets": 3
+        }
+      }
+    },
+    {
+      "id": "stormCrow",
+      "name": "폭풍까악",
+      "art": "stormCrow",
+      "hp": 7500,
+      "def": 80,
+      "res": 10,
+      "speed": 0.32,
+      "flying": true,
+      "lifeDamage": 2,
+      "bounty": 20,
+      "boss": true,
+      "description": "폭풍 활강: 0.8초 동안 날개에 바람을 모은 뒤 1.3초간 1.8배로 활강합니다. 대공·둔화로 막고 준비 중 기절로 끊으세요. 놓치면 푸딩 2개를 잃어요.",
+      "bossSkill": {
+        "name": "폭풍 활강",
+        "description": "0.8초 동안 날개에 바람을 모은 뒤 1.3초간 1.8배로 활강합니다. 대공·둔화로 막고 준비 중 기절로 끊으세요.",
+        "firstCastSec": 2,
+        "intervalSec": 8,
+        "windupSec": 0.8,
+        "effect": {
+          "type": "rush",
+          "durationSec": 1.3,
+          "speedMul": 1.8
+        }
+      }
+    },
+    {
+      "id": "gardenKing",
+      "name": "정원군주",
+      "art": "gardenKing",
+      "hp": 14500,
+      "def": 160,
+      "res": 15,
+      "speed": 0.38,
+      "flying": false,
+      "lifeDamage": 3,
+      "bounty": 25,
+      "boss": true,
+      "shieldHp": 800,
+      "description": "왕실 집결: 1.2초 준비 후 작은 젤리 둘을 소환하며 최대 3회입니다. 주변 3.3칸의 다른 적은 1.12배로 행군합니다. 보스를 기절시키면 준비와 행군 지원을 끊을 수 있습니다. 놓치면 푸딩 3개를 잃어요.",
+      "bossSkill": {
+        "name": "왕실 집결",
+        "description": "1.2초 준비 후 작은 젤리 둘을 소환하며 최대 3회입니다. 주변 3.3칸의 다른 적은 1.12배로 행군합니다. 보스를 기절시키면 준비와 행군 지원을 끊을 수 있습니다.",
+        "firstCastSec": 4,
+        "intervalSec": 12,
+        "windupSec": 1.2,
+        "effect": {
+          "type": "summon",
+          "enemy": "miniJelly",
+          "count": 2,
+          "maxCasts": 3
+        }
+      },
+      "haste": {
+        "range": 3.3,
+        "speedMul": 1.12
+      }
+    }
+  ],
+  "skills": [
+    {
+      "id": "acornPickup",
+      "name": "전리품 수거",
+      "description": "12초 동안 토리의 사거리 안에서 처치된 적의 도토리 보상 +2. 발동만으로 도토리를 얻지는 않아요.",
+      "charge": "auto",
+      "spCost": 20,
+      "spStart": 8,
+      "trigger": "manual",
+      "condition": "always",
+      "durationSec": 12,
+      "effects": [
+        {
+          "type": "killBounty",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "id": "nyangCombo",
+      "name": "연속 참격",
+      "description": "8초 동안 공격 속도 2배, 세 번째 공격마다 0.5초 기절",
+      "charge": "attack",
+      "spCost": 12,
+      "spStart": 0,
+      "trigger": "manual",
+      "condition": "always",
+      "durationSec": 8,
+      "effects": [
+        {
+          "type": "statMul",
+          "stat": "atkInterval",
+          "value": 0.5
+        },
+        {
+          "type": "stunEveryNthHit",
+          "n": 3,
+          "sec": 0.5
+        }
+      ]
+    },
+    {
+      "id": "potLidGuard",
+      "name": "충격 제압",
+      "description": "10초 동안 공격력 +80%, 공격할 때마다 0.6초 기절",
+      "charge": "auto",
+      "spCost": 15,
+      "spStart": 5,
+      "trigger": "manual",
+      "condition": "always",
+      "durationSec": 10,
+      "effects": [
+        {
+          "type": "statMul",
+          "stat": "atk",
+          "value": 1.8
+        },
+        {
+          "type": "stunEveryNthHit",
+          "n": 1,
+          "sec": 0.6
+        }
+      ]
+    },
+    {
+      "id": "snowballBarrage",
+      "name": "냉각탄 포화",
+      "description": "15초 동안 공격이 반경 1칸 범위 피해, 맞은 적은 1.5초간 30% 둔화",
+      "charge": "auto",
+      "spCost": 30,
+      "spStart": 10,
+      "trigger": "manual",
+      "condition": "always",
+      "durationSec": 15,
+      "effects": [
+        {
+          "type": "splash",
+          "radius": 1
+        },
+        {
+          "type": "onHitSlow",
+          "amount": 0.3,
+          "sec": 1.5
+        }
+      ]
+    },
+    {
+      "id": "stardustShower",
+      "name": "아크 폭격",
+      "description": "사거리 안 모든 적에게 공격력 130% 마법 피해 3회",
+      "charge": "auto",
+      "spCost": 35,
+      "spStart": 15,
+      "trigger": "manual",
+      "condition": "enemyInRange",
+      "durationSec": 1.5,
+      "effects": [
+        {
+          "type": "pulseDamage",
+          "count": 3,
+          "intervalSec": 0.5,
+          "atkMul": 1.3,
+          "damageType": "magic"
+        }
+      ]
+    },
+    {
+      "id": "carrotSoup",
+      "name": "전술 가속",
+      "description": "8초 동안 사거리 안 친구들의 공격 간격 30% 감소 (자동 발동)",
+      "charge": "auto",
+      "spCost": 25,
+      "spStart": 10,
+      "trigger": "auto",
+      "condition": "enemyInRange",
+      "durationSec": 8,
+      "effects": [
+        {
+          "type": "hasteAura",
+          "value": 0.7
+        }
+      ]
+    },
+    {
+      "id": "tunnelAmbush",
+      "name": "돌파 사격",
+      "description": "앞의 적 하나를 경로 뒤쪽으로 2칸 밀어냄",
+      "charge": "auto",
+      "spCost": 10,
+      "spStart": 5,
+      "trigger": "manual",
+      "condition": "enemyInRange",
+      "durationSec": 0,
+      "effects": [
+        {
+          "type": "pushback",
+          "tiles": 2
+        }
+      ]
+    },
+    {
+      "id": "stickyRoad",
+      "name": "점착탄 지대",
+      "description": "12초 동안 사거리 안 적 이동 속도 60% 감소",
+      "charge": "auto",
+      "spCost": 25,
+      "spStart": 8,
+      "trigger": "manual",
+      "condition": "always",
+      "durationSec": 12,
+      "effects": [
+        {
+          "type": "slowAura",
+          "amount": 0.6
+        }
+      ]
+    },
+    {
+      "id": "wideBarrage",
+      "name": "화염 개방",
+      "description": "기본 사거리 주변 5×5칸에 불꽃 마법 발사. 12초 동안 10×10칸으로 확대, 공격력 +50%, 공격 속도 2배",
+      "charge": "auto",
+      "spCost": 35,
+      "spStart": 10,
+      "trigger": "manual",
+      "condition": "always",
+      "durationSec": 12,
+      "effects": [
+        {
+          "type": "rangeOverride",
+          "range": "square10"
+        },
+        {
+          "type": "statMul",
+          "stat": "atk",
+          "value": 1.5
+        },
+        {
+          "type": "statMul",
+          "stat": "atkInterval",
+          "value": 0.5
+        }
+      ]
+    },
+    {
+      "id": "tripleAim",
+      "name": "삼중 조준",
+      "description": "12초 동안 정면 5×3칸에서 최대 3명 동시 사격. 적 한 명당 한 발, 공격력 10% 감소·관통력 +40",
+      "charge": "auto",
+      "spCost": 30,
+      "spStart": 10,
+      "trigger": "manual",
+      "condition": "always",
+      "durationSec": 12,
+      "effects": [
+        {
+          "type": "rangeOverride",
+          "range": "line5Wide"
+        },
+        {
+          "type": "multiTarget",
+          "count": 3
+        },
+        {
+          "type": "armorPenAdd",
+          "value": 40
+        },
+        {
+          "type": "statMul",
+          "stat": "atk",
+          "value": 0.9
+        }
+      ]
+    },
+    {
+      "id": "polarAim",
+      "name": "극점 조준",
+      "description": "보스 우선 단일 사격. 12초 동안 공격력 +60%, 관통력 +180. 사거리와 공격 간격은 유지합니다.",
+      "charge": "auto",
+      "spCost": 45,
+      "spStart": 10,
+      "trigger": "manual",
+      "condition": "always",
+      "durationSec": 12,
+      "effects": [
+        {
+          "type": "statMul",
+          "stat": "atk",
+          "value": 1.6
+        },
+        {
+          "type": "armorPenAdd",
+          "value": 180
+        }
+      ]
+    },
+    {
+      "id": "siegeBarrage",
+      "name": "집중 포격",
+      "description": "기본 명중 지점 반경 1.2칸 폭발. 10초 동안 공격력 +40%, 공격 간격 2.4초 → 1.5초, 폭발 반경 1.8칸. 비행 적은 공격하지 못해요.",
+      "charge": "auto",
+      "spCost": 40,
+      "spStart": 10,
+      "trigger": "manual",
+      "condition": "always",
+      "durationSec": 10,
+      "effects": [
+        {
+          "type": "statMul",
+          "stat": "atk",
+          "value": 1.4
+        },
+        {
+          "type": "statMul",
+          "stat": "atkInterval",
+          "value": 0.625
+        },
+        {
+          "type": "splash",
+          "radius": 1.8
+        }
+      ]
+    },
+    {
+      "id": "stormChain",
+      "name": "청뢰 개방",
+      "description": "기본 최대 3명 연쇄 번개(100%·70%·50%). 12초 동안 공격 간격 1.5초 → 1초, 최대 5명(100%·80%·60%·40%·30%). 사거리 안 이전 적의 1.5칸 이내로 연결하며 같은 적을 두 번 맞히지 않아요.",
+      "charge": "auto",
+      "spCost": 40,
+      "spStart": 10,
+      "trigger": "manual",
+      "condition": "always",
+      "durationSec": 12,
+      "effects": [
+        {
+          "type": "statMul",
+          "stat": "atkInterval",
+          "value": 0.6666666666666666
+        },
+        {
+          "type": "chain",
+          "radius": 1.5,
+          "damageMuls": [
+            1,
+            0.8,
+            0.6,
+            0.4,
+            0.3
+          ]
+        }
+      ]
+    },
+    {
+      "id": "eventHorizon",
+      "name": "사건의 지평선",
+      "description": "목표의 현재 위치에 4초간 고정 중력장을 생성. 반경 1.8칸의 지상·공중 적을 70%, 보스를 25% 둔화시키고 끝날 때 공격력 300% 마법 피해. 목표가 사라져도 유지하며 후퇴하면 취소됩니다.",
+      "charge": "auto",
+      "spCost": 55,
+      "spStart": 15,
+      "trigger": "manual",
+      "condition": "enemyInRange",
+      "durationSec": 4,
+      "effects": [
+        {
+          "type": "gravityField",
+          "radius": 1.8,
+          "slowAmount": 0.7,
+          "bossSlowAmount": 0.25,
+          "atkMul": 3
+        }
+      ]
+    }
+  ],
+  "recruitment": {
+    "startMoney": 300,
+    "maxMoney": 999999,
+    "pullCost": 100,
+    "duplicateRefund": 30,
+    "guaranteeAfter": 10,
+    "rarities": [
+      {
+        "id": "R",
+        "pullPercent": 59,
+        "unitPrice": 600,
+        "units": [
+          "squirrel",
+          "mole",
+          "penguin",
+          "cat",
+          "snail"
+        ]
+      },
+      {
+        "id": "SR",
+        "pullPercent": 35,
+        "unitPrice": 600,
+        "units": [
+          "bear",
+          "sheep",
+          "bunny",
+          "owl",
+          "wolf"
+        ]
+      },
+      {
+        "id": "SSR",
+        "pullPercent": 5,
+        "unitPrice": 1800,
+        "units": [
+          "fox",
+          "redPanda",
+          "deer"
+        ]
+      },
+      {
+        "id": "UR",
+        "pullPercent": 1,
+        "unitPrice": 3600,
+        "units": [
+          "snowLeopard"
+        ]
+      }
+    ],
+    "starterUnits": [
+      "squirrel",
+      "cat",
+      "bear",
+      "penguin",
+      "sheep",
+      "bunny",
+      "mole",
+      "snail"
+    ],
+    "legacyUnits": [
+      "squirrel",
+      "cat",
+      "bear",
+      "penguin",
+      "sheep",
+      "bunny",
+      "mole",
+      "snail",
+      "owl",
+      "wolf"
+    ],
+    "pool": [
+      "squirrel",
+      "cat",
+      "bear",
+      "penguin",
+      "sheep",
+      "bunny",
+      "mole",
+      "snail",
+      "owl",
+      "wolf",
+      "fox",
+      "redPanda",
+      "deer",
+      "snowLeopard"
+    ],
+    "firstClearBonus": 400,
+    "starBonus": 40,
+    "defeatPerKill": 2,
+    "defeatMax": 80,
+    "clearRewards": {
+      "stage-1": 200,
+      "stage-2": 350,
+      "stage-3": 500,
+      "stage-4": 1200,
+      "stage-5": 1200,
+      "stage-6": 1800,
+      "stage-7": 2400
+    }
+  },
+  "stages": [
+    {
+      "id": "stage-1",
+      "name": "1-1 푸딩 창고 앞마당",
+      "description": "12웨이브의 짧은 방어전! 권총으로 첫 무리를 막고 대공·마법 친구와 마지막 혼성 공세를 맞아요. 마지막 웨이브에 덩치젤리 보스가 등장해요.",
+      "map": [
+        "##HH###HH##",
+        "S....H....#",
+        "#HH#.H.#H.#",
+        "#HH#...#H.G",
+        "####HHH#..#",
+        "###########"
+      ],
+      "startDp": 10,
+      "life": 3,
+      "deployLimit": 7,
+      "routes": {
+        "ground": {
+          "from": [
+            0,
+            1
+          ],
+          "to": [
+            10,
+            3
+          ]
+        },
+        "air": {
+          "from": [
+            0,
+            1
+          ],
+          "to": [
+            10,
+            3
+          ],
+          "flying": true
+        }
+      },
+      "spawns": [
+        {
+          "wave": 1,
+          "atSec": 3,
+          "enemy": "jelly",
+          "count": 3,
+          "intervalSec": 2.5,
+          "route": "ground"
+        },
+        {
+          "wave": 2,
+          "atSec": 14,
+          "enemy": "jelly",
+          "count": 4,
+          "intervalSec": 2,
+          "route": "ground"
+        },
+        {
+          "wave": 3,
+          "atSec": 26,
+          "enemy": "crow",
+          "count": 2,
+          "intervalSec": 3,
+          "route": "air"
+        },
+        {
+          "wave": 3,
+          "atSec": 30,
+          "enemy": "hardJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 4,
+          "atSec": 40,
+          "enemy": "jelly",
+          "count": 6,
+          "intervalSec": 1.7,
+          "route": "ground"
+        },
+        {
+          "wave": 4,
+          "atSec": 44,
+          "enemy": "crow",
+          "count": 2,
+          "intervalSec": 2,
+          "route": "air"
+        },
+        {
+          "wave": 5,
+          "atSec": 54,
+          "enemy": "hardJelly",
+          "count": 2,
+          "intervalSec": 3,
+          "route": "ground"
+        },
+        {
+          "wave": 5,
+          "atSec": 58,
+          "enemy": "jelly",
+          "count": 6,
+          "intervalSec": 1.5,
+          "route": "ground"
+        },
+        {
+          "wave": 6,
+          "atSec": 74,
+          "enemy": "jelly",
+          "count": 7,
+          "intervalSec": 1.4,
+          "route": "ground"
+        },
+        {
+          "wave": 6,
+          "atSec": 82,
+          "enemy": "crow",
+          "count": 3,
+          "intervalSec": 1.4,
+          "route": "air"
+        },
+        {
+          "wave": 7,
+          "atSec": 94,
+          "enemy": "hardJelly",
+          "count": 3,
+          "intervalSec": 3,
+          "route": "ground"
+        },
+        {
+          "wave": 7,
+          "atSec": 98,
+          "enemy": "jelly",
+          "count": 8,
+          "intervalSec": 1.25,
+          "route": "ground"
+        },
+        {
+          "wave": 8,
+          "atSec": 118,
+          "enemy": "crow",
+          "count": 4,
+          "intervalSec": 1.2,
+          "route": "air"
+        },
+        {
+          "wave": 8,
+          "atSec": 122,
+          "enemy": "hardJelly",
+          "count": 3,
+          "intervalSec": 2.5,
+          "route": "ground"
+        },
+        {
+          "wave": 9,
+          "atSec": 140,
+          "enemy": "jelly",
+          "count": 11,
+          "intervalSec": 0.9,
+          "route": "ground"
+        },
+        {
+          "wave": 9,
+          "atSec": 146,
+          "enemy": "crow",
+          "count": 3,
+          "intervalSec": 1,
+          "route": "air"
+        },
+        {
+          "wave": 10,
+          "atSec": 161,
+          "enemy": "hardJelly",
+          "count": 4,
+          "intervalSec": 2,
+          "route": "ground"
+        },
+        {
+          "wave": 10,
+          "atSec": 165,
+          "enemy": "jelly",
+          "count": 10,
+          "intervalSec": 1,
+          "route": "ground"
+        },
+        {
+          "wave": 11,
+          "atSec": 184,
+          "enemy": "jelly",
+          "count": 12,
+          "intervalSec": 0.8,
+          "route": "ground"
+        },
+        {
+          "wave": 11,
+          "atSec": 188,
+          "enemy": "crow",
+          "count": 5,
+          "intervalSec": 0.9,
+          "route": "air"
+        },
+        {
+          "wave": 12,
+          "atSec": 209,
+          "enemy": "hardJelly",
+          "count": 4,
+          "intervalSec": 1.8,
+          "route": "ground"
+        },
+        {
+          "wave": 12,
+          "atSec": 212,
+          "enemy": "jelly",
+          "count": 12,
+          "intervalSec": 0.8,
+          "route": "ground"
+        },
+        {
+          "wave": 12,
+          "atSec": 217,
+          "enemy": "crow",
+          "count": 4,
+          "intervalSec": 1,
+          "route": "air"
+        },
+        {
+          "wave": 12,
+          "atSec": 209,
+          "enemy": "bigJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        }
+      ]
+    },
+    {
+      "id": "stage-2",
+      "name": "1-2 두 갈래 산책길",
+      "description": "20웨이브 동안 두 입구를 지켜요. 지상 돌진과 공중 무리를 겹쳐 보내는 후반 공세를 스킬로 막아요. 마지막 웨이브에 성문젤리 보스가 등장해요.",
+      "startDp": 18,
+      "routes": {
+        "upper": {
+          "from": [
+            0,
+            2
+          ],
+          "via": [
+            [
+              2,
+              2
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              8,
+              1
+            ],
+            [
+              8,
+              2
+            ]
+          ],
+          "to": [
+            10,
+            2
+          ]
+        },
+        "lower": {
+          "from": [
+            0,
+            4
+          ],
+          "via": [
+            [
+              2,
+              4
+            ],
+            [
+              8,
+              4
+            ],
+            [
+              8,
+              2
+            ]
+          ],
+          "to": [
+            10,
+            2
+          ]
+        },
+        "air": {
+          "from": [
+            0,
+            2
+          ],
+          "to": [
+            10,
+            2
+          ],
+          "flying": true
+        }
+      },
+      "spawns": [
+        {
+          "wave": 1,
+          "atSec": 3,
+          "enemy": "jelly",
+          "count": 3,
+          "intervalSec": 4,
+          "route": "upper"
+        },
+        {
+          "wave": 2,
+          "atSec": 18,
+          "enemy": "jelly",
+          "count": 4,
+          "intervalSec": 3,
+          "route": "lower"
+        },
+        {
+          "wave": 3,
+          "atSec": 32,
+          "enemy": "hardJelly",
+          "count": 2,
+          "intervalSec": 6,
+          "route": "upper"
+        },
+        {
+          "wave": 3,
+          "atSec": 36,
+          "enemy": "crow",
+          "count": 2,
+          "intervalSec": 5,
+          "route": "air"
+        },
+        {
+          "wave": 4,
+          "atSec": 49,
+          "enemy": "jelly",
+          "count": 4,
+          "intervalSec": 2.5,
+          "route": "upper"
+        },
+        {
+          "wave": 4,
+          "atSec": 50,
+          "enemy": "jelly",
+          "count": 4,
+          "intervalSec": 2.5,
+          "route": "lower"
+        },
+        {
+          "wave": 5,
+          "atSec": 70,
+          "enemy": "hardJelly",
+          "count": 2,
+          "intervalSec": 5,
+          "route": "lower"
+        },
+        {
+          "wave": 5,
+          "atSec": 75,
+          "enemy": "crow",
+          "count": 3,
+          "intervalSec": 4,
+          "route": "air"
+        },
+        {
+          "wave": 3,
+          "atSec": 42,
+          "enemy": "dashJelly",
+          "count": 2,
+          "intervalSec": 3,
+          "route": "lower"
+        },
+        {
+          "wave": 3,
+          "atSec": 35,
+          "enemy": "crystalJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "upper"
+        },
+        {
+          "wave": 6,
+          "atSec": 88,
+          "enemy": "jelly",
+          "count": 5,
+          "intervalSec": 3,
+          "route": "upper"
+        },
+        {
+          "wave": 7,
+          "atSec": 103,
+          "enemy": "jelly",
+          "count": 6,
+          "intervalSec": 2.2,
+          "route": "lower"
+        },
+        {
+          "wave": 8,
+          "atSec": 117,
+          "enemy": "hardJelly",
+          "count": 3,
+          "intervalSec": 4.5,
+          "route": "upper"
+        },
+        {
+          "wave": 8,
+          "atSec": 121,
+          "enemy": "crow",
+          "count": 3,
+          "intervalSec": 2.3,
+          "route": "air"
+        },
+        {
+          "wave": 9,
+          "atSec": 134,
+          "enemy": "jelly",
+          "count": 6,
+          "intervalSec": 1.9,
+          "route": "upper"
+        },
+        {
+          "wave": 9,
+          "atSec": 135,
+          "enemy": "jelly",
+          "count": 6,
+          "intervalSec": 1.9,
+          "route": "lower"
+        },
+        {
+          "wave": 10,
+          "atSec": 155,
+          "enemy": "hardJelly",
+          "count": 3,
+          "intervalSec": 3.7,
+          "route": "lower"
+        },
+        {
+          "wave": 10,
+          "atSec": 155.5,
+          "enemy": "crow",
+          "count": 5,
+          "intervalSec": 1.9,
+          "route": "air"
+        },
+        {
+          "wave": 8,
+          "atSec": 118,
+          "enemy": "dashJelly",
+          "count": 3,
+          "intervalSec": 2.2,
+          "route": "lower"
+        },
+        {
+          "wave": 8,
+          "atSec": 120,
+          "enemy": "crystalJelly",
+          "count": 2,
+          "intervalSec": 2.2,
+          "route": "upper"
+        },
+        {
+          "wave": 11,
+          "atSec": 173,
+          "enemy": "jelly",
+          "count": 6,
+          "intervalSec": 2.1,
+          "route": "upper"
+        },
+        {
+          "wave": 12,
+          "atSec": 188,
+          "enemy": "jelly",
+          "count": 8,
+          "intervalSec": 1.6,
+          "route": "lower"
+        },
+        {
+          "wave": 13,
+          "atSec": 202,
+          "enemy": "hardJelly",
+          "count": 4,
+          "intervalSec": 3.1,
+          "route": "upper"
+        },
+        {
+          "wave": 13,
+          "atSec": 206,
+          "enemy": "crow",
+          "count": 4,
+          "intervalSec": 1.6,
+          "route": "air"
+        },
+        {
+          "wave": 14,
+          "atSec": 219,
+          "enemy": "jelly",
+          "count": 8,
+          "intervalSec": 1.3,
+          "route": "upper"
+        },
+        {
+          "wave": 14,
+          "atSec": 220,
+          "enemy": "jelly",
+          "count": 8,
+          "intervalSec": 1.3,
+          "route": "lower"
+        },
+        {
+          "wave": 15,
+          "atSec": 240,
+          "enemy": "hardJelly",
+          "count": 4,
+          "intervalSec": 2.6,
+          "route": "lower"
+        },
+        {
+          "wave": 15,
+          "atSec": 240.5,
+          "enemy": "crow",
+          "count": 6,
+          "intervalSec": 1.3,
+          "route": "air"
+        },
+        {
+          "wave": 13,
+          "atSec": 203,
+          "enemy": "dashJelly",
+          "count": 4,
+          "intervalSec": 1.6,
+          "route": "lower"
+        },
+        {
+          "wave": 13,
+          "atSec": 205,
+          "enemy": "crystalJelly",
+          "count": 2,
+          "intervalSec": 1.6,
+          "route": "upper"
+        },
+        {
+          "wave": 16,
+          "atSec": 258,
+          "enemy": "jelly",
+          "count": 8,
+          "intervalSec": 1.6,
+          "route": "upper"
+        },
+        {
+          "wave": 17,
+          "atSec": 273,
+          "enemy": "jelly",
+          "count": 10,
+          "intervalSec": 1.2,
+          "route": "lower"
+        },
+        {
+          "wave": 18,
+          "atSec": 287,
+          "enemy": "hardJelly",
+          "count": 5,
+          "intervalSec": 2.4,
+          "route": "upper"
+        },
+        {
+          "wave": 18,
+          "atSec": 291,
+          "enemy": "crow",
+          "count": 5,
+          "intervalSec": 1.3,
+          "route": "air"
+        },
+        {
+          "wave": 19,
+          "atSec": 304,
+          "enemy": "jelly",
+          "count": 10,
+          "intervalSec": 1,
+          "route": "upper"
+        },
+        {
+          "wave": 19,
+          "atSec": 305,
+          "enemy": "jelly",
+          "count": 10,
+          "intervalSec": 1,
+          "route": "lower"
+        },
+        {
+          "wave": 20,
+          "atSec": 325,
+          "enemy": "hardJelly",
+          "count": 5,
+          "intervalSec": 2,
+          "route": "lower"
+        },
+        {
+          "wave": 20,
+          "atSec": 325.5,
+          "enemy": "crow",
+          "count": 8,
+          "intervalSec": 1,
+          "route": "air"
+        },
+        {
+          "wave": 18,
+          "atSec": 288,
+          "enemy": "dashJelly",
+          "count": 5,
+          "intervalSec": 1.2,
+          "route": "lower"
+        },
+        {
+          "wave": 18,
+          "atSec": 290,
+          "enemy": "crystalJelly",
+          "count": 3,
+          "intervalSec": 1.2,
+          "route": "upper"
+        },
+        {
+          "wave": 20,
+          "atSec": 325,
+          "enemy": "gateJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "upper"
+        }
+      ],
+      "map": [
+        "###########",
+        "#H.......H#",
+        "S..HH#H#..G",
+        "#H.##H#H.H#",
+        "S........##",
+        "####H##H###"
+      ],
+      "life": 3,
+      "deployLimit": 7
+    },
+    {
+      "id": "stage-3",
+      "name": "1-3 방울 정원",
+      "description": "25웨이브의 분열·방해 방어전. 두 입구의 무리와 대장젤리를 차례로 막아요. 마지막 웨이브에 분열대장 보스가 등장해요.",
+      "startDp": 16,
+      "routes": {
+        "ground": {
+          "from": [
+            0,
+            1
+          ],
+          "via": [
+            [
+              4,
+              1
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              7,
+              4
+            ],
+            [
+              7,
+              1
+            ],
+            [
+              9,
+              1
+            ],
+            [
+              9,
+              4
+            ]
+          ],
+          "to": [
+            10,
+            4
+          ]
+        },
+        "air": {
+          "from": [
+            0,
+            1
+          ],
+          "to": [
+            10,
+            4
+          ],
+          "flying": true
+        },
+        "lower": {
+          "from": [
+            0,
+            4
+          ],
+          "via": [
+            [
+              4,
+              4
+            ],
+            [
+              7,
+              4
+            ],
+            [
+              7,
+              1
+            ],
+            [
+              9,
+              1
+            ],
+            [
+              9,
+              4
+            ]
+          ],
+          "to": [
+            10,
+            4
+          ]
+        }
+      },
+      "map": [
+        "##HH#######",
+        "S....H#...#",
+        "####.#H.H.#",
+        "###H.H#.#.#",
+        "S.......H.G",
+        "#####H##H##"
+      ],
+      "life": 3,
+      "deployLimit": 7,
+      "spawns": [
+        {
+          "wave": 1,
+          "atSec": 3,
+          "enemy": "jelly",
+          "count": 3,
+          "intervalSec": 3,
+          "route": "ground"
+        },
+        {
+          "wave": 2,
+          "atSec": 20,
+          "enemy": "splitJelly",
+          "count": 2,
+          "intervalSec": 5,
+          "route": "ground"
+        },
+        {
+          "wave": 3,
+          "atSec": 35,
+          "enemy": "hardJelly",
+          "count": 2,
+          "intervalSec": 6,
+          "route": "ground"
+        },
+        {
+          "wave": 3,
+          "atSec": 38,
+          "enemy": "crow",
+          "count": 2,
+          "intervalSec": 5,
+          "route": "air"
+        },
+        {
+          "wave": 4,
+          "atSec": 52,
+          "enemy": "splitJelly",
+          "count": 3,
+          "intervalSec": 4,
+          "route": "lower"
+        },
+        {
+          "wave": 4,
+          "atSec": 57,
+          "enemy": "jelly",
+          "count": 4,
+          "intervalSec": 2,
+          "route": "ground"
+        },
+        {
+          "wave": 5,
+          "atSec": 77,
+          "enemy": "splitJelly",
+          "count": 3,
+          "intervalSec": 4,
+          "route": "lower"
+        },
+        {
+          "wave": 5,
+          "atSec": 81,
+          "enemy": "hardJelly",
+          "count": 2,
+          "intervalSec": 6,
+          "route": "ground"
+        },
+        {
+          "wave": 2,
+          "atSec": 23,
+          "enemy": "sproutJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 3,
+          "atSec": 40,
+          "enemy": "shieldJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 4,
+          "atSec": 62,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 6,
+          "atSec": 95,
+          "enemy": "jelly",
+          "count": 4,
+          "intervalSec": 2.6,
+          "route": "ground"
+        },
+        {
+          "wave": 7,
+          "atSec": 112,
+          "enemy": "splitJelly",
+          "count": 3,
+          "intervalSec": 4.3,
+          "route": "ground"
+        },
+        {
+          "wave": 8,
+          "atSec": 127,
+          "enemy": "hardJelly",
+          "count": 3,
+          "intervalSec": 5.2,
+          "route": "ground"
+        },
+        {
+          "wave": 8,
+          "atSec": 130,
+          "enemy": "crow",
+          "count": 3,
+          "intervalSec": 4.3,
+          "route": "air"
+        },
+        {
+          "wave": 9,
+          "atSec": 144,
+          "enemy": "splitJelly",
+          "count": 4,
+          "intervalSec": 3.5,
+          "route": "lower"
+        },
+        {
+          "wave": 9,
+          "atSec": 149,
+          "enemy": "jelly",
+          "count": 5,
+          "intervalSec": 1.7,
+          "route": "ground"
+        },
+        {
+          "wave": 10,
+          "atSec": 169,
+          "enemy": "splitJelly",
+          "count": 4,
+          "intervalSec": 3.5,
+          "route": "lower"
+        },
+        {
+          "wave": 10,
+          "atSec": 173,
+          "enemy": "hardJelly",
+          "count": 3,
+          "intervalSec": 5.2,
+          "route": "ground"
+        },
+        {
+          "wave": 7,
+          "atSec": 115,
+          "enemy": "sproutJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 8,
+          "atSec": 132,
+          "enemy": "shieldJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 9,
+          "atSec": 154,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 11,
+          "atSec": 187,
+          "enemy": "jelly",
+          "count": 5,
+          "intervalSec": 2.2,
+          "route": "ground"
+        },
+        {
+          "wave": 12,
+          "atSec": 204,
+          "enemy": "splitJelly",
+          "count": 4,
+          "intervalSec": 3.7,
+          "route": "ground"
+        },
+        {
+          "wave": 13,
+          "atSec": 219,
+          "enemy": "hardJelly",
+          "count": 4,
+          "intervalSec": 4.5,
+          "route": "ground"
+        },
+        {
+          "wave": 13,
+          "atSec": 222,
+          "enemy": "crow",
+          "count": 4,
+          "intervalSec": 3.7,
+          "route": "air"
+        },
+        {
+          "wave": 14,
+          "atSec": 236,
+          "enemy": "splitJelly",
+          "count": 5,
+          "intervalSec": 3,
+          "route": "lower"
+        },
+        {
+          "wave": 14,
+          "atSec": 241,
+          "enemy": "jelly",
+          "count": 7,
+          "intervalSec": 1.5,
+          "route": "ground"
+        },
+        {
+          "wave": 15,
+          "atSec": 261,
+          "enemy": "splitJelly",
+          "count": 5,
+          "intervalSec": 3,
+          "route": "lower"
+        },
+        {
+          "wave": 15,
+          "atSec": 265,
+          "enemy": "hardJelly",
+          "count": 4,
+          "intervalSec": 4.5,
+          "route": "ground"
+        },
+        {
+          "wave": 12,
+          "atSec": 207,
+          "enemy": "sproutJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 13,
+          "atSec": 224,
+          "enemy": "shieldJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 14,
+          "atSec": 246,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 16,
+          "atSec": 279,
+          "enemy": "jelly",
+          "count": 7,
+          "intervalSec": 1.9,
+          "route": "ground"
+        },
+        {
+          "wave": 17,
+          "atSec": 296,
+          "enemy": "splitJelly",
+          "count": 5,
+          "intervalSec": 3.2,
+          "route": "ground"
+        },
+        {
+          "wave": 18,
+          "atSec": 311,
+          "enemy": "hardJelly",
+          "count": 5,
+          "intervalSec": 3.9,
+          "route": "ground"
+        },
+        {
+          "wave": 18,
+          "atSec": 314,
+          "enemy": "crow",
+          "count": 5,
+          "intervalSec": 3.2,
+          "route": "air"
+        },
+        {
+          "wave": 19,
+          "atSec": 328,
+          "enemy": "splitJelly",
+          "count": 7,
+          "intervalSec": 2.6,
+          "route": "lower"
+        },
+        {
+          "wave": 19,
+          "atSec": 333,
+          "enemy": "jelly",
+          "count": 10,
+          "intervalSec": 1.3,
+          "route": "ground"
+        },
+        {
+          "wave": 20,
+          "atSec": 353,
+          "enemy": "splitJelly",
+          "count": 7,
+          "intervalSec": 2.6,
+          "route": "lower"
+        },
+        {
+          "wave": 20,
+          "atSec": 357,
+          "enemy": "hardJelly",
+          "count": 5,
+          "intervalSec": 3.9,
+          "route": "ground"
+        },
+        {
+          "wave": 17,
+          "atSec": 299,
+          "enemy": "sproutJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 18,
+          "atSec": 316,
+          "enemy": "shieldJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 19,
+          "atSec": 338,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 21,
+          "atSec": 371,
+          "enemy": "jelly",
+          "count": 9,
+          "intervalSec": 1.7,
+          "route": "ground"
+        },
+        {
+          "wave": 22,
+          "atSec": 388,
+          "enemy": "splitJelly",
+          "count": 6,
+          "intervalSec": 2.9,
+          "route": "ground"
+        },
+        {
+          "wave": 23,
+          "atSec": 403,
+          "enemy": "hardJelly",
+          "count": 6,
+          "intervalSec": 3.5,
+          "route": "ground"
+        },
+        {
+          "wave": 23,
+          "atSec": 406,
+          "enemy": "crow",
+          "count": 6,
+          "intervalSec": 2.9,
+          "route": "air"
+        },
+        {
+          "wave": 24,
+          "atSec": 420,
+          "enemy": "splitJelly",
+          "count": 9,
+          "intervalSec": 2.3,
+          "route": "lower"
+        },
+        {
+          "wave": 24,
+          "atSec": 425,
+          "enemy": "jelly",
+          "count": 12,
+          "intervalSec": 1.2,
+          "route": "ground"
+        },
+        {
+          "wave": 25,
+          "atSec": 445,
+          "enemy": "splitJelly",
+          "count": 9,
+          "intervalSec": 2.3,
+          "route": "lower"
+        },
+        {
+          "wave": 25,
+          "atSec": 449,
+          "enemy": "hardJelly",
+          "count": 6,
+          "intervalSec": 3.5,
+          "route": "ground"
+        },
+        {
+          "wave": 22,
+          "atSec": 391,
+          "enemy": "sproutJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 23,
+          "atSec": 408,
+          "enemy": "shieldJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 24,
+          "atSec": 430,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 25,
+          "atSec": 445,
+          "enemy": "splitCaptain",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        }
+      ]
+    },
+    {
+      "id": "stage-4",
+      "name": "1-4 끈적한 온실",
+      "description": "방해꾼과 치유 지원자가 후반에 큰 무리와 함께 와요. 양쪽 입구에 스킬을 나눠 써요. 마지막 웨이브에 온실지기 보스가 등장해요.",
+      "startDp": 24,
+      "routes": {
+        "upper": {
+          "from": [
+            0,
+            1
+          ],
+          "via": [
+            [
+              4,
+              1
+            ],
+            [
+              4,
+              2
+            ]
+          ],
+          "to": [
+            10,
+            2
+          ]
+        },
+        "lower": {
+          "from": [
+            0,
+            4
+          ],
+          "via": [
+            [
+              6,
+              4
+            ],
+            [
+              6,
+              2
+            ]
+          ],
+          "to": [
+            10,
+            2
+          ]
+        },
+        "air": {
+          "from": [
+            0,
+            1
+          ],
+          "to": [
+            10,
+            2
+          ],
+          "flying": true
+        }
+      },
+      "map": [
+        "##H########",
+        "S....H#H#H#",
+        "###H......G",
+        "##H##H.H#H#",
+        "S......####",
+        "####H######"
+      ],
+      "life": 3,
+      "deployLimit": 7,
+      "spawns": [
+        {
+          "wave": 1,
+          "atSec": 3,
+          "enemy": "jelly",
+          "count": 3,
+          "intervalSec": 3,
+          "route": "upper"
+        },
+        {
+          "wave": 2,
+          "atSec": 16,
+          "enemy": "jelly",
+          "count": 3,
+          "intervalSec": 3,
+          "route": "lower"
+        },
+        {
+          "wave": 2,
+          "atSec": 20,
+          "enemy": "spitter",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 3,
+          "atSec": 33,
+          "enemy": "hardJelly",
+          "count": 2,
+          "intervalSec": 6,
+          "route": "upper"
+        },
+        {
+          "wave": 3,
+          "atSec": 37,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 7,
+          "route": "upper"
+        },
+        {
+          "wave": 4,
+          "atSec": 53,
+          "enemy": "splitJelly",
+          "count": 2,
+          "intervalSec": 6,
+          "route": "lower"
+        },
+        {
+          "wave": 4,
+          "atSec": 56,
+          "enemy": "crow",
+          "count": 3,
+          "intervalSec": 5,
+          "route": "air"
+        },
+        {
+          "wave": 5,
+          "atSec": 77,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 5,
+          "route": "lower"
+        },
+        {
+          "wave": 5,
+          "atSec": 77,
+          "enemy": "hardJelly",
+          "count": 3,
+          "intervalSec": 5,
+          "route": "upper"
+        },
+        {
+          "wave": 2,
+          "atSec": 23,
+          "enemy": "shieldJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 3,
+          "atSec": 36,
+          "enemy": "flowerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "upper"
+        },
+        {
+          "wave": 4,
+          "atSec": 59,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 6,
+          "atSec": 110,
+          "enemy": "jelly",
+          "count": 3,
+          "intervalSec": 2.9,
+          "route": "upper"
+        },
+        {
+          "wave": 7,
+          "atSec": 123,
+          "enemy": "jelly",
+          "count": 3,
+          "intervalSec": 2.9,
+          "route": "lower"
+        },
+        {
+          "wave": 7,
+          "atSec": 127,
+          "enemy": "spitter",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 8,
+          "atSec": 140,
+          "enemy": "hardJelly",
+          "count": 2,
+          "intervalSec": 5.7,
+          "route": "upper"
+        },
+        {
+          "wave": 8,
+          "atSec": 144,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 6.7,
+          "route": "upper"
+        },
+        {
+          "wave": 9,
+          "atSec": 160,
+          "enemy": "splitJelly",
+          "count": 2,
+          "intervalSec": 5.7,
+          "route": "lower"
+        },
+        {
+          "wave": 9,
+          "atSec": 163,
+          "enemy": "crow",
+          "count": 3,
+          "intervalSec": 4.8,
+          "route": "air"
+        },
+        {
+          "wave": 10,
+          "atSec": 184,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 4.8,
+          "route": "lower"
+        },
+        {
+          "wave": 10,
+          "atSec": 184,
+          "enemy": "hardJelly",
+          "count": 3,
+          "intervalSec": 4.8,
+          "route": "upper"
+        },
+        {
+          "wave": 7,
+          "atSec": 130,
+          "enemy": "shieldJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 8,
+          "atSec": 143,
+          "enemy": "flowerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "upper"
+        },
+        {
+          "wave": 9,
+          "atSec": 166,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 11,
+          "atSec": 217,
+          "enemy": "jelly",
+          "count": 4,
+          "intervalSec": 2.7,
+          "route": "upper"
+        },
+        {
+          "wave": 12,
+          "atSec": 230,
+          "enemy": "jelly",
+          "count": 4,
+          "intervalSec": 2.7,
+          "route": "lower"
+        },
+        {
+          "wave": 12,
+          "atSec": 234,
+          "enemy": "spitter",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 13,
+          "atSec": 247,
+          "enemy": "hardJelly",
+          "count": 2,
+          "intervalSec": 5.4,
+          "route": "upper"
+        },
+        {
+          "wave": 13,
+          "atSec": 251,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 6.3,
+          "route": "upper"
+        },
+        {
+          "wave": 14,
+          "atSec": 267,
+          "enemy": "splitJelly",
+          "count": 2,
+          "intervalSec": 5.4,
+          "route": "lower"
+        },
+        {
+          "wave": 14,
+          "atSec": 270,
+          "enemy": "crow",
+          "count": 4,
+          "intervalSec": 4.5,
+          "route": "air"
+        },
+        {
+          "wave": 15,
+          "atSec": 291,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 4.5,
+          "route": "lower"
+        },
+        {
+          "wave": 15,
+          "atSec": 291,
+          "enemy": "hardJelly",
+          "count": 4,
+          "intervalSec": 4.5,
+          "route": "upper"
+        },
+        {
+          "wave": 12,
+          "atSec": 237,
+          "enemy": "shieldJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 13,
+          "atSec": 250,
+          "enemy": "flowerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "upper"
+        },
+        {
+          "wave": 14,
+          "atSec": 273,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 16,
+          "atSec": 324,
+          "enemy": "jelly",
+          "count": 4,
+          "intervalSec": 2.6,
+          "route": "upper"
+        },
+        {
+          "wave": 17,
+          "atSec": 337,
+          "enemy": "jelly",
+          "count": 4,
+          "intervalSec": 2.6,
+          "route": "lower"
+        },
+        {
+          "wave": 17,
+          "atSec": 341,
+          "enemy": "spitter",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 18,
+          "atSec": 354,
+          "enemy": "hardJelly",
+          "count": 3,
+          "intervalSec": 5.1,
+          "route": "upper"
+        },
+        {
+          "wave": 18,
+          "atSec": 358,
+          "enemy": "spitter",
+          "count": 3,
+          "intervalSec": 6,
+          "route": "upper"
+        },
+        {
+          "wave": 19,
+          "atSec": 374,
+          "enemy": "splitJelly",
+          "count": 3,
+          "intervalSec": 5.1,
+          "route": "lower"
+        },
+        {
+          "wave": 19,
+          "atSec": 377,
+          "enemy": "crow",
+          "count": 4,
+          "intervalSec": 4.3,
+          "route": "air"
+        },
+        {
+          "wave": 20,
+          "atSec": 398,
+          "enemy": "spitter",
+          "count": 3,
+          "intervalSec": 4.3,
+          "route": "lower"
+        },
+        {
+          "wave": 20,
+          "atSec": 398,
+          "enemy": "hardJelly",
+          "count": 4,
+          "intervalSec": 4.3,
+          "route": "upper"
+        },
+        {
+          "wave": 17,
+          "atSec": 344,
+          "enemy": "shieldJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 18,
+          "atSec": 357,
+          "enemy": "flowerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "upper"
+        },
+        {
+          "wave": 19,
+          "atSec": 380,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 21,
+          "atSec": 431,
+          "enemy": "jelly",
+          "count": 5,
+          "intervalSec": 2.4,
+          "route": "upper"
+        },
+        {
+          "wave": 22,
+          "atSec": 444,
+          "enemy": "jelly",
+          "count": 5,
+          "intervalSec": 2.4,
+          "route": "lower"
+        },
+        {
+          "wave": 22,
+          "atSec": 448,
+          "enemy": "spitter",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 23,
+          "atSec": 461,
+          "enemy": "hardJelly",
+          "count": 3,
+          "intervalSec": 4.8,
+          "route": "upper"
+        },
+        {
+          "wave": 23,
+          "atSec": 465,
+          "enemy": "spitter",
+          "count": 3,
+          "intervalSec": 5.6,
+          "route": "upper"
+        },
+        {
+          "wave": 24,
+          "atSec": 481,
+          "enemy": "splitJelly",
+          "count": 3,
+          "intervalSec": 4.8,
+          "route": "lower"
+        },
+        {
+          "wave": 24,
+          "atSec": 484,
+          "enemy": "crow",
+          "count": 5,
+          "intervalSec": 4,
+          "route": "air"
+        },
+        {
+          "wave": 25,
+          "atSec": 505,
+          "enemy": "spitter",
+          "count": 3,
+          "intervalSec": 4,
+          "route": "lower"
+        },
+        {
+          "wave": 25,
+          "atSec": 505,
+          "enemy": "hardJelly",
+          "count": 5,
+          "intervalSec": 4,
+          "route": "upper"
+        },
+        {
+          "wave": 22,
+          "atSec": 451,
+          "enemy": "shieldJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 23,
+          "atSec": 464,
+          "enemy": "flowerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "upper"
+        },
+        {
+          "wave": 24,
+          "atSec": 487,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 26,
+          "atSec": 538,
+          "enemy": "jelly",
+          "count": 5,
+          "intervalSec": 2.3,
+          "route": "upper"
+        },
+        {
+          "wave": 27,
+          "atSec": 551,
+          "enemy": "jelly",
+          "count": 5,
+          "intervalSec": 2.3,
+          "route": "lower"
+        },
+        {
+          "wave": 27,
+          "atSec": 555,
+          "enemy": "spitter",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 28,
+          "atSec": 568,
+          "enemy": "hardJelly",
+          "count": 3,
+          "intervalSec": 4.6,
+          "route": "upper"
+        },
+        {
+          "wave": 28,
+          "atSec": 572,
+          "enemy": "spitter",
+          "count": 3,
+          "intervalSec": 5.3,
+          "route": "upper"
+        },
+        {
+          "wave": 29,
+          "atSec": 588,
+          "enemy": "splitJelly",
+          "count": 3,
+          "intervalSec": 4.6,
+          "route": "lower"
+        },
+        {
+          "wave": 29,
+          "atSec": 591,
+          "enemy": "crow",
+          "count": 5,
+          "intervalSec": 3.8,
+          "route": "air"
+        },
+        {
+          "wave": 30,
+          "atSec": 612,
+          "enemy": "spitter",
+          "count": 3,
+          "intervalSec": 3.8,
+          "route": "lower"
+        },
+        {
+          "wave": 30,
+          "atSec": 612,
+          "enemy": "hardJelly",
+          "count": 5,
+          "intervalSec": 3.8,
+          "route": "upper"
+        },
+        {
+          "wave": 27,
+          "atSec": 558,
+          "enemy": "shieldJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 28,
+          "atSec": 571,
+          "enemy": "flowerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "upper"
+        },
+        {
+          "wave": 29,
+          "atSec": 594,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 31,
+          "atSec": 645,
+          "enemy": "jelly",
+          "count": 6,
+          "intervalSec": 2.2,
+          "route": "upper"
+        },
+        {
+          "wave": 32,
+          "atSec": 658,
+          "enemy": "jelly",
+          "count": 6,
+          "intervalSec": 2.2,
+          "route": "lower"
+        },
+        {
+          "wave": 32,
+          "atSec": 662,
+          "enemy": "spitter",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 33,
+          "atSec": 675,
+          "enemy": "hardJelly",
+          "count": 4,
+          "intervalSec": 4.3,
+          "route": "upper"
+        },
+        {
+          "wave": 33,
+          "atSec": 679,
+          "enemy": "spitter",
+          "count": 4,
+          "intervalSec": 5,
+          "route": "upper"
+        },
+        {
+          "wave": 34,
+          "atSec": 695,
+          "enemy": "splitJelly",
+          "count": 4,
+          "intervalSec": 4.3,
+          "route": "lower"
+        },
+        {
+          "wave": 34,
+          "atSec": 698,
+          "enemy": "crow",
+          "count": 6,
+          "intervalSec": 3.6,
+          "route": "air"
+        },
+        {
+          "wave": 35,
+          "atSec": 719,
+          "enemy": "spitter",
+          "count": 4,
+          "intervalSec": 3.6,
+          "route": "lower"
+        },
+        {
+          "wave": 35,
+          "atSec": 719,
+          "enemy": "hardJelly",
+          "count": 6,
+          "intervalSec": 3.6,
+          "route": "upper"
+        },
+        {
+          "wave": 32,
+          "atSec": 665,
+          "enemy": "shieldJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 33,
+          "atSec": 678,
+          "enemy": "flowerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "upper"
+        },
+        {
+          "wave": 34,
+          "atSec": 701,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 36,
+          "atSec": 752,
+          "enemy": "jelly",
+          "count": 6,
+          "intervalSec": 2.1,
+          "route": "upper"
+        },
+        {
+          "wave": 37,
+          "atSec": 765,
+          "enemy": "jelly",
+          "count": 6,
+          "intervalSec": 2.1,
+          "route": "lower"
+        },
+        {
+          "wave": 37,
+          "atSec": 769,
+          "enemy": "spitter",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 38,
+          "atSec": 782,
+          "enemy": "hardJelly",
+          "count": 4,
+          "intervalSec": 4.1,
+          "route": "upper"
+        },
+        {
+          "wave": 38,
+          "atSec": 786,
+          "enemy": "spitter",
+          "count": 4,
+          "intervalSec": 4.8,
+          "route": "upper"
+        },
+        {
+          "wave": 39,
+          "atSec": 802,
+          "enemy": "splitJelly",
+          "count": 4,
+          "intervalSec": 4.1,
+          "route": "lower"
+        },
+        {
+          "wave": 39,
+          "atSec": 805,
+          "enemy": "crow",
+          "count": 6,
+          "intervalSec": 3.4,
+          "route": "air"
+        },
+        {
+          "wave": 40,
+          "atSec": 826,
+          "enemy": "spitter",
+          "count": 4,
+          "intervalSec": 3.4,
+          "route": "lower"
+        },
+        {
+          "wave": 40,
+          "atSec": 826,
+          "enemy": "hardJelly",
+          "count": 6,
+          "intervalSec": 3.4,
+          "route": "upper"
+        },
+        {
+          "wave": 37,
+          "atSec": 772,
+          "enemy": "shieldJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 38,
+          "atSec": 785,
+          "enemy": "flowerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "upper"
+        },
+        {
+          "wave": 39,
+          "atSec": 808,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 41,
+          "atSec": 859,
+          "enemy": "jelly",
+          "count": 7,
+          "intervalSec": 2,
+          "route": "upper"
+        },
+        {
+          "wave": 42,
+          "atSec": 872,
+          "enemy": "jelly",
+          "count": 7,
+          "intervalSec": 2,
+          "route": "lower"
+        },
+        {
+          "wave": 42,
+          "atSec": 876,
+          "enemy": "spitter",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 43,
+          "atSec": 889,
+          "enemy": "hardJelly",
+          "count": 5,
+          "intervalSec": 4,
+          "route": "upper"
+        },
+        {
+          "wave": 43,
+          "atSec": 893,
+          "enemy": "spitter",
+          "count": 5,
+          "intervalSec": 4.6,
+          "route": "upper"
+        },
+        {
+          "wave": 44,
+          "atSec": 909,
+          "enemy": "splitJelly",
+          "count": 5,
+          "intervalSec": 4,
+          "route": "lower"
+        },
+        {
+          "wave": 44,
+          "atSec": 912,
+          "enemy": "crow",
+          "count": 7,
+          "intervalSec": 3.3,
+          "route": "air"
+        },
+        {
+          "wave": 45,
+          "atSec": 933,
+          "enemy": "spitter",
+          "count": 5,
+          "intervalSec": 3.3,
+          "route": "lower"
+        },
+        {
+          "wave": 45,
+          "atSec": 933,
+          "enemy": "hardJelly",
+          "count": 7,
+          "intervalSec": 3.3,
+          "route": "upper"
+        },
+        {
+          "wave": 42,
+          "atSec": 879,
+          "enemy": "shieldJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 43,
+          "atSec": 892,
+          "enemy": "flowerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "upper"
+        },
+        {
+          "wave": 44,
+          "atSec": 915,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 46,
+          "atSec": 966,
+          "enemy": "jelly",
+          "count": 8,
+          "intervalSec": 1.9,
+          "route": "upper"
+        },
+        {
+          "wave": 47,
+          "atSec": 979,
+          "enemy": "jelly",
+          "count": 8,
+          "intervalSec": 1.9,
+          "route": "lower"
+        },
+        {
+          "wave": 47,
+          "atSec": 983,
+          "enemy": "spitter",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 48,
+          "atSec": 996,
+          "enemy": "hardJelly",
+          "count": 5,
+          "intervalSec": 3.8,
+          "route": "upper"
+        },
+        {
+          "wave": 48,
+          "atSec": 1000,
+          "enemy": "spitter",
+          "count": 5,
+          "intervalSec": 4.4,
+          "route": "upper"
+        },
+        {
+          "wave": 49,
+          "atSec": 1016,
+          "enemy": "splitJelly",
+          "count": 5,
+          "intervalSec": 3.8,
+          "route": "lower"
+        },
+        {
+          "wave": 49,
+          "atSec": 1019,
+          "enemy": "crow",
+          "count": 8,
+          "intervalSec": 3.2,
+          "route": "air"
+        },
+        {
+          "wave": 50,
+          "atSec": 1040,
+          "enemy": "spitter",
+          "count": 5,
+          "intervalSec": 3.2,
+          "route": "lower"
+        },
+        {
+          "wave": 50,
+          "atSec": 1040,
+          "enemy": "hardJelly",
+          "count": 8,
+          "intervalSec": 3.2,
+          "route": "upper"
+        },
+        {
+          "wave": 47,
+          "atSec": 986,
+          "enemy": "shieldJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 48,
+          "atSec": 999,
+          "enemy": "flowerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "upper"
+        },
+        {
+          "wave": 49,
+          "atSec": 1022,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 50,
+          "atSec": 1040,
+          "enemy": "greenhouseKeeper",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        }
+      ]
+    },
+    {
+      "id": "stage-5",
+      "name": "1-5 바람 부는 연못",
+      "description": "세 입구에서 지상·비행 무리가 점점 촘촘해져요. 가속과 중장갑 비행을 함께 대비해요. 마지막 웨이브에 폭풍까악 보스가 등장해요.",
+      "startDp": 22,
+      "routes": {
+        "ground": {
+          "from": [
+            0,
+            2
+          ],
+          "via": [
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              7,
+              4
+            ],
+            [
+              7,
+              1
+            ],
+            [
+              9,
+              1
+            ],
+            [
+              9,
+              3
+            ]
+          ],
+          "to": [
+            10,
+            3
+          ]
+        },
+        "air": {
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            10,
+            3
+          ],
+          "flying": true
+        },
+        "lower": {
+          "from": [
+            0,
+            4
+          ],
+          "via": [
+            [
+              3,
+              4
+            ],
+            [
+              7,
+              4
+            ],
+            [
+              7,
+              1
+            ],
+            [
+              9,
+              1
+            ],
+            [
+              9,
+              3
+            ]
+          ],
+          "to": [
+            10,
+            3
+          ]
+        }
+      },
+      "map": [
+        "S######H###",
+        "##H#H##,,,#",
+        "S,,,##H,H,#",
+        "#H#,HH#,#,G",
+        "S,,,,,,,HH#",
+        "###H##H####"
+      ],
+      "life": 3,
+      "deployLimit": 7,
+      "spawns": [
+        {
+          "wave": 1,
+          "atSec": 3,
+          "enemy": "jelly",
+          "count": 3,
+          "intervalSec": 3,
+          "route": "ground"
+        },
+        {
+          "wave": 2,
+          "atSec": 17,
+          "enemy": "crow",
+          "count": 3,
+          "intervalSec": 5,
+          "route": "air"
+        },
+        {
+          "wave": 2,
+          "atSec": 21,
+          "enemy": "hardJelly",
+          "count": 2,
+          "intervalSec": 6,
+          "route": "ground"
+        },
+        {
+          "wave": 3,
+          "atSec": 35,
+          "enemy": "splitJelly",
+          "count": 3,
+          "intervalSec": 4,
+          "route": "lower"
+        },
+        {
+          "wave": 3,
+          "atSec": 41,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 7,
+          "route": "ground"
+        },
+        {
+          "wave": 4,
+          "atSec": 56,
+          "enemy": "crow",
+          "count": 4,
+          "intervalSec": 4,
+          "route": "air"
+        },
+        {
+          "wave": 4,
+          "atSec": 57,
+          "enemy": "hardJelly",
+          "count": 3,
+          "intervalSec": 4,
+          "route": "ground"
+        },
+        {
+          "wave": 5,
+          "atSec": 78,
+          "enemy": "splitJelly",
+          "count": 3,
+          "intervalSec": 4,
+          "route": "lower"
+        },
+        {
+          "wave": 5,
+          "atSec": 83,
+          "enemy": "crow",
+          "count": 3,
+          "intervalSec": 4,
+          "route": "air"
+        },
+        {
+          "wave": 2,
+          "atSec": 20,
+          "enemy": "drummerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 4,
+          "atSec": 60,
+          "enemy": "armoredCrow",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "air"
+        },
+        {
+          "wave": 4,
+          "atSec": 63,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 6,
+          "atSec": 108,
+          "enemy": "jelly",
+          "count": 3,
+          "intervalSec": 3,
+          "route": "ground"
+        },
+        {
+          "wave": 7,
+          "atSec": 122,
+          "enemy": "crow",
+          "count": 3,
+          "intervalSec": 4.9,
+          "route": "air"
+        },
+        {
+          "wave": 7,
+          "atSec": 126,
+          "enemy": "hardJelly",
+          "count": 2,
+          "intervalSec": 5.9,
+          "route": "ground"
+        },
+        {
+          "wave": 8,
+          "atSec": 140,
+          "enemy": "splitJelly",
+          "count": 3,
+          "intervalSec": 4,
+          "route": "lower"
+        },
+        {
+          "wave": 8,
+          "atSec": 146,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 6.9,
+          "route": "ground"
+        },
+        {
+          "wave": 9,
+          "atSec": 161,
+          "enemy": "crow",
+          "count": 4,
+          "intervalSec": 4,
+          "route": "air"
+        },
+        {
+          "wave": 9,
+          "atSec": 162,
+          "enemy": "hardJelly",
+          "count": 3,
+          "intervalSec": 4,
+          "route": "ground"
+        },
+        {
+          "wave": 10,
+          "atSec": 183,
+          "enemy": "splitJelly",
+          "count": 3,
+          "intervalSec": 4,
+          "route": "lower"
+        },
+        {
+          "wave": 10,
+          "atSec": 188,
+          "enemy": "crow",
+          "count": 3,
+          "intervalSec": 4,
+          "route": "air"
+        },
+        {
+          "wave": 7,
+          "atSec": 125,
+          "enemy": "drummerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 9,
+          "atSec": 165,
+          "enemy": "armoredCrow",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "air"
+        },
+        {
+          "wave": 9,
+          "atSec": 168,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 11,
+          "atSec": 213,
+          "enemy": "jelly",
+          "count": 3,
+          "intervalSec": 2.9,
+          "route": "ground"
+        },
+        {
+          "wave": 12,
+          "atSec": 227,
+          "enemy": "crow",
+          "count": 3,
+          "intervalSec": 4.9,
+          "route": "air"
+        },
+        {
+          "wave": 12,
+          "atSec": 231,
+          "enemy": "hardJelly",
+          "count": 2,
+          "intervalSec": 5.8,
+          "route": "ground"
+        },
+        {
+          "wave": 13,
+          "atSec": 245,
+          "enemy": "splitJelly",
+          "count": 3,
+          "intervalSec": 3.9,
+          "route": "lower"
+        },
+        {
+          "wave": 13,
+          "atSec": 251,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 6.8,
+          "route": "ground"
+        },
+        {
+          "wave": 14,
+          "atSec": 266,
+          "enemy": "crow",
+          "count": 4,
+          "intervalSec": 3.9,
+          "route": "air"
+        },
+        {
+          "wave": 14,
+          "atSec": 267,
+          "enemy": "hardJelly",
+          "count": 3,
+          "intervalSec": 3.9,
+          "route": "ground"
+        },
+        {
+          "wave": 15,
+          "atSec": 288,
+          "enemy": "splitJelly",
+          "count": 3,
+          "intervalSec": 3.9,
+          "route": "lower"
+        },
+        {
+          "wave": 15,
+          "atSec": 293,
+          "enemy": "crow",
+          "count": 3,
+          "intervalSec": 3.9,
+          "route": "air"
+        },
+        {
+          "wave": 12,
+          "atSec": 230,
+          "enemy": "drummerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 14,
+          "atSec": 270,
+          "enemy": "armoredCrow",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "air"
+        },
+        {
+          "wave": 14,
+          "atSec": 273,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 16,
+          "atSec": 318,
+          "enemy": "jelly",
+          "count": 3,
+          "intervalSec": 2.9,
+          "route": "ground"
+        },
+        {
+          "wave": 17,
+          "atSec": 332,
+          "enemy": "crow",
+          "count": 3,
+          "intervalSec": 4.8,
+          "route": "air"
+        },
+        {
+          "wave": 17,
+          "atSec": 336,
+          "enemy": "hardJelly",
+          "count": 2,
+          "intervalSec": 5.7,
+          "route": "ground"
+        },
+        {
+          "wave": 18,
+          "atSec": 350,
+          "enemy": "splitJelly",
+          "count": 3,
+          "intervalSec": 3.8,
+          "route": "lower"
+        },
+        {
+          "wave": 18,
+          "atSec": 356,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 6.7,
+          "route": "ground"
+        },
+        {
+          "wave": 19,
+          "atSec": 371,
+          "enemy": "crow",
+          "count": 4,
+          "intervalSec": 3.8,
+          "route": "air"
+        },
+        {
+          "wave": 19,
+          "atSec": 372,
+          "enemy": "hardJelly",
+          "count": 3,
+          "intervalSec": 3.8,
+          "route": "ground"
+        },
+        {
+          "wave": 20,
+          "atSec": 393,
+          "enemy": "splitJelly",
+          "count": 3,
+          "intervalSec": 3.8,
+          "route": "lower"
+        },
+        {
+          "wave": 20,
+          "atSec": 398,
+          "enemy": "crow",
+          "count": 3,
+          "intervalSec": 3.8,
+          "route": "air"
+        },
+        {
+          "wave": 17,
+          "atSec": 335,
+          "enemy": "drummerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 19,
+          "atSec": 375,
+          "enemy": "armoredCrow",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "air"
+        },
+        {
+          "wave": 19,
+          "atSec": 378,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 21,
+          "atSec": 423,
+          "enemy": "jelly",
+          "count": 3,
+          "intervalSec": 2.8,
+          "route": "ground"
+        },
+        {
+          "wave": 22,
+          "atSec": 437,
+          "enemy": "crow",
+          "count": 3,
+          "intervalSec": 4.7,
+          "route": "air"
+        },
+        {
+          "wave": 22,
+          "atSec": 441,
+          "enemy": "hardJelly",
+          "count": 2,
+          "intervalSec": 5.6,
+          "route": "ground"
+        },
+        {
+          "wave": 23,
+          "atSec": 455,
+          "enemy": "splitJelly",
+          "count": 3,
+          "intervalSec": 3.7,
+          "route": "lower"
+        },
+        {
+          "wave": 23,
+          "atSec": 461,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 6.5,
+          "route": "ground"
+        },
+        {
+          "wave": 24,
+          "atSec": 476,
+          "enemy": "crow",
+          "count": 5,
+          "intervalSec": 3.7,
+          "route": "air"
+        },
+        {
+          "wave": 24,
+          "atSec": 477,
+          "enemy": "hardJelly",
+          "count": 3,
+          "intervalSec": 3.7,
+          "route": "ground"
+        },
+        {
+          "wave": 25,
+          "atSec": 498,
+          "enemy": "splitJelly",
+          "count": 3,
+          "intervalSec": 3.7,
+          "route": "lower"
+        },
+        {
+          "wave": 25,
+          "atSec": 503,
+          "enemy": "crow",
+          "count": 3,
+          "intervalSec": 3.7,
+          "route": "air"
+        },
+        {
+          "wave": 22,
+          "atSec": 440,
+          "enemy": "drummerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 24,
+          "atSec": 480,
+          "enemy": "armoredCrow",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "air"
+        },
+        {
+          "wave": 24,
+          "atSec": 483,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 26,
+          "atSec": 528,
+          "enemy": "jelly",
+          "count": 4,
+          "intervalSec": 2.7,
+          "route": "ground"
+        },
+        {
+          "wave": 27,
+          "atSec": 542,
+          "enemy": "crow",
+          "count": 4,
+          "intervalSec": 4.6,
+          "route": "air"
+        },
+        {
+          "wave": 27,
+          "atSec": 546,
+          "enemy": "hardJelly",
+          "count": 2,
+          "intervalSec": 5.5,
+          "route": "ground"
+        },
+        {
+          "wave": 28,
+          "atSec": 560,
+          "enemy": "splitJelly",
+          "count": 4,
+          "intervalSec": 3.7,
+          "route": "lower"
+        },
+        {
+          "wave": 28,
+          "atSec": 566,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 6.4,
+          "route": "ground"
+        },
+        {
+          "wave": 29,
+          "atSec": 581,
+          "enemy": "crow",
+          "count": 5,
+          "intervalSec": 3.7,
+          "route": "air"
+        },
+        {
+          "wave": 29,
+          "atSec": 582,
+          "enemy": "hardJelly",
+          "count": 4,
+          "intervalSec": 3.7,
+          "route": "ground"
+        },
+        {
+          "wave": 30,
+          "atSec": 603,
+          "enemy": "splitJelly",
+          "count": 4,
+          "intervalSec": 3.7,
+          "route": "lower"
+        },
+        {
+          "wave": 30,
+          "atSec": 608,
+          "enemy": "crow",
+          "count": 4,
+          "intervalSec": 3.7,
+          "route": "air"
+        },
+        {
+          "wave": 27,
+          "atSec": 545,
+          "enemy": "drummerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 29,
+          "atSec": 585,
+          "enemy": "armoredCrow",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "air"
+        },
+        {
+          "wave": 29,
+          "atSec": 588,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 31,
+          "atSec": 633,
+          "enemy": "jelly",
+          "count": 4,
+          "intervalSec": 2.7,
+          "route": "ground"
+        },
+        {
+          "wave": 32,
+          "atSec": 647,
+          "enemy": "crow",
+          "count": 4,
+          "intervalSec": 4.5,
+          "route": "air"
+        },
+        {
+          "wave": 32,
+          "atSec": 651,
+          "enemy": "hardJelly",
+          "count": 2,
+          "intervalSec": 5.4,
+          "route": "ground"
+        },
+        {
+          "wave": 33,
+          "atSec": 665,
+          "enemy": "splitJelly",
+          "count": 4,
+          "intervalSec": 3.6,
+          "route": "lower"
+        },
+        {
+          "wave": 33,
+          "atSec": 671,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 6.3,
+          "route": "ground"
+        },
+        {
+          "wave": 34,
+          "atSec": 686,
+          "enemy": "crow",
+          "count": 5,
+          "intervalSec": 3.6,
+          "route": "air"
+        },
+        {
+          "wave": 34,
+          "atSec": 687,
+          "enemy": "hardJelly",
+          "count": 4,
+          "intervalSec": 3.6,
+          "route": "ground"
+        },
+        {
+          "wave": 35,
+          "atSec": 708,
+          "enemy": "splitJelly",
+          "count": 4,
+          "intervalSec": 3.6,
+          "route": "lower"
+        },
+        {
+          "wave": 35,
+          "atSec": 713,
+          "enemy": "crow",
+          "count": 4,
+          "intervalSec": 3.6,
+          "route": "air"
+        },
+        {
+          "wave": 32,
+          "atSec": 650,
+          "enemy": "drummerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 34,
+          "atSec": 690,
+          "enemy": "armoredCrow",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "air"
+        },
+        {
+          "wave": 34,
+          "atSec": 693,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 36,
+          "atSec": 738,
+          "enemy": "jelly",
+          "count": 4,
+          "intervalSec": 2.6,
+          "route": "ground"
+        },
+        {
+          "wave": 37,
+          "atSec": 752,
+          "enemy": "crow",
+          "count": 4,
+          "intervalSec": 4.4,
+          "route": "air"
+        },
+        {
+          "wave": 37,
+          "atSec": 756,
+          "enemy": "hardJelly",
+          "count": 3,
+          "intervalSec": 5.3,
+          "route": "ground"
+        },
+        {
+          "wave": 38,
+          "atSec": 770,
+          "enemy": "splitJelly",
+          "count": 4,
+          "intervalSec": 3.5,
+          "route": "lower"
+        },
+        {
+          "wave": 38,
+          "atSec": 776,
+          "enemy": "spitter",
+          "count": 3,
+          "intervalSec": 6.1,
+          "route": "ground"
+        },
+        {
+          "wave": 39,
+          "atSec": 791,
+          "enemy": "crow",
+          "count": 5,
+          "intervalSec": 3.5,
+          "route": "air"
+        },
+        {
+          "wave": 39,
+          "atSec": 792,
+          "enemy": "hardJelly",
+          "count": 4,
+          "intervalSec": 3.5,
+          "route": "ground"
+        },
+        {
+          "wave": 40,
+          "atSec": 813,
+          "enemy": "splitJelly",
+          "count": 4,
+          "intervalSec": 3.5,
+          "route": "lower"
+        },
+        {
+          "wave": 40,
+          "atSec": 818,
+          "enemy": "crow",
+          "count": 4,
+          "intervalSec": 3.5,
+          "route": "air"
+        },
+        {
+          "wave": 37,
+          "atSec": 755,
+          "enemy": "drummerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 39,
+          "atSec": 795,
+          "enemy": "armoredCrow",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "air"
+        },
+        {
+          "wave": 39,
+          "atSec": 798,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 41,
+          "atSec": 843,
+          "enemy": "jelly",
+          "count": 4,
+          "intervalSec": 2.6,
+          "route": "ground"
+        },
+        {
+          "wave": 42,
+          "atSec": 857,
+          "enemy": "crow",
+          "count": 4,
+          "intervalSec": 4.3,
+          "route": "air"
+        },
+        {
+          "wave": 42,
+          "atSec": 861,
+          "enemy": "hardJelly",
+          "count": 3,
+          "intervalSec": 5.2,
+          "route": "ground"
+        },
+        {
+          "wave": 43,
+          "atSec": 875,
+          "enemy": "splitJelly",
+          "count": 4,
+          "intervalSec": 3.4,
+          "route": "lower"
+        },
+        {
+          "wave": 43,
+          "atSec": 881,
+          "enemy": "spitter",
+          "count": 3,
+          "intervalSec": 6,
+          "route": "ground"
+        },
+        {
+          "wave": 44,
+          "atSec": 896,
+          "enemy": "crow",
+          "count": 5,
+          "intervalSec": 3.4,
+          "route": "air"
+        },
+        {
+          "wave": 44,
+          "atSec": 897,
+          "enemy": "hardJelly",
+          "count": 4,
+          "intervalSec": 3.4,
+          "route": "ground"
+        },
+        {
+          "wave": 45,
+          "atSec": 918,
+          "enemy": "splitJelly",
+          "count": 4,
+          "intervalSec": 3.4,
+          "route": "lower"
+        },
+        {
+          "wave": 45,
+          "atSec": 923,
+          "enemy": "crow",
+          "count": 4,
+          "intervalSec": 3.4,
+          "route": "air"
+        },
+        {
+          "wave": 42,
+          "atSec": 860,
+          "enemy": "drummerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 44,
+          "atSec": 900,
+          "enemy": "armoredCrow",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "air"
+        },
+        {
+          "wave": 44,
+          "atSec": 903,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 46,
+          "atSec": 948,
+          "enemy": "jelly",
+          "count": 4,
+          "intervalSec": 2.5,
+          "route": "ground"
+        },
+        {
+          "wave": 47,
+          "atSec": 962,
+          "enemy": "crow",
+          "count": 4,
+          "intervalSec": 4.2,
+          "route": "air"
+        },
+        {
+          "wave": 47,
+          "atSec": 966,
+          "enemy": "hardJelly",
+          "count": 3,
+          "intervalSec": 5.1,
+          "route": "ground"
+        },
+        {
+          "wave": 48,
+          "atSec": 980,
+          "enemy": "splitJelly",
+          "count": 4,
+          "intervalSec": 3.4,
+          "route": "lower"
+        },
+        {
+          "wave": 48,
+          "atSec": 986,
+          "enemy": "spitter",
+          "count": 3,
+          "intervalSec": 5.9,
+          "route": "ground"
+        },
+        {
+          "wave": 49,
+          "atSec": 1001,
+          "enemy": "crow",
+          "count": 6,
+          "intervalSec": 3.4,
+          "route": "air"
+        },
+        {
+          "wave": 49,
+          "atSec": 1002,
+          "enemy": "hardJelly",
+          "count": 4,
+          "intervalSec": 3.4,
+          "route": "ground"
+        },
+        {
+          "wave": 50,
+          "atSec": 1023,
+          "enemy": "splitJelly",
+          "count": 4,
+          "intervalSec": 3.4,
+          "route": "lower"
+        },
+        {
+          "wave": 50,
+          "atSec": 1028,
+          "enemy": "crow",
+          "count": 4,
+          "intervalSec": 3.4,
+          "route": "air"
+        },
+        {
+          "wave": 47,
+          "atSec": 965,
+          "enemy": "drummerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 49,
+          "atSec": 1005,
+          "enemy": "armoredCrow",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "air"
+        },
+        {
+          "wave": 49,
+          "atSec": 1008,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 50,
+          "atSec": 1023,
+          "enemy": "stormCrow",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "air"
+        }
+      ]
+    },
+    {
+      "id": "stage-6",
+      "name": "1-6 푸딩 대연회",
+      "description": "왕젤리를 지원하는 지상·공중 무리가 후반에 늘어요. 중간보스와 왕젤리에 맞춰 스킬을 아껴요. 마지막 웨이브에 왕젤리 보스가 등장해요.",
+      "startDp": 25,
+      "routes": {
+        "ground": {
+          "from": [
+            0,
+            1
+          ],
+          "via": [
+            [
+              4,
+              1
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              7,
+              4
+            ],
+            [
+              7,
+              1
+            ],
+            [
+              9,
+              1
+            ],
+            [
+              9,
+              3
+            ]
+          ],
+          "to": [
+            10,
+            3
+          ]
+        },
+        "lower": {
+          "from": [
+            0,
+            4
+          ],
+          "via": [
+            [
+              2,
+              4
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              7,
+              4
+            ],
+            [
+              7,
+              1
+            ],
+            [
+              9,
+              1
+            ],
+            [
+              9,
+              3
+            ]
+          ],
+          "to": [
+            10,
+            3
+          ]
+        },
+        "air": {
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            10,
+            3
+          ],
+          "flying": true
+        }
+      },
+      "map": [
+        "S#HH#######",
+        "S....##...H",
+        "##...HH.H.#",
+        "##.H.H#.#.G",
+        "S..#....H##",
+        "###H#H##H##"
+      ],
+      "life": 3,
+      "deployLimit": 7,
+      "spawns": [
+        {
+          "wave": 1,
+          "atSec": 3,
+          "enemy": "jelly",
+          "count": 3,
+          "intervalSec": 3,
+          "route": "ground"
+        },
+        {
+          "wave": 2,
+          "atSec": 14,
+          "enemy": "jelly",
+          "count": 3,
+          "intervalSec": 3,
+          "route": "lower"
+        },
+        {
+          "wave": 3,
+          "atSec": 28,
+          "enemy": "hardJelly",
+          "count": 2,
+          "intervalSec": 6,
+          "route": "ground"
+        },
+        {
+          "wave": 3,
+          "atSec": 30,
+          "enemy": "crow",
+          "count": 2,
+          "intervalSec": 5,
+          "route": "air"
+        },
+        {
+          "wave": 4,
+          "atSec": 44,
+          "enemy": "splitJelly",
+          "count": 3,
+          "intervalSec": 5,
+          "route": "lower"
+        },
+        {
+          "wave": 4,
+          "atSec": 51,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 6,
+          "route": "ground"
+        },
+        {
+          "wave": 5,
+          "atSec": 65,
+          "enemy": "hardJelly",
+          "count": 3,
+          "intervalSec": 5,
+          "route": "ground"
+        },
+        {
+          "wave": 5,
+          "atSec": 70,
+          "enemy": "splitJelly",
+          "count": 2,
+          "intervalSec": 6,
+          "route": "lower"
+        },
+        {
+          "wave": 6,
+          "atSec": 83,
+          "enemy": "kingJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 6,
+          "atSec": 91,
+          "enemy": "crow",
+          "count": 4,
+          "intervalSec": 4,
+          "route": "air"
+        },
+        {
+          "wave": 6,
+          "atSec": 97,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 7,
+          "route": "lower"
+        },
+        {
+          "wave": 4,
+          "atSec": 46,
+          "enemy": "nestJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 5,
+          "atSec": 67,
+          "enemy": "flowerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 5,
+          "atSec": 69,
+          "enemy": "drummerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 4,
+          "atSec": 55,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 7,
+          "atSec": 149,
+          "enemy": "jelly",
+          "count": 3,
+          "intervalSec": 3,
+          "route": "ground"
+        },
+        {
+          "wave": 8,
+          "atSec": 160,
+          "enemy": "jelly",
+          "count": 3,
+          "intervalSec": 3,
+          "route": "lower"
+        },
+        {
+          "wave": 9,
+          "atSec": 174,
+          "enemy": "hardJelly",
+          "count": 2,
+          "intervalSec": 6,
+          "route": "ground"
+        },
+        {
+          "wave": 9,
+          "atSec": 176,
+          "enemy": "crow",
+          "count": 2,
+          "intervalSec": 5,
+          "route": "air"
+        },
+        {
+          "wave": 10,
+          "atSec": 190,
+          "enemy": "splitJelly",
+          "count": 3,
+          "intervalSec": 5,
+          "route": "lower"
+        },
+        {
+          "wave": 10,
+          "atSec": 197,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 6,
+          "route": "ground"
+        },
+        {
+          "wave": 11,
+          "atSec": 211,
+          "enemy": "hardJelly",
+          "count": 3,
+          "intervalSec": 5,
+          "route": "ground"
+        },
+        {
+          "wave": 11,
+          "atSec": 216,
+          "enemy": "splitJelly",
+          "count": 2,
+          "intervalSec": 6,
+          "route": "lower"
+        },
+        {
+          "wave": 12,
+          "atSec": 229,
+          "enemy": "kingJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 12,
+          "atSec": 237,
+          "enemy": "crow",
+          "count": 4,
+          "intervalSec": 4,
+          "route": "air"
+        },
+        {
+          "wave": 12,
+          "atSec": 243,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 7,
+          "route": "lower"
+        },
+        {
+          "wave": 10,
+          "atSec": 192,
+          "enemy": "nestJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 11,
+          "atSec": 213,
+          "enemy": "flowerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 11,
+          "atSec": 215,
+          "enemy": "drummerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 10,
+          "atSec": 201,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 13,
+          "atSec": 295,
+          "enemy": "jelly",
+          "count": 3,
+          "intervalSec": 3,
+          "route": "ground"
+        },
+        {
+          "wave": 14,
+          "atSec": 306,
+          "enemy": "jelly",
+          "count": 3,
+          "intervalSec": 3,
+          "route": "lower"
+        },
+        {
+          "wave": 15,
+          "atSec": 320,
+          "enemy": "hardJelly",
+          "count": 2,
+          "intervalSec": 5.9,
+          "route": "ground"
+        },
+        {
+          "wave": 15,
+          "atSec": 322,
+          "enemy": "crow",
+          "count": 2,
+          "intervalSec": 4.9,
+          "route": "air"
+        },
+        {
+          "wave": 16,
+          "atSec": 336,
+          "enemy": "splitJelly",
+          "count": 3,
+          "intervalSec": 4.9,
+          "route": "lower"
+        },
+        {
+          "wave": 16,
+          "atSec": 343,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 5.9,
+          "route": "ground"
+        },
+        {
+          "wave": 17,
+          "atSec": 357,
+          "enemy": "hardJelly",
+          "count": 3,
+          "intervalSec": 4.9,
+          "route": "ground"
+        },
+        {
+          "wave": 17,
+          "atSec": 362,
+          "enemy": "splitJelly",
+          "count": 2,
+          "intervalSec": 5.9,
+          "route": "lower"
+        },
+        {
+          "wave": 18,
+          "atSec": 375,
+          "enemy": "kingJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 18,
+          "atSec": 383,
+          "enemy": "crow",
+          "count": 4,
+          "intervalSec": 3.9,
+          "route": "air"
+        },
+        {
+          "wave": 18,
+          "atSec": 389,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 6.9,
+          "route": "lower"
+        },
+        {
+          "wave": 16,
+          "atSec": 338,
+          "enemy": "nestJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 17,
+          "atSec": 359,
+          "enemy": "flowerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 17,
+          "atSec": 361,
+          "enemy": "drummerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 16,
+          "atSec": 347,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 19,
+          "atSec": 441,
+          "enemy": "jelly",
+          "count": 3,
+          "intervalSec": 2.9,
+          "route": "ground"
+        },
+        {
+          "wave": 20,
+          "atSec": 452,
+          "enemy": "jelly",
+          "count": 3,
+          "intervalSec": 2.9,
+          "route": "lower"
+        },
+        {
+          "wave": 21,
+          "atSec": 466,
+          "enemy": "hardJelly",
+          "count": 2,
+          "intervalSec": 5.9,
+          "route": "ground"
+        },
+        {
+          "wave": 21,
+          "atSec": 468,
+          "enemy": "crow",
+          "count": 2,
+          "intervalSec": 4.9,
+          "route": "air"
+        },
+        {
+          "wave": 22,
+          "atSec": 482,
+          "enemy": "splitJelly",
+          "count": 3,
+          "intervalSec": 4.9,
+          "route": "lower"
+        },
+        {
+          "wave": 22,
+          "atSec": 489,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 5.9,
+          "route": "ground"
+        },
+        {
+          "wave": 23,
+          "atSec": 503,
+          "enemy": "hardJelly",
+          "count": 3,
+          "intervalSec": 4.9,
+          "route": "ground"
+        },
+        {
+          "wave": 23,
+          "atSec": 508,
+          "enemy": "splitJelly",
+          "count": 2,
+          "intervalSec": 5.9,
+          "route": "lower"
+        },
+        {
+          "wave": 24,
+          "atSec": 521,
+          "enemy": "kingJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 24,
+          "atSec": 529,
+          "enemy": "crow",
+          "count": 4,
+          "intervalSec": 3.9,
+          "route": "air"
+        },
+        {
+          "wave": 24,
+          "atSec": 535,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 6.8,
+          "route": "lower"
+        },
+        {
+          "wave": 22,
+          "atSec": 484,
+          "enemy": "nestJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 23,
+          "atSec": 505,
+          "enemy": "flowerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 23,
+          "atSec": 507,
+          "enemy": "drummerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 22,
+          "atSec": 493,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 25,
+          "atSec": 587,
+          "enemy": "jelly",
+          "count": 3,
+          "intervalSec": 2.9,
+          "route": "ground"
+        },
+        {
+          "wave": 26,
+          "atSec": 598,
+          "enemy": "jelly",
+          "count": 3,
+          "intervalSec": 2.9,
+          "route": "lower"
+        },
+        {
+          "wave": 27,
+          "atSec": 612,
+          "enemy": "hardJelly",
+          "count": 2,
+          "intervalSec": 5.8,
+          "route": "ground"
+        },
+        {
+          "wave": 27,
+          "atSec": 614,
+          "enemy": "crow",
+          "count": 2,
+          "intervalSec": 4.8,
+          "route": "air"
+        },
+        {
+          "wave": 28,
+          "atSec": 628,
+          "enemy": "splitJelly",
+          "count": 3,
+          "intervalSec": 4.8,
+          "route": "lower"
+        },
+        {
+          "wave": 28,
+          "atSec": 635,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 5.8,
+          "route": "ground"
+        },
+        {
+          "wave": 29,
+          "atSec": 649,
+          "enemy": "hardJelly",
+          "count": 3,
+          "intervalSec": 4.8,
+          "route": "ground"
+        },
+        {
+          "wave": 29,
+          "atSec": 654,
+          "enemy": "splitJelly",
+          "count": 2,
+          "intervalSec": 5.8,
+          "route": "lower"
+        },
+        {
+          "wave": 30,
+          "atSec": 667,
+          "enemy": "kingJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 30,
+          "atSec": 675,
+          "enemy": "crow",
+          "count": 4,
+          "intervalSec": 3.9,
+          "route": "air"
+        },
+        {
+          "wave": 30,
+          "atSec": 681,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 6.8,
+          "route": "lower"
+        },
+        {
+          "wave": 28,
+          "atSec": 630,
+          "enemy": "nestJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 29,
+          "atSec": 651,
+          "enemy": "flowerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 29,
+          "atSec": 653,
+          "enemy": "drummerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 28,
+          "atSec": 639,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 31,
+          "atSec": 733,
+          "enemy": "jelly",
+          "count": 3,
+          "intervalSec": 2.9,
+          "route": "ground"
+        },
+        {
+          "wave": 32,
+          "atSec": 744,
+          "enemy": "jelly",
+          "count": 3,
+          "intervalSec": 2.9,
+          "route": "lower"
+        },
+        {
+          "wave": 33,
+          "atSec": 758,
+          "enemy": "hardJelly",
+          "count": 2,
+          "intervalSec": 5.7,
+          "route": "ground"
+        },
+        {
+          "wave": 33,
+          "atSec": 760,
+          "enemy": "crow",
+          "count": 2,
+          "intervalSec": 4.8,
+          "route": "air"
+        },
+        {
+          "wave": 34,
+          "atSec": 774,
+          "enemy": "splitJelly",
+          "count": 3,
+          "intervalSec": 4.8,
+          "route": "lower"
+        },
+        {
+          "wave": 34,
+          "atSec": 781,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 5.7,
+          "route": "ground"
+        },
+        {
+          "wave": 35,
+          "atSec": 795,
+          "enemy": "hardJelly",
+          "count": 3,
+          "intervalSec": 4.8,
+          "route": "ground"
+        },
+        {
+          "wave": 35,
+          "atSec": 800,
+          "enemy": "splitJelly",
+          "count": 2,
+          "intervalSec": 5.7,
+          "route": "lower"
+        },
+        {
+          "wave": 36,
+          "atSec": 813,
+          "enemy": "kingJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 36,
+          "atSec": 821,
+          "enemy": "crow",
+          "count": 4,
+          "intervalSec": 3.8,
+          "route": "air"
+        },
+        {
+          "wave": 36,
+          "atSec": 827,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 6.7,
+          "route": "lower"
+        },
+        {
+          "wave": 34,
+          "atSec": 776,
+          "enemy": "nestJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 35,
+          "atSec": 797,
+          "enemy": "flowerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 35,
+          "atSec": 799,
+          "enemy": "drummerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 34,
+          "atSec": 785,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 37,
+          "atSec": 879,
+          "enemy": "jelly",
+          "count": 3,
+          "intervalSec": 2.8,
+          "route": "ground"
+        },
+        {
+          "wave": 38,
+          "atSec": 890,
+          "enemy": "jelly",
+          "count": 3,
+          "intervalSec": 2.8,
+          "route": "lower"
+        },
+        {
+          "wave": 39,
+          "atSec": 904,
+          "enemy": "hardJelly",
+          "count": 2,
+          "intervalSec": 5.7,
+          "route": "ground"
+        },
+        {
+          "wave": 39,
+          "atSec": 906,
+          "enemy": "crow",
+          "count": 2,
+          "intervalSec": 4.7,
+          "route": "air"
+        },
+        {
+          "wave": 40,
+          "atSec": 920,
+          "enemy": "splitJelly",
+          "count": 3,
+          "intervalSec": 4.7,
+          "route": "lower"
+        },
+        {
+          "wave": 40,
+          "atSec": 927,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 5.7,
+          "route": "ground"
+        },
+        {
+          "wave": 41,
+          "atSec": 941,
+          "enemy": "hardJelly",
+          "count": 3,
+          "intervalSec": 4.7,
+          "route": "ground"
+        },
+        {
+          "wave": 41,
+          "atSec": 946,
+          "enemy": "splitJelly",
+          "count": 2,
+          "intervalSec": 5.7,
+          "route": "lower"
+        },
+        {
+          "wave": 42,
+          "atSec": 959,
+          "enemy": "kingJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 42,
+          "atSec": 967,
+          "enemy": "crow",
+          "count": 4,
+          "intervalSec": 3.8,
+          "route": "air"
+        },
+        {
+          "wave": 42,
+          "atSec": 973,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 6.6,
+          "route": "lower"
+        },
+        {
+          "wave": 40,
+          "atSec": 922,
+          "enemy": "nestJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 41,
+          "atSec": 943,
+          "enemy": "flowerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 41,
+          "atSec": 945,
+          "enemy": "drummerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 40,
+          "atSec": 931,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 43,
+          "atSec": 1025,
+          "enemy": "jelly",
+          "count": 3,
+          "intervalSec": 2.8,
+          "route": "ground"
+        },
+        {
+          "wave": 44,
+          "atSec": 1036,
+          "enemy": "jelly",
+          "count": 3,
+          "intervalSec": 2.8,
+          "route": "lower"
+        },
+        {
+          "wave": 45,
+          "atSec": 1050,
+          "enemy": "hardJelly",
+          "count": 2,
+          "intervalSec": 5.6,
+          "route": "ground"
+        },
+        {
+          "wave": 45,
+          "atSec": 1052,
+          "enemy": "crow",
+          "count": 2,
+          "intervalSec": 4.7,
+          "route": "air"
+        },
+        {
+          "wave": 46,
+          "atSec": 1066,
+          "enemy": "splitJelly",
+          "count": 3,
+          "intervalSec": 4.7,
+          "route": "lower"
+        },
+        {
+          "wave": 46,
+          "atSec": 1073,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 5.6,
+          "route": "ground"
+        },
+        {
+          "wave": 47,
+          "atSec": 1087,
+          "enemy": "hardJelly",
+          "count": 3,
+          "intervalSec": 4.7,
+          "route": "ground"
+        },
+        {
+          "wave": 47,
+          "atSec": 1092,
+          "enemy": "splitJelly",
+          "count": 2,
+          "intervalSec": 5.6,
+          "route": "lower"
+        },
+        {
+          "wave": 48,
+          "atSec": 1105,
+          "enemy": "kingJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 48,
+          "atSec": 1113,
+          "enemy": "crow",
+          "count": 5,
+          "intervalSec": 3.7,
+          "route": "air"
+        },
+        {
+          "wave": 48,
+          "atSec": 1119,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 6.5,
+          "route": "lower"
+        },
+        {
+          "wave": 46,
+          "atSec": 1068,
+          "enemy": "nestJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 47,
+          "atSec": 1089,
+          "enemy": "flowerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 47,
+          "atSec": 1091,
+          "enemy": "drummerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 46,
+          "atSec": 1077,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 49,
+          "atSec": 1171,
+          "enemy": "jelly",
+          "count": 4,
+          "intervalSec": 2.8,
+          "route": "ground"
+        },
+        {
+          "wave": 50,
+          "atSec": 1182,
+          "enemy": "jelly",
+          "count": 4,
+          "intervalSec": 2.8,
+          "route": "lower"
+        },
+        {
+          "wave": 51,
+          "atSec": 1196,
+          "enemy": "hardJelly",
+          "count": 2,
+          "intervalSec": 5.5,
+          "route": "ground"
+        },
+        {
+          "wave": 51,
+          "atSec": 1198,
+          "enemy": "crow",
+          "count": 2,
+          "intervalSec": 4.6,
+          "route": "air"
+        },
+        {
+          "wave": 52,
+          "atSec": 1212,
+          "enemy": "splitJelly",
+          "count": 4,
+          "intervalSec": 4.6,
+          "route": "lower"
+        },
+        {
+          "wave": 52,
+          "atSec": 1219,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 5.5,
+          "route": "ground"
+        },
+        {
+          "wave": 53,
+          "atSec": 1233,
+          "enemy": "hardJelly",
+          "count": 4,
+          "intervalSec": 4.6,
+          "route": "ground"
+        },
+        {
+          "wave": 53,
+          "atSec": 1238,
+          "enemy": "splitJelly",
+          "count": 2,
+          "intervalSec": 5.5,
+          "route": "lower"
+        },
+        {
+          "wave": 54,
+          "atSec": 1251,
+          "enemy": "kingJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 54,
+          "atSec": 1259,
+          "enemy": "crow",
+          "count": 5,
+          "intervalSec": 3.7,
+          "route": "air"
+        },
+        {
+          "wave": 54,
+          "atSec": 1265,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 6.5,
+          "route": "lower"
+        },
+        {
+          "wave": 52,
+          "atSec": 1214,
+          "enemy": "nestJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 53,
+          "atSec": 1235,
+          "enemy": "flowerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 53,
+          "atSec": 1237,
+          "enemy": "drummerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 52,
+          "atSec": 1223,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 55,
+          "atSec": 1317,
+          "enemy": "jelly",
+          "count": 4,
+          "intervalSec": 2.7,
+          "route": "ground"
+        },
+        {
+          "wave": 56,
+          "atSec": 1328,
+          "enemy": "jelly",
+          "count": 4,
+          "intervalSec": 2.7,
+          "route": "lower"
+        },
+        {
+          "wave": 57,
+          "atSec": 1342,
+          "enemy": "hardJelly",
+          "count": 2,
+          "intervalSec": 5.5,
+          "route": "ground"
+        },
+        {
+          "wave": 57,
+          "atSec": 1344,
+          "enemy": "crow",
+          "count": 2,
+          "intervalSec": 4.6,
+          "route": "air"
+        },
+        {
+          "wave": 58,
+          "atSec": 1358,
+          "enemy": "splitJelly",
+          "count": 4,
+          "intervalSec": 4.6,
+          "route": "lower"
+        },
+        {
+          "wave": 58,
+          "atSec": 1365,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 5.5,
+          "route": "ground"
+        },
+        {
+          "wave": 59,
+          "atSec": 1379,
+          "enemy": "hardJelly",
+          "count": 4,
+          "intervalSec": 4.6,
+          "route": "ground"
+        },
+        {
+          "wave": 59,
+          "atSec": 1384,
+          "enemy": "splitJelly",
+          "count": 2,
+          "intervalSec": 5.5,
+          "route": "lower"
+        },
+        {
+          "wave": 60,
+          "atSec": 1397,
+          "enemy": "kingJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 60,
+          "atSec": 1405,
+          "enemy": "crow",
+          "count": 5,
+          "intervalSec": 3.7,
+          "route": "air"
+        },
+        {
+          "wave": 60,
+          "atSec": 1411,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 6.4,
+          "route": "lower"
+        },
+        {
+          "wave": 58,
+          "atSec": 1360,
+          "enemy": "nestJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 59,
+          "atSec": 1381,
+          "enemy": "flowerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 59,
+          "atSec": 1383,
+          "enemy": "drummerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 58,
+          "atSec": 1369,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        }
+      ]
+    },
+    {
+      "id": "stage-7",
+      "name": "1-7 드넓은 푸딩 정원",
+      "description": "넓은 정원의 세 입구에 지원 무리가 점점 늘어요. 후방 재배치와 보스·대공 스킬로 막아요. 마지막 웨이브에 정원군주 보스가 등장해요.",
+      "map": [
+        "######################",
+        "###H##H####H###H##H###",
+        "S.....####........#...",
+        "####H.H##H.HH##HH.H.H.",
+        "#####......######...#.",
+        "######H##H##H#####H#H.",
+        "S....#####H####H#H##.G",
+        "####.......######....#",
+        "####H.H##H.H##H#H.HH#H",
+        "S.....####........####",
+        "###H##H##H#H##H#H#H###",
+        "######################"
+      ],
+      "startDp": 25,
+      "life": 3,
+      "deployLimit": 7,
+      "routes": {
+        "ground": {
+          "from": [
+            0,
+            2
+          ],
+          "via": [
+            [
+              5,
+              2
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              10,
+              4
+            ],
+            [
+              10,
+              2
+            ],
+            [
+              17,
+              2
+            ],
+            [
+              17,
+              4
+            ],
+            [
+              19,
+              4
+            ],
+            [
+              19,
+              2
+            ],
+            [
+              21,
+              2
+            ]
+          ],
+          "to": [
+            21,
+            6
+          ]
+        },
+        "lower": {
+          "from": [
+            0,
+            9
+          ],
+          "via": [
+            [
+              5,
+              9
+            ],
+            [
+              5,
+              7
+            ],
+            [
+              10,
+              7
+            ],
+            [
+              10,
+              9
+            ],
+            [
+              17,
+              9
+            ],
+            [
+              17,
+              7
+            ],
+            [
+              20,
+              7
+            ],
+            [
+              20,
+              6
+            ]
+          ],
+          "to": [
+            21,
+            6
+          ]
+        },
+        "air": {
+          "from": [
+            0,
+            2
+          ],
+          "via": [
+            [
+              5,
+              4
+            ],
+            [
+              17,
+              4
+            ],
+            [
+              19,
+              4
+            ],
+            [
+              19,
+              2
+            ],
+            [
+              21,
+              2
+            ]
+          ],
+          "to": [
+            21,
+            6
+          ],
+          "flying": true
+        },
+        "airLower": {
+          "from": [
+            0,
+            9
+          ],
+          "via": [
+            [
+              5,
+              7
+            ],
+            [
+              17,
+              7
+            ],
+            [
+              20,
+              6
+            ]
+          ],
+          "to": [
+            21,
+            6
+          ],
+          "flying": true
+        },
+        "middle": {
+          "from": [
+            0,
+            6
+          ],
+          "via": [
+            [
+              4,
+              6
+            ],
+            [
+              4,
+              7
+            ],
+            [
+              10,
+              7
+            ],
+            [
+              10,
+              9
+            ],
+            [
+              17,
+              9
+            ],
+            [
+              17,
+              7
+            ],
+            [
+              20,
+              7
+            ],
+            [
+              20,
+              6
+            ]
+          ],
+          "to": [
+            21,
+            6
+          ]
+        }
+      },
+      "spawns": [
+        {
+          "wave": 1,
+          "atSec": 3,
+          "enemy": "jelly",
+          "count": 3,
+          "intervalSec": 3,
+          "route": "ground"
+        },
+        {
+          "wave": 2,
+          "atSec": 14,
+          "enemy": "jelly",
+          "count": 3,
+          "intervalSec": 3,
+          "route": "lower"
+        },
+        {
+          "wave": 3,
+          "atSec": 28,
+          "enemy": "hardJelly",
+          "count": 2,
+          "intervalSec": 6,
+          "route": "ground"
+        },
+        {
+          "wave": 3,
+          "atSec": 30,
+          "enemy": "crow",
+          "count": 2,
+          "intervalSec": 5,
+          "route": "air"
+        },
+        {
+          "wave": 4,
+          "atSec": 44,
+          "enemy": "splitJelly",
+          "count": 3,
+          "intervalSec": 5,
+          "route": "middle"
+        },
+        {
+          "wave": 4,
+          "atSec": 51,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 6,
+          "route": "ground"
+        },
+        {
+          "wave": 5,
+          "atSec": 65,
+          "enemy": "hardJelly",
+          "count": 3,
+          "intervalSec": 5,
+          "route": "ground"
+        },
+        {
+          "wave": 5,
+          "atSec": 70,
+          "enemy": "splitJelly",
+          "count": 2,
+          "intervalSec": 6,
+          "route": "lower"
+        },
+        {
+          "wave": 6,
+          "atSec": 83,
+          "enemy": "kingJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 6,
+          "atSec": 91,
+          "enemy": "crow",
+          "count": 2,
+          "intervalSec": 4,
+          "route": "air"
+        },
+        {
+          "wave": 6,
+          "atSec": 97,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 7,
+          "route": "lower"
+        },
+        {
+          "wave": 6,
+          "atSec": 93,
+          "enemy": "crow",
+          "count": 2,
+          "intervalSec": 4,
+          "route": "airLower"
+        },
+        {
+          "wave": 1,
+          "atSec": 6,
+          "enemy": "dashJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 2,
+          "atSec": 18,
+          "enemy": "shieldJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 3,
+          "atSec": 32,
+          "enemy": "crystalJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 3,
+          "atSec": 34,
+          "enemy": "sproutJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 4,
+          "atSec": 48,
+          "enemy": "flowerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 4,
+          "atSec": 49,
+          "enemy": "drummerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 5,
+          "atSec": 68,
+          "enemy": "nestJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 6,
+          "atSec": 95,
+          "enemy": "armoredCrow",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "air"
+        },
+        {
+          "wave": 4,
+          "atSec": 55,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 7,
+          "atSec": 178,
+          "enemy": "jelly",
+          "count": 3,
+          "intervalSec": 3,
+          "route": "ground"
+        },
+        {
+          "wave": 8,
+          "atSec": 189,
+          "enemy": "jelly",
+          "count": 3,
+          "intervalSec": 3,
+          "route": "lower"
+        },
+        {
+          "wave": 9,
+          "atSec": 203,
+          "enemy": "hardJelly",
+          "count": 2,
+          "intervalSec": 6,
+          "route": "ground"
+        },
+        {
+          "wave": 9,
+          "atSec": 205,
+          "enemy": "crow",
+          "count": 2,
+          "intervalSec": 5,
+          "route": "air"
+        },
+        {
+          "wave": 10,
+          "atSec": 219,
+          "enemy": "splitJelly",
+          "count": 3,
+          "intervalSec": 5,
+          "route": "middle"
+        },
+        {
+          "wave": 10,
+          "atSec": 226,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 6,
+          "route": "ground"
+        },
+        {
+          "wave": 11,
+          "atSec": 240,
+          "enemy": "hardJelly",
+          "count": 3,
+          "intervalSec": 5,
+          "route": "ground"
+        },
+        {
+          "wave": 11,
+          "atSec": 245,
+          "enemy": "splitJelly",
+          "count": 2,
+          "intervalSec": 6,
+          "route": "lower"
+        },
+        {
+          "wave": 12,
+          "atSec": 258,
+          "enemy": "kingJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 12,
+          "atSec": 266,
+          "enemy": "crow",
+          "count": 2,
+          "intervalSec": 4,
+          "route": "air"
+        },
+        {
+          "wave": 12,
+          "atSec": 272,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 7,
+          "route": "lower"
+        },
+        {
+          "wave": 12,
+          "atSec": 268,
+          "enemy": "crow",
+          "count": 2,
+          "intervalSec": 4,
+          "route": "airLower"
+        },
+        {
+          "wave": 7,
+          "atSec": 181,
+          "enemy": "dashJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 8,
+          "atSec": 193,
+          "enemy": "shieldJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 9,
+          "atSec": 207,
+          "enemy": "crystalJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 9,
+          "atSec": 209,
+          "enemy": "sproutJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 10,
+          "atSec": 223,
+          "enemy": "flowerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 10,
+          "atSec": 224,
+          "enemy": "drummerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 11,
+          "atSec": 243,
+          "enemy": "nestJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 12,
+          "atSec": 270,
+          "enemy": "armoredCrow",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "air"
+        },
+        {
+          "wave": 10,
+          "atSec": 230,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 13,
+          "atSec": 353,
+          "enemy": "jelly",
+          "count": 3,
+          "intervalSec": 3,
+          "route": "ground"
+        },
+        {
+          "wave": 14,
+          "atSec": 364,
+          "enemy": "jelly",
+          "count": 3,
+          "intervalSec": 3,
+          "route": "lower"
+        },
+        {
+          "wave": 15,
+          "atSec": 378,
+          "enemy": "hardJelly",
+          "count": 2,
+          "intervalSec": 5.9,
+          "route": "ground"
+        },
+        {
+          "wave": 15,
+          "atSec": 380,
+          "enemy": "crow",
+          "count": 2,
+          "intervalSec": 4.9,
+          "route": "air"
+        },
+        {
+          "wave": 16,
+          "atSec": 394,
+          "enemy": "splitJelly",
+          "count": 3,
+          "intervalSec": 4.9,
+          "route": "middle"
+        },
+        {
+          "wave": 16,
+          "atSec": 401,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 5.9,
+          "route": "ground"
+        },
+        {
+          "wave": 17,
+          "atSec": 415,
+          "enemy": "hardJelly",
+          "count": 3,
+          "intervalSec": 4.9,
+          "route": "ground"
+        },
+        {
+          "wave": 17,
+          "atSec": 420,
+          "enemy": "splitJelly",
+          "count": 2,
+          "intervalSec": 5.9,
+          "route": "lower"
+        },
+        {
+          "wave": 18,
+          "atSec": 433,
+          "enemy": "kingJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 18,
+          "atSec": 441,
+          "enemy": "crow",
+          "count": 2,
+          "intervalSec": 3.9,
+          "route": "air"
+        },
+        {
+          "wave": 18,
+          "atSec": 447,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 6.9,
+          "route": "lower"
+        },
+        {
+          "wave": 18,
+          "atSec": 443,
+          "enemy": "crow",
+          "count": 2,
+          "intervalSec": 3.9,
+          "route": "airLower"
+        },
+        {
+          "wave": 13,
+          "atSec": 356,
+          "enemy": "dashJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 14,
+          "atSec": 368,
+          "enemy": "shieldJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 15,
+          "atSec": 382,
+          "enemy": "crystalJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 15,
+          "atSec": 384,
+          "enemy": "sproutJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 16,
+          "atSec": 398,
+          "enemy": "flowerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 16,
+          "atSec": 399,
+          "enemy": "drummerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 17,
+          "atSec": 418,
+          "enemy": "nestJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 18,
+          "atSec": 445,
+          "enemy": "armoredCrow",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "air"
+        },
+        {
+          "wave": 16,
+          "atSec": 405,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 19,
+          "atSec": 528,
+          "enemy": "jelly",
+          "count": 3,
+          "intervalSec": 2.9,
+          "route": "ground"
+        },
+        {
+          "wave": 20,
+          "atSec": 539,
+          "enemy": "jelly",
+          "count": 3,
+          "intervalSec": 2.9,
+          "route": "lower"
+        },
+        {
+          "wave": 21,
+          "atSec": 553,
+          "enemy": "hardJelly",
+          "count": 2,
+          "intervalSec": 5.9,
+          "route": "ground"
+        },
+        {
+          "wave": 21,
+          "atSec": 555,
+          "enemy": "crow",
+          "count": 2,
+          "intervalSec": 4.9,
+          "route": "air"
+        },
+        {
+          "wave": 22,
+          "atSec": 569,
+          "enemy": "splitJelly",
+          "count": 3,
+          "intervalSec": 4.9,
+          "route": "middle"
+        },
+        {
+          "wave": 22,
+          "atSec": 576,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 5.9,
+          "route": "ground"
+        },
+        {
+          "wave": 23,
+          "atSec": 590,
+          "enemy": "hardJelly",
+          "count": 3,
+          "intervalSec": 4.9,
+          "route": "ground"
+        },
+        {
+          "wave": 23,
+          "atSec": 595,
+          "enemy": "splitJelly",
+          "count": 2,
+          "intervalSec": 5.9,
+          "route": "lower"
+        },
+        {
+          "wave": 24,
+          "atSec": 608,
+          "enemy": "kingJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 24,
+          "atSec": 616,
+          "enemy": "crow",
+          "count": 2,
+          "intervalSec": 3.9,
+          "route": "air"
+        },
+        {
+          "wave": 24,
+          "atSec": 622,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 6.8,
+          "route": "lower"
+        },
+        {
+          "wave": 24,
+          "atSec": 618,
+          "enemy": "crow",
+          "count": 2,
+          "intervalSec": 3.9,
+          "route": "airLower"
+        },
+        {
+          "wave": 19,
+          "atSec": 531,
+          "enemy": "dashJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 20,
+          "atSec": 543,
+          "enemy": "shieldJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 21,
+          "atSec": 557,
+          "enemy": "crystalJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 21,
+          "atSec": 559,
+          "enemy": "sproutJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 22,
+          "atSec": 573,
+          "enemy": "flowerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 22,
+          "atSec": 574,
+          "enemy": "drummerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 23,
+          "atSec": 593,
+          "enemy": "nestJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 24,
+          "atSec": 620,
+          "enemy": "armoredCrow",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "air"
+        },
+        {
+          "wave": 22,
+          "atSec": 580,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 25,
+          "atSec": 703,
+          "enemy": "jelly",
+          "count": 3,
+          "intervalSec": 2.9,
+          "route": "ground"
+        },
+        {
+          "wave": 26,
+          "atSec": 714,
+          "enemy": "jelly",
+          "count": 3,
+          "intervalSec": 2.9,
+          "route": "lower"
+        },
+        {
+          "wave": 27,
+          "atSec": 728,
+          "enemy": "hardJelly",
+          "count": 2,
+          "intervalSec": 5.8,
+          "route": "ground"
+        },
+        {
+          "wave": 27,
+          "atSec": 730,
+          "enemy": "crow",
+          "count": 2,
+          "intervalSec": 4.8,
+          "route": "air"
+        },
+        {
+          "wave": 28,
+          "atSec": 744,
+          "enemy": "splitJelly",
+          "count": 3,
+          "intervalSec": 4.8,
+          "route": "middle"
+        },
+        {
+          "wave": 28,
+          "atSec": 751,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 5.8,
+          "route": "ground"
+        },
+        {
+          "wave": 29,
+          "atSec": 765,
+          "enemy": "hardJelly",
+          "count": 3,
+          "intervalSec": 4.8,
+          "route": "ground"
+        },
+        {
+          "wave": 29,
+          "atSec": 770,
+          "enemy": "splitJelly",
+          "count": 2,
+          "intervalSec": 5.8,
+          "route": "lower"
+        },
+        {
+          "wave": 30,
+          "atSec": 783,
+          "enemy": "kingJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 30,
+          "atSec": 791,
+          "enemy": "crow",
+          "count": 2,
+          "intervalSec": 3.9,
+          "route": "air"
+        },
+        {
+          "wave": 30,
+          "atSec": 797,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 6.8,
+          "route": "lower"
+        },
+        {
+          "wave": 30,
+          "atSec": 793,
+          "enemy": "crow",
+          "count": 2,
+          "intervalSec": 3.9,
+          "route": "airLower"
+        },
+        {
+          "wave": 25,
+          "atSec": 706,
+          "enemy": "dashJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 26,
+          "atSec": 718,
+          "enemy": "shieldJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 27,
+          "atSec": 732,
+          "enemy": "crystalJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 27,
+          "atSec": 734,
+          "enemy": "sproutJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 28,
+          "atSec": 748,
+          "enemy": "flowerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 28,
+          "atSec": 749,
+          "enemy": "drummerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 29,
+          "atSec": 768,
+          "enemy": "nestJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 30,
+          "atSec": 795,
+          "enemy": "armoredCrow",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "air"
+        },
+        {
+          "wave": 28,
+          "atSec": 755,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 31,
+          "atSec": 878,
+          "enemy": "jelly",
+          "count": 3,
+          "intervalSec": 2.9,
+          "route": "ground"
+        },
+        {
+          "wave": 32,
+          "atSec": 889,
+          "enemy": "jelly",
+          "count": 3,
+          "intervalSec": 2.9,
+          "route": "lower"
+        },
+        {
+          "wave": 33,
+          "atSec": 903,
+          "enemy": "hardJelly",
+          "count": 2,
+          "intervalSec": 5.7,
+          "route": "ground"
+        },
+        {
+          "wave": 33,
+          "atSec": 905,
+          "enemy": "crow",
+          "count": 2,
+          "intervalSec": 4.8,
+          "route": "air"
+        },
+        {
+          "wave": 34,
+          "atSec": 919,
+          "enemy": "splitJelly",
+          "count": 3,
+          "intervalSec": 4.8,
+          "route": "middle"
+        },
+        {
+          "wave": 34,
+          "atSec": 926,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 5.7,
+          "route": "ground"
+        },
+        {
+          "wave": 35,
+          "atSec": 940,
+          "enemy": "hardJelly",
+          "count": 3,
+          "intervalSec": 4.8,
+          "route": "ground"
+        },
+        {
+          "wave": 35,
+          "atSec": 945,
+          "enemy": "splitJelly",
+          "count": 2,
+          "intervalSec": 5.7,
+          "route": "lower"
+        },
+        {
+          "wave": 36,
+          "atSec": 958,
+          "enemy": "kingJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 36,
+          "atSec": 966,
+          "enemy": "crow",
+          "count": 2,
+          "intervalSec": 3.8,
+          "route": "air"
+        },
+        {
+          "wave": 36,
+          "atSec": 972,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 6.7,
+          "route": "lower"
+        },
+        {
+          "wave": 36,
+          "atSec": 968,
+          "enemy": "crow",
+          "count": 2,
+          "intervalSec": 3.8,
+          "route": "airLower"
+        },
+        {
+          "wave": 31,
+          "atSec": 881,
+          "enemy": "dashJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 32,
+          "atSec": 893,
+          "enemy": "shieldJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 33,
+          "atSec": 907,
+          "enemy": "crystalJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 33,
+          "atSec": 909,
+          "enemy": "sproutJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 34,
+          "atSec": 923,
+          "enemy": "flowerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 34,
+          "atSec": 924,
+          "enemy": "drummerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 35,
+          "atSec": 943,
+          "enemy": "nestJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 36,
+          "atSec": 970,
+          "enemy": "armoredCrow",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "air"
+        },
+        {
+          "wave": 34,
+          "atSec": 930,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 37,
+          "atSec": 1053,
+          "enemy": "jelly",
+          "count": 3,
+          "intervalSec": 2.8,
+          "route": "ground"
+        },
+        {
+          "wave": 38,
+          "atSec": 1064,
+          "enemy": "jelly",
+          "count": 3,
+          "intervalSec": 2.8,
+          "route": "lower"
+        },
+        {
+          "wave": 39,
+          "atSec": 1078,
+          "enemy": "hardJelly",
+          "count": 2,
+          "intervalSec": 5.7,
+          "route": "ground"
+        },
+        {
+          "wave": 39,
+          "atSec": 1080,
+          "enemy": "crow",
+          "count": 2,
+          "intervalSec": 4.7,
+          "route": "air"
+        },
+        {
+          "wave": 40,
+          "atSec": 1094,
+          "enemy": "splitJelly",
+          "count": 3,
+          "intervalSec": 4.7,
+          "route": "middle"
+        },
+        {
+          "wave": 40,
+          "atSec": 1101,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 5.7,
+          "route": "ground"
+        },
+        {
+          "wave": 41,
+          "atSec": 1115,
+          "enemy": "hardJelly",
+          "count": 3,
+          "intervalSec": 4.7,
+          "route": "ground"
+        },
+        {
+          "wave": 41,
+          "atSec": 1120,
+          "enemy": "splitJelly",
+          "count": 2,
+          "intervalSec": 5.7,
+          "route": "lower"
+        },
+        {
+          "wave": 42,
+          "atSec": 1133,
+          "enemy": "kingJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 42,
+          "atSec": 1141,
+          "enemy": "crow",
+          "count": 2,
+          "intervalSec": 3.8,
+          "route": "air"
+        },
+        {
+          "wave": 42,
+          "atSec": 1147,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 6.6,
+          "route": "lower"
+        },
+        {
+          "wave": 42,
+          "atSec": 1143,
+          "enemy": "crow",
+          "count": 2,
+          "intervalSec": 3.8,
+          "route": "airLower"
+        },
+        {
+          "wave": 37,
+          "atSec": 1056,
+          "enemy": "dashJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 38,
+          "atSec": 1068,
+          "enemy": "shieldJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 39,
+          "atSec": 1082,
+          "enemy": "crystalJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 39,
+          "atSec": 1084,
+          "enemy": "sproutJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 40,
+          "atSec": 1098,
+          "enemy": "flowerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 40,
+          "atSec": 1099,
+          "enemy": "drummerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 41,
+          "atSec": 1118,
+          "enemy": "nestJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 42,
+          "atSec": 1145,
+          "enemy": "armoredCrow",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "air"
+        },
+        {
+          "wave": 40,
+          "atSec": 1105,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 43,
+          "atSec": 1228,
+          "enemy": "jelly",
+          "count": 3,
+          "intervalSec": 2.8,
+          "route": "ground"
+        },
+        {
+          "wave": 44,
+          "atSec": 1239,
+          "enemy": "jelly",
+          "count": 3,
+          "intervalSec": 2.8,
+          "route": "lower"
+        },
+        {
+          "wave": 45,
+          "atSec": 1253,
+          "enemy": "hardJelly",
+          "count": 2,
+          "intervalSec": 5.6,
+          "route": "ground"
+        },
+        {
+          "wave": 45,
+          "atSec": 1255,
+          "enemy": "crow",
+          "count": 2,
+          "intervalSec": 4.7,
+          "route": "air"
+        },
+        {
+          "wave": 46,
+          "atSec": 1269,
+          "enemy": "splitJelly",
+          "count": 3,
+          "intervalSec": 4.7,
+          "route": "middle"
+        },
+        {
+          "wave": 46,
+          "atSec": 1276,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 5.6,
+          "route": "ground"
+        },
+        {
+          "wave": 47,
+          "atSec": 1290,
+          "enemy": "hardJelly",
+          "count": 3,
+          "intervalSec": 4.7,
+          "route": "ground"
+        },
+        {
+          "wave": 47,
+          "atSec": 1295,
+          "enemy": "splitJelly",
+          "count": 2,
+          "intervalSec": 5.6,
+          "route": "lower"
+        },
+        {
+          "wave": 48,
+          "atSec": 1308,
+          "enemy": "kingJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 48,
+          "atSec": 1316,
+          "enemy": "crow",
+          "count": 2,
+          "intervalSec": 3.7,
+          "route": "air"
+        },
+        {
+          "wave": 48,
+          "atSec": 1322,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 6.5,
+          "route": "lower"
+        },
+        {
+          "wave": 48,
+          "atSec": 1318,
+          "enemy": "crow",
+          "count": 2,
+          "intervalSec": 3.7,
+          "route": "airLower"
+        },
+        {
+          "wave": 43,
+          "atSec": 1231,
+          "enemy": "dashJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 44,
+          "atSec": 1243,
+          "enemy": "shieldJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 45,
+          "atSec": 1257,
+          "enemy": "crystalJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 45,
+          "atSec": 1259,
+          "enemy": "sproutJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 46,
+          "atSec": 1273,
+          "enemy": "flowerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 46,
+          "atSec": 1274,
+          "enemy": "drummerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 47,
+          "atSec": 1293,
+          "enemy": "nestJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 48,
+          "atSec": 1320,
+          "enemy": "armoredCrow",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "air"
+        },
+        {
+          "wave": 46,
+          "atSec": 1280,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 49,
+          "atSec": 1403,
+          "enemy": "jelly",
+          "count": 4,
+          "intervalSec": 2.8,
+          "route": "ground"
+        },
+        {
+          "wave": 50,
+          "atSec": 1414,
+          "enemy": "jelly",
+          "count": 4,
+          "intervalSec": 2.8,
+          "route": "lower"
+        },
+        {
+          "wave": 51,
+          "atSec": 1428,
+          "enemy": "hardJelly",
+          "count": 2,
+          "intervalSec": 5.5,
+          "route": "ground"
+        },
+        {
+          "wave": 51,
+          "atSec": 1430,
+          "enemy": "crow",
+          "count": 2,
+          "intervalSec": 4.6,
+          "route": "air"
+        },
+        {
+          "wave": 52,
+          "atSec": 1444,
+          "enemy": "splitJelly",
+          "count": 4,
+          "intervalSec": 4.6,
+          "route": "middle"
+        },
+        {
+          "wave": 52,
+          "atSec": 1451,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 5.5,
+          "route": "ground"
+        },
+        {
+          "wave": 53,
+          "atSec": 1465,
+          "enemy": "hardJelly",
+          "count": 4,
+          "intervalSec": 4.6,
+          "route": "ground"
+        },
+        {
+          "wave": 53,
+          "atSec": 1470,
+          "enemy": "splitJelly",
+          "count": 2,
+          "intervalSec": 5.5,
+          "route": "lower"
+        },
+        {
+          "wave": 54,
+          "atSec": 1483,
+          "enemy": "kingJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 54,
+          "atSec": 1491,
+          "enemy": "crow",
+          "count": 2,
+          "intervalSec": 3.7,
+          "route": "air"
+        },
+        {
+          "wave": 54,
+          "atSec": 1497,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 6.5,
+          "route": "lower"
+        },
+        {
+          "wave": 54,
+          "atSec": 1493,
+          "enemy": "crow",
+          "count": 2,
+          "intervalSec": 3.7,
+          "route": "airLower"
+        },
+        {
+          "wave": 49,
+          "atSec": 1406,
+          "enemy": "dashJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 50,
+          "atSec": 1418,
+          "enemy": "shieldJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 51,
+          "atSec": 1432,
+          "enemy": "crystalJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 51,
+          "atSec": 1434,
+          "enemy": "sproutJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 52,
+          "atSec": 1448,
+          "enemy": "flowerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 52,
+          "atSec": 1449,
+          "enemy": "drummerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 53,
+          "atSec": 1468,
+          "enemy": "nestJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 54,
+          "atSec": 1495,
+          "enemy": "armoredCrow",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "air"
+        },
+        {
+          "wave": 52,
+          "atSec": 1455,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 55,
+          "atSec": 1578,
+          "enemy": "jelly",
+          "count": 4,
+          "intervalSec": 2.7,
+          "route": "ground"
+        },
+        {
+          "wave": 56,
+          "atSec": 1589,
+          "enemy": "jelly",
+          "count": 4,
+          "intervalSec": 2.7,
+          "route": "lower"
+        },
+        {
+          "wave": 57,
+          "atSec": 1603,
+          "enemy": "hardJelly",
+          "count": 2,
+          "intervalSec": 5.5,
+          "route": "ground"
+        },
+        {
+          "wave": 57,
+          "atSec": 1605,
+          "enemy": "crow",
+          "count": 2,
+          "intervalSec": 4.6,
+          "route": "air"
+        },
+        {
+          "wave": 58,
+          "atSec": 1619,
+          "enemy": "splitJelly",
+          "count": 4,
+          "intervalSec": 4.6,
+          "route": "middle"
+        },
+        {
+          "wave": 58,
+          "atSec": 1626,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 5.5,
+          "route": "ground"
+        },
+        {
+          "wave": 59,
+          "atSec": 1640,
+          "enemy": "hardJelly",
+          "count": 4,
+          "intervalSec": 4.6,
+          "route": "ground"
+        },
+        {
+          "wave": 59,
+          "atSec": 1645,
+          "enemy": "splitJelly",
+          "count": 2,
+          "intervalSec": 5.5,
+          "route": "lower"
+        },
+        {
+          "wave": 60,
+          "atSec": 1658,
+          "enemy": "gardenKing",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 60,
+          "atSec": 1666,
+          "enemy": "crow",
+          "count": 2,
+          "intervalSec": 3.7,
+          "route": "air"
+        },
+        {
+          "wave": 60,
+          "atSec": 1672,
+          "enemy": "spitter",
+          "count": 2,
+          "intervalSec": 6.4,
+          "route": "lower"
+        },
+        {
+          "wave": 60,
+          "atSec": 1668,
+          "enemy": "crow",
+          "count": 2,
+          "intervalSec": 3.7,
+          "route": "airLower"
+        },
+        {
+          "wave": 55,
+          "atSec": 1581,
+          "enemy": "dashJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 56,
+          "atSec": 1593,
+          "enemy": "shieldJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 57,
+          "atSec": 1607,
+          "enemy": "crystalJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 57,
+          "atSec": 1609,
+          "enemy": "sproutJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 58,
+          "atSec": 1623,
+          "enemy": "flowerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 58,
+          "atSec": 1624,
+          "enemy": "drummerJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        },
+        {
+          "wave": 59,
+          "atSec": 1643,
+          "enemy": "nestJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "lower"
+        },
+        {
+          "wave": 60,
+          "atSec": 1670,
+          "enemy": "armoredCrow",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "air"
+        },
+        {
+          "wave": 58,
+          "atSec": 1630,
+          "enemy": "captainJelly",
+          "count": 1,
+          "intervalSec": 0,
+          "route": "ground"
+        }
+      ]
+    }
+  ],
+  "dpMax": 99
+}

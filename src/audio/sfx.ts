@@ -1,8 +1,23 @@
 import type { SimEvent } from '../sim/types';
 import { type BossSound, bossSkillSound, createBossBuffers } from './bossSounds';
 import { type AttackSound, createCombatBuffers } from './combatSounds';
+import { createImpactBuffers, type ImpactSound, weaponImpactSound } from './impactSounds';
+import { createRecruitBuffers, type RecruitSound } from './recruitSounds';
+import { createSkillBuffers, type SkillSound, skillStartSound } from './skillSounds';
 
-export type Sound = AttackSound | BossSound | 'deploy' | 'hit' | 'pop' | 'skill' | 'leak' | 'win' | 'lose';
+export type Sound =
+  | AttackSound
+  | ImpactSound
+  | BossSound
+  | SkillSound
+  | RecruitSound
+  | 'deploy'
+  | 'hit'
+  | 'pop'
+  | 'skill'
+  | 'leak'
+  | 'win'
+  | 'lose';
 
 export function createSfxLimiter(context: BaseAudioContext): DynamicsCompressorNode {
   const limiter = context.createDynamicsCompressor();
@@ -38,7 +53,10 @@ export function createSfx(initialVolume: number) {
       for (let i = 0; i < samples.length; i++) samples[i] = Math.random() * 2 - 1;
       combatBuffers = new Map<Sound, AudioBuffer>([
         ...createCombatBuffers(context),
+        ...createImpactBuffers(context),
         ...createBossBuffers(context),
+        ...createSkillBuffers(context),
+        ...createRecruitBuffers(context),
       ]);
     }
     if (context.state === 'suspended') void context.resume().catch(() => {});
@@ -66,7 +84,14 @@ export function createSfx(initialVolume: number) {
     source.start(start);
     source.stop(start + duration + 0.01);
   }
-  function tone(start: number, from: number, to: number, duration: number, type: OscillatorType = 'sine') {
+  function tone(
+    start: number,
+    from: number,
+    to: number,
+    duration: number,
+    type: OscillatorType = 'sine',
+    peak = 0.14,
+  ) {
     if (!context) return;
     const source = context.createOscillator();
     const gain = context.createGain();
@@ -74,17 +99,18 @@ export function createSfx(initialVolume: number) {
     source.frequency.setValueAtTime(from, start);
     source.frequency.exponentialRampToValueAtTime(to, start + duration);
     source.connect(gain);
-    connect(source, gain, start, duration);
+    connect(source, gain, start, duration, peak);
   }
   function play(sound: Sound) {
     if (context?.state !== 'running' || !master || volume === 0) return;
     const start = context.currentTime;
-    const times = (recent.get(sound) ?? []).filter((time) => Math.abs(start - time) < 0.05);
+    const limitKey = sound.startsWith('impact-') ? 'hit' : sound;
+    const times = (recent.get(limitKey) ?? []).filter((time) => Math.abs(start - time) < 0.05);
     if (times.length >= 3) return;
     times.push(start);
-    recent.set(sound, times);
+    recent.set(limitKey, times);
     if (sound === 'deploy') tone(start, 400, 900, 0.12);
-    if (sound === 'pop') tone(start, 540, 110, 0.12);
+    if (sound === 'pop') tone(start, 540, 110, 0.12, 'sine', 0.045);
     const combat = combatBuffers?.get(sound);
     if (combat) {
       const source = context.createBufferSource();
@@ -170,6 +196,11 @@ export function createSfx(initialVolume: number) {
       attackSound?: (uid: number) => AttackSound | undefined,
     ) {
       const fired = new Set<number>();
+      const activated = new Set<number>();
+      const impacted = new Set<string>();
+      const skillStarts = new Set(
+        events.flatMap((event) => (event.type === 'skillStart' ? [event.uid] : [])),
+      );
       const bossCasts = new Set(
         events.flatMap((event) => (event.type === 'bossSkill' && event.phase === 'cast' ? [event.uid] : [])),
       );
@@ -188,10 +219,23 @@ export function createSfx(initialVolume: number) {
           fired.add(event.src);
           play('goo');
         }
-        if (event.type === 'damage') schedule('hit', delay);
+        if (event.type === 'damage') {
+          const key = `${event.src?.uid ?? 'unknown'}:${delay}`;
+          if (!impacted.has(key)) {
+            impacted.add(key);
+            schedule(
+              weaponImpactSound(event.src?.kind === 'unit' ? attackSound?.(event.src.uid) : undefined),
+              delay,
+            );
+          }
+        }
         if (event.type === 'enemyDie') schedule('pop', delay);
-        if (event.type === 'skillPulse') play('magic');
-        if (event.type === 'skillStart') play('skill');
+        if (event.type === 'skillPulse' && !skillStarts.has(event.uid)) play('skill-arcPulse');
+        if (event.type === 'gravityField' && event.phase === 'burst') play('skill-gravityBurst');
+        if (event.type === 'skillStart' && !activated.has(event.uid)) {
+          activated.add(event.uid);
+          play(skillStartSound(event.skillId) ?? 'skill');
+        }
         if (event.type === 'enemyLeak') play('leak');
         if (event.type === 'battleEnd') schedule(event.result === 'won' ? 'win' : 'lose', 0.5);
       }

@@ -90,7 +90,7 @@ describe('무기별 전투 이펙트', () => {
       expect(f.mesh('railRound').count).toBe(3);
       expect(f.mesh('muzzle').count).toBe(1);
       expect(f.mesh('muzzle').geometry.getAttribute('aOpacity').getX(0)).toBeLessThan(0.7);
-      expect(f.mesh('ring').count).toBe(1);
+      expect(f.mesh('skill-tripleAim').count).toBe(1);
       expect(hashState(f.state)).toBe(before);
     }));
 
@@ -100,15 +100,15 @@ describe('무기별 전투 이펙트', () => {
       f.vfx.update(f.state, f.camera, 0.12);
       f.vfx.update(f.state, f.camera, 0.12);
       expect(f.mesh('spark').count).toBe(0);
-      expect(f.mesh('ring').count).toBe(1);
+      expect(f.mesh('skill-tripleAim').count).toBe(1);
       f.vfx.update(f.state, f.camera, 0.02);
       expect(f.mesh('spark').count).toBe(15);
       expect(f.mesh('impact').count).toBe(3);
-      expect(f.mesh('ring').count).toBe(4);
-      expect(f.mesh('ring').geometry.getAttribute('aOpacity').getX(0)).toBeLessThan(0.25);
+      expect(f.mesh('skill-tripleAim').count).toBe(4);
+      expect(f.mesh('skill-tripleAim').geometry.getAttribute('aOpacity').getX(0)).toBeLessThan(0.25);
       f.vfx.update(f.state, f.camera, 0.31);
       expect(f.mesh('spark').count).toBe(0);
-      expect(f.mesh('ring').count).toBe(1);
+      expect(f.mesh('skill-tripleAim').count).toBe(1);
     }));
 
   it.each(['reduced', 'low'])('%s에서는 장식 파문을 생략하고 스킬 링은 고정한다', (mode) =>
@@ -118,13 +118,13 @@ describe('무기별 전투 이펙트', () => {
       f.vfx.update(f.state, f.camera, 0.03);
       expect(f.mesh('railRound').count).toBe(3);
       const first = new Matrix4();
-      f.mesh('ring').getMatrixAt(0, first);
-      expect(f.mesh('ring').geometry.getAttribute('aOpacity').getX(0)).toBeCloseTo(0.14);
+      f.mesh('skill-tripleAim').getMatrixAt(0, first);
+      expect(f.mesh('skill-tripleAim').geometry.getAttribute('aOpacity').getX(0)).toBeCloseTo(0.24);
       f.vfx.update(f.state, f.camera, 0.24);
       const second = new Matrix4();
-      f.mesh('ring').getMatrixAt(0, second);
+      f.mesh('skill-tripleAim').getMatrixAt(0, second);
       expect(second.elements).toEqual(first.elements);
-      expect(f.mesh('ring').count).toBe(1);
+      expect(f.mesh('skill-tripleAim').count).toBe(1);
       expect(f.mesh('spark').count).toBe(9);
       expect(f.mesh('impact').count).toBe(0);
     }),
@@ -151,11 +151,11 @@ describe('무기별 전투 이펙트', () => {
   it('스킬이 끝나면 발밑 링도 사라진다', () =>
     checkVfx((f) => {
       f.vfx.update(f.state, f.camera, 0.1);
-      expect(f.mesh('ring').count).toBe(1);
+      expect(f.mesh('skill-tripleAim').count).toBe(1);
       const unit = f.state.units[0];
       assert(unit, '유닛 없음');
       unit.skillState = 'charging';
       f.vfx.update(f.state, f.camera, 0);
-      expect(f.mesh('ring').count).toBe(0);
+      expect(f.mesh('skill-tripleAim').count).toBe(0);
     }));
 });

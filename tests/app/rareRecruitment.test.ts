@@ -6,6 +6,7 @@ import { content } from '../../src/data';
 import {
   initialCollection,
   isRareUnit,
+  rarityFor,
   readCollection,
   recruitment,
   recruitRate,
@@ -15,17 +16,20 @@ import {
 } from '../../src/data/recruitment';
 import raw from '../../src/data/recruitment.json';
 
+const ssrUnits = ['fox', 'redPanda', 'deer'];
+
 afterEach(() => vi.unstubAllGlobals());
 
 describe('희귀 모집과 영입', () => {
-  it('희귀 합산 5%, 각 5/3%, 일반 9.5%와 직접 영입 가격이 일치한다', () => {
-    expect(recruitment.pool).toHaveLength(13);
-    expect(recruitment.rareUnits).toEqual(['fox', 'redPanda', 'deer']);
-    expect(recruitment.rareUnits.reduce((sum, id) => sum + recruitRate(id), 0)).toBeCloseTo(5, 12);
+  it('SSR 합산 5%, 각 5/3%와 네 등급의 확률·가격이 일치한다', () => {
+    expect(recruitment.pool).toHaveLength(14);
+    expect(recruitment.rarities.find((r) => r.id === 'SSR')?.units).toEqual(ssrUnits);
+    expect(ssrUnits.reduce((sum, id) => sum + recruitRate(id), 0)).toBeCloseTo(5, 12);
     expect(recruitment.pool.reduce((sum, id) => sum + recruitRate(id), 0)).toBeCloseTo(100, 12);
     for (const id of recruitment.pool) {
-      expect(recruitRate(id)).toBeCloseTo(isRareUnit(id) ? 5 / 3 : 9.5, 12);
-      expect(unitPriceFor(id)).toBe(isRareUnit(id) ? 1800 : 600);
+      const rarity = rarityFor(id);
+      expect(recruitRate(id)).toBeCloseTo(rarity.pullPercent / rarity.units.length, 12);
+      expect(unitPriceFor(id)).toBe(rarity.unitPrice);
     }
   });
   it('추첨 구간의 시작/끝은 표시 확률과 같고 축소 풀도 정규화한다', () => {
@@ -36,9 +40,9 @@ describe('희귀 모집과 영입', () => {
       expect(recruitUnitForRoll(recruitment.pool, start + probability * 0.999)).toBe(id);
       start += probability;
     }
-    expect(recruitUnitForRoll(recruitment.pool, 1 - Number.EPSILON)).toBe('deer');
+    expect(recruitUnitForRoll(recruitment.pool, 1 - Number.EPSILON)).toBe('snowLeopard');
     expect(recruitRate('fox', ['fox'])).toBe(100);
-    expect(recruitRate('cat', ['cat', 'fox'])).toBe(95);
+    expect(recruitRate('cat', ['cat', 'fox'])).toBeCloseTo(5900 / 64, 12);
     expect(recruitRate('ghost')).toBe(0);
     expect(recruitUnitForRoll([], 0)).toBeUndefined();
   });
@@ -52,12 +56,14 @@ describe('희귀 모집과 영입', () => {
       if (!id) throw new Error('추첨 실패');
       counts.set(id, (counts.get(id) ?? 0) + 1);
     }
-    const rare = recruitment.rareUnits.reduce((sum, id) => sum + (counts.get(id) ?? 0), 0);
+    const rare = ssrUnits.reduce((sum, id) => sum + (counts.get(id) ?? 0), 0);
     expect(rare / 50000).toBeGreaterThan(0.045);
     expect(rare / 50000).toBeLessThan(0.055);
-    for (const id of recruitment.rareUnits) expect(counts.get(id)).toBeGreaterThan(600);
+    for (const id of ssrUnits) expect(counts.get(id)).toBeGreaterThan(600);
+    expect((counts.get('snowLeopard') ?? 0) / 50000).toBeGreaterThan(0.008);
+    expect((counts.get('snowLeopard') ?? 0) / 50000).toBeLessThan(0.012);
   });
-  it.each(recruitment.rareUnits)('%s는 정확히 1800을 차감하고 보장·난수는 유지한다', (id) => {
+  it.each(ssrUnits)('%s는 정확히 1800을 차감하고 보장·난수는 유지한다', (id) => {
     const state = { ...initialCollection(), money: 1800, pullsSinceNew: 7 };
     const before = structuredClone(state);
     expect(buyUnit({ ...state, money: 1799 }, id)).toEqual({ ok: false, reason: 'noMoney' });
@@ -69,7 +75,7 @@ describe('희귀 모집과 영입', () => {
     expect(state).toEqual(before);
     expect(buyUnit(result.next, id)).toEqual({ ok: false, reason: 'owned' });
   });
-  it('기존 10종을 보유하면 10번째 미보유 보장은 희귀 3종 중 한 명을 지급한다', () => {
+  it('기존 10종을 보유하면 10번째 미보유 보장은 SSR·UR 중 한 명을 지급한다', () => {
     const state = { ...initialCollection(undefined, 1, true), pullsSinceNew: 9 };
     const result = recruitUnits(state, 1);
     if (!result.ok) throw new Error('모집 실패');
@@ -95,6 +101,7 @@ describe('희귀 모집과 영입', () => {
       },
     });
     const save = loadSave();
+    save.collection.ownedUnits = initialCollection().ownedUnits;
     save.collection.money = 1800;
     const before = structuredClone(save);
     expect(commitCollection(save, buyUnit(save.collection, 'fox'))).toEqual({
@@ -104,16 +111,11 @@ describe('희귀 모집과 영입', () => {
     expect(save).toEqual(before);
   });
   it.each([
-    { rarePullPercent: 0 },
-    { rarePullPercent: 100 },
-    { rarePullPercent: 5.5 },
-    { rareUnitPrice: 0 },
-    { rareUnitPrice: 0.5 },
-    { rareUnitPrice: raw.maxMoney + 1 },
-    { rareUnits: [] },
-    { rareUnits: ['fox', 'fox'] },
-    { rareUnits: ['ghost'] },
+    { rarities: [] },
+    { rarities: raw.rarities.slice(1) },
+    { rarities: [...raw.rarities, raw.rarities[0]] },
     { starterUnits: [...raw.starterUnits, 'fox'] },
+    { legacyUnits: [...raw.legacyUnits, 'snowLeopard'] },
   ])('잘못된 희귀 설정 %j를 거부한다', (patch) => {
     expect(() => validateRecruitment({ ...raw, ...patch })).toThrow();
   });

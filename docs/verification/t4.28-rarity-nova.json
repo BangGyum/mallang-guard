@@ -1,0 +1,92 @@
+[
+  {
+    "width": 1920,
+    "height": 1080,
+    "touch": false,
+    "directPrice": 3600,
+    "normalUrRoll": true,
+    "guaranteedUrRoll": true,
+    "restored": true,
+    "pausedPixels": true,
+    "audit": {
+      "starts": 2,
+      "bursts": 1,
+      "attacks": 32,
+      "rejected": [],
+      "quality": "high"
+    },
+    "errors": []
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "touch": true,
+    "directPrice": 3600,
+    "normalUrRoll": true,
+    "guaranteedUrRoll": true,
+    "restored": true,
+    "pausedPixels": true,
+    "audit": {
+      "starts": 2,
+      "bursts": 1,
+      "attacks": 32,
+      "rejected": [],
+      "quality": "high"
+    },
+    "errors": []
+  },
+  {
+    "width": 740,
+    "height": 360,
+    "touch": true,
+    "directPrice": 3600,
+    "normalUrRoll": true,
+    "guaranteedUrRoll": true,
+    "restored": true,
+    "pausedPixels": true,
+    "audit": {
+      "starts": 2,
+      "bursts": 1,
+      "attacks": 32,
+      "rejected": [],
+      "quality": "high"
+    },
+    "errors": []
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "touch": true,
+    "directPrice": 3600,
+    "normalUrRoll": true,
+    "guaranteedUrRoll": true,
+    "restored": true,
+    "pausedPixels": true,
+    "audit": {
+      "starts": 2,
+      "bursts": 1,
+      "attacks": 32,
+      "rejected": [],
+      "quality": "high"
+    },
+    "errors": []
+  },
+  {
+    "width": 320,
+    "height": 568,
+    "touch": true,
+    "directPrice": 3600,
+    "normalUrRoll": true,
+    "guaranteedUrRoll": true,
+    "restored": true,
+    "pausedPixels": true,
+    "audit": {
+      "starts": 2,
+      "bursts": 1,
+      "attacks": 32,
+      "rejected": [],
+      "quality": "high"
+    },
+    "errors": []
+  }
+]

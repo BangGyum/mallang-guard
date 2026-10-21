@@ -1,4 +1,5 @@
 import { ROLE_COLORS } from '../art/palette';
+import { recruitment } from '../data/recruitment';
 import type { ContentDb } from '../data/types';
 import { button, element } from './dom';
 import { moneyIcon } from './moneyIcon';
@@ -71,7 +72,14 @@ export function createTitleScreen(
   }
   garden.append(friends);
   card.append(intro, garden);
-  screen.append(card, element('small', 'title-version', '말랑방위대 · v0.1'));
+  screen.append(
+    card,
+    element(
+      'small',
+      'title-version',
+      recruitment.unlockAllForTesting ? '테스트 기간 · 모든 친구 사용 가능' : '말랑방위대 · v0.1',
+    ),
+  );
   root.append(screen);
   start.focus({ preventScroll: true });
   return { dispose: () => screen.remove() };

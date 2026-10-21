@@ -10,8 +10,31 @@ import {
   type Texture,
 } from 'three';
 
+// 그림의 발 앵커를 원점으로 한 무기 끝. 배치 미리보기와 전장이 같은 크기를 사용합니다.
+export const UNIT_PRESENTATION: Readonly<Record<string, { height: number; tip: readonly [number, number] }>> =
+  {
+    squirrel: { height: 1.1, tip: [0.421, 0.34] },
+    mole: { height: 1.1, tip: [0.423, 0.325] },
+    cat: { height: 1.1, tip: [0.481, 0.551] },
+    bear: { height: 1.1, tip: [0.48, 0.46] },
+    penguin: { height: 1.1, tip: [0.475, 0.298] },
+    sheep: { height: 1.1, tip: [0.381, 0.48] },
+    bunny: { height: 1.1, tip: [0.401, 0.294] },
+    snail: { height: 1.1, tip: [0.454, 0.248] },
+    owl: { height: 1.1, tip: [0.388, 0.507] },
+    wolf: { height: 1.1, tip: [0.49, 0.325] },
+    fox: { height: 1.1, tip: [0.49, 0.312] },
+    redPanda: { height: 1.1, tip: [0.48, 0.312] },
+    deer: { height: 1.1, tip: [0.395, 0.468] },
+    snowLeopard: { height: 1.1, tip: [0.422, 0.314] },
+  };
+
+export function unitSpriteHeight(art: string): number {
+  return UNIT_PRESENTATION[art]?.height ?? 0.9;
+}
+
 export function createSprite(texture: Texture, height: number, flying: boolean) {
-  // SVG의 발 앵커 (50, 93)를 월드 원점에 맞춥니다.
+  // 공통 발 앵커 (50, 93)를 월드 원점에 맞춥니다.
   const geometry = new PlaneGeometry(1, 1).translate(0, 0.43, 0);
   const material = new ShaderMaterial({
     uniforms: {

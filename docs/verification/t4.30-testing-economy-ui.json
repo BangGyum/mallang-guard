@@ -1,0 +1,74 @@
+[
+  {
+    "width": 1280,
+    "height": 720,
+    "owned": 14,
+    "selected": 14,
+    "costs": {
+      "squirrel": 6,
+      "cat": 9,
+      "bear": 12,
+      "penguin": 8,
+      "sheep": 11,
+      "bunny": 10,
+      "mole": 5,
+      "snail": 9,
+      "owl": 16,
+      "wolf": 15,
+      "fox": 18,
+      "redPanda": 20,
+      "deer": 18,
+      "snowLeopard": 23
+    },
+    "earned": 10,
+    "errors": []
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "owned": 14,
+    "selected": 14,
+    "costs": {
+      "squirrel": 6,
+      "cat": 9,
+      "bear": 12,
+      "penguin": 8,
+      "sheep": 11,
+      "bunny": 10,
+      "mole": 5,
+      "snail": 9,
+      "owl": 16,
+      "wolf": 15,
+      "fox": 18,
+      "redPanda": 20,
+      "deer": 18,
+      "snowLeopard": 23
+    },
+    "earned": 10,
+    "errors": []
+  },
+  {
+    "width": 320,
+    "height": 568,
+    "owned": 14,
+    "selected": 14,
+    "costs": {
+      "squirrel": 6,
+      "cat": 9,
+      "bear": 12,
+      "penguin": 8,
+      "sheep": 11,
+      "bunny": 10,
+      "mole": 5,
+      "snail": 9,
+      "owl": 16,
+      "wolf": 15,
+      "fox": 18,
+      "redPanda": 20,
+      "deer": 18,
+      "snowLeopard": 23
+    },
+    "earned": 10,
+    "errors": []
+  }
+]

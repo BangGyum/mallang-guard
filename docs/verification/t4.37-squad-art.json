@@ -1,0 +1,197 @@
+{
+  "assets": [
+    {
+      "id": "squirrel",
+      "width": 1509,
+      "height": 1042,
+      "opaque": 22755,
+      "transparentCorner": true,
+      "firstRow": 64,
+      "lastRow": 237,
+      "tipNearArt": true,
+      "legacyPreserved": true
+    },
+    {
+      "id": "cat",
+      "width": 1509,
+      "height": 1042,
+      "opaque": 17225,
+      "transparentCorner": true,
+      "firstRow": 68,
+      "lastRow": 237,
+      "tipNearArt": true,
+      "legacyPreserved": true
+    },
+    {
+      "id": "bear",
+      "width": 1509,
+      "height": 1042,
+      "opaque": 24612,
+      "transparentCorner": true,
+      "firstRow": 66,
+      "lastRow": 237,
+      "tipNearArt": true,
+      "legacyPreserved": true
+    },
+    {
+      "id": "penguin",
+      "width": 1508,
+      "height": 1043,
+      "opaque": 15915,
+      "transparentCorner": true,
+      "firstRow": 85,
+      "lastRow": 237,
+      "tipNearArt": true,
+      "legacyPreserved": true
+    },
+    {
+      "id": "sheep",
+      "width": 1509,
+      "height": 1042,
+      "opaque": 22034,
+      "transparentCorner": true,
+      "firstRow": 69,
+      "lastRow": 237,
+      "tipNearArt": true,
+      "legacyPreserved": true
+    },
+    {
+      "id": "bunny",
+      "width": 1509,
+      "height": 1042,
+      "opaque": 15364,
+      "transparentCorner": true,
+      "firstRow": 64,
+      "lastRow": 237,
+      "tipNearArt": true,
+      "legacyPreserved": true
+    },
+    {
+      "id": "mole",
+      "width": 1509,
+      "height": 1042,
+      "opaque": 18105,
+      "transparentCorner": true,
+      "firstRow": 82,
+      "lastRow": 237,
+      "tipNearArt": true,
+      "legacyPreserved": true
+    },
+    {
+      "id": "snail",
+      "width": 1509,
+      "height": 1042,
+      "opaque": 23698,
+      "transparentCorner": true,
+      "firstRow": 68,
+      "lastRow": 237,
+      "tipNearArt": true,
+      "legacyPreserved": true
+    },
+    {
+      "id": "owl",
+      "width": 1509,
+      "height": 1042,
+      "opaque": 20909,
+      "transparentCorner": true,
+      "firstRow": 66,
+      "lastRow": 237,
+      "tipNearArt": true,
+      "legacyPreserved": true
+    },
+    {
+      "id": "wolf",
+      "width": 1509,
+      "height": 1042,
+      "opaque": 17963,
+      "transparentCorner": true,
+      "firstRow": 68,
+      "lastRow": 237,
+      "tipNearArt": true,
+      "legacyPreserved": true
+    },
+    {
+      "id": "fox",
+      "width": 1509,
+      "height": 1042,
+      "opaque": 20020,
+      "transparentCorner": true,
+      "firstRow": 65,
+      "lastRow": 237,
+      "tipNearArt": true,
+      "legacyPreserved": true
+    },
+    {
+      "id": "redPanda",
+      "width": 1509,
+      "height": 1042,
+      "opaque": 22798,
+      "transparentCorner": true,
+      "firstRow": 65,
+      "lastRow": 237,
+      "tipNearArt": true,
+      "legacyPreserved": true
+    },
+    {
+      "id": "deer",
+      "width": 1508,
+      "height": 1043,
+      "opaque": 19274,
+      "transparentCorner": true,
+      "firstRow": 65,
+      "lastRow": 237,
+      "tipNearArt": true,
+      "legacyPreserved": true
+    },
+    {
+      "id": "snowLeopard",
+      "width": 1509,
+      "height": 1042,
+      "opaque": 23399,
+      "transparentCorner": true,
+      "firstRow": 65,
+      "lastRow": 237,
+      "tipNearArt": true,
+      "legacyPreserved": true
+    }
+  ],
+  "boards": [
+    {
+      "width": 1280,
+      "height": 720,
+      "metrics": {
+        "drawCalls": 74,
+        "particles": 35
+      },
+      "memory": {
+        "geometries": 0,
+        "textures": 0
+      }
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "metrics": {
+        "drawCalls": 74,
+        "particles": 35
+      },
+      "memory": {
+        "geometries": 0,
+        "textures": 0
+      }
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "metrics": {
+        "drawCalls": 74,
+        "particles": 35
+      },
+      "memory": {
+        "geometries": 0,
+        "textures": 0
+      }
+    }
+  ],
+  "errors": []
+}

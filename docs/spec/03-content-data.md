@@ -7,7 +7,9 @@
 
 ### 상점 데이터 (T4.24)
 
-T4.26의 `rareUnits`는 희귀 3종의 유일한 등급 기준이며 중복 없는 모집 풀 부분집합입니다. `rarePullPercent`는 1~99 정수(현재 5), `rareUnitPrice`는 양의 정수와 지갑 상한 이내(현재 1,800)입니다. 기본/기존 지급에 희귀 ID를 넣을 수 없습니다. 일반 추첨은 현재 유효 풀의 일반/희귀 그룹에 95%/5%를 배분하고 그룹 안에서 균등 추첨합니다. 한 등급만 있는 검사 풀에서는 그 그룹을 100%로 정규화합니다. 10회 미보유 보장은 기존처럼 미보유 ID를 균등 추첨하므로 일반 추첨 확률과 다릅니다. 상태/거래 결과 형태와 저장 버전은 유지합니다.
+T4.30의 `unlockAllForTesting: boolean`은 테스트 전원 지급 설정이며 현재 true입니다. 생략하면 false로 파싱합니다. `initialCollection`/`readCollection`은 일반 모드의 기본 8종·기존 10종 규칙을 유지하고, 앱의 `loadSave`에서 현재 콘텐츠에 있는 모집 풀 전체를 기존 보유 목록에 중복 없이 더합니다. 머니·설정·별·보장·난수는 그대로 복원하며 저장 버전/필드는 늘리지 않습니다. 앱 시작 시 기존 저장 흐름으로 기록합니다. 설정을 끄더라도 이미 지급한 친구는 회수하지 않습니다.
+
+T4.28의 `rarities: { id, pullPercent, unitPrice, units }[]`가 유일한 등급 기준입니다. R/SR/SSR/UR이 각각 한 번 있어야 하고 확률은 양의 정수·합계 100, 가격은 양의 정수·지갑 상한 이내입니다. 각 등급은 비어 있지 않으며 모든 ID가 중복 없이 모집 풀을 정확히 나눕니다. SSR/UR은 일반 모드의 기본/기존 지급 목록에 넣을 수 없습니다. 테스트 전원 지급은 앞의 별도 설정을 따릅니다. 현재 합산 확률은 59/35/5/1%, 등급 안에서는 균등합니다. 축소 검사 풀에서는 남아 있는 등급 비중을 정규화합니다. 추첨은 한 번의 결정론적 난수를 사용하며 분수 확률 누적의 부동소수 경계 오차를 보정합니다. 10회 미보유 보장은 UR을 포함해 미보유 ID를 균등 추첨하므로 일반 추첨 확률과 다릅니다. 상태/거래 결과 형태와 저장 버전은 유지합니다. 기존 일반/희귀 전용 가격·확률 필드는 등급 배열로 대체했습니다.
 
 `recruitment.json`은 시작/최대 머니, 모집 비용/중복 환급/미보유 보장 횟수, 직접 영입 가격, 기본/기존/모집 친구 ID, 스테이지별 클리어 보상, 별·첫 클리어·패배 보상을 정의합니다. `data/recruitment.ts`가 파싱하고 `data/index.ts`에서 실제 유닛·스테이지 참조와 모든 스테이지의 보상 존재를 검사합니다. 비용과 보장은 양의 정수, 보상은 0 이상의 정수이며 환급은 모집 가격보다 작고 시작 머니·10회 비용·직접 가격은 저장 상한을 넘지 않습니다. 풀은 중복 없는 ID 목록이고 기본/기존 ID는 풀의 부분집합입니다.
 
@@ -40,6 +42,7 @@ export type ArtId =
   | 'fox'
   | 'redPanda'
   | 'deer'
+  | 'snowLeopard'
   | 'jelly'
   | 'hardJelly'
   | 'crow'
@@ -159,6 +162,7 @@ export type Effect =
       damageType: 'physical' | 'magic';
     }
   | { type: 'slowAura'; amount: number }
+  | { type: 'gravityField'; radius: number; slowAmount: number; bossSlowAmount: number; atkMul: number }
   | { type: 'pushback'; tiles: number };
 
 export interface RouteDef {
@@ -255,6 +259,10 @@ export interface RawContent {
   - 분열 자식은 존재해야 하고 부모와 비행 종류가 같아야 하며 다시 분열할 수 없습니다. `split.count`는 1 이상의 정수입니다.
   - 방해 사거리·주기·지속 시간은 양수, 공격 간격 배율은 1 이상, 대상 수는 1 이상의 정수입니다.
 
+### 중력장 효과 (T4.28)
+
+`gravityField`는 `radius`, `slowAmount`, `bossSlowAmount`, `atkMul`을 가집니다. 반경/피해 배율은 양수, 둔화는 0~0.8의 유한 수입니다. 대상 조건 `enemyInRange`인 양수 지속 스킬의 단독 효과로만 허용하고 상시 특성·즉시형·중복 효과를 거부합니다. 엔티티에 활성 동안만 선택 필드 `gravityCenter: {x,y}`를 두며 기본 생성·재배치는 필드를 갖지 않습니다. 저장 컬렉션과는 별개이고 전체 상태 해시에 포함됩니다. 규칙은 02 문서를 따릅니다.
+
 ## 3. 초기 데이터
 
 ### ranges.json
@@ -271,14 +279,14 @@ export interface RawContent {
 
 | id | 이름 | 비용 | 배치 | 공격 | 간격 | 사거리 | 피해 | 대공 | 스킬 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| squirrel | 토리 | 9 | 고지대 | 280 | 1 | mid | physical | X | acornPickup |
-| cat | 냥기사 | 14 | 고지대 | 420 | 1.2 | mid | physical | X | nyangCombo |
-| bear | 뚜껑곰 | 18 | 고지대 | 220 | 1.2 | mid | physical | X | potLidGuard |
-| penguin | 펭펭 | 12 | 고지대 | 380 | 1 | long | physical | O | snowballBarrage |
-| sheep | 몽실 | 17 | 고지대 | 420 | 1.6 | mid | magic | O | stardustShower |
-| bunny | 토실 | 15 | 고지대 | 260 | 2.85 | long | magic | X | carrotSoup |
-| mole | 굴굴 | 8 | 고지대 | 300 | 1 | mid | physical | X | tunnelAmbush |
-| snail | 끈끈 | 13 | 고지대 | 200 | 1.9 | mid | magic | O | stickyRoad |
+| squirrel | 토리 | 6 | 고지대 | 280 | 1 | mid | physical | X | acornPickup |
+| cat | 냥기사 | 9 | 고지대 | 420 | 1.2 | mid | physical | X | nyangCombo |
+| bear | 뚜껑곰 | 12 | 고지대 | 220 | 1.2 | mid | physical | X | potLidGuard |
+| penguin | 펭펭 | 8 | 고지대 | 380 | 1 | long | physical | O | snowballBarrage |
+| sheep | 몽실 | 11 | 고지대 | 420 | 1.6 | mid | magic | O | stardustShower |
+| bunny | 토실 | 10 | 고지대 | 260 | 2.85 | long | magic | X | carrotSoup |
+| mole | 굴굴 | 5 | 고지대 | 300 | 1 | mid | physical | X | tunnelAmbush |
+| snail | 끈끈 | 9 | 고지대 | 200 | 1.9 | mid | magic | O | stickyRoad |
 
 ```json
 [
@@ -288,7 +296,7 @@ export interface RawContent {
     "animal": "다람쥐",
     "role": "vanguard",
     "art": "squirrel",
-    "cost": 9,
+    "cost": 6,
     "deployOn": "high",
     "redeploySec": 30,
     "atk": 280,
@@ -304,7 +312,7 @@ export interface RawContent {
     "animal": "고양이",
     "role": "guard",
     "art": "cat",
-    "cost": 14,
+    "cost": 9,
     "deployOn": "high",
     "redeploySec": 40,
     "atk": 420,
@@ -320,7 +328,7 @@ export interface RawContent {
     "animal": "곰",
     "role": "defender",
     "art": "bear",
-    "cost": 18,
+    "cost": 12,
     "deployOn": "high",
     "redeploySec": 50,
     "atk": 220,
@@ -336,7 +344,7 @@ export interface RawContent {
     "animal": "펭귄",
     "role": "sniper",
     "art": "penguin",
-    "cost": 12,
+    "cost": 8,
     "deployOn": "high",
     "redeploySec": 40,
     "atk": 380,
@@ -352,7 +360,7 @@ export interface RawContent {
     "animal": "양",
     "role": "caster",
     "art": "sheep",
-    "cost": 17,
+    "cost": 11,
     "deployOn": "high",
     "redeploySec": 45,
     "atk": 420,
@@ -368,7 +376,7 @@ export interface RawContent {
     "animal": "토끼",
     "role": "medic",
     "art": "bunny",
-    "cost": 15,
+    "cost": 10,
     "deployOn": "high",
     "redeploySec": 45,
     "atk": 260,
@@ -384,7 +392,7 @@ export interface RawContent {
     "animal": "두더지",
     "role": "specialist",
     "art": "mole",
-    "cost": 8,
+    "cost": 5,
     "deployOn": "high",
     "redeploySec": 8,
     "atk": 300,
@@ -400,7 +408,7 @@ export interface RawContent {
     "animal": "달팽이",
     "role": "supporter",
     "art": "snail",
-    "cost": 13,
+    "cost": 9,
     "deployOn": "high",
     "redeploySec": 45,
     "atk": 200,
@@ -427,7 +435,7 @@ export interface RawContent {
   {
     "id": "acornPickup",
     "name": "전리품 수거",
-    "description": "12초 동안 토리의 사거리 안에서 처치된 적의 도토리 보상 +2. 발동만으로 도토리를 얻지는 않아요.",
+    "description": "12초 동안 토리의 사거리 안에서 처치된 적의 도토리 보상 +1. 발동만으로 도토리를 얻지는 않아요.",
     "charge": "auto",
     "spCost": 20,
     "spStart": 8,
@@ -437,7 +445,7 @@ export interface RawContent {
     "effects": [
       {
         "type": "killBounty",
-        "value": 2
+        "value": 1
       }
     ]
   },

@@ -1,0 +1,82 @@
+[
+  {
+    "width": 1280,
+    "height": 720,
+    "id": "wolf",
+    "active": false,
+    "quiet": false,
+    "dir": "right",
+    "drawCalls": 32,
+    "particles": 7
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "id": "redPanda",
+    "active": false,
+    "quiet": false,
+    "dir": "right",
+    "drawCalls": 32,
+    "particles": 7
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "id": "redPanda",
+    "active": true,
+    "quiet": false,
+    "dir": "right",
+    "drawCalls": 33,
+    "particles": 8
+  },
+  {
+    "width": 1280,
+    "height": 720,
+    "id": "redPanda",
+    "active": true,
+    "quiet": true,
+    "dir": "left",
+    "drawCalls": 33,
+    "particles": 5
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "id": "wolf",
+    "active": false,
+    "quiet": false,
+    "dir": "right",
+    "drawCalls": 32,
+    "particles": 7
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "id": "redPanda",
+    "active": false,
+    "quiet": false,
+    "dir": "right",
+    "drawCalls": 32,
+    "particles": 7
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "id": "redPanda",
+    "active": true,
+    "quiet": false,
+    "dir": "right",
+    "drawCalls": 33,
+    "particles": 8
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "id": "redPanda",
+    "active": true,
+    "quiet": true,
+    "dir": "left",
+    "drawCalls": 33,
+    "particles": 5
+  }
+]

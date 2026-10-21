@@ -9,16 +9,26 @@ import { makeRawContent } from './dataFixtures';
 
 describe('희귀 캐릭터 콘텐츠 계약', () => {
   it.each([
-    ['fox', 28, 900, 2.8, 'line5Wide', 'physical'],
-    ['redPanda', 30, 560, 2.4, 'front4', 'physical'],
-    ['deer', 27, 360, 1.5, 'front4', 'magic'],
-  ] as const)('%s의 원안 수치·그림·고지대 배치를 연결한다', (id, cost, atk, interval, range, damageType) => {
-    const unit = content.units.get(id);
-    expect(unit).toMatchObject({ cost, atk, atkIntervalSec: interval, range, damageType, deployOn: 'high' });
-    expect(CRITTER_IDS).toContain(unit?.art);
-    expect(unit).not.toHaveProperty('hp');
-    expect(content.skills.has(unit?.skill ?? '')).toBe(true);
-  });
+    ['fox', 18, 900, 2.8, 'line5Wide', 'physical'],
+    ['redPanda', 20, 560, 2.4, 'front4', 'physical'],
+    ['deer', 18, 360, 1.5, 'front4', 'magic'],
+  ] as const)(
+    '%s의 배치 비용·전투 수치·그림·고지대 배치를 연결한다',
+    (id, cost, atk, interval, range, damageType) => {
+      const unit = content.units.get(id);
+      expect(unit).toMatchObject({
+        cost,
+        atk,
+        atkIntervalSec: interval,
+        range,
+        damageType,
+        deployOn: 'high',
+      });
+      expect(CRITTER_IDS).toContain(unit?.art);
+      expect(unit).not.toHaveProperty('hp');
+      expect(content.skills.has(unit?.skill ?? '')).toBe(true);
+    },
+  );
   it('기존 유닛의 우선순위는 생략하며 잘못된 우선순위를 거부한다', () => {
     const unit = content.units.get('squirrel');
     if (!unit) throw new Error('토리 없음');

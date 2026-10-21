@@ -1,0 +1,38 @@
+[
+  {
+    "from": 1,
+    "to": 2,
+    "qualityToggle": false,
+    "changed": 0,
+    "maxAlphaDelta": 0,
+    "pixels": [
+      1688,
+      780
+    ],
+    "errors": []
+  },
+  {
+    "from": 2,
+    "to": 1,
+    "qualityToggle": false,
+    "changed": 0,
+    "maxAlphaDelta": 0,
+    "pixels": [
+      844,
+      390
+    ],
+    "errors": []
+  },
+  {
+    "from": 2,
+    "to": 2,
+    "qualityToggle": true,
+    "changed": 0,
+    "maxAlphaDelta": 0,
+    "pixels": [
+      1688,
+      780
+    ],
+    "errors": []
+  }
+]

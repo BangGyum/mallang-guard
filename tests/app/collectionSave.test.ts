@@ -1,8 +1,15 @@
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { loadSave, storeSave } from '../../src/app/save';
 import { initialCollection, recruitment } from '../../src/data/recruitment';
 
-afterEach(() => vi.unstubAllGlobals());
+const testing = recruitment.unlockAllForTesting;
+beforeEach(() => {
+  recruitment.unlockAllForTesting = false;
+});
+afterEach(() => {
+  recruitment.unlockAllForTesting = testing;
+  vi.unstubAllGlobals();
+});
 function storage(raw: unknown) {
   let value = JSON.stringify(raw);
   vi.stubGlobal('localStorage', {

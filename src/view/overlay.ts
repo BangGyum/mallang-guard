@@ -9,6 +9,7 @@ import { bossSkillTheme } from './bossSkillTheme';
 import { createCombatText } from './combatText';
 import { tileHeight } from './coords';
 import { impactDelays } from './eventTiming';
+import { createRailgunFrame } from './railgunFrame';
 
 export function createOverlay(canvas: HTMLCanvasElement, board: Board, content: ContentDb) {
   const context = canvas.getContext('2d');
@@ -16,6 +17,7 @@ export function createOverlay(canvas: HTMLCanvasElement, board: Board, content: 
   const ctx = context;
   const point = new Vector3();
   const combatText = createCombatText(ctx);
+  const railgunFrame = createRailgunFrame(ctx);
   const births = new Map<number, number>();
   let reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let low = false;
@@ -42,6 +44,7 @@ export function createOverlay(canvas: HTMLCanvasElement, board: Board, content: 
       low = options.quality === 'low';
     },
     onEvents(events: readonly SimEvent[], entityPosition: (uid: number) => Vector3 | undefined) {
+      railgunFrame.onEvents(events);
       const delays = impactDelays(events);
       for (const event of events)
         if (event.type === 'enemySpawn' && (delays.get(event) ?? 0) > 0)
@@ -63,6 +66,7 @@ export function createOverlay(canvas: HTMLCanvasElement, board: Board, content: 
         else births.set(uid, delay - dt);
       }
       ctx.clearRect(0, 0, width, height);
+      railgunFrame.render(state, width, height, dt, reduced || low);
       for (const unit of state.units) {
         const p = position(
           unit.tile.x + 0.5,
@@ -154,6 +158,7 @@ export function createOverlay(canvas: HTMLCanvasElement, board: Board, content: 
       combatText.render(camera, width, height, dt, reduced);
     },
     dispose() {
+      railgunFrame.dispose();
       births.clear();
       ctx.clearRect(0, 0, width, height);
     },

@@ -10,6 +10,7 @@ import {
   Vector3,
   WebGLRenderer,
 } from 'three';
+import { stageThemeFor } from '../data/stageThemes';
 import type { ContentDb } from '../data/types';
 import type { Board } from '../sim/board';
 import type { BattleState, SimEvent } from '../sim/types';
@@ -45,7 +46,13 @@ export function createBoardView(
   board: Board,
   content: ContentDb,
   images: ReadonlyMap<string, HTMLCanvasElement>,
+  stageId = 'stage-1',
 ): BoardView {
+  const theme = stageThemeFor(stageId);
+  const previousBackground = canvas.style.background;
+  const previousTheme = canvas.dataset.stageTheme;
+  canvas.style.background = `linear-gradient(${theme.sky[0]}, ${theme.sky[1]})`;
+  canvas.dataset.stageTheme = theme.id;
   const renderer = new WebGLRenderer({ canvas, antialias: true, alpha: true });
   renderer.outputColorSpace = SRGBColorSpace;
   renderer.toneMapping = NoToneMapping;
@@ -54,7 +61,7 @@ export function createBoardView(
   renderer.shadowMap.autoUpdate = false;
   renderer.shadowMap.needsUpdate = true;
   const scene = new Scene();
-  const tiles = createTiles(board);
+  const tiles = createTiles(board, theme);
   const cache = createTextures(images);
   const entities = createEntityViews(content, board, cache.textures);
   const highlights = createHighlights(board, cache.textures, content);
@@ -66,8 +73,8 @@ export function createBoardView(
   scene.add(highlights.group);
   scene.add(vfx.group);
   scene.add(landmarks.group);
-  scene.add(new HemisphereLight(0xffffff, 0xb9a7d9, 1));
-  const sunlight = new DirectionalLight(0xfff4e0, 2);
+  scene.add(new HemisphereLight(0xffffff, theme.ambient, 1));
+  const sunlight = new DirectionalLight(theme.light, 2);
   sunlight.position.set(-4, 8, 5);
   sunlight.castShadow = true;
   sunlight.shadow.mapSize.set(2048, 2048);
@@ -162,6 +169,9 @@ export function createBoardView(
       scene.clear();
       renderer.dispose();
       renderer.forceContextLoss();
+      canvas.style.background = previousBackground;
+      if (previousTheme === undefined) delete canvas.dataset.stageTheme;
+      else canvas.dataset.stageTheme = previousTheme;
     },
   };
 }

@@ -1,0 +1,5 @@
+{
+  "src/data/units.json": true,
+  "src/data/skills.json": true,
+  "oldEconomy": true
+}

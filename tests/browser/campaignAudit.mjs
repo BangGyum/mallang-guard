@@ -17,11 +17,11 @@ export async function wallet(page, completed) {
       money: collection.money,
       expected,
       ownedUnits: collection.ownedUnits,
-      starters: recruitment.starterUnits,
+      expectedUnits: recruitment.unlockAllForTesting ? recruitment.pool : recruitment.starterUnits,
     };
   }, completed);
   assert.equal(wallet.money, wallet.expected, '첫 클리어·별 머니를 각 전투마다 한 번 지급');
-  assert.deepEqual(wallet.ownedUnits, wallet.starters, '기본 8종만으로 캠페인 진행');
+  assert.deepEqual(wallet.ownedUnits, wallet.expectedUnits, '설정에 맞는 초기 보유 목록 유지');
   return { money: wallet.money, ownedUnits: wallet.ownedUnits.length };
 }
 

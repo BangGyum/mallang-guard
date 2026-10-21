@@ -1,9 +1,11 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { loadSave, SAVE_KEY, storeSave } from '../../src/app/save';
-import { initialCollection } from '../../src/data/recruitment';
+import { initialCollection, recruitment } from '../../src/data/recruitment';
 
 let value: string | null;
+const testing = recruitment.unlockAllForTesting;
 beforeEach(() => {
+  recruitment.unlockAllForTesting = false;
   value = null;
   vi.stubGlobal('localStorage', {
     getItem: vi.fn(() => value),
@@ -12,7 +14,10 @@ beforeEach(() => {
     }),
   });
 });
-afterEach(() => vi.unstubAllGlobals());
+afterEach(() => {
+  recruitment.unlockAllForTesting = testing;
+  vi.unstubAllGlobals();
+});
 
 describe('설정과 클리어 기록 저장', () => {
   it('기록이 없으면 기본 설정으로 시작하며 반환 객체를 공유하지 않는다', () => {

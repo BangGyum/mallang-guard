@@ -1,0 +1,182 @@
+[
+  {
+    "viewport": "1920x1080",
+    "mode": "normal",
+    "start": {
+      "drawCalls": 86,
+      "particles": 102,
+      "skills": 14,
+      "stateUnchanged": true
+    },
+    "active": {
+      "drawCalls": 74,
+      "particles": 43
+    },
+    "firing": {
+      "drawCalls": 94,
+      "particles": 72,
+      "stateUnchanged": true
+    },
+    "attacks": {
+      "drawCalls": 91,
+      "particles": 153,
+      "stateUnchanged": true
+    },
+    "paused": true,
+    "disposed": {
+      "geometries": 0,
+      "textures": 0
+    },
+    "errors": []
+  },
+  {
+    "viewport": "1920x1080",
+    "mode": "reduced",
+    "start": {
+      "drawCalls": 74,
+      "particles": 42,
+      "skills": 14,
+      "stateUnchanged": true
+    },
+    "active": {
+      "drawCalls": 73,
+      "particles": 28
+    },
+    "firing": {
+      "drawCalls": 94,
+      "particles": 57,
+      "stateUnchanged": true
+    },
+    "attacks": {
+      "drawCalls": 84,
+      "particles": 79,
+      "stateUnchanged": true
+    },
+    "paused": true,
+    "disposed": {
+      "geometries": 0,
+      "textures": 0
+    },
+    "errors": []
+  },
+  {
+    "viewport": "1920x1080",
+    "mode": "low",
+    "start": {
+      "drawCalls": 74,
+      "particles": 42,
+      "skills": 14,
+      "stateUnchanged": true
+    },
+    "active": {
+      "drawCalls": 73,
+      "particles": 28
+    },
+    "firing": {
+      "drawCalls": 94,
+      "particles": 57,
+      "stateUnchanged": true
+    },
+    "attacks": {
+      "drawCalls": 84,
+      "particles": 79,
+      "stateUnchanged": true
+    },
+    "paused": true,
+    "disposed": {
+      "geometries": 0,
+      "textures": 0
+    },
+    "errors": []
+  },
+  {
+    "viewport": "844x390",
+    "mode": "normal",
+    "start": {
+      "drawCalls": 86,
+      "particles": 102,
+      "skills": 14,
+      "stateUnchanged": true
+    },
+    "active": {
+      "drawCalls": 74,
+      "particles": 43
+    },
+    "firing": {
+      "drawCalls": 94,
+      "particles": 72,
+      "stateUnchanged": true
+    },
+    "attacks": {
+      "drawCalls": 91,
+      "particles": 153,
+      "stateUnchanged": true
+    },
+    "paused": true,
+    "disposed": {
+      "geometries": 0,
+      "textures": 0
+    },
+    "errors": []
+  },
+  {
+    "viewport": "844x390",
+    "mode": "reduced",
+    "start": {
+      "drawCalls": 74,
+      "particles": 42,
+      "skills": 14,
+      "stateUnchanged": true
+    },
+    "active": {
+      "drawCalls": 73,
+      "particles": 28
+    },
+    "firing": {
+      "drawCalls": 94,
+      "particles": 57,
+      "stateUnchanged": true
+    },
+    "attacks": {
+      "drawCalls": 84,
+      "particles": 79,
+      "stateUnchanged": true
+    },
+    "paused": true,
+    "disposed": {
+      "geometries": 0,
+      "textures": 0
+    },
+    "errors": []
+  },
+  {
+    "viewport": "844x390",
+    "mode": "low",
+    "start": {
+      "drawCalls": 74,
+      "particles": 42,
+      "skills": 14,
+      "stateUnchanged": true
+    },
+    "active": {
+      "drawCalls": 73,
+      "particles": 28
+    },
+    "firing": {
+      "drawCalls": 94,
+      "particles": 57,
+      "stateUnchanged": true
+    },
+    "attacks": {
+      "drawCalls": 84,
+      "particles": 79,
+      "stateUnchanged": true
+    },
+    "paused": true,
+    "disposed": {
+      "geometries": 0,
+      "textures": 0
+    },
+    "errors": []
+  }
+]

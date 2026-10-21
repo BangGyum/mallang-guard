@@ -1,6 +1,6 @@
-import { critterSvg } from '../art/critters';
+import { characterMarkup } from '../art/characterArt';
 import { ROLE_COLORS, ROLE_NAMES } from '../art/palette';
-import { isRareUnit } from '../data/recruitment';
+import { rarityFor } from '../data/recruitment';
 import type { Battle } from '../sim/battle';
 import { TICK_RATE } from '../sim/constants';
 import { unitStats } from '../sim/stats';
@@ -83,7 +83,7 @@ export function createUnitPanel(
         return;
       }
       if (selectedUid !== uid) {
-        avatar.innerHTML = critterSvg(def.art);
+        avatar.innerHTML = characterMarkup(def.art);
         skillIcon.replaceChildren(battleIcon(def.role));
         // 유닛 전환 시에도 짧게 열리지만, 매 프레임 애니메이션을 재시작하지 않습니다.
         for (const animation of card.getAnimations()) animation.cancel();
@@ -95,7 +95,8 @@ export function createUnitPanel(
       panel.setAttribute('aria-label', `${def.name} 스킬 조작`);
       name.textContent = def.name;
       for (const node of [panel, marker]) node.style.setProperty('--unit-color', ROLE_COLORS[def.role]);
-      description.textContent = `${isRareUnit(def.id) ? '희귀 · ' : ''}${def.animal} · ${ROLE_NAMES[def.role]}`;
+      panel.dataset.rarity = rarityFor(def.id).id;
+      description.textContent = `${rarityFor(def.id).id} · ${def.animal} · ${ROLE_NAMES[def.role]}`;
       const current = unitStats(battle.content, battle.stage, battle.state, unit);
       const damageType = def.damageType === 'magic' ? '마법' : `물리 · 관통력 ${current.armorPen}`;
       stats.textContent = `공격력 ${Math.round(current.atk)} · ${damageType}\n공격 간격 ${(current.atkIntervalTicks / TICK_RATE).toFixed(2)}초 · ${def.canHitAir ? '대공 가능' : '지상 공격'}`;

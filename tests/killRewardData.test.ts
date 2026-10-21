@@ -71,12 +71,13 @@ describe('여러 입구와 중간보스', () => {
     expect(garden.spawns.find((spawn) => spawn.enemy === 'captainJelly')?.atSec).toBe(55);
   });
 
-  it('보호막만 깨면 지급하지 않고 중간보스를 처치해야 12개를 지급한다', () => {
+  it('보호막만 깨면 지급하지 않고 중간보스를 처치해야 7개를 지급한다', () => {
     const captain = content.enemies.get('captainJelly');
     const king = content.enemies.get('kingJelly');
     if (!captain || !king) throw new Error('bosses');
     expect(captain.hp).toBeLessThan(king.hp);
     expect(captain.lifeDamage).toBe(2);
+    expect(captain.description).toContain(`처치 보상은 도토리 ${captain.bounty}개`);
     const f = combatFixture();
     const unit = f.state.units[0];
     if (!unit) throw new Error('unit');
@@ -89,9 +90,9 @@ describe('여러 입구와 중간보스', () => {
     expect(f.state.dp).toBe(10);
     damageEnemy(f.content, unit, enemy, 5140, 'physical', events);
     removeDead(f.content, f.stage, f.state, events);
-    expect(f.state).toMatchObject({ dp: 22, killed: 1 });
+    expect(f.state).toMatchObject({ dp: 17, killed: 1 });
     expect(events.filter((event) => event.type === 'dpGain')).toEqual([
-      { type: 'dpGain', amount: 12, source: 'kill', uid: enemy.uid },
+      { type: 'dpGain', amount: 7, source: 'kill', uid: enemy.uid },
     ]);
   });
 });

@@ -61,6 +61,7 @@ export type SimEvent =
   | { type: 'skillStart'; uid: number; skillId: string }
   | { type: 'skillPulse'; uid: number }
   | { type: 'skillEnd'; uid: number }
+  | { type: 'gravityField'; uid: number; phase: 'start' | 'burst'; x: number; y: number; radius: number }
   | { type: 'dpGain'; amount: number; source: 'kill'; uid: number }
   | { type: 'battleEnd'; result: 'won' | 'lost' };
 
@@ -87,6 +88,7 @@ export interface UnitEntity {
   skillHitCount: number;
   pulsesLeft: number;
   nextPulseTick: number;
+  gravityCenter?: { x: number; y: number };
   buffs: ActiveEffect[];
 }
 

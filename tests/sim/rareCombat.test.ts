@@ -114,6 +114,7 @@ describe('희귀 3종의 자동 공격', () => {
   });
   it('첫 적이 즉사해도 정해진 연쇄는 이어지고 처치 보상은 한 번만 준다', () => {
     const f = rareFixture('deer');
+    f.state.dp = 10;
     f.state.enemies = [lineEnemy(10, 4), lineEnemy(11, 3), lineEnemy(12, 2)].map((enemy) => ({
       ...enemy,
       hp: 1,

@@ -9,16 +9,17 @@ const expected = {
   squirrel: 0.12,
   cat: 0.12,
   bear: 0.24,
-  penguin: 0.26,
+  penguin: 0.23,
   sheep: 0.2,
-  bunny: 0.16,
-  mole: 0.12,
+  bunny: 0.145,
+  mole: 0.095,
   snail: 0.22,
   owl: 0.28,
   wolf: 0.26,
   fox: 0.32,
   redPanda: 0.3,
-  deer: 0.16,
+  deer: 0.24,
+  snowLeopard: 0.36,
 };
 const report = [];
 const prefix = process.env.MALLANG_SCREENSHOT_PREFIX ?? 't4.12';

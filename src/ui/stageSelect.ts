@@ -1,4 +1,5 @@
 import { type StageRecord, stageUnlocked, starCount } from '../data/progression';
+import { stageThemeFor } from '../data/stageThemes';
 import type { ContentDb } from '../data/types';
 import { button, element } from './dom';
 import { portrait } from './portrait';
@@ -27,6 +28,11 @@ export function createStageSelect(
     const rating = element('span', 'stage-stars', '★'.repeat(stars) + '☆'.repeat(3 - stars));
     rating.setAttribute('aria-label', `최고 별 ${stars}개`);
     const map = element('span', 'stage-map');
+    const theme = stageThemeFor(stage.id);
+    map.dataset.stageTheme = theme.id;
+    map.style.setProperty('--map-floor', theme.floor);
+    map.style.setProperty('--map-blocked', theme.blocked);
+    map.style.setProperty('--map-edge', theme.sky[0]);
     map.setAttribute('aria-hidden', 'true');
     map.style.gridTemplateColumns = `repeat(${stage.map[0]?.length ?? 1}, 1fr)`;
     for (const row of stage.map)
@@ -60,6 +66,7 @@ export function createStageSelect(
     card.append(
       element('strong', 'stage-name', stage.name),
       rating,
+      element('span', 'stage-theme', theme.name),
       map,
       element('span', 'stage-description', stage.description ?? '보라색 높은 칸에 친구를 배치해요.'),
       foes,

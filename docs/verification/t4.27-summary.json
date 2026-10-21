@@ -1,0 +1,145 @@
+{
+  "ticket": "T4.27",
+  "date": "2026-10-15",
+  "status": "passed",
+  "baseCommit": "8b8536b1991770b2353ef0db46108155351fe7a9",
+  "branch": "codex/t4.27-skill-feedback",
+  "scope": "13 ally skill activation, active and impact emblems; dedicated activation sounds and arc pulse sound. No sim or content data changes.",
+  "preservedPriorChanges": [
+    "src/ui/screens.css",
+    "src/ui/shop.css",
+    "docs/spec/05-ui-input.md",
+    "T4.26 review2 documentation and verification artifacts"
+  ],
+  "mandatory": {
+    "check": "passed",
+    "lint": "passed",
+    "test": {
+      "files": 78,
+      "passed": 1427,
+      "failed": 0
+    },
+    "build": "passed",
+    "diffCheck": "passed"
+  },
+  "browser": {
+    "characterLifecycle": {
+      "cases": 26,
+      "units": [
+        "squirrel",
+        "cat",
+        "bear",
+        "penguin",
+        "sheep",
+        "bunny",
+        "mole",
+        "snail",
+        "owl",
+        "wolf",
+        "fox",
+        "redPanda",
+        "deer"
+      ],
+      "rejected": []
+    },
+    "skillFeedback": {
+      "cases": 6,
+      "screenshots": 18,
+      "peakCalls": 80,
+      "peakParticles": 143,
+      "allPausedScreensIdentical": true,
+      "allDisposed": true,
+      "errors": []
+    },
+    "skillAudio": {
+      "routedSkills": 13,
+      "buffers": 14,
+      "mixedBuffers": 40,
+      "mixedPeak": 0.8702458143234253,
+      "maxPairCorrelation": 0.5022658098729934,
+      "muted": true,
+      "reset": true,
+      "disposed": true,
+      "errors": []
+    },
+    "vfxTiming": {
+      "cases": 30,
+      "allStateUnchanged": true
+    },
+    "audioTiming": {
+      "paused": true,
+      "speedChanges": true,
+      "restart": true,
+      "ending": true,
+      "errors": []
+    },
+    "audioWeapons": {
+      "cases": 26,
+      "allPausedSourcesZero": true
+    },
+    "performance": {
+      "mode": "display-paced",
+      "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 130V GPU (8GB) (0x000064A0) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+      "baselineFps": 59.997983261066864,
+      "enemies": 60,
+      "units": 13,
+      "viewport": "1920x1080",
+      "fps": 60.00100001666694,
+      "renderP95Ms": 2.199999999254942,
+      "frameP95Ms": 16.899999999999636,
+      "peakCalls": 95,
+      "peakParticles": 148,
+      "memory": {
+        "geometries": 132,
+        "textures": 74
+      },
+      "errors": []
+    },
+    "production": {
+      "productionBase": "/mallang-guard/",
+      "portraits": 8,
+      "webgl": true,
+      "waves": 12,
+      "killOnlyIncome": true,
+      "exit": true,
+      "shopReturnToResult": true,
+      "currentBalanceAfterRecruit": true,
+      "rareShopUnits": 3,
+      "rarePurchasesAndReload": true,
+      "rarePurchases": [
+        "fox",
+        "redPanda",
+        "deer"
+      ],
+      "alreadyRecruitedRareUnits": [],
+      "rareRates": "5% aggregate, 1.67% rounded per unit",
+      "productionPurchaseFixtureMoney": 6000,
+      "productionFirstDrawSeed": 1,
+      "errors": []
+    }
+  },
+  "reviewFixes": [
+    "Separated bear and mole activation waveforms after correlation check flagged similarity; final maximum correlation 0.5023."
+  ],
+  "visualReview": [
+    "t4.27-1920-normal-skill-start.png",
+    "t4.27-1920-normal-skill-hits.png",
+    "t4.27-844-reduced-skill-start.png",
+    "t4.27-mobile-owl-skill.png"
+  ],
+  "audioPreview": "t4.27-skill-sounds.wav",
+  "limits": [
+    "Edge headless; touch emulation and synthetic render fixtures, not physical mobile-device or 120Hz measurements.",
+    "Character lifecycle uses a test map with original ally costs, skills and natural SP; full original campaign was not rerun for this presentation-only change.",
+    "WebAudio waveform and mixing checks do not replace subjective listening."
+  ],
+  "sourceSha256": {
+    "src/art/skillArt.ts": "6e7c20783cfabf9a4d53cd1035fb02de0fbc2a348b97512e191fd5ff76ad38cb",
+    "src/art/vfxArt.ts": "c76f346281653193a6fe199a73ec688dbf486b8deac7ef098454d6bd6ee3d506",
+    "src/audio/skillSounds.ts": "9914ccdbf7fc9b3c232bd183c2a825d3221240d8c22c4030fc8bfc83b33a6ad7",
+    "src/audio/sfx.ts": "6f2f1f429a1eeb76dcb30f6ac80aac1ce68506dd34f459323fb50ecc091c8cd8",
+    "src/view/skillVfx.ts": "6322f96dc4ccfd71f2510a58438ada9d5ab25cadbe032b26b19f237a4c8871ba",
+    "src/view/vfx.ts": "ab269703b29870f7e8300956fd70a7f298a4331b5eacb3b3df82afdcdfb8a41e",
+    "src/view/particlePool.ts": "4ffb11d94c2a62116e50b7192e5d99ead91cbab76fffb6c28c25857afb8d1f69"
+  }
+}

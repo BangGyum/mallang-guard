@@ -54,6 +54,14 @@ export function parseEffect(value: unknown, path: string): Effect {
       };
     case 'slowAura':
       return { type, amount: number(raw.amount, `${path}.amount`, 0, 1) };
+    case 'gravityField':
+      return {
+        type,
+        radius: positive(raw.radius, `${path}.radius`),
+        slowAmount: number(raw.slowAmount, `${path}.slowAmount`, 0, 0.8),
+        bossSlowAmount: number(raw.bossSlowAmount, `${path}.bossSlowAmount`, 0, 0.8),
+        atkMul: positive(raw.atkMul, `${path}.atkMul`),
+      };
     case 'pushback':
       return { type, tiles: number(raw.tiles, `${path}.tiles`) };
     default:

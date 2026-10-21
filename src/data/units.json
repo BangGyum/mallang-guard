@@ -5,7 +5,7 @@
     "animal": "다람쥐",
     "role": "vanguard",
     "art": "squirrel",
-    "cost": 9,
+    "cost": 6,
     "deployOn": "high",
     "redeploySec": 30,
     "atk": 280,
@@ -22,7 +22,7 @@
     "animal": "고양이",
     "role": "guard",
     "art": "cat",
-    "cost": 14,
+    "cost": 9,
     "deployOn": "high",
     "redeploySec": 40,
     "atk": 420,
@@ -39,7 +39,7 @@
     "animal": "곰",
     "role": "defender",
     "art": "bear",
-    "cost": 18,
+    "cost": 12,
     "deployOn": "high",
     "redeploySec": 50,
     "atk": 220,
@@ -56,7 +56,7 @@
     "animal": "펭귄",
     "role": "sniper",
     "art": "penguin",
-    "cost": 12,
+    "cost": 8,
     "deployOn": "high",
     "redeploySec": 40,
     "atk": 380,
@@ -73,7 +73,7 @@
     "animal": "양",
     "role": "caster",
     "art": "sheep",
-    "cost": 17,
+    "cost": 11,
     "deployOn": "high",
     "redeploySec": 45,
     "atk": 420,
@@ -89,7 +89,7 @@
     "animal": "토끼",
     "role": "medic",
     "art": "bunny",
-    "cost": 15,
+    "cost": 10,
     "deployOn": "high",
     "redeploySec": 45,
     "atk": 260,
@@ -105,7 +105,7 @@
     "animal": "두더지",
     "role": "specialist",
     "art": "mole",
-    "cost": 8,
+    "cost": 5,
     "deployOn": "high",
     "redeploySec": 8,
     "atk": 300,
@@ -122,7 +122,7 @@
     "animal": "달팽이",
     "role": "supporter",
     "art": "snail",
-    "cost": 13,
+    "cost": 9,
     "deployOn": "high",
     "redeploySec": 45,
     "atk": 200,
@@ -145,7 +145,7 @@
     "animal": "부엉이",
     "role": "caster",
     "art": "owl",
-    "cost": 24,
+    "cost": 16,
     "deployOn": "high",
     "redeploySec": 55,
     "atk": 320,
@@ -161,7 +161,7 @@
     "animal": "늑대",
     "role": "sniper",
     "art": "wolf",
-    "cost": 22,
+    "cost": 15,
     "deployOn": "high",
     "redeploySec": 50,
     "atk": 650,
@@ -178,7 +178,7 @@
     "animal": "은여우",
     "role": "sniper",
     "art": "fox",
-    "cost": 28,
+    "cost": 18,
     "deployOn": "high",
     "redeploySec": 55,
     "atk": 900,
@@ -196,7 +196,7 @@
     "animal": "레서판다",
     "role": "sniper",
     "art": "redPanda",
-    "cost": 30,
+    "cost": 20,
     "deployOn": "high",
     "redeploySec": 60,
     "atk": 560,
@@ -205,7 +205,12 @@
     "range": "front4",
     "damageType": "physical",
     "canHitAir": false,
-    "traits": [{ "type": "splash", "radius": 1.2 }],
+    "traits": [
+      {
+        "type": "splash",
+        "radius": 1.2
+      }
+    ],
     "skill": "siegeBarrage"
   },
   {
@@ -214,7 +219,7 @@
     "animal": "사슴",
     "role": "caster",
     "art": "deer",
-    "cost": 27,
+    "cost": 18,
     "deployOn": "high",
     "redeploySec": 55,
     "atk": 360,
@@ -222,7 +227,35 @@
     "range": "front4",
     "damageType": "magic",
     "canHitAir": true,
-    "traits": [{ "type": "chain", "radius": 1.5, "damageMuls": [1, 0.7, 0.5] }],
+    "traits": [
+      {
+        "type": "chain",
+        "radius": 1.5,
+        "damageMuls": [1, 0.7, 0.5]
+      }
+    ],
     "skill": "stormChain"
+  },
+  {
+    "id": "snowLeopard",
+    "name": "노바",
+    "animal": "설표",
+    "role": "caster",
+    "art": "snowLeopard",
+    "cost": 23,
+    "deployOn": "high",
+    "redeploySec": 70,
+    "atk": 640,
+    "atkIntervalSec": 3,
+    "range": "front4",
+    "damageType": "magic",
+    "canHitAir": true,
+    "traits": [
+      {
+        "type": "splash",
+        "radius": 1
+      }
+    ],
+    "skill": "eventHorizon"
   }
 ]

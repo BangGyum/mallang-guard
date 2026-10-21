@@ -1,6 +1,7 @@
 import { assert } from '../../core/assert';
 import type { ContentDb, SkillDef } from '../../data/types';
 import { SP_EPSILON, secToTicks, TICK_RATE } from '../constants';
+import { burstGravityField, startGravityField } from '../gravityField';
 import { unitStats } from '../stats';
 import { enemiesInRange, pickEnemy } from '../targeting';
 import type { BattleState, SimEvent, StageRuntime, UnitEntity } from '../types';
@@ -39,6 +40,7 @@ function endSkill(unit: UnitEntity, tick: number, events: SimEvent[]): void {
   unit.buffs = [];
   unit.pulsesLeft = 0;
   unit.nextPulseTick = 0;
+  delete unit.gravityCenter;
   events.push({ type: 'skillEnd', uid: unit.uid });
 }
 
@@ -75,6 +77,7 @@ export function startSkill(
   unit.skillEndTick = state.tick + secToTicks(skill.durationSec);
   unit.buffs = skill.durationSec > 0 ? skill.effects.map((effect) => ({ ...effect })) : [];
   for (const effect of skill.effects) {
+    if (effect.type === 'gravityField') startGravityField(content, stage, state, unit, effect, events);
     if (effect.type === 'pushback') {
       const enemy = pickEnemy(content, stage, state, unit);
       if (!enemy) continue;
@@ -107,7 +110,10 @@ export function updateSkillTimers(
   for (const unit of state.units) {
     if (unit.skillState !== 'active') continue;
     pulse(content, stage, state, unit, events);
-    if (state.tick >= unit.skillEndTick) endSkill(unit, state.tick, events);
+    if (state.tick >= unit.skillEndTick) {
+      burstGravityField(content, stage, state, unit, events);
+      endSkill(unit, state.tick, events);
+    }
   }
 }
 

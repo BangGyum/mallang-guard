@@ -1,0 +1,258 @@
+[
+  {
+    "width": 1920,
+    "height": 1080,
+    "touch": false,
+    "stages": [
+      {
+        "stage": 1,
+        "theme": "yard",
+        "name": "햇살 마당",
+        "blocked": "rgb(165, 217, 131)",
+        "deployed": true,
+        "themeCleaned": true
+      },
+      {
+        "stage": 2,
+        "theme": "grove",
+        "name": "자작나무 길",
+        "blocked": "rgb(133, 188, 148)",
+        "deployed": true,
+        "themeCleaned": true
+      },
+      {
+        "stage": 3,
+        "theme": "bubble",
+        "name": "방울 정원",
+        "blocked": "rgb(150, 203, 191)",
+        "deployed": true,
+        "themeCleaned": true
+      },
+      {
+        "stage": 4,
+        "theme": "greenhouse",
+        "name": "민트 온실",
+        "blocked": "rgb(171, 221, 194)",
+        "deployed": true,
+        "themeCleaned": true
+      },
+      {
+        "stage": 5,
+        "theme": "pond",
+        "name": "푸른 연못",
+        "blocked": "rgb(121, 198, 217)",
+        "deployed": true,
+        "themeCleaned": true
+      },
+      {
+        "stage": 6,
+        "theme": "terrace",
+        "name": "연회 테라스",
+        "blocked": "rgb(216, 194, 171)",
+        "deployed": true,
+        "themeCleaned": true
+      },
+      {
+        "stage": 7,
+        "theme": "royal",
+        "name": "왕실 정원",
+        "blocked": "rgb(145, 203, 180)",
+        "deployed": true,
+        "themeCleaned": true
+      }
+    ],
+    "errors": []
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "touch": true,
+    "stages": [
+      {
+        "stage": 1,
+        "theme": "yard",
+        "name": "햇살 마당",
+        "blocked": "rgb(165, 217, 131)",
+        "deployed": true,
+        "themeCleaned": true
+      },
+      {
+        "stage": 2,
+        "theme": "grove",
+        "name": "자작나무 길",
+        "blocked": "rgb(133, 188, 148)",
+        "deployed": true,
+        "themeCleaned": true
+      },
+      {
+        "stage": 3,
+        "theme": "bubble",
+        "name": "방울 정원",
+        "blocked": "rgb(150, 203, 191)",
+        "deployed": true,
+        "themeCleaned": true
+      },
+      {
+        "stage": 4,
+        "theme": "greenhouse",
+        "name": "민트 온실",
+        "blocked": "rgb(171, 221, 194)",
+        "deployed": true,
+        "themeCleaned": true
+      },
+      {
+        "stage": 5,
+        "theme": "pond",
+        "name": "푸른 연못",
+        "blocked": "rgb(121, 198, 217)",
+        "deployed": true,
+        "themeCleaned": true
+      },
+      {
+        "stage": 6,
+        "theme": "terrace",
+        "name": "연회 테라스",
+        "blocked": "rgb(216, 194, 171)",
+        "deployed": true,
+        "themeCleaned": true
+      },
+      {
+        "stage": 7,
+        "theme": "royal",
+        "name": "왕실 정원",
+        "blocked": "rgb(145, 203, 180)",
+        "deployed": true,
+        "themeCleaned": true
+      }
+    ],
+    "errors": []
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "touch": true,
+    "stages": [
+      {
+        "stage": 1,
+        "theme": "yard",
+        "name": "햇살 마당",
+        "blocked": "rgb(165, 217, 131)",
+        "deployed": true,
+        "themeCleaned": true
+      },
+      {
+        "stage": 2,
+        "theme": "grove",
+        "name": "자작나무 길",
+        "blocked": "rgb(133, 188, 148)",
+        "deployed": true,
+        "themeCleaned": true
+      },
+      {
+        "stage": 3,
+        "theme": "bubble",
+        "name": "방울 정원",
+        "blocked": "rgb(150, 203, 191)",
+        "deployed": true,
+        "themeCleaned": true
+      },
+      {
+        "stage": 4,
+        "theme": "greenhouse",
+        "name": "민트 온실",
+        "blocked": "rgb(171, 221, 194)",
+        "deployed": true,
+        "themeCleaned": true
+      },
+      {
+        "stage": 5,
+        "theme": "pond",
+        "name": "푸른 연못",
+        "blocked": "rgb(121, 198, 217)",
+        "deployed": true,
+        "themeCleaned": true
+      },
+      {
+        "stage": 6,
+        "theme": "terrace",
+        "name": "연회 테라스",
+        "blocked": "rgb(216, 194, 171)",
+        "deployed": true,
+        "themeCleaned": true
+      },
+      {
+        "stage": 7,
+        "theme": "royal",
+        "name": "왕실 정원",
+        "blocked": "rgb(145, 203, 180)",
+        "deployed": true,
+        "themeCleaned": true
+      }
+    ],
+    "errors": []
+  },
+  {
+    "width": 320,
+    "height": 568,
+    "touch": true,
+    "stages": [
+      {
+        "stage": 1,
+        "theme": "yard",
+        "name": "햇살 마당",
+        "blocked": "rgb(165, 217, 131)",
+        "deployed": true,
+        "themeCleaned": true
+      },
+      {
+        "stage": 2,
+        "theme": "grove",
+        "name": "자작나무 길",
+        "blocked": "rgb(133, 188, 148)",
+        "deployed": true,
+        "themeCleaned": true
+      },
+      {
+        "stage": 3,
+        "theme": "bubble",
+        "name": "방울 정원",
+        "blocked": "rgb(150, 203, 191)",
+        "deployed": true,
+        "themeCleaned": true
+      },
+      {
+        "stage": 4,
+        "theme": "greenhouse",
+        "name": "민트 온실",
+        "blocked": "rgb(171, 221, 194)",
+        "deployed": true,
+        "themeCleaned": true
+      },
+      {
+        "stage": 5,
+        "theme": "pond",
+        "name": "푸른 연못",
+        "blocked": "rgb(121, 198, 217)",
+        "deployed": true,
+        "themeCleaned": true
+      },
+      {
+        "stage": 6,
+        "theme": "terrace",
+        "name": "연회 테라스",
+        "blocked": "rgb(216, 194, 171)",
+        "deployed": true,
+        "themeCleaned": true
+      },
+      {
+        "stage": 7,
+        "theme": "royal",
+        "name": "왕실 정원",
+        "blocked": "rgb(145, 203, 180)",
+        "deployed": true,
+        "themeCleaned": true
+      }
+    ],
+    "errors": []
+  }
+]
