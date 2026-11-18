@@ -99,6 +99,7 @@ export function createBoardView(
   shadowCamera.updateProjectionMatrix();
 
   let camera = fitCamera(bounds, 1);
+  let drawable = false;
   let highlightState: HighlightState = {};
   let quality: 'high' | 'low' = 'high';
   let reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -125,8 +126,10 @@ export function createBoardView(
       return camera;
     },
     resize() {
-      const width = Math.max(1, canvas.clientWidth);
-      const height = Math.max(1, canvas.clientHeight);
+      const width = canvas.clientWidth;
+      const height = canvas.clientHeight;
+      drawable = width > 0 && height > 0;
+      if (!drawable) return;
       renderer.setPixelRatio(quality === 'low' ? 1 : Math.min(window.devicePixelRatio, 2));
       renderer.setSize(width, height, false);
       renderer.shadowMap.needsUpdate = true;
@@ -137,6 +140,7 @@ export function createBoardView(
       );
     },
     render(state, alpha, dt) {
+      if (!drawable) return;
       entities.update(state, camera, alpha, dt);
       vfx.update(state, camera, dt);
       landmarks.update(camera, dt);
