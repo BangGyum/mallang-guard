@@ -1,49 +1,11 @@
 import { describe, expect, it } from 'vitest';
+import { violations } from './architectureRules';
 
 const sources = import.meta.glob<string>('../src/**/*.ts', {
   eager: true,
   query: '?raw',
   import: 'default',
 });
-const allowedLayers: Record<string, readonly string[]> = {
-  core: ['core'],
-  data: ['core', 'data'],
-  sim: ['core', 'sim'],
-  art: ['core', 'art'],
-  view: ['core', 'data', 'sim', 'view'],
-  ui: ['core', 'data', 'sim', 'art', 'view', 'ui'],
-};
-
-function violations(file: string, source: string): string[] {
-  const layer = file.split('/')[0] ?? '';
-  const allowed = allowedLayers[layer];
-  if (!allowed) return [];
-
-  const errors: string[] = [];
-  const modules = /\b(?:from\s*|import\s*(?:\(\s*)?|require\s*\(\s*)['"]([^'"]+)['"]/g;
-  for (const match of source.matchAll(modules)) {
-    const specifier = match[1] ?? '';
-    const target = specifier.startsWith('.')
-      ? new URL(specifier, `file:///src/${file}`).pathname.replace(/^\/src\//, '')
-      : specifier;
-    const targetLayer = target.split('/')[0] ?? '';
-    const permitted = specifier.startsWith('.')
-      ? allowed.includes(targetLayer) || (layer === 'sim' && /^data\/types(?:\.ts)?$/.test(target))
-      : layer === 'view' && /^three(?:\/|$)/.test(specifier);
-    if (!permitted) errors.push(`${file}: forbidden import ${specifier}`);
-  }
-
-  if (['core', 'data', 'sim', 'art'].includes(layer) && /\b(?:window|document)\b/.test(source)) {
-    errors.push(`${file}: DOM usage`);
-  }
-  if (layer === 'sim') {
-    if (/\bMath\s*(?:\.\s*random|\[\s*['"]random['"]\s*\])/.test(source)) {
-      errors.push(`${file}: nondeterministic random`);
-    }
-    if (/\b(?:Date|performance)\b/.test(source)) errors.push(`${file}: wall clock usage`);
-  }
-  return errors;
-}
 
 describe('architecture', () => {
   it('실제 소스의 직접 의존성과 금지된 전역 사용을 검사한다', () => {
@@ -63,11 +25,14 @@ describe('architecture', () => {
     ['sim/systems/test.ts', "export * from '../../view/camera';"],
     ['sim/test.ts', "import('../ui/hud');"],
     ['sim/test.ts', "require('../app/loop');"],
+    ['sim/test.ts', "module.require('../view/camera');"],
     ['sim/test.ts', "import units from '../data/units.json';"],
     ['sim/test.ts', 'Math.random();'],
     ['sim/test.ts', 'Math["random"]();'],
     ['sim/test.ts', 'Date.now();'],
     ['sim/test.ts', 'new Date();'],
+    ['sim/test.ts', "type Hud = import('../ui/hud').Hud;"],
+    ['sim/test.ts', `const label = \`tick \${Math["random"]()}\`;`],
     ['sim/test.ts', 'performance.now();'],
     ['sim/test.ts', 'window["innerWidth"];'],
     ['sim/test.ts', 'document.createElement("div");'],
@@ -85,6 +50,11 @@ describe('architecture', () => {
     ['sim/test.ts', "import type { UnitDef } from '../data/types';"],
     ['sim/test.ts', "import type { UnitDef } from '../data/types.ts';"],
     ['sim/systems/test.ts', "import { clamp } from '../../core/math';"],
+    ['sim/test.ts', '// Date.now() 대신 고정 틱을 사용한다.'],
+    ['sim/test.ts', "/* import 'three'; window.innerWidth; Math.random(); */"],
+    ['sim/test.ts', `const help = "require('three'); window.innerWidth; Math.random()";`],
+    ['sim/test.ts', `const label = \`Date.now() \${tick}\`;`],
+    ['art/test.ts', 'const label = "document";'],
     ['art/test.ts', "import { lerp } from '../core/math';"],
     ['view/test.ts', "import { Scene } from 'three';"],
     ['view/test.ts', "import { shader } from 'three/addons/test';"],

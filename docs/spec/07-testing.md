@@ -233,7 +233,7 @@ stage-1은 첫 5웨이브 뒤 압박이 증가하며 아래 7인 배치와 자�
 **tests/architecture.test.ts**
 - `src/sim/**/*.ts`를 읽어서 다음이 없는지 확인합니다: `from 'three'`, `../view`, `../ui`, `../app`, `window.`, `document.`, `Math.random`, `Date.now`, `new Date`, `performance.`
 - `src/core/**`, `src/data/**`에도 `three`와 DOM 사용이 없는지 확인합니다.
-- Vite의 `?raw` glob으로 소스 원문을 읽고, 01 문서의 레이어 표에 맞춰 상대 경로 import, re-export, 동적 import, require를 텍스트 기반으로 검사합니다. 허용된 의존성도 통과하는지 확인합니다.
+- Vite의 `?raw` glob으로 소스 원문을 읽고, 01 문서의 레이어 표에 맞춰 TypeScript 구문 트리에서 상대 경로 import, re-export, 동적 import, require를 검사합니다. 주석과 일반 문자열에 적힌 예시는 허용합니다. 허용된 의존성도 통과하는지 확인합니다.
 
 **tests/data.test.ts**
 - 실제 콘텐츠가 검증을 통과합니다.

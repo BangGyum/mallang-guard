@@ -52,11 +52,12 @@ export function createOverlay(canvas: HTMLCanvasElement, board: Board, content: 
       combatText.onEvents(events, entityPosition, delays);
     },
     resize() {
-      width = Math.max(1, canvas.clientWidth);
-      height = Math.max(1, canvas.clientHeight);
+      width = canvas.clientWidth;
+      height = canvas.clientHeight;
+      if (width === 0 || height === 0) return;
       const dpr = low ? 1 : Math.min(window.devicePixelRatio, 2);
-      canvas.width = Math.round(width * dpr);
-      canvas.height = Math.round(height * dpr);
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     },
     render(state: Readonly<BattleState>, camera: PerspectiveCamera, alpha: number, dt = 0) {
@@ -65,6 +66,7 @@ export function createOverlay(canvas: HTMLCanvasElement, board: Board, content: 
         if (delay <= dt) births.delete(uid);
         else births.set(uid, delay - dt);
       }
+      if (width === 0 || height === 0) return;
       ctx.clearRect(0, 0, width, height);
       railgunFrame.render(state, width, height, dt, reduced || low);
       for (const unit of state.units) {
