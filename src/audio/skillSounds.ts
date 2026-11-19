@@ -59,76 +59,98 @@ export function createSkillBuffers(context: BaseAudioContext): ReadonlyMap<Skill
       switch (cue) {
         case 'acornPickup':
           sample =
-            0.09 * tone(t, 520, 0, 0.16) + 0.07 * tone(t, 680, 0.09, 0.2) + 0.16 * air * envelope(t, 0, 0.08);
+            0.09 * tone(t, 520, 0, 0.16) +
+            0.07 * tone(t, 680, 0.09, 0.2) +
+            0.16 * air * envelope(t, 0, 0.08) +
+            0.065 * tone(t, 1420, 0.02, 0.048);
           break;
         case 'nyangCombo':
-          sample = 0.25 * air * (envelope(t, 0, 0.14) + 0.7 * envelope(t, 0.1, 0.17));
+          sample =
+            0.29 * air * (envelope(t, 0, 0.14) + 0.8 * envelope(t, 0.1, 0.17)) +
+            0.075 * tone(t, 1160, 0.13, 0.1);
           break;
         case 'potLidGuard':
-          sample = (0.24 * body + 0.24 * low) * envelope(t, 0, sec) + 0.035 * tone(t, 420, 0.02, 0.3);
+          sample =
+            (0.24 * body + 0.24 * low) * envelope(t, 0, sec) +
+            0.09 * tone(t, 430, 0.02, 0.3) +
+            0.055 * tone(t, 713, 0.055, 0.25);
           break;
         case 'snowballBarrage':
           sample =
             0.22 * air * envelope(t, 0.04, 0.28) +
-            0.08 * tone(t, 710, 0, 0.18) +
+            0.085 * tone(t, 1780, 0, 0.16) +
+            0.055 * tone(t, 2640, 0.11, 0.17) +
             0.12 * low * envelope(t, 0.15, 0.15);
           break;
         case 'stardustShower':
           sample =
             (0.13 * Math.sin(phase * 3.1) + 0.21 * air) * envelope(t, 0, sec) +
-            0.06 * tone(t, 420, 0.12, 0.3);
+            0.075 * Math.sin(phase * 6 + 2 * Math.sin(phase)) * envelope(t, 0.12, 0.3);
           break;
         case 'carrotSoup':
           sample =
             0.08 * tone(t, 440, 0, 0.14) +
-            0.07 * tone(t, 590, 0.12, 0.2) +
+            0.075 * tone(t, 660, 0.08, 0.16) +
+            0.065 * tone(t, 880, 0.16, 0.17) +
             0.08 * band * envelope(t, 0.1, 0.12);
           break;
         case 'tunnelAmbush':
           sample =
             (0.12 * Math.sin(phase * 1.7) + 0.34 * low + 0.4 * air) * envelope(t, 0, 0.15) +
-            0.16 * air * envelope(t, 0.09, 0.1);
+            (0.18 * air + 0.115 * body) * envelope(t, 0.09, 0.1);
           break;
         case 'stickyRoad':
           sample =
             (0.15 * Math.sin(phase + 1.6 * Math.sin(2 * Math.PI * 13 * t)) + 0.28 * low) *
-            envelope(t, 0, sec);
+              envelope(t, 0, sec) +
+            0.09 * Math.sin(phase * 1.6) * envelope(t, 0.11, 0.19);
           break;
         case 'wideBarrage':
           sample =
-            (0.5 * low + 0.34 * air) * Math.sin((Math.PI * t) / sec) ** 2 + 0.12 * body * envelope(t, 0, 0.3);
+            (0.5 * low + 0.34 * air) * Math.sin((Math.PI * t) / sec) ** 2 +
+            0.12 * body * envelope(t, 0, 0.3) +
+            0.15 * air * envelope(t, 0.09, 0.3) * Math.sin(2 * Math.PI * 24 * t);
           break;
         case 'tripleAim':
           for (const offset of [0, 0.08, 0.16])
-            sample += 0.2 * air * envelope(t, offset, 0.09) + 0.035 * tone(t, 350, offset, 0.12);
+            sample += 0.2 * air * envelope(t, offset, 0.09) + 0.085 * tone(t, 485, offset, 0.1);
           break;
         case 'polarAim':
           sample =
             0.09 * Math.sin(2 * Math.PI * (180 * t + 230 * t * t)) * Math.sin((Math.PI * t) / sec) ** 2 +
-            (0.21 * body + 0.25 * low) * envelope(t, 0.23, 0.25);
+            (0.21 * body + 0.25 * low) * envelope(t, 0.23, 0.25) +
+            0.085 * tone(t, 1480, 0.22, 0.16);
           break;
         case 'siegeBarrage':
-          sample = 0.18 * air * envelope(t, 0, 0.1) + (0.29 * body + 0.36 * low) * envelope(t, 0.1, 0.35);
+          sample =
+            0.18 * air * envelope(t, 0, 0.1) +
+            (0.29 * body + 0.36 * low) * envelope(t, 0.1, 0.35) +
+            0.12 * tone(t, 117, 0.1, 0.32);
           break;
         case 'stormChain':
           sample =
             (0.28 * low + 0.42 * air) * (envelope(t, 0, 0.27) + 0.65 * envelope(t, 0.16, 0.25)) +
-            0.045 * body * envelope(t, 0.02, 0.3);
+            0.1 * tone(t, 165, 0.04, 0.12) +
+            0.085 * tone(t, 165, 0.2, 0.11);
           break;
         case 'arcPulse':
-          sample = (0.12 * Math.sin(phase * 4) + 0.22 * air + 0.12 * low) * envelope(t, 0, sec);
+          sample =
+            (0.14 * Math.sin(phase * 4 + Math.sin(phase * 1.7)) + 0.22 * air + 0.12 * low) *
+            envelope(t, 0, sec);
           break;
         case 'eventHorizon':
           sample =
             (0.13 * Math.sin(2 * Math.PI * (240 * t - 100 * t * t)) + 0.24 * low) *
               Math.sin((Math.PI * t) / sec) ** 2 +
-            0.05 * tone(t, 360, 0.25, 0.3);
+            0.085 * tone(t, 142, 0.17, 0.42) +
+            0.065 * tone(t, 152, 0.17, 0.42);
           break;
         case 'gravityBurst':
           sample =
             (0.22 * Math.sin(phase * 0.67 + 0.3 * Math.sin(2 * Math.PI * 16 * t)) + 0.33 * low + 0.1 * air) *
               envelope(t, 0, sec) +
-            0.06 * tone(t, 260, 0.08, 0.3);
+            0.08 * tone(t, 92, 0.08, 0.36) +
+            0.055 * tone(t, 99, 0.08, 0.36);
           break;
       }
       // 모든 음원에 완만한 시작과 끝을 적용해 클릭·고음 피로를 줄입니다.
