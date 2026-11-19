@@ -1,0 +1,478 @@
+[
+  {
+    "label": "desktop",
+    "unit": "squirrel",
+    "duration": 0.12,
+    "attacks": 1,
+    "voices": [
+      {
+        "duration": 0.12,
+        "rate": 1.0010523796081543
+      },
+      {
+        "duration": 0.07002083333333334,
+        "rate": 1.011944055557251
+      }
+    ],
+    "pausedSources": 0
+  },
+  {
+    "label": "desktop",
+    "unit": "cat",
+    "duration": 0.12,
+    "attacks": 1,
+    "voices": [
+      {
+        "duration": 0.12,
+        "rate": 1.0053056478500366
+      },
+      {
+        "duration": 0.09,
+        "rate": 0.9869623780250549
+      }
+    ],
+    "pausedSources": 0
+  },
+  {
+    "label": "desktop",
+    "unit": "bear",
+    "duration": 0.24,
+    "attacks": 1,
+    "voices": [
+      {
+        "duration": 0.24,
+        "rate": 1.0146911144256592
+      },
+      {
+        "duration": 0.16,
+        "rate": 1.017716884613037
+      }
+    ],
+    "pausedSources": 0
+  },
+  {
+    "label": "desktop",
+    "unit": "penguin",
+    "duration": 0.23,
+    "attacks": 1,
+    "voices": [
+      {
+        "duration": 0.23,
+        "rate": 1.0141230821609497
+      },
+      {
+        "duration": 0.13,
+        "rate": 1.000741958618164
+      }
+    ],
+    "pausedSources": 0
+  },
+  {
+    "label": "desktop",
+    "unit": "sheep",
+    "duration": 0.2,
+    "attacks": 1,
+    "voices": [
+      {
+        "duration": 0.2,
+        "rate": 1.0176753997802734
+      },
+      {
+        "duration": 0.11,
+        "rate": 1.0010278224945068
+      }
+    ],
+    "pausedSources": 0
+  },
+  {
+    "label": "desktop",
+    "unit": "bunny",
+    "duration": 0.145,
+    "attacks": 1,
+    "voices": [
+      {
+        "duration": 0.145,
+        "rate": 0.9937384128570557
+      },
+      {
+        "duration": 0.11,
+        "rate": 1.0128377676010132
+      }
+    ],
+    "pausedSources": 0
+  },
+  {
+    "label": "desktop",
+    "unit": "mole",
+    "duration": 0.095,
+    "attacks": 1,
+    "voices": [
+      {
+        "duration": 0.095,
+        "rate": 1.0021045207977295
+      },
+      {
+        "duration": 0.07002083333333334,
+        "rate": 0.9971240162849426
+      }
+    ],
+    "pausedSources": 0
+  },
+  {
+    "label": "desktop",
+    "unit": "snail",
+    "duration": 0.22,
+    "attacks": 1,
+    "voices": [
+      {
+        "duration": 0.22,
+        "rate": 0.9875546097755432
+      },
+      {
+        "duration": 0.15,
+        "rate": 1.0049545764923096
+      }
+    ],
+    "pausedSources": 0
+  },
+  {
+    "label": "desktop",
+    "unit": "owl",
+    "duration": 0.28,
+    "attacks": 1,
+    "voices": [
+      {
+        "duration": 0.28002083333333333,
+        "rate": 1.0167198181152344
+      },
+      {
+        "duration": 0.21,
+        "rate": 0.9950681924819946
+      }
+    ],
+    "pausedSources": 0
+  },
+  {
+    "label": "desktop",
+    "unit": "wolf",
+    "duration": 0.26,
+    "attacks": 1,
+    "voices": [
+      {
+        "duration": 0.26,
+        "rate": 0.9910990595817566
+      },
+      {
+        "duration": 0.07002083333333334,
+        "rate": 0.9938458800315857
+      }
+    ],
+    "pausedSources": 0
+  },
+  {
+    "label": "desktop",
+    "unit": "fox",
+    "duration": 0.32,
+    "attacks": 1,
+    "voices": [
+      {
+        "duration": 0.32,
+        "rate": 0.9960421919822693
+      },
+      {
+        "duration": 0.14002083333333334,
+        "rate": 0.9891960024833679
+      }
+    ],
+    "pausedSources": 0
+  },
+  {
+    "label": "desktop",
+    "unit": "redPanda",
+    "duration": 0.3,
+    "attacks": 1,
+    "voices": [
+      {
+        "duration": 0.3,
+        "rate": 0.9847730398178101
+      },
+      {
+        "duration": 0.26,
+        "rate": 1.0082660913467407
+      }
+    ],
+    "pausedSources": 0
+  },
+  {
+    "label": "desktop",
+    "unit": "deer",
+    "duration": 0.24,
+    "attacks": 1,
+    "voices": [
+      {
+        "duration": 0.24,
+        "rate": 0.9976295828819275
+      },
+      {
+        "duration": 0.21,
+        "rate": 0.9975536465644836
+      }
+    ],
+    "pausedSources": 0
+  },
+  {
+    "label": "desktop",
+    "unit": "snowLeopard",
+    "duration": 0.36,
+    "attacks": 1,
+    "voices": [
+      {
+        "duration": 0.36,
+        "rate": 0.9895797371864319
+      },
+      {
+        "duration": 0.3,
+        "rate": 1.0125319957733154
+      }
+    ],
+    "pausedSources": 0
+  },
+  {
+    "label": "touch",
+    "unit": "squirrel",
+    "duration": 0.12,
+    "attacks": 1,
+    "voices": [
+      {
+        "duration": 0.12,
+        "rate": 0.9903590083122253
+      },
+      {
+        "duration": 0.07002083333333334,
+        "rate": 1.0065394639968872
+      }
+    ],
+    "pausedSources": 0
+  },
+  {
+    "label": "touch",
+    "unit": "cat",
+    "duration": 0.12,
+    "attacks": 1,
+    "voices": [
+      {
+        "duration": 0.12,
+        "rate": 0.9965963363647461
+      },
+      {
+        "duration": 0.09,
+        "rate": 0.991317629814148
+      }
+    ],
+    "pausedSources": 0
+  },
+  {
+    "label": "touch",
+    "unit": "bear",
+    "duration": 0.24,
+    "attacks": 1,
+    "voices": [
+      {
+        "duration": 0.24,
+        "rate": 0.9963029623031616
+      },
+      {
+        "duration": 0.16,
+        "rate": 1.0163969993591309
+      }
+    ],
+    "pausedSources": 0
+  },
+  {
+    "label": "touch",
+    "unit": "penguin",
+    "duration": 0.23,
+    "attacks": 1,
+    "voices": [
+      {
+        "duration": 0.23,
+        "rate": 1.0123305320739746
+      },
+      {
+        "duration": 0.13,
+        "rate": 1.0136219263076782
+      }
+    ],
+    "pausedSources": 0
+  },
+  {
+    "label": "touch",
+    "unit": "sheep",
+    "duration": 0.2,
+    "attacks": 1,
+    "voices": [
+      {
+        "duration": 0.2,
+        "rate": 0.9944862723350525
+      },
+      {
+        "duration": 0.11,
+        "rate": 0.9909770488739014
+      }
+    ],
+    "pausedSources": 0
+  },
+  {
+    "label": "touch",
+    "unit": "bunny",
+    "duration": 0.145,
+    "attacks": 1,
+    "voices": [
+      {
+        "duration": 0.145,
+        "rate": 1.0062237977981567
+      },
+      {
+        "duration": 0.11,
+        "rate": 0.9993905425071716
+      }
+    ],
+    "pausedSources": 0
+  },
+  {
+    "label": "touch",
+    "unit": "mole",
+    "duration": 0.095,
+    "attacks": 1,
+    "voices": [
+      {
+        "duration": 0.095,
+        "rate": 1.0091261863708496
+      },
+      {
+        "duration": 0.07002083333333334,
+        "rate": 0.9906389713287354
+      }
+    ],
+    "pausedSources": 0
+  },
+  {
+    "label": "touch",
+    "unit": "snail",
+    "duration": 0.22,
+    "attacks": 1,
+    "voices": [
+      {
+        "duration": 0.22,
+        "rate": 0.9852068424224854
+      },
+      {
+        "duration": 0.15,
+        "rate": 1.0039161443710327
+      }
+    ],
+    "pausedSources": 0
+  },
+  {
+    "label": "touch",
+    "unit": "owl",
+    "duration": 0.28,
+    "attacks": 1,
+    "voices": [
+      {
+        "duration": 0.28002083333333333,
+        "rate": 0.9973012804985046
+      },
+      {
+        "duration": 0.21,
+        "rate": 0.9833928942680359
+      }
+    ],
+    "pausedSources": 0
+  },
+  {
+    "label": "touch",
+    "unit": "wolf",
+    "duration": 0.26,
+    "attacks": 1,
+    "voices": [
+      {
+        "duration": 0.26,
+        "rate": 0.9800969958305359
+      },
+      {
+        "duration": 0.07002083333333334,
+        "rate": 0.9816656708717346
+      }
+    ],
+    "pausedSources": 0
+  },
+  {
+    "label": "touch",
+    "unit": "fox",
+    "duration": 0.32,
+    "attacks": 1,
+    "voices": [
+      {
+        "duration": 0.32,
+        "rate": 0.9934590458869934
+      },
+      {
+        "duration": 0.14002083333333334,
+        "rate": 1.008053183555603
+      }
+    ],
+    "pausedSources": 0
+  },
+  {
+    "label": "touch",
+    "unit": "redPanda",
+    "duration": 0.3,
+    "attacks": 1,
+    "voices": [
+      {
+        "duration": 0.3,
+        "rate": 1.0150474309921265
+      },
+      {
+        "duration": 0.26,
+        "rate": 0.9809899926185608
+      }
+    ],
+    "pausedSources": 0
+  },
+  {
+    "label": "touch",
+    "unit": "deer",
+    "duration": 0.24,
+    "attacks": 1,
+    "voices": [
+      {
+        "duration": 0.24,
+        "rate": 1.002436637878418
+      },
+      {
+        "duration": 0.21,
+        "rate": 0.9999017715454102
+      }
+    ],
+    "pausedSources": 0
+  },
+  {
+    "label": "touch",
+    "unit": "snowLeopard",
+    "duration": 0.36,
+    "attacks": 1,
+    "voices": [
+      {
+        "duration": 0.36,
+        "rate": 0.9881148934364319
+      },
+      {
+        "duration": 0.3,
+        "rate": 0.9866688251495361
+      }
+    ],
+    "pausedSources": 0
+  }
+]

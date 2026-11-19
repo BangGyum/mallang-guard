@@ -99,33 +99,49 @@ export function createCombatBuffers(context: BaseAudioContext): ReadonlyMap<Atta
           0.6 * low * Math.exp(-t / gun.body) +
           0.23 * Math.sin(phase) * Math.exp(-t / gun.body) +
           0.09 * mid * Math.exp(-t / gun.tail);
-        if (boltTime >= 0) sample += 0.045 * (white - low) * Math.exp(-boltTime / 0.008);
+        if (boltTime >= 0) {
+          const bolt = Math.exp(-boltTime / 0.009);
+          sample += 0.045 * (white - low) * bolt;
+          if (sound === 'pistol') sample += 0.14 * Math.sin(2 * Math.PI * 1420 * boltTime) * bolt;
+          if (sound === 'sniper')
+            sample += (0.16 * mid + 0.1 * Math.sin(2 * Math.PI * 485 * boltTime)) * bolt;
+        }
+        if (sound === 'sniper' && t > 0.035) {
+          sample += 0.22 * low * Math.exp(-(t - 0.035) / 0.062);
+        }
       } else if (sound === 'compactPistol') {
         phase += (2 * Math.PI * (95 + 180 * Math.exp(-t / 0.008))) / context.sampleRate;
         sample =
           (0.22 * Math.sin(phase) + 0.5 * low) * Math.exp(-t / 0.017) +
-          0.09 * (mid - low) * Math.exp(-t / 0.004);
+          0.09 * (mid - low) * Math.exp(-t / 0.004) +
+          0.16 * Math.sin(phase * 2.4) * Math.exp(-t / 0.012);
       } else if (sound === 'frostShot') {
         const cooling = Math.max(0, t - 0.018);
         phase += (2 * Math.PI * (90 + 210 * Math.exp(-t / 0.018))) / context.sampleRate;
         sample =
           (0.24 * Math.sin(phase) + 0.32 * low) * Math.exp(-t / 0.03) +
           0.16 * (white - mid) * Math.exp(-t / 0.004) +
-          0.11 * (mid - low) * (1 - Math.exp(-cooling / 0.008)) * Math.exp(-cooling / 0.05);
+          (0.12 * (mid - low) +
+            0.085 * Math.sin(2 * Math.PI * 1780 * cooling) +
+            0.045 * Math.sin(2 * Math.PI * 2640 * cooling)) *
+            (1 - Math.exp(-cooling / 0.008)) *
+            Math.exp(-cooling / 0.05);
       } else if (sound === 'energyShot') {
         phase += (2 * Math.PI * (200 + 420 * Math.exp(-t / 0.025))) / context.sampleRate;
-        sample = (0.16 * Math.sin(phase) + 0.045 * mid) * Math.exp(-t / 0.028);
+        sample = (0.18 * Math.sin(phase) + 0.08 * Math.sin(2 * phase) + 0.045 * mid) * Math.exp(-t / 0.032);
       } else if (sound === 'railgun') {
         phase += (2 * Math.PI * (65 + 240 * Math.exp(-t / 0.022))) / context.sampleRate;
         sample =
           (0.3 * Math.sin(phase) + 0.35 * low) * Math.exp(-t / 0.055) +
           0.1 * (white - mid) * Math.exp(-t / 0.005) +
-          0.045 * mid * Math.exp(-t / 0.09);
+          0.045 * mid * Math.exp(-t / 0.09) +
+          0.13 * Math.sin(2 * Math.PI * (1480 * t - 1850 * t * t)) * Math.exp(-t / 0.065);
       } else if (sound === 'mortar') {
         phase += (2 * Math.PI * (60 + 160 * Math.exp(-t / 0.018))) / context.sampleRate;
         sample =
           (0.38 * Math.sin(phase) + 0.45 * low) * Math.exp(-t / 0.06) +
-          0.07 * (mid - low) * Math.exp(-t / 0.02);
+          0.07 * (mid - low) * Math.exp(-t / 0.02) +
+          0.16 * Math.sin(2 * Math.PI * 117 * t) * Math.exp(-t / 0.088);
       } else if (sound === 'lightning') {
         phase += (2 * Math.PI * (430 + 250 * Math.exp(-t / 0.035))) / context.sampleRate;
         sample =
@@ -135,32 +151,47 @@ export function createCombatBuffers(context: BaseAudioContext): ReadonlyMap<Atta
       } else if (sound === 'gravity') {
         phase += (2 * Math.PI * (85 + 180 * Math.exp(-t / 0.06))) / context.sampleRate;
         sample =
-          (0.24 * Math.sin(phase) + 0.32 * low + 0.07 * (mid - low)) *
+          (0.18 * (Math.sin(phase) + 0.8 * Math.sin(phase * 1.08)) + 0.26 * low + 0.07 * (mid - low)) *
           (1 - Math.exp(-t / 0.008)) *
           Math.exp(-t / 0.075);
       } else if (sound === 'slash') {
         blade += slashStep * (white - blade);
-        sample = 0.16 * (blade - low) * Math.sin((Math.PI * t) / sec) ** 2;
+        const sweep = Math.sin((Math.PI * t) / sec) ** 2;
+        const edge = Math.max(0, t - 0.047);
+        sample =
+          (0.32 * (blade - low) + 0.05 * (mid - blade)) * sweep +
+          0.07 * Math.sin(2 * Math.PI * 1160 * edge) * Math.exp(-edge / 0.018);
       } else if (sound === 'hammer') {
         sample =
           (0.28 * Math.sin(2 * Math.PI * 82 * t) + 0.38 * low) * Math.exp(-t / 0.042) +
-          0.04 * Math.sin(2 * Math.PI * 710 * t) * Math.exp(-t / 0.065);
+          (0.085 * Math.sin(2 * Math.PI * 430 * t) + 0.045 * Math.sin(2 * Math.PI * 713 * t)) *
+            Math.exp(-t / 0.074);
       } else if (sound === 'fire') {
         const swell = (1 - Math.exp(-t / 0.007)) * Math.exp(-t / 0.068);
         sample =
-          (0.5 * low + 0.3 * (mid - low)) * swell +
+          (0.55 * low + 0.32 * (mid - low) * (1 + 0.35 * Math.sin(2 * Math.PI * 18 * t))) * swell +
           0.1 * (white - mid) * Math.max(0, Math.sin(2 * Math.PI * 137 * t)) ** 12 * swell +
           0.08 * Math.sin(2 * Math.PI * 72 * t) * Math.exp(-t / 0.045);
       } else if (sound === 'emberJet') {
         const swell = (1 - Math.exp(-t / 0.009)) * Math.exp(-t / 0.052);
-        const flicker = 0.75 + 0.25 * Math.sin(2 * Math.PI * 31 * t);
+        const flicker = 0.65 + 0.35 * Math.sin(2 * Math.PI * (44 * t + 65 * t * t));
         sample =
           (0.24 * low + 0.42 * (mid - low)) * swell * flicker +
-          0.035 * Math.sin(2 * Math.PI * 125 * t) * Math.exp(-t / 0.035);
+          0.09 * Math.sin(2 * Math.PI * 165 * t) * swell * flicker;
       } else if (sound === 'magic') {
         phase += (2 * Math.PI * (280 + 820 * Math.exp(-t / 0.04))) / context.sampleRate;
         sample =
-          (0.14 * Math.sin(phase + 1.5 * Math.sin(2 * Math.PI * 70 * t)) + 0.18 * mid) * Math.exp(-t / 0.043);
+          (0.16 * Math.sin(phase + 2.1 * Math.sin(2 * Math.PI * 115 * t)) + 0.18 * mid) *
+            Math.exp(-t / 0.043) +
+          0.08 * Math.sin(phase * 2.51) * Math.exp(-t / 0.075);
+      } else if (sound === 'launcher') {
+        const pop = Math.max(0, t - 0.026);
+        phase += (2 * Math.PI * (125 + 300 * Math.exp(-pop / 0.018))) / context.sampleRate;
+        sample =
+          0.4 * (mid - low) * Math.exp(-t / 0.012) +
+          (0.23 * Math.sin(phase) + 0.09 * Math.sin(phase * 2)) *
+            (1 - Math.exp(-pop / 0.003)) *
+            Math.exp(-pop / 0.043);
       } else {
         phase += (2 * Math.PI * (75 + 180 * Math.exp(-t / 0.025))) / context.sampleRate;
         sample = (0.2 * Math.sin(phase) + 0.4 * low) * Math.exp(-t / 0.035);
